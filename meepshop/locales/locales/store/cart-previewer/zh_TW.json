@@ -7,8 +7,8 @@
   "product-total": "商品總計",
   "product-deleted": "商品已停止販售",
   "gift": "贈品",
-  "PRODUCT_DELETED": "停售",
-  "PRODUCT_NOT_ONLINE": "尚未開放購買",
-  "PRODUCT_SOLD_OUT": "缺貨中",
+  "DISCONTINUED": "停售",
+  "NOT_AVAILABLE": "尚未開放購買",
+  "OUT_OF_STOCK": "缺貨中",
   "cart-updated": "更新購物車完成"
 }

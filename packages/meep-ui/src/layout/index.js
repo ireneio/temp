@@ -8,7 +8,6 @@ import withContext from '@store/utils/lib/withContext';
 
 import { COLOR_TYPE } from 'constants/propTypes';
 
-import Cart from './cart';
 import DecoratorsRoot from './DecoratorsRoot';
 import ContainerSwitch from './ContainerSwitch';
 import styles from './styles/index.less';
@@ -115,8 +114,6 @@ export default class Layout extends React.PureComponent {
                   </a>
                 </footer>
               )}
-
-              <Cart />
             </div>
           </>
         )}

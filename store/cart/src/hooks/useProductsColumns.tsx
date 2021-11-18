@@ -20,6 +20,7 @@ import {
 import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
 import ProductAmountSelector from '@meepshop/product-amount-selector';
+import Switch from '@meepshop/switch';
 import Thumbnail from '@meepshop/thumbnail';
 
 import useUpdateProduct from './useUpdateProduct';
@@ -49,35 +50,38 @@ export default (hasError: boolean): ReturnType => {
       columns: [
         {
           dataIndex: ['coverImage'],
-          width: isMobile ? 112 : 124,
+          width: isMobile ? 102 : 124,
           render: (
             image: useProductsColumnsFragmentType['coverImage'],
             { productId, type, error },
           ) => {
             const disabled =
               type !== 'product' ||
-              ['PRODUCT_NOT_ONLINE', 'PRODUCT_DELETED'].includes(error || '');
+              ['DISCONTINUED', 'NOT_AVAILABLE'].includes(error || '');
 
             return (
-              <Link
-                href={`/product/${productId}`}
-                disabled={disabled}
-                target="_blank"
+              <Switch
+                isTrue={!disabled}
+                render={children => (
+                  <Link href={`/product/${productId}`} target="_blank">
+                    <a href={`/product/${productId}`}>{children}</a>
+                  </Link>
+                )}
               >
                 <Thumbnail
                   image={image}
-                  className={`${styles.img} ${disabled ? '' : styles.link} ${
-                    error !== 'PRODUCT_NOT_ONLINE' ? '' : styles.offline
+                  className={`${styles.img} ${
+                    error !== 'NOT_AVAILABLE' ? '' : styles.offline
                   }`}
                 />
-              </Link>
+              </Switch>
             );
           },
         },
         {
           title: t('product'),
           dataIndex: ['title'],
-          width: '55%',
+          width: isMobile ? '100%' : '55%',
           render: (
             title: useProductsColumnsFragmentType['title'],
             {
@@ -95,30 +99,33 @@ export default (hasError: boolean): ReturnType => {
             const quantity = product.quantity || 0;
             const disabled =
               type !== 'product' ||
-              ['PRODUCT_NOT_ONLINE', 'PRODUCT_DELETED'].includes(error || '');
+              ['DISCONTINUED', 'NOT_AVAILABLE'].includes(error || '');
 
             return (
               <>
-                <Link
-                  href={`/product/${productId}`}
-                  disabled={disabled}
-                  target="_blank"
+                <Switch
+                  isTrue={!disabled}
+                  render={children => (
+                    <Link href={`/product/${productId}`} target="_blank">
+                      <a href={`/product/${productId}`}>{children}</a>
+                    </Link>
+                  )}
                 >
-                  <div
+                  <span
                     className={`${styles.title} ${
-                      error !== 'PRODUCT_NOT_ONLINE' ? '' : styles.offline
+                      error !== 'NOT_AVAILABLE' ? '' : styles.offline
                     }`}
                   >
-                    {error === 'PRODUCT_DELETED'
+                    {error === 'DISCONTINUED'
                       ? t('product-deleted')
                       : title?.[i18n.language as languageType] || title?.zh_TW}
-                  </div>
-                </Link>
+                  </span>
+                </Switch>
 
                 {!specs ? null : (
                   <div
                     className={`${styles.specs} ${
-                      error !== 'PRODUCT_NOT_ONLINE' ? '' : styles.offline
+                      error !== 'NOT_AVAILABLE' ? '' : styles.offline
                     }`}
                   >
                     {specs
@@ -152,26 +159,41 @@ export default (hasError: boolean): ReturnType => {
                     <div className={styles.price}>{t('gift')}</div>
                   ) : (
                     <>
-                      {['PRODUCT_NOT_ONLINE', 'PRODUCT_DELETED'].includes(
-                        error || '',
+                      {error &&
+                      ['DISCONTINUED', 'NOT_AVAILABLE'].includes(
+                        error,
                       ) ? null : (
                         <div className={styles.price}>
                           {c(retailPrice * quantity)}
                         </div>
                       )}
 
-                      {!error ? (
-                        <ProductAmountSelector
-                          className={styles.select}
-                          variant={variant}
-                          value={quantity}
-                          onChange={updateProduct(cartId || '')}
-                        />
-                      ) : (
+                      {error &&
+                      [
+                        'DISCONTINUED',
+                        'NOT_AVAILABLE',
+                        'OUT_OF_STOCK',
+                      ].includes(error) ? (
                         <div className={styles.error}>
                           <ExclamationCircleOutlined />
                           {hasError ? t(`${error}-warning`) : t(error)}
                         </div>
+                      ) : (
+                        <>
+                          <ProductAmountSelector
+                            size="large"
+                            className={`${styles.select} ${
+                              !error ? '' : styles.withError
+                            }`}
+                            variant={variant}
+                            value={quantity}
+                            onChange={updateProduct(cartId || '')}
+                          />
+
+                          {!error ? null : (
+                            <div className={styles.amountError}>{t(error)}</div>
+                          )}
+                        </>
                       )}
                     </>
                   )}
@@ -210,7 +232,10 @@ export default (hasError: boolean): ReturnType => {
           ) => {
             if (type !== 'product') return null;
 
-            if (error)
+            if (
+              error &&
+              ['DISCONTINUED', 'NOT_AVAILABLE', 'OUT_OF_STOCK'].includes(error)
+            )
               return (
                 <div className={styles.error}>
                   <ExclamationCircleOutlined />
@@ -219,12 +244,21 @@ export default (hasError: boolean): ReturnType => {
               );
 
             return (
-              <ProductAmountSelector
-                className={styles.select}
-                variant={variant}
-                value={quantity || 0}
-                onChange={updateProduct(cartId || '')}
-              />
+              <>
+                <ProductAmountSelector
+                  size="large"
+                  className={`${styles.select} ${
+                    !error ? '' : styles.withError
+                  }`}
+                  variant={variant}
+                  value={quantity || 0}
+                  onChange={updateProduct(cartId || '')}
+                />
+
+                {!error ? null : (
+                  <div className={styles.amountError}>{t(error)}</div>
+                )}
+              </>
             );
           },
         },
@@ -259,7 +293,9 @@ export default (hasError: boolean): ReturnType => {
       styles: `
         .${styles.img} {
           border: 1px solid ${transformColor(colors[3]).alpha(0.1)};
-          box-shadow: 0 1px 3px 0 ${transformColor(colors[3]).alpha(0.08)};
+          box-shadow: 0 1px 3px 0 ${transformColor(colors[3]).alpha(
+            0.08,
+          )} !important;
         }
         .${styles.tags} > span {
           background-color: ${transformColor(colors[3]).alpha(0.1)};

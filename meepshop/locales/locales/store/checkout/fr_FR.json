@@ -9,7 +9,7 @@
   "is-required": "Champs obligatoires",
   "confirm-go-to": "D'accord",
   "cart-is-empty": "Votre panier est vide, veuillez retourner au magasin et continuer vos achats.",
-  "continue-shopping": "Continuer vos achats",
+  "go-back-to-cart": "Retourner au panier",
   "total-price": "Totale",
   "cart": "Panier",
   "cart-has-error": {
@@ -19,6 +19,8 @@
   "user-info": "Infos membres",
   "email": "Inscrivez vous avec votre adresse email",
   "please-login": "Cette boîte aux lettres a été enregistrée, veuillez vous connecter en premier",
+  "login-tip": "Déjà notre membre?",
+  "fb-login": "Identifiant Facebook",
   "login": "Identifiant",
   "password": "Mot de passe",
   "name": "Nom complet",

@@ -9,7 +9,7 @@
   "is-required": "Required",
   "confirm-go-to": "OK",
   "cart-is-empty": "Your cart is empty, please return to the store and continue shopping.",
-  "continue-shopping": "Continue Shopping",
+  "go-back-to-cart": "Return to shopping cart",
   "total-price": "Total",
   "cart": "shopping cart",
   "cart-has-error": {
@@ -19,6 +19,8 @@
   "user-info": "Member Info",
   "email": "Sign up with your email address",
   "please-login": "This mailbox has been registered, please log in first",
+  "login-tip": "Already our member?",
+  "fb-login": "Facebook login",
   "login": "Member login",
   "password": "Password",
   "name": "Full Name",

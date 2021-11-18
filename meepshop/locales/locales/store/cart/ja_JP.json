@@ -16,10 +16,12 @@
   "quantity": "量",
   "subtotal": "小計",
   "cart-updated": "ショッピングカートを更新します",
-  "PRODUCT_DELETED": "ストップ",
-  "PRODUCT_NOT_ONLINE": "購入に開かないで",
-  "PRODUCT_SOLD_OUT": "在庫切れ",
-  "PRODUCT_DELETED-warning": "停止項目を削除してください",
-  "PRODUCT_NOT_ONLINE-warning": "まだ商品の購入を削除してください",
-  "PRODUCT_SOLD_OUT-warning": "在庫品から削除してください"
+  "DISCONTINUED": "ストップ",
+  "NOT_AVAILABLE": "購入に開かないで",
+  "OUT_OF_STOCK": "在庫切れ",
+  "DISCONTINUED-warning": "停止項目を削除してください",
+  "NOT_AVAILABLE-warning": "まだ商品の購入を削除してください",
+  "OUT_OF_STOCK-warning": "在庫品から削除してください",
+  "LIMIT_EXCEEDED": "購入数量を超えています",
+  "MINIMUM_NOT_REACHED": "最小購入数はありません"
 }

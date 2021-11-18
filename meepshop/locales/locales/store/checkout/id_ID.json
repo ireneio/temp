@@ -9,7 +9,7 @@
   "is-required": "Yg dibutuhkan",
   "confirm-go-to": "baik",
   "cart-is-empty": "Keranjang Anda kosong, harap kembali ke toko dan lanjutkan berbelanja.",
-  "continue-shopping": "Lanjutkan Belanja",
+  "go-back-to-cart": "Kembali ke Keranjang Belanja",
   "total-price": "Total",
   "cart": "kereta Belanja",
   "cart-has-error": {
@@ -19,6 +19,8 @@
   "user-info": "Info Anggota",
   "email": "Daftar dengan alamat emailmu",
   "please-login": "Kotak surat ini telah terdaftar, silakan masuk terlebih dahulu",
+  "login-tip": "Sudah anggota kami?",
+  "fb-login": "Login Facebook.",
   "login": "Login Anggota",
   "password": "Kata sandi",
   "name": "Nama lengkap",

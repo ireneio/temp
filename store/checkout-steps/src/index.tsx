@@ -23,7 +23,7 @@ interface PropsType {
 // definition
 export default React.memo(({ step }: PropsType) => {
   const colors = useContext(ColorsContext);
-  const { t } = useTranslation('checkout-progress');
+  const { t } = useTranslation('checkout-steps');
   const { data } = useQuery<getStoreLogoType>(getStoreLogo);
   const phase = STEPS.indexOf(step);
 
@@ -67,9 +67,6 @@ export default React.memo(({ step }: PropsType) => {
               color: ${colors[0]};
               border-color: ${colors[3]};
               background-color: ${colors[3]};
-              box-shadow: 0 2px 4px -2px ${transformColor(colors[3]).alpha(
-                0.3,
-              )};
             }
 
             .${styles.undone} > div:first-child {

@@ -1,8 +1,7 @@
 // import
 import React, { useContext, useRef, useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { LoadingOutlined, LeftOutlined } from '@ant-design/icons';
-import { Spin } from 'antd';
+import { LeftOutlined } from '@ant-design/icons';
 import transformColor from 'color';
 import { filter } from 'graphql-anywhere';
 
@@ -38,10 +37,12 @@ interface PropsType {
 export default React.memo(({ onClose }: PropsType) => {
   const colors = useContext(ColorsContext);
   const { c } = useContext(CurrencyContext);
-  const { t } = useTranslation('cart');
+  const { t } = useTranslation('cart-previewer');
   const { data } = useQuery<getCartListInPreviewerType>(getCartListInPreviewer);
   const productsRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
+  const order = data?.getCartList?.data?.[0];
+  const products = order?.categories?.[0]?.products || [];
 
   useEffect(() => {
     const productsNode = productsRef.current;
@@ -59,12 +60,6 @@ export default React.memo(({ onClose }: PropsType) => {
     };
   }, []);
 
-  const order = data?.getCartList?.data?.[0];
-
-  if (!order) return <Spin indicator={<LoadingOutlined spin />} />;
-
-  const products = order?.categories?.[0]?.products || [];
-
   return (
     <>
       <div className={styles.root}>
@@ -73,8 +68,8 @@ export default React.memo(({ onClose }: PropsType) => {
           {t('cart')}
         </div>
 
-        {!products.length ? (
-          <Empty />
+        {!order || !products.length ? (
+          <Empty onClose={onClose} />
         ) : (
           <>
             <div className={styles.products} ref={productsRef}>

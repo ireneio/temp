@@ -8,6 +8,8 @@ import { Menu } from 'antd';
 import { withTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
 import { useRouter } from '@meepshop/link';
+import Switch from '@meepshop/switch';
+import CartPreviewer from '@store/cart-previewer';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
 
@@ -55,7 +57,6 @@ export default class MenuItem extends React.PureComponent {
 
   static propTypes = {
     /** context, TODO: remove */
-    toggleCart: PropTypes.func.isRequired,
     location: LOCATION_TYPE.isRequired,
     locale: ONE_OF_LOCALE_TYPE.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
@@ -121,8 +122,6 @@ export default class MenuItem extends React.PureComponent {
   onClick = async () => {
     const {
       /** context */
-      isShowCart,
-      toggleCart,
       logout,
       isLogin,
 
@@ -135,10 +134,6 @@ export default class MenuItem extends React.PureComponent {
     } = this.props;
 
     switch (action) {
-      case 5:
-        toggleCart(!isShowCart);
-        break;
-
       case 'logout':
         logout();
         break;
@@ -353,7 +348,6 @@ export default class MenuItem extends React.PureComponent {
   render() {
     const {
       /** context */
-      toggleCart,
       isLogin,
       hasStoreAppPlugin,
 
@@ -365,6 +359,8 @@ export default class MenuItem extends React.PureComponent {
       action,
       newWindow,
       level,
+      menuType,
+      isMobile,
       isModule,
 
       /** ignore */
@@ -387,7 +383,7 @@ export default class MenuItem extends React.PureComponent {
         </li>
       );
 
-    const url = this.generateURL(action, params, isLogin);
+    const url = this.generateURL(action, params, isLogin, isMobile);
     const iconProps = !(action === 8 && isLogin !== NOTLOGIN)
       ? { image, imagePosition }
       : {
@@ -449,11 +445,24 @@ export default class MenuItem extends React.PureComponent {
                 id,
                 pages: !hasLevelThree ? [] : subPages,
                 style: menuItemStyle,
+                menuType,
+                isMobile,
+                isModule,
               }),
             )}
           </SubMenu>
         ) : (
-          <AntdMenuItem {...menuItemProps} />
+          <Switch
+            isTrue={
+              action === 5 &&
+              (isMobile ||
+                (level === 1 &&
+                  (isModule || ['fixedTop', 'secondTop'].includes(menuType))))
+            }
+            render={children => <CartPreviewer>{children}</CartPreviewer>}
+          >
+            <AntdMenuItem {...menuItemProps} />
+          </Switch>
         )}
       </CartCount>
     );

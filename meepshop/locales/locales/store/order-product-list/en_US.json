@@ -4,11 +4,13 @@
   "product-not-online-warning": "Please remove this item",
   "product-sold-out": "Out of Stock",
   "product-sold-out-warning": "Please remove this item",
+  "DISCONTINUED": "Products have been stopped",
+  "DISCONTINUED-warning": "Please remove the stop item",
   "not-found-content": "The number of purchasable items might surpass its limit or the format is invalid.",
   "more-options": "… or key in desired QTY",
   "gift": "Free Gift",
-  "gift-out-of-stock": "Out of Stock",
   "remove-product-from-cart": "The items in cart have been updated.",
   "update-product-in-cart": "The items in cart have been updated.",
-  "quantity-out-of-range": "Exceed the purchaseable quantity"
+  "LIMIT_EXCEEDED": "Exceeding the purchase quantity",
+  "MINIMUM_NOT_REACHED": "No minimum number of purchases"
 }

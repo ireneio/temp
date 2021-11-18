@@ -249,13 +249,7 @@ export const CONTEXT_TYPES = {
   logout: PropTypes.func.isRequired,
   dispatchAction: PropTypes.func.isRequired,
 
-  /** context variables from DecoratorsRoot */
-  isShowCart: PropTypes.bool.isRequired,
-  isCartUpdating: PropTypes.bool.isRequired,
-
   /** context func from DecoratorsRoot */
   hasStoreAppPlugin: PropTypes.func.isRequired,
-  toggleCart: PropTypes.func.isRequired,
-  updateCart: PropTypes.func.isRequired,
   transformCurrency: PropTypes.func.isRequired,
 };

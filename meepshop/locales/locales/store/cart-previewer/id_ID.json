@@ -7,8 +7,8 @@
   "product-total": "Total komoditas",
   "product-deleted": "Produk telah dihentikan",
   "gift": "Berikan hadiah",
-  "PRODUCT_DELETED": "Berhenti",
-  "PRODUCT_NOT_ONLINE": "Tidak terbuka untuk membeli",
-  "PRODUCT_SOLD_OUT": "Kehabisan persediaan",
+  "DISCONTINUED": "Berhenti",
+  "NOT_AVAILABLE": "Tidak terbuka untuk membeli",
+  "OUT_OF_STOCK": "Kehabisan persediaan",
   "cart-updated": "Perbarui keranjang belanja"
 }

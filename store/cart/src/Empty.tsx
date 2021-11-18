@@ -4,7 +4,7 @@ import transformColor from 'color';
 
 import { Colors as ColorsContext } from '@meepshop/context';
 import { cart_react as Cart } from '@meepshop/images';
-import Link from '@meepshop/link';
+import { useRouter } from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
 
 import styles from './styles/empty.less';
@@ -12,6 +12,7 @@ import styles from './styles/empty.less';
 // definition
 export default React.memo(() => {
   const colors = useContext(ColorsContext);
+  const { push } = useRouter();
   const { t } = useTranslation('cart');
 
   return (
@@ -19,9 +20,15 @@ export default React.memo(() => {
       <div className={styles.root}>
         <Cart className={styles.cart} />
         <p>{t('empty-cart')}</p>
-        <Link href={window.storePreviousPageUrl || '/'}>
-          <div className={styles.button}>{t('go-back-to-store')}</div>
-        </Link>
+        <div
+          className={styles.button}
+          onClick={() => {
+            const url = window.storePreviousPageUrl || '/';
+            push(!url.startsWith('/checkout') ? url : '/');
+          }}
+        >
+          {t('go-back-to-store')}
+        </div>
       </div>
 
       <style

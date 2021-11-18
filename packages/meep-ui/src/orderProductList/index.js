@@ -22,12 +22,11 @@ export default enhancer(
       activityInfo,
       isChoosenSipment,
       productHasError,
-      updateCart,
       onChange,
     }) => {
       const { t } = useTranslation('order-product-list');
       const colors = useContext(ColorsContext);
-      const columns = useColumns({ productHasError, updateCart, onChange });
+      const columns = useColumns({ productHasError, onChange });
 
       return (
         <div className={`${styles.root} ${className || ''}`} style={style}>
@@ -51,11 +50,12 @@ export default enhancer(
                   rowKey={({ id }) => id}
                   onRow={({ error }) => ({
                     style:
-                      !productHasError || error !== 'PRODUCT_NOT_ONLINE'
-                        ? {}
-                        : {
+                      productHasError &&
+                      ['NOT_AVAILABLE', 'DISCONTINUED'].includes(error || '')
+                        ? {
                             background: colors[5],
-                          },
+                          }
+                        : {},
                   })}
                   showHeader={false}
                   pagination={false}

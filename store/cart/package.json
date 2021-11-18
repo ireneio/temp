@@ -8,7 +8,6 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.85",
     "@meepshop/context": "^0.80.85",
     "@meepshop/draft-text": "^0.80.85",
     "@meepshop/icons": "^0.80.80",
@@ -17,6 +16,7 @@
     "@meepshop/locales": "^0.80.82",
     "@meepshop/login-modal": "^0.80.85",
     "@meepshop/product-amount-selector": "^0.80.82",
+    "@meepshop/switch": "^0.80.80",
     "@meepshop/thumbnail": "^0.80.80",
     "@meepshop/utils": "^0.80.80",
     "@store/checkout-steps": "^0.80.85",

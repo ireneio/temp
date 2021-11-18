@@ -6,6 +6,7 @@ import { appWithTranslation } from '@meepshop/locales';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
+import { RoleProvider } from '@meepshop/context/lib/Role';
 import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';
 import CurrencyProvider from '@store/currency';
@@ -20,13 +21,15 @@ export default withApollo(
       <MockTypes>
         <EventsProvider>
           <FbProvider>
-            <ColorsProvider>
-              <AppsProvider>
-                <CurrencyProvider>
-                  <AdTrackProvider>{children}</AdTrackProvider>
-                </CurrencyProvider>
-              </AppsProvider>
-            </ColorsProvider>
+            <RoleProvider>
+              <ColorsProvider>
+                <AppsProvider>
+                  <CurrencyProvider>
+                    <AdTrackProvider>{children}</AdTrackProvider>
+                  </CurrencyProvider>
+                </AppsProvider>
+              </ColorsProvider>
+            </RoleProvider>
           </FbProvider>
         </EventsProvider>
       </MockTypes>

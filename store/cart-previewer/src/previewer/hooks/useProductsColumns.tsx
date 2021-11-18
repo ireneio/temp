@@ -18,6 +18,7 @@ import {
 } from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
+import Switch from '@meepshop/switch';
 import Thumbnail from '@meepshop/thumbnail';
 
 import useRemoveProduct from './useRemoveProduct';
@@ -34,7 +35,7 @@ interface ReturnType {
 
 // definition
 export default (): ReturnType => {
-  const { t, i18n } = useTranslation('cart');
+  const { t, i18n } = useTranslation('cart-previewer');
   const { c } = useContext(CurrencyContext);
   const colors = useContext(ColorsContext);
   const removeProduct = useRemoveProduct();
@@ -51,21 +52,24 @@ export default (): ReturnType => {
           ) => {
             const disabled =
               type !== 'product' ||
-              ['PRODUCT_NOT_ONLINE', 'PRODUCT_DELETED'].includes(error || '');
+              ['DISCONTINUED', 'NOT_AVAILABLE'].includes(error || '');
 
             return (
-              <Link
-                href={`/product/${productId}`}
-                disabled={disabled}
-                target="_blank"
+              <Switch
+                isTrue={!disabled}
+                render={children => (
+                  <Link href={`/product/${productId}`} target="_blank">
+                    <a href={`/product/${productId}`}>{children}</a>
+                  </Link>
+                )}
               >
                 <Thumbnail
                   image={image}
-                  className={`${styles.img} ${disabled ? '' : styles.link} ${
-                    error !== 'PRODUCT_NOT_ONLINE' ? '' : styles.offline
+                  className={`${styles.img} ${
+                    error !== 'NOT_AVAILABLE' ? '' : styles.offline
                   }`}
                 />
-              </Link>
+              </Switch>
             );
           },
         },
@@ -80,30 +84,33 @@ export default (): ReturnType => {
             const quantity = product.quantity || 0;
             const disabled =
               type !== 'product' ||
-              ['PRODUCT_NOT_ONLINE', 'PRODUCT_DELETED'].includes(error || '');
+              ['DISCONTINUED', 'NOT_AVAILABLE'].includes(error || '');
 
             return (
               <>
-                <Link
-                  href={`/product/${productId}`}
-                  disabled={disabled}
-                  target="_blank"
+                <Switch
+                  isTrue={!disabled}
+                  render={children => (
+                    <Link href={`/product/${productId}`} target="_blank">
+                      <a href={`/product/${productId}`}>{children}</a>
+                    </Link>
+                  )}
                 >
-                  <div
+                  <span
                     className={`${styles.title} ${
-                      error !== 'PRODUCT_NOT_ONLINE' ? '' : styles.offline
+                      error !== 'NOT_AVAILABLE' ? '' : styles.offline
                     }`}
                   >
-                    {error === 'PRODUCT_DELETED'
+                    {error === 'DISCONTINUED'
                       ? t('product-deleted')
                       : title?.[i18n.language as languageType] || title?.zh_TW}
-                  </div>
-                </Link>
+                  </span>
+                </Switch>
 
                 {!specs ? null : (
                   <div
                     className={`${styles.specs} ${
-                      error !== 'PRODUCT_NOT_ONLINE' ? '' : styles.offline
+                      error !== 'NOT_AVAILABLE' ? '' : styles.offline
                     }`}
                   >
                     {specs
@@ -135,21 +142,23 @@ export default (): ReturnType => {
                   <div className={styles.price}>{t('gift')}</div>
                 ) : (
                   <>
-                    {['PRODUCT_NOT_ONLINE', 'PRODUCT_DELETED'].includes(
-                      error || '',
-                    ) ? null : (
+                    {error &&
+                    ['DISCONTINUED', 'NOT_AVAILABLE'].includes(error) ? null : (
                       <div className={styles.price}>
                         <span>{`${quantity}×`}</span>
                         <span>{c(retailPrice)}</span>
                       </div>
                     )}
 
-                    {!error ? null : (
+                    {error &&
+                    ['DISCONTINUED', 'NOT_AVAILABLE', 'OUT_OF_STOCK'].includes(
+                      error,
+                    ) ? (
                       <div className={styles.error}>
                         <ExclamationCircleOutlined />
                         {t(error)}
                       </div>
-                    )}
+                    ) : null}
                   </>
                 )}
               </>

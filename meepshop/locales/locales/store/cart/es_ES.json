@@ -16,10 +16,12 @@
   "quantity": "cantidad",
   "subtotal": "Total parcial",
   "cart-updated": "Actualizar carrito de compra",
-  "PRODUCT_DELETED": "Detener",
-  "PRODUCT_NOT_ONLINE": "No abierto para comprar",
-  "PRODUCT_SOLD_OUT": "Agotado",
-  "PRODUCT_DELETED-warning": "Por favor, retire el elemento de parada",
-  "PRODUCT_NOT_ONLINE-warning": "Por favor, elimine la compra de productos todavía",
-  "PRODUCT_SOLD_OUT-warning": "Por favor, retire fuera de stock"
+  "DISCONTINUED": "Detener",
+  "NOT_AVAILABLE": "No abierto para comprar",
+  "OUT_OF_STOCK": "Agotado",
+  "DISCONTINUED-warning": "Por favor, retire el elemento de parada",
+  "NOT_AVAILABLE-warning": "Por favor, elimine la compra de productos todavía",
+  "OUT_OF_STOCK-warning": "Por favor, retire fuera de stock",
+  "LIMIT_EXCEEDED": "Excediendo la cantidad de compra",
+  "MINIMUM_NOT_REACHED": "No hay cantidad mínima de compras."
 }

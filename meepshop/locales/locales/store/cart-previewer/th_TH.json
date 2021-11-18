@@ -7,8 +7,8 @@
   "product-total": "สินค้ารวม",
   "product-deleted": "ผลิตภัณฑ์ถูกหยุดแล้ว",
   "gift": "ให้ของขวัญ",
-  "PRODUCT_DELETED": "หยุด",
-  "PRODUCT_NOT_ONLINE": "ไม่เปิดให้ซื้อ",
-  "PRODUCT_SOLD_OUT": "สินค้าหมด",
+  "DISCONTINUED": "หยุด",
+  "NOT_AVAILABLE": "ไม่เปิดให้ซื้อ",
+  "OUT_OF_STOCK": "สินค้าหมด",
   "cart-updated": "อัพเดทตะกร้าสินค้า"
 }

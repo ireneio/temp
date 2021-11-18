@@ -75,7 +75,7 @@ export default (
                 ...newPage,
                 image: {
                   __typename: 'DefaultIcon',
-                  icon: action === 5 ? 'SHOPPING_CART' : 'PERSON',
+                  icon: action === 5 ? 'CART' : 'PROFILE',
                 },
                 imagePosition: 'ONLY',
                 pages:

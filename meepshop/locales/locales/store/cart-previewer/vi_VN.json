@@ -7,8 +7,8 @@
   "product-total": "Tổng số hàng hóa",
   "product-deleted": "Sản phẩm đã bị dừng",
   "gift": "Cho một món quà",
-  "PRODUCT_DELETED": "Ngừng lại",
-  "PRODUCT_NOT_ONLINE": "Không mở để mua",
-  "PRODUCT_SOLD_OUT": "Hết hàng",
+  "DISCONTINUED": "Ngừng lại",
+  "NOT_AVAILABLE": "Không mở để mua",
+  "OUT_OF_STOCK": "Hết hàng",
   "cart-updated": "Cập nhật giỏ hàng"
 }

@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 import {
@@ -66,9 +66,8 @@ export default React.memo(
     const colors = useContext(ColorsContext);
     const apps = useContext(AppsContext);
     const { c } = useContext(CurrencyContext);
-    const { cartIsOpened, toggleCart, carts } = useContext(CartContext);
+    const { carts } = useContext(CartContext);
     const role = useContext(RoleContext);
-    const [isCartUpdating, setIsCartUpdating] = useState(false);
 
     return (
       <EnhancerContext.Provider
@@ -100,12 +99,7 @@ export default React.memo(
           colors,
           hasStoreAppPlugin: pluginName => apps[pluginName].isInstalled,
           transformCurrency: c,
-          isShowCart: cartIsOpened,
-          toggleCart,
           carts,
-
-          isCartUpdating,
-          updateCart: setIsCartUpdating,
         }}
       >
         {children({

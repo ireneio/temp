@@ -23,10 +23,10 @@ export default React.memo(() => {
   const { data } = useQuery<getLoginMessageType>(getLoginMessage);
   const { t } = useTranslation('cart');
   const colors = useContext(ColorsContext);
-  const { fb, isLoginEnabled } = useContext(FbContext);
+  const { fb, isLoginEnabled: isFbLoginEnabled } = useContext(FbContext);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [fbLoginLoading, setFbLoginLoading] = useState(false);
   const store = data?.viewer?.store;
 
   if (!store) return null;
@@ -39,15 +39,15 @@ export default React.memo(() => {
       <div className={styles.login}>
         <div>{t('login-tip')}</div>
         <div>
-          {!isLoginEnabled ? null : (
+          {!isFbLoginEnabled ? null : (
             <div
               className={styles.fb}
               onClick={async () => {
-                if (!loading && fb) {
-                  setLoading(true);
-                  await fb.login();
-                  setLoading(false);
-                }
+                if (!fb || fbLoginLoading) return;
+
+                setFbLoginLoading(true);
+                await fb.login();
+                setFbLoginLoading(false);
               }}
             >
               <FbLoginIcon />
@@ -88,7 +88,10 @@ export default React.memo(() => {
       )}
 
       {!isLoginModalOpen ? null : (
-        <LoginModal onClose={() => setIsLoginModalOpen(false)} />
+        <LoginModal
+          onClose={() => setIsLoginModalOpen(false)}
+          disabledFblogin
+        />
       )}
 
       <style
@@ -96,7 +99,7 @@ export default React.memo(() => {
           __html: `
             .${styles.login} {
               background-color: ${transformColor(colors[1]).alpha(0.3)};
-              color: ${colors[1]};
+              color: ${colors[3]};
             }
 
             .${styles.member} {

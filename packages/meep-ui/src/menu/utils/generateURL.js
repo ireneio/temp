@@ -2,7 +2,7 @@ import queryString from 'query-string';
 
 import { NOTLOGIN } from 'constants/isLogin';
 
-export default (action, params, isLogin) => {
+export default (action, params, isLogin, isMobile) => {
   switch (action) {
     case 1: {
       const { path, pageId } = params;
@@ -48,6 +48,9 @@ export default (action, params, isLogin) => {
 
       return `/products?${queryString.stringify(query)}`;
     }
+
+    case 5:
+      return isMobile ? null : '/cart';
 
     case 8:
       return isLogin === NOTLOGIN ? '/login' : null;

@@ -16,7 +16,7 @@ import ProductAmountSelector from '@meepshop/product-amount-selector';
 
 import styles from './styles/useColumns.less';
 
-export default ({ productHasError, updateCart, onChange }) => {
+export default ({ productHasError, onChange }) => {
   const { t, i18n } = useTranslation('order-product-list');
   const { c } = useContext(CurrencyContext);
   const colors = useContext(ColorsContext);
@@ -26,8 +26,6 @@ export default ({ productHasError, updateCart, onChange }) => {
 
   const changeProduct = useCallback(
     cartId => async value => {
-      updateCart(true);
-
       await updateProductInCart({
         variables: {
           search: {
@@ -43,12 +41,11 @@ export default ({ productHasError, updateCart, onChange }) => {
 
       if (onChange) onChange({ cartId, quantity: value });
 
-      updateCart(false);
       notification.success({
         message: t('update-product-in-cart'),
       });
     },
-    [updateCart, onChange, t, updateProductInCart],
+    [onChange, t, updateProductInCart],
   );
 
   return useMemo(
@@ -56,26 +53,27 @@ export default ({ productHasError, updateCart, onChange }) => {
       {
         dataIndex: ['coverImage', 'scaledSrc', 'w120'],
         width: 80,
-        render: (src, { productId, type, error }) => (
-          <Link
-            href={`/product/${productId}`}
-            disabled={type !== 'product' || error === 'PRODUCT_NOT_ONLINE'}
-            target="_blank"
-          >
-            <div
-              className={`${styles.img} ${
-                type !== 'product' || error === 'PRODUCT_NOT_ONLINE'
-                  ? ''
-                  : styles.link
-              } ${
-                error !== 'PRODUCT_NOT_ONLINE' ? '' : styles.productNotOnline
-              }`}
-              style={{
-                backgroundImage: `url(${src || placeholderThumbnail})`,
-              }}
-            />
-          </Link>
-        ),
+        render: (src, { productId, type, error }) => {
+          const disabled =
+            type !== 'product' ||
+            ['DISCONTINUED', 'NOT_AVAILABLE'].includes(error || '');
+          return (
+            <Link
+              href={`/product/${productId}`}
+              disabled={disabled}
+              target="_blank"
+            >
+              <div
+                className={`${styles.img} ${disabled ? '' : styles.link} ${
+                  error !== 'NOT_AVAILABLE' ? '' : styles.productNotOnline
+                }`}
+                style={{
+                  backgroundImage: `url(${src || placeholderThumbnail})`,
+                }}
+              />
+            </Link>
+          );
+        },
       },
       {
         dataIndex: ['title'],
@@ -92,65 +90,57 @@ export default ({ productHasError, updateCart, onChange }) => {
             cartId,
             variant,
           },
-        ) => {
-          const currentMinPurchasableQty =
-            variant?.currentMinPurchasableQty || 0;
-          const currentMaxPurchasableQty =
-            variant?.currentMaxPurchasableQty || 0;
-          const hasError =
-            quantity < currentMinPurchasableQty ||
-            quantity > currentMaxPurchasableQty;
+        ) => (
+          <div
+            className={styles.title}
+            style={{
+              color: transformColor(colors[3]).alpha(
+                error !== 'NOT_AVAILABLE' ? 1 : 0.25,
+              ),
+            }}
+          >
+            {title[i18n.language] || title.zh_TW}
 
-          return (
-            <div
-              className={styles.title}
-              style={{
-                color: transformColor(colors[3]).alpha(
-                  error !== 'PRODUCT_NOT_ONLINE' ? 1 : 0.25,
-                ),
-              }}
-            >
-              {title[i18n.language] || title.zh_TW}
+            {!specs ? null : (
+              <div
+                style={{
+                  color: transformColor(colors[3]).alpha(
+                    error !== 'NOT_AVAILABLE' ? 0.65 : 0.25,
+                  ),
+                }}
+              >
+                {specs
+                  .map(
+                    ({ title: specTitle }) =>
+                      specTitle[i18n.language] || specTitle.zh_TW,
+                  )
+                  .join('/')}
+              </div>
+            )}
 
-              {!specs ? null : (
-                <div
-                  style={{
-                    color: transformColor(colors[3]).alpha(
-                      error !== 'PRODUCT_NOT_ONLINE' ? 0.65 : 0.25,
-                    ),
-                  }}
-                >
-                  {specs
-                    .map(
-                      ({ title: specTitle }) =>
-                        specTitle[i18n.language] || specTitle.zh_TW,
-                    )
-                    .join('/')}
-                </div>
-              )}
+            {(activityInfo || []).length === 0 ? null : (
+              <div className={styles.tags}>
+                {activityInfo.map(({ id, title: activityTitle }) => (
+                  <Tag
+                    key={id}
+                    style={{
+                      color: transformColor(colors[3]).alpha(0.85),
+                      opacity: error !== 'NOT_AVAILABLE' ? 1 : 0.45,
+                    }}
+                    color={transformColor(colors[5]).alpha(0.3)}
+                  >
+                    <TagOutlined />
 
-              {(activityInfo || []).length === 0 ? null : (
-                <div className={styles.tags}>
-                  {activityInfo.map(({ id, title: activityTitle }) => (
-                    <Tag
-                      key={id}
-                      style={{
-                        color: transformColor(colors[3]).alpha(0.85),
-                        opacity: error !== 'PRODUCT_NOT_ONLINE' ? 1 : 0.45,
-                      }}
-                      color={transformColor(colors[5]).alpha(0.3)}
-                    >
-                      <TagOutlined />
+                    <span>
+                      {activityTitle[i18n.language] || activityTitle.zh_TW}
+                    </span>
+                  </Tag>
+                ))}
+              </div>
+            )}
 
-                      <span>
-                        {activityTitle[i18n.language] || activityTitle.zh_TW}
-                      </span>
-                    </Tag>
-                  ))}
-                </div>
-              )}
-
-              {type !== 'product' ? null : (
+            {type !== 'product' ? null : (
+              <>
                 <div
                   className={error ? '' : styles.price}
                   style={
@@ -166,53 +156,56 @@ export default ({ productHasError, updateCart, onChange }) => {
                   {!error
                     ? c(retailPrice * quantity)
                     : {
-                        PRODUCT_NOT_ONLINE: t(
+                        DISCONTINUED: t(
+                          `DISCONTINUED${!productHasError ? '' : '-warning'}`,
+                        ),
+                        NOT_AVAILABLE: t(
                           `product-not-online${
                             !productHasError ? '' : '-warning'
                           }`,
                         ),
-                        PRODUCT_SOLD_OUT: t(
+                        OUT_OF_STOCK: t(
                           `product-sold-out${
                             !productHasError ? '' : '-warning'
                           }`,
                         ),
-                      }[error]}
+                      }[error] || ''}
                 </div>
-              )}
 
-              {error || type !== 'product' ? null : (
-                <ProductAmountSelector
-                  className={`${styles.select} ${styles.mobile}`}
-                  variant={variant}
-                  value={quantity}
-                  onChange={changeProduct(cartId)}
-                />
-              )}
+                {['DISCONTINUED', 'NOT_AVAILABLE', 'OUT_OF_STOCK'].includes(
+                  error,
+                ) ? null : (
+                  <>
+                    <ProductAmountSelector
+                      className={`${styles.select} ${styles.mobile}`}
+                      variant={variant}
+                      value={quantity}
+                      onChange={changeProduct(cartId)}
+                    />
 
-              {error || type !== 'product' || !hasError ? null : (
-                <div className={`${styles.hasError} ${styles.mobile}`}>
-                  {t('quantity-out-of-range')}
-                </div>
-              )}
-            </div>
-          );
-        },
+                    {!error ? null : (
+                      <div className={`${styles.hasError} ${styles.mobile}`}>
+                        {t(error)}
+                      </div>
+                    )}
+                  </>
+                )}
+              </>
+            )}
+          </div>
+        ),
       },
       {
         dataIndex: ['quantity'],
         render: (quantity, { error, type, cartId, variant }) => {
-          if (error || type !== 'product') return null;
-
-          const currentMaxPurchasableQty =
-            variant?.currentMaxPurchasableQty || 0;
-          const currentMinPurchasableQty =
-            variant?.currentMinPurchasableQty || 0;
-          const hasError =
-            quantity < currentMinPurchasableQty ||
-            quantity > currentMaxPurchasableQty;
+          if (
+            type !== 'product' ||
+            ['DISCONTINUED', 'NOT_AVAILABLE', 'OUT_OF_STOCK'].includes(error)
+          )
+            return null;
 
           return (
-            <div className={!hasError ? '' : styles.hasError}>
+            <div className={!error ? '' : styles.hasError}>
               <ProductAmountSelector
                 className={styles.select}
                 variant={variant}
@@ -220,14 +213,14 @@ export default ({ productHasError, updateCart, onChange }) => {
                 onChange={changeProduct(cartId)}
               />
 
-              {!hasError ? null : <div>{t('quantity-out-of-range')}</div>}
+              {!error ? null : <div>{t(error)}</div>}
             </div>
           );
         },
       },
       {
         dataIndex: ['cartId'],
-        render: (cartId, { type, error }) => (
+        render: (cartId, { type }) => (
           <div
             className={type === 'product' ? '' : styles.gift}
             style={{
@@ -240,7 +233,6 @@ export default ({ productHasError, updateCart, onChange }) => {
                   <CartDeleteIcon
                     className={styles.cartDelete}
                     onClick={async () => {
-                      updateCart(true);
                       await removeProductFromCart({
                         variables: {
                           search: {
@@ -253,7 +245,6 @@ export default ({ productHasError, updateCart, onChange }) => {
 
                       if (onChange) onChange({ cartId, quantity: 0 });
 
-                      updateCart(false);
                       notification.success({
                         message: t('remove-product-from-cart'),
                       });
@@ -261,9 +252,7 @@ export default ({ productHasError, updateCart, onChange }) => {
                   />
                 );
 
-              return error === 'GIFT_OUT_OF_STOCK'
-                ? t('gift-out-of-stock')
-                : t('gift');
+              return t('gift');
             })()}
           </div>
         ),
@@ -271,7 +260,6 @@ export default ({ productHasError, updateCart, onChange }) => {
     ],
     [
       productHasError,
-      updateCart,
       t,
       i18n,
       c,

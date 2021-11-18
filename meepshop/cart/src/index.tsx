@@ -1,5 +1,5 @@
 // import
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { emptyFunction } from 'fbjs';
 
@@ -19,8 +19,6 @@ import { getCart } from './gqls';
 
 // definition
 const CartContext = React.createContext<{
-  cartIsOpened: boolean;
-  toggleCart: (cartIsOpened: boolean) => void;
   carts:
     | (Omit<getCartGetCartListData, 'categories'> & {
         categories: getCartGetCartListDataCategories | null;
@@ -36,8 +34,6 @@ const CartContext = React.createContext<{
     | ReturnType<typeof useRemoveProductFromCart>
     | typeof emptyFunction;
 }>({
-  cartIsOpened: false,
-  toggleCart: emptyFunction,
   // FIXME: only use for @meepshop/meep-ui
   carts: null,
   addProductToCart: emptyFunction,
@@ -50,15 +46,12 @@ export const CartProvider = React.memo(({ children }) => {
   const addProductToCart = useAddProductToCart();
   const updateProductInCart = useUpdateProductInCart();
   const removeProductFromCart = useRemoveProductFromCart();
-  const [isOpened, setIsOpened] = useState(false);
   // FIXME: only use for @meepshop/meep-ui
   const carts = data?.getCartList?.data?.[0];
 
   return (
     <CartContext.Provider
       value={{
-        cartIsOpened: isOpened,
-        toggleCart: setIsOpened,
         carts: !carts
           ? null
           : {

@@ -4,11 +4,13 @@
   "product-not-online-warning": "Veuillez retirer cet article",
   "product-sold-out": "En rupture de stock",
   "product-sold-out-warning": "Veuillez retirer cet article",
+  "DISCONTINUED": "Les produits ont été arrêtés",
+  "DISCONTINUED-warning": "Veuillez supprimer l'élément d'arrêt",
   "not-found-content": "Le nombre d'articles achetables peut dépasser sa limite ou le format n'est pas valide.",
   "more-options": "… Ou saisissez la quantité désirée",
   "gift": "Cadeau gratuit",
-  "gift-out-of-stock": "En rupture de stock",
   "remove-product-from-cart": "Les articles du panier ont été mis à jour.",
   "update-product-in-cart": "Les articles du panier ont été mis à jour.",
-  "quantity-out-of-range": "Dépasse la quantité achetable"
+  "LIMIT_EXCEEDED": "Dépasser la quantité d'achat",
+  "MINIMUM_NOT_REACHED": "Pas de nombre minimum d'achats"
 }

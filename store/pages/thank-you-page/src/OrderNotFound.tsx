@@ -1,8 +1,10 @@
 // import
-import React from 'react';
+import React, { useContext } from 'react';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Button, message } from 'antd';
+import transformColor from 'color';
 
+import { Colors as ColorsContext } from '@meepshop/context';
 import { useClipboard } from '@meepshop/hooks';
 import { useTranslation } from '@meepshop/locales';
 import Link, { useRouter } from '@meepshop/link';
@@ -11,6 +13,7 @@ import styles from './styles/orderNotFound.less';
 
 // definition
 export default React.memo(() => {
+  const colors = useContext(ColorsContext);
   const { t } = useTranslation('thank-you-page');
   const { domain, asPath } = useRouter();
 
@@ -23,8 +26,8 @@ export default React.memo(() => {
   });
 
   return (
-    <div className={styles.root}>
-      <div>
+    <>
+      <div className={styles.root}>
         <div className={styles.title}>
           <ExclamationCircleOutlined />
           {t('title.error')}
@@ -44,6 +47,32 @@ export default React.memo(() => {
           <Button role="copy">{t('copy')}</Button>
         </div>
       </div>
-    </div>
+
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .${styles.root} {
+              background-color: ${colors[0]};
+            }
+
+            .${styles.description} {
+              color: ${transformColor(colors[3]).alpha(0.8)};
+            }
+
+            .${styles.button} .ant-btn:first-child {
+              color: ${colors[0]};
+              background-color: ${colors[3]};
+              border-color: ${colors[3]};
+            }
+
+            .${styles.button} .ant-btn:last-child {
+              color: ${colors[3]};
+              background-color: ${colors[0]};
+              border-color: ${colors[3]};
+            }
+          `,
+        }}
+      />
+    </>
   );
 });

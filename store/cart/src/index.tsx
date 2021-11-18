@@ -1,14 +1,14 @@
+// typescript import
+import { NextPage } from 'next';
+
 // import
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { LoadingOutlined } from '@ant-design/icons';
-import { Spin } from 'antd';
 import { filter } from 'graphql-anywhere';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
-import {
-  Colors as ColorsContext,
-  Role as RoleContext,
-} from '@meepshop/context';
+import { Role as RoleContext } from '@meepshop/context';
 import CheckoutSteps from '@store/checkout-steps';
 
 import Empty from './Empty';
@@ -30,52 +30,53 @@ import { useProductsColumnsFragment } from './gqls/useProductsColumns';
 import { priceFragment } from './gqls/price';
 
 // definition
-export default React.memo(() => {
-  const colors = useContext(ColorsContext);
+const Cart: NextPage = React.memo(() => {
   const role = useContext(RoleContext);
-  const { data } = useQuery<getCartListType>(getCartList);
+  const { data, loading } = useQuery<getCartListType>(getCartList, {
+    fetchPolicy: 'network-only',
+  });
   const order = data?.getCartList?.data?.[0];
   const products = order?.categories?.[0]?.products || [];
   const { hasError, checkErrors } = useCheckErrors(products);
 
-  if (!order) return <Spin indicator={<LoadingOutlined spin />} />;
-
   return (
     <>
       <div className={styles.root}>
-        <CheckoutSteps step="cart" />
-
-        {!products.length ? (
-          <Empty />
+        {loading ? (
+          <Spin indicator={<LoadingOutlined spin />} />
         ) : (
           <>
-            {role !== 'GUEST' ? null : <Login />}
+            <CheckoutSteps step="cart" />
 
-            <Products
-              products={filter(
-                useProductsColumnsFragment,
-                products as getCartListGetCartListDataCategoriesProducts[],
-              )}
-              hasError={hasError}
-            />
+            {!order || !products.length ? (
+              <Empty />
+            ) : (
+              <>
+                {role !== 'GUEST' ? null : <Login />}
 
-            <Price
-              order={filter(priceFragment, order)}
-              checkErrors={checkErrors}
-            />
+                <Products
+                  products={filter(
+                    useProductsColumnsFragment,
+                    products as getCartListGetCartListDataCategoriesProducts[],
+                  )}
+                  hasError={hasError}
+                />
+
+                <Price
+                  order={filter(priceFragment, order)}
+                  checkErrors={checkErrors}
+                />
+              </>
+            )}
           </>
         )}
       </div>
-
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            .${styles.root} {
-              background-color: ${colors[0]};
-            }
-          `,
-        }}
-      />
     </>
   );
 });
+
+Cart.getInitialProps = async () => ({
+  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
+});
+
+export default Cart;

@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { Form, Input, Button } from 'antd';
+import { Form, Input } from 'antd';
+import transformColor from 'color';
 
 import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/address-cascader';
+import { Colors as ColorsContext, Fb as FbContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/locales';
 import LoginModal from '@meepshop/login-modal';
+import { FbLoginIcon } from '@meepshop/icons';
 import { useValidateEmail } from '@meepshop/validator';
 import withHook from '@store/utils/lib/withHook';
+import withContext from '@store/utils/lib/withContext';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ISLOGIN_TYPE } from 'constants/propTypes';
@@ -26,11 +30,17 @@ const { Password } = Input;
 @withHook(({ t }) => ({
   validateEmail: useValidateEmail(false, true, t('please-login')),
 }))
+@withContext(FbContext, ({ fb, isLoginEnabled }) => ({
+  fb,
+  isFbLoginEnabled: isLoginEnabled,
+}))
+@withContext(ColorsContext, colors => ({ colors }))
 @enhancer
 @radium
 export default class UserInfo extends React.PureComponent {
   state = {
     isVisible: false,
+    fbLoginLoading: false,
   };
 
   static propTypes = {
@@ -52,8 +62,11 @@ export default class UserInfo extends React.PureComponent {
       checkoutFields,
       choosePaymentTemplate,
       validateEmail,
+      fb,
+      isFbLoginEnabled,
+      colors,
     } = this.props;
-    const { isVisible } = this.state;
+    const { isVisible, fbLoginLoading } = this.state;
 
     if (
       isLogin !== NOTLOGIN &&
@@ -69,53 +82,64 @@ export default class UserInfo extends React.PureComponent {
 
         {isLogin !== NOTLOGIN ? null : (
           <>
-            <div className={styles.email}>
-              <FormItem
-                className={styles.formItem}
-                name={['userEmail']}
-                rules={[
-                  {
-                    required: true,
-                    message: t('is-required'),
-                  },
-                  {
-                    validator: validateEmail.validator,
-                  },
-                ]}
-                normalize={validateEmail.normalize}
-                validateTrigger="onBlur"
-                validateFirst
-              >
-                <Input placeholder={t('email')} />
-              </FormItem>
+            <div className={styles.login}>
+              <div>{t('login-tip')}</div>
+              <div>
+                {!isFbLoginEnabled ? null : (
+                  <div
+                    className={styles.fb}
+                    onClick={async () => {
+                      if (!fb || fbLoginLoading) return;
 
-              {/** FIXME: https://github.com/ant-design/ant-design/issues/26888 */}
-              <FormItem noStyle shouldUpdate>
-                {({ getFieldError }) =>
-                  !getFieldError(['userEmail']).includes(
-                    t('please-login'),
-                  ) ? null : (
-                    <Button
-                      type="primary"
-                      onClick={() => this.setState({ isVisible: true })}
-                    >
-                      {t('login')}
-                    </Button>
-                  )
-                }
-              </FormItem>
+                      this.setState({ fbLoginLoading: true });
+                      await fb.login();
+                      this.setState({ fbLoginLoading: false });
+                    }}
+                  >
+                    <FbLoginIcon />
+                    {t('fb-login')}
+                  </div>
+                )}
 
-              {!isVisible ? null : (
-                <FormItem noStyle dependencies={[['userEmail']]}>
-                  {({ getFieldValue }) => (
-                    <LoginModal
-                      onClose={() => this.setState({ isVisible: false })}
-                      initialEmail={getFieldValue(['userEmail'])}
-                    />
-                  )}
-                </FormItem>
-              )}
+                <div
+                  className={styles.member}
+                  onClick={() => this.setState({ isVisible: true })}
+                >
+                  {t('login')}
+                </div>
+              </div>
             </div>
+
+            <FormItem
+              className={styles.formItem}
+              name={['userEmail']}
+              rules={[
+                {
+                  required: true,
+                  message: t('is-required'),
+                },
+                {
+                  validator: validateEmail.validator,
+                },
+              ]}
+              normalize={validateEmail.normalize}
+              validateTrigger="onBlur"
+              validateFirst
+            >
+              <Input placeholder={t('email')} />
+            </FormItem>
+
+            {!isVisible ? null : (
+              <FormItem noStyle dependencies={[['userEmail']]}>
+                {({ getFieldValue }) => (
+                  <LoginModal
+                    onClose={() => this.setState({ isVisible: false })}
+                    initialEmail={getFieldValue(['userEmail'])}
+                    disabledFblogin
+                  />
+                )}
+              </FormItem>
+            )}
 
             <FormItem
               className={styles.formItem}
@@ -225,6 +249,22 @@ export default class UserInfo extends React.PureComponent {
             </FormItem>
           </>
         )}
+
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              .${styles.login} {
+                background-color: ${transformColor(colors[1]).alpha(0.3)};
+                color: ${colors[3]};
+              }
+
+              .${styles.member} {
+                background-color: ${colors[4]};
+                color: ${colors[2]};
+              }
+            `,
+          }}
+        />
       </div>
     );
   }

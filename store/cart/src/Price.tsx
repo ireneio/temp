@@ -10,7 +10,7 @@ import {
   Currency as CurrencyContext,
   Colors as ColorsContext,
 } from '@meepshop/context';
-import Link from '@meepshop/link';
+import { useRouter } from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
 
 import styles from './styles/price.less';
@@ -28,18 +28,22 @@ interface PropsType {
 export default React.memo(({ order, checkErrors }: PropsType) => {
   const colors = useContext(ColorsContext);
   const { c } = useContext(CurrencyContext);
+  const { push } = useRouter();
   const { t, i18n } = useTranslation('cart');
   const { activityInfo, priceInfo } = order;
 
   return (
     <>
       <div className={styles.root}>
-        <Link href={window.storePreviousPageUrl || '/'}>
-          <div>
-            <LeftOutlined />
-            {t('go-back-to-store')}
-          </div>
-        </Link>
+        <div
+          onClick={() => {
+            const url = window.storePreviousPageUrl || '/';
+            push(!url.startsWith('/checkout') ? url : '/');
+          }}
+        >
+          <LeftOutlined />
+          {t('go-back-to-store')}
+        </div>
 
         <div>
           <div className={styles.total}>

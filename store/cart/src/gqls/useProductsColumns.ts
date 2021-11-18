@@ -2,7 +2,6 @@
 import gql from 'graphql-tag';
 
 // graphql import
-import { productsObjectTypeFragment } from '@meepshop/apollo/lib/gqls/productsObjectType';
 import { productAmountSelectorFragment } from '@meepshop/product-amount-selector/gqls';
 import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
@@ -41,12 +40,9 @@ export const useProductsColumnsFragment = gql`
       id
       ...productAmountSelectorFragment
     }
-    error @client
-
-    ...productsObjectTypeFragment
+    error: _error
   }
 
-  ${productsObjectTypeFragment}
   ${productAmountSelectorFragment}
   ${thumbnailFragment}
   ${localeFragment}

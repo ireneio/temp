@@ -4,7 +4,6 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
-import CartContext from '@meepshop/cart';
 
 import { ACION_TYPES } from '../constants';
 
@@ -32,7 +31,6 @@ export default (
   page: useClickMenuPageObjectTypeFragmentType,
 ): (() => Promise<void>) => {
   const { i18n } = useTranslation('menu');
-  const { cartIsOpened, toggleCart } = useContext(CartContext);
   const { setCurrency } = useContext(CurrencyContext);
   const [updateShopperLanguagePreferenceMutation] = useMutation<
     updateShopperLanguagePreferenceType,
@@ -44,10 +42,6 @@ export default (
     const { action } = page;
 
     switch (ACION_TYPES[action || 0]) {
-      case 'CART':
-        toggleCart(!cartIsOpened);
-        break;
-
       case 'LOGOUT':
         logoutMutation();
         break;
@@ -106,8 +100,6 @@ export default (
     user,
     page,
     i18n,
-    cartIsOpened,
-    toggleCart,
     setCurrency,
     updateShopperLanguagePreferenceMutation,
     logoutMutation,

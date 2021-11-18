@@ -4,15 +4,18 @@ import transformColor from 'color';
 
 import { Colors as ColorsContext } from '@meepshop/context';
 import { cart_react as Cart } from '@meepshop/images';
-import Link from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
 
 import styles from './styles/empty.less';
 
+// typescript definition
+interface PropsType {
+  onClose: () => void;
+}
 // definition
-export default React.memo(() => {
+export default React.memo(({ onClose }: PropsType) => {
   const colors = useContext(ColorsContext);
-  const { t } = useTranslation('cart');
+  const { t } = useTranslation('cart-previewer');
 
   return (
     <>
@@ -21,9 +24,9 @@ export default React.memo(() => {
         <Cart className={styles.cart} />
         <p>{t('empty-cart')}</p>
 
-        <Link href={window.storePreviousPageUrl || '/'}>
-          <div className={styles.button}>{t('go-back-to-store')}</div>
-        </Link>
+        <div className={styles.button} onClick={onClose}>
+          {t('go-back-to-store')}
+        </div>
       </div>
 
       <style

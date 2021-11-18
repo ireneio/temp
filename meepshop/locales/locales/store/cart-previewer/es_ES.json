@@ -7,8 +7,8 @@
   "product-total": "Producto total",
   "product-deleted": "Los productos han sido detenidos.",
   "gift": "Dar un regalo",
-  "PRODUCT_DELETED": "Parada",
-  "PRODUCT_NOT_ONLINE": "No abierto para comprar",
-  "PRODUCT_SOLD_OUT": "Agotado",
+  "DISCONTINUED": "Parada",
+  "NOT_AVAILABLE": "No abierto para comprar",
+  "OUT_OF_STOCK": "Agotado",
   "cart-updated": "Actualizar carrito de compra"
 }

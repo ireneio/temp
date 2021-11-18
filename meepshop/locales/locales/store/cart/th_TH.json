@@ -16,10 +16,12 @@
   "quantity": "ปริมาณ",
   "subtotal": "เกี่ยวกับผลรวมย่อย",
   "cart-updated": "อัพเดทตะกร้าสินค้า",
-  "PRODUCT_DELETED": "หยุด",
-  "PRODUCT_NOT_ONLINE": "ไม่เปิดให้ซื้อ",
-  "PRODUCT_SOLD_OUT": "สินค้าหมด",
-  "PRODUCT_DELETED-warning": "โปรดลบรายการหยุด",
-  "PRODUCT_NOT_ONLINE-warning": "โปรดลบการซื้อสินค้า",
-  "PRODUCT_SOLD_OUT-warning": "กรุณาลบออกสินค้าสต็อก"
+  "DISCONTINUED": "หยุด",
+  "NOT_AVAILABLE": "ไม่เปิดให้ซื้อ",
+  "OUT_OF_STOCK": "สินค้าหมด",
+  "DISCONTINUED-warning": "โปรดลบรายการหยุด",
+  "NOT_AVAILABLE-warning": "โปรดลบการซื้อสินค้า",
+  "OUT_OF_STOCK-warning": "กรุณาลบออกสินค้าสต็อก",
+  "LIMIT_EXCEEDED": "เกินปริมาณการซื้อ",
+  "MINIMUM_NOT_REACHED": "ไม่มีการซื้อขั้นต่ำจำนวน"
 }

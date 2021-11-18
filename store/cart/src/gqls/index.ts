@@ -7,8 +7,8 @@ import { priceFragment } from './price';
 import { useProductsColumnsFragment } from './useProductsColumns';
 
 // definition
-export const cartFragment = gql`
-  fragment cartFragment on Order {
+export const cartOrderFragment = gql`
+  fragment cartOrderFragment on Order {
     id
     categories {
       id
@@ -31,10 +31,10 @@ export const getCartList = gql`
     getCartList {
       data {
         id
-        ...cartFragment
+        ...cartOrderFragment
       }
     }
   }
 
-  ${cartFragment}
+  ${cartOrderFragment}
 `;

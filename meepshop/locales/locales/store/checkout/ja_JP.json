@@ -9,7 +9,7 @@
   "is-required": "入力必須項目",
   "confirm-go-to": "確認",
   "cart-is-empty": "買い物かごに商品が入っていません、ショップに戻ってショッピングを継続して下さい",
-  "continue-shopping": "ショッピングを続ける",
+  "go-back-to-cart": "ショッピングカートに戻る",
   "total-price": "注文合計金額",
   "cart": "ショッピングカート",
   "cart-has-error": {
@@ -19,6 +19,8 @@
   "user-info": "会員情報",
   "email": "ご登録のメールアドレスを入力してください",
   "please-login": "このメールボックスは登録されています、最初にログインしてください",
+  "login-tip": "すでに私たちの会員？",
+  "fb-login": "フェイスブックログイン",
   "login": "会員ログイン",
   "password": "会員パスワードを設定してください",
   "name": "氏名",

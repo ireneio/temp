@@ -10,16 +10,13 @@ import styles from './styles/index.less';
 // typescript definition
 interface PropsType {
   children: React.ReactElement;
-  disabled: boolean;
 }
 
 // definition
-export default React.memo(({ children, disabled }: PropsType) => {
+export default React.memo(({ children }: PropsType) => {
   const { isMobile } = useContext(SensorContext);
   const [isOpen, setIsOpen] = useState(false);
   const onClose = useCallback(() => setIsOpen(false), [setIsOpen]);
-
-  if (disabled) return children;
 
   if (isMobile)
     return (

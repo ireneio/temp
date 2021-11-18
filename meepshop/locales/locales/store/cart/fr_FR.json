@@ -16,10 +16,12 @@
   "quantity": "quantité",
   "subtotal": "Total",
   "cart-updated": "Mettre à jour son panier",
-  "PRODUCT_DELETED": "Arrêter",
-  "PRODUCT_NOT_ONLINE": "Pas ouvert à acheter",
-  "PRODUCT_SOLD_OUT": "Rupture de stock",
-  "PRODUCT_DELETED-warning": "Veuillez supprimer l'élément d'arrêt",
-  "PRODUCT_NOT_ONLINE-warning": "S'il vous plaît supprimer l'achat de biens encore",
-  "PRODUCT_SOLD_OUT-warning": "Veuillez supprimer des marchandises en rupture de stock"
+  "DISCONTINUED": "Arrêter",
+  "NOT_AVAILABLE": "Pas ouvert à acheter",
+  "OUT_OF_STOCK": "Rupture de stock",
+  "DISCONTINUED-warning": "Veuillez supprimer l'élément d'arrêt",
+  "NOT_AVAILABLE-warning": "S'il vous plaît supprimer l'achat de biens encore",
+  "OUT_OF_STOCK-warning": "Veuillez supprimer des marchandises en rupture de stock",
+  "LIMIT_EXCEEDED": "Dépasser la quantité d'achat",
+  "MINIMUM_NOT_REACHED": "Pas de nombre minimum d'achats"
 }

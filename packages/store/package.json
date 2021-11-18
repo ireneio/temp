@@ -26,6 +26,7 @@
     "@meepshop/utils": "^0.80.80",
     "@store/ad-track": "^0.80.85",
     "@store/apollo": "^0.80.85",
+    "@store/cart": "^0.80.85",
     "@store/currency": "^0.80.85",
     "@store/ecpay": "^0.80.85",
     "@store/fb": "^0.80.85",

@@ -1,3 +1,4 @@
+@import '~@store/utils/styles/variables.less';
 @import './mixin.less';
 
 .root {
@@ -6,6 +7,15 @@
 
 .title {
   @title();
+  flex-direction: column;
+
+  :global(.anticon) {
+    margin: 0 0 16px 0;
+
+    @media (max-width: @screen-sm-max) {
+      margin: 0 0 8px 0;
+    }
+  }
 }
 
 .description {

@@ -1,6 +1,7 @@
 // import
 import React, { useState, useContext } from 'react';
 import { Modal } from 'antd';
+import transformColor from 'color';
 
 import { Colors as ColorsContext } from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
@@ -12,46 +13,49 @@ import styles from './styles/index.less';
 // typescript definition
 interface PropsType {
   onClose: () => void;
+  disabledFblogin?: boolean;
   initialEmail?: string;
 }
 
 // definition
-export default React.memo(({ initialEmail, onClose }: PropsType) => {
-  const colors = useContext(ColorsContext);
-  const { t } = useTranslation('login-modal');
-  const [isForgetPassword, setIsForgetPassword] = useState(false);
+export default React.memo(
+  ({ onClose, disabledFblogin, initialEmail }: PropsType) => {
+    const colors = useContext(ColorsContext);
+    const { t } = useTranslation('login-modal');
+    const [isForgetPassword, setIsForgetPassword] = useState(false);
 
-  return (
-    <>
-      <Modal
-        className={styles.root}
-        visible
-        centered
-        width={isForgetPassword ? 368 : 480}
-        title={t(
-          isForgetPassword ? 'forget-password.title' : 'member-login.title',
-        )}
-        onCancel={onClose}
-        maskClosable={false}
-        footer={null}
-      >
-        {isForgetPassword ? (
-          <ForgetPassword
-            initialEmail={initialEmail}
-            setIsForgetPassword={setIsForgetPassword}
-          />
-        ) : (
-          <Login
-            onClose={onClose}
-            initialEmail={initialEmail}
-            setIsForgetPassword={setIsForgetPassword}
-          />
-        )}
-      </Modal>
+    return (
+      <>
+        <Modal
+          className={styles.root}
+          visible
+          centered
+          width={480}
+          title={t(
+            isForgetPassword ? 'forget-password.title' : 'member-login.title',
+          )}
+          onCancel={onClose}
+          maskClosable={false}
+          footer={null}
+        >
+          {isForgetPassword ? (
+            <ForgetPassword
+              initialEmail={initialEmail}
+              setIsForgetPassword={setIsForgetPassword}
+            />
+          ) : (
+            <Login
+              onClose={onClose}
+              disabledFblogin={disabledFblogin}
+              initialEmail={initialEmail}
+              setIsForgetPassword={setIsForgetPassword}
+            />
+          )}
+        </Modal>
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
             .${styles.root} .ant-modal-title,
             .${styles.root} .ant-modal-close {
               color: ${colors[3]};
@@ -61,9 +65,14 @@ export default React.memo(({ initialEmail, onClose }: PropsType) => {
             .${styles.root} .ant-modal-header {
               background-color: ${colors[0]};
             }
+
+            .${styles.root} .ant-modal-header {
+              border-bottom: 1px solid ${transformColor(colors[5]).alpha(0.4)};
+            }
           `,
-        }}
-      />
-    </>
-  );
-});
+          }}
+        />
+      </>
+    );
+  },
+);

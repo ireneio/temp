@@ -1,24 +1,22 @@
 // import
-import React, { useContext, useState, useEffect } from 'react';
-import { Form, Input, Button, Divider } from 'antd';
+import React, { useContext, useEffect } from 'react';
+import { Form, Input, Button } from 'antd';
 
 import {
   Colors as ColorsContext,
-  Sensor as SensorContext,
   Role as RoleContext,
-  Fb as FbContext,
 } from '@meepshop/context';
-import { FbLoginIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/locales';
 import { useValidateEmail } from '@meepshop/validator';
-import { useRouter } from '@meepshop/link';
 
+import LoginFooter from './LoginFooter';
 import styles from './styles/login.less';
 import useLogin from './hooks/useLogin';
 
 // typescript definition
 interface PropsType {
   onClose?: () => void;
+  disabledFblogin?: boolean;
   initialEmail?: string;
   setIsForgetPassword: (isForgetPassword: boolean) => void;
 }
@@ -28,16 +26,17 @@ const { Item: FormItem } = Form;
 const { Password } = Input;
 
 export default React.memo(
-  ({ onClose, initialEmail, setIsForgetPassword }: PropsType) => {
+  ({
+    onClose,
+    disabledFblogin,
+    initialEmail,
+    setIsForgetPassword,
+  }: PropsType) => {
     const colors = useContext(ColorsContext);
-    const { isMobile } = useContext(SensorContext);
     const role = useContext(RoleContext);
     const { t } = useTranslation('login-modal');
-    const { asPath } = useRouter();
     const validateEmail = useValidateEmail();
     const { login, loading } = useLogin();
-    const { fb, isLoginEnabled: isFbLoginEnabled } = useContext(FbContext);
-    const [fbLoginLoading, setFbLoginLoading] = useState(false);
 
     useEffect(() => {
       if (role === 'SHOPPER' && onClose) onClose();
@@ -64,7 +63,7 @@ export default React.memo(
           >
             <Input
               type="email"
-              size={isMobile ? 'large' : 'middle'}
+              size="large"
               placeholder={t('email.placeholder')}
             />
           </FormItem>
@@ -78,10 +77,7 @@ export default React.memo(
               },
             ]}
           >
-            <Password
-              size={isMobile ? 'large' : 'middle'}
-              placeholder={t('password.placeholder')}
-            />
+            <Password size="large" placeholder={t('password.placeholder')} />
           </FormItem>
 
           <div className={styles.forget}>
@@ -102,26 +98,7 @@ export default React.memo(
           </FormItem>
         </Form>
 
-        {!isFbLoginEnabled ? null : (
-          <>
-            <Divider className={styles.or}>{t('member-login.or')}</Divider>
-            <Button
-              className={styles.fbLogin}
-              onClick={async () => {
-                if (!fb) return;
-
-                setFbLoginLoading(true);
-                await fb.login(asPath);
-                setFbLoginLoading(false);
-              }}
-              loading={fbLoginLoading}
-              size="large"
-            >
-              <FbLoginIcon />
-              {t('member-login.fb-login')}
-            </Button>
-          </>
-        )}
+        <LoginFooter disabledFblogin={disabledFblogin} />
 
         <style
           dangerouslySetInnerHTML={{
@@ -137,11 +114,6 @@ export default React.memo(
               color: ${colors[2]};
               border-color: ${colors[4]};
               background: ${colors[4]};
-            }
-
-            .${styles.or}.ant-divider-with-text {
-              color: ${colors[3]};
-              border-top-color: ${colors[3]};
             }
           `,
           }}

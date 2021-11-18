@@ -9,7 +9,7 @@
   "is-required": "必填",
   "confirm-go-to": "確認",
   "cart-is-empty": "購物車內沒有商品，請返回商店繼續購物",
-  "continue-shopping": "繼續購物",
+  "go-back-to-cart": "返回購物車",
   "total-price": "訂單總金額",
   "cart": "購物車",
   "cart-has-error": {
@@ -19,6 +19,8 @@
   "user-info": "會員資料",
   "email": "請輸入註冊信箱",
   "please-login": "此信箱已註冊，請先進行登入",
+  "login-tip": "已經是我們的會員？登入享有完整會員優惠",
+  "fb-login": "Facebook 登入",
   "login": "會員登入",
   "password": "請設定會員密碼",
   "name": "姓名",

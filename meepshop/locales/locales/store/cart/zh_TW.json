@@ -16,10 +16,12 @@
   "quantity": "數量",
   "subtotal": "小計",
   "cart-updated": "更新購物車完成",
-  "PRODUCT_DELETED": "停售",
-  "PRODUCT_NOT_ONLINE": "尚未開放購買",
-  "PRODUCT_SOLD_OUT": "缺貨中",
-  "PRODUCT_DELETED-warning": "請移除停售商品",
-  "PRODUCT_NOT_ONLINE-warning": "請移除尚未開放購買商品",
-  "PRODUCT_SOLD_OUT-warning": "請移除缺貨商品"
+  "DISCONTINUED": "停售",
+  "NOT_AVAILABLE": "尚未開放購買",
+  "OUT_OF_STOCK": "缺貨中",
+  "DISCONTINUED-warning": "請移除停售商品",
+  "NOT_AVAILABLE-warning": "請移除尚未開放購買商品",
+  "OUT_OF_STOCK-warning": "請移除缺貨商品",
+  "LIMIT_EXCEEDED": "超出可購買數量",
+  "MINIMUM_NOT_REACHED": "未達最低購買數量"
 }

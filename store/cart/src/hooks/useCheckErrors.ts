@@ -3,7 +3,7 @@ import { useState, useCallback } from 'react';
 
 import { useRouter } from '@meepshop/link';
 
-import styles from '../styles/useProductsColumns.less';
+import styles from '../styles/products.less';
 
 // graphql import
 import { useProductsColumnsFragment as useProductsColumnsFragmentType } from '@meepshop/types/gqls/store';
@@ -25,9 +25,7 @@ export default (
     hasError,
     checkErrors: useCallback(() => {
       if (
-        products.some(
-          product => product && product.type === 'product' && product.error,
-        )
+        products.some(product => product?.type === 'product' && product?.error)
       ) {
         setHasError(true);
         const dom = document.querySelector(`.${styles.error}`);

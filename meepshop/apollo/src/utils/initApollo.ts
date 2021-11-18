@@ -33,7 +33,6 @@ import * as log from '../clientSideSchema/log';
 import * as login from '../clientSideSchema/login';
 import * as logout from '../clientSideSchema/logout';
 import * as PageInfo from '../clientSideSchema/PageInfo';
-import * as productsObjectType from '../clientSideSchema/productsObjectType';
 import * as settingObjectType from '../clientSideSchema/settingObjectType';
 import * as validatedConvenienceStoreCities from '../clientSideSchema/validatedConvenienceStoreCities';
 
@@ -94,7 +93,6 @@ const create = (
       login.resolvers,
       logout.resolvers,
       PageInfo.resolvers,
-      productsObjectType.resolvers,
       settingObjectType.resolvers(logger),
       validatedConvenienceStoreCities.resolvers,
       getDraftText.resolvers(logger),

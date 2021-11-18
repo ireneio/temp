@@ -2,10 +2,7 @@
 import React, { useContext } from 'react';
 import { Form, Input, Button } from 'antd';
 
-import {
-  Colors as ColorsContext,
-  Sensor as SensorContext,
-} from '@meepshop/context';
+import { Colors as ColorsContext } from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
 import { useValidateEmail } from '@meepshop/validator';
 
@@ -24,7 +21,6 @@ const { Item: FormItem } = Form;
 export default React.memo(
   ({ initialEmail, setIsForgetPassword }: PropsType) => {
     const colors = useContext(ColorsContext);
-    const { isMobile } = useContext(SensorContext);
     const { t } = useTranslation('login-modal');
     const validateEmail = useValidateEmail();
     const { forgetPassword, loading } = useForgetPassword(setIsForgetPassword);
@@ -55,7 +51,7 @@ export default React.memo(
         >
           <Input
             type="email"
-            size={isMobile ? 'large' : 'middle'}
+            size="large"
             placeholder={t('forget-password.placeholder')}
           />
         </FormItem>

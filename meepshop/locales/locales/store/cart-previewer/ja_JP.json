@@ -7,8 +7,8 @@
   "product-total": "総商品",
   "product-deleted": "製品が停止しました",
   "gift": "贈り物をする",
-  "PRODUCT_DELETED": "やめる",
-  "PRODUCT_NOT_ONLINE": "購入に開かないで",
-  "PRODUCT_SOLD_OUT": "在庫切れ",
+  "DISCONTINUED": "やめる",
+  "NOT_AVAILABLE": "購入に開かないで",
+  "OUT_OF_STOCK": "在庫切れ",
   "cart-updated": "ショッピングカートを更新します"
 }

@@ -16,10 +16,12 @@
   "quantity": "số lượng",
   "subtotal": "Tổng phụ",
   "cart-updated": "Cập nhật giỏ hàng",
-  "PRODUCT_DELETED": "Dừng lại",
-  "PRODUCT_NOT_ONLINE": "Không mở để mua",
-  "PRODUCT_SOLD_OUT": "Hết hàng",
-  "PRODUCT_DELETED-warning": "Vui lòng xóa mục dừng",
-  "PRODUCT_NOT_ONLINE-warning": "Vui lòng loại bỏ việc mua hàng hóa chưa",
-  "PRODUCT_SOLD_OUT-warning": "Vui lòng loại bỏ hàng hóa chứng khoán"
+  "DISCONTINUED": "Dừng lại",
+  "NOT_AVAILABLE": "Không mở để mua",
+  "OUT_OF_STOCK": "Hết hàng",
+  "DISCONTINUED-warning": "Vui lòng xóa mục dừng",
+  "NOT_AVAILABLE-warning": "Vui lòng loại bỏ việc mua hàng hóa chưa",
+  "OUT_OF_STOCK-warning": "Vui lòng loại bỏ hàng hóa chứng khoán",
+  "LIMIT_EXCEEDED": "Vượt quá số lượng mua",
+  "MINIMUM_NOT_REACHED": "Không có số lượng mua tối thiểu"
 }

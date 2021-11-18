@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { LeftOutlined } from '@ant-design/icons';
-import { Form, InputNumber, Button, Modal } from 'antd';
+import { Form, InputNumber, Button, Modal, notification } from 'antd';
 import uuid from 'uuid';
 import transformColor from 'color';
 import { useMutation } from '@apollo/react-hooks';
@@ -14,6 +14,7 @@ import withHook from '@store/utils/lib/withHook';
 import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
 import { ErrorMultiIcon } from '@meepshop/icons';
 import { log } from '@meepshop/logger/lib/gqls/log';
+import CheckoutSteps from '@store/checkout-steps';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
@@ -21,7 +22,6 @@ import { computeOrderList, getVariables } from 'utils/getComputeOrderQuery';
 
 import PaymentDefaultFormItem from 'paymentDefaultFormItem';
 
-import StepHeader from '../StepHeader';
 import { PRESERVED_FIELDS, DEFERRED_FIELDS } from '../constants';
 
 import UserInfo from './UserInfo';
@@ -318,32 +318,7 @@ export default class OrderDetail extends React.PureComponent {
         activityInfo,
         priceInfo,
       },
-      products: newProducts.map(product => {
-        const { error, type, currentMinPurchasableQty } = product;
-
-        if (error && /已下架/.test(error))
-          return {
-            ...product,
-            error: 'PRODUCT_NOT_ONLINE',
-          };
-
-        if (type !== 'product' && (currentMinPurchasableQty === 0 || error))
-          return {
-            ...product,
-            error: 'GIFT_OUT_OF_STOCK',
-          };
-
-        if (currentMinPurchasableQty === 0)
-          return {
-            ...product,
-            error: 'PRODUCT_SOLD_OUT',
-          };
-
-        return {
-          ...product,
-          error: null,
-        };
-      }),
+      products: newProducts,
       choosePayment: paymentList.find(({ paymentId: id }) => id === paymentId),
       chooseShipment: shipmentList.find(
         ({ shipmentId: id }) => id === shipmentId,
@@ -352,12 +327,12 @@ export default class OrderDetail extends React.PureComponent {
     });
   };
 
-  finish = data => {
+  finish = async data => {
     const { isChecking } = this.state;
 
     if (isChecking) return;
 
-    const { submit } = this.props;
+    const { submit, t } = this.props;
     const {
       computeOrderData,
       products,
@@ -365,28 +340,12 @@ export default class OrderDetail extends React.PureComponent {
       isSynchronizeUserInfo,
       isSaveAsReceiverTemplate,
     } = this.state;
-    const checkProductError = products.some(product => {
-      const {
-        error,
-        quantity,
-        type,
-        variant: { currentMinPurchasableQty, currentMaxPurchasableQty },
-      } = product;
-
-      return (
-        type === 'product' &&
-        (error ||
-          quantity < currentMinPurchasableQty ||
-          quantity > currentMaxPurchasableQty)
-      );
-    });
+    const checkProductError = products.some(
+      product => product?.type === 'product' && product?.error,
+    );
 
     if (checkProductError) {
-      this.setState({ productHasError: true }, () => {
-        const dom = document.querySelector(`.${styles.cartButton}`);
-
-        if (dom) dom.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      });
+      this.scrollToError();
       return;
     }
 
@@ -397,7 +356,7 @@ export default class OrderDetail extends React.PureComponent {
       shipmentList,
     } = computeOrderData;
 
-    submit(this.isPayment, data, {
+    const errorMessage = await submit(this.isPayment, data, {
       priceInfo,
       activityInfo,
       paymentList,
@@ -407,6 +366,32 @@ export default class OrderDetail extends React.PureComponent {
       isSynchronizeUserInfo,
       isSaveAsReceiverTemplate,
     });
+
+    if (errorMessage) {
+      if (
+        [
+          'DISCONTINUED',
+          'NOT_AVAILABLE',
+          'OUT_OF_STOCK',
+          'LIMIT_EXCEEDED',
+          'MINIMUM_NOT_REACHED',
+        ].includes(errorMessage)
+      ) {
+        notification.error({ message: t('pay-fail') });
+        await this.computeOrderList();
+        this.scrollToError();
+        return;
+      }
+
+      notification.error({
+        message: t('pay-fail'),
+        description: /(<st_code>|七天後關|門市不存在|門市關轉店或為外島|取貨門市店代碼)/.test(
+          errorMessage,
+        )
+          ? '原取件門市暫停服務，請重新選擇！'
+          : errorMessage,
+      });
+    }
   };
 
   restoreInfo = () => {
@@ -457,6 +442,14 @@ export default class OrderDetail extends React.PureComponent {
 
       resetTimer();
     }
+  };
+
+  scrollToError = () => {
+    this.setState({ productHasError: true }, () => {
+      const dom = document.querySelector(`.${styles.cartButton}`);
+
+      if (dom) dom.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
   };
 
   render() {
@@ -518,7 +511,7 @@ export default class OrderDetail extends React.PureComponent {
           scrollToFirstError
         >
           <div className={styles.wrapper}>
-            <StepHeader />
+            <CheckoutSteps step="checkout" />
 
             <div className={styles.phoneSizeInfo}>
               {storeName}
@@ -660,11 +653,11 @@ export default class OrderDetail extends React.PureComponent {
                 <div
                   className={styles.continueShopping}
                   style={{ color: colors[3] }}
-                  onClick={() => goTo({ back: true })}
+                  onClick={() => goTo({ pathname: '/cart' })}
                 >
                   <LeftOutlined className={styles.continueShoppingIcon} />
 
-                  {t('continue-shopping')}
+                  {t('go-back-to-cart')}
                 </div>
 
                 <div className={styles.submitButtonRoot}>

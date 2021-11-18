@@ -16,7 +16,7 @@ import { removeProductInPreviewer } from '../gqls/useRemoveProduct';
 
 // definition
 export default (): ((cartId: string) => void) => {
-  const { t } = useTranslation('cart');
+  const { t } = useTranslation('cart-previewer');
   const [mutation] = useMutation<
     removeProductInPreviewerType,
     removeProductInPreviewerVariables

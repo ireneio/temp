@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { notification } from 'antd';
 import uuid from 'uuid/v4';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
@@ -67,7 +66,6 @@ export default class Checkout extends React.PureComponent {
       dispatchAction,
 
       /** props */
-      t,
       adTrack,
       setFormData,
     } = this.props;
@@ -77,7 +75,7 @@ export default class Checkout extends React.PureComponent {
       isSubmitting,
     } = this.state;
 
-    if (isSubmitting) return;
+    if (isSubmitting) return null;
 
     const orderInfo = !info ? prevOrderInfo : { info };
     const orderOtherDetailInfo = !otherDetailInfo
@@ -267,7 +265,7 @@ export default class Checkout extends React.PureComponent {
       },
     });
 
-    if (this.isUnmounted) return;
+    if (this.isUnmounted) return null;
 
     const { id, error: createOrderError, formData, paymentServiceTradeToken } =
       data?.createOrder.order || {};
@@ -275,18 +273,10 @@ export default class Checkout extends React.PureComponent {
     if (error || createOrderError || !id) {
       const errorMessage = error?.[0]?.message || createOrderError || '';
 
-      notification.error({
-        message: t('pay-fail'),
-        description: /(<st_code>|七天後關|門市不存在|門市關轉店或為外島|取貨門市店代碼)/.test(
-          errorMessage,
-        )
-          ? '原取件門市暫停服務，請重新選擇！'
-          : errorMessage,
-      });
-
       this.idempotentKey = uuid();
       this.setState({ isSubmitting: false });
-      return;
+
+      return errorMessage;
     }
 
     if (global.window) window.sessionStorage.clear();
@@ -334,12 +324,12 @@ export default class Checkout extends React.PureComponent {
       },
     });
 
-    if (this.isUnmounted) return;
+    if (this.isUnmounted) return null;
 
     if (formData?.url) {
       if (!formData.url?.startsWith('line')) {
         setFormData(formData);
-        return;
+        return null;
       }
 
       // hack for linepay in mobile devices
@@ -351,12 +341,14 @@ export default class Checkout extends React.PureComponent {
       goTo({
         pathname: `/ecpay/${paymentServiceTradeToken}/${id}`,
       });
-      return;
+      return null;
     }
 
     goTo({
       pathname: `/checkout/thank-you-page/${id}`,
     });
+
+    return null;
   };
 
   render() {

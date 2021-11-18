@@ -16,10 +16,12 @@
   "quantity": "quantity",
   "subtotal": "Subtotal",
   "cart-updated": "Update shopping cart",
-  "PRODUCT_DELETED": "Stop",
-  "PRODUCT_NOT_ONLINE": "Not open to buy",
-  "PRODUCT_SOLD_OUT": "Out of stock",
-  "PRODUCT_DELETED-warning": "Please remove the stop item",
-  "PRODUCT_NOT_ONLINE-warning": "Please remove the purchase of goods yet",
-  "PRODUCT_SOLD_OUT-warning": "Please remove out of stock goods"
+  "DISCONTINUED": "Stop",
+  "NOT_AVAILABLE": "Not open to buy",
+  "OUT_OF_STOCK": "Out of stock",
+  "DISCONTINUED-warning": "Please remove the stop item",
+  "NOT_AVAILABLE-warning": "Please remove the purchase of goods yet",
+  "OUT_OF_STOCK-warning": "Please remove out of stock goods",
+  "LIMIT_EXCEEDED": "Exceeding the purchase quantity",
+  "MINIMUM_NOT_REACHED": "No minimum number of purchases"
 }

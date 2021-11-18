@@ -3,7 +3,6 @@ import gql from 'graphql-tag';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
-import { productsObjectTypeFragment } from '@meepshop/apollo/lib/gqls/productsObjectType';
 
 // definition
 export const cartFragment = gql`
@@ -47,8 +46,7 @@ export const cartFragment = gql`
           }
         }
         type
-        error @client
-        ...productsObjectTypeFragment
+        error: _error
       }
     }
 
@@ -72,7 +70,6 @@ export const cartFragment = gql`
   }
 
   ${localeFragment}
-  ${productsObjectTypeFragment}
 `;
 
 export const getCart = gql`

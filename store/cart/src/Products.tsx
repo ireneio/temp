@@ -26,21 +26,20 @@ export default React.memo(({ products, hasError }: PropsType) => {
     <>
       <Table<useProductsColumnsFragmentType>
         className={styles.root}
-        rowClassName={styles.row}
         columns={columns}
         dataSource={products}
         pagination={false}
-        onRow={({ error }) =>
-          hasError || error
-            ? {
-                style: {
+        onRow={({ error }) => ({
+          className: `${styles.row} ${!error ? '' : styles.error}`,
+          style:
+            hasError && error
+              ? {
                   backgroundColor: transformColor(colors[1])
                     .alpha(0.15)
                     .toString(),
-                },
-              }
-            : {}
-        }
+                }
+              : {},
+        })}
       />
 
       <style

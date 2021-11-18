@@ -6,11 +6,12 @@ import { Menu as AntdMenu } from 'antd';
 import uuid from 'uuid/v4';
 import transformColor from 'color';
 
+import { Sensor as SensorContext } from '@meepshop/context';
 import { logoDesktopDefault } from '@meepshop/images';
+import withContext from '@store/utils/lib/withContext';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, STORE_SETTING_TYPE, COLOR_TYPE } from 'constants/propTypes';
-import { PHONE_MEDIA } from 'constants/media';
 import removeContextTpyesFromProps from 'utils/removeContextTpyesFromProps';
 
 import Link from 'link';
@@ -22,6 +23,7 @@ import notMemoizedGetAllKeys from './utils/getAllKeys';
 
 export { default as handleModuleData } from './utils/handleModuleData';
 
+@withContext(SensorContext)
 @enhancer
 export default class Menu extends React.PureComponent {
   searchBarItem = [
@@ -77,25 +79,9 @@ export default class Menu extends React.PureComponent {
     logoAlignment: null,
   };
 
-  state = {
-    isMobile: false,
-  };
-
-  componentDidMount() {
-    this.resize();
-    window.addEventListener('resize', this.resize);
-  }
-
   componentWillUnmount() {
     this.isUnmounted = true;
-    window.removeEventListener('resize', this.resize);
   }
-
-  resize = () => {
-    this.setState({
-      isMobile: window.matchMedia(PHONE_MEDIA.substring(7)).matches,
-    });
-  };
 
   initialDesign = () => {
     const { design } = this.props;
@@ -134,9 +120,9 @@ export default class Menu extends React.PureComponent {
       reverseSearch,
       isModule,
       hasLevelThree,
+      isMobile,
       ...props
     } = this.props;
-    const { isMobile } = this.state;
     const {
       showLogo,
       showSearchbar,
@@ -279,6 +265,8 @@ export default class Menu extends React.PureComponent {
                       fontSize: `${fontSize - 2}px`,
                     }
               }
+              menuType={id}
+              isMobile={isMobile}
               isModule={isModule}
             />
           ))}

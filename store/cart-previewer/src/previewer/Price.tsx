@@ -25,7 +25,7 @@ interface PropsType {
 export default React.memo(({ order }: PropsType) => {
   const colors = useContext(ColorsContext);
   const { c } = useContext(CurrencyContext);
-  const { t, i18n } = useTranslation('cart');
+  const { t, i18n } = useTranslation('cart-previewer');
   const { activityInfo, priceInfo } = order;
 
   return (

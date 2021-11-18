@@ -95,4 +95,6 @@ export {
   menuIconsTextsms_react as TEXTSMS,
   menuIconsThumbUp_react as THUMB_UP,
   menuIconsTrendingUp_react as TRENDING_UP,
+  cartIcon_react as CART,
+  profileIcon_react as PROFILE,
 } from '@meepshop/images';
