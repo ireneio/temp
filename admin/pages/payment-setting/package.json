@@ -4,16 +4,16 @@
   "description": "Payment setting page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.85",
+  "version": "0.80.86",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/block": "^0.80.85",
-    "@admin/header": "^0.80.85",
+    "@admin/block": "^0.80.86",
+    "@admin/header": "^0.80.86",
     "@admin/tooltip": "^0.80.80",
-    "@admin/utils": "^0.80.80",
-    "@meepshop/address-cascader": "^0.80.85",
-    "@meepshop/locales": "^0.80.82"
+    "@admin/utils": "^0.80.86",
+    "@meepshop/address-cascader": "^0.80.86",
+    "@meepshop/locales": "^0.80.86"
   },
   "keywords": ["admin", "payment", "setting"]
 }

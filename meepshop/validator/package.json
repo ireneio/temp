@@ -4,11 +4,11 @@
   "description": "Use to validate input",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.82",
+  "version": "0.80.86",
   "main": "./index.js",
   "types": "./src/types.ts",
   "dependencies": {
-    "@meepshop/locales": "^0.80.82",
+    "@meepshop/locales": "^0.80.86",
     "validator": "^13.5.2"
   },
   "keywords": ["meepshop", "validator"]

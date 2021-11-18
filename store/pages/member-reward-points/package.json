@@ -4,13 +4,13 @@
   "description": "Member reward points page for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.85",
+  "version": "0.80.86",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.85",
-    "@meepshop/locales": "^0.80.82",
-    "@store/utils": "^0.80.80",
+    "@meepshop/context": "^0.80.86",
+    "@meepshop/locales": "^0.80.86",
+    "@store/utils": "^0.80.86",
     "date-fns": "^2.15.0"
   },
   "keywords": ["member", "reward points", "store"]
