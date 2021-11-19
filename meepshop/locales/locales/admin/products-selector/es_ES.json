@@ -1,0 +1,27 @@
+{
+  "empty": {
+    "search": "No hay bienes",
+    "sort": "Bienes gratis"
+  },
+  "title": {
+    "search": "Seleccione Bienes",
+    "sort": "Item seleccionado"
+  },
+  "search-placeholder": "Ingrese el nombre o número del producto",
+  "select-placeholder": "Entrar o elegir etiquetas",
+  "notFound": "Compruebe sin etiqueta",
+  "tag-condition": "Condición de búsqueda",
+  "strict": "Cumplimiento de todas las etiquetas.",
+  "non-strict": "Reunirse con cualquier etiqueta",
+  "limit-tip": "Agregue productos para elegir el límite superior de 10, ajuste la cantidad",
+  "go-to-search": "Elemento de cambio",
+  "chosen": "El artículo ha sido seleccionado",
+  "clear": "Claro",
+  "check": "Ver artículos seleccionados",
+  "confirm": "confirmar",
+  "index": "Clasificar",
+  "product-title": "nombre del producto",
+  "off": "Sin abrir",
+  "stock": "en stock",
+  "price": "Vender"
+}

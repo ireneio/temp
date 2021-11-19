@@ -1,0 +1,27 @@
+{
+  "empty": {
+    "search": "Vérifier aucune marchandise",
+    "sort": "Produits gratuits"
+  },
+  "title": {
+    "search": "Sélectionner des marchandises",
+    "sort": "Élément sélectionné"
+  },
+  "search-placeholder": "Entrez le nom du produit ou le numéro",
+  "select-placeholder": "Entrez ou choisissez des étiquettes",
+  "notFound": "Vérifiez sans tag",
+  "tag-condition": "Condition de recherche",
+  "strict": "Conformité à toutes les étiquettes",
+  "non-strict": "Rencontrer n'importe quelle étiquette",
+  "limit-tip": "Ajouter des marchandises à choisir la limite supérieure de 10, veuillez ajuster la quantité",
+  "go-to-search": "Changement de changement",
+  "chosen": "L'article a été sélectionné",
+  "clear": "Dégager",
+  "check": "Voir les éléments sélectionnés",
+  "confirm": "confirmer",
+  "index": "Sorte",
+  "product-title": "nom du produit",
+  "off": "Non ouvert",
+  "stock": "en stock",
+  "price": "Vendre"
+}

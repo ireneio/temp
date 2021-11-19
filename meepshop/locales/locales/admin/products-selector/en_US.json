@@ -1,0 +1,27 @@
+{
+  "empty": {
+    "search": "Check no goods",
+    "sort": "Free goods"
+  },
+  "title": {
+    "search": "Select goods",
+    "sort": "Selected item"
+  },
+  "search-placeholder": "Enter the product name or number",
+  "select-placeholder": "Enter or choose labels",
+  "notFound": "Check without tag",
+  "tag-condition": "Search condition",
+  "strict": "Compliance with all labels",
+  "non-strict": "Meet any label",
+  "limit-tip": "Add goods to choose the upper limit of 10, please adjust the quantity",
+  "go-to-search": "Change item",
+  "chosen": "Item has been selected",
+  "clear": "Clear",
+  "check": "View selected items",
+  "confirm": "confirm",
+  "index": "Sort",
+  "product-title": "product name",
+  "off": "Unopened",
+  "stock": "in stock",
+  "price": "Sell"
+}

@@ -1,0 +1,27 @@
+{
+  "empty": {
+    "search": "Periksa tanpa barang",
+    "sort": "Barang-barang gratis"
+  },
+  "title": {
+    "search": "Pilih barang",
+    "sort": "Item yang dipilih"
+  },
+  "search-placeholder": "Masukkan nama atau nomor produk",
+  "select-placeholder": "Masukkan atau pilih label",
+  "notFound": "Periksa tanpa tag",
+  "tag-condition": "Kondisi pencarian",
+  "strict": "Kepatuhan dengan semua label",
+  "non-strict": "Temui label apa saja",
+  "limit-tip": "Tambahkan Barang untuk Memilih Batas Atas 10, Harap Sesuaikan Kuantitas",
+  "go-to-search": "Ubah item",
+  "chosen": "Barang telah dipilih",
+  "clear": "Jernih",
+  "check": "Lihat item yang dipilih",
+  "confirm": "Konfirmasi",
+  "index": "Menyortir",
+  "product-title": "nama Produk",
+  "off": "Belum dibuka",
+  "stock": "persediaan",
+  "price": "Menjual"
+}

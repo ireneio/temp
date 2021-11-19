@@ -1,0 +1,142 @@
+.root {
+  height: 100%;
+  padding: 64px 0;
+
+  :global(.ant-modal-content) {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  :global(.ant-modal-body) {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+}
+
+.table {
+  flex: 1;
+  overflow-y: auto;
+
+  :global(.ant-spin-nested-loading),
+  :global(.ant-spin-container),
+  :global(.ant-table),
+  :global(.ant-table-container),
+  :global(.ant-table-content) {
+    height: 100%;
+  }
+
+  :global(.ant-table-empty) {
+    height: 100%;
+
+    thead {
+      display: none;
+    }
+
+    :global(.ant-empty-image) {
+      height: 65px;
+      margin-bottom: 6px;
+    }
+
+    :global(.ant-empty-description) {
+      color: rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  tr {
+    td, th {
+      border-bottom: 1px solid #EBEBEB;
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+
+    &:hover td {
+      background-color: #F6F6F6;
+    }
+  }
+
+  &.search {
+    padding: 8px 24px 0;
+
+    :global(.ant-table-selection) {
+      display: block;
+    }
+
+    tr {
+      th {
+        background-color: transparent;
+        padding: 10px 8px;
+    
+        &:first-child {
+          padding-left: 16px;
+        }
+    
+        &:last-child {
+          padding-right: 24px;
+        }
+      }
+
+      td {
+        padding: 12px 8px;
+    
+        &:first-child {
+          padding-left: 16px;
+        }
+    
+        &:last-child {
+          padding-right: 24px;
+        }
+      }
+    
+      &:global(.ant-table-row-selected) {
+        td {
+          background-color: #FAFBFD;
+        }
+    
+        &:hover td {
+          background-color: #F1F3F8;
+        }
+      }
+    }
+  }
+
+  &.sort {
+    padding: 0 16px;
+
+    tbody {
+      background-color: #F5F5F5;
+    }
+
+    tr {
+      th {
+        background-color: transparent;
+        padding: 15px 4px 6px;
+        font-size: 12px;
+        line-height: 22px;
+        color: #8C8C8C;
+      }
+  
+      td {
+        padding: 10px 4px;
+        border-bottom: none;
+        background-color: #fff;
+      }
+    }
+  }
+}
+
+.dragging {
+  background: #FFFFFF;
+  border: 1px solid #EBEBEB;
+  box-shadow: 0px 0px 9px rgba(33, 37, 54, 0.3);
+  border-radius: 2px;
+  z-index: 1001;
+  
+  td {
+    padding: 10px 4px;
+    vertical-align: middle;
+  }
+}

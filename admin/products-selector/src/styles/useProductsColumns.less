@@ -1,0 +1,106 @@
+@import '~@admin/utils/styles/variables.less';
+
+div.thumbnail {
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  border: 1px solid rgba(#e8e8e8, 0.8);
+  box-shadow: none;
+
+  @media (max-width: @screen-sm-max) {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.status {
+  display: inline-block;
+  font-size: 10px;
+  line-height: 18px;
+  color: #626c82;
+  padding: 0 6px;
+  background-color: #e6ebf1;
+  margin-bottom: 4px;
+}
+
+.title {
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.sku {
+  font-size: 12px;
+  line-height: 22px;
+  color: rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+}
+
+.drag {
+  min-width: 36px;
+  padding-right: 8px !important;
+
+  span {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 24px;
+  }
+}
+
+.index {
+  min-width: 36px;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.65);
+  text-align: center;
+}
+
+.sort {
+  min-width: 36px;
+
+  .thumbnail {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.colTitle {
+  min-width: '100%';
+
+  &.statusless {
+    padding-right: 17px !important;
+  }
+
+  .title {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+}
+
+.off {
+  min-width: 69px;
+  padding-right: 17px !important;
+
+  > .status {
+    margin-bottom: 0;
+  }
+}
+
+.number {
+  min-width: 54px;
+  font-size: 12px;
+  line-height: 22px;
+  color: rgba(0, 0, 0, 0.65);
+  padding-left: 7px !important;
+  padding-right: 7px !important;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.remove {
+  min-width: 43px;
+  padding-right: 8px !important;
+  padding-left: 21px !important;
+  font-size: 14px;
+}

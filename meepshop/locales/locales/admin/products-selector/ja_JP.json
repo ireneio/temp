@@ -1,0 +1,27 @@
+{
+  "empty": {
+    "search": "商品なしをチェックしてください",
+    "sort": "無料の商品"
+  },
+  "title": {
+    "search": "商品を選択してください",
+    "sort": "選択されたアイテム"
+  },
+  "search-placeholder": "製品名または番号を入力してください",
+  "select-placeholder": "ラベルを入力または選択します",
+  "notFound": "タグなしで確認してください",
+  "tag-condition": "検索条件",
+  "strict": "すべてのラベルへの準拠",
+  "non-strict": "任意のラベルを満たしています",
+  "limit-tip": "商品を追加する10の上限を選択するには、数量を調整してください",
+  "go-to-search": "アイテムを変更してください",
+  "chosen": "アイテムが選択されました",
+  "clear": "クリア",
+  "check": "選択したアイテムを表示します",
+  "confirm": "確認",
+  "index": "選別",
+  "product-title": "商品名",
+  "off": "未開封",
+  "stock": "在庫あり",
+  "price": "売る"
+}

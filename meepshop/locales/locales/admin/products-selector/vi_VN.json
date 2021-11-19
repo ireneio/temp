@@ -1,0 +1,27 @@
+{
+  "empty": {
+    "search": "Kiểm tra không có hàng hóa",
+    "sort": "Hàng miễn phí"
+  },
+  "title": {
+    "search": "Chọn hàng",
+    "sort": "Chọn mục"
+  },
+  "search-placeholder": "Nhập tên sản phẩm hoặc số",
+  "select-placeholder": "Nhập hoặc chọn nhãn",
+  "notFound": "Kiểm tra mà không có tag.",
+  "tag-condition": "Điều kiện tìm kiếm",
+  "strict": "Tuân thủ tất cả các nhãn",
+  "non-strict": "Gặp bất kỳ nhãn nào",
+  "limit-tip": "Thêm hàng hóa để chọn giới hạn trên của 10, vui lòng điều chỉnh số lượng",
+  "go-to-search": "Thay đổi hạng mục",
+  "chosen": "Mục đã được chọn",
+  "clear": "Sạch",
+  "check": "Xem các mục đã chọn",
+  "confirm": "xác nhận",
+  "index": "Loại",
+  "product-title": "tên sản phẩm",
+  "off": "Chưa mở.",
+  "stock": "trong kho",
+  "price": "Bán"
+}

@@ -1,0 +1,27 @@
+{
+  "empty": {
+    "search": "查無符合商品",
+    "sort": "無商品資料"
+  },
+  "title": {
+    "search": "選擇商品",
+    "sort": "已選商品"
+  },
+  "search-placeholder": "輸入商品名稱或編號",
+  "select-placeholder": "輸入或選取標籤",
+  "notFound": "查無符合標籤",
+  "tag-condition": "搜尋條件",
+  "strict": "符合所有標籤",
+  "non-strict": "符合任一標籤",
+  "limit-tip": "加購品選擇上限為 10 項，請調整數量",
+  "go-to-search": "更改商品",
+  "chosen": "項已選擇",
+  "clear": "清除",
+  "check": "查看已選商品",
+  "confirm": "確 認",
+  "index": "排序",
+  "product-title": "商品名稱",
+  "off": "未上架",
+  "stock": "庫存",
+  "price": "售價"
+}

@@ -11,6 +11,8 @@ import schemaJSON from '../schema';
 
 import Address from './schemas/Address';
 import AddressService from './schemas/AddressService';
+import AdminProduct from './schemas/AdminProduct';
+import AdminProductsConnection from './schemas/AdminProductsConnection';
 import Area from './schemas/Area';
 import Authority from './schemas/Authority';
 import activeParamsObjectType from './schemas/activeParamsObjectType';
@@ -100,6 +102,8 @@ export default addMocksToSchema({
   mocks: {
     Address,
     AddressService,
+    AdminProduct,
+    AdminProductsConnection,
     Area,
     Authority,
     activeParamsObjectType,
