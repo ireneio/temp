@@ -39,6 +39,7 @@
     "@admin/sign-up": "^0.80.86",
     "@admin/sign-up-fail": "^0.80.86",
     "@admin/smart-conversion-analysis": "^0.80.86",
+    "@admin/upselling-products": "^0.1.0",
     "@admin/utils": "^0.80.86",
     "@admin/web-track": "^0.80.86",
     "@admin/wrapper": "^0.80.86",
@@ -55,5 +56,8 @@
   "devDependencies": {
     "directory-tree": "^2.2.4"
   },
-  "keywords": ["admin", "meepshop"]
+  "keywords": [
+    "admin",
+    "meepshop"
+  ]
 }
