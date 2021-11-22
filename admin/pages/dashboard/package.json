@@ -4,17 +4,17 @@
   "description": "Dashboard for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.86",
+  "version": "0.80.87",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/ad-track": "^0.80.80",
-    "@admin/utils": "^0.80.86",
-    "@meepshop/context": "^0.80.86",
-    "@meepshop/icons": "^0.80.80",
-    "@meepshop/images": "^0.80.86",
-    "@meepshop/link": "^0.80.86",
-    "@meepshop/locales": "^0.80.86"
+    "@admin/ad-track": "^0.80.87",
+    "@admin/utils": "^0.80.87",
+    "@meepshop/context": "^0.80.87",
+    "@meepshop/icons": "^0.80.87",
+    "@meepshop/images": "^0.80.87",
+    "@meepshop/link": "^0.80.87",
+    "@meepshop/locales": "^0.80.87"
   },
   "keywords": ["admin", "dashboard"]
 }
