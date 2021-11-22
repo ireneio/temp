@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.80.87 (2021-11-22)
+
+#### :rocket: New Feature
+
+- Other
+  - [#1882](https://github.com/meepshop/meep-lerna/pull/1882) 廣告分析行銷串接 - 新增教學部落格連結 ([@piovischioh](https://github.com/piovischioh))
+  - [#1860](https://github.com/meepshop/meep-lerna/pull/1860) 修改 @admin/date-picker ([@piovischioh](https://github.com/piovischioh))
+  - [#1887](https://github.com/meepshop/meep-lerna/pull/1887) 新增 @admin/upselling-products ([@piovischioh](https://github.com/piovischioh))
+- `mock-types`
+  - [#1885](https://github.com/meepshop/meep-lerna/pull/1885) 新增 @admin/products-selector ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`, `store`
+  - [#1886](https://github.com/meepshop/meep-lerna/pull/1886) 【優化】createOrder 都必須提供 redirectUrl ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1869](https://github.com/meepshop/meep-lerna/pull/1869) 內部開單 - 優化 /fb-login 登入失敗自動轉址 - 前端 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1601](https://github.com/meepshop/meep-lerna/pull/1601) 【BUG】next-admin 更換圖片，出現 An unexpected error has occurred ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1888](https://github.com/meepshop/meep-lerna/pull/1888) (@meepshop/login-modal) Fix prettier ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#1879](https://github.com/meepshop/meep-lerna/pull/1879) 【個別店家】商品列表顯示異常 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.86 (2021-11-18)
 
 #### :boom: Breaking Change
