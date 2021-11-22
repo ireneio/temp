@@ -1,5 +1,5 @@
 // typescript definition
-type DateType =
+export type DateType =
   | 'today'
   | 'yesterday'
   | 'lastWeek'

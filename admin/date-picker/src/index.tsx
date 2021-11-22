@@ -1,9 +1,10 @@
 // typescript import
-import { RangePickerProps } from 'antd/lib/date-picker/generatePicker';
+import { RangePickerDateProps } from 'antd/lib/date-picker/generatePicker';
+
+import { DateType } from './constants';
 
 // import
-import React, { useEffect, useState, useRef } from 'react';
-import { areEqual } from 'fbjs';
+import React, { useState } from 'react';
 import { startOfDay, endOfDay } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
@@ -14,56 +15,69 @@ import styles from './styles/index.less';
 import { DATE_TYPE } from './constants';
 
 // typescript definition
-export interface PropsType {
-  value?: [Date, Date];
-  onChange?: (value: PropsType['value']) => void;
+export interface PropsType
+  extends Exclude<RangePickerDateProps<Date>, 'onChange'> {
+  onChange: (value: PropsType['value']) => void;
+  disableTemplates?: boolean;
 }
 
 // definition
 const { RangePicker } = DatePicker;
 
-export default React.memo(({ onChange, value: propsValue }: PropsType) => {
-  const preValueRef = useRef<PropsType['value']>(propsValue);
-  const { t } = useTranslation('date-picker');
-  const [type, setType] = useState<typeof DATE_TYPE[number]>('today');
-  const stateValue = useState<PropsType['value']>(propsValue);
-  const [value, setValue] = !onChange ? stateValue : [propsValue, onChange];
+export default React.memo(
+  ({
+    className,
+    onChange,
+    showTime,
+    disableTemplates,
+    ...props
+  }: PropsType) => {
+    const { t } = useTranslation('date-picker');
+    const [type, setType] = useState<DateType>(
+      disableTemplates ? 'custom' : 'today',
+    );
 
-  useEffect(() => {
-    if (!areEqual(propsValue, preValueRef.current)) setValue(propsValue);
-    preValueRef.current = propsValue;
-  }, [propsValue, preValueRef, setValue]);
+    return (
+      <RangePicker
+        {...props}
+        className={`${styles.root} ${className || ''}`}
+        separator="~"
+        dropdownClassName={`${styles.dropdown} ${
+          disableTemplates ? '' : styles.templates
+        } ${type === 'custom' ? '' : styles.notCustom}`}
+        placeholder={[t('start-date'), t('end-date')]}
+        showTime={showTime}
+        onChange={newValue => {
+          if (!showTime)
+            return onChange(
+              newValue && [
+                newValue[0] ? startOfDay(newValue[0]) : null,
+                newValue[1] ? endOfDay(newValue[1]) : null,
+              ],
+            );
 
-  return (
-    <RangePicker
-      className={styles.root}
-      value={value as RangePickerProps<Date>['value']}
-      separator="~"
-      dropdownClassName={`${styles.dropdown} ${
-        type === 'custom' ? '' : styles.notCustom
-      }`}
-      placeholder={[t('start-date'), t('end-date')]}
-      onChange={newValue => {
-        setValue(
-          !newValue?.[0] || !newValue?.[1]
+          return onChange(newValue);
+        }}
+        renderExtraFooter={
+          disableTemplates
             ? undefined
-            : [startOfDay(newValue[0]), endOfDay(newValue[1])],
-        );
-      }}
-      renderExtraFooter={() =>
-        DATE_TYPE.map((key: typeof DATE_TYPE[number]) => (
-          <div
-            key={key}
-            className={`ant-select-item ${type !== key ? '' : styles.selected}`}
-            onClick={() => {
-              setType(key);
-              if (key !== 'custom') setValue(changeValue(key));
-            }}
-          >
-            {t(key as string)}
-          </div>
-        ))
-      }
-    />
-  );
-});
+            : () =>
+                DATE_TYPE.map(key => (
+                  <div
+                    key={key}
+                    className={`ant-select-item ${
+                      type !== key ? '' : styles.selected
+                    }`}
+                    onClick={() => {
+                      setType(key);
+                      if (key !== 'custom') onChange(changeValue(key));
+                    }}
+                  >
+                    {t(key as string)}
+                  </div>
+                ))
+        }
+      />
+    );
+  },
+);

@@ -1,3 +1,6 @@
+// typescript definition
+import { DateType } from '../constants';
+
 // import
 import {
   sub,
@@ -12,13 +15,11 @@ import {
   startOfDay,
 } from 'date-fns';
 
-import { DATE_TYPE } from '../constants';
-
 // typescript definition
 type ValueType = [Date, Date];
 
 // definition
-export default (key: typeof DATE_TYPE[number]): ValueType =>
+export default (key: DateType): ValueType =>
   ({
     today: [startOfToday(), endOfToday()],
     yesterday: [startOfYesterday(), endOfYesterday()],
