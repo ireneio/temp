@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.88 (2021-11-22)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1891](https://github.com/meepshop/meep-lerna/pull/1891) Revert 【個別店家】商品列表顯示異常 ([@meepshop-bot](https://github.com/meepshop-bot))
+
+#### Committers: 1
+
+- [@meepshop-bot](https://github.com/meepshop-bot)
+
 ## 0.80.87 (2021-11-22)
 
 #### :rocket: New Feature
