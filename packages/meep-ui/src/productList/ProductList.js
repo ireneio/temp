@@ -266,7 +266,9 @@ export default class ProductList extends React.PureComponent {
     const { target, isGrid } = this.state;
     // FIXME: custom sorting workaround
     const total =
-      sort === 'selections' ? String(ids).split(',').length : products?.total;
+      sort === 'selections' && products?.total !== 0
+        ? String(ids).split(',').length
+        : products?.total;
     const sortOptions = SORT_OPTIONS(ids, sort);
 
     return (
