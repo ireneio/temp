@@ -3,11 +3,14 @@
   "track-setting": "Pengaturan Alat Pelacakan",
   "tip": "Tutorial Pengaturan Tampilan",
   "facebook": {
+    "description": "Informasi ini dipasok ke Facebook melalui pengaturan piksel Facebook dan mengonversi API sehingga Anda dapat melacak perilaku pelanggan.",
     "empty": "Belum diatur",
     "setting": "Tetapkan pelacakan pengkodean",
     "pixelId": {
       "title": "Facebook Pixel.",
       "tip": "Cara mengatur piksel Facebook",
+      "placeholder": "Silakan masukkan nomor piksel Facebook",
+      "required": "Silakan isi nomor piksel yang sesuai dengan API Konversi",
       "error": "Kesalahan Format Nomor Pixel Facebook, tengah jumlahnya tidak boleh memiliki simbol kosong atau khusus sebelum dan sesudah, dan harus 15 yard atau 16 yard."
     },
     "conversionsAccessToken": {
@@ -18,6 +21,7 @@
     },
     "dpa": {
       "title": "Periklanan Dinamis (DPA)",
+      "hint": "Apa itu iklan dinamis Facebook?",
       "description": {
         "0": "Katalog Produk Diperbarui: 5: 00 ~ 6:00 AM (GMT + 08: 00)",
         "1": "Silakan salin URL dinamis, ke latar belakang manajemen periklanan Facebook, sistem akan secara otomatis mengirimkan dan memperbarui direktori produk ke Facebook."
@@ -33,24 +37,28 @@
   },
   "google-analytics": {
     "title": "Analisis Situs Web Google Analytics",
+    "tip": "Cara mengatur Google Analytics",
     "description": "Jangan lupa untuk menggunakan Google Analytics untuk menganalisis layanan saat mengoperasikan situs web. meepShop mendukung Google Analytics. Yang harus Anda lakukan adalah mengikuti beberapa langkah sederhana untuk menganalisis dan membandingkan secara efektif, membantu situs web untuk berinvestasi secara efektif di tempat-tempat dengan arus lalu lintas terbanyak.",
     "setting": "Tetapkan nomor pelacakan",
     "setting-placeholder": "Silakan masukkan nomor pelacakan GA",
     "googleAnalyticsId": "Nomor pelacak"
   },
   "google-ads": {
+    "tip": "Cara mengatur iklan Google Tracking Adsure",
     "description": "Pelacakan konversi iklan dapat digunakan untuk melacak tindakan \"setelah\" seorang pelanggan mengklik iklan, termasuk daftar, pembelian. Tindakan dianggap konversi setelah pelanggan menyelesaikan tindakan yang Anda anggap berharga.",
     "warning": "Sistem akan melakukan konversi data saat menyimpan, dan hanya menyimpan ID kode global dan nomor acara setelah selesai",
     "setting": "Ubah Pengaturan Pelacakan",
     "global-code": "Kode Global:",
     "global-code-placeholder": "Silakan masukkan kode url global",
     "event-setting": "Ubah Pengaturan Acara",
+    "event-setting-tip": "Apa itu acara konversi?",
     "sign-up": "Daftar Selesai:",
     "begin-checkout": "Mulai Checkout:",
     "purchase": "Membeli:",
     "event-placeholder": "Silakan masukkan cuplikan acara",
     "not-setting": "Pengaturan belum dibuat",
     "dpa": "Iklan Produk Dinamis (DPA)",
+    "dpa-tip": "Apa iklan Google Dynamics (Shopping)?",
     "dpa-description": {
       "0": "Waktu Pembaruan Dialog Produk: 5:00 AM ~ 6:00 AM (GMT + 08:00)",
       "1": "Salin URL file dinamis dan tempel ke akun Google Merchant Anda untuk menyiapkan feed. Google akan mengambilnya sesuai dengan jadwal yang ditetapkan."
@@ -62,6 +70,7 @@
   },
   "google-webmaster": {
     "title": "Google Search Console",
+    "tip": "Cara Mengatur Konsol Pencarian Google",
     "webmaster": "Webmaster",
     "description": "Google Search Console membantu Anda dalam menentukan aliran lalu lintas pencarian Google dan efisiensi situs web Anda, memperbaiki masalah dan membedakan situs web Anda di antara ribuan hasil pencarian Google.",
     "setting": "Verifikasi markup HTML",
@@ -79,6 +88,7 @@
   },
   "google-tag-manager": {
     "title": "Alat Manajemen Kode",
+    "tip": "Cara Mengatur Manajer Tag Google",
     "description": "Google Tag Manager adalah sistem manajemen tag yang dapat membantu Anda dengan cepat memperbarui kode pelacakan dan snippet Anda melalui pengaturan antarmuka pengguna situs web dan pengaturan penempatan tag.",
     "warning": "Sistem akan melakukan konversi data saat menyimpan, dan hanya menyimpan ID kode global dan nomor acara setelah selesai",
     "setting": "Pengaturan Cuplikan",
@@ -89,11 +99,8 @@
   "advanced-customer-track": "Pelacakan Pelanggan Lanjut",
   "retention-milliseconds-track": {
     "title": "Kustomisasi Pelacak Waktu Tetap",
+    "tip": "Cara mengatur acara periklanan cadangan diri yang disediakan oleh MEEPSHOP",
     "description": "Fitur ini dapat melacak perilaku tinggal pengguna di semua halaman melalui alat pelacakan pihak ketiga, Facebook Pixel dan Google Analytics, dan waktu tinggal dapat disesuaikan.",
-    "tip": {
-      "0": "Dapat melacak pengguna yang berada di halaman selama lebih dari X detik.",
-      "1": "Nama Acara: meepShop_retention"
-    },
     "setting": "Pengaturan Waktu Tetap",
     "input-seconds": "Silakan masukkan jumlah detik"
   },

@@ -1,6 +1,9 @@
+// typescript import
+import { FormInstance } from 'antd/lib/form';
+
 // import
 import React, { useState } from 'react';
-import { Form, Tooltip as AntdTooltip, Button, Input, message } from 'antd';
+import { Form, Button, Input, message } from 'antd';
 import { CheckCircleOutlined } from '@ant-design/icons';
 
 import Tooltip from '@admin/tooltip';
@@ -53,6 +56,8 @@ export default React.memo(({ store }: PropsType) => {
     <Form onFinish={setFacebookAdTracks}>
       <img className={styles.img} src={webTrackFacebook} alt="facebook" />
 
+      <div className={styles.description}>{t('facebook.description')}</div>
+
       {[
         {
           key: 'pixelId',
@@ -60,9 +65,15 @@ export default React.memo(({ store }: PropsType) => {
             'https://supportmeepshop.com/knowledgebase/facebook%e5%83%8f%e7%b4%a0/',
           initialValue: facebookPixelId,
           rules: [
-            {
-              required: true,
-              message: t('required'),
+            (form: FormInstance) => {
+              const { getFieldValue } = form;
+
+              if (!getFieldValue(['conversionsAccessToken'])) return {};
+
+              return {
+                required: true,
+                message: t('facebook.pixelId.required'),
+              };
             },
             {
               pattern: /^(\d{15}|\d{16})$/,
@@ -90,6 +101,7 @@ export default React.memo(({ store }: PropsType) => {
             <Tooltip
               arrowPointAtCenter
               placement="top"
+              onlyLink
               title={
                 <Link href={url} target="_blank">
                   <a href={url}>{t(`facebook.${key}.tip`)}</a>
@@ -107,7 +119,7 @@ export default React.memo(({ store }: PropsType) => {
               validateTrigger="onBlur"
             >
               {key === 'pixelId' ? (
-                <Input />
+                <Input placeholder={t(`facebook.${key}.placeholder`)} />
               ) : (
                 <TextArea
                   placeholder={t(`facebook.${key}.placeholder`)}
@@ -139,13 +151,29 @@ export default React.memo(({ store }: PropsType) => {
 
       <div className={styles.dpa}>
         {t('facebook.dpa.title')}
+
+        <Tooltip
+          arrowPointAtCenter
+          placement="top"
+          onlyLink
+          title={
+            <Link
+              href="https://supportmeepshop.com/knowledgebase/facebook-facebook-動態廣告-dpa/"
+              target="_blank"
+            >
+              <a href="https://supportmeepshop.com/knowledgebase/facebook-facebook-動態廣告-dpa/">
+                {t(`facebook.dpa.hint`)}
+              </a>
+            </Link>
+          }
+        />
         <div>
           <div>{t('facebook.dpa.description.0')}</div>
           <div>{t('facebook.dpa.description.1')}</div>
         </div>
       </div>
 
-      <AntdTooltip
+      <Tooltip
         placement="bottom"
         overlayStyle={{
           maxWidth: '440px',
@@ -163,7 +191,7 @@ export default React.memo(({ store }: PropsType) => {
             ? t('facebook.dpa.copy-link')
             : t('facebook.dpa.set-pixel-id-first')}
         </Button>
-      </AntdTooltip>
+      </Tooltip>
     </Form>
   );
 });

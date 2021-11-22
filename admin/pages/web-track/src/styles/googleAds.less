@@ -4,6 +4,11 @@
   @title();
 }
 
+.subtitle {
+  @title();
+  margin-bottom: 16px;
+}
+
 .description {
   @description();
 }
@@ -12,101 +17,61 @@
   @warning();
 }
 
-.item {
-  :global(.ant-form-item) {
-    display: flex;
-  }
-
-  :global(.ant-form-item-required)::before {
-    display: none;
-  }
-
+.form {
   :global(.ant-form-item-label) {
-    width: 10%;
+    color: rgba(0, 0, 0, 0.65);
+    width: 70px;
     text-align: right;
     white-space: normal;
     word-break: break-all;
-    margin-right: 3px;
+    margin-right: 8px;
   }
 
-  :global(.ant-form-item-control-wrapper) {
-    width: 80%;
-  }
-
-  input:global(.ant-input) {
-    max-width: 300px;
-  }
-
-  & > div:nth-child(2) {
-    color: rgba(0, 0, 0, 0.25);
-    font-size: 16px;
-    line-height: 24px;
-    margin: 32px 0px 16px;
+  :global(.ant-row) {
+    margin-bottom: 16px;
   }
 }
 
 .button {
-  margin-left: 10%;
+  margin: 24px 0 32px 78px;
 
   & > button:nth-child(1) {
     margin-right: 8px;
   }
 }
 
-.value {
-  & > div {
-    display: flex;
-    align-items: center;
+.row {
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: 16px;
   }
 
-  & > div > div:first-child {
-    color: rgba(0, 0, 0, 0.45);
-    font-size: 16px;
-    line-height: 24px;
-    width: 11%;
+  > div:first-child {
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    line-height: 20px;
+    width: 70px;
     text-align: right;
-    white-space: normal;
     word-break: break-all;
-    margin-right: 3px;
+    margin-right: 8px;
   }
 
-  & > div > div:last-child {
+  > div:last-child {
+    flex: 1;
+    border-radius: 5px;
+    background-color: #fafafa;
+    padding: 12px 20px;
+    width: 80%;
     color: rgba(0, 0, 0, 0.85);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 26px;
-  }
 
-  & > div:nth-child(2) {
-    margin: 16px 0px 32px;
-
-    & > div:last-child {
-      font-size: 16px;
-      line-height: 32px;
-    }
-  }
-
-  & > div:nth-child(3) {
-    color: rgba(0, 0, 0, 0.65);
-    margin-bottom: 6px;
-  }
-
-  & > .eventSetting {
-    margin-bottom: 24px;
-
-    &:last-child {
-      margin-bottom: 0px;
-    }
-
-    & > div:last-child {
-      border-radius: 5px;
-      background-color: #fafafa;
-      padding: 12px 20px;
-      width: 80%;
-    }
-
-    .noSetting {
-      color: rgba(0, 0, 0, 0.45);
+    &.empty {
+      color: rgba(0, 0, 0, 0.65);
+      font-weight: normal;
     }
   }
 }

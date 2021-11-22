@@ -6,6 +6,7 @@ import { Switch, Button, InputNumber } from 'antd';
 import message from '@admin/message';
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/locales';
+import Link from '@meepshop/link';
 
 import styles from './styles/advancedSetting.less';
 
@@ -73,15 +74,20 @@ export default React.memo(({ store }: PropsType) => {
       <div>
         <div>
           {t('retention-milliseconds-track.title')}
+
           <Tooltip
             arrowPointAtCenter
-            placement="bottomLeft"
-            overlayStyle={{ maxWidth: '440px' }}
+            placement="top"
+            onlyLink
             title={
-              <>
-                <div>{t('retention-milliseconds-track.tip.0')}</div>
-                <div>{t('retention-milliseconds-track.tip.1')}</div>
-              </>
+              <Link
+                href="https://supportmeepshop.com/knowledgebase/建立自訂廣告事件/"
+                target="_blank"
+              >
+                <a href="https://supportmeepshop.com/knowledgebase/建立自訂廣告事件/">
+                  {t(`retention-milliseconds-track.tip`)}
+                </a>
+              </Link>
             }
           />
         </div>

@@ -1,14 +1,12 @@
 // import
 import React, { useState } from 'react';
 import { EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
-import { Form, Button, Modal, Input } from 'antd';
+import { Form, Button, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/locales';
-import {
-  webTrackGoogleTagManager_w172 as webTrackGoogleTagManager,
-  webTrackGoogleTagManagerInstruction_w890 as webTrackGoogleTagManagerInstruction,
-} from '@meepshop/images';
+import { webTrackGoogleTagManager_w172 as webTrackGoogleTagManager } from '@meepshop/images';
+import Link from '@meepshop/link';
 
 import useUpdateGoogleTagManager from './hooks/useUpdateGoogleTagManager';
 import useValidateGoogleTagManager from './hooks/useValidateGoogleTagManager';
@@ -32,7 +30,6 @@ export default React.memo(({ store }: PropsType) => {
     adTracks: { googleTagManager },
   } = store;
   const { t } = useTranslation('web-track');
-  const [isOpen, openModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const validateGoogleTagManager = useValidateGoogleTagManager();
   const updateGoogleTagManager = useUpdateGoogleTagManager(id, setEditMode);
@@ -43,25 +40,23 @@ export default React.memo(({ store }: PropsType) => {
 
       <div className={styles.title}>
         <div>{t('google-tag-manager.title')}</div>
+
         <Tooltip
           arrowPointAtCenter
-          placement="bottomLeft"
-          title={t('tip')}
-          onClick={() => openModal(true)}
+          placement="top"
+          onlyLink
+          title={
+            <Link
+              href="https://supportmeepshop.com/knowledgebase/google-tag-manager標記管理工具/"
+              target="_blank"
+            >
+              <a href="https://supportmeepshop.com/knowledgebase/google-tag-manager標記管理工具/">
+                {t(`google-tag-manager.tip`)}
+              </a>
+            </Link>
+          }
         />
       </div>
-
-      <Modal
-        width="fit-content"
-        footer={null}
-        visible={isOpen}
-        onCancel={() => openModal(false)}
-      >
-        <img
-          src={webTrackGoogleTagManagerInstruction}
-          alt="GoogleTagManagerInstruction"
-        />
-      </Modal>
 
       <div className={styles.description}>
         {t('google-tag-manager.description')}

@@ -27,15 +27,10 @@ export const tapPayCheckOutSuccess_w289 = mockData;
 export const uploadImage_w56 = mockData;
 export const uploadPicture_w100 = mockData;
 export const webTrackFacebook_w130 = mockData;
-export const webTrackFacebookPixelInstruction_w890 = mockData;
 export const webTrackGoogle_w98 = mockData;
 export const webTrackGoogleAds_w172 = mockData;
-export const webTrackGoogleAdsInstruction_w890 = mockData;
 export const webTrackGoogleAnalytics_w224 = mockData;
-export const webTrackGoogleAnalyticsInstruction_w888 = mockData;
 export const webTrackGoogleTagManager_w172 = mockData;
 export const webTrackGoogleMerchantCenter_w258 = mockData;
-export const webTrackGoogleTagManagerInstruction_w890 = mockData;
-export const webTrackGoogleWebmasterInstruction_w890 = mockData;
 
 throw new Error('Do not import');

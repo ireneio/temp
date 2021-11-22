@@ -1,14 +1,12 @@
 // import
 import React, { useState } from 'react';
 import { EditOutlined } from '@ant-design/icons';
-import { Form, Button, Modal, Input } from 'antd';
+import { Form, Button, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/locales';
-import {
-  webTrackGoogleAnalytics_w224 as webTrackGoogleAnalytics,
-  webTrackGoogleAnalyticsInstruction_w888 as webTrackGoogleAnalyticsInstruction,
-} from '@meepshop/images';
+import { webTrackGoogleAnalytics_w224 as webTrackGoogleAnalytics } from '@meepshop/images';
+import Link from '@meepshop/link';
 
 import useUpdateGoogleAnalytics from './hooks/useUpdateGoogleAnalytics';
 import styles from './styles/googleAnalytics.less';
@@ -30,7 +28,6 @@ export default React.memo(({ store }: PropsType) => {
     adTracks: { googleAnalyticsId },
   } = store;
   const { t } = useTranslation('web-track');
-  const [isOpen, openModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const updateGoogleAnalytics = useUpdateGoogleAnalytics(id, setEditMode);
 
@@ -40,25 +37,23 @@ export default React.memo(({ store }: PropsType) => {
 
       <div className={styles.title}>
         <div>{t('google-analytics.title')}</div>
+
         <Tooltip
           arrowPointAtCenter
-          placement="bottomLeft"
-          title={t('tip')}
-          onClick={() => openModal(true)}
+          placement="top"
+          onlyLink
+          title={
+            <Link
+              href="https://supportmeepshop.com/knowledgebase/google-analytics/"
+              target="_blank"
+            >
+              <a href="https://supportmeepshop.com/knowledgebase/google-analytics/">
+                {t(`google-analytics.tip`)}
+              </a>
+            </Link>
+          }
         />
       </div>
-
-      <Modal
-        width="fit-content"
-        footer={null}
-        visible={isOpen}
-        onCancel={() => openModal(false)}
-      >
-        <img
-          src={webTrackGoogleAnalyticsInstruction}
-          alt="GoogleAnalyticsInstruction"
-        />
-      </Modal>
 
       <div className={styles.description}>
         {t('google-analytics.description')}

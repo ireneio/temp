@@ -3,11 +3,14 @@
   "track-setting": "Tracking Tools Settings",
   "tip": "Display Setting Tutorial",
   "facebook": {
+    "description": "The information is supplied to Facebook through setting Facebook pixels and converting APIs so that you can track customer behavior.",
     "empty": "Not yet set",
     "setting": "Set tracking coding",
     "pixelId": {
       "title": "Facebook pixel",
       "tip": "How to set Facebook pixels",
+      "placeholder": "Please enter the Facebook pixel number",
+      "required": "Please fill in the pixel number corresponding to the Convert API",
       "error": "Facebook pixel number format error, the middle of the number must not have blank or special symbols before and after, and must be 15 yards or 16 yards."
     },
     "conversionsAccessToken": {
@@ -18,6 +21,7 @@
     },
     "dpa": {
       "title": "Dynamic Advertising (DPA)",
+      "hint": "What is Facebook dynamic advertising?",
       "description": {
         "0": "Product Catalog Updated: 5: 00 AM ~ 6:00 AM (GMT + 08: 00)",
         "1": "Please copy the dynamic URL, to the Facebook Advertising Management Background, the system will automatically submit and update the product directory to Facebook."
@@ -33,24 +37,28 @@
   },
   "google-analytics": {
     "title": "Google Analytics Website Analysis",
+    "tip": "How to set Google Analytics",
     "description": "Don't forget to use Google Analytics to analyze service when operating a website. meepShop supports Google Analytics. All you have to do is follow a few simple steps to analyze and compare effectively, assisting the website to effectively invest places with the most traffic flow.",
     "setting": "Set tracking number",
     "setting-placeholder": "Please enter GA tracking number",
     "googleAnalyticsId": "Track Number"
   },
   "google-ads": {
+    "tip": "How to set Google ADS tracking adsure",
     "description": "Ads conversion tracking can be used to track the action \"after\" a customer clicked the ads, including register, purchases. Action is considered conversion once a customer completed an action you defined valuable.",
     "warning": "The system will perform data conversion when saving, and only retain the global code ID and event number after completion",
     "setting": "Change Tracking Settings",
     "global-code": "Global Code:",
     "global-code-placeholder": "Please enter global url code",
     "event-setting": "Change Event Settings",
+    "event-setting-tip": "What is a conversion event?",
     "sign-up": "Register Completed:",
     "begin-checkout": "Start Checkout:",
     "purchase": "Purchase:",
     "event-placeholder": "Please enter event snippet",
     "not-setting": "Setting has not been made",
     "dpa": "Dynamic Product Ads (DPA)",
+    "dpa-tip": "What is Google Dynamics (Shopping) Advertising?",
     "dpa-description": {
       "0": "Product Dialogue Update Time: 5:00 AM ~ 6:00 AM (GMT+08:00)",
       "1": "Please copy the URL of the dynamic file and paste it into your Google Merchant account to set up the feed. Google will retrieve it according to the set schedule."
@@ -62,6 +70,7 @@
   },
   "google-webmaster": {
     "title": "Google Search Console",
+    "tip": "How to set up Google Search Console",
     "webmaster": "Webmaster",
     "description": "Google Search Console assists you in determining the Google search traffic flow and efficiency of your website, rectifying problems and differentiate your website among thousands of Google search results.",
     "setting": "HTML markup verification",
@@ -79,6 +88,7 @@
   },
   "google-tag-manager": {
     "title": "Code Management Tools",
+    "tip": "How to set up Google Tag Manager",
     "description": "Google Tag Manager is a tag management system that can help you rapidly update your tracking code and snippet through website user interface setting and tag deployment settings.",
     "warning": "The system will perform data conversion when saving, and only retain the global code ID and event number after completion",
     "setting": "Snippet Settings",
@@ -89,11 +99,8 @@
   "advanced-customer-track": "Advanced Customer Tracking",
   "retention-milliseconds-track": {
     "title": "Customize Stay Time Tracker",
+    "tip": "How to set the self-reserve advertising event provided by MeepShop",
     "description": "This feature can track user staying behavior in all pages through third party tracking tools, Facebook Pixel and Google Analytics, and staying time can be customized.",
-    "tip": {
-      "0": "Can track users staying on a page for more than X seconds.",
-      "1": "Event Name: meepShop_retention"
-    },
     "setting": "Stay Time Settings",
     "input-seconds": "Please enter number of second"
   },

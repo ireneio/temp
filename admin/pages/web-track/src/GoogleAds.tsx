@@ -4,15 +4,13 @@ import {
   ExclamationCircleOutlined,
   CheckCircleOutlined,
 } from '@ant-design/icons';
-import { Form, Button, Modal, Input, message } from 'antd';
+import { Form, Button, Input, message } from 'antd';
 
 import Tooltip from '@admin/tooltip';
 import { useClipboard } from '@meepshop/hooks';
 import { useTranslation } from '@meepshop/locales';
-import {
-  webTrackGoogleAds_w172 as webTrackGoogleAds,
-  webTrackGoogleAdsInstruction_w890 as webTrackGoogleAdsInstruction,
-} from '@meepshop/images';
+import { webTrackGoogleAds_w172 as webTrackGoogleAds } from '@meepshop/images';
+import Link from '@meepshop/link';
 
 import useUpdateGoogleAds from './hooks/useUpdateGoogleAds';
 import useValidateGoogleAdsCode from './hooks/useValidateGoogleAdsCode';
@@ -43,7 +41,6 @@ export default React.memo(({ store }: PropsType) => {
   } = store;
   const googleFeedsLink = store.setting?.googleFeedsLink;
   const { t } = useTranslation('web-track');
-  const [isOpen, openModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const updateGoogleAds = useUpdateGoogleAds(id, setEditMode);
   const validateGoogleAdsCode = useValidateGoogleAdsCode();
@@ -67,22 +64,23 @@ export default React.memo(({ store }: PropsType) => {
 
       <div className={styles.title}>
         <div>Google Ads</div>
+
         <Tooltip
           arrowPointAtCenter
-          placement="bottomLeft"
-          title={t('tip')}
-          onClick={() => openModal(true)}
+          placement="top"
+          onlyLink
+          title={
+            <Link
+              href="https://supportmeepshop.com/knowledgebase/google-ads再行銷/"
+              target="_blank"
+            >
+              <a href="https://supportmeepshop.com/knowledgebase/google-ads再行銷/">
+                {t(`google-ads.tip`)}
+              </a>
+            </Link>
+          }
         />
       </div>
-
-      <Modal
-        width="fit-content"
-        footer={null}
-        visible={isOpen}
-        onCancel={() => openModal(false)}
-      >
-        <img src={webTrackGoogleAdsInstruction} alt="GoogleAdsInstruction" />
-      </Modal>
 
       <div className={styles.description}>{t('google-ads.description')}</div>
 
@@ -93,7 +91,7 @@ export default React.memo(({ store }: PropsType) => {
       </div>
 
       {editMode ? (
-        <Form className={styles.item} onFinish={updateGoogleAds}>
+        <Form className={styles.form} onFinish={updateGoogleAds}>
           <FormItem
             name={['googleAdwordsConfig']}
             label={t('google-ads.global-code')}
@@ -104,7 +102,25 @@ export default React.memo(({ store }: PropsType) => {
             <Input placeholder={t('google-ads.global-code-placeholder')} />
           </FormItem>
 
-          <div>{t('google-ads.event-setting')}</div>
+          <div className={styles.subtitle}>
+            {t('google-ads.event-setting')}
+
+            <Tooltip
+              arrowPointAtCenter
+              placement="top"
+              onlyLink
+              title={
+                <Link
+                  href="https://supportmeepshop.com/knowledgebase/google-ads廣告轉換追蹤/"
+                  target="_blank"
+                >
+                  <a href="https://supportmeepshop.com/knowledgebase/google-ads廣告轉換追蹤/">
+                    {t(`google-ads.event-setting-tip`)}
+                  </a>
+                </Link>
+              }
+            />
+          </div>
 
           <FormItem
             name={['googleAdwordsSignUp']}
@@ -163,43 +179,85 @@ export default React.memo(({ store }: PropsType) => {
           </div>
         </Form>
       ) : (
-        <div className={styles.value}>
-          <Button onClick={() => setEditMode(true)}>
+        <>
+          <Button className={styles.row} onClick={() => setEditMode(true)}>
             {t('google-ads.setting')}
           </Button>
 
-          <div>
+          <div className={styles.row}>
             <div>{t('google-ads.global-code')}</div>
-            <div>{googleAdwordsConfig}</div>
+
+            <div className={`${!googleAdwordsConfig ? styles.empty : ''}`}>
+              {googleAdwordsConfig || t('google-ads.not-setting')}
+            </div>
           </div>
 
-          <div>{t('google-ads.event-setting')}</div>
+          <div className={styles.subtitle}>
+            {t('google-ads.event-setting')}
 
-          <div className={styles.eventSetting}>
+            <Tooltip
+              arrowPointAtCenter
+              placement="top"
+              onlyLink
+              title={
+                <Link
+                  href="https://supportmeepshop.com/knowledgebase/google-ads廣告轉換追蹤/"
+                  target="_blank"
+                >
+                  <a href="https://supportmeepshop.com/knowledgebase/google-ads廣告轉換追蹤/">
+                    {t(`google-ads.event-setting-tip`)}
+                  </a>
+                </Link>
+              }
+            />
+          </div>
+
+          <div className={styles.row}>
             <div>{t('google-ads.sign-up')}</div>
-            <div className={`${!googleAdwordsSignUp && styles.noSetting}`}>
+
+            <div className={`${!googleAdwordsSignUp ? styles.empty : ''}`}>
               {googleAdwordsSignUp || t('google-ads.not-setting')}
             </div>
           </div>
-          <div className={styles.eventSetting}>
+
+          <div className={styles.row}>
             <div>{t('google-ads.begin-checkout')}</div>
+
             <div
-              className={`${!googleAdwordsBeginCheckout && styles.noSetting}`}
+              className={`${!googleAdwordsBeginCheckout ? styles.empty : ''}`}
             >
               {googleAdwordsBeginCheckout || t('google-ads.not-setting')}
             </div>
           </div>
-          <div className={styles.eventSetting}>
+
+          <div className={styles.row}>
             <div>{t('google-ads.purchase')}</div>
-            <div className={`${!googleAdwordsPurchase && styles.noSetting}`}>
+
+            <div className={`${!googleAdwordsPurchase ? styles.empty : ''}`}>
               {googleAdwordsPurchase || t('google-ads.not-setting')}
             </div>
           </div>
-        </div>
+        </>
       )}
 
       <div className={styles.dpa}>
         {t('google-ads.dpa')}
+
+        <Tooltip
+          arrowPointAtCenter
+          placement="top"
+          onlyLink
+          title={
+            <Link
+              href="https://supportmeepshop.com/knowledgebase/google-shopping-ads-google購物廣告/"
+              target="_blank"
+            >
+              <a href="https://supportmeepshop.com/knowledgebase/google-shopping-ads-google購物廣告/">
+                {t(`google-ads.dpa-tip`)}
+              </a>
+            </Link>
+          }
+        />
         <div>
           <div>{t('google-ads.dpa-description.0')}</div>
           <div>{t('google-ads.dpa-description.1')}</div>

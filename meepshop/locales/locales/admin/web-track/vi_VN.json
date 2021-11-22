@@ -3,11 +3,14 @@
   "track-setting": "Cài đặt công cụ theo dõi",
   "tip": "Hướng dẫn cài đặt hiển thị",
   "facebook": {
+    "description": "Thông tin được cung cấp cho Facebook thông qua việc đặt pixel facebook và chuyển đổi API để bạn có thể theo dõi hành vi của khách hàng.",
     "empty": "Chưa tập hợp",
     "setting": "Đặt mã hóa theo dõi",
     "pixelId": {
       "title": "Pixel Facebook",
       "tip": "Cách đặt pixel facebook",
+      "placeholder": "Vui lòng nhập số pixel facebook",
+      "required": "Vui lòng điền vào số pixel tương ứng với API chuyển đổi",
       "error": "Lỗi định dạng số pixel Facebook, giữa số không được có các ký hiệu trống hoặc đặc biệt trước và sau, và phải là 15 yard hoặc 16 yard."
     },
     "conversionsAccessToken": {
@@ -18,6 +21,7 @@
     },
     "dpa": {
       "title": "Quảng cáo năng động (DPA)",
+      "hint": "Quảng cáo năng động Facebook là gì?",
       "description": {
         "0": "Danh mục sản phẩm Cập nhật: 5: 00 sáng ~ 6:00 AM (GMT + 08: 00)",
         "1": "Vui lòng sao chép URL động, vào nền tảng quản lý quảng cáo Facebook, hệ thống sẽ tự động gửi và cập nhật thư mục sản phẩm lên Facebook."
@@ -33,24 +37,28 @@
   },
   "google-analytics": {
     "title": "Phân tích trang web Google Analytics",
+    "tip": "Cách đặt Google Analytics",
     "description": "Đừng quên sử dụng Google Analytics để phân tích dịch vụ khi vận hành trang web. meepShop hỗ trợ Google Analytics. Tất cả những gì bạn phải làm là làm theo một vài bước đơn giản để phân tích và so sánh hiệu quả, hỗ trợ trang web đầu tư hiệu quả vào những nơi có lưu lượng truy cập nhiều nhất.",
     "setting": "Đặt số theo dõi",
     "setting-placeholder": "Vui lòng nhập số theo dõi GA",
     "googleAnalyticsId": "Số theo dõi"
   },
   "google-ads": {
+    "tip": "Cách đặt quảng cáo Google theo dõi quảng cáo",
     "description": "Theo dõi chuyển đổi quảng cáo có thể được sử dụng để theo dõi hành động \"sau khi\" khách hàng nhấp vào quảng cáo, bao gồm đăng ký, mua hàng. Hành động được coi là chuyển đổi khi khách hàng hoàn thành một hành động mà bạn xác định có giá trị.",
     "warning": "Hệ thống sẽ thực hiện chuyển đổi dữ liệu khi lưu và chỉ giữ lại ID mã toàn cục và số sự kiện sau khi hoàn thành",
     "setting": "Thay đổi cài đặt theo dõi",
     "global-code": "Mã toàn cầu:",
     "global-code-placeholder": "Vui lòng nhập mã url toàn cầu",
     "event-setting": "Thay đổi cài đặt sự kiện",
+    "event-setting-tip": "Một sự kiện chuyển đổi là gì?",
     "sign-up": "Đăng ký đã hoàn thành:",
     "begin-checkout": "Bắt đầu thanh toán:",
     "purchase": "Mua, tựa vào, bám vào:",
     "event-placeholder": "Vui lòng nhập đoạn sự kiện",
     "not-setting": "Cài đặt chưa được thực hiện",
     "dpa": "Quảng cáo sản phẩm động (DPA)",
+    "dpa-tip": "Quảng cáo Google Dynamics (Mua sắm) là gì?",
     "dpa-description": {
       "0": "Thời gian cập nhật đối thoại sản phẩm: 5:00 AM ~ 6:00 AM (GMT + 08: 00)",
       "1": "Vui lòng sao chép URL của tệp động và dán vào tài khoản Google Merchant của bạn để thiết lập nguồn cấp dữ liệu. Google sẽ truy xuất tệp đó theo lịch trình đã đặt."
@@ -62,6 +70,7 @@
   },
   "google-webmaster": {
     "title": "Bảng điều khiển tìm kiếm của Google",
+    "tip": "Cách thiết lập bảng điều khiển tìm kiếm của Google",
     "webmaster": "Quản trị trang web",
     "description": "Google Search Console hỗ trợ bạn xác định lưu lượng truy cập tìm kiếm của Google và hiệu quả của trang web của bạn, khắc phục sự cố và phân biệt trang web của bạn trong số hàng ngàn kết quả tìm kiếm của Google.",
     "setting": "Xác minh đánh dấu HTML",
@@ -79,6 +88,7 @@
   },
   "google-tag-manager": {
     "title": "Công cụ quản lý mã",
+    "tip": "Cách thiết lập Trình quản lý thẻ Google",
     "description": "Trình quản lý thẻ của Google là một hệ thống quản lý thẻ có thể giúp bạn cập nhật nhanh chóng mã theo dõi và đoạn mã thông qua cài đặt giao diện người dùng trang web và cài đặt triển khai thẻ.",
     "warning": "Hệ thống sẽ thực hiện chuyển đổi dữ liệu khi lưu và chỉ giữ lại ID mã toàn cục và số sự kiện sau khi hoàn thành",
     "setting": "Cài đặt đoạn trích",
@@ -89,11 +99,8 @@
   "advanced-customer-track": "Theo dõi khách hàng nâng cao",
   "retention-milliseconds-track": {
     "title": "Tùy chỉnh theo dõi thời gian",
+    "tip": "Cách thiết lập sự kiện quảng cáo tự dự bị cung cấp bởi Meepshop",
     "description": "Tính năng này có thể theo dõi hành vi cư trú của người dùng trong tất cả các trang thông qua các công cụ theo dõi của bên thứ ba, Facebook Pixel và Google Analytics và thời gian lưu trú có thể được tùy chỉnh.",
-    "tip": {
-      "0": "Có thể theo dõi người dùng ở lại trên một trang trong hơn X giây.",
-      "1": "Tên sự kiện: meepShop_ret chú ý"
-    },
     "setting": "Cài đặt thời gian",
     "input-seconds": "Vui lòng nhập số thứ hai"
   },

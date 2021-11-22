@@ -14,6 +14,7 @@ interface PropsType extends AbstractTooltipProps {
   overlayClassName?: string;
   iconClassName?: string;
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onlyLink?: boolean;
 }
 
 // definition
@@ -24,12 +25,13 @@ export default React.memo(
     onClick,
     children,
     title,
+    onlyLink,
     ...restProps
   }: PropsType) => (
     <Tooltip
       overlayClassName={`${styles.overlay} ${
         typeof title === 'string' ? styles.small : ''
-      } ${overlayClassName || ''}`}
+      } ${onlyLink ? styles.onlyLink : ''} ${overlayClassName || ''}`}
       title={title}
       {...restProps}
     >

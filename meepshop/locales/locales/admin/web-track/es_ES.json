@@ -3,11 +3,14 @@
   "track-setting": "Configuración de herramientas de seguimiento",
   "tip": "Tutorial de configuración de pantalla",
   "facebook": {
+    "description": "La información se suministra a Facebook a través de la configuración de píxeles de Facebook y API de conversión para que pueda rastrear el comportamiento del cliente.",
     "empty": "Aún no se establece",
     "setting": "Establecer codificación de seguimiento",
     "pixelId": {
       "title": "Píxel de facebook",
       "tip": "Cómo establecer píxeles de Facebook",
+      "placeholder": "Por favor ingrese el número de píxeles de Facebook",
+      "required": "Por favor, complete el número de píxel correspondiente a la API convertir",
       "error": "Error de formato de número de pixel de Facebook, la mitad del número no debe tener símbolos en blanco o especiales antes y después, y deben tener 15 yardas o 16 yardas."
     },
     "conversionsAccessToken": {
@@ -18,6 +21,7 @@
     },
     "dpa": {
       "title": "Publicidad dinámica (DPA)",
+      "hint": "¿Qué es la publicidad dinámica de Facebook?",
       "description": {
         "0": "Catálogo de productos actualizado: 5: 00 am ~ 6:00 AM (GMT + 08: 00)",
         "1": "Copie la URL dinámica, al fondo de gestión de publicidad de Facebook, el sistema enviará automáticamente y actualizará el directorio del producto a Facebook."
@@ -33,24 +37,28 @@
   },
   "google-analytics": {
     "title": "Análisis del sitio web de Google Analytics",
+    "tip": "Cómo configurar Google Analytics",
     "description": "No olvide utilizar Google Analytics para analizar el servicio al operar un sitio web. meepShop es compatible con Google Analytics. Todo lo que tiene que hacer es seguir unos sencillos pasos para analizar y comparar de manera efectiva, ayudando al sitio web a invertir efectivamente los lugares con el mayor flujo de tráfico.",
     "setting": "Establecer número de seguimiento",
     "setting-placeholder": "Ingrese el número de seguimiento de GA",
     "googleAnalyticsId": "Número de pista"
   },
   "google-ads": {
+    "tip": "Cómo configurar los anuncios de Google Tracking Adsure",
     "description": "El seguimiento de conversiones de anuncios se puede utilizar para realizar un seguimiento de la acción \"después de\" que un cliente hizo clic en los anuncios, incluido el registro y las compras. La acción se considera conversión una vez que un cliente completa una acción que usted definió como valiosa.",
     "warning": "El sistema realizará la conversión de datos al guardar, y solo retendrá el ID del código global y el número de evento después de la finalización",
     "setting": "Cambiar la configuración de seguimiento",
     "global-code": "Código global:",
     "global-code-placeholder": "Por favor, introduzca el código de URL global",
     "event-setting": "Cambiar la configuración del evento",
+    "event-setting-tip": "¿Qué es un evento de conversión?",
     "sign-up": "Registro completado:",
     "begin-checkout": "Iniciar pago:",
     "purchase": "Compra:",
     "event-placeholder": "Por favor, introduzca el fragmento de evento",
     "not-setting": "La configuración no se ha realizado",
     "dpa": "Anuncios de productos dinámicos (DPA)",
+    "dpa-tip": "¿Qué es la publicidad de Google Dynamics (Shopping)?",
     "dpa-description": {
       "0": "Hora de actualización del diálogo del producto: 5:00 a.m. ~ 6:00 a.m. (GMT + 08: 00)",
       "1": "Copie la URL del archivo dinámico y péguelo en su cuenta de Google Merchant para configurar el feed. Google lo recuperará de acuerdo con el programa establecido."
@@ -62,6 +70,7 @@
   },
   "google-webmaster": {
     "title": "Consola de búsqueda de Google",
+    "tip": "Cómo configurar la consola de búsqueda de Google",
     "webmaster": "Webmaster",
     "description": "Google Search Console lo ayuda a determinar el flujo de tráfico de búsqueda de Google y la eficiencia de su sitio web, rectificando problemas y diferenciando su sitio web entre miles de resultados de búsqueda de Google.",
     "setting": "Verificación de marcado HTML",
@@ -79,6 +88,7 @@
   },
   "google-tag-manager": {
     "title": "Herramientas de gestión de código",
+    "tip": "Cómo configurar Google Tag Manager",
     "description": "Google Tag Manager es un sistema de administración de etiquetas que puede ayudarlo a actualizar rápidamente su código de seguimiento y fragmento a través de la configuración de la interfaz de usuario del sitio web y la configuración de implementación de etiquetas.",
     "warning": "El sistema realizará la conversión de datos al guardar, y solo retendrá el ID del código global y el número de evento después de la finalización",
     "setting": "Configuración de fragmentos",
@@ -89,11 +99,8 @@
   "advanced-customer-track": "Seguimiento avanzado de clientes",
   "retention-milliseconds-track": {
     "title": "Personalizar Stay Time Tracker",
+    "tip": "Cómo configurar el evento publicitario de reserva proporcionado por Meepshop",
     "description": "Esta característica puede rastrear el comportamiento de permanencia del usuario en todas las páginas a través de herramientas de seguimiento de terceros, Facebook Pixel y Google Analytics, y el tiempo de permanencia se puede personalizar.",
-    "tip": {
-      "0": "Puede rastrear a los usuarios que permanecen en una página durante más de X segundos.",
-      "1": "Nombre del evento: meepShop_retention"
-    },
     "setting": "Configuración del tiempo de permanencia",
     "input-seconds": "Por favor ingrese el número de segundo"
   },

@@ -3,14 +3,17 @@
   "track-setting": "追蹤工具設定",
   "tip": "顯示設定教學",
   "facebook": {
+    "description": "透過設定 Facebook 像素與轉換 API，將資料提供給 Facebook，以便您追蹤顧客行為。您可以單獨設定「像素編號」或同時串接「轉換 API」來獲取更多事件行為，建立成效與準確度更佳的廣告。",
     "empty": "尚未設定",
-    "setting": "設定追蹤編碼",
+    "setting": "設定編號與存取權杖",
     "pixelId": {
-      "title": "Facebook 像素",
+      "title": "Facebook 像素編號",
       "tip": "如何設定 Facebook 像素",
+      "placeholder": "請輸入 Facebook 像素編號",
+      "required": "請填入轉換 API 所對應的像素編號",
       "error": "Facebook 像素編號格式錯誤，編號中間與前後不得有空白或特殊符號，且須為 15 碼或 16 碼。"
     },
-    "conversionsAccessToken": {
+    "conversionsAccessToken": { 
       "title": "轉換 API 存取權杖",
       "tip": "如何設定 Facebook API 存取權杖",
       "placeholder": "請輸 API 存取權杖",
@@ -18,6 +21,7 @@
     },
     "dpa": {
       "title": "動態廣告 (DPA)",
+      "hint": "什麼是 Facebook 動態廣告？如何設定",
       "description": {
         "0": "產品目錄更新時間：5:00 AM ~ 6:00 AM (GMT+08:00)",
         "1": "請複製動態網址，貼至 Facebook 廣告管理後台，系統會自動提交並定時更新產品目錄給 Facebook。"
@@ -33,24 +37,28 @@
   },
   "google-analytics": {
     "title": "Google Analytics 網站分析",
+    "tip": "如何設定 Google Analytics",
     "description": "經營一個網站別忘記使用 Google Analytics 分析服務，meepShop 支援 Google Analytics，您只要簡易的幾個步驟就可以有效的分析比對，幫助網站有效投資在流量來源最多的地方。",
     "setting": "設定追蹤編號",
     "setting-placeholder": "請輸入 GA 追蹤編號",
     "googleAnalyticsId": "追蹤編號："
   },
   "google-ads": {
+    "tip": "如何設定 Google Ads 追蹤廣告成效",
     "description": "廣告轉換追蹤可用來追蹤客戶點擊廣告「之後」的動作，包括註冊、 購買產品等。當客戶完成您定義為具有價值的動作時，這些動作即稱為轉換。",
     "warning": "系統會於儲存時進行資料轉換，完成後僅保留全域代碼 ID 與事件編號",
     "setting": "轉換追蹤設定",
     "global-code": "全域代碼：",
     "global-code-placeholder": "請輸入全域網站代碼",
     "event-setting": "轉換事件設定",
+    "event-setting-tip": "什麼是轉換事件？如何設定",
     "sign-up": "完成註冊：",
     "begin-checkout": "開始結帳：",
     "purchase": "購買：",
     "event-placeholder": "請輸入事件程式碼片段",
     "not-setting": "未設定",
     "dpa": "動態廣告 (DPA)",
+    "dpa-tip": "什麼是 Google 動態 (購物) 廣告？如何設定",
     "dpa-description": {
       "0": "產品目錄更新時間：5:00 AM ~ 6:00 AM (GMT+08:00)",
       "1": "請複製動態檔案網址，貼至 Google Merchant 帳戶設定動態饋給，Google 會依設定排程擷取。"
@@ -62,6 +70,7 @@
   },
   "google-webmaster": {
     "title": "Google 網站管理員",
+    "tip": "如何設定 Google Search Console",
     "webmaster": "網站管理員",
     "description": "透過 Google Search Console 協助你衡量網站的 Google 搜尋流量和成效、修正問題，並讓你的網站從眾多 Google 搜尋結果中脫穎而出。",
     "setting": "HTML標記驗證",
@@ -79,6 +88,7 @@
   },
   "google-tag-manager": {
     "title": "代碼管理工具",
+    "tip": "如何設定 Google Tag Manager",
     "description": "Google 代碼管理工具是一套代碼管理系統，透過網頁式使用者介面設置及部署代碼設定，方便您快速更新追蹤程式碼和相關程式碼片段。這樣不但能減少錯誤，想要修改代碼時也不必每次都找開發人員幫忙。",
     "warning": "系統會於儲存時進行資料轉換，完成後僅保留全域代碼 ID 與事件編號",
     "setting": "程式碼片段設定",
@@ -89,11 +99,8 @@
   "advanced-customer-track": "進階顧客追蹤",
   "retention-milliseconds-track": {
     "title": "自訂停留秒數追蹤",
+    "tip": "如何設定 meepShop 提供的自訂廣告事件",
     "description": "此功能可以使用第三方追蹤工具 Facebook Pixel 和 Google Analytics 追蹤所有頁面的使用者停留行為，並可自訂停留秒數的門檻。",
-    "tip": {
-      "0": "可在所有頁面追蹤停留X秒以上的使用者。",
-      "1": "事件名稱：meepShop_retention"
-    },
     "setting": "停留秒數設定",
     "input-seconds": "請輸入秒數"
   },

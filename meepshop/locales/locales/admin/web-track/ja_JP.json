@@ -3,11 +3,14 @@
   "track-setting": "追跡ツールの設定",
   "tip": "表示設定チュートリアル",
   "facebook": {
+    "description": "顧客の行動を追跡できるように、Facebookのピクセルを設定し、APIを変換することで、情報がFacebookに提供されます。",
     "empty": "まだ設定されていません",
     "setting": "追跡コーディングを設定します",
     "pixelId": {
       "title": "Facebookのピクセル",
       "tip": "Facebookピクセルを設定する方法",
+      "placeholder": "Facebookのピクセル番号を入力してください",
+      "required": "変換APIに対応するピクセル番号を入力してください",
       "error": "Facebookのピクセル数のフォーマットエラー、数の中央には空白または特別なシンボルを持たず、15ヤードまたは16ヤードでなければなりません。"
     },
     "conversionsAccessToken": {
@@ -18,6 +21,7 @@
     },
     "dpa": {
       "title": "動的広告（DPA）",
+      "hint": "Facebookの動的広告は何ですか？",
       "description": {
         "0": "製品カタログを更新しました：5：00 ~6：00 AM（GMT + 08：00）",
         "1": "動的URLをFacebookの広告管理の背景にコピーしてください。システムは自動的に製品ディレクトリをFacebookに送信して更新します。"
@@ -33,24 +37,28 @@
   },
   "google-analytics": {
     "title": "Google Analytics Webサイト分析",
+    "tip": "Google Analyticsを設定する方法",
     "description": "ウェブサイトを運営するときは、Googleアナリティクスを使用してサービスを分析することを忘れないでください。 meepShopはGoogle Analyticsをサポートしています。 あなたがしなければならないのは、いくつかの簡単なステップに従って効果的に分析と比較を行い、ウェブサイトが最もトラフィックの多い場所に効果的に投資するのを支援することです。",
     "setting": "追跡番号を設定",
     "setting-placeholder": "GA追跡番号を入力してください",
     "googleAnalyticsId": "トラック番号"
   },
   "google-ads": {
+    "tip": "Google ADSの追跡Adureを設定する方法",
     "description": "広告コンバージョントラッキングを使用して、顧客が広告をクリックした「後」のアクション（登録、購入など）を追跡できます。 お客様が価値のあるアクションを定義すると、アクションはコンバージョンと見なされます。",
     "warning": "システムは保存時にデータ変換を実行し、完了後にのみグローバルコードIDとイベント番号を保持します",
     "setting": "追跡設定の変更",
     "global-code": "グローバルコード：",
     "global-code-placeholder": "グローバルURLコードを入力してください",
     "event-setting": "イベント設定を変更する",
+    "event-setting-tip": "変換イベントは何ですか？",
     "sign-up": "登録完了：",
     "begin-checkout": "チェックアウトを開始：",
     "purchase": "購入：",
     "event-placeholder": "イベントスニペットを入力してください",
     "not-setting": "設定されていません",
     "dpa": "動的商品広告（DPA）",
+    "dpa-tip": "Google Dynamics（ショッピング）広告とは何ですか？",
     "dpa-description": {
       "0": "製品ダイアログの更新時間：5:00 AM〜6:00 AM（GMT + 08：00）",
       "1": "ダイナミックファイルのURLをコピーしてGoogle Merchantアカウントに貼り付け、フィードを設定してください。Googleは設定されたスケジュールに従ってフィードを取得します。"
@@ -62,6 +70,7 @@
   },
   "google-webmaster": {
     "title": "Google Search Console",
+    "tip": "Google検索コンソールの設定方法",
     "webmaster": " サイト管理者",
     "description": "Google Search Consoleは、Google検索のトラフィックフローとウェブサイトの効率を判断し、問題を修正し、ウェブサイトを何千ものGoogle検索結果から区別するのに役立ちます。",
     "setting": "HTMLマークアップ検証",
@@ -79,6 +88,7 @@
   },
   "google-tag-manager": {
     "title": "コード管理ツール",
+    "tip": "Google Tag Managerの設定方法",
     "description": "Googleタグマネージャーは、ウェブサイトのユーザーインターフェース設定とタグの展開設定を使用して、トラッキングコードとスニペットをすばやく更新できるタグ管理システムです。",
     "warning": "システムは保存時にデータ変換を実行し、完了後にのみグローバルコードIDとイベント番号を保持します",
     "setting": "スニペット設定",
@@ -89,11 +99,8 @@
   "advanced-customer-track": "高度な顧客追跡",
   "retention-milliseconds-track": {
     "title": "滞在時間トラッカーをカスタマイズする",
+    "tip": "MeepShopによって提供されるセルフリザーブ広告イベントを設定する方法",
     "description": "この機能は、サードパーティの追跡ツール、Facebook Pixel、Google Analyticsを使用して、すべてのページでのユーザーの滞在行動を追跡でき、滞在時間をカスタマイズできます。",
-    "tip": {
-      "0": "X秒以上ページに滞在しているユーザーを追跡できます。",
-      "1": "イベント名：meepShop_retention"
-    },
     "setting": "滞在時間の設定",
     "input-seconds": "秒数を入力してください"
   },

@@ -1,14 +1,12 @@
 // import
 import React, { useState } from 'react';
 import { EditOutlined } from '@ant-design/icons';
-import { Form, Button, Modal, Input } from 'antd';
+import { Form, Button, Input } from 'antd';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/locales';
-import {
-  webTrackGoogle_w98 as webTrackGoogle,
-  webTrackGoogleWebmasterInstruction_w890 as webTrackGoogleWebmasterInstruction,
-} from '@meepshop/images';
+import { webTrackGoogle_w98 as webTrackGoogle } from '@meepshop/images';
+import Link from '@meepshop/link';
 
 import useUpdateGoogleSearchConsoleVerificationHtml from './hooks/useUpdateGoogleSearchConsoleVerificationHtml';
 import styles from './styles/googleWebmaster.less';
@@ -30,7 +28,6 @@ export default React.memo(({ store }: PropsType) => {
     adTracks: { googleSearchConsoleVerificationHtml },
   } = store;
   const { t } = useTranslation('web-track');
-  const [isOpen, openModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const updateGoogleSearchConsoleVerificationHtml = useUpdateGoogleSearchConsoleVerificationHtml(
     id || 'null-id' /* SHOULD_NOT_BE_NULL */,
@@ -48,23 +45,20 @@ export default React.memo(({ store }: PropsType) => {
 
         <Tooltip
           arrowPointAtCenter
-          placement="bottomLeft"
-          title={t('tip')}
-          onClick={() => openModal(true)}
+          placement="top"
+          onlyLink
+          title={
+            <Link
+              href="https://supportmeepshop.com/knowledgebase/google網站管理員/"
+              target="_blank"
+            >
+              <a href="https://supportmeepshop.com/knowledgebase/google網站管理員/">
+                {t(`google-webmaster.tip`)}
+              </a>
+            </Link>
+          }
         />
       </div>
-
-      <Modal
-        width="fit-content"
-        footer={null}
-        visible={isOpen}
-        onCancel={() => openModal(false)}
-      >
-        <img
-          src={webTrackGoogleWebmasterInstruction}
-          alt="GoogleWebmasterInstruction"
-        />
-      </Modal>
 
       <div className={styles.description}>
         {t('google-webmaster.description')}
