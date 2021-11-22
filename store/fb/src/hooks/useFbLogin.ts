@@ -11,7 +11,7 @@ import { AdTrack as AdTrackContext } from '@meepshop/context';
 export default (): ((
   accessToken: string,
   redirectPath?: string,
-) => Promise<void>) => {
+) => Promise<boolean>) => {
   const { t } = useTranslation('fb');
   const client = useApolloClient();
   const router = useRouter();
@@ -20,7 +20,7 @@ export default (): ((
 
   return useCallback(
     async (accessToken, redirectPath) => {
-      if (accessToken === prevAccessTokenRef.current) return;
+      if (accessToken === prevAccessTokenRef.current) return true;
 
       prevAccessTokenRef.current = accessToken;
 
@@ -33,7 +33,7 @@ export default (): ((
         body: JSON.stringify({ accessToken }),
       });
 
-      if (res.status !== 200) return;
+      if (res.status !== 200) return false;
 
       const { code } = await res.json();
 
@@ -45,23 +45,23 @@ export default (): ((
           if (201) adTrack.completeRegistration();
 
           if (redirectPath) router.push(redirectPath);
-          break;
+          return true;
 
         case 2010:
           notification.error({ message: t('cannot-use') });
-          break;
+          return false;
 
         case 2011:
           notification.error({ message: t('cannot-get-email') });
-          break;
+          return false;
 
         case 2003:
           notification.error({ message: t('cannot-use') });
-          break;
+          return false;
 
         default:
           notification.error({ message: t('login-fail') });
-          break;
+          return false;
       }
     },
     [t, client, router, adTrack],

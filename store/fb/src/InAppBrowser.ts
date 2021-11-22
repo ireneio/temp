@@ -1,6 +1,8 @@
 // import
 import React, { useMemo, useContext, useEffect } from 'react';
+import { notification } from 'antd';
 
+import { useTranslation } from '@meepshop/locales';
 import { Role as RoleContext } from '@meepshop/context';
 import { useRouter } from '@meepshop/link';
 
@@ -14,6 +16,7 @@ interface PropsType {
 
 // definition
 export default React.memo(({ reduxFbLogin }: PropsType) => {
+  const { t } = useTranslation('fb');
   const router = useRouter();
   const fbLogin = useFbLogin();
   const role = useContext(RoleContext);
@@ -30,12 +33,22 @@ export default React.memo(({ reduxFbLogin }: PropsType) => {
   );
 
   useEffect(() => {
-    if (role === 'SHOPPER') router.replace(state);
-    else {
-      reduxFbLogin();
-      fbLogin(accessToken, state);
-    }
-  }, [reduxFbLogin, router, fbLogin, role, accessToken, state]);
+    (async () => {
+      if (role === 'SHOPPER') {
+        router.replace(state);
+        return;
+      }
+
+      if (!accessToken) {
+        notification.error({ message: t('login-fail') });
+        router.replace(state || '/login');
+      } else {
+        reduxFbLogin();
+        if (!(await fbLogin(accessToken, state)))
+          router.replace(state || '/login');
+      }
+    })();
+  }, [reduxFbLogin, router, fbLogin, role, accessToken, state, t]);
 
   return null;
 });
