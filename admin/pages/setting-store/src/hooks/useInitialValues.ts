@@ -62,21 +62,21 @@ export default (
         ? null
         : {
             ...store.logoImage,
-            __typename: 'File' as const,
+            __typename: 'Image' as const,
             scaledSrc: store.logoImage.scaledSrc,
           },
       mobileLogoImage: !store.mobileLogoImage?.scaledSrc
         ? null
         : {
             ...store.mobileLogoImage,
-            __typename: 'File' as const,
+            __typename: 'Image' as const,
             scaledSrc: store.mobileLogoImage.scaledSrc,
           },
       faviconImage: !store.faviconImage?.scaledSrc
         ? null
         : {
             ...store.faviconImage,
-            __typename: 'File' as const,
+            __typename: 'Image' as const,
             scaledSrc: store.faviconImage.scaledSrc,
           },
       storeStatus: store.metaData?.storeStatus || ('OPEN' as StoreStatusEnum), // SHOULD_NOT_BE_NULL

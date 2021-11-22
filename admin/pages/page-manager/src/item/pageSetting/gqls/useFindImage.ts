@@ -6,7 +6,7 @@ export const getImage = gql`
   query getImage($id: ID!) {
     viewer {
       id
-      file(fileId: $id) {
+      image(imageId: $id) {
         id
         scaledSrc {
           h200

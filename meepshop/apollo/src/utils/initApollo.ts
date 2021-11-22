@@ -13,9 +13,11 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
 import { RetryLink } from 'apollo-link-retry';
-import { ApolloLink } from 'apollo-link';
+import { ApolloLink, split } from 'apollo-link';
+import { HttpLink } from 'apollo-link-http';
+import { createUploadLink } from 'apollo-upload-client';
+import { getMainDefinition } from 'apollo-utilities';
 import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 import getConfig from 'next/config';
 
@@ -78,6 +80,32 @@ const create = (
   if (!initialState)
     initializeCache.forEach(initialize => initialize(cache, ctx));
 
+  const linkConfig = {
+    uri: typeof window !== 'undefined' ? '/api/graphql' : `${API}/graphql`,
+    credentials: 'include',
+    headers: !ctx
+      ? {}
+      : {
+          'x-meepshop-domain': ctx.ctx.req.headers.host,
+          'x-meepshop-authorization-token':
+            ctx.ctx.req.cookies?.['x-meepshop-authorization-token'] || '',
+        },
+  };
+
+  const linkClient = split(
+    ({ query }) => {
+      const definition = getMainDefinition(query);
+
+      return (
+        definition.kind === 'OperationDefinition' &&
+        definition.operation === 'mutation' &&
+        definition.name?.value === 'uploadImages'
+      );
+    },
+    createUploadLink(linkConfig),
+    new HttpLink(linkConfig),
+  );
+
   return new ApolloClient({
     name,
     version: `${VERSION}-${
@@ -112,17 +140,7 @@ const create = (
       }),
       errorLink(errorFilter, logger),
       link,
-      new HttpLink({
-        uri: typeof window !== 'undefined' ? '/api/graphql' : `${API}/graphql`,
-        credentials: 'include',
-        headers: !ctx
-          ? {}
-          : {
-              'x-meepshop-domain': ctx.ctx.req.headers.host,
-              'x-meepshop-authorization-token':
-                ctx.ctx.req.cookies?.['x-meepshop-authorization-token'] || '',
-            },
-      }),
+      linkClient,
     ]),
   });
 };

@@ -6,19 +6,23 @@ import styles from './styles/imageUpload.less';
 import { IMAGE_TYPES } from './constants';
 
 // graphql typescript
-import { getImagesVariables as getImagesVariablesType } from '@meepshop/types/gqls/admin';
+import {
+  getImagesVariables as getImagesVariablesType,
+  useUploadImagesUserFragment as useUploadImagesUserFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType {
   forwardedRef: React.Ref<HTMLInputElement>;
   variables: getImagesVariablesType;
   multiple?: boolean;
+  viewer: useUploadImagesUserFragmentType | null;
 }
 
 // definition
 const ImageUpload = React.memo(
-  ({ forwardedRef, variables, multiple }: PropsType) => {
-    const filesOnChange = useFilesOnChange(variables);
+  ({ forwardedRef, variables, multiple, viewer }: PropsType) => {
+    const filesOnChange = useFilesOnChange(variables, viewer);
 
     return (
       <input

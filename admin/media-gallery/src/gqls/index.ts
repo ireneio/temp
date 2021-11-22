@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 // graphql import
 import { useLoadMoreImagesFragment } from './useLoadMoreImages';
 import {
-  useUploadImagesFileFragment,
+  useUploadImagesImageFragment,
   useUploadImageOnScaledURLsFragment,
 } from './useUploadImages';
 
@@ -15,15 +15,15 @@ export const getImages = gql`
     $search: searchInputObjectType
     $first: PositiveInt
     $after: String
-    $filter: FileFilterInput
+    $filter: ImageFilterInput
   ) {
     viewer {
       id
-      files(first: $first, after: $after, filter: $filter) {
+      images(first: $first, after: $after, filter: $filter) {
         edges {
           node {
             id
-            ...useUploadImagesFileFragment
+            ...useUploadImagesImageFragment
           }
         }
 
@@ -41,6 +41,6 @@ export const getImages = gql`
     }
   }
 
-  ${useUploadImagesFileFragment}
+  ${useUploadImagesImageFragment}
   ${useLoadMoreImagesFragment}
 `;

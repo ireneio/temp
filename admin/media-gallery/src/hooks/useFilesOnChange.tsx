@@ -2,7 +2,6 @@
 import React from 'react';
 import { Modal, Popover, Button, notification } from 'antd';
 import fileType from 'file-type/browser';
-import uuid from 'uuid/v4';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -11,7 +10,10 @@ import { IMAGE_TYPES } from '../constants';
 import styles from '../styles/useFilesOnChange.less';
 
 // graphql typescript
-import { getImagesVariables as getImagesVariablesType } from '@meepshop/types/gqls/admin';
+import {
+  getImagesVariables as getImagesVariablesType,
+  useUploadImagesUserFragment as useUploadImagesUserFragmentType,
+} from '@meepshop/types/gqls/admin';
 
 // definition
 const readImageBuffer = (file: File): Promise<ArrayBuffer> =>
@@ -28,7 +30,7 @@ const readImageBuffer = (file: File): Promise<ArrayBuffer> =>
 const readImageData = (
   buffer: ArrayBuffer,
   type: string,
-): Promise<{ dataUrl: string; width: number; height: number }> =>
+): Promise<{ width: number; height: number }> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
 
@@ -39,7 +41,6 @@ const readImageData = (
         image.src = e.target.result;
         image.onload = () => {
           resolve({
-            dataUrl: e.target?.result as string,
             width: image.width,
             height: image.height,
           });
@@ -49,38 +50,11 @@ const readImageData = (
     reader.readAsDataURL(new Blob([buffer], { type }));
   });
 
-const uploadImageToGcd = async (file: File, type?: string): Promise<string> => {
-  const id = uuid();
-  const { gcloud } = await fetch('/api/upload', {
-    headers: {
-      'content-type': 'application/json',
-    },
-    method: 'POST',
-    credentials: 'include',
-    body: JSON.stringify({ key: `/files/${id}.${type}` }),
-  }).then(res => res.json());
-
-  if (!gcloud) throw new Error('Can not get gcloud');
-
-  const formData = new FormData();
-
-  Object.keys(gcloud.data).forEach(key => {
-    formData.append(key, gcloud.data[key]);
-  });
-  formData.append('file', file);
-
-  await fetch(gcloud.url, {
-    method: 'POST',
-    body: formData,
-  });
-
-  return id;
-};
-
 export default (
   variables: getImagesVariablesType,
+  viewer: useUploadImagesUserFragmentType | null,
 ): ((e: React.ChangeEvent<HTMLInputElement>) => Promise<void>) => {
-  const uploadImage = useUploadImages(variables);
+  const uploadImage = useUploadImages(variables, viewer);
   const { t } = useTranslation('media-gallery');
 
   return async ({ target: { files } }: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,22 +73,14 @@ export default (
           if (!imageType || !IMAGE_TYPES.includes(imageType.mime))
             return { name };
 
-          const { dataUrl, width, height } = await readImageData(
-            imageBuffer,
-            file.type,
-          );
+          const { width, height } = await readImageData(imageBuffer, file.type);
 
           if (width > 16000 || height > 16000 || width * height > 50000000)
             return { name };
 
-          const type = name.split('.').pop();
-
           return {
-            id: await uploadImageToGcd(file, type),
+            file,
             legal: true,
-            image: dataUrl,
-            name,
-            type,
           };
         }),
       );
@@ -154,44 +120,19 @@ export default (
           width: 'auto',
         });
 
+      const images = data.reduceRight((result, { file, legal }) => {
+        if (!legal || !file) return result;
+
+        return [...result, file];
+      }, [] as File[]);
+
+      if (images.length === 0) return;
+
       await uploadImage({
         variables: {
-          createFileList: data
-            .filter(file => file.legal)
-            .reverse()
-            .map(({ id, name, type }) => ({
-              id,
-              name,
-              type,
-              description: {
-                // eslint-disable-next-line @typescript-eslint/camelcase
-                zh_TW: '',
-              },
-              tags: [],
-            })),
-        },
-        optimisticResponse: {
-          createFileList: data
-            .filter(file => file.legal)
-            .map(({ image }) => ({
-              __typename: 'File',
-              id: uuid(),
-              scaledSrc: {
-                __typename: 'ScaledURLs',
-                h200: image || null,
-                w60: image || null,
-                w120: image || null,
-                w240: image || null,
-                w250: image || null,
-                w480: image || null,
-                w720: image || null,
-                w960: image || null,
-                w1200: image || null,
-                w1440: image || null,
-                w1680: image || null,
-                w1920: image || null,
-              },
-            })),
+          input: {
+            images,
+          },
         },
       });
     } catch (e) {

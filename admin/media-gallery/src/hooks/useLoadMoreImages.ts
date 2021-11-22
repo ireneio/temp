@@ -33,19 +33,19 @@ export default (
             after: pageInfo.endCursor,
           },
           updateQuery: (previousResult, { fetchMoreResult }) => {
-            if ((fetchMoreResult?.viewer?.files?.edges || []).length <= 0)
+            if ((fetchMoreResult?.viewer?.images?.edges || []).length <= 0)
               return previousResult;
 
             return {
               ...previousResult,
               viewer: {
                 ...previousResult.viewer,
-                files: {
-                  ...fetchMoreResult?.viewer?.files,
-                  __typename: 'FileConnection',
+                images: {
+                  ...fetchMoreResult?.viewer?.images,
+                  __typename: 'ImageConnection',
                   edges: [
-                    ...(previousResult?.viewer?.files?.edges || []),
-                    ...(fetchMoreResult?.viewer?.files?.edges || []),
+                    ...(previousResult?.viewer?.images?.edges || []),
+                    ...(fetchMoreResult?.viewer?.images?.edges || []),
                   ],
                 },
               },

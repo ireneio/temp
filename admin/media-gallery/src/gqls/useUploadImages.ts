@@ -19,10 +19,12 @@ export const useUploadImageOnScaledURLsFragment = gql`
   }
 `;
 
-export const useUploadImagesFileFragment = gql`
-  fragment useUploadImagesFileFragment on File {
+export const useUploadImagesImageFragment = gql`
+  fragment useUploadImagesImageFragment on Image {
+    __typename
     id
     scaledSrc {
+      __typename
       ...useUploadImageOnScaledURLsFragment
     }
   }
@@ -30,40 +32,64 @@ export const useUploadImagesFileFragment = gql`
   ${useUploadImageOnScaledURLsFragment}
 `;
 
-export const useUploadImagesReadCache = gql`
-  query useUploadImagesReadCache(
-    $first: PositiveInt
-    $after: String
-    $filter: FileFilterInput
-  ) {
-    viewer {
-      id
-      files(first: $first, after: $after, filter: $filter) {
-        edges {
-          node {
-            id
-            ...useUploadImagesFileFragment
-          }
+export const useUploadImagesUserFragment = gql`
+  fragment useUploadImagesUserFragment on User {
+    __typename
+    id
+    images(first: $first, after: $after, filter: $filter) {
+      __typename
+      edges {
+        __typename
+        node {
+          id
+          ...useUploadImagesImageFragment
         }
+      }
 
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
+      pageInfo {
+        __typename
+        hasNextPage
+        endCursor
       }
     }
   }
 
-  ${useUploadImagesFileFragment}
+  ${useUploadImagesImageFragment}
 `;
 
-export const uploadImages = gql`
-  mutation uploadImages($createFileList: [NewFile]) {
-    createFileList(createFileList: $createFileList) {
+export const useUploadImagesWriteCache = gql`
+  query useUploadImagesWriteCache(
+    $first: PositiveInt
+    $after: String
+    $filter: ImageFilterInput
+  ) {
+    viewer {
       id
-      ...useUploadImagesFileFragment
+      ...useUploadImagesUserFragment
     }
   }
 
-  ${useUploadImagesFileFragment}
+  ${useUploadImagesUserFragment}
+`;
+
+export const uploadImages = gql`
+  mutation uploadImages($input: CreateImagesInput!) {
+    createImages(input: $input) {
+      ... on CreateImagesSuccessResponse {
+        __typename
+        images {
+          id
+          ...useUploadImagesImageFragment
+        }
+      }
+      ... on DataLimitExceededError {
+        message
+      }
+      ... on InvalidFileExtensionError {
+        message
+      }
+    }
+  }
+
+  ${useUploadImagesImageFragment}
 `;

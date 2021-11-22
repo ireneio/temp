@@ -6,13 +6,13 @@ import useHeight from './hooks/useHeight';
 import styles from './styles/card.less';
 
 // graphql typescript
-import { getImages_viewer_files_edges_node as getImagesViewerFilesEdgesNodeType } from '@meepshop/types/gqls/admin';
+import { getImages_viewer_images_edges_node as getImagesViewerImagesEdgesNodeType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType {
-  node: getImagesViewerFilesEdgesNodeType;
-  selectedImgs: getImagesViewerFilesEdgesNodeType[];
-  setSelectedImgs: (selectedImgs: getImagesViewerFilesEdgesNodeType[]) => void;
+  node: getImagesViewerImagesEdgesNodeType;
+  selectedImgs: getImagesViewerImagesEdgesNodeType[];
+  setSelectedImgs: (selectedImgs: getImagesViewerImagesEdgesNodeType[]) => void;
   multiple?: boolean;
 }
 
@@ -32,7 +32,7 @@ export default ({
       className={styles.root}
       style={{
         height: `${height}px`,
-        backgroundImage: `url("${node.scaledSrc.w480}")`,
+        backgroundImage: `url("${node.scaledSrc?.w480}")`,
       }}
       onClick={() => {
         setSelectedImgs(

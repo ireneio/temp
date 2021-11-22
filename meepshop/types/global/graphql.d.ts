@@ -8,3 +8,4 @@ type meepshopHexColorCode = string;
 type meepshopPhoneNumber = string;
 type meepshopNonNegativeInt = number;
 type meepshopDraftText = JSON;
+type meepshopUpload = File;

@@ -17,15 +17,16 @@ import styles from './styles/index.less';
 import {
   getImages as getImagesType,
   getImagesVariables as getImagesVariablesType,
-  getImages_viewer_files_edges_node as getImagesViewerFilesEdgesNodeType,
+  getImages_viewer_images_edges_node as getImagesViewerImagesEdgesNode,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { getImages } from './gqls/index';
 import { useLoadMoreImagesFragment } from './gqls/useLoadMoreImages';
+import { useUploadImagesUserFragment } from './gqls/useUploadImages';
 
 // typescript definition
-export type ImageNodeType = getImagesViewerFilesEdgesNodeType;
+export type ImageNodeType = getImagesViewerImagesEdgesNode;
 export interface PropsType {
   buttons?: React.ReactNode;
   value?: null | ImageNodeType | ImageNodeType[];
@@ -59,21 +60,23 @@ export default React.memo(
     });
 
     const [selectedImgs, setSelectedImgs] = useState<
-      getImagesViewerFilesEdgesNodeType[]
+      getImagesViewerImagesEdgesNode[]
     >(
       value instanceof Array
         ? value
-        : ([value].filter(Boolean) as getImagesViewerFilesEdgesNodeType[]),
+        : ([value].filter(Boolean) as getImagesViewerImagesEdgesNode[]),
     );
 
     const imageUploadRef = useRef<HTMLInputElement>(null);
     const loadMoreImages = useLoadMoreImages(
       fetchMore,
-      filter(useLoadMoreImagesFragment, data?.viewer?.files?.pageInfo || null),
+      filter(useLoadMoreImagesFragment, data?.viewer?.images?.pageInfo || null),
     );
     const tagList = variables.filter?.tagList || [];
 
     if (error || !data) return <Spin indicator={<LoadingOutlined spin />} />;
+
+    const images = data.viewer?.images?.edges || [];
 
     return (
       <div className={styles.root}>
@@ -116,6 +119,10 @@ export default React.memo(
                 ref={imageUploadRef}
                 variables={variables}
                 multiple={multiple}
+                viewer={filter(
+                  useUploadImagesUserFragment,
+                  data.viewer || null,
+                )}
               />
 
               <Button onClick={() => imageUploadRef.current?.click()}>
@@ -135,7 +142,7 @@ export default React.memo(
             </div>
           </div>
 
-          {!data.viewer?.files?.edges.length ? (
+          {!images.length ? (
             <div className={styles.noPicture}>
               <img src={uploadPicture} alt="uploadPicture" />
               <div>{t('no-pictures')}</div>
@@ -153,7 +160,7 @@ export default React.memo(
             <>
               <div className={styles.suggestion}>{t('suggestion')}</div>
               <div className={styles.body} onScroll={loadMoreImages}>
-                {data.viewer?.files?.edges.map(({ node }) => (
+                {images.map(({ node }) => (
                   <Card
                     key={node.id || 'id' /** SHOULD_NOT_BE_NULL */}
                     node={node}

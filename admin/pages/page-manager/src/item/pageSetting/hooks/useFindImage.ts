@@ -5,14 +5,14 @@ import { useQuery } from '@apollo/react-hooks';
 import {
   getImage as getImageType,
   getImageVariables as getImageVariablesType,
-  getImage_viewer_file as getImageViewerFileType,
+  getImage_viewer_image as getImageViewerImageType,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { getImage } from '../gqls/useFindImage';
 
 // definition
-export default (url: string | null): getImageViewerFileType | null => {
+export default (url: string | null): getImageViewerImageType | null => {
   const id = url
     ? atob(
         url
@@ -31,5 +31,5 @@ export default (url: string | null): getImageViewerFileType | null => {
     variables: { id: id as string },
   });
 
-  return data?.viewer?.file || null;
+  return data?.viewer?.image || null;
 };

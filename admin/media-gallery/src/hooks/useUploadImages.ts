@@ -9,65 +9,67 @@ import { useMutation } from '@apollo/react-hooks';
 import {
   uploadImages as uploadImagesType,
   uploadImagesVariables as uploadImagesVariablesType,
-  useUploadImagesReadCache as useUploadImagesReadCacheType,
-  useUploadImagesReadCacheVariables as useUploadImagesReadCacheVariablesType,
-  useUploadImagesReadCache_viewer_files_edges_node as useUploadImagesReadCacheViewerFilesEdgesNode,
   getImagesVariables as getImagesVariablesType,
+  useUploadImagesUserFragment as useUploadImagesUserFragmentType,
+  useUploadImagesWriteCache as useUploadImagesWriteCacheType,
+  useUploadImagesWriteCacheVariables as useUploadImagesWriteCacheVariablesType,
+  useUploadImagesWriteCache_viewer_images_edges_node as useUploadImagesWriteCacheViewerImagesEdgesNodeType,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
 import {
-  useUploadImagesReadCache,
+  useUploadImagesWriteCache,
   uploadImages,
 } from '../gqls/useUploadImages';
 
 // definition
 export default (
   variables: getImagesVariablesType,
+  viewer: useUploadImagesUserFragmentType | null,
 ): MutationTuple<uploadImagesType, uploadImagesVariablesType>[0] => {
   const [mutation] = useMutation<uploadImagesType, uploadImagesVariablesType>(
     uploadImages,
     {
-      update: (cache: DataProxy, { data }: { data: uploadImagesType }) => {
-        if (!data) return;
-
-        const { createFileList } = data;
-        const cacheData = cache.readQuery<useUploadImagesReadCacheType>({
-          query: useUploadImagesReadCache,
-          variables,
-        });
-
-        if (!cacheData || !createFileList) return;
+      update: (
+        cache: DataProxy,
+        { data: { createImages } }: { data: uploadImagesType },
+      ) => {
+        if (
+          !viewer?.id ||
+          createImages.__typename !== 'CreateImagesSuccessResponse'
+        )
+          return;
 
         cache.writeQuery<
-          useUploadImagesReadCacheType,
-          useUploadImagesReadCacheVariablesType
+          useUploadImagesWriteCacheType,
+          useUploadImagesWriteCacheVariablesType
         >({
-          query: useUploadImagesReadCache,
+          query: useUploadImagesWriteCache,
           variables,
           data: {
-            ...cacheData,
-            viewer: !cacheData.viewer
+            viewer: !viewer
               ? null
               : {
-                  ...cacheData.viewer,
-                  files: !cacheData.viewer.files
+                  ...viewer,
+                  images: !viewer.images
                     ? null
                     : {
-                        ...cacheData.viewer.files,
+                        ...viewer.images,
                         edges: [
-                          ...createFileList.reverse().map((
-                            // SHOULD_NOT_BE_NULL
-                            node: useUploadImagesReadCacheViewerFilesEdgesNode,
-                          ) => ({
-                            __typename: 'FileEdge' as const,
-                            node,
-                          })),
-                          ...cacheData.viewer.files.edges.filter(({ node }) =>
-                            Object.values(node.scaledSrc).every(
-                              src => !/^data:/.test(src),
-                            ),
+                          ...createImages.images.map(
+                            ({
+                              id,
+                              scaledSrc,
+                            }: useUploadImagesWriteCacheViewerImagesEdgesNodeType) => ({
+                              __typename: 'ImageEdge' as const,
+                              node: {
+                                __typename: 'Image' as const,
+                                id,
+                                scaledSrc,
+                              },
+                            }),
                           ),
+                          ...viewer.images.edges,
                         ],
                       },
                 },
