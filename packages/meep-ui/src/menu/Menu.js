@@ -110,7 +110,7 @@ export default class Menu extends React.PureComponent {
       colors,
 
       /** props */
-      storeSetting: { logoUrl, mobileLogoUrl },
+      storeSetting: { storeName, logoUrl, mobileLogoUrl },
       id,
       pages,
       iconSize,
@@ -219,7 +219,7 @@ export default class Menu extends React.PureComponent {
                     } 2x, ${logo}?${
                       width ? `w=${width * 3}` : `h=${height * 3}`
                     } 3x`}
-                    alt={logo}
+                    alt={storeName}
                   />
                 )}
               </Link>

@@ -66,7 +66,7 @@ export default class MobileLayout extends React.PureComponent {
     const {
       /** context */
       colors,
-      storeSetting: { mobileLogoUrl },
+      storeSetting: { storeName, mobileLogoUrl },
 
       /** props */
       fixedtop,
@@ -105,7 +105,7 @@ export default class MobileLayout extends React.PureComponent {
                     className={styles.image}
                     src={`${mobileLogoUrl}?h=180`}
                     srcSet={`${mobileLogoUrl}?h=60 1x, ${mobileLogoUrl}?h=120 2x, ${mobileLogoUrl}?h=180 3x`}
-                    alt="mobile-logo"
+                    alt={storeName}
                   />
                 </Link>
               )}
