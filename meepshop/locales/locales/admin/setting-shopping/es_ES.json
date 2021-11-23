@@ -62,10 +62,12 @@
     },
     "backToTopButtonEnabled": {
       "title": "Volver al botón superior",
-      "desc": "Self-Suscribe Registro de Miembros con mensajes de inicio de sesión"
+      "desc": "Ayudar a el consumidor puede deslizarse rápidamente a la parte superior de la página durante la compra"
     },
     "shopperLoginMessageEnabled": {
-      "title": "Self-Suscribe Registro de Miembros con mensajes de inicio de sesión"
+      "title": "Self-Suscribe Registro de Miembros con mensajes de inicio de sesión",
+      "desc": "MIEMBROS Puede registrarse en la página de inicio de sesión en su tienda para mostrar su propio contenido de mensaje",
+      "error": "El límite superior es de 200 palabras."
     }
   },
   "apps": {
@@ -188,13 +190,6 @@
     "desc": "Configuración auxiliar relacionada con las compras del consumidor"
   },
   "accessibility": {
-    "0": {
-      "tip": "El contenido del mensaje personalizado se puede mostrar en el registro de miembros y en la página de inicio de sesión de su tienda"
-    },
-    "1": {
-      "desc": "El contenido del mensaje personalizado se puede mostrar en el registro de miembros y en la página de inicio de sesión de su tienda",
-      "error": "El límite de mensajes es de 200 caracteres"
-    },
     "title": "Accesibilidad de la página",
     "desc": "Las funciones auxiliares relacionadas pueden hacer que los consumidores se sientan más cómodos comprando en la tienda"
   }

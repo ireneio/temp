@@ -62,10 +62,12 @@
     },
     "backToTopButtonEnabled": {
       "title": "Kembali ke tombol atas",
-      "desc": "Registrasi Anggota Berlangganan Diri dengan Pesan Halaman Login"
+      "desc": "Bantu konsumen dapat dengan cepat meluncur ke bagian atas halaman selama pembelian"
     },
     "shopperLoginMessageEnabled": {
-      "title": "Registrasi Anggota Berlangganan Diri dengan Pesan Halaman Login"
+      "title": "Registrasi Anggota Berlangganan Diri dengan Pesan Halaman Login",
+      "desc": "Anggota yang dapat Anda daftarkan dengan halaman login di toko Anda untuk menampilkan konten pesan Anda sendiri",
+      "error": "Batas atas adalah 200 kata"
     }
   },
   "apps": {
@@ -188,13 +190,6 @@
     "desc": "Pengaturan tambahan terkait belanja konsumen"
   },
   "accessibility": {
-    "0": {
-      "tip": "Konten pesan yang disesuaikan dapat ditampilkan di halaman pendaftaran dan login anggota toko Anda"
-    },
-    "1": {
-      "desc": "Konten pesan yang disesuaikan dapat ditampilkan di halaman pendaftaran anggota dan login toko Anda",
-      "error": "Batas pesan adalah 200 karakter"
-    },
     "title": "Aksesibilitas halaman",
     "desc": "Fungsi pembantu terkait bisa membuat konsumen lebih nyaman berbelanja di toko"
   }

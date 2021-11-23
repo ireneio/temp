@@ -62,10 +62,12 @@
     },
     "backToTopButtonEnabled": {
       "title": "Retour au bouton supérieur",
-      "desc": "Enregistrement de membre auto-abondant avec les messages de la page de connexion"
+      "desc": "Aider le consommateur peut rapidement glisser vers le haut de la page pendant l'achat"
     },
     "shopperLoginMessageEnabled": {
-      "title": "Enregistrement de membre auto-abondant avec les messages de la page de connexion"
+      "title": "Enregistrement de membre auto-abondant avec les messages de la page de connexion",
+      "desc": "Membres Vous pouvez vous inscrire à la page de connexion de votre magasin pour afficher votre propre contenu de message.",
+      "error": "La limite supérieure est de 200 mots"
     }
   },
   "apps": {
@@ -188,13 +190,6 @@
     "desc": "Paramètres auxiliaires liés aux achats des consommateurs"
   },
   "accessibility": {
-    "0": {
-      "tip": "Le contenu du message personnalisé peut être affiché sur la page d'inscription et de connexion des membres de votre boutique"
-    },
-    "1": {
-      "desc": "Le contenu du message personnalisé peut être affiché sur la page d'inscription et de connexion des membres de votre boutique",
-      "error": "La limite de messages est de 200 caractères"
-    },
     "title": "Accessibilité de la page",
     "desc": "Les fonctions auxiliaires associées peuvent rendre les consommateurs plus confortables dans le magasin"
   }

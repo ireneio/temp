@@ -62,10 +62,12 @@
     },
     "backToTopButtonEnabled": {
       "title": "Back to the top button",
-      "desc": "Self-subscribe member registration with login page messages"
+      "desc": "Help consumer can quickly slide to the top of the page during purchase"
     },
     "shopperLoginMessageEnabled": {
-      "title": "Self-subscribe member registration with login page messages"
+      "title": "Self-subscribe member registration with login page messages",
+      "desc": "Members you can register with the login page in your store to display your own message content",
+      "error": "The upper limit is 200 words"
     }
   },
   "apps": {
@@ -188,13 +190,6 @@
     "desc": "Consumer shopping related auxiliary settings"
   },
   "accessibility": {
-    "0": {
-      "tip": "Customized message content can be displayed on the member registration and login page of your store"
-    },
-    "1": {
-      "desc": "Customized message content can be displayed on the member registration and login page of your store",
-      "error": "Message limit is 200 characters"
-    },
     "title": "Page accessibility",
     "desc": "Related auxiliary functions can make consumers more comfortable shopping in the store"
   }

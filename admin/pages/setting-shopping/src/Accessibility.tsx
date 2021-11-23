@@ -30,7 +30,9 @@ export default React.memo(() => {
         name={['setting', 'shopperLoginMessageEnabled']}
         disabledDescription
       />
-      <div className={styles.callout}>{t('accessibility.1.desc')}</div>
+      <div className={styles.callout}>
+        {t('setting.shopperLoginMessageEnabled.desc')}
+      </div>
 
       <FormItem
         className={styles.shopperLoginMessage}

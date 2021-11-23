@@ -62,10 +62,12 @@
     },
     "backToTopButtonEnabled": {
       "title": "Quay lại nút trên cùng",
-      "desc": "Tự đăng ký Đăng ký thành viên với tin nhắn trang đăng nhập"
+      "desc": "Giúp người tiêu dùng có thể nhanh chóng trượt xuống đầu trang trong khi mua"
     },
     "shopperLoginMessageEnabled": {
-      "title": "Tự đăng ký Đăng ký thành viên với tin nhắn trang đăng nhập"
+      "title": "Tự đăng ký Đăng ký thành viên với tin nhắn trang đăng nhập",
+      "desc": "Thành viên bạn có thể đăng ký với trang đăng nhập trong cửa hàng của bạn để hiển thị nội dung tin nhắn của riêng bạn",
+      "error": "Giới hạn trên là 200 từ"
     }
   },
   "apps": {
@@ -188,13 +190,6 @@
     "desc": "Cài đặt phụ trợ liên quan đến mua sắm của người tiêu dùng"
   },
   "accessibility": {
-    "0": {
-      "tip": "Nội dung tin nhắn tùy chỉnh có thể được hiển thị trên trang đăng ký thành viên và đăng nhập của cửa hàng của bạn"
-    },
-    "1": {
-      "desc": "Nội dung tin nhắn tùy chỉnh có thể được hiển thị trên trang đăng ký thành viên và đăng nhập của cửa hàng của bạn",
-      "error": "Giới hạn tin nhắn là 200 ký tự"
-    },
     "title": "Khả năng truy cập trang",
     "desc": "Các chức năng phụ trợ liên quan có thể giúp người tiêu dùng mua sắm thoải mái hơn trong cửa hàng"
   }
