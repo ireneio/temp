@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.80.89 (2021-11-23)
+
+#### :rocket: New Feature
+
+- [#1895](https://github.com/meepshop/meep-lerna/pull/1895) 內部開單 - 在 @meepshop/locales 裡面新增 useGetLanguage ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1890](https://github.com/meepshop/meep-lerna/pull/1890) 【BUG】logo 圖片自動帶入的 alt 改成商店名稱 ([@happycat6323](https://github.com/happycat6323))
+  - [#1880](https://github.com/meepshop/meep-lerna/pull/1880) 【個別店家】部分選單 hover 顯示異常 - cname：slsmusic ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1884](https://github.com/meepshop/meep-lerna/pull/1884) 【BUG】後台 - 購物設定 - 回到頁面頂端按鈕 - 說明文字錯誤 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.88 (2021-11-22)
 
 #### :bug: Bug Fix
