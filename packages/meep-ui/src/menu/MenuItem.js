@@ -259,9 +259,9 @@ export default class MenuItem extends React.PureComponent {
         if (id === locale || id === currency) return styles.fontBold;
 
         return [
-          router.asPath,
-          `http://${router.domain}${router.asPath}`,
-          `https://${router.domain}${router.asPath}`,
+          decodeURIComponent(router.asPath),
+          `http://${router.domain}${decodeURIComponent(router.asPath)}`,
+          `https://${router.domain}${decodeURIComponent(router.asPath)}`,
         ].includes(url)
           ? 'is-active'
           : '';
