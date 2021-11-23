@@ -4,12 +4,12 @@
   "description": "Admin table component with antd",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.87",
+  "version": "0.80.89",
   "main": "./index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
     "@admin/utils": "^0.80.87",
-    "@meepshop/locales": "^0.80.87"
+    "@meepshop/locales": "^0.80.89"
   },
   "keywords": ["admin", "table"]
 }
