@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.91 (2021-11-24)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1894](https://github.com/meepshop/meep-lerna/pull/1894) 【BUG】 手機版 - 請選擇規格彈窗「加入購物車」按鈕文字顏色與電腦版不同 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.90 (2021-11-24)
 
 #### :bug: Bug Fix
