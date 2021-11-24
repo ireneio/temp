@@ -85,6 +85,7 @@ export default class AddButton extends React.Component {
     const config = {
       className: `${styles.item} ${styles[mode]}`,
       style: {
+        color: colors[2],
         border: `2px solid ${colors[4]}`,
         background: colors[4],
       },
