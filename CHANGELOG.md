@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.90 (2021-11-24)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1900](https://github.com/meepshop/meep-lerna/pull/1900) 【個別店家】 GMO 虛擬帳號 - 未跳轉至 thank-you-page ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.89 (2021-11-23)
 
 #### :rocket: New Feature
