@@ -32,8 +32,8 @@ import { priceFragment } from './gqls/price';
 // definition
 const Cart: NextPage = React.memo(() => {
   const role = useContext(RoleContext);
-  const { data, loading } = useQuery<getCartListType>(getCartList, {
-    fetchPolicy: 'network-only',
+  const { data } = useQuery<getCartListType>(getCartList, {
+    fetchPolicy: 'cache-and-network',
   });
   const order = data?.getCartList?.data?.[0];
   const products = order?.categories?.[0]?.products || [];
@@ -42,7 +42,7 @@ const Cart: NextPage = React.memo(() => {
   return (
     <>
       <div className={styles.root}>
-        {loading ? (
+        {!data ? (
           <Spin indicator={<LoadingOutlined spin />} />
         ) : (
           <>
