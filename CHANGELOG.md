@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.92 (2021-11-25)
+
+#### :bug: Bug Fix
+
+- [#1898](https://github.com/meepshop/meep-lerna/pull/1898) 【BUG】手機版 - /cart 商品總計試算區塊跑版 ([@piovischioh](https://github.com/piovischioh))
+- [#1904](https://github.com/meepshop/meep-lerna/pull/1904) 【個別店家】手機版 - /cart 頁面一直 loading ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.91 (2021-11-24)
 
 #### :bug: Bug Fix
