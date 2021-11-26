@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.93 (2021-11-26)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1893](https://github.com/meepshop/meep-lerna/pull/1893) 【優化】濾掉搜尋時候特殊符號 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.92 (2021-11-25)
 
 #### :bug: Bug Fix
