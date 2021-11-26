@@ -78,12 +78,12 @@ export default ({
           type: 'query_string',
           child: 'variant',
           fields: ['sku', 'vendorSku'],
-          query: search,
+          query: search.replace(/~/g, ''),
         },
         {
           type: 'query_string',
           fields: ['title.zh_TW'],
-          query: search,
+          query: search.replace(/~/g, ''),
         },
       );
 
