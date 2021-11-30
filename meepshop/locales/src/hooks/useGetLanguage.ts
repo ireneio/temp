@@ -1,5 +1,5 @@
 // typescript import
-import { languageType } from '../index';
+import { languageType } from '../constants';
 
 // import
 import { useCallback } from 'react';
