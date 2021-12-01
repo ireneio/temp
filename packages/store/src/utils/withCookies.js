@@ -1,6 +1,5 @@
 // import
 import gql from 'graphql-tag';
-import uuid from 'uuid/v4';
 
 import { withCookies } from '@meepshop/cookies';
 
@@ -75,11 +74,6 @@ export default withCookies(
           maxAge: (30 * 24 * 60 * 60 * 1000).toString(),
         });
     }
-
-    if (!cookie.get('identity'))
-      cookie.set('identity', uuid(), {
-        expires: new Date((2 ** 31 - 1) * 1000),
-      });
 
     return {
       currency: cookie.get('currency'),

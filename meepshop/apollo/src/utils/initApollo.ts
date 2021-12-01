@@ -83,13 +83,16 @@ const create = (
   const linkConfig = {
     uri: typeof window !== 'undefined' ? '/api/graphql' : `${API}/graphql`,
     credentials: 'include',
-    headers: !ctx
-      ? {}
-      : {
-          'x-meepshop-domain': ctx.ctx.req.headers.host,
-          'x-meepshop-authorization-token':
-            ctx.ctx.req.cookies?.['x-meepshop-authorization-token'] || '',
-        },
+    headers: {
+      ...(!ctx
+        ? {}
+        : {
+            'x-meepshop-domain': ctx.ctx.req.headers.host,
+            'x-meepshop-authorization-token':
+              ctx.ctx.req.cookies?.['x-meepshop-authorization-token'] || '',
+          }),
+      'x-meepshop-unique-id': loggerInfo?.identity || '',
+    },
   };
 
   const linkClient = split(

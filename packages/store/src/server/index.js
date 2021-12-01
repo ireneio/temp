@@ -43,12 +43,25 @@ app.prepare().then(() => {
   const server = express();
 
   // middleware
+  server.use(cookieParser());
   server.use(async (req, res, next) => {
     const loggerInfo = {
       id: uuid(),
       host: req.headers.host,
       userAgent: req.headers['user-agent'],
       url: req.url,
+      identity:
+        req.cookies.identity ||
+        (() => {
+          const identity = uuid();
+
+          req.cookies.identity = identity;
+          res.cookie('identity', identity, {
+            expires: new Date((2 ** 31 - 1) * 1000),
+          });
+
+          return identity;
+        })(),
     };
     const logger = initialLogger(loggerInfo);
 
@@ -64,14 +77,6 @@ app.prepare().then(() => {
     logger.debug('body parser out');
   });
   server.use(bodyParser.json());
-  server.use(async (req, res, next) => {
-    const { logger } = req;
-
-    logger.debug('cookie parser in');
-    await next();
-    logger.debug('cookie parser out');
-  });
-  server.use(cookieParser());
   server.use(async (req, res, next) => {
     const { logger } = req;
 

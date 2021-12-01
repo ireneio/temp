@@ -14,6 +14,7 @@ import React from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { getDataFromTree } from '@apollo/react-ssr';
 import uuid from 'uuid/v4';
+import { serialize } from 'cookie';
 
 import ApolloNetworkStatus from './ApolloNetworkStatus';
 import PageError from './PageError';
@@ -67,16 +68,31 @@ export const buildWithApollo = (
     const {
       Component,
       router,
-      ctx: { res },
+      ctx: { res, req },
     } = ctx;
     const loggerInfo =
       typeof window !== 'undefined'
         ? undefined
-        : ctx?.ctx.req.loggerInfo || {
+        : req.loggerInfo || {
             id: uuid(),
-            host: ctx?.ctx.req.headers.host,
-            userAgent: ctx?.ctx.req.headers['user-agent'],
-            url: ctx?.ctx.req.url,
+            host: req.headers.host,
+            userAgent: req.headers['user-agent'],
+            url: req.url,
+            identity:
+              req.cookies.identity ||
+              (() => {
+                const identity = uuid();
+
+                req.cookies.identity = identity;
+                res.setHeader(
+                  'Set-Cookie',
+                  serialize('identity', identity, {
+                    expires: new Date((2 ** 31 - 1) * 1000),
+                  }),
+                );
+
+                return identity;
+              })(),
           };
     const client = initApollo({ ...config, loggerInfo }, undefined, ctx);
     let appProps: Omit<PropsType, 'Component' | 'router'> = {

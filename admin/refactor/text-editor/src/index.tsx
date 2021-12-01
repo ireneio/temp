@@ -55,6 +55,7 @@ const RefactorTextEditor: NextPage<PropsType> = React.memo(({ type }) => {
                   host: 'admin',
                   userAgent: navigator.userAgent,
                   url: '/admin/refactor/text-editor',
+                  identity: 'identity',
                 }),
               ),
             ),

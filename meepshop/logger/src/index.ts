@@ -9,6 +9,7 @@ export interface LoggerInfoType {
   host: string;
   userAgent: string;
   url: string;
+  identity: string;
 }
 
 export type loggerType = Record<
@@ -23,6 +24,7 @@ const BROWSER_INIT_INFO = {
   host: 'can`t be used',
   userAgent: 'can`t be used',
   url: 'can`t be used',
+  identity: 'can`t be used',
 };
 
 export default ({
