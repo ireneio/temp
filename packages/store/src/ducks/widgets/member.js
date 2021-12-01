@@ -131,60 +131,6 @@ export function* watchGetLoginFlow() {
   yield takeEvery(LOGIN_REQUEST, loginFlow);
 }
 
-/* ********************************* 登出 ********************************* */
-const SIGNOUT_REQUEST = 'SIGNOUT_REQUEST';
-const SIGNOUT_SUCCESS = 'SIGNOUT_SUCCESS';
-const SIGNOUT_FAILURE = 'SIGNOUT_FAILURE';
-
-export const signout = payload => ({
-  type: SIGNOUT_REQUEST,
-  payload,
-});
-export const signoutSuccess = payload => ({
-  type: SIGNOUT_SUCCESS,
-  payload,
-});
-export const signoutFailure = () => ({
-  type: SIGNOUT_FAILURE,
-});
-
-function* signoutFlow({ payload }) {
-  const { client } = payload;
-
-  try {
-    const { data } = yield call(() =>
-      client.mutate({
-        mutation: gql`
-          mutation logout {
-            logout @client {
-              status
-            }
-          }
-        `,
-      }),
-    );
-
-    if (data.logout.status === 'OK') {
-      const memberData = yield call(Api.updateMemberData);
-
-      yield put(signoutSuccess(memberData.data));
-      notification.success({ message: i18n.t('ducks:signout-success') });
-    } else {
-      yield put(signoutFailure());
-      notification.error({ message: i18n.t('ducks:signout-failure-message') });
-    }
-  } catch (error) {
-    yield put(signoutFailure());
-    notification.error({
-      message: i18n.t('ducks:signout-failure-message'),
-      description: error.message,
-    });
-  }
-}
-export function* watchGetSignoutFlow() {
-  yield takeEvery(SIGNOUT_REQUEST, signoutFlow);
-}
-
 /* ********************************* 註冊 ********************************* */
 const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
@@ -274,23 +220,6 @@ export default (state = initialState, { type, payload }) => {
       return getMemberData(payload);
     }
     case LOGIN_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-    /* 登出 */
-    case SIGNOUT_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        loadingTip: SIGNOUT_REQUEST,
-      };
-    case SIGNOUT_SUCCESS: {
-      return getMemberData(payload);
-    }
-    case SIGNOUT_FAILURE: {
       return {
         ...state,
         loading: false,

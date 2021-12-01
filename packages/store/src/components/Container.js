@@ -36,7 +36,6 @@ class Container extends React.Component {
     loadingTip: PropTypes.string.isRequired,
     /* func to modify data */
     login: PropTypes.func.isRequired,
-    signout: PropTypes.func.isRequired,
     dispatchAction: PropTypes.func.isRequired,
 
     page: PropTypes.shape({ id: PropTypes.string }).isRequired,
@@ -110,7 +109,6 @@ class Container extends React.Component {
       loadingTip,
       /* func */
       login,
-      signout,
       dispatchAction,
       /* props(not in context) */
       page,
@@ -130,7 +128,6 @@ class Container extends React.Component {
           fbLogin={this.handleFacebookLogin}
           /* use dispatchAction */
           login={data => login({ ...data, client })}
-          logout={() => signout({ client })}
           dispatchAction={dispatchAction}
           /* props(not in context) */
           product={product}
@@ -169,7 +166,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = (dispatch, { client }) => ({
-  signout: bindActionCreators(Actions.signout, dispatch),
   login: bindActionCreators(Actions.login, dispatch),
   getAuth: bindActionCreators(Actions.getAuth, dispatch),
   dispatchAction: (actionName, args = {}) => {

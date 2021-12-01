@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { useApolloClient } from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
 import memoizeOne from 'memoize-one';
-import { Menu } from 'antd';
+import { Menu, notification } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
@@ -60,7 +60,6 @@ export default class MenuItem extends React.PureComponent {
     location: LOCATION_TYPE.isRequired,
     locale: ONE_OF_LOCALE_TYPE.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
-    logout: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
 
     /** props */
@@ -122,10 +121,10 @@ export default class MenuItem extends React.PureComponent {
   onClick = async () => {
     const {
       /** context */
-      logout,
       isLogin,
 
       /** props */
+      t,
       i18n,
       id,
       action,
@@ -134,9 +133,23 @@ export default class MenuItem extends React.PureComponent {
     } = this.props;
 
     switch (action) {
-      case 'logout':
-        logout();
+      case 'logout': {
+        const { data } = await client.mutate({
+          mutation: gql`
+            mutation logout {
+              logout @client {
+                status
+              }
+            }
+          `,
+        });
+
+        if (data?.logout.status === 'OK')
+          notification.success({ message: t('ducks:signout-success') });
+        else
+          notification.error({ message: t('ducks:signout-failure-message') });
         break;
+      }
 
       case 'locale':
         if (isLogin !== NOTLOGIN)

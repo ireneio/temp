@@ -10,9 +10,6 @@ import {
   signup,
   signupSuccess,
   signupFailure,
-  signout,
-  signoutSuccess,
-  signoutFailure,
 } from './widgets/member';
 
 export {
@@ -28,10 +25,6 @@ export {
   signup,
   signupSuccess,
   signupFailure,
-  // signout
-  signout,
-  signoutSuccess,
-  signoutFailure,
   // loading status
   showLoadingStatus,
   hideLoadingStatus,

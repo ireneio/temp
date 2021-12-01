@@ -31,7 +31,6 @@ export default React.memo(
     goTo,
     login,
     fbLogin,
-    logout,
     dispatchAction,
 
     children,
@@ -90,7 +89,6 @@ export default React.memo(
           goTo,
           login,
           fbLogin,
-          logout,
           dispatchAction,
 
           isLogin: role === 'SHOPPER' ? ISUSER : NOTLOGIN,
