@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import { emptyFunction } from 'fbjs';
 
 import { useTranslation } from '@meepshop/locales';
 import { spinner_w100 as spinner } from '@meepshop/images';
+import { useRouter } from '@meepshop/link';
 
 export default React.memo(({ loading, loadingTip }) => {
   const { t } = useTranslation('spinner');
+  const router = useRouter();
+  const reloadTimeoutRef = useRef(setTimeout(emptyFunction, 0));
+
+  // FIXME: remove after apollo-client upgrade
+  useEffect(() => {
+    clearTimeout(reloadTimeoutRef.current);
+
+    if (loading) reloadTimeoutRef.current = setTimeout(router.reload, 5000);
+  }, [loading, router]);
 
   return (
     <div
