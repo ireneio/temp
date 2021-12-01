@@ -42,9 +42,9 @@ export const getContextData = gql`
         shippableCountries {
           id
         }
-        experiment {
-          hiddingMeepshopMaxInFooterEnabled
-        }
+        hiddingMeepshopMaxInFooterEnabled: checkUnleashToggle(
+          name: "storeCnameIsolationlistForHiddingMeepshopMaxInFooter_Enabled"
+        )
         setting {
           locale
           currency

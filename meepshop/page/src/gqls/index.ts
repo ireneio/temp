@@ -14,9 +14,9 @@ export const pageUserFragment = gql`
     id
     store {
       id
-      experiment {
-        hiddingMeepshopMaxInFooterEnabled
-      }
+      hiddingMeepshopMaxInFooterEnabled: checkUnleashToggle(
+        name: "storeCnameIsolationlistForHiddingMeepshopMaxInFooter_Enabled"
+      )
       logoImage {
         id
         scaledSrc {

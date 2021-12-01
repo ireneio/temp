@@ -103,7 +103,7 @@ export default React.memo(
         {children({
           backgroundImage: data?.getColorList?.data?.[0]?.imgInfo,
           hiddingMeepshopMaxInFooterEnabled:
-            data?.viewer?.store?.experiment?.hiddingMeepshopMaxInFooterEnabled,
+            data?.viewer?.store?.hiddingMeepshopMaxInFooterEnabled,
         })}
       </EnhancerContext.Provider>
     );

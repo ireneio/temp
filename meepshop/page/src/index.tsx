@@ -93,7 +93,7 @@ export default React.memo(
           </div>
         </div>
 
-        {viewer?.store?.experiment?.hiddingMeepshopMaxInFooterEnabled ? null : (
+        {viewer?.store?.hiddingMeepshopMaxInFooterEnabled ? null : (
           <footer className={styles.footer}>
             <a
               href="https://meepshop.cc/8h1kG"
