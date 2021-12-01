@@ -23,5 +23,6 @@
   "product-title": "nom du produit",
   "off": "Non ouvert",
   "stock": "en stock",
-  "price": "Vendre"
+  "price": "Vendre",
+  "no-stock": "inventaire zéro"
 }

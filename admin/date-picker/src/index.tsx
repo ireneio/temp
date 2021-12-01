@@ -6,6 +6,7 @@ import { DateType } from './constants';
 // import
 import React, { useState } from 'react';
 import { startOfDay, endOfDay } from 'date-fns';
+import { emptyFunction } from 'fbjs';
 
 import { useTranslation } from '@meepshop/locales';
 import DatePicker from '@meepshop/date-picker';
@@ -15,10 +16,9 @@ import styles from './styles/index.less';
 import { DATE_TYPE } from './constants';
 
 // typescript definition
-export interface PropsType
-  extends Exclude<RangePickerDateProps<Date>, 'onChange'> {
-  onChange: (value: PropsType['value']) => void;
+export interface PropsType extends RangePickerDateProps<Date> {
   disableTemplates?: boolean;
+  onChange?: (value: PropsType['value']) => void;
 }
 
 // definition
@@ -27,9 +27,9 @@ const { RangePicker } = DatePicker;
 export default React.memo(
   ({
     className,
-    onChange,
     showTime,
     disableTemplates,
+    onChange = emptyFunction,
     ...props
   }: PropsType) => {
     const { t } = useTranslation('date-picker');

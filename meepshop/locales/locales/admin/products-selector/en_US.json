@@ -23,5 +23,6 @@
   "product-title": "product name",
   "off": "Unopened",
   "stock": "in stock",
-  "price": "Sell"
+  "price": "Sell",
+  "no-stock": "zero inventory"
 }

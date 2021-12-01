@@ -1,1 +1,48 @@
-{}
+{
+  "title": "Panier d'achat plus Zone d'achat",
+  "subtitle": "Configurez la zone d'achat pour ajouter des marchandises à la page du panier pour augmenter les opportunités d'exposition du produit, attirer les clients pour acheter plus d'articles avant la caisse",
+  "more": "apprendre encore plus",
+  "cancel": "Annuler",
+  "save": "sauvegarder",
+  "setting": "Achat de l'état de la zone",
+  "isActive": {
+    "title": "Plus la zone d'achat",
+    "true": "Permettre",
+    "false": "fermeture"
+  },
+  "hasUnlimitedDuration": {
+    "title": "Temps ouvert",
+    "tip": "Le temps d'acheter la zone de la réception, cacher automatiquement lorsque le temps libre est terminé.",
+    "true": "Ouvrir définitivement",
+    "false": "Temps limité",
+    "error": "Le temps de début est requis"
+  },
+  "title-setting": {
+    "title": "Titre de bloc de commande plus",
+    "tip": "La longueur du texte texte affiché au-dessus de la zone d'achat peut être de 60 mots.",
+    "placeholder": "Affichage préréglage de la réception \"Produits de paquet\" Texte",
+    "error": "Jusqu'à 60 mots"
+  },
+  "hasLimitPerOrder": {
+    "title": "Nombre total d'achat d'une commande unique",
+    "tip": "Nombre total d'achats disponibles pour les clients dans une seule commande",
+    "unit": "indivulgué",
+    "true": "Limitation de la quantité",
+    "false": "Sans limites",
+    "error": "S'il vous plaît entrer dans l'entier"
+  },
+  "products": {
+    "title": "Plus la zone d'achat",
+    "tip": "Il est caché dans la liste de réception, la page de recherche de produit est masquée et le client ne peut acheter que dans la zone d'achat.",
+    "add": "Ajouter du produit",
+    "adjust": "Ajuster les marchandises"
+  },
+  "chosen": "L'article a été sélectionné",
+  "index": "Sorte",
+  "product-title": "nom du produit",
+  "off": "Non ouvert",
+  "stock": "en stock",
+  "price": "Vendre",
+  "no-stock": "inventaire zéro",
+  "error": "erreur"
+}

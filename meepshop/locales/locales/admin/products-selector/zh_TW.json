@@ -23,5 +23,6 @@
   "product-title": "商品名稱",
   "off": "未上架",
   "stock": "庫存",
-  "price": "售價"
+  "price": "售價",
+  "no-stock": "無庫存"
 }

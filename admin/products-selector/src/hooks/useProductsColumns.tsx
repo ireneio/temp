@@ -96,7 +96,7 @@ export default ({
           width: 54,
           align: 'center',
           className: styles.number,
-          render: format,
+          render: value => (!value ? t('no-stock') : format(value)),
         },
         {
           dataIndex: ['variants', '0', 'retailPrice'],

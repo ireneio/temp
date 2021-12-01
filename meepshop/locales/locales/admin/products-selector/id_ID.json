@@ -23,5 +23,6 @@
   "product-title": "nama Produk",
   "off": "Belum dibuka",
   "stock": "persediaan",
-  "price": "Menjual"
+  "price": "Menjual",
+  "no-stock": "nol inventaris"
 }

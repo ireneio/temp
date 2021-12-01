@@ -23,5 +23,6 @@
   "product-title": "tên sản phẩm",
   "off": "Chưa mở.",
   "stock": "trong kho",
-  "price": "Bán"
+  "price": "Bán",
+  "no-stock": "không hàng tồn kho"
 }

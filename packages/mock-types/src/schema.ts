@@ -186,6 +186,7 @@ export default addMocksToSchema({
 
       return formatRFC3339(addHours(new Date(), count));
     },
+    PositiveInt: () => 10,
     JSON: (data, _, __, { fieldName }) => data[fieldName],
     URL: (data, _, __, { fieldName }) => data[fieldName],
   },

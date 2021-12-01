@@ -1,1 +1,48 @@
-{}
+{
+  "title": "Keranjang Belanja ditambah area pembelian",
+  "subtitle": "Siapkan area pembelian untuk menambahkan barang ke halaman keranjang belanja untuk meningkatkan peluang paparan produk, menarik pelanggan untuk membeli lebih banyak barang sebelum checkout",
+  "more": "Belajarlah lagi",
+  "cancel": "Membatalkan",
+  "save": "Menyimpan",
+  "setting": "Pengaturan kondisi area pembelian",
+  "isActive": {
+    "title": "Ditambah area pembelian",
+    "true": "Memungkinkan",
+    "false": "penutupan"
+  },
+  "hasUnlimitedDuration": {
+    "title": "Buka waktu",
+    "tip": "Waktu untuk membeli area di meja depan, secara otomatis bersembunyi ketika waktu buka selesai.",
+    "true": "Terbuka secara permanen",
+    "false": "Waktu terbatas",
+    "error": "Waktu mulai diperlukan"
+  },
+  "title-setting": {
+    "title": "Plus judul blokir pesanan",
+    "tip": "Panjang teks teks yang ditampilkan di atas area pembelian dapat 60 kata.",
+    "placeholder": "Display Resep Resepet Display \"Paket Produk\"",
+    "error": "Hingga 60 kata"
+  },
+  "hasLimitPerOrder": {
+    "title": "Total jumlah pembelian pesanan tunggal",
+    "tip": "Jumlah total pembelian yang tersedia untuk pelanggan dalam satu urutan",
+    "unit": "Indivual.",
+    "true": "Batasi kuantitas",
+    "false": "Tidak terbatas",
+    "error": "Silakan masukkan integer"
+  },
+  "products": {
+    "title": "Ditambah area pembelian",
+    "tip": "Ini disembunyikan di daftar meja depan, halaman pencarian produk disembunyikan, dan pelanggan hanya dapat membeli melalui area pembelian.",
+    "add": "Tambahkan Produk",
+    "adjust": "Sesuaikan barang"
+  },
+  "chosen": "Barang telah dipilih",
+  "index": "Menyortir",
+  "product-title": "nama Produk",
+  "off": "Belum dibuka",
+  "stock": "persediaan",
+  "price": "Menjual",
+  "no-stock": "nol inventaris",
+  "error": "kesalahan"
+}

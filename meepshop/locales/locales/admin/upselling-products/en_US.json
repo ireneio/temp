@@ -1,1 +1,48 @@
-{}
+{
+  "title": "Shopping cart plus purchase area",
+  "subtitle": "Set up the purchase area to add goods to the shopping cart page to increase product exposure opportunities, attract customers to purchase more items before checkout",
+  "more": "learn more",
+  "cancel": "Cancel",
+  "save": "Save",
+  "setting": "Purchase area condition setting",
+  "isActive": {
+    "title": "Plus purchase area",
+    "true": "Enable",
+    "false": "closure"
+  },
+  "hasUnlimitedDuration": {
+    "title": "Open time",
+    "tip": "The time to buy the area in the front desk, automatically hide when the open time is over.",
+    "true": "Permanently open",
+    "false": "Limited time",
+    "error": "Start time is required"
+  },
+  "title-setting": {
+    "title": "Plus order block title",
+    "tip": "The length of the text text displayed above the purchase area can be 60 words.",
+    "placeholder": "Front desk preset display \"Package Products\" text",
+    "error": "Up to 60 words"
+  },
+  "hasLimitPerOrder": {
+    "title": "Total number of single order purchase",
+    "tip": "Total number of purchases available for customers in a single order",
+    "unit": "indivual",
+    "true": "Limit quantity",
+    "false": "No limit",
+    "error": "Please enter the integer"
+  },
+  "products": {
+    "title": "Plus purchase area",
+    "tip": "It is hidden in the front desk list, the product search page is hidden, and the customer can only purchase through the purchase area.",
+    "add": "Add product",
+    "adjust": "Adjust goods"
+  },
+  "chosen": "Item has been selected",
+  "index": "Sort",
+  "product-title": "product name",
+  "off": "Unopened",
+  "stock": "in stock",
+  "price": "Sell",
+  "no-stock": "zero inventory",
+  "error": "mistake"
+}

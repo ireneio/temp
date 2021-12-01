@@ -1,1 +1,48 @@
-{}
+{
+  "title": "Khu mua sắm cộng với khu vực mua hàng",
+  "subtitle": "Thiết lập khu vực mua hàng để thêm hàng hóa vào trang Giỏ hàng để tăng cơ hội phơi nhiễm sản phẩm, thu hút khách hàng mua nhiều mặt hàng hơn trước khi thanh toán",
+  "more": "Tìm hiểu thêm",
+  "cancel": "Hủy bỏ",
+  "save": "Cứu",
+  "setting": "Mua thiết lập điều kiện khu vực",
+  "isActive": {
+    "title": "Cộng với khu vực mua hàng",
+    "true": "Cho phép",
+    "false": "Khép kín"
+  },
+  "hasUnlimitedDuration": {
+    "title": "Thời gian mở",
+    "tip": "Thời gian để mua khu vực ở quầy lễ tân, tự động ẩn khi thời gian mở kết thúc.",
+    "true": "Cởi mở vĩnh viễn",
+    "false": "Thời gian giới hạn",
+    "error": "Thời gian bắt đầu là bắt buộc"
+  },
+  "title-setting": {
+    "title": "Cộng với tiêu đề khối đặt hàng",
+    "tip": "Độ dài của văn bản văn bản hiển thị phía trên khu vực mua có thể là 60 từ.",
+    "placeholder": "Quầy lễ tân Hiển thị cài sẵn \"Sản phẩm gói\" Văn bản",
+    "error": "Lên đến 60 từ"
+  },
+  "hasLimitPerOrder": {
+    "title": "Tổng số mua đơn đặt hàng duy nhất",
+    "tip": "Tổng số mua hàng có sẵn cho khách hàng theo một đơn hàng",
+    "unit": "CONSTIVUAL.",
+    "true": "Số lượng hạn chế",
+    "false": "Không giới hạn",
+    "error": "Vui lòng nhập số nguyên"
+  },
+  "products": {
+    "title": "Cộng với khu vực mua hàng",
+    "tip": "Nó được ẩn trong danh sách lễ tân, trang tìm kiếm sản phẩm bị ẩn và khách hàng chỉ có thể mua qua khu vực mua hàng.",
+    "add": "Thêm sản phẩm",
+    "adjust": "Điều chỉnh hàng hóa"
+  },
+  "chosen": "Mục đã được chọn",
+  "index": "Loại",
+  "product-title": "tên sản phẩm",
+  "off": "Chưa mở.",
+  "stock": "trong kho",
+  "price": "Bán",
+  "no-stock": "không hàng tồn kho",
+  "error": "sai lầm, điều sai, ngộ nhận"
+}

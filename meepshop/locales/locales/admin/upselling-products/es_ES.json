@@ -1,1 +1,48 @@
-{}
+{
+  "title": "Carrito de compras más área de compra",
+  "subtitle": "Configure el área de compra para agregar productos a la página del carrito de compras para aumentar las oportunidades de exposición al producto, atraer clientes para comprar más artículos antes de la caja",
+  "more": "aprende más",
+  "cancel": "Cancelar",
+  "save": "Ahorrar",
+  "setting": "Configuración de condición de área de compra",
+  "isActive": {
+    "title": "Más área de compra",
+    "true": "Habilitar",
+    "false": "cierre"
+  },
+  "hasUnlimitedDuration": {
+    "title": "Tiempo abierto",
+    "tip": "El tiempo para comprar el área en la recepción, se esconde automáticamente cuando finaliza el tiempo abierto.",
+    "true": "Abierto permanentemente",
+    "false": "Tiempo limitado",
+    "error": "Se requiere tiempo de inicio"
+  },
+  "title-setting": {
+    "title": "Título del bloque de pedido más",
+    "tip": "La longitud del texto de texto que se muestra sobre el área de compra puede ser de 60 palabras.",
+    "placeholder": "Visualización preestablecida de recepción \"Productos de paquete\" texto",
+    "error": "Hasta 60 palabras"
+  },
+  "hasLimitPerOrder": {
+    "title": "Número total de compra de pedido individual",
+    "tip": "Número total de compras disponibles para clientes en un solo pedido",
+    "unit": "indigüe",
+    "true": "Cantidad de límite",
+    "false": "Sin límite",
+    "error": "Por favor ingrese el entero"
+  },
+  "products": {
+    "title": "Más área de compra",
+    "tip": "Está oculto en la lista de recepción, la página de búsqueda de productos está oculta, y el cliente solo puede comprar a través del área de compra.",
+    "add": "Agregar producto",
+    "adjust": "Ajustar bienes"
+  },
+  "chosen": "El artículo ha sido seleccionado",
+  "index": "Clasificar",
+  "product-title": "nombre del producto",
+  "off": "Sin abrir",
+  "stock": "en stock",
+  "price": "Vender",
+  "no-stock": "Cero inventario",
+  "error": "error"
+}
