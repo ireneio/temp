@@ -19,21 +19,20 @@ import {
   ISLOGIN_TYPE,
   CONTENT_WIDTH_TYPE,
 } from 'constants/propTypes';
-import loadData from 'utils/loadData';
 import buildVariantsTree from 'utils/buildVariantsTree';
 
 import PaymentInfo from './paymentInfo';
 import ReceiverInfo from './ReceiverInfo';
+import useLandingPageProduct from './hooks/useLandingPageProduct';
 import { ADDITION_TYPE } from './constants';
 import * as styles from './styles';
 
 const { Item: FormItem } = Form;
 
 @enhancer
-@loadData(['productData'])
-@buildVariantsTree('productData')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
-@withHook(({ user, productData, redirectPage }) => {
+@withHook(({ user, redirectPage, params }) => {
+  const { product, loading } = useLandingPageProduct(params?.ids);
   const [form] = Form.useForm();
   const [storeComputeOrderList, setStoreComputeOrderList] = useState(null);
   const [choosePayment, setChoosePayment] = useState(null);
@@ -42,7 +41,7 @@ const { Item: FormItem } = Form;
     ...useFinish({
       landingPageModule: {
         viewer: user,
-        product: productData,
+        product,
         redirectPage: {
           __typename: 'CustomLink',
           href: redirectPage,
@@ -54,12 +53,15 @@ const { Item: FormItem } = Form;
       payment: choosePayment,
       form,
     }),
+    productData: product,
+    loading,
     setStoreComputeOrderList,
     choosePayment,
     setChoosePayment,
     form,
   };
 })
+@buildVariantsTree('productData')
 @withTranslation('landing-page')
 @radium
 export default class LandingPage extends React.PureComponent {

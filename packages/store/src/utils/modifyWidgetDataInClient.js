@@ -1,4 +1,3 @@
-import * as Api from 'api';
 import uuid from 'uuid/v4';
 
 import getLink from './getLink';
@@ -245,12 +244,7 @@ export default function modifyWidgetDataInClient(widgets = [], query, page) {
             addition: widget.landingInfo.addition,
             shippableCountries: widget.landingInfo.shippableCountries || [],
             required: widget.landingInfo.required,
-            productData:
-              widget.params && widget.params.ids
-                ? Api.getProduct({ id: widget.params.ids }).then(
-                    ({ data }) => data?.computeProductList?.data?.[0],
-                  )
-                : null,
+            params: widget.params,
             agreedMatters: widget.landingInfo.agreedMatters,
             paymentFilter: widget.landingInfo.paymentId || [],
             shipmentFilter: widget.landingInfo.shipmentId || [],
