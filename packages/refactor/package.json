@@ -4,14 +4,14 @@
   "description": "Temporary package for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.89",
+  "version": "0.80.94",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.89",
-    "@meepshop/context": "^0.80.87",
-    "@meepshop/images": "^0.80.87",
-    "@meepshop/link": "^0.80.87",
-    "@meepshop/locales": "^0.80.89",
-    "@meepshop/logger": "^0.80.87"
+    "@meepshop/apollo": "^0.80.94",
+    "@meepshop/context": "^0.80.94",
+    "@meepshop/images": "^0.80.94",
+    "@meepshop/link": "^0.80.94",
+    "@meepshop/locales": "^0.80.94",
+    "@meepshop/logger": "^0.80.94"
   },
   "keywords": ["refactor", "store"]
 }

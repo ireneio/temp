@@ -4,21 +4,21 @@
   "description": "upselling products",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.87",
+  "version": "0.80.94",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/date-picker": "^0.80.89",
+    "@admin/date-picker": "^0.80.94",
     "@admin/message": "^0.80.87",
-    "@admin/products-selector": "^0.80.89",
+    "@admin/products-selector": "^0.80.94",
     "@admin/tooltip": "^0.80.87",
-    "@admin/utils": "^0.80.87",
-    "@meepshop/hooks": "^0.80.89",
-    "@meepshop/icons": "^0.80.87",
-    "@meepshop/link": "^0.80.87",
-    "@meepshop/locales": "^0.80.89",
-    "@meepshop/thumbnail": "^0.80.87",
-    "@meepshop/utils": "^0.80.87"
+    "@admin/utils": "^0.80.94",
+    "@meepshop/hooks": "^0.80.94",
+    "@meepshop/icons": "^0.80.94",
+    "@meepshop/link": "^0.80.94",
+    "@meepshop/locales": "^0.80.94",
+    "@meepshop/thumbnail": "^0.80.94",
+    "@meepshop/utils": "^0.80.94"
   },
   "keywords": ["products", "upselling"]
 }
