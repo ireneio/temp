@@ -10,7 +10,7 @@
     "@meepshop/apollo": "^0.80.89",
     "@meepshop/cart": "^0.80.87",
     "@meepshop/context": "^0.80.87",
-    "@meepshop/convenience-store-map": "^0.80.89",
+    "@meepshop/convenience-store-map-modal": "^0.80.80",
     "@meepshop/date-picker": "^0.80.89",
     "@meepshop/divider": "^0.80.87",
     "@meepshop/draft-text": "^0.80.89",

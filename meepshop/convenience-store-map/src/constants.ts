@@ -5,7 +5,7 @@ import {
 } from '@meepshop/types/gqls/meepshop';
 
 // definition
-export interface ConvenienctStorePropsType {
+export interface ConvenienceStorePropsType {
   shipmentType: ConvenienceStoreShipmentTypeEnumType;
   storeTypes: ConvenienceStoreTypeEnumType[];
   confirmStore: (store: {}) => void;

@@ -1,5 +1,5 @@
 // typescript import
-import { ConvenienctStorePropsType } from './constants';
+import { ConvenienceStorePropsType } from './constants';
 import { ConvenienceStoresInputType } from './StoreList';
 
 // import
@@ -18,7 +18,7 @@ import { storeDetailFragment } from './gqls/storeDetail';
 
 // definition
 export default React.memo(
-  ({ shipmentType, storeTypes, confirmStore }: ConvenienctStorePropsType) => {
+  ({ shipmentType, storeTypes, confirmStore }: ConvenienceStorePropsType) => {
     const [store, setStore] = useState<storeDetailFragmentType | null>(null);
     const [variables, setVariables] = useState<ConvenienceStoresInputType>({});
 

@@ -11,7 +11,7 @@
     "@ant-design/compatible": "^1.0.8",
     "@meepshop/address-cascader": "^0.80.89",
     "@meepshop/context": "^0.80.87",
-    "@meepshop/convenience-store-map": "^0.80.89",
+    "@meepshop/convenience-store-map-modal": "^0.80.80",
     "@meepshop/date-picker": "^0.80.89",
     "@meepshop/form-data": "^0.80.87",
     "@meepshop/gmo-credit-card-form": "^0.80.89",

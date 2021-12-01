@@ -27,6 +27,7 @@
     "@store/ad-track": "^0.80.89",
     "@store/apollo": "^0.80.89",
     "@store/cart": "^0.80.92",
+    "@store/convenience-store-map": "^0.80.80",
     "@store/currency": "^0.80.89",
     "@store/ecpay": "^0.80.89",
     "@store/fb": "^0.80.89",

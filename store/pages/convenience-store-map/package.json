@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@store/convenience-store-map",
+  "description": "convenience store map page for store",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.80.80",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/convenience-store-map": "^0.80.80"
+  },
+  "keywords": ["convenience store map", "store"]
+}

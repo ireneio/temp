@@ -10,9 +10,5 @@ import props from '../../mock';
 // definition
 runTest(
   'store',
-  <ConvenienceStoreMap
-    {...props}
-    close={emptyFunction}
-    confirmStore={emptyFunction}
-  />,
+  <ConvenienceStoreMap {...props} confirmStore={emptyFunction} />,
 );

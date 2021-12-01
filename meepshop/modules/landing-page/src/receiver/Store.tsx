@@ -16,7 +16,7 @@ import { Button, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
-import ConvenienceStoreMap from '@meepshop/convenience-store-map';
+import ConvenienceStoreMapModal from '@meepshop/convenience-store-map-modal';
 
 import styles from './styles/store.less';
 import {
@@ -90,7 +90,7 @@ export default React.memo(
         ))}
 
         {!isMapOpen ? null : (
-          <ConvenienceStoreMap
+          <ConvenienceStoreMapModal
             shipmentType={
               (shipment?.template === 'allpay'
                 ? ECPAY_SHIPMENT_TYPE_ENUM(

@@ -1,5 +1,5 @@
 // typescript import
-import { ConvenienctStorePropsType } from './constants';
+import { ConvenienceStorePropsType } from './constants';
 import { ConvenienceStoresInputType } from './StoreList';
 
 // import
@@ -28,7 +28,7 @@ import {
 import { getValidatedConvenienceStoreCities } from './gqls/addressSelect';
 
 // typescript definition
-interface PropsType extends Omit<ConvenienctStorePropsType, 'confirmStore'> {
+interface PropsType extends Omit<ConvenienceStorePropsType, 'confirmStore'> {
   setVariables: (value: ConvenienceStoresInputType) => void;
   variables: ConvenienceStoresInputType;
 }

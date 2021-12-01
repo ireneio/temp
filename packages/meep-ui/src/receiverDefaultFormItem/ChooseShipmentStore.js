@@ -6,7 +6,7 @@ import { useApolloClient } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import { withTranslation } from '@meepshop/locales';
-import ConvenienceStoreMap from '@meepshop/convenience-store-map';
+import ConvenienceStoreMapModal from '@meepshop/convenience-store-map-modal';
 import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -230,7 +230,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
         ))}
 
         {!openConvenienceStoreMap ? null : (
-          <ConvenienceStoreMap
+          <ConvenienceStoreMapModal
             shipmentType={
               shipmentTemplate === 'allpay'
                 ? ECPAY_SHIPMENT_TYPE_ENUM(allpay.logisticsSubType)
