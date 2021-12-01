@@ -1,8 +1,9 @@
-import { useMemo, useEffect, useContext, useRef } from 'react';
+import { useMemo, useEffect, useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { areEqual } from 'fbjs';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
+import { usePrevious } from '@meepshop/hooks';
 
 import { getProducts } from '../gqls/useProducts';
 
@@ -113,14 +114,11 @@ export default ({
 
     return output;
   }, [sort, size, offset, ids, search, tags, price, includedAllTags]);
-  const prevVariablesRef = useRef(variables);
+  const prevVariables = usePrevious(variables);
   const { data, loading } = useQuery(getProducts, { variables });
 
   useEffect(() => {
-    if (
-      data?.computeProductList?.data &&
-      !areEqual(prevVariablesRef.current, variables)
-    ) {
+    if (data?.computeProductList?.data && !areEqual(prevVariables, variables)) {
       const dom = document.getElementById(id);
 
       setTimeout(() => {
@@ -132,10 +130,8 @@ export default ({
           searchString: search,
           products: data.computeProductList.data,
         });
-
-      prevVariablesRef.current = variables;
     }
-  }, [id, adTrack, variables, data, search]);
+  }, [id, adTrack, variables, data, search, prevVariables]);
 
   return {
     data: useMemo(() => {

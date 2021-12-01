@@ -6,13 +6,14 @@ import { I18nPropsType, languageType } from '@meepshop/locales';
 import { CookiesType } from '../index';
 
 // import
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useApolloClient } from '@apollo/react-hooks';
 import { areEqual } from 'fbjs';
 import cookie from 'js-cookie';
 
 import { useTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
+import { usePrevious } from '@meepshop/hooks';
 
 // typescript definition
 export type getCookiesType = (ctx: {
@@ -35,10 +36,12 @@ export default (
   setCookie: (key: string, value: string) => void;
 } => {
   const router = useRouter();
-  const prevInitialCookies = useRef<CookiesType['cookies']>(initialCookies);
   const client = useApolloClient();
   const { i18n } = useTranslation();
   const [cookies, setCookies] = useState(initialCookies);
+  const prevInitialCookies = usePrevious<CookiesType['cookies']>(
+    initialCookies,
+  );
 
   useEffect(() => {
     const offResetStore = client.onResetStore(async () => {
@@ -59,12 +62,11 @@ export default (
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.pathname]);
-  useEffect(() => {
-    if (!areEqual(prevInitialCookies.current, initialCookies))
-      setCookies(initialCookies);
 
-    prevInitialCookies.current = initialCookies;
-  }, [initialCookies]);
+  useEffect(() => {
+    if (!areEqual(prevInitialCookies, initialCookies))
+      setCookies(initialCookies);
+  }, [initialCookies, prevInitialCookies]);
 
   return {
     cookies,

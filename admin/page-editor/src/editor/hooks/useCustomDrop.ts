@@ -9,8 +9,9 @@ import { DragObjectType } from './useCustomDrag';
 import { useState, useEffect, useCallback, useRef, useContext } from 'react';
 import { useDrop } from 'react-dnd';
 
+import { usePrevious } from '@meepshop/hooks';
+
 import useDirection from './useDirection';
-import usePrevious from './usePrevious';
 import ModuleContext from '../context/module';
 import move from '../utils/move';
 

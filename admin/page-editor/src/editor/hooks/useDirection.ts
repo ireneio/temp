@@ -4,7 +4,7 @@ import { Position } from './useCustomDrop';
 // import
 import { useMemo } from 'react';
 
-import usePrevious from './usePrevious';
+import { usePrevious } from '@meepshop/hooks';
 
 // typescript definition
 export interface Direction {

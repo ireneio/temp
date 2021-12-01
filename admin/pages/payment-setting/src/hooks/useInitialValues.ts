@@ -2,8 +2,10 @@
 import { FormInstance } from 'antd/lib/form';
 
 // import
-import { useMemo, useRef, useEffect } from 'react';
+import { useMemo, useEffect } from 'react';
 import { areEqual } from 'fbjs';
+
+import { usePrevious } from '@meepshop/hooks';
 
 // graphql typescript
 import {
@@ -62,14 +64,11 @@ export default (
     };
   }, [billing]);
 
-  const prevInitialValuesRef = useRef(initialValues);
+  const prevInitialValues = usePrevious(initialValues);
 
   useEffect(() => {
-    if (!areEqual(prevInitialValuesRef.current, initialValues)) {
-      resetFields();
-      prevInitialValuesRef.current = initialValues;
-    }
-  }, [resetFields, initialValues]);
+    if (!areEqual(prevInitialValues, initialValues)) resetFields();
+  }, [resetFields, initialValues, prevInitialValues]);
 
   return initialValues;
 };

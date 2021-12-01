@@ -9,6 +9,7 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/cookies": "^0.80.89",
+    "@meepshop/hooks": "^0.80.89",
     "@meepshop/locales": "^0.80.89",
     "@meepshop/modules": "^0.80.89",
     "@meepshop/page": "^0.80.89",
