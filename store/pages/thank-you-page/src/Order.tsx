@@ -47,7 +47,8 @@ export default React.memo(() => {
 
   if (!order) return <OrderNotFound />;
 
-  if (template === 'ecpay2' && status === 4) return <PaymentFail />;
+  if (['gmo', 'ecpay2'].includes(template || '') && status === 4)
+    return <PaymentFail />;
 
   return (
     <>
