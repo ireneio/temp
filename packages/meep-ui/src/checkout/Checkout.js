@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useApolloClient } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 import uuid from 'uuid/v4';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import FormDataContext from '@meepshop/form-data';
 import { withTranslation } from '@meepshop/locales';
 import withContext from '@store/utils/lib/withContext';
+import withHook from '@store/utils/lib/withHook';
 import CheckoutWrapper from '@store/checkout';
 import { formatGmo } from '@meepshop/gmo-credit-card-form';
 
@@ -18,6 +21,7 @@ import OrderDetail from './orderDetail';
 @withTranslation('checkout')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withContext(FormDataContext, setFormData => ({ setFormData }))
+@withHook(() => ({ client: useApolloClient() }))
 @enhancer
 export default class Checkout extends React.PureComponent {
   formRef = React.createRef();
@@ -66,6 +70,8 @@ export default class Checkout extends React.PureComponent {
       dispatchAction,
 
       /** props */
+      client,
+      t,
       adTrack,
       setFormData,
     } = this.props;
@@ -135,19 +141,27 @@ export default class Checkout extends React.PureComponent {
     } = orderInfo.info;
 
     if (isLogin === NOTLOGIN && userEmail && userPassword) {
-      await new Promise(resolve => {
-        dispatchAction('signup', {
-          values: {
+      const { data } = await client.mutate({
+        mutation: gql`
+          mutation firstPurchaseSignup($search: [NewUser]) {
+            createUserList(createUserList: $search) {
+              id
+            }
+          }
+        `,
+        variables: {
+          search: {
+            type: 'SHOPPER',
             email: userEmail,
             password: userPassword,
           },
-          callback: () => {
-            adTrack.completeRegistration();
-            resolve();
-          },
-        });
+        },
       });
 
+      if ((data?.createUserList || []).length === 0)
+        return t('ducks:signup-failure-message');
+
+      adTrack.completeRegistration();
       await new Promise(resolve => {
         dispatchAction('login', {
           email: userEmail,

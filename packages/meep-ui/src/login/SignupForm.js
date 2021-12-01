@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button, Input } from 'antd';
+import { Form, Button, Input, notification } from 'antd';
 import { ApolloConsumer } from '@apollo/react-components';
 import gql from 'graphql-tag';
 
@@ -91,7 +91,7 @@ class SignupForm extends React.PureComponent {
     },
   });
 
-  finish = ({
+  finish = async ({
     email,
     password,
     registeredCode,
@@ -99,29 +99,45 @@ class SignupForm extends React.PureComponent {
     addressAndZipCode,
     street,
   }) => {
-    const { dispatchAction, handleTypeChange, adTrack } = this.props;
-
-    dispatchAction('signup', {
-      values: {
-        email,
-        password,
-        registeredCode,
-        additionalInfo: {
-          mobile,
+    const { t, client, handleTypeChange, adTrack } = this.props;
+    const { data } = await client.mutate({
+      mutation: gql`
+        mutation signup($search: [NewUser]) {
+          createUserList(createUserList: $search) {
+            id
+          }
+        }
+      `,
+      variables: {
+        search: {
+          type: 'SHOPPER',
+          email,
+          password,
+          registeredCode,
+          additionalInfo: {
+            mobile,
+          },
+          address: {
+            countryId: addressAndZipCode?.address[0],
+            cityId: addressAndZipCode?.address[1],
+            areaId: addressAndZipCode?.address[2],
+            zipCode: addressAndZipCode?.zipCode,
+            street,
+          },
         },
-        address: {
-          countryId: addressAndZipCode?.address[0],
-          cityId: addressAndZipCode?.address[1],
-          areaId: addressAndZipCode?.address[2],
-          zipCode: addressAndZipCode?.zipCode,
-          street,
-        },
-      },
-      callback: () => {
-        handleTypeChange({ options: 'LOGIN' });
-        adTrack.completeRegistration();
       },
     });
+
+    if ((data?.createUserList || []).length === 0) {
+      notification.error({
+        message: t('ducks:signup-failure-message'),
+      });
+      return;
+    }
+
+    notification.success({ message: t('ducks:signup-success') });
+    handleTypeChange({ options: 'LOGIN' });
+    adTrack.completeRegistration();
   };
 
   render() {

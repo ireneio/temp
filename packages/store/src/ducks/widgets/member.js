@@ -131,43 +131,6 @@ export function* watchGetLoginFlow() {
   yield takeEvery(LOGIN_REQUEST, loginFlow);
 }
 
-/* ********************************* 註冊 ********************************* */
-const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
-const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
-const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
-
-export const signup = payload => ({
-  type: SIGNUP_REQUEST,
-  payload,
-});
-export const signupSuccess = () => ({
-  type: SIGNUP_SUCCESS,
-});
-export const signupFailure = () => ({
-  type: SIGNUP_FAILURE,
-});
-
-function* signupFlow({ payload }) {
-  const { values, callback } = payload;
-
-  try {
-    yield call(Api.signup, values);
-    yield put(signupSuccess());
-    notification.success({ message: i18n.t('ducks:signup-success') });
-
-    if (callback) callback();
-  } catch (error) {
-    yield put(signupFailure());
-    notification.error({
-      message: i18n.t('ducks:signup-failure-message'),
-      description: error.message,
-    });
-  }
-}
-export function* watchSignupFlow() {
-  yield takeEvery(SIGNUP_REQUEST, signupFlow);
-}
-
 const getMemberData = payload => {
   const { data } = payload;
 
@@ -226,27 +189,6 @@ export default (state = initialState, { type, payload }) => {
         loadingTip: '',
       };
     }
-    /* 註冊 */
-    case SIGNUP_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        loadingTip: SIGNUP_REQUEST,
-      };
-    case SIGNUP_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    case SIGNUP_FAILURE: {
-      return {
-        ...state,
-        loading: false,
-        loadingTip: '',
-      };
-    }
-
     default:
       return state;
   }
