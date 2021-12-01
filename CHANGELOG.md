@@ -1,5 +1,49 @@
 # CHANGELOG
 
+## 0.80.94 (2021-12-01)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#1881](https://github.com/meepshop/meep-lerna/pull/1881) 內部開單 - 移除 signup api ([@HsuTing](https://github.com/HsuTing))
+  - [#1883](https://github.com/meepshop/meep-lerna/pull/1883) 內部開單 - signout 改用 apollo-client ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`
+  - [#1892](https://github.com/meepshop/meep-lerna/pull/1892) 內部開單 - 前端實作【隔離名單】隱藏頁腳 toggle ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`
+  - [#1872](https://github.com/meepshop/meep-lerna/pull/1872) 內部開單 - 新增 usePrevious ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`, `store`
+  - [#1859](https://github.com/meepshop/meep-lerna/pull/1859) T9556 - 【功能】 前台 - 產生自建超取地圖 URL - 前端 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#1902](https://github.com/meepshop/meep-lerna/pull/1902) 【功能】GMO - 3D 驗證 - 前端 ([@Lexiwu](https://github.com/Lexiwu))
+- `mock-types`
+  - [#1897](https://github.com/meepshop/meep-lerna/pull/1897) 新增 @admin/upselling-products ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `refactor`
+  - [#1909](https://github.com/meepshop/meep-lerna/pull/1909) 內部開單 - 前台頁面卡在登出中 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1906](https://github.com/meepshop/meep-lerna/pull/1906) (@admin/\*) Fix prettier ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `store`
+  - [#1875](https://github.com/meepshop/meep-lerna/pull/1875) 內部開單 - 移除 getProduct api ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#1871](https://github.com/meepshop/meep-lerna/pull/1871) 內部開單 - 加上 identity 將同一個使用者行為串連再一起 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1913](https://github.com/meepshop/meep-lerna/pull/1913) 【內部開單】修改 @meepshop/locales 的 index.ts，來避免 import cycle ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.93 (2021-11-26)
 
 #### :rocket: New Feature
