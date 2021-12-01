@@ -26,6 +26,7 @@ define babel-build
 		"babel src -d lib --root-mode upward --verbose -x .js,.ts,.tsx $(1)" \
 		--stream \
 		--exclude-dependents \
+		--ignore @apollo/client \
 		--ignore @meepshop/mock-types \
 		--ignore @meepshop/next-store \
 		--ignore @meepshop/next-admin \
