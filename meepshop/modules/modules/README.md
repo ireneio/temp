@@ -9,7 +9,7 @@ Use to handle the all modules.
 
 ```js
 // import
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 // definition
 export default gql`
@@ -99,7 +99,7 @@ const defaultContext = {
 ```js
 // schemas/** module type */.ts
 // import
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 import mock from '../mock';
 
