@@ -10,11 +10,12 @@ import { useTranslation } from '../index';
 import { localeFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
-export default (): ((locale: localeFragment) => string | null) => {
+export default (): ((locale?: localeFragment) => string) => {
   const { i18n } = useTranslation('common');
 
   return useCallback(
-    locale => locale[i18n.language as languageType] || locale.zh_TW,
+    locale =>
+      locale ? locale[i18n.language as languageType] || locale.zh_TW || '' : '',
     [i18n],
   );
 };
