@@ -2,7 +2,7 @@
 import { FbType } from '@meepshop/context/lib/Fb';
 
 // import
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { notification } from 'antd';
 
 import { Events as EventsContext } from '@meepshop/context';
@@ -23,10 +23,13 @@ export default (
   const router = useRouter();
   const [fb, setFb] = useState<FbType | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const asPathRef = useRef(router.asPath);
   const events = useContext(EventsContext);
   const fbLogin = useFbLogin();
 
   useEffect(() => {
+    asPathRef.current = router.asPath;
+
     const fbLoaded = (): void => {
       if (!window.FB) return;
 
@@ -36,7 +39,7 @@ export default (
       setFb({
         ...windowFB,
         login: redirectPath =>
-          new Promise(resolve => {
+          new Promise<void>(resolve => {
             if (/(Line|Instagram|FBAN|FBAV)/gm.test(window.navigator.userAgent))
               router.push(
                 [
@@ -44,7 +47,7 @@ export default (
                   `client_id=${appId}`,
                   `redirect_uri=https://${router.domain}/fbAuthForLine`,
                   `scope=email`,
-                  `state=${redirectPath || router.pathname}`,
+                  `state=${redirectPath || asPathRef.current}`,
                   `response_type=token`,
                 ].join('&'),
               );
