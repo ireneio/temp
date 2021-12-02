@@ -10,7 +10,7 @@ import { useTranslation } from '../index';
 import { localeFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
-export default (): ((locale?: localeFragment) => string) => {
+export default (): ((locale?: localeFragment | null) => string) => {
   const { i18n } = useTranslation('common');
 
   return useCallback(
