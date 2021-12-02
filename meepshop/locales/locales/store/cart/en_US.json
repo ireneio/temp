@@ -23,5 +23,9 @@
   "NOT_AVAILABLE-warning": "Please remove the purchase of goods yet",
   "OUT_OF_STOCK-warning": "Please remove out of stock goods",
   "LIMIT_EXCEEDED": "Exceeding the purchase quantity",
-  "MINIMUM_NOT_REACHED": "No minimum number of purchases"
+  "MINIMUM_NOT_REACHED": "No minimum number of purchases",
+  "upselling": {
+    "title": "Press",
+    "add-to-cart": "add to the cart"
+  }
 }

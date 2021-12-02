@@ -23,5 +23,9 @@
   "NOT_AVAILABLE-warning": "S'il vous plaît supprimer l'achat de biens encore",
   "OUT_OF_STOCK-warning": "Veuillez supprimer des marchandises en rupture de stock",
   "LIMIT_EXCEEDED": "Dépasser la quantité d'achat",
-  "MINIMUM_NOT_REACHED": "Pas de nombre minimum d'achats"
+  "MINIMUM_NOT_REACHED": "Pas de nombre minimum d'achats",
+  "upselling": {
+    "title": "presse",
+    "add-to-cart": "Ajouter au panier"
+  }
 }

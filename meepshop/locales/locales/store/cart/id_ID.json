@@ -23,5 +23,9 @@
   "NOT_AVAILABLE-warning": "Harap hapus pembelian barang",
   "OUT_OF_STOCK-warning": "Hapus barang stok",
   "LIMIT_EXCEEDED": "Melebihi jumlah pembelian",
-  "MINIMUM_NOT_REACHED": "Tidak ada jumlah pembelian minimum"
+  "MINIMUM_NOT_REACHED": "Tidak ada jumlah pembelian minimum",
+  "upselling": {
+    "title": "tekan",
+    "add-to-cart": "Tambahkan ke troli"
+  }
 }

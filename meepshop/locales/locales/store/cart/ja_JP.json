@@ -23,5 +23,9 @@
   "NOT_AVAILABLE-warning": "まだ商品の購入を削除してください",
   "OUT_OF_STOCK-warning": "在庫品から削除してください",
   "LIMIT_EXCEEDED": "購入数量を超えています",
-  "MINIMUM_NOT_REACHED": "最小購入数はありません"
+  "MINIMUM_NOT_REACHED": "最小購入数はありません",
+  "upselling": {
+    "title": "押す",
+    "add-to-cart": "カートに追加"
+  }
 }

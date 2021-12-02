@@ -23,5 +23,9 @@
   "NOT_AVAILABLE-warning": "請移除尚未開放購買商品",
   "OUT_OF_STOCK-warning": "請移除缺貨商品",
   "LIMIT_EXCEEDED": "超出可購買數量",
-  "MINIMUM_NOT_REACHED": "未達最低購買數量"
+  "MINIMUM_NOT_REACHED": "未達最低購買數量",
+  "upselling": {
+    "title": "加購商品",
+    "add-to-cart": "加入購物車"
+  }
 }

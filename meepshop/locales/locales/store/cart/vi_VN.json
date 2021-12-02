@@ -23,5 +23,9 @@
   "NOT_AVAILABLE-warning": "Vui lòng loại bỏ việc mua hàng hóa chưa",
   "OUT_OF_STOCK-warning": "Vui lòng loại bỏ hàng hóa chứng khoán",
   "LIMIT_EXCEEDED": "Vượt quá số lượng mua",
-  "MINIMUM_NOT_REACHED": "Không có số lượng mua tối thiểu"
+  "MINIMUM_NOT_REACHED": "Không có số lượng mua tối thiểu",
+  "upselling": {
+    "title": "nhấn",
+    "add-to-cart": "Thêm vào giỏ hàng"
+  }
 }

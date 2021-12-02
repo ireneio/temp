@@ -1,0 +1,90 @@
+@import '~@store/utils/styles/variables.less';
+
+.root {
+  width: 100%;
+  padding: 24px 24px 32px;
+  margin: 40px 0;
+
+  @media (max-width: @screen-sm-max) {
+    padding: 24px 16px 24px;
+    margin: 24px 0;
+  }
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 32px;
+  text-align: center;
+  margin-bottom: 16px;
+
+  @media (max-width: @screen-sm-max) {
+    font-size: 16px;
+    line-height: 24px;
+    text-align: left;
+  }
+}
+
+.products {
+  max-width: 1048px;
+  margin: 0 auto;
+
+  @media (max-width: 1240px) {
+    max-width: 836px;
+  }
+
+  @media (max-width: 1028px) {
+    max-width: 624px;
+  }
+
+  @media (max-width: 816px) {
+    max-width: 412px;
+  }
+
+  :global(.slick-track) {
+    display: flex;
+    align-items: stretch;
+  }
+
+  :global(.slick-slide) {
+    height: auto;
+  }
+
+  :global(.slick-slide) > div {
+    height: 100%;
+  }
+
+  :global(.slick-next), :global(.slick-prev) {
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    font-size: 40px;
+    opacity: 0.7;
+
+    &:hover, &:focus {
+      color: inherit;
+    }
+
+    &::before {
+      content: '';
+    }
+
+    &:global(.slick-disabled) {
+      opacity: 0.25;
+    }
+  }
+
+  :global(.slick-next) {
+    right: -66px;
+  }
+
+  :global(.slick-prev) {
+    left: -66px;
+  }
+
+  :global(.slick-dots) {
+    position: static;
+    margin: 24px 0 0;
+  }
+}

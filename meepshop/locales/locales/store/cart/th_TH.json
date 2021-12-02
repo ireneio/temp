@@ -23,5 +23,9 @@
   "NOT_AVAILABLE-warning": "โปรดลบการซื้อสินค้า",
   "OUT_OF_STOCK-warning": "กรุณาลบออกสินค้าสต็อก",
   "LIMIT_EXCEEDED": "เกินปริมาณการซื้อ",
-  "MINIMUM_NOT_REACHED": "ไม่มีการซื้อขั้นต่ำจำนวน"
+  "MINIMUM_NOT_REACHED": "ไม่มีการซื้อขั้นต่ำจำนวน",
+  "upselling": {
+    "title": "กด",
+    "add-to-cart": "เพิ่มลงในรถเข็น"
+  }
 }

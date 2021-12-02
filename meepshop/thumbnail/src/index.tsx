@@ -6,21 +6,31 @@ import { placeholderThumbnail_w120 as placeholderThumbnail } from '@meepshop/ima
 import styles from './styles/index.less';
 
 // graphql typescript
-import { thumbnailFragment } from '@meepshop/types/gqls/meepshop';
+import {
+  thumbnailFragment as thumbnailFragmentType,
+  thumbnailFragment_scaledSrc as thumbnailFragmentScaledSrcType,
+} from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
 interface PropsType {
-  image: thumbnailFragment | null;
+  image: thumbnailFragmentType | null;
   className?: string;
+  source?: keyof thumbnailFragmentScaledSrcType;
+  onClick?: () => void;
 }
 
 // definition
-export default ({ image, className }: PropsType): React.ReactElement => (
-  <div className={`${styles.wrapper} ${className || ''}`}>
+export default ({
+  image,
+  className,
+  source,
+  onClick,
+}: PropsType): React.ReactElement => (
+  <div className={`${styles.wrapper} ${className || ''}`} onClick={onClick}>
     <div
       className={styles.image}
       style={{
-        backgroundImage: `url(${image?.scaledSrc?.w120 ||
+        backgroundImage: `url(${image?.scaledSrc?.[source || 'w120'] ||
           placeholderThumbnail})`,
       }}
     />

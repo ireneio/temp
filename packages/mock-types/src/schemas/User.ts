@@ -28,6 +28,23 @@ export default mock.add<userMockFragment>('User', [
   }),
   () => ({
     __typename: 'User',
+    role: 'GUEST' as ViewerTypeEnum,
+    groupId: null,
+    group: null,
+    name: null,
+    email: null,
+    gender: null,
+    additionalInfo: null,
+    address: null,
+    shippableRecipientAddresses: [],
+    birthday: null,
+    order: {
+      __typename: 'Order',
+      id: 'order-id',
+    },
+  }),
+  () => ({
+    __typename: 'User',
     role: 'MERCHANT' as ViewerTypeEnum,
     groupId: null,
     group: null,

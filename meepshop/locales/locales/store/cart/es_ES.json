@@ -23,5 +23,9 @@
   "NOT_AVAILABLE-warning": "Por favor, elimine la compra de productos todavía",
   "OUT_OF_STOCK-warning": "Por favor, retire fuera de stock",
   "LIMIT_EXCEEDED": "Excediendo la cantidad de compra",
-  "MINIMUM_NOT_REACHED": "No hay cantidad mínima de compras."
+  "MINIMUM_NOT_REACHED": "No hay cantidad mínima de compras.",
+  "upselling": {
+    "title": "prensa",
+    "add-to-cart": "añadir al carrito"
+  }
 }
