@@ -1,0 +1,8 @@
+extend type LineItem {
+  cartId(cartProducts: [CartProductsInput!]!): ID!
+}
+
+input CartProductsInput {
+  productId: ID!
+  cartId: ID!
+}
