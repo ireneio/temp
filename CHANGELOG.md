@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.80.96 (2021-12-02)
+
+#### :bug: Bug Fix
+
+- [#1929](https://github.com/meepshop/meep-lerna/pull/1929) (@meepshop/frontend) Fix version error ([@HsuTing](https://github.com/HsuTing))
+- [#1928](https://github.com/meepshop/meep-lerna/pull/1928) (@meepshop/locales) Fix type ([@happycat6323](https://github.com/happycat6323))
+- [#1927](https://github.com/meepshop/meep-lerna/pull/1927) (@meepshop/locales) Fix useGetLanguage type ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.95 (2021-12-02)
 
 #### :bug: Bug Fix
