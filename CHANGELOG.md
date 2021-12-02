@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.80.95 (2021-12-02)
+
+#### :bug: Bug Fix
+
+- Other
+  - [#1912](https://github.com/meepshop/meep-lerna/pull/1912) 【個別店家】使用 in app browser 在結帳時使用 FB 登入，畫面會一片空白 ([@piovischioh](https://github.com/piovischioh))
+- `client`
+  - [#1919](https://github.com/meepshop/meep-lerna/pull/1919) (@apollo/client) Fix types and add useMutation ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- Other
+  - [#1924](https://github.com/meepshop/meep-lerna/pull/1924) 內部開單 - @store/\* pages 的 gql 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+- `client`
+  - [#1918](https://github.com/meepshop/meep-lerna/pull/1918) 內部開單 - 建立 @apollo/client package ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.94 (2021-12-01)
 
 #### :boom: Breaking Change
