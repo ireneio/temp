@@ -1,11 +1,10 @@
 // typescript import
+import { MutationFunction } from '@apollo/client';
 import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
-
-import { ExecutionResult } from '@apollo/react-common';
 
 // import
 import { useCallback, useEffect } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 import usePayments from './usePayments';
 import useShipments from './useShipments';
@@ -28,7 +27,12 @@ import { computeOrderInLandingPage } from '../gqls/useComputeOrder';
 export interface UseComputeOrderType {
   computeOrder: (
     coupon?: string,
-  ) => Promise<ExecutionResult<computeOrderInLandingPageType>>;
+  ) => ReturnType<
+    MutationFunction<
+      computeOrderInLandingPageType,
+      computeOrderInLandingPageVariables
+    >
+  >;
   order: computeOrderInLandingPageComputeOrderList | null;
   payment: PaymentType | null;
   payments: PaymentType[];

@@ -1,6 +1,6 @@
 // import
 import { useContext, useCallback } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';

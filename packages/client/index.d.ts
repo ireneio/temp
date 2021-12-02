@@ -5,4 +5,10 @@ export {
   MutationFunctionOptions,
   QueryResult,
 } from '@apollo/react-common';
-export { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks';
+export {
+  useQuery,
+  useMutation,
+  useLazyQuery,
+  useApolloClient,
+  MutationTuple,
+} from '@apollo/react-hooks';

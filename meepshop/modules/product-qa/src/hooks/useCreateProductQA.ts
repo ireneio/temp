@@ -1,10 +1,10 @@
 // typescript import
-import { DataProxy } from 'apollo-cache';
+import { DataProxy } from '@apollo/client';
 import { FormInstance } from 'antd/lib/form';
 
 // import
 import { useCallback } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { message } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';

@@ -3,7 +3,7 @@ import { FormListProps } from 'antd/lib/form';
 
 // import
 import { useCallback } from 'react';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useLazyQuery } from '@apollo/client';
 
 import { useTranslation } from '@meepshop/locales';
 
