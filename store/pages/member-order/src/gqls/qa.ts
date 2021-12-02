@@ -1,5 +1,5 @@
 // import
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 // graphql import
 import { useAddNewMessageFragment } from './useAddNewMessage';
@@ -7,6 +7,7 @@ import { useAddNewMessageFragment } from './useAddNewMessage';
 // definition
 export const qaOrderFragment = gql`
   fragment qaOrderFragment on Order {
+    id
     ...useAddNewMessageFragment
   }
 
