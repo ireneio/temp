@@ -1,8 +1,9 @@
 // import
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 // graphql import
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+
 import { priceInPreviewerFragment } from './price';
 import { useProductsColumnsInPreviewerFragment } from './useProductsColumns';
 
