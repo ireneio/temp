@@ -1,9 +1,9 @@
 // import
 import React, { useContext, useRef, useEffect, useState } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
+import { filter } from 'graphql-anywhere';
 import { LeftOutlined } from '@ant-design/icons';
 import transformColor from 'color';
-import { filter } from 'graphql-anywhere';
 
 import {
   Currency as CurrencyContext,

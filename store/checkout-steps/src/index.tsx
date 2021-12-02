@@ -1,6 +1,6 @@
 // import
 import React, { useContext } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import transformColor from 'color';
 
 import { Colors as ColorsContext } from '@meepshop/context';

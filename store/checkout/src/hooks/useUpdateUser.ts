@@ -1,11 +1,10 @@
 // FIXME: should remove, backend should update user when creating user
 // typescript import
-import { DataProxy } from 'apollo-cache';
-import { MutationHookOptions } from '@apollo/react-hooks';
+import { DataProxy, MutationFunctionOptions } from '@apollo/client';
 
 // import
 import { useCallback } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 // graphql typescript
 import {
@@ -22,7 +21,7 @@ import {
 } from '../gqls/useUpdateUser';
 
 // typescript definition
-type OptionType = MutationHookOptions<
+type OptionType = MutationFunctionOptions<
   updateUserAfterCreatingOrderType,
   updateUserAfterCreatingOrderVariables
 >;
@@ -37,6 +36,7 @@ export default (
   >(updateUserAfterCreatingOrder);
 
   return useCallback(
+    // FIXME: should not use MutationFunctionOptions
     async ({ variables, ...options }: OptionType) => {
       const checkoutFields = viewer?.store?.setting?.checkoutFields;
 

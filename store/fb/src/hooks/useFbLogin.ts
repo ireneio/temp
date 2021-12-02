@@ -1,6 +1,6 @@
 // import
 import { useCallback, useContext, useRef } from 'react';
-import { useApolloClient } from '@apollo/react-hooks';
+import { useApolloClient } from '@apollo/client';
 import { notification } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';

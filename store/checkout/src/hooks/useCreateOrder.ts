@@ -1,12 +1,9 @@
 // typescript import
-import {
-  MutationFunction,
-  MutationFunctionOptions,
-} from '@apollo/react-common';
+import { MutationFunction, MutationFunctionOptions } from '@apollo/client';
 
 // import
 import { useCallback } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 // graphql typescript
 import {
@@ -25,6 +22,7 @@ export default (): MutationFunction<createOrderType, createOrderVariables> => {
   >(createOrder);
 
   return useCallback(
+    // FIXME: should not use MutationFunctionOptions
     async ({
       variables,
       ...options

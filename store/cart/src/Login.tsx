@@ -1,6 +1,6 @@
 // import
 import React, { useContext, useState } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { UpOutlined, DownOutlined } from '@ant-design/icons';
 import transformColor from 'color';
 
