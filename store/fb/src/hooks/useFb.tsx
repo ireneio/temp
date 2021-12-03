@@ -45,7 +45,7 @@ export default (
                 [
                   `https://www.facebook.com/${version}/dialog/oauth?`,
                   `client_id=${appId}`,
-                  `redirect_uri=https://${router.domain}/fbAuthForLine`,
+                  `redirect_uri=https://${router.domain}/fb-login`,
                   `scope=email`,
                   `state=${redirectPath || asPathRef.current}`,
                   `response_type=token`,
