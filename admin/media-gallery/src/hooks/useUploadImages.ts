@@ -1,9 +1,8 @@
 // typescript import
-import { DataProxy } from 'apollo-cache';
-import { MutationTuple } from '@apollo/react-hooks';
+import { DataProxy, MutationFunction } from '@apollo/client';
 
 // import
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 // graphql typescript
 import {
@@ -26,7 +25,7 @@ import {
 export default (
   variables: getImagesVariablesType,
   viewer: useUploadImagesUserFragmentType | null,
-): MutationTuple<uploadImagesType, uploadImagesVariablesType>[0] => {
+): MutationFunction<uploadImagesType, uploadImagesVariablesType> => {
   const [mutation] = useMutation<uploadImagesType, uploadImagesVariablesType>(
     uploadImages,
     {

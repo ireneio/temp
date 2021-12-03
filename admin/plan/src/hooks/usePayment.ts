@@ -1,11 +1,11 @@
 // typescript import
-import { QueryResult } from '@apollo/react-common';
+import { QueryResult } from '@apollo/client';
 
 import { PlanType } from './usePlans';
 
 // import
 import { useState, useCallback, useMemo } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { Modal } from 'antd';
 
 import message from '@admin/message';

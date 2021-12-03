@@ -1,11 +1,11 @@
 // typescript import
-import { QueryResult } from '@apollo/react-common';
+import { QueryResult } from '@apollo/client';
 
 import { SelectedPlanType } from './usePayment';
 
 // import
 import { useMemo, useContext } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 import { Currency as CurrencyContext } from '@meepshop/context';
 

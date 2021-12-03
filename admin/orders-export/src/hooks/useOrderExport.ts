@@ -1,6 +1,6 @@
 // import
 import { useMemo, useCallback } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/client';
 
 import useExportFileService from './useExportFileService';
 

@@ -3,12 +3,12 @@ import { NextPage } from 'next';
 
 // import
 import React, { useContext } from 'react';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { DndProvider } from 'react-dnd';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { filter } from 'graphql-anywhere';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
 
 import CookiesContext from '@meepshop/cookies';
 import Page from '@meepshop/page';

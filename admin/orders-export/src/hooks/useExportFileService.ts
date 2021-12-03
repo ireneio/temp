@@ -1,6 +1,6 @@
 // import
 import { useCallback, useMemo } from 'react';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useLazyQuery } from '@apollo/client';
 import { Modal } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';

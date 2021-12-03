@@ -3,7 +3,7 @@ import { ComponentProps } from '../constants';
 
 // import
 import { useCallback } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 import { pageSize } from '../constants';
 
