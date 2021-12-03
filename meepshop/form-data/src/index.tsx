@@ -1,6 +1,6 @@
 // import
 import React, { useState, useEffect, useRef } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { useNetworkStatus } from 'react-adaptive-hooks';
 import { emptyFunction } from 'fbjs';
 

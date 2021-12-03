@@ -1,6 +1,6 @@
 // import
 import { useContext, useCallback } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { notification } from 'antd';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';

@@ -1,8 +1,8 @@
 // import
 import { useEffect, useState, useCallback, useRef } from 'react';
-import { useMutation } from '@apollo/react-hooks';
-import { notification } from 'antd';
 import getConfig from 'next/config';
+import { useMutation } from '@apollo/client';
+import { notification } from 'antd';
 import { emptyFunction } from 'fbjs';
 
 // graphql typescript

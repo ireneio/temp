@@ -5,7 +5,7 @@ import { ConvenienceStoresInputType } from '../StoreList';
 
 // import
 import { useCallback } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 // graqhql typescript
 import {

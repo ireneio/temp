@@ -3,7 +3,7 @@ import { CascaderOptionType } from 'antd/lib/cascader';
 
 // import
 import { useCallback } from 'react';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useLazyQuery } from '@apollo/client';
 
 // graphql typescript
 import {

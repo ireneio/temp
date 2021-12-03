@@ -10,5 +10,6 @@ export {
   useMutation,
   useLazyQuery,
   useApolloClient,
+  ApolloProvider,
   MutationTuple,
 } from '@apollo/react-hooks';

@@ -1,6 +1,6 @@
 // import
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { FormOutlined, LoadingOutlined } from '@ant-design/icons';
 import { Form as AntdForm, Spin, Checkbox } from 'antd';
 

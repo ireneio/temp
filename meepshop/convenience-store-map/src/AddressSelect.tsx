@@ -4,7 +4,7 @@ import { ConvenienceStoresInputType } from './StoreList';
 
 // import
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import {
   FileSearchOutlined,
   LoadingOutlined,

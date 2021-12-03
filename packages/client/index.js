@@ -4,6 +4,7 @@ const {
   useMutation,
   useLazyQuery,
   useApolloClient,
+  ApolloProvider,
 } = require('@apollo/react-hooks');
 
 module.exports = {
@@ -12,4 +13,5 @@ module.exports = {
   useMutation,
   useLazyQuery,
   useApolloClient,
+  ApolloProvider,
 };

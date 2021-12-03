@@ -1,10 +1,11 @@
 // typescript import
-import { languageType } from '@meepshop/locales';
 import { RefSelectProps } from 'antd/lib/select';
+
+import { languageType } from '@meepshop/locales';
 
 // import
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { Cascader, Select } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';

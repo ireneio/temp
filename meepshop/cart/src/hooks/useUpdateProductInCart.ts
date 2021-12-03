@@ -1,8 +1,8 @@
 // typescript import
-import { MutationTuple } from '@apollo/react-hooks/lib/types';
+import { MutationFunction } from '@apollo/client';
 
 // import
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 // graphql typescript
 import {
@@ -14,10 +14,10 @@ import {
 import { updateProductInCart } from '../gqls/useUpdateProductInCart';
 
 // definition
-export default (): MutationTuple<
+export default (): MutationFunction<
   updateProductInCartType,
   updateProductInCartVariables
->[0] => {
+> => {
   const [mutation] = useMutation<
     updateProductInCartType,
     updateProductInCartVariables

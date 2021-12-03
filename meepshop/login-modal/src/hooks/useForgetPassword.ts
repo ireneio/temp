@@ -1,6 +1,6 @@
 // import
 import { useCallback } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/client';
 import { notification } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';

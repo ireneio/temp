@@ -1,6 +1,6 @@
 // import
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { emptyFunction } from 'fbjs';
 
 import useAddProductToCart from './hooks/useAddProductToCart';

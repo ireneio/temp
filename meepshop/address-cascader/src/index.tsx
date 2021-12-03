@@ -1,6 +1,6 @@
 // import
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { filter } from 'graphql-anywhere';
 import { Cascader, Select, Input } from 'antd';
 

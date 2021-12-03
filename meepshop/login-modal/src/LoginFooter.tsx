@@ -1,7 +1,7 @@
 // import
 import React, { useState, useContext } from 'react';
+import { useQuery } from '@apollo/client';
 import { Button, Divider } from 'antd';
-import { useQuery } from '@apollo/react-hooks';
 
 import { Colors as ColorsContext, Fb as FbContext } from '@meepshop/context';
 import DraftText from '@meepshop/draft-text';

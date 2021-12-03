@@ -11,7 +11,7 @@ import { apolloErrorType } from './utils/errorLink';
 
 // import
 import React from 'react';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloProvider } from '@apollo/client';
 import { getDataFromTree } from '@apollo/react-ssr';
 import uuid from 'uuid/v4';
 import { serialize } from 'cookie';

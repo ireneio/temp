@@ -7,7 +7,7 @@ import { CookiesType } from '../index';
 
 // import
 import { useState, useEffect, useCallback } from 'react';
-import { useApolloClient } from '@apollo/react-hooks';
+import { useApolloClient } from '@apollo/client';
 import { areEqual } from 'fbjs';
 import cookie from 'js-cookie';
 

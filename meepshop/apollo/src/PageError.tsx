@@ -3,7 +3,7 @@ import { apolloErrorType } from './utils/errorLink';
 
 // import
 import React from 'react';
-import { useApolloClient } from '@apollo/react-hooks';
+import { useApolloClient } from '@apollo/client';
 
 import { useTranslation } from '@meepshop/locales';
 
