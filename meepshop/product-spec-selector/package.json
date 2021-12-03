@@ -4,13 +4,13 @@
   "description": "Use to select product spec",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.96",
+  "version": "0.80.97",
   "main": "./index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "@meepshop/context": "^0.80.95",
-    "@meepshop/hooks": "^0.80.96",
-    "@meepshop/utils": "^0.80.95",
+    "@meepshop/context": "^0.80.97",
+    "@meepshop/hooks": "^0.80.97",
+    "@meepshop/utils": "^0.80.97",
     "d3-hierarchy": "^1.1.6"
   },
   "keywords": ["meepshop", "product spec", "selector"]

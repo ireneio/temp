@@ -4,7 +4,7 @@
   "description": "Temporary package for @apollo/client",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.95",
+  "version": "0.80.97",
   "types": "./index.d.ts",
   "keywords": ["@apollo/client", "refactor"]
 }

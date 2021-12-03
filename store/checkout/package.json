@@ -4,11 +4,11 @@
   "description": "Use to build checkout page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.95",
+  "version": "0.80.97",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/form-data": "^0.80.95"
+    "@meepshop/form-data": "^0.80.97"
   },
   "keywords": ["checkout", "store"]
 }
