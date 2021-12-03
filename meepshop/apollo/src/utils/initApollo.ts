@@ -8,14 +8,13 @@ import { CustomCtxType } from '../types';
 import { errorFilterType } from './errorLink';
 
 // import
+import { split, from, HttpLink } from '@apollo/client';
+import { RetryLink } from '@apollo/client/link/retry';
 import { ApolloClient } from 'apollo-client';
 import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory';
-import { RetryLink } from 'apollo-link-retry';
-import { ApolloLink, split } from 'apollo-link';
-import { HttpLink } from 'apollo-link-http';
 import { createUploadLink } from 'apollo-upload-client';
 import { getMainDefinition } from 'apollo-utilities';
 import { createNetworkStatusNotifier } from 'react-apollo-network-status';
@@ -128,7 +127,7 @@ const create = (
       validatedConvenienceStoreCities.resolvers,
       getDraftText.resolvers(logger),
     ].reduce(mergeResolvers, {}),
-    link: ApolloLink.from([
+    link: from([
       new RetryLink({
         delay: {
           initial: 500,

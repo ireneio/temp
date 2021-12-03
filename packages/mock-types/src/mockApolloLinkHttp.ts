@@ -1,5 +1,5 @@
 // import
-import { SchemaLink } from 'apollo-link-schema';
+import { SchemaLink } from '@apollo/client/link/schema';
 
 import schema from './schema';
 

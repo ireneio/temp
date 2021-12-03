@@ -3,11 +3,9 @@ import { MutationTuple, MutationFunctionOptions } from '@apollo/client';
 
 // import
 import { useMemo, useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation, HttpLink } from '@apollo/client';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
-import { ApolloLink } from 'apollo-link';
 import getConfig from 'next/config';
 
 // graphql typescript
@@ -45,12 +43,10 @@ export default (
         name: 'landing-page',
         version: VERSION,
         cache: new InMemoryCache(),
-        link: ApolloLink.from([
-          new HttpLink({
-            uri: '/api/landing-page/graphql',
-            credentials: 'include',
-          }),
-        ]),
+        link: new HttpLink({
+          uri: '/api/landing-page/graphql',
+          credentials: 'include',
+        }),
       }),
     [],
   );

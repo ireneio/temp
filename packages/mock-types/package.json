@@ -27,7 +27,6 @@
     "@store/currency": "^0.80.97",
     "@store/fb": "^0.80.97",
     "@store/utils": "^0.80.97",
-    "apollo-link-schema": "^1.2.5",
     "date-fns": "^2.15.0",
     "js-combinatorics": "^0.6.1"
   },

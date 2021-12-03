@@ -13,3 +13,5 @@ export {
   ApolloProvider,
   MutationTuple,
 } from '@apollo/react-hooks';
+export { split, from } from 'apollo-link';
+export { HttpLink } from 'apollo-link-http';

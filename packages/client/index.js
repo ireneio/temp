@@ -6,6 +6,8 @@ const {
   useApolloClient,
   ApolloProvider,
 } = require('@apollo/react-hooks');
+const { split, from } = require('apollo-link');
+const { HttpLink } = require('apollo-link-http');
 
 module.exports = {
   gql,
@@ -14,4 +16,7 @@ module.exports = {
   useLazyQuery,
   useApolloClient,
   ApolloProvider,
+  split,
+  from,
+  HttpLink,
 };

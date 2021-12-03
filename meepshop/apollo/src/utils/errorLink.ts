@@ -2,7 +2,7 @@
 import { loggerType } from '@meepshop/logger';
 
 // import
-import { onError } from 'apollo-link-error';
+import { onError } from '@apollo/client/link/error';
 import { notification } from 'antd';
 
 // typescript definition
