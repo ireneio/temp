@@ -1,10 +1,9 @@
 // typescript import
-import { DataProxy } from 'apollo-cache';
-import { MutationHookOptions } from '@apollo/react-hooks';
-import { MutationFunction } from '@apollo/react-common';
+import { DataProxy } from '@apollo/client';
 
 // import
-import { useMutation } from '@apollo/react-hooks';
+import { useCallback } from 'react';
+import { useMutation } from '@apollo/client';
 import { notification } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
@@ -23,70 +22,68 @@ import {
 } from '../gqls/useUpdateRecipientAddress';
 
 // definition
-export default (): MutationFunction<
-  updateRecipientAddressType,
-  updateRecipientAddressVariables
-> => {
+export default (): ((
+  input: updateRecipientAddressVariables['input'],
+) => Promise<void>) => {
   const { t } = useTranslation('member-recipients');
   const [mutation] = useMutation<
     updateRecipientAddressType,
     updateRecipientAddressVariables
   >(updateRecipientAddress);
 
-  return ({
-    variables,
-    ...options
-  }: MutationHookOptions<
-    updateRecipientAddressType,
-    updateRecipientAddressVariables
-  >) =>
-    mutation({
-      ...options,
-      variables,
-      update: (
-        cache: DataProxy,
-        { data }: { data: updateRecipientAddressType },
-      ) => {
-        if (data.updateRecipientAddress.status !== 'OK') {
-          notification.error({ message: t('mutation.failure') });
-          return;
-        }
+  return useCallback(
+    async (input: updateRecipientAddressVariables['input']) => {
+      await mutation({
+        variables: { input },
+        update: (
+          cache: DataProxy,
+          { data }: { data: updateRecipientAddressType },
+        ) => {
+          if (data.updateRecipientAddress.status !== 'OK') {
+            notification.error({ message: t('mutation.failure') });
+            return;
+          }
 
-        const input = variables?.input;
-
-        if (!input) return;
-
-        const { id, countryId, cityId, areaId, ...newRecipientAddress } = input;
-
-        cache.writeFragment<useUpdateRecipientAddressFragmentType>({
-          id,
-          fragment: useUpdateRecipientAddressFragment,
-          data: {
-            ...(newRecipientAddress as useUpdateRecipientAddressFragmentType),
-            __typename: 'RecipientAddress',
+          const {
             id,
-            country: !countryId
-              ? null
-              : {
-                  __typename: 'Country',
-                  id: countryId,
-                },
-            city: !cityId
-              ? null
-              : {
-                  __typename: 'City',
-                  id: cityId,
-                },
-            area: !areaId
-              ? null
-              : {
-                  __typename: 'Area',
-                  id: areaId,
-                },
-          },
-        });
+            countryId,
+            cityId,
+            areaId,
+            ...newRecipientAddress
+          } = input;
 
-        notification.success({ message: t('mutation.success') });
-      },
-    });
+          cache.writeFragment<useUpdateRecipientAddressFragmentType>({
+            id,
+            fragment: useUpdateRecipientAddressFragment,
+            data: {
+              ...(newRecipientAddress as useUpdateRecipientAddressFragmentType),
+              __typename: 'RecipientAddress',
+              id,
+              country: !countryId
+                ? null
+                : {
+                    __typename: 'Country',
+                    id: countryId,
+                  },
+              city: !cityId
+                ? null
+                : {
+                    __typename: 'City',
+                    id: cityId,
+                  },
+              area: !areaId
+                ? null
+                : {
+                    __typename: 'Area',
+                    id: areaId,
+                  },
+            },
+          });
+
+          notification.success({ message: t('mutation.success') });
+        },
+      });
+    },
+    [t, mutation],
+  );
 };

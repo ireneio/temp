@@ -83,9 +83,7 @@ export default (
 
             <span
               className={styles.action}
-              onClick={() =>
-                deleteRecipientAddress({ variables: { input: { id: value } } })
-              }
+              onClick={() => deleteRecipientAddress(value)}
             >
               {t('remove')}
             </span>
@@ -145,11 +143,7 @@ export default (
 
               <span
                 className={styles.action}
-                onClick={() =>
-                  deleteRecipientAddress({
-                    variables: { input: { id: value } },
-                  })
-                }
+                onClick={() => deleteRecipientAddress(value)}
               >
                 {t('remove')}
               </span>

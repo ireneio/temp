@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 
 // import
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Divider, Button } from 'antd';
 

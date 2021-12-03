@@ -1,9 +1,9 @@
 // typescript import
-import { DataProxy } from 'apollo-cache';
+import { DataProxy } from '@apollo/client';
 
 // import
 import { useCallback, useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { formatRFC3339 } from 'date-fns';
 import { notification } from 'antd';
 

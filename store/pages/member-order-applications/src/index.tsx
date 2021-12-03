@@ -1,6 +1,6 @@
 // import
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 import { format } from 'date-fns';

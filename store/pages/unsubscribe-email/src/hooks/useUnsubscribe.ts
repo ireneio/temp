@@ -1,6 +1,6 @@
 // improt
 import { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 import { useRouter } from '@meepshop/link';
 

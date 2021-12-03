@@ -1,6 +1,6 @@
 // import
 import { useMemo, useCallback, useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { notification } from 'antd';
 
 import { useEcpay } from '@meepshop/hooks';

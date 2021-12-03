@@ -1,10 +1,9 @@
 // typescript import
-import { DataProxy } from 'apollo-cache';
-import { MutationHookOptions } from '@apollo/react-hooks';
-import { MutationFunction } from '@apollo/react-common';
+import { DataProxy } from '@apollo/client';
 
 // import
-import { useMutation } from '@apollo/react-hooks';
+import { useCallback } from 'react';
+import { useMutation } from '@apollo/client';
 import { notification } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
@@ -26,90 +25,85 @@ import {
 } from '../gqls/useAddRecipientAddress';
 
 // definition
-export default (): MutationFunction<
-  addRecipientAddressType,
-  addRecipientAddressVariablesType
-> => {
+export default (): ((
+  input: addRecipientAddressVariablesType['input'],
+) => Promise<void>) => {
   const { t } = useTranslation('member-recipients');
   const [mutation] = useMutation<
     addRecipientAddressType,
     addRecipientAddressVariablesType
   >(addRecipientAddress);
 
-  return ({
-    variables,
-    ...options
-  }: MutationHookOptions<
-    addRecipientAddressType,
-    addRecipientAddressVariablesType
-  >) =>
-    mutation({
-      ...options,
-      variables,
-      update: (
-        cache: DataProxy,
-        { data }: { data: addRecipientAddressType },
-      ) => {
-        if (data.addRecipientAddress.status !== 'OK') {
-          notification.error({
-            message: t('mutation.failure'),
+  return useCallback(
+    async (input: addRecipientAddressVariablesType['input']) => {
+      await mutation({
+        variables: { input },
+        update: (
+          cache: DataProxy,
+          { data }: { data: addRecipientAddressType },
+        ) => {
+          if (data.addRecipientAddress.status !== 'OK') {
+            notification.error({
+              message: t('mutation.failure'),
+            });
+            return;
+          }
+
+          const { recipientAddressId } = data.addRecipientAddress;
+          const useAddRecipientAddressCache = cache.readQuery<
+            useAddRecipientAddressGetCacheType
+          >({
+            query: useAddRecipientAddressGetCache,
           });
-          return;
-        }
 
-        const { recipientAddressId } = data.addRecipientAddress;
-        const useAddRecipientAddressCache = cache.readQuery<
-          useAddRecipientAddressGetCacheType
-        >({
-          query: useAddRecipientAddressGetCache,
-        });
+          const { id, shippableRecipientAddresses } =
+            useAddRecipientAddressCache?.viewer || {};
 
-        const input = variables?.input;
-        const { id: viewerId, shippableRecipientAddresses } =
-          useAddRecipientAddressCache?.viewer || {};
+          if (!id || !shippableRecipientAddresses) return;
 
-        if (!input || !viewerId || !shippableRecipientAddresses) return;
+          const { countryId, cityId, areaId, ...newRecipientAddress } = input;
 
-        const { countryId, cityId, areaId, ...newRecipientAddress } = input;
+          cache.writeFragment<useAddRecipientAddressFragmentType>({
+            id,
+            fragment: useAddRecipientAddressFragment,
+            data: {
+              __typename: 'User',
+              id,
+              shippableRecipientAddresses: !recipientAddressId
+                ? shippableRecipientAddresses
+                : [
+                    ...shippableRecipientAddresses,
+                    {
+                      ...(newRecipientAddress as useAddRecipientAddressFragmentShippableRecipientAddresses),
+                      __typename: 'RecipientAddress',
+                      id: recipientAddressId,
+                      country: !countryId
+                        ? null
+                        : {
+                            __typename: 'Country',
+                            id: countryId,
+                          },
+                      city: !cityId
+                        ? null
+                        : {
+                            __typename: 'City',
+                            id: cityId,
+                          },
+                      area: !areaId
+                        ? null
+                        : {
+                            __typename: 'Area',
+                            id: areaId,
+                          },
+                    },
+                  ],
+            },
+          });
 
-        cache.writeFragment<useAddRecipientAddressFragmentType>({
-          id: viewerId,
-          fragment: useAddRecipientAddressFragment,
-          data: {
-            __typename: 'User',
-            id: viewerId,
-            shippableRecipientAddresses: !recipientAddressId
-              ? shippableRecipientAddresses
-              : [
-                  ...shippableRecipientAddresses,
-                  {
-                    ...(newRecipientAddress as useAddRecipientAddressFragmentShippableRecipientAddresses),
-                    __typename: 'RecipientAddress',
-                    id: recipientAddressId,
-                    country: !countryId
-                      ? null
-                      : {
-                          __typename: 'Country',
-                          id: countryId,
-                        },
-                    city: !cityId
-                      ? null
-                      : {
-                          __typename: 'City',
-                          id: cityId,
-                        },
-                    area: !areaId
-                      ? null
-                      : {
-                          __typename: 'Area',
-                          id: areaId,
-                        },
-                  },
-                ],
-          },
-        });
-
-        notification.success({ message: t('mutation.success') });
-      },
-    });
+          notification.success({ message: t('mutation.success') });
+        },
+      });
+    },
+    [t, mutation],
+  );
 };

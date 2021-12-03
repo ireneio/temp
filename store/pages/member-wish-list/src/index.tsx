@@ -1,9 +1,9 @@
 // import
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
+import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Table } from 'antd';
-import { filter } from 'graphql-anywhere';
 
 import useColumns from './hooks/useColumns';
 import styles from './styles/index.less';

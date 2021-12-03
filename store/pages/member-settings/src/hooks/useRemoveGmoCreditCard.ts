@@ -1,9 +1,8 @@
 // typescript import
-import { DataProxy } from 'apollo-cache';
-import { MutationTuple } from '@apollo/react-hooks';
+import { DataProxy, MutationFunction } from '@apollo/client';
 
 // import
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { notification } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
@@ -23,7 +22,7 @@ import {
 // definition
 export default (
   id: string | null,
-): MutationTuple<removeGmoCreditCardType, unknown>[0] => {
+): MutationFunction<removeGmoCreditCardType> => {
   const { t } = useTranslation('member-settings');
   const [mutation] = useMutation<removeGmoCreditCardType>(removeGmoCreditCard, {
     update: (cache: DataProxy, { data }) => {

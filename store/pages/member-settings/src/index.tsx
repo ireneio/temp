@@ -1,6 +1,6 @@
 // import
 import React, { useContext } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Form, Spin, Input, Select, Checkbox, Button } from 'antd';
 import { format } from 'date-fns';

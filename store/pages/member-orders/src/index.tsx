@@ -1,6 +1,7 @@
 // import
 import React, { useContext } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
+import { filter } from 'graphql-anywhere';
 import {
   LeftOutlined,
   LoadingOutlined,
@@ -9,7 +10,6 @@ import {
 import { Spin, Table } from 'antd';
 import { emptyFunction } from 'fbjs';
 import transformColor from 'color';
-import { filter } from 'graphql-anywhere';
 
 import { Colors as ColorsContext } from '@meepshop/context';
 

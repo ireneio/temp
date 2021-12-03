@@ -33,28 +33,20 @@ export default (
     }) => {
       if (!id)
         await addRecipientAddress({
-          variables: {
-            input: {
-              ...input,
-              countryId,
-              cityId,
-              areaId,
-              zipCode,
-            },
-          },
+          ...input,
+          countryId,
+          cityId,
+          areaId,
+          zipCode,
         });
       else
         await updateRecipientAddress({
-          variables: {
-            input: {
-              ...input,
-              id,
-              countryId,
-              cityId,
-              areaId,
-              zipCode,
-            },
-          },
+          ...input,
+          id,
+          countryId,
+          cityId,
+          areaId,
+          zipCode,
         });
 
       reset();

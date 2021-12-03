@@ -93,7 +93,7 @@ export default (
         render: (value: useColumnsWishlistProductFragment['productId']) => (
           <CloseOutlined
             className={styles.icon}
-            onClick={() => remove({ productId: value })}
+            onClick={() => remove(value)}
           />
         ),
       },

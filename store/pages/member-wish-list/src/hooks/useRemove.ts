@@ -1,9 +1,6 @@
-// typescript import
-import { ExecutionResult } from '@apollo/react-common';
-
 // import
 import { useCallback } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -23,9 +20,7 @@ import {
 // definition
 export default (
   user: useRemoveFragmentType | null,
-): ((
-  input: removeProductFromWishListVariables['input'],
-) => Promise<ExecutionResult<removeProductFromWishListType>>) => {
+): ((productId: string) => void) => {
   const { t } = useTranslation('member-wish-list');
   const [mutation] = useMutation<
     removeProductFromWishListType,
@@ -33,9 +28,9 @@ export default (
   >(removeProductFromWishList);
 
   return useCallback(
-    (input: removeProductFromWishListVariables['input']) =>
+    (productId: string) => {
       mutation({
-        variables: { input },
+        variables: { input: { productId } },
         update: (cache, { data }) => {
           const userId = user?.id;
 
@@ -51,13 +46,14 @@ export default (
               __typename: 'User',
               id: userId,
               wishList: (user?.wishList || []).filter(
-                product => product?.productId !== input.productId,
+                product => product?.productId !== productId,
               ),
             },
           });
           t('success');
         },
-      }),
+      });
+    },
     [user, t, mutation],
   );
 };

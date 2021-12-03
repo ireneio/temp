@@ -1,6 +1,6 @@
 // import
 import { useCallback } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { message } from 'antd';
 
 import { useRouter } from '@meepshop/link';

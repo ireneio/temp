@@ -1,8 +1,8 @@
 // import
 import { useCallback, useContext } from 'react';
+import { useMutation } from '@apollo/client';
 import { message } from 'antd';
 
-import { useMutation } from '@apollo/react-hooks';
 import { useTranslation } from '@meepshop/locales';
 import FormDataContext from '@meepshop/form-data';
 
