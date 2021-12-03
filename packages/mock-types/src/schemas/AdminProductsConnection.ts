@@ -42,14 +42,14 @@ export default mock.add<
             ? {
                 __typename: 'AdminProductEdge',
                 node: {
-                  __typename: 'AdminProduct',
+                  __typename: 'Product',
                   id: 'order-id',
                 },
               }
             : {
                 __typename: 'AdminProductEdge',
                 node: {
-                  __typename: 'AdminProduct',
+                  __typename: 'Product',
                   id: uuid(),
                 },
               },

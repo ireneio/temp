@@ -2,8 +2,8 @@
 import { gql } from '@apollo/client';
 
 // definition
-export const adminProductMockFragment = gql`
-  fragment adminProductMockFragment on AdminProduct {
+export const productMockFragment = gql`
+  fragment productMockFragment on Product {
     id
     status
     title {

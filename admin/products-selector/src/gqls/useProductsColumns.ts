@@ -7,7 +7,7 @@ import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 
 // definition
 export const useProductsColumnsFragment = gql`
-  fragment useProductsColumnsFragment on AdminProduct {
+  fragment useProductsColumnsFragment on Product {
     id
     status
     title {

@@ -2,17 +2,17 @@
 import mock from '../mock';
 
 // graphql typescript
-import { adminProductMockFragment } from '@meepshop/types/gqls/meepshop';
+import { productMockFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default mock.add<
-  adminProductMockFragment,
+  productMockFragment,
   {
     node: { id: string };
   }
->('AdminProduct', [
+>('Product', [
   obj => ({
-    __typename: 'AdminProduct',
+    __typename: 'Product',
     id: obj?.node?.id || 'product id',
     status: 1,
     title: {
@@ -23,7 +23,7 @@ export default mock.add<
     },
     variants: [
       {
-        __typename: 'AdminVariant',
+        __typename: 'Variant',
         id: 'variant id',
         sku: '1111-232061',
         stock: 99,
@@ -32,7 +32,7 @@ export default mock.add<
     ],
   }),
   obj => ({
-    __typename: 'AdminProduct',
+    __typename: 'Product',
     id: obj?.node?.id || 'product id',
     status: 1,
     title: {
@@ -43,7 +43,7 @@ export default mock.add<
     },
     variants: [
       {
-        __typename: 'AdminVariant',
+        __typename: 'Variant',
         id: 'variant id',
         sku: null,
         stock: 99,

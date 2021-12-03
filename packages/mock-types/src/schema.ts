@@ -11,7 +11,6 @@ import schemaJSON from '../schema';
 
 import Address from './schemas/Address';
 import AddressService from './schemas/AddressService';
-import AdminProduct from './schemas/AdminProduct';
 import AdminProductsConnection from './schemas/AdminProductsConnection';
 import Area from './schemas/Area';
 import Authority from './schemas/Authority';
@@ -67,6 +66,7 @@ import permissionServiceObj from './schemas/permissionServiceObj';
 import permissionStoreObj from './schemas/permissionStoreObj';
 import permissionUserObj from './schemas/permissionUserObj';
 import priceObjectType from './schemas/priceObjectType';
+import Product from './schemas/Product';
 import productsObjectType from './schemas/productsObjectType';
 import RecipientAddress from './schemas/RecipientAddress';
 import RecipientObjectType from './schemas/RecipientObjectType';
@@ -101,7 +101,6 @@ export default addMocksToSchema({
   mocks: {
     Address,
     AddressService,
-    AdminProduct,
     AdminProductsConnection,
     Area,
     Authority,
@@ -157,6 +156,7 @@ export default addMocksToSchema({
     permissionStoreObj,
     permissionUserObj,
     priceObjectType,
+    Product,
     productsObjectType,
     RecipientAddress,
     RecipientObjectType,
