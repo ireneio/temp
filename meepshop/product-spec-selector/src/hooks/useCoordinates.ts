@@ -42,12 +42,11 @@ const findVariant = (
 ): useCoordinatesFragmentVariants | null => {
   if (coordinate === undefined) return null;
 
-  if (coordinate > (variantsTree?.length || 0) - 1)
-    return variantsTree?.[0].data.variant || null;
+  const index = coordinate > (variantsTree?.length || 0) - 1 ? 0 : coordinate;
 
   return (
-    variantsTree?.[coordinate].data.variant ||
-    findVariant(variantsTree?.[coordinate].children, coordinates)
+    variantsTree?.[index].data.variant ||
+    findVariant(variantsTree?.[index].children, coordinates)
   );
 };
 
