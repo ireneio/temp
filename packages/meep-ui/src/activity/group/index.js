@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 import withHook from '@store/utils/lib/withHook';
 import { withTranslation } from '@meepshop/locales';

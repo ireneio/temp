@@ -1,5 +1,5 @@
 // typescript import
-import { QueryResult } from '@apollo/react-common';
+import { QueryResult } from '@apollo/client';
 
 // import
 import { useCallback } from 'react';

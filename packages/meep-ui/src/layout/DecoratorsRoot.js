@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import React, { useContext } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 import {
   Apps as AppsContext,

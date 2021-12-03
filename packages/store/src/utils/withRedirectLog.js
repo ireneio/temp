@@ -1,5 +1,5 @@
 // import
-import { useApolloClient } from '@apollo/react-hooks';
+import { useApolloClient } from '@apollo/client';
 
 import withHook from '@store/utils/lib/withHook';
 

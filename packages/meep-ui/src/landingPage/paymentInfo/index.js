@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Form, Select, InputNumber, Cascader } from 'antd';
 import { getElementPosition } from 'fbjs';
 import uuid from 'uuid';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 import { withTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';

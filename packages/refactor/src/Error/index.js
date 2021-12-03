@@ -1,6 +1,6 @@
 // import
 import React from 'react';
-import { useApolloClient } from '@apollo/react-hooks';
+import { useApolloClient } from '@apollo/client';
 
 import { log } from '@meepshop/logger/lib/gqls/log';
 import PageError from '@meepshop/apollo/lib/PageError';

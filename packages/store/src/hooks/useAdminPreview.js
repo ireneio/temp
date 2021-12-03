@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 import CookiesContext from '@meepshop/cookies';
 import { useRouter } from '@meepshop/link';

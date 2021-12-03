@@ -5,7 +5,7 @@ import { LeftOutlined } from '@ant-design/icons';
 import { Form, InputNumber, Button, Modal, notification } from 'antd';
 import uuid from 'uuid';
 import transformColor from 'color';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/locales';
