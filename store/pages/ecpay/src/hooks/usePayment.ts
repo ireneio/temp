@@ -20,6 +20,7 @@ import { ecPay2CreatePayment } from '../gqls/usePayment';
 
 // definition
 export default (
+  token: string,
   viewer: paymentFragmentType | null,
   setPaymentInfo: (paymentInfo: ecPay2CreatePaymentEcPay2CreatePayment) => void,
 ): {
@@ -30,11 +31,11 @@ export default (
   ecPay2CreatePayment: () => void;
 } => {
   const { i18n } = useTranslation('ecpay');
-  const { query, push } = useRouter();
+  const { query, push, pathname } = useRouter();
   const [isRedirecting, setIsRedirecting] = useState(false);
 
   const { ecpayLoading, getPaymentInfo } = useEcpay({
-    token: query.token as string,
+    token,
     isNeedDefaultLoading: true,
     language: i18n.language === 'zh_TW' ? 'zhTW' : 'enUS',
   });
@@ -53,7 +54,13 @@ export default (
           break;
 
         case 'OrderPaymentCredit':
-          push(`/checkout/thank-you-page/${viewer.order.id}`);
+          // FIXME: landing-page issue
+          push(`
+          ${
+            /^\/landing-page/.test(pathname) ? '/landing-page' : '/checkout'
+          }/thank-you-page/${viewer.order.id}${
+            query.redirectUrl ? `?redirectUrl=${query.redirectUrl}` : ''
+          }`);
           break;
 
         case 'OrderPaymentAtm':
@@ -63,15 +70,27 @@ export default (
           break;
 
         case 'ECPay2CreatePaymentError':
-          push(
-            `/checkout/thank-you-page/${viewer.order.id}?error=${data.ecPay2CreatePayment.code}&message=${data.ecPay2CreatePayment.message}`,
-          );
+          // FIXME: landing-page issue
+          push(`
+          ${
+            /^\/landing-page/.test(pathname) ? '/landing-page' : '/checkout'
+          }/thank-you-page/${viewer.order.id}?error=${
+            data.ecPay2CreatePayment.code
+          }&message=${data.ecPay2CreatePayment.message}${
+            query.redirectUrl ? `&redirectUrl=${query.redirectUrl}` : ''
+          }`);
           break;
 
         case 'UnhandledECPay2CreatePaymentError':
-          push(
-            `/checkout/thank-you-page/${viewer.order.id}?error=${data.ecPay2CreatePayment.__typename}&message=${data.ecPay2CreatePayment.error}`,
-          );
+          // FIXME: landing-page issue
+          push(`
+          ${
+            /^\/landing-page/.test(pathname) ? '/landing-page' : '/checkout'
+          }/thank-you-page/${viewer.order.id}?error=${
+            data.ecPay2CreatePayment.__typename
+          }&message=${data.ecPay2CreatePayment.error}${
+            query.redirectUrl ? `&redirectUrl=${query.redirectUrl}` : ''
+          }`);
           break;
 
         default:

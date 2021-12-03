@@ -4,7 +4,7 @@ import { Divider, Button } from 'antd';
 import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
-import Link from '@meepshop/link';
+import Link, { useRouter } from '@meepshop/link';
 import { Currency as CurrencyContext } from '@meepshop/context';
 import { PaymentInfoIcon } from '@meepshop/icons';
 
@@ -26,6 +26,7 @@ export default React.memo(
   ({ viewer, type, expireDate, children }: PropsType) => {
     const { t } = useTranslation('ecpay');
     const { c } = useContext(CurrencyContext);
+    const { query, pathname } = useRouter();
 
     const storeName = viewer.store?.description?.name || null;
     const orderId = viewer.order?.id;
@@ -75,7 +76,14 @@ export default React.memo(
 
         <div className={styles.hints}>{t('info.hints')}</div>
 
-        <Link href={`/checkout/thank-you-page/${orderId}`}>
+        {/* FIXME: landing-page issue */}
+        <Link
+          href={`${
+            /^\/landing-page/.test(pathname) ? '/landing-page' : '/checkout'
+          }/thank-you-page/${orderId}${
+            query.redirectUrl ? `?redirectUrl=${query.redirectUrl}` : ''
+          }`}
+        >
           <Button>{t('info.button')}</Button>
         </Link>
       </div>

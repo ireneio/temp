@@ -10,11 +10,16 @@ import PaymentFail from './PaymentFail';
 // Use to copy mixin.less
 import './styles/mixin.less';
 
+// typescript definition
+interface PropsType {
+  orderId: string;
+}
+
 // definition
 // TODO: should use getInitialProps
 export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];
 
-export default React.memo(() => {
+export default React.memo(({ orderId }: PropsType) => {
   const role = useContext(RoleContext);
   const { push, query } = useRouter();
   const isShopper = role === 'SHOPPER';
@@ -27,5 +32,5 @@ export default React.memo(() => {
 
   if (query.error || query.message) return <PaymentFail />;
 
-  return <Order />;
+  return <Order orderId={orderId} />;
 });

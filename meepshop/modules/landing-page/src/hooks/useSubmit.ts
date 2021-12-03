@@ -152,7 +152,7 @@ export default ({
                           redirectUrl: (() => {
                             switch (payment?.template) {
                               case 'allpay':
-                                return `https://${domain}/api/redircet${href}`;
+                                return `https://${domain}/api/redirect${href}`;
                               case 'ecpay2':
                                 return `https://${domain}/api/redirect/landing-page/thank-you-page/[orderId]?redirectUrl=${href}`;
                               default:
@@ -232,8 +232,6 @@ export default ({
               error: createOrderError,
               formData,
               paymentServiceTradeToken,
-              priceInfo,
-              paymentInfo,
             } = data?.createOrder?.order || {};
 
             if (errors || createOrderError || !id) {
@@ -282,7 +280,7 @@ export default ({
             // ecpay 2.0
             if (paymentServiceTradeToken) {
               push(
-                `/ecpay/${paymentServiceTradeToken}/${id}?orderNo=${orderNo}&total=${priceInfo?.total}&template=${paymentInfo?.list?.[0]?.template}&choosePayment=${paymentInfo?.list?.[0]?.accountInfo?.ecpay2?.ChoosePayment}`,
+                `/landing-page/ecpay/${paymentServiceTradeToken}/${id}?redirectUrl=${href}`,
               );
               return;
             }

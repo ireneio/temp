@@ -24,6 +24,7 @@ import {
 
 // typescript definition
 interface PropsType {
+  token: string;
   viewer: paymentFragmentType;
   setPaymentInfo: (paymentInfo: ecPay2CreatePaymentEcPay2CreatePayment) => void;
 }
@@ -33,7 +34,7 @@ const {
   publicRuntimeConfig: { ENV },
 } = getConfig();
 
-export default React.memo(({ viewer, setPaymentInfo }: PropsType) => {
+export default React.memo(({ token, viewer, setPaymentInfo }: PropsType) => {
   const { t } = useTranslation('ecpay');
   const { c } = useContext(CurrencyContext);
   const { isMobile } = useContext(SensorContext);
@@ -44,7 +45,7 @@ export default React.memo(({ viewer, setPaymentInfo }: PropsType) => {
     loading,
     isRedirecting,
     ecPay2CreatePayment,
-  } = usePayment(viewer, setPaymentInfo);
+  } = usePayment(token, viewer, setPaymentInfo);
   const [isAffixed, setIsAffixed] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 

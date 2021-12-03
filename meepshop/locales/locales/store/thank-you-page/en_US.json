@@ -40,6 +40,7 @@
     "completed": "Payup"
   },
   "return": "Back to the homepage",
+  "back": "Return to the store",
   "back-to-cart": "Back to cart",
   "order": "Check My Order",
   "copy": "Copy the URL",

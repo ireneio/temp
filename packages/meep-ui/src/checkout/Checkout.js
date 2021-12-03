@@ -203,12 +203,9 @@ export default class Checkout extends React.PureComponent {
               }),
           payment: {
             paymentId,
-            // FIXME: wait T9703
-            // redirectUrl:
-            //   choosePayment.template === 'allpay' ||
-            //   choosePayment.template === 'ecpay2'
-            //     ? `https://${domain}/api/redirect/checkout/thank-you-page/[orderId]`
-            //     : `https://${domain}/checkout/thank-you-page/[orderId]`,
+            redirectUrl: ['allpay', 'ecpay2'].includes(choosePayment.template)
+              ? `https://${domain}/api/redirect/checkout/thank-you-page/[orderId]`
+              : `https://${domain}/checkout/thank-you-page/[orderId]`,
             ...(choosePayment.template !== 'gmo' ||
             choosePayment.accountInfo.gmo.paymentType !== 'Credit'
               ? {}

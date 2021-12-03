@@ -5,6 +5,7 @@ import { AdTrackType } from '@meepshop/context';
 import { useEffect, useContext, useRef } from 'react';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
+import { useRouter } from '@meepshop/link';
 
 // graphql typescript
 import { useAdTrackFragment as useAdTrackFragmentType } from '@meepshop/types/gqls/store';
@@ -14,11 +15,13 @@ type productsType = Parameters<AdTrackType['purchase']>[0]['products'];
 
 // definition
 export default (order: useAdTrackFragmentType | null): void => {
+  const { pathname } = useRouter();
   const triggeredRef = useRef<boolean>(false);
   const adTrack = useContext(AdTrackContext);
 
   useEffect(() => {
-    if (order && !triggeredRef.current) {
+    // FIXME: landing-page issue
+    if (!/^\/landing-page/.test(pathname) && order && !triggeredRef.current) {
       // SHOULD_NOT_BE_NULL
       adTrack.purchase({
         orderNo: order.orderNo || '',
@@ -31,5 +34,5 @@ export default (order: useAdTrackFragmentType | null): void => {
 
       triggeredRef.current = true;
     }
-  }, [order, adTrack]);
+  }, [order, adTrack, pathname]);
 };

@@ -12,9 +12,17 @@ import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class ThankYouPage extends React.Component {
   static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent } = context;
+    const {
+      XMeepshopDomain,
+      userAgent,
+      query: { orderId },
+    } = context;
+
+    // FIXME: should use get getServerSideProps return notFound
+    if (!orderId) throw new Error('[FIXME] orderId is undefined');
 
     return {
+      orderId,
       userAgent,
       XMeepshopDomain,
       namespacesRequired,
@@ -28,11 +36,11 @@ class ThankYouPage extends React.Component {
   static defaultProps = { error: null };
 
   render() {
-    const { error } = this.props;
+    const { error, orderId } = this.props;
     /* Display Error View */
     if (error) return <Error error={error} />;
 
-    return <ThankYouPageView />;
+    return <ThankYouPageView orderId={orderId} />;
   }
 }
 

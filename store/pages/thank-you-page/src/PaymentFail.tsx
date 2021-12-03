@@ -25,6 +25,10 @@ export default React.memo(() => {
     window.location.href = '/';
   }, []);
 
+  const goToRedirectUrl = useCallback(() => {
+    window.location.href = query.redirectUrl as string;
+  }, [query]);
+
   const errorCode = query.error || (query.orderId as string).split('=')[1];
   const errorMessage = query.message;
 
@@ -51,9 +55,17 @@ export default React.memo(() => {
         </div>
 
         <div className={styles.button}>
-          <Button onClick={() => goToCheckout()}>{t('back-to-cart')}</Button>
+          {query.redirectUrl ? (
+            <Button onClick={() => goToRedirectUrl()}>{t('back')}</Button>
+          ) : (
+            <>
+              <Button onClick={() => goToCheckout()}>
+                {t('back-to-cart')}
+              </Button>
 
-          <Button onClick={() => goToHome()}>{t('return')}</Button>
+              <Button onClick={() => goToHome()}>{t('return')}</Button>
+            </>
+          )}
         </div>
 
         <div className={styles.hints}>{t('hints')}</div>
@@ -67,13 +79,13 @@ export default React.memo(() => {
               color: ${colors[3]};
             }
 
-            .${styles.button} .ant-btn:first-child {
+            .${styles.button} .ant-btn:nth-child(1) {
               color: ${colors[0]};
               background-color: ${colors[3]};
               border-color: ${colors[3]};
             }
 
-            .${styles.button} .ant-btn:last-child {
+            .${styles.button} .ant-btn:nth-child(2) {
               color: ${colors[3]};
               background-color: ${colors[0]};
               border-color: ${colors[3]};

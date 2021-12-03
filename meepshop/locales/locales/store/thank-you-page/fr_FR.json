@@ -40,6 +40,7 @@
     "completed": "Payer"
   },
   "return": "Retour à la page d'accueil",
+  "back": "Retourner au magasin",
   "back-to-cart": "Retour au panier",
   "order": "Vérifier ma commande",
   "copy": "Copiez l'URL",

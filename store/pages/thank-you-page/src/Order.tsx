@@ -24,15 +24,20 @@ import { getOrderInThankYouPage as getOrderInThankYouPageType } from '@meepshop/
 import { getOrderInThankYouPage } from './gqls';
 import { useAdTrackFragment } from './gqls/useAdTrack';
 
+// typescript definition
+interface PropsType {
+  orderId: string;
+}
+
 // definition
-export default React.memo(() => {
+export default React.memo(({ orderId }: PropsType) => {
   const colors = useContext(ColorsContext);
   const { t } = useTranslation('thank-you-page');
-  const router = useRouter();
+  const { query } = useRouter();
   const { loading, data } = useQuery<getOrderInThankYouPageType>(
     getOrderInThankYouPage,
     {
-      variables: { orderId: router.query.orderId },
+      variables: { orderId },
     },
   );
   const info = useInfo(data?.viewer || null);
@@ -67,13 +72,21 @@ export default React.memo(() => {
         )}
 
         <div className={styles.button}>
-          <Link href="/">
-            <Button>{t('return')}</Button>
-          </Link>
+          {query.redirectUrl ? (
+            <Link href={query.redirectUrl as string}>
+              <Button>{t('back')}</Button>
+            </Link>
+          ) : (
+            <>
+              <Link href="/">
+                <Button>{t('return')}</Button>
+              </Link>
 
-          <Link href={`/order/${order.id}`}>
-            <Button>{t('order')}</Button>
-          </Link>
+              <Link href={`/order/${order.id}`}>
+                <Button>{t('order')}</Button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
 
@@ -89,13 +102,13 @@ export default React.memo(() => {
               color: ${transformColor(colors[3]).alpha(0.8)};
             }
 
-            .${styles.button} .ant-btn:first-child {
+            .${styles.button} .ant-btn:nth-child(1) {
               color: ${colors[0]};
               background-color: ${colors[3]};
               border-color: ${colors[3]};
             }
 
-            .${styles.button} .ant-btn:last-child {
+            .${styles.button} .ant-btn:nth-child(2) {
               color: ${colors[3]};
               background-color: ${colors[0]};
               border-color: ${colors[3]};
