@@ -1,11 +1,11 @@
 // typescript import
-import { QueryResult } from '@apollo/react-common';
+import { QueryResult } from '@apollo/client';
 
 // import
 import { useCallback, useState, useEffect } from 'react';
-import { Modal } from 'antd';
 import Router from 'next/router';
-import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { useMutation, useApolloClient } from '@apollo/client';
+import { Modal } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 

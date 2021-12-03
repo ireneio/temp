@@ -3,9 +3,9 @@ import { NextPage } from 'next';
 
 // import
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { Form, Button } from 'antd';
+import { useQuery } from '@apollo/client';
 import { filter } from 'graphql-anywhere';
+import { Form, Button } from 'antd';
 import { areEqual } from 'fbjs';
 
 import { useTranslation } from '@meepshop/locales';

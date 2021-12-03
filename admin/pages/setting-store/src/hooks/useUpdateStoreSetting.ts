@@ -1,9 +1,9 @@
 // typescript import
-import { DataProxy } from 'apollo-cache';
+import { DataProxy } from '@apollo/client';
 
 // import
 import { useCallback } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 import { useTranslation } from '@meepshop/locales';
 

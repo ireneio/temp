@@ -1,9 +1,8 @@
 // typescript import
-import { DataProxy } from 'apollo-cache';
-import { MutationTuple } from '@apollo/react-hooks';
+import { DataProxy, MutationFunction } from '@apollo/client';
 
 // import
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 import message from '@admin/message';
 import { useTranslation } from '@meepshop/locales';
@@ -20,7 +19,7 @@ import { setGtagSettingsList } from '../gqls/useSetGtagSettingsList';
 // definition
 export default (
   callback: (cache: DataProxy, data?: setGtagSettingsListType | null) => void,
-): MutationTuple<setGtagSettingsListType, setGtagSettingsListVariables>[0] => {
+): MutationFunction<setGtagSettingsListType, setGtagSettingsListVariables> => {
   const { t } = useTranslation('web-track');
   const [mutation] = useMutation<
     setGtagSettingsListType,

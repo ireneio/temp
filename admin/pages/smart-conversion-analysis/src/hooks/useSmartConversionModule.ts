@@ -3,7 +3,7 @@ import { ApolloError } from 'apollo-client';
 
 // import
 import { useEffect } from 'react';
-import { useQuery, useMutation, useLazyQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
 
 // graphql typescript
 import {

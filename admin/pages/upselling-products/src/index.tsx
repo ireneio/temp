@@ -3,10 +3,10 @@ import { NextPage } from 'next';
 
 // import
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { Form, Spin, Button, Radio, Input } from 'antd';
-import { LoadingOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { useQuery } from '@apollo/client';
 import { filter } from 'graphql-anywhere';
+import { LoadingOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { Form, Spin, Button, Radio, Input } from 'antd';
 import { areEqual } from 'fbjs';
 
 import DatePicker from '@admin/date-picker';

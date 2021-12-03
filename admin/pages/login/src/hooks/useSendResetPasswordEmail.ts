@@ -1,6 +1,6 @@
 // import
 import { useCallback, useState, useEffect } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 import message from '@admin/message';
 import { useTranslation } from '@meepshop/locales';

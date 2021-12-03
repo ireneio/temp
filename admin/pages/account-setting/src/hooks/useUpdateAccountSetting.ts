@@ -3,7 +3,7 @@ import { ValuesType } from './useInitialValues';
 
 // import
 import { useCallback } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { areEqual } from 'fbjs';
 
 import message from '@admin/message';

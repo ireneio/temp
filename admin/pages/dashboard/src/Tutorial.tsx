@@ -1,12 +1,12 @@
 // import
 import React, { useState, useLayoutEffect } from 'react';
+import { useMutation } from '@apollo/client';
 import {
   InfoCircleOutlined,
   CloseCircleOutlined,
   RightCircleOutlined,
 } from '@ant-design/icons';
 import { Tabs, List } from 'antd';
-import { useMutation } from '@apollo/react-hooks';
 
 import { useTranslation } from '@meepshop/locales';
 import { meepshopLogo } from '@meepshop/images';

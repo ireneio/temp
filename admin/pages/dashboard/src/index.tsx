@@ -3,8 +3,8 @@ import { NextPage } from 'next';
 
 // import
 import React, { useContext, useEffect } from 'react';
+import { useQuery } from '@apollo/client';
 import { filter } from 'graphql-anywhere';
-import { useQuery } from '@apollo/react-hooks';
 import {
   LoadingOutlined,
   WarningOutlined,

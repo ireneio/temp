@@ -3,10 +3,10 @@ import { NextPage } from 'next';
 
 // import
 import React from 'react';
+import { useQuery } from '@apollo/client';
 import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Form, Button, Spin } from 'antd';
-import { useQuery } from '@apollo/react-hooks';
 import { areEqual, isEmpty } from 'fbjs';
 
 import { useTranslation } from '@meepshop/locales';

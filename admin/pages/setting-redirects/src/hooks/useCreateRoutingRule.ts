@@ -3,7 +3,7 @@ import { ValuesType } from '../types';
 
 // import
 import { useCallback } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 import message from '@admin/message';
 import { useTranslation } from '@meepshop/locales';

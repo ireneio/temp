@@ -1,7 +1,7 @@
 // import
 import { useCallback } from 'react';
+import { useMutation } from '@apollo/client';
 import { message } from 'antd';
-import { useMutation } from '@apollo/react-hooks';
 
 import { useTranslation } from '@meepshop/locales';
 

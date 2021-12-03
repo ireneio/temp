@@ -1,10 +1,6 @@
 // import
 import { useState, useEffect, useCallback } from 'react';
-import {
-  useMutation,
-  useLazyQuery,
-  useApolloClient,
-} from '@apollo/react-hooks';
+import { useMutation, useLazyQuery, useApolloClient } from '@apollo/client';
 
 import message from '@admin/message';
 import { useTranslation } from '@meepshop/locales';

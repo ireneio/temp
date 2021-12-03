@@ -1,6 +1,6 @@
 // import
 import { useCallback } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/client';
 
 // graphql typescript
 import {

@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 
 // import
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { filter } from 'graphql-anywhere';
 import { DoubleLeftOutlined, LoadingOutlined } from '@ant-design/icons';
 import { Spin, List } from 'antd';

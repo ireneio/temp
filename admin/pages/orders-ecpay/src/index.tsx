@@ -3,8 +3,8 @@ import { NextPage } from 'next';
 
 // import
 import React from 'react';
+import { useQuery } from '@apollo/client';
 import { Checkbox } from 'antd';
-import { useQuery } from '@apollo/react-hooks';
 
 import Orders from '@admin/orders';
 import { useTranslation } from '@meepshop/locales';

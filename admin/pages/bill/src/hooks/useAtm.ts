@@ -1,6 +1,6 @@
 // import
 import { useEffect, useState, useCallback } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { Modal } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';

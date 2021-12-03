@@ -1,6 +1,6 @@
 // import
 import { useCallback } from 'react';
-import { useApolloClient } from '@apollo/react-hooks';
+import { useApolloClient } from '@apollo/client';
 
 import { useTranslation } from '@meepshop/locales';
 

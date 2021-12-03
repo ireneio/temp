@@ -1,6 +1,6 @@
 // import
 import { useContext, useCallback, useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 import message from '@admin/message';
 import { AdTrackContext } from '@admin/ad-track';

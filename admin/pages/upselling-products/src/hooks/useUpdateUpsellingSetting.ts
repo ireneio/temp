@@ -1,11 +1,11 @@
 // typescript import
-import { DataProxy } from 'apollo-cache';
+import { DataProxy } from '@apollo/client';
 
 import { ValuesType } from './useUpsellingInitialValues';
 
 // import
 import { useCallback } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 import message from '@admin/message';
 import { useTranslation } from '@meepshop/locales';

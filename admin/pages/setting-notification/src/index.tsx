@@ -3,9 +3,9 @@ import { NextPage } from 'next';
 
 // import
 import React, { useEffect } from 'react';
+import { useQuery } from '@apollo/client';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Form, Button, Switch, Spin, Input, Divider } from 'antd';
-import { useQuery } from '@apollo/react-hooks';
 
 import { useTranslation } from '@meepshop/locales';
 import { useValidateEmail } from '@meepshop/validator';
