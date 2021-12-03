@@ -18,6 +18,7 @@
     "@meepshop/context": "^0.80.95",
     "@meepshop/cookies": "^0.80.96",
     "@meepshop/form-data": "^0.80.95",
+    "@meepshop/hooks": "^0.80.96",
     "@meepshop/images": "^0.80.95",
     "@meepshop/link": "^0.80.95",
     "@meepshop/locales": "^0.80.96",

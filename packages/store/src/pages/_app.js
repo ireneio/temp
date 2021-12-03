@@ -33,6 +33,7 @@ import * as Utils from 'utils';
 import configureStore from 'ducks/store';
 import withCookies from 'utils/withCookies';
 import usePage from 'hooks/usePage';
+import useExpiringPoints from 'hooks/useExpiringPoints';
 
 const {
   publicRuntimeConfig: { API },
@@ -346,7 +347,9 @@ export default appWithTranslation(
   withDomain(
     withApollo(
       withRedux(configureStore)(
-        withReduxSaga(withCookies(withHook(usePage)(App))),
+        withReduxSaga(
+          withCookies(withHook(usePage)(withHook(useExpiringPoints)(App))),
+        ),
       ),
     ),
   ),

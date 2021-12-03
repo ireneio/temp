@@ -8,14 +8,8 @@ import { useRouter } from '@meepshop/link';
 
 import useFbLogin from './hooks/useFbLogin';
 
-// typescript definition
-interface PropsType {
-  // FIXME: remove after redux remove
-  reduxFbLogin: () => void;
-}
-
 // definition
-export default React.memo(({ reduxFbLogin }: PropsType) => {
+export default React.memo(() => {
   const { t } = useTranslation('fb');
   const router = useRouter();
   const fbLogin = useFbLogin();
@@ -42,13 +36,10 @@ export default React.memo(({ reduxFbLogin }: PropsType) => {
       if (!accessToken) {
         notification.error({ message: t('login-fail') });
         router.replace(state || '/login');
-      } else {
-        reduxFbLogin();
-        if (!(await fbLogin(accessToken, state)))
-          router.replace(state || '/login');
-      }
+      } else if (!(await fbLogin(accessToken, state)))
+        router.replace(state || '/login');
     })();
-  }, [reduxFbLogin, router, fbLogin, role, accessToken, state, t]);
+  }, [router, fbLogin, role, accessToken, state, t]);
 
   return null;
 });

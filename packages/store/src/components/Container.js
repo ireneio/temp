@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { UserAgent } from 'fbjs';
-import { notification } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 import {
@@ -15,7 +14,6 @@ import {
 import Layout from '@meepshop/meep-ui/lib/layout';
 import withContext from '@store/utils/lib/withContext';
 
-import * as Api from 'api';
 import * as Utils from 'utils';
 import * as Actions from 'ducks/actions';
 
@@ -31,7 +29,6 @@ const { isBrowser } = UserAgent;
 class Container extends React.Component {
   static propTypes = {
     /* may chnage */
-    isLogin: PropTypes.string.isRequired,
     loading: PropTypes.bool.isRequired,
     loadingTip: PropTypes.string.isRequired,
     /* func to modify data */
@@ -40,17 +37,12 @@ class Container extends React.Component {
 
     page: PropTypes.shape({ id: PropTypes.string }).isRequired,
     // login page usage ONLY
-    getAuth: PropTypes.func.isRequired,
     userAgent: PropTypes.string.isRequired,
     children: PropTypes.element,
   };
 
   static defaultProps = {
     children: null,
-  };
-
-  state = {
-    isFbLogin: false,
   };
 
   componentDidMount() {
@@ -62,36 +54,11 @@ class Container extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    const { isFbLogin } = this.state;
-    const { t, getAuth, role } = this.props;
-
-    if (isFbLogin && role === 'SHOPPER') {
-      (async () => {
-        const member = await Api.updateMemberData();
-        const numOfExpiredPoints =
-          member?.data?.viewer?.rewardPoint.expiringPoints.total;
-
-        if (numOfExpiredPoints > 0)
-          notification.info({
-            message: t('expired-points-message'),
-            description: t('expired-points-description', {
-              point: numOfExpiredPoints,
-            }),
-          });
-
-        getAuth();
-        this.setState({ isFbLogin: false });
-      })();
-    }
-  }
-
   // eslint-disable-next-line consistent-return
   handleFacebookLogin = async ({ to }) => {
     const { fb, dispatchAction } = this.props;
 
     dispatchAction('showLoadingStatus');
-    this.setState({ isFbLogin: true });
     await fb.login(to || window.storePreviousPageUrl || '/');
     dispatchAction('hideLoadingStatus');
   };
@@ -134,13 +101,7 @@ class Container extends React.Component {
           radiumConfig={{ userAgent: location.userAgent }} // for radium media query
           {...page}
         >
-          {!children
-            ? null
-            : React.cloneElement(children, {
-                reduxFbLogin: () => {
-                  this.setState({ isFbLogin: true });
-                },
-              })}
+          {children}
         </Layout>
       </>
     );
@@ -167,7 +128,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, { client }) => ({
   login: bindActionCreators(Actions.login, dispatch),
-  getAuth: bindActionCreators(Actions.getAuth, dispatch),
   dispatchAction: (actionName, args = {}) => {
     // eslint-disable-next-line no-param-reassign
     args.client = client;
