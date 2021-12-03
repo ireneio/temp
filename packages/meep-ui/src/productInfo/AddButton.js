@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { gql, useApolloClient } from '@apollo/client';
 import { Button } from 'antd';
-import { useApolloClient } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { HeartFilled, HeartOutlined, LoadingOutlined } from '@ant-design/icons';
 
 import { withTranslation } from '@meepshop/locales';

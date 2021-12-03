@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useApolloClient } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { gql, useApolloClient } from '@apollo/client';
 import uuid from 'uuid/v4';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';

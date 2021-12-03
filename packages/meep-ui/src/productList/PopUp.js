@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from '@apollo/react-components';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Modal } from 'antd';
 

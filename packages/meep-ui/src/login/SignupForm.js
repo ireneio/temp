@@ -1,8 +1,8 @@
 import React from 'react';
+import { gql } from '@apollo/client';
 import PropTypes from 'prop-types';
 import { Form, Button, Input, notification } from 'antd';
 import { ApolloConsumer } from '@apollo/react-components';
-import gql from 'graphql-tag';
 
 import { withTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';

@@ -1,9 +1,8 @@
 import React from 'react';
+import { gql, useApolloClient } from '@apollo/client';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input, Button } from 'antd';
-import { useApolloClient } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
 import { withTranslation } from '@meepshop/locales';
 import withHook from '@store/utils/lib/withHook';

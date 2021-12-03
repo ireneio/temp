@@ -1,6 +1,5 @@
 import React from 'react';
-import gql from 'graphql-tag';
-import { useApolloClient } from '@apollo/react-hooks';
+import { gql, useApolloClient } from '@apollo/client';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { Modal } from 'antd';

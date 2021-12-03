@@ -1,5 +1,5 @@
 import React from 'react';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 import { connect } from 'react-redux';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';

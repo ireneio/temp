@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 import { takeEvery, put, call } from 'redux-saga/effects';
 import * as Utils from 'utils';
 import { notification } from 'antd';
