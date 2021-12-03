@@ -1,5 +1,5 @@
 // import
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 // graphql impor
 import { useShoppingInitialValuesFragment } from './useShoppingInitialValues';
