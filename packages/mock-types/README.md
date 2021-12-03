@@ -43,7 +43,7 @@ runTest('store' or 'admin', <Component />, (wrapper: ReactWrapper<unknown, unkno
 1. Write a new schema file in [./src/schemas](./src/schemas), and copy this:
 
 ```js
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 import mock from '../mock';
 import { /** fragment name */ } from '@meepshop/types/gqls/meepshop';

@@ -1,7 +1,7 @@
 // import
 import React, { useState } from 'react';
+import { useApolloClient } from '@apollo/client';
 import { Button, Tooltip } from 'antd';
-import { useApolloClient } from '@apollo/react-hooks';
 
 import mock from './mock';
 import styles from './styles/mockData.less';
