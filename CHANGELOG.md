@@ -1,5 +1,53 @@
 # CHANGELOG
 
+## 0.80.97 (2021-12-03)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1877](https://github.com/meepshop/meep-lerna/pull/1877) 購物金提醒改在 \_app 處理 ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#1845](https://github.com/meepshop/meep-lerna/pull/1845) 【優化】一頁式完成結帳後，跳轉至元件指定頁面 - 綠界 2.0 ([@happycat6323](https://github.com/happycat6323))
+- `mock-types`
+  - [#1921](https://github.com/meepshop/meep-lerna/pull/1921) @store/cart 新增加購區塊 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- [#1914](https://github.com/meepshop/meep-lerna/pull/1914) 【個別店家】前台商品 - 規格按鈕點選問題 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- `store`
+  - [#1907](https://github.com/meepshop/meep-lerna/pull/1907) 內部開單 - 移除 /fbAuthForLine 改用 /fb-login ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1925](https://github.com/meepshop/meep-lerna/pull/1925) 內部開單 - @store/\* pages 的 hooks 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+  - [#1939](https://github.com/meepshop/meep-lerna/pull/1939) 內部開單 - @admin/\* pages 的 gql 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+  - [#1942](https://github.com/meepshop/meep-lerna/pull/1942) 內部開單 - @admin/\* 非 pages 的 hooks 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+  - [#1941](https://github.com/meepshop/meep-lerna/pull/1941) 內部開單 - @admin/\* 非 pages 的 gql 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+  - [#1940](https://github.com/meepshop/meep-lerna/pull/1940) 內部開單 - @admin/\* pages 的 hooks 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+  - [#1936](https://github.com/meepshop/meep-lerna/pull/1936) 內部開單 - @meepshop/\* 非 modules 的 gql 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+  - [#1934](https://github.com/meepshop/meep-lerna/pull/1934) 內部開單 - @meepshop/\* modules 的 gql 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+  - [#1931](https://github.com/meepshop/meep-lerna/pull/1931) 內部開單 - @store/\* 非 pages 的 gql 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+  - [#1911](https://github.com/meepshop/meep-lerna/pull/1911) 內部開單 - 處理 computedCart 所需的 client side schema ([@Lexiwu](https://github.com/Lexiwu))
+- `client`
+  - [#1938](https://github.com/meepshop/meep-lerna/pull/1938) 內部開單 - @meepshop/\* 非 modules 的 hooks 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+  - [#1935](https://github.com/meepshop/meep-lerna/pull/1935) 內部開單 - @meepshop/\* modules 的 hooks 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+  - [#1933](https://github.com/meepshop/meep-lerna/pull/1933) 內部開單 - @store/\* 非 pages 的 hooks 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#1944](https://github.com/meepshop/meep-lerna/pull/1944) 內部開單 - @meepshop/mock-types 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+- `generate`, `meep-ui`, `store`
+  - [#1943](https://github.com/meepshop/meep-lerna/pull/1943) 內部開單 - @packages/\* 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.96 (2021-12-02)
 
 #### :bug: Bug Fix
