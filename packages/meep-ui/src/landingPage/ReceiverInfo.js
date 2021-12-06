@@ -61,6 +61,26 @@ export default class ReceiverInfo extends React.PureComponent {
 
   checkedTemplate = null;
 
+  static getDerivedStateFromProps(nextProps, preState) {
+    const { form } = nextProps;
+
+    if (form.getFieldValue(['shipmentId']) !== preState.shipmentId) {
+      form.setFieldsValue({
+        CVSAddress: null,
+        CVSStoreID: null,
+        CVSStoreName: null,
+        cvsCode: null,
+        cvsType: null,
+      });
+
+      return {
+        shipmentId: form.getFieldValue(['shipmentId']),
+      };
+    }
+
+    return null;
+  }
+
   componentDidUpdate() {
     const {
       form: { getFieldValue, validateFields },
