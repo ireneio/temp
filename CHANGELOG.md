@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.80.98 (2021-12-06)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1920](https://github.com/meepshop/meep-lerna/pull/1920) 【BUG】一頁式購物車 - 重新選擇綠界超取物流後，已選擇門市資料無清空 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#1905](https://github.com/meepshop/meep-lerna/pull/1905) 【個別店家】電腦版商店 Logo - svg 圖檔上傳失敗 ([@Lexiwu](https://github.com/Lexiwu))
+- `mock-types`
+  - [#1951](https://github.com/meepshop/meep-lerna/pull/1951) Internal - fix: schema ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `meep-ui`, `refactor`, `store`
+  - [#1948](https://github.com/meepshop/meep-lerna/pull/1948) 內部開單 - 修改未改用 @apollo/client 部分 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#1952](https://github.com/meepshop/meep-lerna/pull/1952) 【優化】移除 next-store 沒有使用套件 ([@HsuTing](https://github.com/HsuTing))
+- `client`, `mock-types`, `storybook`
+  - [#1950](https://github.com/meepshop/meep-lerna/pull/1950) 內部開單 - @apollo/react-ssr, apollo-link 相關，改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+- `mock-types`
+  - [#1951](https://github.com/meepshop/meep-lerna/pull/1951) Internal - fix: schema ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.97 (2021-12-03)
 
 #### :boom: Breaking Change
