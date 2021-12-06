@@ -2,6 +2,7 @@
 import React from 'react';
 import { Modal, Popover, Button, notification } from 'antd';
 import fileType from 'file-type/browser';
+import isSvg from 'is-svg';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -45,8 +46,14 @@ const readImageData = (
             height: image.height,
           });
         };
-      } else reject(new Error('can not read file data url'));
+        image.onerror = () => {
+          reject(new Error('can not read file data'));
+        };
+      } else {
+        reject(new Error('can not read file data url'));
+      }
     };
+
     reader.readAsDataURL(new Blob([buffer], { type }));
   });
 
@@ -69,8 +76,12 @@ export default (
 
           const imageBuffer = await readImageBuffer(file);
           const imageType = await fileType.fromBuffer(imageBuffer);
+          const isSvgImage = isSvg(Buffer.from(imageBuffer));
 
-          if (!imageType || !IMAGE_TYPES.includes(imageType.mime))
+          if (
+            !isSvgImage &&
+            (!imageType || !IMAGE_TYPES.includes(imageType.mime))
+          )
             return { name };
 
           const { width, height } = await readImageData(imageBuffer, file.type);

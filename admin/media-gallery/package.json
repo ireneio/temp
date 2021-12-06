@@ -10,7 +10,8 @@
   "dependencies": {
     "@meepshop/images": "^0.80.97",
     "@meepshop/locales": "^0.80.97",
-    "file-type": "^13.1.2"
+    "file-type": "^13.1.2",
+    "is-svg": "^4.3.2"
   },
   "keywords": ["admin", "media-gallery"]
 }
