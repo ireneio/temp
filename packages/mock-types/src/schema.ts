@@ -27,7 +27,6 @@ import ExportFormat from './schemas/ExportFormat';
 import ezPaymentReturnListObjectType from './schemas/ezPaymentReturnListObjectType';
 import FbPixel from './schemas/FbPixel';
 import FetchSmartConversionModuleGADataResponse from './schemas/FetchSmartConversionModuleGADataResponse';
-import FileConnection from './schemas/FileConnection';
 import GMOUserInfo from './schemas/GMOUserInfo';
 import GmoBankInstallment from './schemas/GmoBankInstallment';
 import groupProductsObjectType from './schemas/groupProductsObjectType';
@@ -117,7 +116,6 @@ export default addMocksToSchema({
     ezPaymentReturnListObjectType,
     FbPixel,
     FetchSmartConversionModuleGADataResponse,
-    FileConnection,
     GMOUserInfo,
     GmoBankInstallment,
     groupProductsObjectType,
