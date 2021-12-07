@@ -166,14 +166,17 @@ class PayemntInfo extends React.PureComponent {
       form: { getFieldsValue },
       moduleId,
     } = this.props;
-    const { y } = getElementPosition(
-      document.querySelector(`.landingPage-${moduleId}`),
-    );
 
-    if (y <= 0 && !this.isTracked) {
-      this.trackAddToCart(getFieldsValue(true), () =>
-        window.removeEventListener('scroll', this.scrollToLandingPage),
-      );
+    const landingPageDom = document.querySelector(`.landingPage-${moduleId}`);
+
+    if (landingPageDom) {
+      const { y } = getElementPosition(landingPageDom);
+
+      if (y <= 0 && !this.isTracked) {
+        this.trackAddToCart(getFieldsValue(true), () =>
+          window.removeEventListener('scroll', this.scrollToLandingPage),
+        );
+      }
     }
   };
 
