@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.99 (2021-12-07)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1949](https://github.com/meepshop/meep-lerna/pull/1949) 前台 - Landing Page 出現錯誤訊息 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.98 (2021-12-06)
 
 #### :bug: Bug Fix
