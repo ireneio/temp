@@ -79,9 +79,11 @@ export default (
                 startTime,
                 endTime,
                 limitPerOrder,
-                products: products.map(product =>
-                  !product ? null : { __typename: 'Product', id: product.id },
-                ),
+                products: products.map(product => ({
+                  __typename: 'Product',
+                  // SHOULD_NOT_BE_NULL
+                  id: product?.id || 'null-id',
+                })),
               },
             });
             message.success(t('success'));
