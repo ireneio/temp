@@ -1,8 +1,7 @@
 import React from 'react';
-import { gql } from '@apollo/client';
+import { gql, useApolloClient } from '@apollo/client';
 import PropTypes from 'prop-types';
 import { Form, Button, Input, notification } from 'antd';
-import { ApolloConsumer } from '@apollo/react-components';
 
 import { withTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
@@ -20,10 +19,11 @@ const { Password } = Input;
 @withTranslation('login')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withHook(() => ({
+  client: useApolloClient(),
   validateEmail: useValidateEmail(false, true),
 }))
 @enhancer
-class SignupForm extends React.PureComponent {
+export default class SignupForm extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
@@ -239,11 +239,3 @@ class SignupForm extends React.PureComponent {
     );
   }
 }
-
-export default React.memo(({ handleTypeChange }) => (
-  <ApolloConsumer>
-    {client => (
-      <SignupForm client={client} handleTypeChange={handleTypeChange} />
-    )}
-  </ApolloConsumer>
-));
