@@ -7,7 +7,7 @@ import {
 // definition
 export const resolvers = {
   ComputedCart: {
-    productActivity: ({
+    productsDiscount: ({
       computedLineItems,
     }: {
       computedLineItems: (computedCartLineItemFragmentType | null)[];

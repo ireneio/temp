@@ -28,6 +28,8 @@ import initialLogger from '@meepshop/logger';
 // eslint-disable-next-line import/no-unresolved
 import fragmentTypes from '../../fragmentTypes';
 
+import * as ComoutedCart from '../clientSideSchema/ComoutedCart';
+import * as LineItem from '../clientSideSchema/LineItem';
 import * as getDraftText from '../clientSideSchema/getDraftText';
 import * as landingPageAccessToken from '../clientSideSchema/landingPageAccessToken';
 import * as log from '../clientSideSchema/log';
@@ -126,6 +128,8 @@ const create = (
       settingObjectType.resolvers(logger),
       validatedConvenienceStoreCities.resolvers,
       getDraftText.resolvers(logger),
+      ComoutedCart.resolvers,
+      LineItem.resolvers,
     ].reduce(mergeResolvers, {}),
     link: from([
       new RetryLink({
