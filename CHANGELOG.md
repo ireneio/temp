@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.80.100 (2021-12-08)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1945](https://github.com/meepshop/meep-lerna/pull/1945) 【BUG】 前台 - 選單底線顏色未正常顯示 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1961](https://github.com/meepshop/meep-lerna/pull/1961) (@admin/upselling-products)fix: fix types ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `meep-ui`
+  - [#1946](https://github.com/meepshop/meep-lerna/pull/1946) 內部開單 - 移除 @apollo/react-components ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.99 (2021-12-07)
 
 #### :bug: Bug Fix
