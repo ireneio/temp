@@ -274,7 +274,7 @@ export default class MenuItem extends React.PureComponent {
           decodeURIComponent(router.asPath),
           `http://${router.domain}${decodeURIComponent(router.asPath)}`,
           `https://${router.domain}${decodeURIComponent(router.asPath)}`,
-        ].includes(url)
+        ].includes(decodeURIComponent(url))
           ? 'is-active'
           : '';
     }
