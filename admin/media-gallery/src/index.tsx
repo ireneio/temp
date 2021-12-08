@@ -72,7 +72,7 @@ export default React.memo(
       fetchMore,
       filter(useLoadMoreImagesFragment, data?.viewer?.images?.pageInfo || null),
     );
-    const tagList = variables.filter?.tagList || [];
+    const tagList = variables?.filter?.tagList || [];
 
     if (error || !data) return <Spin indicator={<LoadingOutlined spin />} />;
 

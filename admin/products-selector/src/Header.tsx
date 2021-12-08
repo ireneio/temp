@@ -43,7 +43,7 @@ export default React.memo(
                 await refetch({
                   ...variables,
                   filter: {
-                    ...variables.filter,
+                    ...variables?.filter,
                     searchTerm: value,
                   },
                 });
@@ -55,7 +55,7 @@ export default React.memo(
               refetch({
                 ...variables,
                 filter: {
-                  ...variables.filter,
+                  ...variables?.filter,
                   searchTerm: value,
                 },
               });
@@ -81,7 +81,7 @@ export default React.memo(
                 refetch({
                   ...variables,
                   filter: {
-                    ...variables.filter,
+                    ...variables?.filter,
                     tags: value,
                   },
                 });
@@ -109,7 +109,7 @@ export default React.memo(
                       refetch({
                         ...variables,
                         filter: {
-                          ...variables.filter,
+                          ...variables?.filter,
                           // isSearchTagStrictMode: value,
                         },
                       });

@@ -1,4 +1,6 @@
 // typescript import
+import { QueryResult } from '@apollo/client';
+
 import { languageType } from '@meepshop/locales';
 
 import useSelectedPageType from '../hooks/useSelectedPage';
@@ -19,6 +21,7 @@ import styles from './styles/index.less';
 // graphql typescript
 import {
   itemPageFragment as itemPageFragmentType,
+  getPages,
   getPagesVariables,
 } from '@meepshop/types/gqls/admin';
 
@@ -29,11 +32,11 @@ import { prefixIconPageFragment } from './gqls/prefixIcon';
 // typescript definition
 interface PropsType
   extends Pick<
-    ReturnType<typeof useSelectedPageType>,
-    'selectedPage' | 'setSelectedPage'
-  > {
+      ReturnType<typeof useSelectedPageType>,
+      'selectedPage' | 'setSelectedPage'
+    >,
+    Pick<QueryResult<getPages, getPagesVariables>, 'variables'> {
   page: itemPageFragmentType;
-  variables: getPagesVariables;
   pageSettingId: string | null;
   setPageSettingId: (pageSettingId: string | null) => void;
   editVisibleId: string | null;

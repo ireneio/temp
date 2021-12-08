@@ -57,8 +57,8 @@ const PageManager: NextPage<PropsType> = React.memo(
         productTemplatePageFilter: { type: 'TEMPLATE' as PageTypeEnum },
       },
     });
-    const pages = usePages(data || null, variables);
-    const loadMorePages = useLoadMorePages(fetchMore, variables);
+    const pages = usePages({ data, variables });
+    const loadMorePages = useLoadMorePages({ fetchMore, variables });
     const {
       selectedPage,
       setSelectedPage,
@@ -80,20 +80,20 @@ const PageManager: NextPage<PropsType> = React.memo(
               placeholder={t('search')}
               loading={loading}
               onSearch={value => {
-                if (variables.homePagesFilter?.searchTerm === value) return;
+                if (variables?.homePagesFilter?.searchTerm === value) return;
 
                 refetch({
                   ...variables,
                   homePagesFilter: {
-                    ...variables.homePagesFilter,
+                    ...variables?.homePagesFilter,
                     searchTerm: value,
                   },
                   customPagesFilter: {
-                    ...variables.customPagesFilter,
+                    ...variables?.customPagesFilter,
                     searchTerm: value,
                   },
                   productTemplatePageFilter: {
-                    ...variables.productTemplatePageFilter,
+                    ...variables?.productTemplatePageFilter,
                     searchTerm: value,
                   },
                 });
@@ -130,7 +130,7 @@ const PageManager: NextPage<PropsType> = React.memo(
                           <>
                             {t(`${subKey}.title`)}
 
-                            {!variables.homePagesFilter?.searchTerm
+                            {!variables?.homePagesFilter?.searchTerm
                               ? null
                               : ` (${subData.length})`}
 
@@ -201,7 +201,7 @@ const PageManager: NextPage<PropsType> = React.memo(
             <h1>
               {t('not-find.0')}{' '}
               <span className={styles.keyword}>
-                {variables.homePagesFilter?.searchTerm}
+                {variables?.homePagesFilter?.searchTerm}
               </span>{' '}
               {t('not-find.1')}
             </h1>

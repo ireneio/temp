@@ -1,3 +1,6 @@
+// typescript import
+import { QueryResult } from '@apollo/client';
+
 // import
 import React, { useMemo } from 'react';
 import { filter } from 'graphql-anywhere';
@@ -15,10 +18,10 @@ import {
 import { usePagesStoreFragment } from '../gqls/usePages';
 
 // definition
-export default (
-  data: getPages | null,
-  variables: getPagesVariables,
-): {
+export default ({
+  data,
+  variables,
+}: Pick<QueryResult<getPages, getPagesVariables>, 'data' | 'variables'>): {
   key: string;
   data: {
     key:
@@ -85,7 +88,7 @@ export default (
               </>
             ),
             data:
-              !variables.homePagesFilter?.searchTerm ||
+              !variables?.homePagesFilter?.searchTerm ||
               new RegExp(variables.homePagesFilter.searchTerm).test(
                 defaultProductListPage.title.zh_TW,
               )

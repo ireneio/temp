@@ -1,3 +1,6 @@
+// typescript import
+import { QueryResult } from '@apollo/client';
+
 // import
 import React from 'react';
 import { InfoCircleOutlined } from '@ant-design/icons';
@@ -17,14 +20,15 @@ import styles from './styles/modal.less';
 
 // graphql typescript
 import {
+  getPages,
   getPagesVariables,
   usePagesPageFragment as usePagesPageFragmentType,
 } from '@meepshop/types/gqls/admin';
 
 // typescript definition
-interface PropsType {
+interface PropsType
+  extends Pick<QueryResult<getPages, getPagesVariables>, 'variables'> {
   pageType: usePagesPageFragmentType['pageType'];
-  variables: getPagesVariables;
   onClose: () => void;
 }
 

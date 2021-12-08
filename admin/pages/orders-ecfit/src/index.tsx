@@ -64,7 +64,7 @@ const OrdersEcfit: NextPage<PropsType> = React.memo(() => {
       reset={() => {
         refetch({
           ...variables,
-          filter: { ecfitSentStatus: variables.filter?.ecfitSentStatus },
+          filter: { ecfitSentStatus: variables?.filter?.ecfitSentStatus },
         });
       }}
       getColumns={getColumns}
@@ -78,7 +78,7 @@ const OrdersEcfit: NextPage<PropsType> = React.memo(() => {
           refetch({
             ...variables,
             filter: {
-              ...variables.filter,
+              ...variables?.filter,
               ecfitSentStatus: value,
             },
           })

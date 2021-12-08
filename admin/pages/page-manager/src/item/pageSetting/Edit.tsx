@@ -1,4 +1,6 @@
 // typescript import
+import { QueryResult } from '@apollo/client';
+
 import { languageType } from '@meepshop/locales';
 
 // import
@@ -23,14 +25,18 @@ import styles from './styles/edit.less';
 // graphql typescript
 import {
   editFragment as editFragmentType,
+  useRenamePageWithSEOCache,
   useRenamePageWithSEOCacheVariables,
 } from '@meepshop/types/gqls/admin';
 
 // typescript definition
-interface PropsType {
+interface PropsType
+  extends Pick<
+    QueryResult<useRenamePageWithSEOCache, useRenamePageWithSEOCacheVariables>,
+    'variables'
+  > {
   offset: number;
   page: editFragmentType;
-  variables: useRenamePageWithSEOCacheVariables;
   onClose: () => void;
 }
 

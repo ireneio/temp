@@ -59,7 +59,7 @@ const OrdersEcpay: NextPage<PropsType> = React.memo(() => {
         refetch({
           ...variables,
           filter: {
-            logisticTrackingStatus: variables.filter?.logisticTrackingStatus,
+            logisticTrackingStatus: variables?.filter?.logisticTrackingStatus,
           },
         });
       }}
@@ -75,7 +75,7 @@ const OrdersEcpay: NextPage<PropsType> = React.memo(() => {
           refetch({
             ...variables,
             filter: {
-              ...variables.filter,
+              ...variables?.filter,
               logisticTrackingStatus: checkedValue as OrderLogisticTrackingStatusEnum[],
             },
           });

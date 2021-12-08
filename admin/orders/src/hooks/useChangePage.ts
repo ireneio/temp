@@ -38,7 +38,7 @@ export default ({
 
   return useCallback(
     (newCurrent: number, newPageSize: number): void => {
-      const { first: pageSize } = variables;
+      const pageSize = variables?.first;
 
       if (newPageSize !== pageSize) {
         refetch({

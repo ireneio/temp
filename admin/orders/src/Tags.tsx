@@ -54,7 +54,7 @@ export default React.memo(
                     refetch({
                       ...variables,
                       filter: {
-                        ...variables.filter,
+                        ...variables?.filter,
                         [key]: emptyArrayToUndefined(
                           options.filter(
                             (optionName: string) => optionName !== option,

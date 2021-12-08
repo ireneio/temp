@@ -1,4 +1,5 @@
 // typescript import
+import { QueryResult } from '@apollo/client';
 import { ColumnProps } from 'antd/lib/table';
 
 // import
@@ -13,13 +14,14 @@ import styles from '../styles/useEcpayColumn.less';
 import {
   useEcpayColumnsFragment_edges as useEcpayColumnsFragmentEdgesType,
   useEcpayColumnsFragment_edges_node_latestLogisticTracking as useEcpayColumnsFragmentEdgesNodeLatestLogisticTrackingType,
+  getEcpayList,
   getEcpayListVariables,
   OrderLogisticTrackingStatusEnum,
 } from '@meepshop/types/gqls/admin';
 
 // definition
 export default (
-  variables: getEcpayListVariables,
+  variables: QueryResult<getEcpayList, getEcpayListVariables>['variables'],
 ): ((
   columns: ColumnProps<useEcpayColumnsFragmentEdgesType>[],
 ) => ColumnProps<useEcpayColumnsFragmentEdgesType>[]) => {

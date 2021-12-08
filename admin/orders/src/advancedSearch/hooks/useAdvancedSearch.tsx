@@ -8,8 +8,10 @@ import { areEqual } from 'fbjs';
 // typescript definition
 interface PropsType extends Pick<OrdersQueryResult, 'variables' | 'refetch'> {
   setIsVisible: (visible: boolean) => void;
-  filter: OrdersQueryResult['variables']['filter'];
-  setFilter: (filter: OrdersQueryResult['variables']['filter']) => void;
+  filter: NonNullable<OrdersQueryResult['variables']>['filter'];
+  setFilter: (
+    filter: NonNullable<OrdersQueryResult['variables']>['filter'],
+  ) => void;
 }
 
 // definition
@@ -24,7 +26,7 @@ export default ({
   onVisibleChange: (visible: boolean) => void;
 } => {
   const advancedSearch = useCallback(() => {
-    if (areEqual(filter, variables.filter)) return;
+    if (areEqual(filter, variables?.filter)) return;
 
     refetch({
       ...variables,
@@ -46,7 +48,7 @@ export default ({
           return;
         }
 
-        setFilter(variables.filter);
+        setFilter(variables?.filter);
       },
       [variables, advancedSearch, setIsVisible, setFilter],
     ),

@@ -1,0 +1,23 @@
+diff --git a/node_modules/apollo-client/core/ObservableQuery.d.ts b/node_modules/apollo-client/core/ObservableQuery.d.ts
+index c2e01f4..e7a3881 100644
+--- a/node_modules/apollo-client/core/ObservableQuery.d.ts
++++ b/node_modules/apollo-client/core/ObservableQuery.d.ts
+@@ -37,7 +37,7 @@ export declare class ObservableQuery<TData = any, TVariables = OperationVariable
+     options: WatchQueryOptions<TVariables>;
+     readonly queryId: string;
+     readonly queryName?: string;
+-    variables: TVariables;
++    variables: TVariables | undefined;
+     private shouldSubscribe;
+     private isTornDown;
+     private queryManager;
+@@ -59,7 +59,8 @@ export declare class ObservableQuery<TData = any, TVariables = OperationVariable
+     getLastError(): ApolloError;
+     resetLastResults(): void;
+     resetQueryStoreErrors(): void;
+-    refetch(variables?: TVariables): Promise<ApolloQueryResult<TData>>;
++    // FIXME: Partial is only used after @apollo/client >= 3
++    refetch(variables?: Partial<TVariables>): Promise<ApolloQueryResult<TData>>;
+     fetchMore<K extends keyof TVariables>(fetchMoreOptions: FetchMoreQueryOptions<TVariables, K> & FetchMoreOptions<TData, TVariables>): Promise<ApolloQueryResult<TData>>;
+     subscribeToMore<TSubscriptionData = TData, TSubscriptionVariables = TVariables>(options: SubscribeToMoreOptions<TData, TSubscriptionVariables, TSubscriptionData>): () => void;
+     setOptions(opts: WatchQueryOptions): Promise<ApolloQueryResult<TData> | void>;

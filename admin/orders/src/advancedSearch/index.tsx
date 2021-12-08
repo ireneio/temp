@@ -36,7 +36,7 @@ export default React.memo(
   }: PropsType) => {
     const { t } = useTranslation('orders');
     const [isVisible, setIsVisible] = useState(false);
-    const [filter, setFilter] = useState(variables.filter);
+    const [filter, setFilter] = useState(variables?.filter);
     const { advancedSearch, onVisibleChange } = useAdvancedSearch({
       variables,
       refetch,

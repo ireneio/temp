@@ -1,4 +1,5 @@
 // typescript import
+import { QueryResult } from '@apollo/client';
 import { ColumnProps } from 'antd/lib/table';
 
 // import
@@ -11,12 +12,13 @@ import { useTranslation } from '@meepshop/locales';
 import {
   useEcfitColumnsFragment_edges as useEcfitColumnsFragmentEdgesType,
   useEcfitColumnsFragment_edges_node_lastEcfitRequestRecord as useEcfitColumnsFragmentEdgesNodeLastEcfitRequestRecordType,
+  getEcfitList,
   getEcfitListVariables,
 } from '@meepshop/types/gqls/admin';
 
 // definition
 export default (
-  variables: getEcfitListVariables,
+  variables: QueryResult<getEcfitList, getEcfitListVariables>['variables'],
 ): ((
   columns: ColumnProps<useEcfitColumnsFragmentEdgesType>[],
 ) => ColumnProps<useEcfitColumnsFragmentEdgesType>[]) => {

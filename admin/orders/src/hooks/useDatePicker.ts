@@ -33,7 +33,7 @@ export default ({
       refetch({
         ...variables,
         filter: {
-          ...variables.filter,
+          ...variables?.filter,
           createdAtRange:
             !start || !end
               ? undefined

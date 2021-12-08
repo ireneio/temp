@@ -1,5 +1,5 @@
 // typescript import
-import { DataProxy } from '@apollo/client';
+import { DataProxy, QueryResult } from '@apollo/client';
 
 import useSelectedPageType from '../../../hooks/useSelectedPage';
 
@@ -31,7 +31,10 @@ import {
 export default (
   id: string,
   pageType: editFragmentType['pageType'],
-  variables: useDuplicatePageReadCacheVariables,
+  variables: QueryResult<
+    useDuplicatePageReadCacheType,
+    useDuplicatePageReadCacheVariables
+  >['variables'],
   setSelectedPage: ReturnType<typeof useSelectedPageType>['setSelectedPage'],
 ): (() => void) => {
   const { t } = useTranslation('page-manager');

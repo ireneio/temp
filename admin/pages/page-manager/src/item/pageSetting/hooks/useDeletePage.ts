@@ -1,5 +1,5 @@
 // typescript import
-import { DataProxy } from '@apollo/client';
+import { DataProxy, QueryResult } from '@apollo/client';
 
 // import
 import { useCallback } from 'react';
@@ -13,7 +13,7 @@ import { useTranslation } from '@meepshop/locales';
 import {
   deletePage as deletePageType,
   deletePageVariables,
-  useDeletePageReadCache as useDeletePageReadCacheTYpe,
+  useDeletePageReadCache as useDeletePageReadCacheType,
   useDeletePageReadCacheVariables,
 } from '@meepshop/types/gqls/admin';
 
@@ -23,7 +23,10 @@ import { useDeletePageReadCache, deletePage } from '../gqls/useDeletePage';
 // definition
 export default (
   id: string,
-  variables: useDeletePageReadCacheVariables,
+  variables: QueryResult<
+    useDeletePageReadCacheType,
+    useDeletePageReadCacheVariables
+  >['variables'],
 ): (() => void) => {
   const { t } = useTranslation('page-manager');
   const [mutation] = useMutation<deletePageType, deletePageVariables>(
@@ -36,7 +39,7 @@ export default (
         }
 
         const storeData = cache.readQuery<
-          useDeletePageReadCacheTYpe,
+          useDeletePageReadCacheType,
           useDeletePageReadCacheVariables
         >({
           query: useDeletePageReadCache,
@@ -46,7 +49,7 @@ export default (
         if (!storeData) return;
 
         cache.writeQuery<
-          useDeletePageReadCacheTYpe,
+          useDeletePageReadCacheType,
           useDeletePageReadCacheVariables
         >({
           query: useDeletePageReadCache,

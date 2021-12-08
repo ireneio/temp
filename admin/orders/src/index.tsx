@@ -107,7 +107,7 @@ export default React.memo(
     if (!orders || !storePayments || !storeShipments)
       return <Spin indicator={<LoadingOutlined spin />} />;
 
-    const pageSize = variables.first || 10;
+    const pageSize = variables?.first || 10;
     const {
       edges,
       total,
@@ -229,7 +229,7 @@ export default React.memo(
                       refetch({
                         ...variables,
                         filter: {
-                          ...variables.filter,
+                          ...variables?.filter,
                           searchTerm: newSearchTerm,
                         },
                       })

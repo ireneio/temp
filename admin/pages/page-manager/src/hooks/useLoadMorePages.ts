@@ -18,10 +18,13 @@ import {
 } from '../gqls/useLoadMorePages';
 
 // definition
-export default (
-  fetchMore: QueryResult<getPagesType, getPagesVariables>['fetchMore'],
-  variables: getPagesVariables,
-): ((
+export default ({
+  fetchMore,
+  variables,
+}: Pick<
+  QueryResult<getPagesType, getPagesVariables>,
+  'fetchMore' | 'variables'
+>): ((
   subKey: 'home-page' | 'custom-page' | 'template-page',
   pageInfo: { hasNextPage: boolean; endCursor: string },
 ) => void) =>
@@ -33,7 +36,7 @@ export default (
           query: getHomePages,
           variables: {
             homePagesAfter: pageInfo.endCursor,
-            homePagesFilter: variables.homePagesFilter,
+            homePagesFilter: variables?.homePagesFilter,
           },
         },
         'custom-page': {
@@ -41,7 +44,7 @@ export default (
           query: getCustomPages,
           variables: {
             customPagesAfter: pageInfo.endCursor,
-            customPagesFilter: variables.customPagesFilter,
+            customPagesFilter: variables?.customPagesFilter,
           },
         },
         'template-page': {
@@ -49,7 +52,7 @@ export default (
           query: getProductTemplatePage,
           variables: {
             productTemplatePageAfter: pageInfo.endCursor,
-            productTemplatePageFilter: variables.productTemplatePageFilter,
+            productTemplatePageFilter: variables?.productTemplatePageFilter,
           },
         },
       }[subKey];

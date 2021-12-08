@@ -1,5 +1,5 @@
 // typescript import
-import { DataProxy } from '@apollo/client';
+import { DataProxy, QueryResult } from '@apollo/client';
 
 // import
 import { useCallback } from 'react';
@@ -42,7 +42,10 @@ interface ValuesType {
 export default (
   id: string,
   pageType: editFragmentType['pageType'],
-  variables: useRenamePageWithSEOCacheVariables,
+  variables: QueryResult<
+    useRenamePageWithSEOCacheType,
+    useRenamePageWithSEOCacheVariables
+  >['variables'],
   onClose: () => void,
 ): ((values: ValuesType) => void) => {
   const { t } = useTranslation('page-manager');

@@ -34,9 +34,9 @@ export default ({
     getValidatedConvenienceStoreAreasVariablesType
   >(getValidatedConvenienceStoreAreas, {
     onCompleted: ({ validatedConvenienceStoreAreas }) => {
-      const {
-        input: { cityId },
-      } = variables;
+      const cityId = variables?.input.cityId;
+
+      if (!cityId) return;
 
       client.writeFragment<addressSelectCityFragmentType>({
         id: cityId,

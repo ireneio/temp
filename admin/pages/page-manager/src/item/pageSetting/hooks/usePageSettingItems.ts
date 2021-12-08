@@ -1,4 +1,5 @@
 // typescript import
+import { QueryResult } from '@apollo/client';
 import IconType from '@ant-design/icons/lib/components/Icon';
 
 import useSelectedPageType from '../../../hooks/useSelectedPage';
@@ -21,6 +22,7 @@ import useDeletePage from './useDeletePage';
 
 // graphql typescript
 import {
+  getPages,
   getPagesVariables,
   usePageSettingItemsPageFragment as usePageSettingItemsPageFragmentType,
 } from '@meepshop/types/gqls/admin';
@@ -37,7 +39,7 @@ export default (
     isDefaultProductTemplatePage,
   }: usePageSettingItemsPageFragmentType,
   edit: () => void,
-  variables: getPagesVariables,
+  variables: QueryResult<getPages, getPagesVariables>['variables'],
   setSelectedPage: ReturnType<typeof useSelectedPageType>['setSelectedPage'],
 ): {
   key: string;

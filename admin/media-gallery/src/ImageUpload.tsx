@@ -1,3 +1,6 @@
+// typescript import
+import { QueryResult } from '@apollo/client';
+
 // import
 import React from 'react';
 
@@ -7,14 +10,18 @@ import { IMAGE_TYPES } from './constants';
 
 // graphql typescript
 import {
+  getImages as getImagesType,
   getImagesVariables as getImagesVariablesType,
   useUploadImagesUserFragment as useUploadImagesUserFragmentType,
 } from '@meepshop/types/gqls/admin';
 
 // typescript definition
-interface PropsType {
+interface PropsType
+  extends Pick<
+    QueryResult<getImagesType, getImagesVariablesType>,
+    'variables'
+  > {
   forwardedRef: React.Ref<HTMLInputElement>;
-  variables: getImagesVariablesType;
   multiple?: boolean;
   viewer: useUploadImagesUserFragmentType | null;
 }

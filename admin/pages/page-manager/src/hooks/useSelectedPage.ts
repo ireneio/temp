@@ -1,4 +1,6 @@
 // typescript import
+import { QueryResult } from '@apollo/client';
+
 import usePages from './usePages';
 
 // import
@@ -8,6 +10,7 @@ import { useRouter } from '@meepshop/link';
 
 // graphql typescript
 import {
+  getPages,
   getPagesVariables,
   usePagesPageFragment as usePagesPageFragmentType,
 } from '@meepshop/types/gqls/admin';
@@ -45,7 +48,7 @@ const getCollapseActiveKey = (selectedPage: usePagesPageFragmentType): string =>
 
 export default (
   pages: ReturnType<typeof usePages>,
-  variables: getPagesVariables,
+  variables: QueryResult<getPages, getPagesVariables>['variables'],
   loading: boolean,
 ): {
   selectedPage: usePagesPageFragmentType | null;
@@ -92,14 +95,14 @@ export default (
       { firstPage: undefined, currentSelectedPage: undefined },
     );
     const shouldOpenAllKeys =
-      variables.homePagesFilter?.searchTerm !== prevSearchTerm.current;
+      variables?.homePagesFilter?.searchTerm !== prevSearchTerm.current;
 
     if (shouldOpenAllKeys) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore FIXME: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/31065
-      prevSearchTerm.current = variables.homePagesFilter?.searchTerm || null;
+      prevSearchTerm.current = variables?.homePagesFilter?.searchTerm || null;
 
-      if (variables.homePagesFilter?.searchTerm)
+      if (variables?.homePagesFilter?.searchTerm)
         setCollapseActiveKey(ALL_ACTIVE_KEY);
     }
 

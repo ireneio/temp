@@ -1,3 +1,6 @@
+// typescript import
+import { QueryResult } from '@apollo/client';
+
 // import
 import React, { useState, useEffect } from 'react';
 import { FileOutlined, LayoutOutlined, PlusOutlined } from '@ant-design/icons';
@@ -11,12 +14,19 @@ import styles from './styles/index.less';
 
 // graphql typescript
 import {
-  getPagesVariables,
+  getPages as getPagesType,
+  getPagesVariables as getPagesVariablesType,
   usePagesPageFragment as usePagesPageFragmentType,
 } from '@meepshop/types/gqls/admin';
 
+// typescript definition
+type PropsType = Pick<
+  QueryResult<getPagesType, getPagesVariablesType>,
+  'variables'
+>;
+
 // definition
-export default React.memo(({ variables }: { variables: getPagesVariables }) => {
+export default React.memo(({ variables }: PropsType) => {
   const { t } = useTranslation('page-manager');
   const [visible, setVisible] = useState(false);
   const [pageType, setPageType] = useState<

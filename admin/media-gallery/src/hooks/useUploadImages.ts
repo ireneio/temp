@@ -1,5 +1,5 @@
 // typescript import
-import { DataProxy, MutationFunction } from '@apollo/client';
+import { DataProxy, QueryResult, MutationFunction } from '@apollo/client';
 
 // import
 import { useMutation } from '@apollo/client';
@@ -8,6 +8,7 @@ import { useMutation } from '@apollo/client';
 import {
   uploadImages as uploadImagesType,
   uploadImagesVariables as uploadImagesVariablesType,
+  getImages as getImagesType,
   getImagesVariables as getImagesVariablesType,
   useUploadImagesUserFragment as useUploadImagesUserFragmentType,
   useUploadImagesWriteCache as useUploadImagesWriteCacheType,
@@ -23,7 +24,7 @@ import {
 
 // definition
 export default (
-  variables: getImagesVariablesType,
+  variables: QueryResult<getImagesType, getImagesVariablesType>['variables'],
   viewer: useUploadImagesUserFragmentType | null,
 ): MutationFunction<uploadImagesType, uploadImagesVariablesType> => {
   const [mutation] = useMutation<uploadImagesType, uploadImagesVariablesType>(

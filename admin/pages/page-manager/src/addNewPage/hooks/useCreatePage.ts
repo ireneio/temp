@@ -1,5 +1,5 @@
 // typescript import
-import { DataProxy } from '@apollo/client';
+import { DataProxy, QueryResult } from '@apollo/client';
 
 // import
 import { useCallback } from 'react';
@@ -36,7 +36,10 @@ interface ValuesType {
 // definition
 export default (
   pageType: usePagesPageFragmentType['pageType'],
-  variables: useCreatePageReadCacheVariables,
+  variables: QueryResult<
+    useCreatePageReadCacheType,
+    useCreatePageReadCacheVariables
+  >['variables'],
 ): ((values: ValuesType) => void) => {
   const { t } = useTranslation('page-manager');
   const router = useRouter();

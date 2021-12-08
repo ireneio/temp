@@ -27,7 +27,9 @@ interface PropsType {
   optionsKey: keyof OrderFilterInput | keyof EcfitOrderFilterInput;
   options: string[];
   filter?: (OrderFilterInput & EcfitOrderFilterInput) | null;
-  setFilter: (filter: OrdersQueryResult['variables']['filter']) => void;
+  setFilter: (
+    filter: NonNullable<OrdersQueryResult['variables']>['filter'],
+  ) => void;
 }
 
 // definition
