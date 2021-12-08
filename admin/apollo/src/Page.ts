@@ -1,5 +1,5 @@
 // typescript import
-import { Resolver } from 'apollo-client/core/LocalState';
+import { Resolvers } from '@apollo/client';
 
 // typescript definition
 interface DefaultDataType {
@@ -12,7 +12,7 @@ interface DefaultDataType {
 }
 
 // definition
-export const resolvers = {
+export const resolvers: Resolvers = {
   Page: {
     isDefaultHomePage: ({
       id,
@@ -61,9 +61,9 @@ export const resolvers = {
         defaultProductTemplatePage,
         ...data
       }: DefaultDataType & { [key: string]: {} },
-      _: unknown,
-      __: unknown,
-      info: Parameters<Resolver>[3],
+      _,
+      __,
+      info,
     ) => ({
       ...data[info?.field.alias?.value || 'pages'],
       defaultHomePage,

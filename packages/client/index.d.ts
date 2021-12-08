@@ -15,3 +15,10 @@ export {
 } from '@apollo/react-hooks';
 export { split, from } from 'apollo-link';
 export { HttpLink } from 'apollo-link-http';
+export {
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+  NormalizedCacheObject,
+} from 'apollo-cache-inmemory';
+export { ApolloClient, ApolloError } from 'apollo-client';
+export { Resolvers } from 'apollo-client/core/types';

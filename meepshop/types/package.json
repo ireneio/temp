@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@meepshop/types",
-  "description": "Use to handle the global apollo-client types",
+  "description": "Use to handle the global types",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.80.95",
@@ -13,5 +13,5 @@
     "draft-js": "^0.10.3",
     "execa": "^4.0.0"
   },
-  "keywords": ["apollo-client", "meepshop", "types"]
+  "keywords": ["meepshop", "types"]
 }

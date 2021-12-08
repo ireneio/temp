@@ -1,6 +1,5 @@
 // typescript import
-import { NormalizedCacheObject } from 'apollo-cache-inmemory';
-import { Resolvers } from 'apollo-client/core/types';
+import { NormalizedCacheObject, Resolvers } from '@apollo/client';
 
 import { LoggerInfoType } from '@meepshop/logger';
 
@@ -8,15 +7,17 @@ import { CustomCtxType } from '../types';
 import { errorFilterType } from './errorLink';
 
 // import
-import { split, from, HttpLink } from '@apollo/client';
-import { RetryLink } from '@apollo/client/link/retry';
-import { ApolloClient } from 'apollo-client';
 import {
+  ApolloClient,
+  split,
+  from,
+  HttpLink,
   InMemoryCache,
   IntrospectionFragmentMatcher,
-} from 'apollo-cache-inmemory';
+} from '@apollo/client';
+import { RetryLink } from '@apollo/client/link/retry';
+import { getMainDefinition } from '@apollo/client/utilities';
 import { createUploadLink } from 'apollo-upload-client';
-import { getMainDefinition } from 'apollo-utilities';
 import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 import getConfig from 'next/config';
 

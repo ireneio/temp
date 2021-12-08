@@ -1,5 +1,5 @@
 // typescript import
-import { ApolloError } from 'apollo-client';
+import { ApolloError } from '@apollo/client';
 
 // import
 import { useEffect } from 'react';

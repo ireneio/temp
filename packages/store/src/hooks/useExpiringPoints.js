@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { getUnixTime, addDays } from 'date-fns';
 import { notification } from 'antd';
 

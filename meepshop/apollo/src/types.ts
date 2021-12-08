@@ -1,8 +1,10 @@
 // typescript import
 import { AppContext } from 'next/app';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloClient } from 'apollo-client';
-import { NormalizedCacheObject } from 'apollo-cache-inmemory';
+import {
+  ApolloClient,
+  InMemoryCache,
+  NormalizedCacheObject,
+} from '@apollo/client';
 
 import { LoggerInfoType } from '@meepshop/logger';
 

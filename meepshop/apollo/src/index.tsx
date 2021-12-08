@@ -1,6 +1,6 @@
 // typescript import
 import { AppProps } from 'next/app';
-import { NormalizedCacheObject } from 'apollo-cache-inmemory';
+import { NormalizedCacheObject } from '@apollo/client';
 
 import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
 import { LoggerInfoType } from '@meepshop/logger';

@@ -1,5 +1,5 @@
 // typescript import
-import { ApolloClient } from 'apollo-client';
+import { ApolloClient } from '@apollo/client';
 
 import { I18nPropsType, languageType } from '@meepshop/locales';
 

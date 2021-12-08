@@ -1,9 +1,11 @@
 // import
 import React, { useContext } from 'react';
-import { ApolloProvider } from '@apollo/react-hooks';
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
+import {
+  ApolloClient,
+  ApolloProvider,
+  HttpLink,
+  InMemoryCache,
+} from '@apollo/client';
 import getConfig from 'next/config';
 
 import { Role as RoleContext } from '@meepshop/context';

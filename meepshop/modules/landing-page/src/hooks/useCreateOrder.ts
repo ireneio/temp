@@ -3,9 +3,12 @@ import { MutationTuple, MutationFunctionOptions } from '@apollo/client';
 
 // import
 import { useMemo, useState } from 'react';
-import { useMutation, HttpLink } from '@apollo/client';
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
+import {
+  ApolloClient,
+  useMutation,
+  HttpLink,
+  InMemoryCache,
+} from '@apollo/client';
 import getConfig from 'next/config';
 
 // graphql typescript

@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 export const getExpiringPoints = gql`
   query getExpiringPoints($expireBy: Int!) {

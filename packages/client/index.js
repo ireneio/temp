@@ -8,6 +8,11 @@ const {
 } = require('@apollo/react-hooks');
 const { split, from } = require('apollo-link');
 const { HttpLink } = require('apollo-link-http');
+const {
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+} = require('apollo-cache-inmemory');
+const { ApolloClient } = require('apollo-client');
 
 module.exports = {
   gql,
@@ -19,4 +24,7 @@ module.exports = {
   split,
   from,
   HttpLink,
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+  ApolloClient,
 };

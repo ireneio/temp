@@ -1,5 +1,5 @@
 // typescript import
-import { Resolver } from 'apollo-client/core/LocalState';
+import { Resolvers } from '@apollo/client';
 
 // graphql typescript
 import {
@@ -10,7 +10,7 @@ import {
 } from '@meepshop/types/gqls/admin';
 
 // definition
-export const resolvers = {
+export const resolvers: Resolvers = {
   OrderConnection: {
     pageInfo: ({
       pageInfo,
@@ -26,9 +26,9 @@ export const resolvers = {
   User: {
     ecfitOrders: (
       parent: getEcfitListViewer & { [key: string]: {} },
-      _: unknown,
-      __: unknown,
-      info: Parameters<Resolver>[3],
+      _,
+      __,
+      info,
     ) => {
       const alias = info?.field.alias?.value || 'orders';
 

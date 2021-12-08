@@ -1,6 +1,5 @@
 // typescript import
-import { ApolloClient } from 'apollo-client';
-import { NormalizedCacheObject } from 'apollo-cache-inmemory';
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { AppContext, AppProps } from 'next/app';
 import { CookieAttributes } from 'js-cookie';
 
