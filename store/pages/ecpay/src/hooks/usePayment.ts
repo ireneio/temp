@@ -24,6 +24,7 @@ export default (
   viewer: paymentFragmentType | null,
   setPaymentInfo: (paymentInfo: ecPay2CreatePaymentEcPay2CreatePayment) => void,
 ): {
+  ecpayScript: JSX.Element | null;
   ecpayLoading: boolean;
   isCreditPayment: boolean;
   loading: boolean;
@@ -34,7 +35,7 @@ export default (
   const { query, push, pathname } = useRouter();
   const [isRedirecting, setIsRedirecting] = useState(false);
 
-  const { ecpayLoading, getPaymentInfo } = useEcpay({
+  const { ecpayScript, ecpayLoading, getPaymentInfo } = useEcpay({
     token,
     isNeedDefaultLoading: true,
     language: i18n.language === 'zh_TW' ? 'zhTW' : 'enUS',
@@ -101,6 +102,7 @@ export default (
   });
 
   return {
+    ecpayScript,
     ecpayLoading,
     isCreditPayment: useMemo(
       () =>

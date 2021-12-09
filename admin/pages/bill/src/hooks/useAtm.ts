@@ -24,12 +24,13 @@ export default (
 ): {
   ecpayLoading: boolean;
   loading: boolean;
+  ecpayScript: JSX.Element | null;
   createECPayATMPayment: () => void;
 } => {
   const { t } = useTranslation('bill');
   const [token, setToken] = useState<string>('');
   const [billPaymentId, setBillPaymentId] = useState<string | null>();
-  const { ecpayLoading, getPaymentInfo } = useEcpay({ token });
+  const { ecpayLoading, getPaymentInfo, ecpayScript } = useEcpay({ token });
 
   const [getEcpayAtmToken] = useMutation<
     createEcpayAtmTokenType,
@@ -84,6 +85,7 @@ export default (
   return {
     ecpayLoading,
     loading,
+    ecpayScript,
     createECPayATMPayment: useCallback(async () => {
       const paymentInfo = await getPaymentInfo();
       const { payToken } = paymentInfo || {};

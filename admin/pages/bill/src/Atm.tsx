@@ -1,8 +1,6 @@
 // import
 import React from 'react';
 import { Modal, Spin } from 'antd';
-import getConfig from 'next/config';
-import Head from 'next/head';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -16,13 +14,9 @@ interface PropsType {
 }
 
 // definition
-const {
-  publicRuntimeConfig: { ENV },
-} = getConfig();
-
 export default React.memo(({ billId, onCancel }: PropsType) => {
   const { t } = useTranslation('bill');
-  const { ecpayLoading, loading, createECPayATMPayment } = useAtm(
+  const { ecpayLoading, loading, ecpayScript, createECPayATMPayment } = useAtm(
     billId,
     onCancel,
   );
@@ -42,11 +36,7 @@ export default React.memo(({ billId, onCancel }: PropsType) => {
 
       <div id="ECPayPayment" />
 
-      <Head>
-        <script
-          src={ENV === 'production' ? '/ecpay2.js' : '/ecpay2-stage.js'}
-        />
-      </Head>
+      {ecpayScript}
     </Modal>
   );
 });
