@@ -9,7 +9,7 @@ executors:
     working_directory: ~/repo
   node:
     docker:
-      - image: circleci/node:14.15.5
+      - image: circleci/node:14.17.0
         auth:
           username: meep
           password: $DOCKERHUB_PASSWORD
