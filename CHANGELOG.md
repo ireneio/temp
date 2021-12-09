@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.80.101 (2021-12-09)
+
+#### :rocket: New Feature
+
+- [#1932](https://github.com/meepshop/meep-lerna/pull/1932) 內部開單 - @admin/ad-track 的 Head.tsx ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- [#1968](https://github.com/meepshop/meep-lerna/pull/1968) (@meepshop/frontend) Upgrade next.js patches ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#1923](https://github.com/meepshop/meep-lerna/pull/1923) 內部開單 - 改用 next/script - 綠界 2.0 ([@Lexiwu](https://github.com/Lexiwu))
+- Other
+  - [#1960](https://github.com/meepshop/meep-lerna/pull/1960) 內部開單 - 修正 @apollo/client types ([@HsuTing](https://github.com/HsuTing))
+- `client`, `store`
+  - [#1955](https://github.com/meepshop/meep-lerna/pull/1955) 內部開單 - apollo-client, apollo-cache-inmemory, apollo-utilities 改用 @apollo/client ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.100 (2021-12-08)
 
 #### :bug: Bug Fix
