@@ -1,12 +1,14 @@
 // import
 import React from 'react';
+import Script from 'next/script';
 import Head from 'next/head';
 
 // definition
 export default React.memo(() => (
-  <Head>
+  <>
     {/* Facebook Pixel */}
-    <script
+    <Script
+      id="facebook-pixel-config"
       dangerouslySetInnerHTML={{
         __html: `
             !function(f,b,e,v,n,t,s)
@@ -21,25 +23,29 @@ export default React.memo(() => (
           `,
       }}
     />
-    <noscript
-      dangerouslySetInnerHTML={{
-        __html: `
-            <img
-              src="https://www.facebook.com/tr?id=222744027936443&ev=PageView&noscript=1"
-              height="1"
-              width="1"
-              style="display:none"
-            />
-          `,
-      }}
-    />
+    <Head>
+      <noscript
+        dangerouslySetInnerHTML={{
+          __html: `
+              <img
+                src="https://www.facebook.com/tr?id=222744027936443&ev=PageView&noscript=1"
+                height="1"
+                width="1"
+                style="display:none"
+              />
+            `,
+        }}
+      />
+    </Head>
 
     {/* Google Adwords */}
-    <script
+    <Script
+      id="google-adwords-js"
+      strategy="lazyOnload"
       src="https://www.googletagmanager.com/gtag/js?id=AW-986719315"
-      async
     />
-    <script
+    <Script
+      id="google-adwords-config"
       dangerouslySetInnerHTML={{
         __html: `
             window.dataLayer = window.dataLayer || [];
@@ -50,11 +56,13 @@ export default React.memo(() => (
     />
 
     {/* Google Analytics */}
-    <script
+    <Script
+      id="google-analytics-js"
+      strategy="lazyOnload"
       src="https://www.googletagmanager.com/gtag/js?id=UA-41718901-5"
-      async
     />
-    <script
+    <Script
+      id="google-analytics-config"
       dangerouslySetInnerHTML={{
         __html: `
             window.dataLayer = window.dataLayer || [];
@@ -63,5 +71,5 @@ export default React.memo(() => (
           `,
       }}
     />
-  </Head>
+  </>
 ));
