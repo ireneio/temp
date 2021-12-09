@@ -4,11 +4,11 @@
   "description": "Block for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.100",
+  "version": "0.80.101",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/wrapper": "^0.80.100"
+    "@admin/wrapper": "^0.80.101"
   },
   "keywords": ["admin", "block"]
 }

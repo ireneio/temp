@@ -4,7 +4,7 @@
   "description": "store cart previewer",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.97",
+  "version": "0.80.101",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -15,7 +15,7 @@
     "@meepshop/switch": "^0.80.95",
     "@meepshop/thumbnail": "^0.80.97",
     "@meepshop/utils": "^0.80.97",
-    "@store/utils": "^0.80.97",
+    "@store/utils": "^0.80.101",
     "color": "^3.0.0"
   },
   "keywords": ["cart", "previewer", "store"]
