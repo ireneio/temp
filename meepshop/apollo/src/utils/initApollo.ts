@@ -29,15 +29,17 @@ import initialLogger from '@meepshop/logger';
 // eslint-disable-next-line import/no-unresolved
 import fragmentTypes from '../../fragmentTypes';
 
-import * as ComoutedCart from '../clientSideSchema/ComoutedCart';
+import * as ComputedCart from '../clientSideSchema/ComputedCart';
 import * as LineItem from '../clientSideSchema/LineItem';
 import * as getDraftText from '../clientSideSchema/getDraftText';
+import * as guestCart from '../clientSideSchema/guestCart';
 import * as landingPageAccessToken from '../clientSideSchema/landingPageAccessToken';
 import * as log from '../clientSideSchema/log';
 import * as login from '../clientSideSchema/login';
 import * as logout from '../clientSideSchema/logout';
 import * as PageInfo from '../clientSideSchema/PageInfo';
 import * as settingObjectType from '../clientSideSchema/settingObjectType';
+import * as upsertGuestCart from '../clientSideSchema/upsertGuestCart';
 import * as validatedConvenienceStoreCities from '../clientSideSchema/validatedConvenienceStoreCities';
 
 import mergeResolvers from './mergeResolvers';
@@ -126,10 +128,12 @@ const create = (
       login.resolvers,
       logout.resolvers,
       PageInfo.resolvers,
+      upsertGuestCart.resolvers,
       settingObjectType.resolvers(logger),
       validatedConvenienceStoreCities.resolvers,
       getDraftText.resolvers(logger),
-      ComoutedCart.resolvers,
+      guestCart.resolvers,
+      ComputedCart.resolvers,
       LineItem.resolvers,
     ].reduce(mergeResolvers, {}),
     link: from([

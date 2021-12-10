@@ -1,0 +1,9 @@
+input GuestCartInput {
+  productId: ID!
+  quantity: PositiveInt!
+  variantId: ID!
+}
+
+extend type Mutation {
+  upsertGuestCart(input: GuestCartInput!): UpsertCartResponse!
+}
