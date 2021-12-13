@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## 0.80.102 (2021-12-13)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `refactor`, `store`
+  - [#1953](https://github.com/meepshop/meep-lerna/pull/1953) 移除 member reducer ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- Other
+  - [#1922](https://github.com/meepshop/meep-lerna/pull/1922) 內部開單 - 將 @store/\* 改用 useGetLanguage ([@happycat6323](https://github.com/happycat6323))
+  - [#1956](https://github.com/meepshop/meep-lerna/pull/1956) 內部開單 - 實作 client side schema 儲存購物車資訊 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1971](https://github.com/meepshop/meep-lerna/pull/1971) (root) Update @meepshop/meep-cli ([@meepshop-bot](https://github.com/meepshop-bot))
+- `meep-ui`
+  - [#1962](https://github.com/meepshop/meep-lerna/pull/1962) 把做的修正移除 ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#1970](https://github.com/meepshop/meep-lerna/pull/1970) (circleci) Update circleci config ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1977](https://github.com/meepshop/meep-lerna/pull/1977) internal - feat: move @admin/page-editor ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 5
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@meepshop-bot](https://github.com/meepshop-bot)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.101 (2021-12-09)
 
 #### :rocket: New Feature
