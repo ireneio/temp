@@ -27,7 +27,6 @@ export default class SignupForm extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    dispatchAction: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
 
     /** props */

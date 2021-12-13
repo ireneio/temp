@@ -67,7 +67,6 @@ export default class ProductInfo extends React.PureComponent {
     hasStoreAppPlugin: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
     goTo: PropTypes.func.isRequired,
-    dispatchAction: PropTypes.func.isRequired,
   };
 
   static defaultProps = {

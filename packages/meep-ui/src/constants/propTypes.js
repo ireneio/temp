@@ -244,9 +244,6 @@ export const CONTEXT_TYPES = {
 
   /** context func from props */
   goTo: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
-  fbLogin: PropTypes.func.isRequired,
-  dispatchAction: PropTypes.func.isRequired,
 
   /** context func from DecoratorsRoot */
   hasStoreAppPlugin: PropTypes.func.isRequired,

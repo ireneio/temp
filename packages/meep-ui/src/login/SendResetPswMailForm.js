@@ -22,7 +22,6 @@ export default class SendResetPswMailForm extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    dispatchAction: PropTypes.func.isRequired,
 
     /** props */
     form: PropTypes.objectOf(PropTypes.func).isRequired,

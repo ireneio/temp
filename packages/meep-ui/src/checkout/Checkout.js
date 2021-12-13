@@ -32,7 +32,6 @@ export default class Checkout extends React.PureComponent {
     location: LOCATION_TYPE.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
     goTo: PropTypes.func.isRequired,
-    dispatchAction: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -66,7 +65,6 @@ export default class Checkout extends React.PureComponent {
       location,
       isLogin,
       goTo,
-      dispatchAction,
 
       /** props */
       client,
@@ -140,7 +138,7 @@ export default class Checkout extends React.PureComponent {
     } = orderInfo.info;
 
     if (isLogin === NOTLOGIN && userEmail && userPassword) {
-      const { data } = await client.mutate({
+      const { data: createUserData } = await client.mutate({
         mutation: gql`
           mutation firstPurchaseSignup($search: [NewUser]) {
             createUserList(createUserList: $search) {
@@ -157,18 +155,26 @@ export default class Checkout extends React.PureComponent {
         },
       });
 
-      if ((data?.createUserList || []).length === 0)
+      if ((createUserData?.createUserList || []).length === 0)
         return t('ducks:signup-failure-message');
 
       adTrack.completeRegistration();
-      await new Promise(resolve => {
-        dispatchAction('login', {
-          email: userEmail,
-          password: userPassword,
-          callback: resolve,
-          from: 'checkout',
-        });
+
+      const { data: loginData } = await client.mutate({
+        mutation: gql`
+          mutation login($input: LoginInput!) {
+            login(input: $input) @client {
+              status
+            }
+          }
+        `,
+        variables: {
+          input: { email: userEmail, password: userPassword },
+        },
       });
+
+      if (loginData.login.status !== 'OK')
+        return t('ducks:invalid-email-or-password');
     }
 
     const { user } = this.props;

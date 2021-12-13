@@ -1,9 +1,5 @@
-import { all } from 'redux-saga/effects';
-
-import { watchGetLoginFlow } from './widgets/member';
-
 function* rootSaga() {
-  yield all([watchGetLoginFlow()]);
+  // FIXME: remove with redux
 }
 
 export default rootSaga;

@@ -1,10 +1,12 @@
 import React from 'react';
+import { gql, useApolloClient } from '@apollo/client';
 import PropTypes from 'prop-types';
-import { Form, Button, Input } from 'antd';
+import { Form, Button, Input, notification } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 import { useValidateEmail } from '@meepshop/validator';
 import { Fb as FbContext } from '@meepshop/context';
+import { useRouter } from '@meepshop/link';
 import withHook from '@store/utils/lib/withHook';
 import withContext from '@store/utils/lib/withContext';
 
@@ -19,15 +21,19 @@ const { Password } = Input;
 @withContext(FbContext)
 @withHook(() => ({
   validateEmail: useValidateEmail(),
+  client: useApolloClient(),
+  router: useRouter(),
 }))
 @enhancer
 export default class LoginForm extends React.PureComponent {
+  state = {
+    fbLoginLoading: false,
+  };
+
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     goTo: PropTypes.func.isRequired,
-    dispatchAction: PropTypes.func.isRequired,
-    fbLogin: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -35,17 +41,35 @@ export default class LoginForm extends React.PureComponent {
     toggleToForgetPassword: PropTypes.func.isRequired,
   };
 
-  finish = values => {
-    const { dispatchAction } = this.props;
+  finish = async input => {
+    const { t, client, router } = this.props;
+    const { data } = await client.mutate({
+      mutation: gql`
+        mutation login($input: LoginInput!) {
+          login(input: $input) @client {
+            status
+          }
+        }
+      `,
+      variables: {
+        input,
+      },
+    });
 
-    dispatchAction('login', values);
+    if (data.login.status === 'OK') {
+      notification.success({ message: t('ducks:login-success') });
+      router.replace(window.storePreviousPageUrl || '/');
+    } else
+      notification.error({
+        message: t('ducks:invalid-email-or-password'),
+      });
   };
 
   render() {
     const {
       /** context */
       goTo,
-      fbLogin,
+      fb,
       isLoginEnabled,
       colors,
 
@@ -55,6 +79,7 @@ export default class LoginForm extends React.PureComponent {
       toggleToForgetPassword,
       validateEmail,
     } = this.props;
+    const { fbLoginLoading } = this.state;
 
     return (
       <Form onFinish={this.finish}>
@@ -111,7 +136,13 @@ export default class LoginForm extends React.PureComponent {
           {!isLoginEnabled ? null : (
             <Button
               className={styles.fbLoginButton}
-              onClick={fbLogin}
+              onClick={async () => {
+                if (!fb || fbLoginLoading) return;
+
+                this.setState({ fbLoginLoading: true });
+                await fb.login(window.storePreviousPageUrl || '/');
+                this.setState({ fbLoginLoading: false });
+              }}
               size="large"
             >
               {t('fb-login')}

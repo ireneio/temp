@@ -13,7 +13,6 @@ import * as Template from 'template';
 import { Container, Error } from 'components';
 import MemberHeader from 'components/MemberHeader';
 import Router from 'next/router';
-import * as Actions from 'ducks/actions';
 import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class Wishlist extends Component {
@@ -77,11 +76,7 @@ const mapStateToProps = state => {
   return {};
 };
 
-export default connect(mapStateToProps, dispatch => ({
-  dispatchAction: (actionName, args) => {
-    dispatch(Actions[actionName](args));
-  },
-}))(
+export default connect(mapStateToProps)(
   withTranslation('common')(
     withContext(AppsContext, apps => ({ apps }))(
       withHook(() => ({

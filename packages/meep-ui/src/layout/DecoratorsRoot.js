@@ -29,9 +29,6 @@ export default React.memo(
 
     /** context func from props */
     goTo,
-    login,
-    fbLogin,
-    dispatchAction,
 
     children,
   }) => {
@@ -87,9 +84,6 @@ export default React.memo(
 
           /** context func from props */
           goTo,
-          login,
-          fbLogin,
-          dispatchAction,
 
           isLogin: role === 'SHOPPER' ? ISUSER : NOTLOGIN,
           user: data?.viewer || null,

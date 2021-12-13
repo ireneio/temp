@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { UserAgent } from 'fbjs';
 
@@ -15,9 +14,6 @@ import Layout from '@meepshop/meep-ui/lib/layout';
 import withContext from '@store/utils/lib/withContext';
 
 import * as Utils from 'utils';
-import * as Actions from 'ducks/actions';
-
-import Spinner from './Spinner';
 
 const { isBrowser } = UserAgent;
 
@@ -28,15 +24,7 @@ const { isBrowser } = UserAgent;
 @withContext(RoleContext, role => ({ role }))
 class Container extends React.Component {
   static propTypes = {
-    /* may chnage */
-    loading: PropTypes.bool.isRequired,
-    loadingTip: PropTypes.string.isRequired,
-    /* func to modify data */
-    login: PropTypes.func.isRequired,
-    dispatchAction: PropTypes.func.isRequired,
-
     page: PropTypes.shape({ id: PropTypes.string }).isRequired,
-    // login page usage ONLY
     userAgent: PropTypes.string.isRequired,
     children: PropTypes.element,
   };
@@ -54,15 +42,6 @@ class Container extends React.Component {
     }
   }
 
-  // eslint-disable-next-line consistent-return
-  handleFacebookLogin = async ({ to }) => {
-    const { fb, dispatchAction } = this.props;
-
-    dispatchAction('showLoadingStatus');
-    await fb.login(to || window.storePreviousPageUrl || '/');
-    dispatchAction('hideLoadingStatus');
-  };
-
   render() {
     // Debugger
     if (typeof window === 'object') {
@@ -71,39 +50,22 @@ class Container extends React.Component {
 
     const location = Utils.uriParser(this.props);
     const {
-      /* may change */
-      loading,
-      loadingTip,
-      /* func */
-      login,
-      dispatchAction,
       /* props(not in context) */
       page,
       product,
       children,
-      client,
     } = this.props;
 
     return (
-      <>
-        <Spinner loading={loading} loadingTip={loadingTip} />
-        <Layout
-          /* may change */
-          location={location}
-          /* func to modify data */
-          goTo={Utils.goTo}
-          fbLogin={this.handleFacebookLogin}
-          /* use dispatchAction */
-          login={data => login({ ...data, client })}
-          dispatchAction={dispatchAction}
-          /* props(not in context) */
-          product={product}
-          radiumConfig={{ userAgent: location.userAgent }} // for radium media query
-          {...page}
-        >
-          {children}
-        </Layout>
-      </>
+      <Layout
+        location={location}
+        goTo={Utils.goTo}
+        product={product}
+        radiumConfig={{ userAgent: location.userAgent }} // for radium media query
+        {...page}
+      >
+        {children}
+      </Layout>
     );
   }
 }
@@ -114,25 +76,7 @@ const mapStateToProps = state => {
 
   if (error) return { error };
 
-  const {
-    memberReducer: { loading, loadingTip },
-    loadingStatus: { loading: isLoading },
-  } = state;
-
-  return {
-    /* may chnage */
-    loading: isLoading || loading,
-    loadingTip,
-  };
+  return {};
 };
 
-const mapDispatchToProps = (dispatch, { client }) => ({
-  login: bindActionCreators(Actions.login, dispatch),
-  dispatchAction: (actionName, args = {}) => {
-    // eslint-disable-next-line no-param-reassign
-    args.client = client;
-    dispatch(Actions[actionName](args));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Container);
+export default connect(mapStateToProps)(Container);
