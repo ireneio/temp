@@ -9,7 +9,7 @@ export const useActivityInfoListFragment = gql`
   fragment useActivityInfoListFragment on Order {
     id
     activityInfo {
-      activityId: id
+      id
       plugin
       discountPrice
       title {

@@ -14,31 +14,28 @@ import {
 import * as styles from './styles';
 
 const getActivityInfo = activityInfo =>
-  activityInfo.reduce(
-    (result, { activityId, plugin, discountPrice, title }) => {
-      const existActivityIndex = result.findIndex(
-        ({ activityId: targetId }) => targetId === activityId,
-      );
+  activityInfo.reduce((result, { id, plugin, discountPrice, title }) => {
+    const existActivityIndex = result.findIndex(
+      ({ id: activityId }) => activityId === id,
+    );
 
-      if (plugin === 'freeShipping') return result;
+    if (plugin === 'freeShipping') return result;
 
-      if (existActivityIndex > -1) {
-        result[existActivityIndex].discountPrice += discountPrice || 0; // eslint-disable-line no-param-reassign
-        return result;
-      }
+    if (existActivityIndex > -1) {
+      result[existActivityIndex].discountPrice += discountPrice || 0; // eslint-disable-line no-param-reassign
+      return result;
+    }
 
-      return [
-        ...result,
-        {
-          activityId,
-          plugin,
-          discountPrice,
-          title,
-        },
-      ];
-    },
-    [],
-  );
+    return [
+      ...result,
+      {
+        id,
+        plugin,
+        discountPrice,
+        title,
+      },
+    ];
+  }, []);
 
 @withTranslation('order-show-total')
 @enhancer
@@ -104,9 +101,9 @@ export default class OrderShowTotal extends React.PureComponent {
         </div>
 
         {getActivityInfo(activityInfo).map(
-          ({ activityId, plugin, title, discountPrice }) =>
+          ({ id, plugin, title, discountPrice }) =>
             discountPrice <= 0 ? null : (
-              <div key={activityId} style={styles.item}>
+              <div key={id} style={styles.item}>
                 <div>
                   {plugin === 'usePoints'
                     ? t('point')

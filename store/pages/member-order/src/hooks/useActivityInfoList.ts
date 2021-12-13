@@ -16,7 +16,7 @@ import {
 export default ({
   activityInfo,
 }: useActivityInfoListFragmentType): {
-  activityId: string | null;
+  id: string | null;
   title: string | null;
   discountPrice: number;
 }[] => {
@@ -33,12 +33,12 @@ export default ({
     ) as useActivityInfoListFragmentActivityInfoType[];
 
     return filterActivityInfo.reduce(
-      (result, { activityId, plugin, discountPrice, title }) => {
+      (result, { id, plugin, discountPrice, title }) => {
         // filter
         if (!discountPrice || plugin === 'freeShipping') return result;
 
         const activity = result.find(
-          ({ activityId: targetId }) => targetId === activityId,
+          ({ id: activityId }) => activityId === id,
         ) as { discountPrice: number } | undefined;
 
         // fisrt add
@@ -48,7 +48,7 @@ export default ({
               return [
                 ...result,
                 {
-                  activityId,
+                  id,
                   discountPrice,
                   title: t('sheet.reward'),
                 },
@@ -58,7 +58,7 @@ export default ({
               return [
                 ...result,
                 {
-                  activityId,
+                  id,
                   discountPrice,
                   title: t('sheet.coupon'),
                 },
@@ -67,7 +67,7 @@ export default ({
               return [
                 ...result,
                 {
-                  activityId,
+                  id,
                   discountPrice,
                   title:
                     title?.[language as languageType] || title?.zh_TW || null,

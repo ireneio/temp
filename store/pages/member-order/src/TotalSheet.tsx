@@ -45,9 +45,9 @@ export default React.memo(({ order }: PropsType) => {
         <div>{c(productPrice)}</div>
       </div>
 
-      {activityInfoList.map(({ activityId, title, discountPrice }) => (
+      {activityInfoList.map(({ id, title, discountPrice }) => (
         // SHOULD_NOT_BE_NULL
-        <div key={activityId || 'null id'}>
+        <div key={id || 'null id'}>
           <div>{title}</div>
           <div>{c(-1 * discountPrice)}</div>
         </div>

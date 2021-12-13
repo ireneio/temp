@@ -51,7 +51,7 @@ export const cartFragment = gql`
     }
 
     activityInfo {
-      activityId: id
+      id
       title {
         ...localeFragment
       }

@@ -4,7 +4,7 @@ export const computeOrderList = gql`
   mutation computeOrderList($computeOrderList: [NewOrder]) {
     computeOrderList(computeOrderList: $computeOrderList) {
       activityInfo {
-        activityId: id
+        id
         discountPrice
         title {
           zh_TW

@@ -16,7 +16,7 @@ export const totalSheetFragment = gql`
       total
     }
     activityInfo {
-      activityId: id
+      id
       plugin
       discountPrice
       title {
