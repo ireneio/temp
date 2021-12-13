@@ -1,8 +1,6 @@
 // typescript import
 import { ColumnProps } from 'antd/lib/table';
 
-import { languageType } from '@meepshop/locales';
-
 // import
 import React, { useMemo, useContext } from 'react';
 import {
@@ -16,7 +14,7 @@ import {
   Currency as CurrencyContext,
   Colors as ColorsContext,
 } from '@meepshop/context';
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Link from '@meepshop/link';
 import Switch from '@meepshop/switch';
 import Thumbnail from '@meepshop/thumbnail';
@@ -35,7 +33,8 @@ interface ReturnType {
 
 // definition
 export default (): ReturnType => {
-  const { t, i18n } = useTranslation('cart-previewer');
+  const { t } = useTranslation('cart-previewer');
+  const getLanguage = useGetLanguage();
   const { c } = useContext(CurrencyContext);
   const colors = useContext(ColorsContext);
   const removeProduct = useRemoveProduct();
@@ -103,7 +102,7 @@ export default (): ReturnType => {
                   >
                     {error === 'DISCONTINUED'
                       ? t('product-deleted')
-                      : title?.[i18n.language as languageType] || title?.zh_TW}
+                      : getLanguage(title)}
                   </span>
                 </Switch>
 
@@ -113,13 +112,7 @@ export default (): ReturnType => {
                       error !== 'NOT_AVAILABLE' ? '' : styles.offline
                     }`}
                   >
-                    {specs
-                      .map(
-                        spec =>
-                          spec?.title?.[i18n.language as languageType] ||
-                          spec?.title?.zh_TW,
-                      )
-                      .join('/')}
+                    {specs.map(spec => getLanguage(spec?.title)).join('/')}
                   </div>
                 )}
 
@@ -129,10 +122,7 @@ export default (): ReturnType => {
                       <span key={activity?.id}>
                         <TagOutlined />
 
-                        <span>
-                          {activity?.title?.[i18n.language as languageType] ||
-                            activity?.title?.zh_TW}
-                        </span>
+                        <span>{getLanguage(activity?.title)}</span>
                       </span>
                     ))}
                   </div>
@@ -190,6 +180,6 @@ export default (): ReturnType => {
         }
       `,
     }),
-    [c, colors, i18n.language, removeProduct, t],
+    [c, colors, getLanguage, removeProduct, t],
   );
 };

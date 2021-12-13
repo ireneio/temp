@@ -1,13 +1,11 @@
 // typescript import
 import { ColumnProps } from 'antd/lib/table';
 
-import { languageType } from '@meepshop/locales';
-
 // import
 import React, { useMemo } from 'react';
 import { Divider } from 'antd';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Link from '@meepshop/link';
 
 import useDeleteRecipientAddress from './useDeleteRecipientAddress';
@@ -20,7 +18,8 @@ import { useColumnsRecipientAddressFragment as useColumnsRecipientAddressFragmen
 export default (
   setSelectedId: (id: string | null) => void,
 ): ColumnProps<useColumnsRecipientAddressFragmentType>[] => {
-  const { t, i18n } = useTranslation('member-recipients');
+  const { t } = useTranslation('member-recipients');
+  const getLanguage = useGetLanguage();
   const deleteRecipientAddress = useDeleteRecipientAddress();
 
   return useMemo(
@@ -44,19 +43,9 @@ export default (
         ) =>
           [
             zipCode,
-            !country
-              ? null
-              : country.name[i18n.language as languageType] ||
-                country.name.zh_TW,
-            `${
-              !city
-                ? ''
-                : city.name[i18n.language as languageType] || city.name.zh_TW
-            }${
-              !area
-                ? ''
-                : area.name[i18n.language as languageType] || area.name.zh_TW
-            }${street || ''}`,
+            getLanguage(country?.name),
+            `${getLanguage(city?.name)}${getLanguage(area?.name)}${street ||
+              ''}`,
           ]
             .filter(Boolean)
             .join(' '),
@@ -110,20 +99,9 @@ export default (
             <span>{name}</span>
 
             <span>{t('address')}</span>
-            <span>{`${zipCode || ''}${
-              !country
-                ? ''
-                : country.name[i18n.language as languageType] ||
-                  country.name.zh_TW
-            }${
-              !city
-                ? ''
-                : city.name[i18n.language as languageType] || city.name.zh_TW
-            }${
-              !area
-                ? ''
-                : area.name[i18n.language as languageType] || area.name.zh_TW
-            }${street || ''}`}</span>
+            <span>{`${zipCode || ''}${getLanguage(country?.name)}${getLanguage(
+              city?.name,
+            )}${getLanguage(area?.name)}${street || ''}`}</span>
 
             <span>{t('mobile')}</span>
             <span>{mobile}</span>
@@ -152,6 +130,6 @@ export default (
         ),
       },
     ],
-    [t, i18n, setSelectedId, deleteRecipientAddress],
+    [t, getLanguage, setSelectedId, deleteRecipientAddress],
   );
 };

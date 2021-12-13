@@ -1,6 +1,3 @@
-// typescript import
-import { languageType } from '@meepshop/locales';
-
 // import
 import React, { useContext } from 'react';
 import transformColor from 'color';
@@ -9,7 +6,7 @@ import {
   Currency as CurrencyContext,
   Colors as ColorsContext,
 } from '@meepshop/context';
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 
 import styles from './styles/price.less';
 
@@ -25,7 +22,8 @@ interface PropsType {
 export default React.memo(({ order }: PropsType) => {
   const colors = useContext(ColorsContext);
   const { c } = useContext(CurrencyContext);
-  const { t, i18n } = useTranslation('cart-previewer');
+  const { t } = useTranslation('cart-previewer');
+  const getLanguage = useGetLanguage();
   const { activityInfo, priceInfo } = order;
 
   return (
@@ -46,9 +44,7 @@ export default React.memo(({ order }: PropsType) => {
 
           return (
             <div key={activityId}>
-              <div>
-                {title?.[i18n.language as languageType] || title?.zh_TW}
-              </div>
+              <div>{getLanguage(title)}</div>
               <div>- {c(discountPrice)}</div>
             </div>
           );
