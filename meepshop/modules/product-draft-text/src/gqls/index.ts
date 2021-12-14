@@ -2,14 +2,23 @@
 import { gql } from '@apollo/client';
 
 // definition
-export const productDraftTextFragment = gql`
-  fragment productDraftTextFragment on ProductDraftTextModule {
+export const productDraftTextProductFragment = gql`
+  fragment productDraftTextProductFragment on Product {
+    id
+    draftText {
+      value
+    }
+  }
+`;
+
+export const productDraftTextProductDraftTextModuleFragment = gql`
+  fragment productDraftTextProductDraftTextModuleFragment on ProductDraftTextModule {
     id
     product {
       id
-      draftText {
-        value
-      }
+      ...productDraftTextProductFragment
     }
   }
+
+  ${productDraftTextProductFragment}
 `;

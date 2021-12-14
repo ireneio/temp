@@ -14,7 +14,7 @@ import useSlickActive from './hooks/useSlickActive';
 import styles from './styles/index.less';
 
 // graphql typescript
-import { productCarouselFragment } from '@meepshop/types/gqls/meepshop';
+import { productCarouselProductCarouselModuleFragment } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { carouselFragment } from '@meepshop/carousel/gqls';
@@ -22,7 +22,7 @@ import { carouselFragment } from '@meepshop/carousel/gqls';
 import { useImagesFragment } from './gqls/useImages';
 
 // typescript definition
-interface PropsType extends productCarouselFragment {
+interface PropsType extends productCarouselProductCarouselModuleFragment {
   className?: string;
 }
 

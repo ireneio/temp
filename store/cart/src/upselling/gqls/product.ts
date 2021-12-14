@@ -5,9 +5,15 @@ import { gql } from '@apollo/client';
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 
+import { modalProductFragment, modalLineItemFragment } from './modal';
+import {
+  useAddToCartProductFragment,
+  useAddToCartLineItemFragment,
+} from './useAddToCart';
+
 // definition
-export const productFragment = gql`
-  fragment productFragment on Product {
+export const productProductFragment = gql`
+  fragment productProductFragment on Product {
     id
     title {
       ...localeFragment
@@ -22,8 +28,22 @@ export const productFragment = gql`
       suggestedPrice
       totalPrice
     }
+    ...modalProductFragment
+    ...useAddToCartProductFragment
   }
 
   ${localeFragment}
   ${thumbnailFragment}
+  ${modalProductFragment}
+  ${useAddToCartProductFragment}
+`;
+
+export const productLineItemFragment = gql`
+  fragment productLineItemFragment on LineItem {
+    ...modalLineItemFragment
+    ...useAddToCartLineItemFragment
+  }
+
+  ${modalLineItemFragment}
+  ${useAddToCartLineItemFragment}
 `;

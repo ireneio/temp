@@ -2,16 +2,25 @@
 import { gql } from '@apollo/client';
 
 // definition
-export const productVideoFragment = gql`
-  fragment productVideoFragment on ProductVideoModule {
+export const productVideoProductFragment = gql`
+  fragment productVideoProductFragment on Product {
+    id
+    videoLink {
+      value
+    }
+  }
+`;
+
+export const productVideoProductVideoModuleFragment = gql`
+  fragment productVideoProductVideoModuleFragment on ProductVideoModule {
     id
     width
     ratio
     product {
       id
-      videoLink {
-        value
-      }
+      ...productVideoProductFragment
     }
   }
+
+  ${productVideoProductFragment}
 `;

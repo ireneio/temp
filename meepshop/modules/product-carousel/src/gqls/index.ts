@@ -7,20 +7,29 @@ import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 import { useImagesFragment } from './useImages';
 
 // definition
-export const productCarouselFragment = gql`
-  fragment productCarouselFragment on ProductCarouselModule {
+export const productCarouselProductFragment = gql`
+  fragment productCarouselProductFragment on Product {
+    id
+    title {
+      ...localeFragment
+    }
+    ...useImagesFragment
+  }
+
+  ${localeFragment}
+  ${useImagesFragment}
+`;
+
+export const productCarouselProductCarouselModuleFragment = gql`
+  fragment productCarouselProductCarouselModuleFragment on ProductCarouselModule {
     id
     productCarouselType
     autoPlay
     product {
       id
-      title {
-        ...localeFragment
-      }
-      ...useImagesFragment
+      ...productCarouselProductFragment
     }
   }
 
-  ${localeFragment}
-  ${useImagesFragment}
+  ${productCarouselProductFragment}
 `;

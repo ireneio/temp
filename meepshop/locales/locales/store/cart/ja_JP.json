@@ -26,6 +26,15 @@
   "MINIMUM_NOT_REACHED": "最小購入数はありません",
   "upselling": {
     "title": "押す",
-    "add-to-cart": "カートに追加"
+    "AVAILABLE": "カートに追加",
+    "OUT_OF_STOCK": "完売",
+    "LIMITED": "上限を購入する必要があります"
+  },
+  "upselling-modal": {
+    "AVAILABLE": "今買う",
+    "OUT_OF_STOCK": "完売",
+    "LIMITED": "上限を購入する必要があります",
+    "NO_PRODUCTS": "ショッピングカートにこの製品を追加するためのアイテム",
+    "MAX": "上限に達しました"
   }
 }

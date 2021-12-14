@@ -2,20 +2,36 @@
 import { gql } from '@apollo/client';
 
 // graphql import
-import { productFragment } from './product';
+import { productProductFragment, productLineItemFragment } from './product';
+import {
+  useCheckLimitActiveUpsellingAreaFragment,
+  useCheckLimitLineItemFragment,
+} from './useCheckLimit';
 
 // definition
-export const upsellingFragment = gql`
-  fragment upsellingFragment on ActiveUpsellingArea {
+export const upsellingActiveUpsellingAreaFragment = gql`
+  fragment upsellingActiveUpsellingAreaFragment on ActiveUpsellingArea {
     id
     title
     hasLimitPerOrder
     limitPerOrder
     products {
       id
-      ...productFragment
+      ...productProductFragment
     }
+    ...useCheckLimitActiveUpsellingAreaFragment
   }
 
-  ${productFragment}
+  ${productProductFragment}
+  ${useCheckLimitActiveUpsellingAreaFragment}
+`;
+
+export const upsellingLineItemFragment = gql`
+  fragment upsellingLineItemFragment on LineItem {
+    ...productLineItemFragment
+    ...useCheckLimitLineItemFragment
+  }
+
+  ${productLineItemFragment}
+  ${useCheckLimitLineItemFragment}
 `;

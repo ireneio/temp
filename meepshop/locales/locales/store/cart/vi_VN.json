@@ -26,6 +26,15 @@
   "MINIMUM_NOT_REACHED": "Không có số lượng mua tối thiểu",
   "upselling": {
     "title": "nhấn",
-    "add-to-cart": "Thêm vào giỏ hàng"
+    "AVAILABLE": "Thêm vào giỏ hàng",
+    "OUT_OF_STOCK": "bán hết",
+    "LIMITED": "Lên để mua giới hạn trên"
+  },
+  "upselling-modal": {
+    "AVAILABLE": "Mua ngay",
+    "OUT_OF_STOCK": "bán hết",
+    "LIMITED": "Lên để mua giới hạn trên",
+    "NO_PRODUCTS": "Bất kỳ mục nào để thêm sản phẩm này vào giỏ hàng",
+    "MAX": "Đã đạt đến giới hạn trên"
   }
 }

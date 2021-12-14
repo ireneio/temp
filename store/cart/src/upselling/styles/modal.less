@@ -1,0 +1,230 @@
+@import '~@store/utils/styles/variables.less';
+
+.root {
+  top: 56px;
+  max-height: 640px;
+  height: 100%;
+  padding: 0;
+
+  @media (max-width: @screen-sm-max) {
+    top: 48px;
+    max-width: calc(100vw - 48px);
+    max-height: none;
+    height: calc(100vh - 80px);
+  }
+
+  :global(.ant-modal-content) {
+    border-radius: 2px;
+    height: 100%;
+  }
+
+  :global(.ant-modal-body) {
+    height: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    > div:first-child {
+      flex-grow: 1;
+      overflow-y: scroll;
+      padding: 0 40px;
+
+      @media (max-width: @screen-sm-max) {
+        padding: 0 16px;
+      }
+    }
+  }
+
+  :global(.ant-modal-close) {
+    top: -40px;
+
+    > span {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 24px;
+      color: #fff;
+    }
+
+    @media (max-width: @screen-sm-max) {
+      > span {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+      }
+    }
+  }
+}
+
+.addToCart {
+  padding: 8px 12px;
+
+  &.disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
+  > div {
+    padding: 14px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    line-height: 28px;
+    border-radius: 2px;
+  }
+}
+
+div.carousel {
+  padding: 24px 0 20px;
+  width: 304px;
+
+  > div:first-child {
+    height: 304px;
+  }
+
+  > div + div {
+    width: 256px;
+    margin: 8px auto 0;
+
+    :global(.meepshop-image__index__wrapper) {
+      height: 56px;
+      width: 56px !important;
+      margin: 0 4px;
+    }
+
+    img {
+      max-width: 56px;
+      max-height: 56px;
+      min-height: unset;
+    }
+  }
+
+  @media (max-width: @screen-sm-max) {
+    width: 264px;
+
+    > div:first-child {
+      height: 264px;
+    }
+  }
+}
+
+
+.sku {
+  font-size: 12px;
+  line-height: 18px;
+  margin-bottom: 2px;
+  opacity: 0.8;
+}
+
+.title {
+  font-size: 18px;
+  line-height: 26px;
+  margin-bottom: 8px;
+
+  @media (max-width: @screen-sm-max) {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.price {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+
+  > div {
+    font-size: 12px;
+    line-height: 18px;
+    text-decoration: line-through;
+    margin-right: 8px;
+    opacity: 0.65;
+
+    &:first-child {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 24px;
+      text-decoration: none;
+      opacity: 1;
+
+      @media (max-width: @screen-sm-max) {
+        font-size: 18px;
+      }
+    }
+  }
+
+  @media (max-width: @screen-sm-max) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+}
+
+.specs {
+  margin-bottom: 20px;
+
+  > div {
+    display: block;
+
+    > div {
+      display: block;
+
+      &:first-child {
+        margin-bottom: 4px;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 22px;
+      }
+    }
+  }
+}
+
+.description {
+  margin-bottom: 32px;
+
+  > div {
+    padding: 0;
+  }
+}
+
+.divider {
+  width: 232px;
+  height: 1px;
+  margin: 32px auto;
+}
+
+.draft {
+  margin-bottom: 16px;
+
+  > div {
+    padding: 0;
+  }
+}
+
+div.collections {
+  margin-bottom: 16px;
+  padding: 0 !important;
+
+  > div {
+    padding: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.video {
+  margin-bottom: 24px;
+
+  @media (max-width: @screen-sm-max) {
+    margin-bottom: 32px;
+  }
+}
+
+.detail {
+  @media (max-width: @screen-sm-max) {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}

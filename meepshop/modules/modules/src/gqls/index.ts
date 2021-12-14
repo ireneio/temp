@@ -12,13 +12,13 @@ import { imageFragment } from '@meepshop/image/gqls';
 import { imageTextFragment } from '@meepshop/image-text/gqls';
 import { landingPageLandingPageModuleFragment } from '@meepshop/landing-page/gqls';
 import { menuMenuModuleFragment } from '@meepshop/menu/gqls';
-import { productCarouselFragment } from '@meepshop/product-carousel/gqls';
-import { productCollectionsFragment } from '@meepshop/product-collections/gqls';
-import { productDraftTextFragment } from '@meepshop/product-draft-text/gqls';
+import { productCarouselProductCarouselModuleFragment } from '@meepshop/product-carousel/gqls';
+import { productCollectionsProductCollectionsModuleFragment } from '@meepshop/product-collections/gqls';
+import { productDraftTextProductDraftTextModuleFragment } from '@meepshop/product-draft-text/gqls';
 import { productIframeFragment } from '@meepshop/product-iframe/gqls';
 import { productInfoFragment } from '@meepshop/product-info/gqls';
 import { productQaFragment } from '@meepshop/product-qa/gqls';
-import { productVideoFragment } from '@meepshop/product-video/gqls';
+import { productVideoProductVideoModuleFragment } from '@meepshop/product-video/gqls';
 import { smartConversionFragment } from '@meepshop/smart-conversion/gqls';
 import { socialMediaFragment } from '@meepshop/social-media/gqls';
 import { socialThumbsFragment } from '@meepshop/social-thumbs/gqls';
@@ -135,21 +135,21 @@ export const modulesFragment = gql`
       __typename
       id
       parentId
-      ...productCarouselFragment
+      ...productCarouselProductCarouselModuleFragment
     }
 
     ... on ProductCollectionsModule {
       __typename
       id
       parentId
-      ...productCollectionsFragment
+      ...productCollectionsProductCollectionsModuleFragment
     }
 
     ... on ProductDraftTextModule {
       __typename
       id
       parentId
-      ...productDraftTextFragment
+      ...productDraftTextProductDraftTextModuleFragment
     }
 
     ... on ProductIframeModule {
@@ -177,7 +177,7 @@ export const modulesFragment = gql`
       __typename
       id
       parentId
-      ...productVideoFragment
+      ...productVideoProductVideoModuleFragment
     }
 
     ... on ProductsModule {
@@ -239,13 +239,13 @@ export const modulesFragment = gql`
   ${imageTextFragment}
   ${landingPageLandingPageModuleFragment}
   ${menuMenuModuleFragment}
-  ${productCarouselFragment}
-  ${productCollectionsFragment}
-  ${productDraftTextFragment}
+  ${productCarouselProductCarouselModuleFragment}
+  ${productCollectionsProductCollectionsModuleFragment}
+  ${productDraftTextProductDraftTextModuleFragment}
   ${productIframeFragment}
   ${productInfoFragment}
   ${productQaFragment}
-  ${productVideoFragment}
+  ${productVideoProductVideoModuleFragment}
   ${smartConversionFragment}
   ${socialMediaFragment}
   ${socialThumbsFragment}

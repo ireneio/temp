@@ -2,8 +2,9 @@
 import IconType from '@ant-design/icons/lib/components/Icon';
 
 // import
-import React, { useContext, useState } from 'react';
-import { Carousel, Modal } from 'antd';
+import React, { useContext } from 'react';
+import { Carousel } from 'antd';
+import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 
 import {
@@ -14,15 +15,30 @@ import { RightArrowCircleIcon, LeftArrowCircleIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/locales';
 
 import Product from './Product';
+import useCheckLimit from './hooks/useCheckLimit';
 import styles from './styles/index.less';
 import { RESPONSIVE } from './constants';
 
 // graphql typescript
-import { upsellingFragment as upsellingFragmentType } from '@meepshop/types/gqls/store';
+import {
+  upsellingActiveUpsellingAreaFragment as upsellingActiveUpsellingAreaFragmentType,
+  upsellingLineItemFragment as upsellingLineItemFragmentType,
+} from '@meepshop/types/gqls/store';
+
+// graphql import
+import {
+  productProductFragment,
+  productLineItemFragment,
+} from './gqls/product';
+import {
+  useCheckLimitActiveUpsellingAreaFragment,
+  useCheckLimitLineItemFragment,
+} from './gqls/useCheckLimit';
 
 // typescript definition
 interface PropsType {
-  upselling: upsellingFragmentType;
+  upselling: upsellingActiveUpsellingAreaFragmentType;
+  cartItems: (upsellingLineItemFragmentType | null)[];
 }
 
 // definition
@@ -43,11 +59,14 @@ const CustomArrow = ({
   </span>
 );
 
-export default React.memo(({ upselling }: PropsType) => {
+export default React.memo(({ upselling, cartItems }: PropsType) => {
   const { t } = useTranslation('cart');
   const colors = useContext(ColorsContext);
   const { isMobile } = useContext(SensorContext);
-  const [visible, setVisible] = useState(false);
+  const { isOverLimit, isWithProducts } = useCheckLimit({
+    upselling: filter(useCheckLimitActiveUpsellingAreaFragment, upselling),
+    cartItems: filter(useCheckLimitLineItemFragment, cartItems),
+  });
   const { products } = upselling;
 
   return (
@@ -73,15 +92,15 @@ export default React.memo(({ upselling }: PropsType) => {
             !product ? null : (
               <Product
                 key={product.id}
-                product={product}
-                onClick={() => setVisible(true)}
+                product={filter(productProductFragment, product)}
+                cartItems={filter(productLineItemFragment, cartItems)}
+                isOverLimit={isOverLimit}
+                isWithProducts={isWithProducts}
               />
             ),
           )}
         </Carousel>
       </div>
-
-      {!visible ? null : <Modal />}
 
       <style
         dangerouslySetInnerHTML={{

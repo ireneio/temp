@@ -26,6 +26,15 @@
   "MINIMUM_NOT_REACHED": "未達最低購買數量",
   "upselling": {
     "title": "加購商品",
-    "add-to-cart": "加入購物車"
+    "AVAILABLE": "加入購物車",
+    "OUT_OF_STOCK": "已售完",
+    "LIMITED": "已達加購上限"
+  },
+  "upselling-modal": {
+    "AVAILABLE": "立即加購",
+    "OUT_OF_STOCK": "已售完",
+    "LIMITED": "已達加購上限",
+    "NO_PRODUCTS": "任一商品加入購物車即可選購此商品",
+    "MAX": "已達購買上限"
   }
 }

@@ -26,6 +26,15 @@
   "MINIMUM_NOT_REACHED": "Tidak ada jumlah pembelian minimum",
   "upselling": {
     "title": "tekan",
-    "add-to-cart": "Tambahkan ke troli"
+    "AVAILABLE": "Tambahkan ke troli",
+    "OUT_OF_STOCK": "habis terjual",
+    "LIMITED": "Memiliki hingga membeli batas atas"
+  },
+  "upselling-modal": {
+    "AVAILABLE": "Beli sekarang",
+    "OUT_OF_STOCK": "habis terjual",
+    "LIMITED": "Memiliki hingga membeli batas atas",
+    "NO_PRODUCTS": "Setiap item untuk menambahkan produk ini ke keranjang belanja",
+    "MAX": "Telah mencapai batas atas"
   }
 }

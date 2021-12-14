@@ -13,15 +13,15 @@ import styles from './styles/index.less';
 // graphql typescript
 import {
   JustifyContent,
-  productCollectionsFragment,
-  productCollectionsFragment_product_galleries_images as productCollectionsFragmentProductGalleriesImages,
+  productCollectionsProductCollectionsModuleFragment,
+  productCollectionsProductCollectionsModuleFragment_product_galleries_images as productCollectionsProductCollectionsModuleFragmentProductGalleriesImages,
 } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { imageFragment } from '@meepshop/image/gqls';
 
 // typescript definition
-interface PropsType extends productCollectionsFragment {
+interface PropsType extends productCollectionsProductCollectionsModuleFragment {
   className?: string;
 }
 
@@ -31,7 +31,7 @@ export default React.memo(
     const { i18n } = useTranslation();
     const images = (product?.galleries?.[1]?.images || []).filter(
       Boolean,
-    ) as productCollectionsFragmentProductGalleriesImages[];
+    ) as productCollectionsProductCollectionsModuleFragmentProductGalleriesImages[];
 
     return !images.length ? null : (
       <div

@@ -6,23 +6,18 @@ import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 import { useImageScaledURLsFragment } from '@meepshop/image/gqls';
 
 // definition
-export const productCollectionsFragment = gql`
-  fragment productCollectionsFragment on ProductCollectionsModule {
+export const productCollectionsProductFragment = gql`
+  fragment productCollectionsProductFragment on Product {
     id
-    productCollectionsType
-    percentWidth
-    product {
-      id
-      title {
-        ...localeFragment
-      }
-      galleries {
-        images {
-          id
-          imageExists
-          scaledSrc {
-            ...useImageScaledURLsFragment
-          }
+    title {
+      ...localeFragment
+    }
+    galleries {
+      images {
+        id
+        imageExists
+        scaledSrc {
+          ...useImageScaledURLsFragment
         }
       }
     }
@@ -30,4 +25,18 @@ export const productCollectionsFragment = gql`
 
   ${localeFragment}
   ${useImageScaledURLsFragment}
+`;
+
+export const productCollectionsProductCollectionsModuleFragment = gql`
+  fragment productCollectionsProductCollectionsModuleFragment on ProductCollectionsModule {
+    id
+    productCollectionsType
+    percentWidth
+    product {
+      id
+      ...productCollectionsProductFragment
+    }
+  }
+
+  ${productCollectionsProductFragment}
 `;

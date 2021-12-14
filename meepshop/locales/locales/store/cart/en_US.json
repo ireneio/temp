@@ -26,6 +26,15 @@
   "MINIMUM_NOT_REACHED": "No minimum number of purchases",
   "upselling": {
     "title": "Press",
-    "add-to-cart": "add to the cart"
+    "AVAILABLE": "add to the cart",
+    "OUT_OF_STOCK": "sold out",
+    "LIMITED": "Has up to purchase upper limit"
+  },
+  "upselling-modal": {
+    "AVAILABLE": "Buy now",
+    "OUT_OF_STOCK": "sold out",
+    "LIMITED": "Has up to purchase upper limit",
+    "NO_PRODUCTS": "Any item to add this product to the shopping cart",
+    "MAX": "Has reached the upper limit"
   }
 }

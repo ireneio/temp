@@ -4,11 +4,11 @@ import React from 'react';
 import Video from '@meepshop/video';
 
 // graphql typescript
-import { productVideoFragment } from '@meepshop/types/gqls/meepshop';
+import { productVideoProductVideoModuleFragment } from '@meepshop/types/gqls/meepshop';
 
 // definition
 export default React.memo(
-  ({ id, width, ratio, product }: productVideoFragment) =>
+  ({ id, width, ratio, product }: productVideoProductVideoModuleFragment) =>
     !product?.videoLink?.value ? null : (
       <Video
         id={id}

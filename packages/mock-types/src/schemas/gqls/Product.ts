@@ -9,11 +9,24 @@ export const productMockFragment = gql`
     title {
       zh_TW
     }
+    specs {
+      id
+      title {
+        zh_TW
+      }
+    }
     variants {
       id
       sku
       stock
       retailPrice
+      specs {
+        id
+        specId
+        title {
+          zh_TW
+        }
+      }
     }
   }
 `;
