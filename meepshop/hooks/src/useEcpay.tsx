@@ -43,6 +43,22 @@ export default ({
   const [ecpay, setEcpay] = useState<typeof window['ECPay']>();
   const [jQueryLoaded, setJQueryLoaded] = useState(false);
   const [mutation] = useMutation<logType, logVariables>(log);
+  const handleLog = useCallback(
+    data => {
+      if (data.description) notification.error(data);
+
+      mutation({
+        variables: {
+          input: {
+            type: 'INFO' as LogTypeEnum,
+            name: 'ECPAY_LOG' as LogNameEnum,
+            data,
+          },
+        },
+      });
+    },
+    [mutation],
+  );
 
   return {
     ecpayScript: !token ? null : (
@@ -89,25 +105,19 @@ export default ({
                           createPaymentError => {
                             setEcpayLoading(false);
 
-                            mutation({
-                              variables: {
-                                input: {
-                                  type: 'INFO' as LogTypeEnum,
-                                  name: 'ECPAY_INIT' as LogNameEnum,
-                                  data: {},
-                                },
-                              },
+                            handleLog({
+                              message: 'ECPay Initialize',
                             });
 
                             if (createPaymentError)
-                              notification.error({
+                              handleLog({
                                 message: 'ECPay CreatePayment Error',
                                 description: createPaymentError,
                               });
                           },
                         );
                       } else {
-                        notification.error({
+                        handleLog({
                           message: 'ECPay Initialize Error',
                           description: initializeError,
                         });
@@ -117,7 +127,7 @@ export default ({
                 }
               }}
               onError={() => {
-                notification.error({
+                handleLog({
                   message: 'ECPay Error',
                   description: 'ecpay sdk not found',
                 });
@@ -134,7 +144,7 @@ export default ({
           if (ecpay)
             ecpay.getPayToken((paymentInfo, error) => {
               if (error) {
-                notification.error({
+                handleLog({
                   message: 'ECPay GetPayToken Error',
                   description: error,
                 });
@@ -143,14 +153,8 @@ export default ({
               } else if (paymentInfo) {
                 const { PayToken, PaymentType } = paymentInfo;
 
-                mutation({
-                  variables: {
-                    input: {
-                      type: 'INFO' as LogTypeEnum,
-                      name: 'ECPAY_GET_PAY_TOKEN' as LogNameEnum,
-                      data: {},
-                    },
-                  },
+                handleLog({
+                  message: 'ECPay GetPayToken',
                 });
 
                 resolve({ payToken: PayToken, paymentType: PaymentType });
@@ -158,7 +162,7 @@ export default ({
             });
           else resolve();
         }),
-      [ecpay, mutation],
+      [ecpay, handleLog],
     ),
   };
 };
