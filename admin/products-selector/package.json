@@ -8,7 +8,6 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/date-picker": "^0.80.97",
     "@meepshop/icons": "^0.80.97",
     "@meepshop/images": "^0.80.97",
     "@meepshop/locales": "^0.80.97",
