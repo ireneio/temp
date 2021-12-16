@@ -41,7 +41,8 @@ export default ({
 
           if (!variantInCart) return prev + variant.currentMinPurchasableQty;
 
-          return variantInCart.quantity >= variant.currentMaxPurchasableQty
+          return (variantInCart.quantity || 0) >=
+            variant.currentMaxPurchasableQty
             ? prev
             : prev + variant.currentMaxPurchasableQty;
         }, 0),
