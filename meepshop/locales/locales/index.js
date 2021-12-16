@@ -50,7 +50,7 @@ module.exports = ({ folderPath, locale }) => {
   const [workspace, filename] = folderPath.split(/\//);
   const output = [];
 
-  if (locale === 'zh_TW' && process.env.NODE_ENV !== 'production')
+  if (locale === 'zh-TW' && process.env.NODE_ENV !== 'production')
     output.push(path.resolve(pkgPath, './locale.json'));
 
   if (['meepshop', 'store'].includes(workspace))
@@ -60,6 +60,11 @@ module.exports = ({ folderPath, locale }) => {
         './src/public/locales',
         `${locale}/${filename}.json`,
       ),
+      getPkgPath(
+        '@meepshop/next-store',
+        './src/public/locales',
+        `${locale.replace(/-/, '_')}/${filename}.json`,
+      ),
     );
 
   if (['meepshop', 'admin'].includes(workspace))
@@ -68,6 +73,11 @@ module.exports = ({ folderPath, locale }) => {
         '@meepshop/next-admin',
         './src/public/locales',
         `${locale}/${filename}.json`,
+      ),
+      getPkgPath(
+        '@meepshop/next-admin',
+        './src/public/locales',
+        `${locale.replace(/-/, '_')}/${filename}.json`,
       ),
     );
 

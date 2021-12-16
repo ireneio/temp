@@ -3279,10 +3279,10 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@meepshop/meep-cli@^1.36.0":
-  version "1.36.0"
-  resolved "https://npm.pkg.github.com/download/@meepshop/meep-cli/1.36.0/e15bae5330edae1a63ceff6e4a94cfc6de99efa374f505ccaa04164289eca62f#e6a8884adcea9429db628e47f964e62d83886712"
-  integrity sha512-WMOOElyw2jV8NE8F78JzCRN+pMBkgT+Z20BtQpLq+31mjt/FPmCduEsNByazpXbC86roZceXs/JMwu2mWp8pDA==
+"@meepshop/meep-cli@^1.37.0":
+  version "1.37.0"
+  resolved "https://npm.pkg.github.com/download/@meepshop/meep-cli/1.37.0/6f99db65cedbf48be5b4923b4af68af51d28184e152648d1c42d29c3a7946793#a51ff7860b99c9bcf146611531f822f807204562"
+  integrity sha512-pIB/Mv4I2ZRj5vJ2CBGWPI/Ype7h+g2PBZTICo0LMe9qqn5v/ZYXzzJREVGFc3wbhhaIAa59h17K00iqN06FRA==
   dependencies:
     "@babel/core" "^7.13.8"
     "@babel/helper-plugin-utils" "^7.13.0"
