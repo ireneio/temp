@@ -6,10 +6,10 @@ import { Direction } from './useDirection';
 // import
 import React, { useMemo } from 'react';
 import {
-  RightOutlined,
-  LeftOutlined,
-  UpOutlined,
-  DownOutlined,
+  CaretRightOutlined,
+  CaretLeftOutlined,
+  CaretUpOutlined,
+  CaretDownOutlined,
 } from '@ant-design/icons';
 
 // definition
@@ -34,13 +34,13 @@ export default (
   return useMemo(() => {
     switch (toward) {
       case 'right':
-        return <RightOutlined style={style} />;
+        return <CaretRightOutlined style={style} />;
       case 'left':
-        return <LeftOutlined style={style} />;
+        return <CaretLeftOutlined style={style} />;
       case 'up':
-        return <UpOutlined style={style} />;
+        return <CaretUpOutlined style={style} />;
       case 'down':
-        return <DownOutlined style={style} />;
+        return <CaretDownOutlined style={style} />;
       default:
         return null;
     }

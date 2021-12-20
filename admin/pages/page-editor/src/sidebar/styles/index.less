@@ -1,0 +1,43 @@
+.root {
+  width: 280px;
+  height: 100%;
+  box-shadow: 1px 0 14px 0 rgba(0, 0, 0, 0.04);
+  background-color: #fafafa;
+
+  :global(.ant-tabs-nav) {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+    margin: 0;
+  }
+
+  :global(.ant-tabs-nav-wrap) {
+    width: 100%;
+    background-color: #fff;
+  }
+
+  :global(.ant-tabs-tab) {
+    &:not(:first-child) {
+      margin-left: 50px;
+    }
+
+    span {
+      font-size: 30px;
+      color: #e6ebf1;
+      margin: 0 20px;
+      transition: 0.3s;
+    }
+  }
+
+  :global(.ant-tabs-tab-active) span {
+    color: #626c82;
+  }
+
+  :global(.ant-tabs-ink-bar) {
+    height: 4px;
+    background-color: #00b8d6;
+  }
+
+  :global(.ant-tabs-content) {
+    height: 100%;
+  }
+}

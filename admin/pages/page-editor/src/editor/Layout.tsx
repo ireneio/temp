@@ -30,11 +30,11 @@ const Layout = React.memo(
 
     return (
       <div
-        id={`${__typename}-${id}`} // TODO: remove
-        data-level={level} // TODO: remove
-        className={`${styles.root} ${level === 1 ? styles.isLevelOne : ''}`}
+        id={id}
+        className={`${styles.root} ${level % 2 ? styles.isOdd : ''} ${
+          level === 1 ? styles.isLevelOne : ''
+        }`}
         style={{
-          display: level % 2 ? 'flex' : 'block',
           flex: `1 1 ${minWidth}`,
         }}
       >

@@ -1,7 +1,93 @@
 .group {
   display: block;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    border: 2px solid transparent;
+    transition: 0.3s;
+  }
+
+  &.isEmpty {
+    height: 65vh;
+
+    &::after {
+      border: 2px dashed #C4CAD5;
+    }
+
+    > div:last-child {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+
+      > div {
+        text-align: center;
+        width: 100%;
+        max-width: 208px;
+        color: #C4CAD5;
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+  }
+
+  &.isDragging {
+    opacity: 0;
+  }
 
   &.isOver {
-    background-color: orange;
+    background-color: rgba(#FFBA1F,0.15);
+
+    &::after {
+      border: 2px dashed #FFBA1F;
+      border-top: 8px solid #FEAC5E;
+    }
   }
+
+  &:hover {
+    .handler {
+      display: flex;
+    }
+
+    &::after {
+      border: 2px solid #FFBA1F;
+    }
+  }
+}
+
+.handler {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  display: none;
+  align-items: center;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 0 0 0 4px;
+  background-color: #FFBA1F;
+  box-shadow: 0 1px 8px 0 rgba(0,0,0,0.1);
+  padding: 8px 12px;
+  font-size: 16px;
+  line-height: 16px;
+  color: #FFF;
+
+  > span {
+    cursor: pointer;
+  }
+
+  > *:not(:last-child) {
+    margin-right: 12px;
+  }
+}
+
+.emptyGroup {
+  margin-bottom: 4px;
+  width: 144px;
 }

@@ -1,31 +1,22 @@
 .root {
   height: 100%;
-  overflow: auto;
-  padding: 56px 35px;
-  color: rgba(0, 0, 0, 0.85);
-}
-
-.header {
-  height: 100%;
+  overflow: hidden;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: auto;
-  max-width: 996px;
-
-  h1 {
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 33px;
-    color: rgba(0, 0, 0, 0.65);
-    margin: 0;
-  }
+  background-color: #f0f2f5;
 }
 
 .content {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 25px 0;
-  margin: auto;
-  max-width: 996px;
+  width: calc(100% - 280px);
+  height: 100%;
+}
+
+.editor {
+  height: calc(100% - 56px);
+  overflow-y: scroll;
+  padding: 8px 8px 24px;
+
+  > div {
+    background-color: #ffffff;
+    box-shadow: 0 0 8px 0 rgba(96, 105, 115, 0.2);
+  }
 }

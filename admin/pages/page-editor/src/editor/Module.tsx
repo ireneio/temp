@@ -4,6 +4,10 @@ import { ModulesType } from './hooks/useModules';
 // import
 import React from 'react';
 
+import Tooltip from '@admin/tooltip';
+import { useTranslation } from '@meepshop/locales';
+import { CopyOutlineIcon, DeleteOutlineIcon } from '@meepshop/icons';
+import Switch from '@meepshop/switch';
 import modules from '@meepshop/modules';
 
 import Indicator from './Indicator';
@@ -24,6 +28,7 @@ interface PropsType {
 // definition
 export default React.memo(
   ({ data, parentNode, settings: { level } }: PropsType) => {
+    const { t } = useTranslation('page-editor');
     const { __typename } = data;
     const Module = modules[__typename];
     const [{ isOver, direction }, dropRef] = useCustomDrop({
@@ -39,26 +44,44 @@ export default React.memo(
 
     return (
       <div
-        className={`${styles.root} ${
+        className={`${styles.root} ${isOver ? styles.isOver : ''} ${
           direction ? styles[direction.toward] : ''
         } ${direction?.isBorderline ? styles.isBorderline : ''} ${
           isDragging ? styles.isDragging : ''
         }`}
+        ref={dragRef}
       >
-        <div className={styles.border}>
-          <div ref={dragRef} className={styles.handler}>
-            level: {level}
-          </div>
+        <div>
+          <div className={styles.mask} ref={dropRef} />
 
-          <div ref={dropRef} className={styles.mask} />
+          <div className={styles.handler}>
+            <Switch
+              isTrue={__typename === 'IframeModule'}
+              render={children => (
+                <Tooltip title={t('iframe-tip')}>
+                  <>{children}</>
+                </Tooltip>
+              )}
+            >
+              <div>{t(`modules.${__typename}`)}</div>
+            </Switch>
+
+            <Tooltip title={t('copy')}>
+              <CopyOutlineIcon />
+            </Tooltip>
+
+            <Tooltip title={t('delete')}>
+              <DeleteOutlineIcon />
+            </Tooltip>
+          </div>
 
           <div className={styles.module}>
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <Module {...(data as any)} />
           </div>
-        </div>
 
-        {!isOver ? null : <Indicator toward={direction?.toward} />}
+          {!isOver ? null : <Indicator toward={direction?.toward} />}
+        </div>
       </div>
     );
   },

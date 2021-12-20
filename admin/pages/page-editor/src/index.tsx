@@ -12,9 +12,10 @@ import { DndProvider } from 'react-dnd';
 
 import CookiesContext from '@meepshop/cookies';
 import Page from '@meepshop/page';
-import { useTranslation } from '@meepshop/locales';
 
 import Editor from './editor';
+import Sidebar from './sidebar';
+import Header from './Header';
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -27,10 +28,13 @@ import {
 import { pageUserFragment, pagePageFragment } from '@meepshop/page/gqls';
 
 import { getPageEditorPage } from './gqls';
+import { headerStoreFragment } from './gqls/header';
 import { editorFragment } from './editor/gqls';
 
 // typescript definition
 interface PropsType {
+  namespacesRequired: string[];
+  noWrapper: boolean;
   pageId: string;
 }
 
@@ -38,7 +42,6 @@ interface PropsType {
 const PageEditor: NextPage<PropsType> = React.memo(
   ({ pageId }): React.ReactElement => {
     const { cookies } = useContext(CookiesContext);
-    const { t } = useTranslation('page-editor');
     const { data, error, loading } = useQuery<
       getPageEditorPageType,
       getPageEditorPageVariablesType
@@ -53,30 +56,39 @@ const PageEditor: NextPage<PropsType> = React.memo(
       return <Spin indicator={<LoadingOutlined spin />} />;
 
     return (
-      <Page
-        viewer={filter(pageUserFragment, data.viewer)}
-        page={filter(pagePageFragment, data.viewer.store.page)}
-        cart={null}
-      >
-        <DndProvider backend={HTML5Backend}>
-          <div className={styles.root}>
-            {t('page-editor')}
-            <Editor page={filter(editorFragment, data.viewer.store.page)} />
+      <DndProvider backend={HTML5Backend}>
+        <div className={styles.root}>
+          <Sidebar />
+
+          <div className={styles.content}>
+            <Header store={filter(headerStoreFragment, data.viewer.store)} />
+
+            <div className={styles.editor}>
+              <Page
+                viewer={filter(pageUserFragment, data.viewer)}
+                page={filter(pagePageFragment, data.viewer.store.page)}
+                cart={null}
+                disabledFooter
+              >
+                <Editor page={filter(editorFragment, data.viewer.store.page)} />
+              </Page>
+            </div>
           </div>
-        </DndProvider>
-      </Page>
+        </div>
+      </DndProvider>
     );
   },
 );
 
-PageEditor.getInitialProps = async context => {
-  const {
-    query: { pageId },
-  } = context;
+PageEditor.getInitialProps = async ({ query: { pageId } }) => {
+  // FIXME: should use get getServerSideProps return notFound
+  if (typeof pageId !== 'string')
+    throw new Error('[FIXME] orderId is undefined');
 
   return {
-    pageId: pageId as string,
     namespacesRequired: ['@meepshop/locales/namespacesRequired'],
+    noWrapper: true,
+    pageId: pageId as string,
   };
 };
 

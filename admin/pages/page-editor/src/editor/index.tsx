@@ -41,8 +41,13 @@ export default React.memo(
           className={styles.root}
           style={{ maxWidth: !maxWidth ? '100%' : `${maxWidth}px` }}
         >
-          {modulesTree.map(({ id, data: groupData, children }) => (
-            <Group key={id} data={groupData} childModules={children} />
+          {modulesTree.map(({ id, data, children }) => (
+            <Group
+              key={id}
+              data={data}
+              childModules={children}
+              isOnlyGroup={modulesTree.length === 1}
+            />
           ))}
         </div>
       </ModuleContext.Provider>

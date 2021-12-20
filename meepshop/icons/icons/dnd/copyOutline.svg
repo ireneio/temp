@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1024px" height="1024px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_copy_outline</title>
+    <g id="切圖" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="slice" transform="translate(0.000000, -1139.000000)">
+            <g id="ic_copy_outline" transform="translate(0.000000, 1139.000000)">
+                <rect id="bg" fill-opacity="0" fill="#FFFFFF" x="64" y="64" width="896" height="896"></rect>
+                <path d="M708,280 C725.673112,280 740,294.326888 740,312 L740,836 C740,853.673112 725.673112,868 708,868 L184,868 C166.326888,868 152,853.673112 152,836 L152,312 C152,294.326888 166.326888,280 184,280 L708,280 Z M668,352 L224,352 L224,796 L668,796 L668,352 Z M852,136 C869.673112,136 884,150.326888 884,168 L884,658 C884,675.673112 869.673112,690 852,690 L844,690 C826.326888,690 812,675.673112 812,658 L812,208 L362,208 C344.326888,208 330,193.673112 330,176 L330,168 C330,150.326888 344.326888,136 362,136 L852,136 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

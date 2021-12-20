@@ -23,11 +23,19 @@ interface PropsType {
   page: pagePageFragment | null;
   Menu?: typeof Menu;
   children: React.ReactNode;
+  disabledFooter?: boolean;
 }
 
 // definition
 export default React.memo(
-  ({ viewer, cart, page, Menu: LayoutMenu = Menu, children }: PropsType) => {
+  ({
+    viewer,
+    cart,
+    page,
+    Menu: LayoutMenu = Menu,
+    children,
+    disabledFooter,
+  }: PropsType) => {
     const container = page?.container || 'DefaultContainer';
     const defaultMenuProps = {
       __typename: 'MenuModule' as const,
@@ -93,7 +101,7 @@ export default React.memo(
           </div>
         </div>
 
-        {viewer?.store?.hiddingMeepshopMaxInFooterEnabled ? null : (
+        {disabledFooter ? null : (
           <footer className={styles.footer}>
             <a
               href="https://meepshop.cc/8h1kG"
