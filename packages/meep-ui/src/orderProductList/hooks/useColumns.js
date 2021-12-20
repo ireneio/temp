@@ -3,7 +3,7 @@ import { TagOutlined } from '@ant-design/icons';
 import { Tag, notification } from 'antd';
 import transformColor from 'color';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import {
   Currency as CurrencyContext,
   Colors as ColorsContext,
@@ -17,7 +17,8 @@ import ProductAmountSelector from '@meepshop/product-amount-selector';
 import styles from './styles/useColumns.less';
 
 export default ({ productHasError, onChange }) => {
-  const { t, i18n } = useTranslation('order-product-list');
+  const { t } = useTranslation('order-product-list');
+  const getLanguage = useGetLanguage();
   const { c } = useContext(CurrencyContext);
   const colors = useContext(ColorsContext);
   const { updateProductInCart, removeProductFromCart } = useContext(
@@ -99,7 +100,7 @@ export default ({ productHasError, onChange }) => {
               ),
             }}
           >
-            {title[i18n.language] || title.zh_TW}
+            {getLanguage(title)}
 
             {!specs ? null : (
               <div
@@ -110,10 +111,7 @@ export default ({ productHasError, onChange }) => {
                 }}
               >
                 {specs
-                  .map(
-                    ({ title: specTitle }) =>
-                      specTitle[i18n.language] || specTitle.zh_TW,
-                  )
+                  .map(({ title: specTitle }) => getLanguage(specTitle))
                   .join('/')}
               </div>
             )}
@@ -131,9 +129,7 @@ export default ({ productHasError, onChange }) => {
                   >
                     <TagOutlined />
 
-                    <span>
-                      {activityTitle[i18n.language] || activityTitle.zh_TW}
-                    </span>
+                    <span>{getLanguage(activityTitle)}</span>
                   </Tag>
                 ))}
               </div>
@@ -261,7 +257,7 @@ export default ({ productHasError, onChange }) => {
     [
       productHasError,
       t,
-      i18n,
+      getLanguage,
       c,
       colors,
       removeProductFromCart,

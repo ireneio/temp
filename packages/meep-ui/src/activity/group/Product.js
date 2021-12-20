@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { areEqual } from 'fbjs';
 import radium, { Style } from 'radium';
 
-import { withTranslation } from '@meepshop/locales';
+import withHook from '@store/utils/lib/withHook';
+import { withTranslation, useGetLanguage } from '@meepshop/locales';
 import { placeholderThumbnail_scaledSrc as placeholderThumbnail } from '@meepshop/images';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -16,6 +17,9 @@ import { ISUSER } from 'constants/isLogin';
 import * as styles from './styles/product';
 
 @withTranslation('activity')
+@withHook(() => ({
+  getLanguage: useGetLanguage(),
+}))
 @enhancer
 @radium
 export default class Product extends React.PureComponent {
@@ -95,7 +99,7 @@ export default class Product extends React.PureComponent {
 
       /** props */
       t,
-      i18n,
+      getLanguage,
       product,
       isLogin,
       hasStoreAppPlugin,
@@ -115,13 +119,11 @@ export default class Product extends React.PureComponent {
           contentWidth={100}
           newWindow={false}
           alignment="center"
-          alt={title[i18n.language] || title.zh_TW}
+          alt={getLanguage(title)}
         />
 
         <div style={styles.productText}>
-          <div style={styles.productTitle}>
-            {title[i18n.language] || title.zh_TW}
-          </div>
+          <div style={styles.productTitle}>{getLanguage(title)}</div>
           <div style={styles.productPrice}>
             {hasStoreAppPlugin('memberSeePrice') && isLogin !== ISUSER
               ? t('member-see-price')

@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 
-import { withTranslation } from '@meepshop/locales';
+import withHook from '@store/utils/lib/withHook';
+import { withTranslation, useGetLanguage } from '@meepshop/locales';
 import DraftText from '@meepshop/draft-text';
 
 import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
@@ -14,7 +15,7 @@ import { PRODUCT_TYPE, VARIANT_TYPE } from './constants';
 
 const Description = ({
   t,
-  i18n,
+  getLanguage,
   productData,
   variant,
   mode,
@@ -26,9 +27,7 @@ const Description = ({
   !variant ? null : (
     <div style={styles.root(colors)}>
       {!productData.title ? null : (
-        <h1 style={styles.title}>
-          {productData.title[i18n.language] || productData.title.zh_TW}
-        </h1>
+        <h1 style={styles.title}>{getLanguage(productData.title)}</h1>
       )}
       {mode === 'detail' && variant.sku && (
         <div style={styles.sku}>{variant.sku}</div>
@@ -36,10 +35,7 @@ const Description = ({
       {mode === 'detail' && (
         <DraftText
           className={lessStyles.description}
-          content={
-            productData.description[i18n.language] ||
-            productData.description.zh_TW
-          }
+          content={getLanguage(productData.description)}
         />
       )}
       {productData.applicableActivities?.length > 0 && (
@@ -47,10 +43,10 @@ const Description = ({
           {productData.applicableActivities.map(activity =>
             !activity.title ? null : (
               <div
-                key={activity.title[i18n.language] || activity.title.zh_TW}
+                key={getLanguage(activity.title)}
                 style={styles.activityTag(colors)}
               >
-                {activity.title[i18n.language] || activity.title.zh_TW}
+                {getLanguage(activity.title)}
               </div>
             ),
           )}
@@ -111,4 +107,6 @@ Description.propTypes = {
 };
 /* eslint-enable react/no-typos */
 
-export default withTranslation('product-info')(radium(Description));
+export default withTranslation('product-info')(
+  withHook(() => ({ getLanguage: useGetLanguage() }))(radium(Description)),
+);

@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
-import { withTranslation } from '@meepshop/locales';
+import withHook from '@store/utils/lib/withHook';
+import { withTranslation, useGetLanguage } from '@meepshop/locales';
 import { placeholderThumbnail_scaledSrc as placeholderThumbnail } from '@meepshop/images';
 import DraftText from '@meepshop/draft-text';
 
@@ -35,7 +36,7 @@ const ProductCard = ({
   colors,
   isLogin,
   t,
-  i18n,
+  getLanguage,
   transformCurrency,
   memberSeePrice,
 }) => (
@@ -106,25 +107,19 @@ const ProductCard = ({
                   alignment="center"
                   newWindow={false}
                   ratio={1}
-                  alt={title[i18n.language] || title.zh_TW}
+                  alt={getLanguage(title)}
                 />
               </div>
 
               {showTitle && (
-                <div style={styles.productTitle}>
-                  {title[i18n.language] || title.zh_TW}
-                </div>
+                <div style={styles.productTitle}>{getLanguage(title)}</div>
               )}
 
-              {showDescription &&
-                (description[i18n.language] || description.zh_TW) && (
-                  <div style={styles.productDescription(colors)}>
-                    <DraftText
-                      content={description[i18n.language] || description.zh_TW}
-                      usePlainText
-                    />
-                  </div>
-                )}
+              {showDescription && getLanguage(description) && (
+                <div style={styles.productDescription(colors)}>
+                  <DraftText content={getLanguage(description)} usePlainText />
+                </div>
+              )}
 
               {showPrice && (
                 <div style={styles.productPrice}>
@@ -214,4 +209,6 @@ ProductCard.defaultProps = {
   products: null,
 };
 
-export default withTranslation('product-list')(radium(ProductCard));
+export default withTranslation('product-list')(
+  withHook(() => ({ getLanguage: useGetLanguage() }))(radium(ProductCard)),
+);

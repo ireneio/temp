@@ -5,7 +5,7 @@ import { getElementPosition } from 'fbjs';
 import uuid from 'uuid';
 import { useMutation } from '@apollo/client';
 
-import { withTranslation } from '@meepshop/locales';
+import { withTranslation, useGetLanguage } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
@@ -35,7 +35,10 @@ const { Option } = Select;
 @withHook(() => {
   const [mutation] = useMutation(computeOrderList);
 
-  return { mutation };
+  return {
+    mutation,
+    getLanguage: useGetLanguage(),
+  };
 })
 @enhancer
 @mockPaymentInfoRef
@@ -79,7 +82,6 @@ class PayemntInfo extends React.PureComponent {
 
   state = {
     productId: null,
-    variantOptions: [],
     variantMax: 0,
     variantMin: 0,
     shipmentList: [],
@@ -89,13 +91,12 @@ class PayemntInfo extends React.PureComponent {
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
-    const { t, i18n, id, variantsTree, isLogin } = nextProps;
+    const { id, isLogin } = nextProps;
 
     if ((id && id !== preState.productId) || isLogin !== preState.isLogin) {
       return {
         productId: id,
         isLogin,
-        variantOptions: getVariantOptions(variantsTree.children, t, i18n),
         variantMax: 0,
         variantMin: 0,
       };
@@ -291,14 +292,13 @@ class PayemntInfo extends React.PureComponent {
 
       /** props */
       t,
-      i18n,
+      getLanguage,
       title,
       variants,
       variantsTree,
       addition,
     } = this.props;
     const {
-      variantOptions,
       variantMax,
       variantMin,
       shipmentList,
@@ -325,25 +325,19 @@ class PayemntInfo extends React.PureComponent {
           {variants.length === 1 ? (
             <Select disabled>
               <Option value={variants[0].id}>
-                {title[i18n.language] || title.zh_TW}
+                {getLanguage(title)}
                 {variantMin !== 0 ? null : ` (${t('no-variant')})`}
               </Option>
             </Select>
           ) : (
             <Cascader
-              placeholder={
-                title
-                  ? title[i18n.language] || title.zh_TW
-                  : t('select-product')
-              }
-              options={variantOptions}
+              placeholder={title ? getLanguage(title) : t('select-product')}
+              options={getVariantOptions(variantsTree.children, t, getLanguage)}
               disabled={variantsTree.children.length === 0}
               displayRender={label =>
                 label.length === 0
                   ? ''
-                  : `${
-                      title ? title[i18n.language] || title.zh_TW : ''
-                    } ${label.join(' / ')}`
+                  : `${title ? getLanguage(title) : ''} ${label.join(' / ')}`
               }
               allowClear={false}
               onChange={variantIds => this.getVariantPrice(variantIds)}

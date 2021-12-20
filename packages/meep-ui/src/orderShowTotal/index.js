@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 
-import { withTranslation } from '@meepshop/locales';
+import withHook from '@store/utils/lib/withHook';
+import { withTranslation, useGetLanguage } from '@meepshop/locales';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
@@ -38,6 +39,9 @@ const getActivityInfo = activityInfo =>
   }, []);
 
 @withTranslation('order-show-total')
+@withHook(() => ({
+  getLanguage: useGetLanguage(),
+}))
 @enhancer
 @radium
 export default class OrderShowTotal extends React.PureComponent {
@@ -81,7 +85,7 @@ export default class OrderShowTotal extends React.PureComponent {
 
       /** props */
       t,
-      i18n,
+      getLanguage,
       style,
       productPrice,
       paymentFee,
@@ -105,9 +109,7 @@ export default class OrderShowTotal extends React.PureComponent {
             discountPrice <= 0 ? null : (
               <div key={id} style={styles.item}>
                 <div>
-                  {plugin === 'usePoints'
-                    ? t('point')
-                    : title[i18n.language] || title.zh_TW}
+                  {plugin === 'usePoints' ? t('point') : getLanguage(title)}
                 </div>
 
                 <div>- {transformCurrency(discountPrice)}</div>

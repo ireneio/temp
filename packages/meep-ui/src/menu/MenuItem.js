@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import memoizeOne from 'memoize-one';
 import { Menu, notification } from 'antd';
 
-import { withTranslation } from '@meepshop/locales';
+import { withTranslation, useGetLanguage } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
 import { useRouter } from '@meepshop/link';
 import Switch from '@meepshop/switch';
@@ -40,6 +40,7 @@ const { Item: AntdMenuItem, SubMenu } = Menu;
 @withHook(() => ({
   router: useRouter(),
   client: useApolloClient(),
+  getLanguage: useGetLanguage(),
 }))
 @enhancer
 export default class MenuItem extends React.PureComponent {
@@ -50,6 +51,7 @@ export default class MenuItem extends React.PureComponent {
       withHook(() => ({
         router: useRouter(),
         client: useApolloClient(),
+        getLanguage: useGetLanguage(),
       }))(enhancer(MenuItem)),
     ),
   );
@@ -189,7 +191,7 @@ export default class MenuItem extends React.PureComponent {
 
       /** props */
       t,
-      i18n,
+      getLanguage,
       id,
       action,
       title,
@@ -232,7 +234,7 @@ export default class MenuItem extends React.PureComponent {
             ? user.memberGroup.name
             : null;
 
-        return title[i18n.language] || title.zh_TW;
+        return getLanguage(title);
 
       default:
         switch (id) {
@@ -246,7 +248,7 @@ export default class MenuItem extends React.PureComponent {
             return t(`menu:${id}`);
 
           default:
-            return title[i18n.language] || title.zh_TW;
+            return getLanguage(title);
         }
     }
   };

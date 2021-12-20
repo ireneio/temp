@@ -6,7 +6,7 @@ import { Spin } from 'antd';
 import { useQuery } from '@apollo/client';
 
 import withHook from '@store/utils/lib/withHook';
-import { withTranslation } from '@meepshop/locales';
+import { withTranslation, useGetLanguage } from '@meepshop/locales';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, COLOR_TYPE, LOCALE_TYPE } from 'constants/propTypes';
@@ -18,6 +18,9 @@ import { getProductsInActivity } from './gqls';
 import * as styles from './styles';
 
 @withTranslation('activity')
+@withHook(() => ({
+  getLanguage: useGetLanguage(),
+}))
 @withHook(({ group }) =>
   useQuery(getProductsInActivity, {
     variables: {
@@ -76,7 +79,7 @@ export default class Group extends React.PureComponent {
       colors,
 
       /** props */
-      i18n,
+      getLanguage,
       background,
       group,
       data,
@@ -107,7 +110,7 @@ export default class Group extends React.PureComponent {
               },
             ]}
           >
-            {group.title[i18n.language] || group.title.zh_TW}
+            {getLanguage(group.title)}
 
             <SortIcon
               sort={sort}

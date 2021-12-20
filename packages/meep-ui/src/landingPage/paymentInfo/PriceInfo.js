@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 
-import { withTranslation } from '@meepshop/locales';
+import withHook from '@store/utils/lib/withHook';
+import { withTranslation, useGetLanguage } from '@meepshop/locales';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, POSITIVE_NUMBER_TYPE } from 'constants/propTypes';
@@ -12,6 +13,9 @@ import { formItem as formItemStyle } from '../styles';
 import * as styles from './styles/priceInfo';
 
 @withTranslation('landing-page')
+@withHook(() => ({
+  getLanguage: useGetLanguage(),
+}))
 @enhancer
 @radium
 export default class PriceInfo extends React.PureComponent {
@@ -41,7 +45,7 @@ export default class PriceInfo extends React.PureComponent {
 
       /** props */
       t,
-      i18n,
+      getLanguage,
       activityInfo,
       priceInfo,
     } = this.props;
@@ -66,7 +70,7 @@ export default class PriceInfo extends React.PureComponent {
                 <span>
                   {['productCoupon', 'orderCoupon'].includes(plugin)
                     ? t('coupon-code')
-                    : title[i18n.language] || title.zh_TW}
+                    : getLanguage(title)}
                 </span>
 
                 <span style={styles.content}>
