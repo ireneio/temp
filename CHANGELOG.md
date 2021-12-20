@@ -1,5 +1,43 @@
 # CHANGELOG
 
+## 0.80.103 (2021-12-20)
+
+#### :rocket: New Feature
+
+- `client`
+  - [#1975](https://github.com/meepshop/meep-lerna/pull/1975) 內部開單 - 修改 @meepshop/apollo 參數 ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`
+  - [#1899](https://github.com/meepshop/meep-lerna/pull/1899) 內部開單 - 將 meep-ui, next-store 改用 useGetLanguage ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#1979](https://github.com/meepshop/meep-lerna/pull/1979) 【優化】綠界 2.0：新增 log ecpay sdk 錯誤訊息 ([@happycat6323](https://github.com/happycat6323))
+- `mock-types`
+  - [#1937](https://github.com/meepshop/meep-lerna/pull/1937) @store/cart 新增：加購品彈窗 Modal ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `client`
+  - [#1980](https://github.com/meepshop/meep-lerna/pull/1980) 【個別店家】IE 瀏覽器 - 開啟頁面模糊 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#1974](https://github.com/meepshop/meep-lerna/pull/1974) 【BUG】商品細節描述：文字編輯器異常 ([@happycat6323](https://github.com/happycat6323))
+  - [#1992](https://github.com/meepshop/meep-lerna/pull/1992) (@store/cart): fix: types ([@piovischioh](https://github.com/piovischioh))
+  - [#1989](https://github.com/meepshop/meep-lerna/pull/1989) (@meepshop/frontend) Fix caniuse-lite ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `client`
+  - [#1975](https://github.com/meepshop/meep-lerna/pull/1975) 內部開單 - 修改 @meepshop/apollo 參數 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#1903](https://github.com/meepshop/meep-lerna/pull/1903) 內部開單 - @store/ad-track 的 Head.tsx ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1983](https://github.com/meepshop/meep-lerna/pull/1983) 修改語系的寫法：@meep-cli 支援 zh-TW 系列 ([@happycat6323](https://github.com/happycat6323))
+  - [#1976](https://github.com/meepshop/meep-lerna/pull/1976) (@admin/products-selector) Remove not used package ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.102 (2021-12-13)
 
 #### :boom: Breaking Change
