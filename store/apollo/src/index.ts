@@ -1,4 +1,6 @@
 // import
+import { HttpLink } from '@apollo/client';
+
 import { buildWithApollo } from '@meepshop/apollo';
 
 import * as applyForReturnOrExchangeWithOrder from './applyForReturnOrExchangeWithOrder';
@@ -10,6 +12,7 @@ import * as User from './User';
 // definition
 export default buildWithApollo({
   name: 'store',
+  terminatingLink: new HttpLink(),
   resolvers: [
     applyForReturnOrExchangeWithOrder.resolvers,
     Order.resolvers,

@@ -1,4 +1,8 @@
 // import
+import { split, HttpLink } from '@apollo/client';
+import { getMainDefinition } from '@apollo/client/utilities';
+import { createUploadLink } from 'apollo-upload-client';
+
 import { buildWithApollo } from '@meepshop/apollo';
 
 import * as authorizeStore from './authorizeStore';
@@ -44,6 +48,19 @@ const shouldIgnoreErrorMessages = [
 
 export default buildWithApollo({
   name: 'admin',
+  terminatingLink: split(
+    ({ query }) => {
+      const definition = getMainDefinition(query);
+
+      return (
+        definition.kind === 'OperationDefinition' &&
+        definition.operation === 'mutation' &&
+        definition.name?.value === 'uploadImages'
+      );
+    },
+    createUploadLink(),
+    new HttpLink(),
+  ),
   resolvers: [
     authorizeStore.resolvers,
     OrderConnection.resolvers,

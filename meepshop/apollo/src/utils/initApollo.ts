@@ -1,5 +1,5 @@
 // typescript import
-import { NormalizedCacheObject, Resolvers } from '@apollo/client';
+import { NormalizedCacheObject, Resolvers, ApolloLink } from '@apollo/client';
 
 import { LoggerInfoType } from '@meepshop/logger';
 
@@ -9,15 +9,12 @@ import { errorFilterType } from './errorLink';
 // import
 import {
   ApolloClient,
-  split,
   from,
-  HttpLink,
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import { RetryLink } from '@apollo/client/link/retry';
-import { getMainDefinition } from '@apollo/client/utilities';
-import { createUploadLink } from 'apollo-upload-client';
 import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 import getConfig from 'next/config';
 
@@ -48,6 +45,7 @@ import errorLink from './errorLink';
 // typescript definition
 export interface ConfigType {
   name: string;
+  terminatingLink: ApolloLink;
   initializeCache?: ((cache: InMemoryCache, ctx?: CustomCtxType) => void)[];
   resolvers?: Resolvers[];
   errorFilter?: errorFilterType;
@@ -65,6 +63,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 const create = (
   {
     name,
+    terminatingLink,
     initializeCache = [],
     resolvers = [],
     errorFilter = Boolean,
@@ -83,35 +82,6 @@ const create = (
 
   if (!initialState)
     initializeCache.forEach(initialize => initialize(cache, ctx));
-
-  const linkConfig = {
-    uri: typeof window !== 'undefined' ? '/api/graphql' : `${API}/graphql`,
-    credentials: 'include',
-    headers: {
-      ...(!ctx
-        ? {}
-        : {
-            'x-meepshop-domain': ctx.ctx.req.headers.host,
-            'x-meepshop-authorization-token':
-              ctx.ctx.req.cookies?.['x-meepshop-authorization-token'] || '',
-          }),
-      'x-meepshop-unique-id': loggerInfo?.identity || '',
-    },
-  };
-
-  const linkClient = split(
-    ({ query }) => {
-      const definition = getMainDefinition(query);
-
-      return (
-        definition.kind === 'OperationDefinition' &&
-        definition.operation === 'mutation' &&
-        definition.name?.value === 'uploadImages'
-      );
-    },
-    createUploadLink(linkConfig),
-    new HttpLink(linkConfig),
-  );
 
   return new ApolloClient({
     name,
@@ -151,7 +121,21 @@ const create = (
       }),
       errorLink(errorFilter, logger),
       link,
-      linkClient,
+      setContext(() => ({
+        uri: typeof window !== 'undefined' ? '/api/graphql' : `${API}/graphql`,
+        credentials: 'include',
+        headers: {
+          ...(!ctx
+            ? {}
+            : {
+                'x-meepshop-domain': ctx.ctx.req.headers.host,
+                'x-meepshop-authorization-token':
+                  ctx.ctx.req.cookies?.['x-meepshop-authorization-token'] || '',
+              }),
+          'x-meepshop-unique-id': loggerInfo?.identity || '',
+        },
+      })),
+      terminatingLink,
     ]),
   });
 };

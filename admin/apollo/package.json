@@ -8,7 +8,8 @@
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.102"
+    "@meepshop/apollo": "^0.80.102",
+    "apollo-upload-client": "^10.0.1"
   },
   "keywords": ["admin", "apollo client"]
 }

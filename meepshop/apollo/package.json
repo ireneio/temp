@@ -13,7 +13,6 @@
     "@meepshop/locales": "^0.80.97",
     "@meepshop/logger": "^0.80.97",
     "@meepshop/utils": "^0.80.97",
-    "apollo-upload-client": "^10.0.1",
     "cookie": "^0.4.1",
     "draft-js": "^0.10.3",
     "isomorphic-unfetch": "^3.0.0",
