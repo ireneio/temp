@@ -1,3 +1,4 @@
-const { onError } = require('apollo-link-error');
+/* eslint-disable no-var */
+var apolloLinkError = require('apollo-link-error');
 
-module.exports = { onError };
+module.exports = { onError: apolloLinkError.onError };

@@ -1,3 +1,4 @@
-const { RetryLink } = require('apollo-link-retry');
+/* eslint-disable no-var */
+var apolloLinkRetry = require('apollo-link-retry');
 
-module.exports = { RetryLink };
+module.exports = { RetryLink: apolloLinkRetry.RetryLink };

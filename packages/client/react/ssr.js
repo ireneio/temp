@@ -1,5 +1,6 @@
-const { getDataFromTree } = require('@apollo/react-ssr');
+/* eslint-disable no-var */
+var reactSsr = require('@apollo/react-ssr');
 
 module.exports = {
-  getDataFromTree,
+  getDataFromTree: reactSsr.getDataFromTree,
 };

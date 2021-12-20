@@ -1,3 +1,4 @@
-const { getMainDefinition } = require('apollo-utilities');
+/* eslint-disable no-var */
+var apolloUtilities = require('apollo-utilities');
 
-module.exports = { getMainDefinition };
+module.exports = { getMainDefinition: apolloUtilities.getMainDefinition };

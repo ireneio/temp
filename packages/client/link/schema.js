@@ -1,3 +1,4 @@
-const { SchemaLink } = require('apollo-link-schema');
+/* eslint-disable no-var */
+var apolloLinkSchema = require('apollo-link-schema');
 
-module.exports = { SchemaLink };
+module.exports = { SchemaLink: apolloLinkSchema.SchemaLink };

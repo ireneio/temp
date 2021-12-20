@@ -1,30 +1,23 @@
-const gql = require('graphql-tag');
-const {
-  useQuery,
-  useMutation,
-  useLazyQuery,
-  useApolloClient,
-  ApolloProvider,
-} = require('@apollo/react-hooks');
-const { split, from } = require('apollo-link');
-const { HttpLink } = require('apollo-link-http');
-const {
-  InMemoryCache,
-  IntrospectionFragmentMatcher,
-} = require('apollo-cache-inmemory');
-const { ApolloClient } = require('apollo-client');
+/* eslint-disable no-var, object-shorthand */
+var gql = require('graphql-tag');
+var reactHooks = require('@apollo/react-hooks');
+var apolloLink = require('apollo-link');
+var apolloLinkHttp = require('apollo-link-http');
+var apolloCacheInmemory = require('apollo-cache-inmemory');
+var apolloClient = require('apollo-client');
 
 module.exports = {
-  gql,
-  useQuery,
-  useMutation,
-  useLazyQuery,
-  useApolloClient,
-  ApolloProvider,
-  split,
-  from,
-  HttpLink,
-  InMemoryCache,
-  IntrospectionFragmentMatcher,
-  ApolloClient,
+  gql: gql,
+  useQuery: reactHooks.useQuery,
+  useMutation: reactHooks.useMutation,
+  useLazyQuery: reactHooks.useLazyQuery,
+  useApolloClient: reactHooks.useApolloClient,
+  ApolloProvider: reactHooks.ApolloProvider,
+  split: apolloLink.split,
+  from: apolloLink.from,
+  HttpLink: apolloLinkHttp.HttpLink,
+  InMemoryCache: apolloCacheInmemory.InMemoryCache,
+  IntrospectionFragmentMatcher:
+    apolloCacheInmemory.IntrospectionFragmentMatcher,
+  ApolloClient: apolloClient.ApolloClient,
 };
