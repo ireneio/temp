@@ -1,6 +1,7 @@
 // import
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import Head from 'next/head';
+import Script from 'next/script';
 
 import CookiesContext from '@meepshop/cookies';
 import { useRouter } from '@meepshop/link';
@@ -30,16 +31,6 @@ export default React.memo(
     const { cookies } = useContext(CookiesContext);
     const router = useRouter();
     const prevHrefRef = useRef('');
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() => {
-      const load = (): void => {
-        setIsLoaded(true);
-        window.removeEventListener('load', load);
-      };
-
-      window.addEventListener('load', load);
-    }, []);
 
     useEffect(() => {
       if (router.asPath !== prevHrefRef.current) {
@@ -49,24 +40,27 @@ export default React.memo(
     }, [fbq, router.asPath]);
 
     return (
-      <Head>
-        {!googleSearchConsoleVerificationHtml ? null : (
-          <meta
-            content={googleSearchConsoleVerificationHtml}
-            name="google-site-verification"
-          />
-        )}
+      <>
+        <Head>
+          {!googleSearchConsoleVerificationHtml ? null : (
+            <meta
+              content={googleSearchConsoleVerificationHtml}
+              name="google-site-verification"
+            />
+          )}
 
-        {!googleMerchantCenterVerificationCode ? null : (
-          <meta
-            content={googleMerchantCenterVerificationCode}
-            name="google-site-verification"
-          />
-        )}
+          {!googleMerchantCenterVerificationCode ? null : (
+            <meta
+              content={googleMerchantCenterVerificationCode}
+              name="google-site-verification"
+            />
+          )}
+        </Head>
 
         {!facebookPixelId ? null : (
           <>
-            <script
+            <Script
+              id="facebook-pixel-config"
               dangerouslySetInnerHTML={{
                 __html: `
                   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -79,43 +73,39 @@ export default React.memo(
                 `,
               }}
             />
-
-            {!isLoaded
-              ? null
-              : [
-                  <script
-                    key="script"
-                    src="https://connect.facebook.net/en_US/fbevents.js"
-                    async
-                  />,
-                  <noscript
-                    key="noscript"
-                    dangerouslySetInnerHTML={{
-                      __html: `
-                        <img
-                          src="https://www.facebook.com/tr?id=${facebookPixelId}&ev=PageView&noscript=1"
-                          height="1"
-                          width="1"
-                          style="display:none"
-                        />
-                      `,
-                    }}
-                  />,
-                ]}
+            <Script
+              id="facebook-pixel-js"
+              strategy="lazyOnload"
+              src="https://connect.facebook.net/en_US/fbevents.js"
+            />
+            <Head>
+              <noscript
+                dangerouslySetInnerHTML={{
+                  __html: `
+                    <img
+                      src="https://www.facebook.com/tr?id=${facebookPixelId}&ev=PageView&noscript=1"
+                      height="1"
+                      width="1"
+                      style="display:none"
+                    />
+                  `,
+                }}
+              />
+            </Head>
           </>
         )}
 
         {!googleAnalyticsId && !googleAdwordsConfig ? null : (
           <>
-            {!isLoaded ? null : (
-              <script
-                src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId ||
-                  googleAdwordsConfig}`}
-                async
-              />
-            )}
+            <Script
+              id="google-analytics-js"
+              strategy="lazyOnload"
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId ||
+                googleAdwordsConfig}`}
+            />
 
-            <script
+            <Script
+              id="google-adwords-config"
               dangerouslySetInnerHTML={{
                 __html: `
                   window.dataLayer = window.dataLayer || [];
@@ -137,9 +127,10 @@ export default React.memo(
           </>
         )}
 
-        {!googleTagManager || !isLoaded ? null : (
+        {!googleTagManager ? null : (
           <>
-            <script
+            <Script
+              id="google-tag-manager"
               dangerouslySetInnerHTML={{
                 __html: `
                   (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -150,22 +141,23 @@ export default React.memo(
                 `,
               }}
             />
-
-            <noscript
-              dangerouslySetInnerHTML={{
-                __html: `
-                  <iframe
-                    src="https://www.googletagmanager.com/ns.html?id=${googleTagManager}"
-                    height="0"
-                    width="0"
-                    style="display:none;visibility:hidden"
-                  />
-                `,
-              }}
-            />
+            <Head>
+              <noscript
+                dangerouslySetInnerHTML={{
+                  __html: `
+                      <iframe
+                        src="https://www.googletagmanager.com/ns.html?id=${googleTagManager}"
+                        height="0"
+                        width="0"
+                        style="display:none;visibility:hidden"
+                      />
+                    `,
+                }}
+              />
+            </Head>
           </>
         )}
-      </Head>
+      </>
     );
   },
 );
