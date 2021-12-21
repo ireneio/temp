@@ -4,16 +4,16 @@
   "description": "Use to show order history records",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.103",
+  "version": "0.80.104",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.97",
-    "@meepshop/icons": "^0.80.97",
-    "@meepshop/images": "^0.80.97",
-    "@meepshop/link": "^0.80.97",
-    "@meepshop/locales": "^0.80.103",
-    "@meepshop/utils": "^0.80.97",
+    "@meepshop/context": "^0.80.104",
+    "@meepshop/icons": "^0.80.104",
+    "@meepshop/images": "^0.80.104",
+    "@meepshop/link": "^0.80.104",
+    "@meepshop/locales": "^0.80.104",
+    "@meepshop/utils": "^0.80.104",
     "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "history records", "order"]
