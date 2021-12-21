@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.80.104 (2021-12-21)
+
+#### :rocket: New Feature
+
+- [#1985](https://github.com/meepshop/meep-lerna/pull/1985) T10182 - 【優化】Admin SEO：設定後台 SEO ([@HsuTing](https://github.com/HsuTing))
+- [#1984](https://github.com/meepshop/meep-lerna/pull/1984) D&D 頁面設計 - side bar、儲存行為、拖拉操作體驗重新設計 ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#1973](https://github.com/meepshop/meep-lerna/pull/1973) 【個別店家】使用 lihi 縮網址，商品頁會模糊 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1995](https://github.com/meepshop/meep-lerna/pull/1995) 內部開單 - 在 next-store 加 log 看是哪個 query operation ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.103 (2021-12-20)
 
 #### :rocket: New Feature
