@@ -4,7 +4,7 @@
   "description": "store cart page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.104",
+  "version": "0.80.105",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
