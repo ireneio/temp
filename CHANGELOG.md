@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.105 (2021-12-22)
+
+#### :rocket: New Feature
+
+- [#1901](https://github.com/meepshop/meep-lerna/pull/1901) 內部開單 - @store/cart 改用新的 computeCart ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :house: Internal
+
+- [#1901](https://github.com/meepshop/meep-lerna/pull/1901) 內部開單 - @store/cart 改用新的 computeCart ([@Lexiwu](https://github.com/Lexiwu))
+- [#2002](https://github.com/meepshop/meep-lerna/pull/2002) (@admin/page-editor) Fix prettier ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.104 (2021-12-21)
 
 #### :rocket: New Feature
