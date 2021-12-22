@@ -1,12 +1,6 @@
 // import
 import { gql } from '@apollo/client';
 
-// graphql import
-import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
-
-import { priceFragment } from './price';
-import { useProductsColumnsFragment } from './useProductsColumns';
-
 // definition
 export const cartOrderFragment = gql`
   fragment cartOrderFragment on Order {
@@ -15,16 +9,13 @@ export const cartOrderFragment = gql`
       id
       products {
         id
-        ...useProductsColumnsFragment
+        cartId
+        productId
+        quantity
+        variantId
       }
     }
-
-    ...priceFragment
   }
-
-  ${localeFragment}
-  ${priceFragment}
-  ${useProductsColumnsFragment}
 `;
 
 export const getCartList = gql`

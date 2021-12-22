@@ -2,7 +2,7 @@
 import { gql } from '@apollo/client';
 
 // graphql import
-import { cartOrderFragment } from './index';
+import { cartOrderFragment } from './useMapCartItem';
 
 // definition
 export const removeProduct = gql`

@@ -3,7 +3,6 @@ import { NextPage } from 'next';
 
 // import
 import React, { useContext } from 'react';
-import { useQuery } from '@apollo/client';
 import { filter } from 'graphql-anywhere';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
@@ -15,40 +14,34 @@ import Empty from './Empty';
 import Login from './Login';
 import Products from './Products';
 import Price from './Price';
+import useMapCartItem from './hooks/useMapCartItem';
+import useComputedCart from './hooks/useComputedCart';
 import useCheckErrors from './hooks/useCheckErrors';
 import styles from './styles/index.less';
 
-// graphql typescript
-import {
-  getCartList as getCartListType,
-  getCartList_getCartList_data_categories_products as getCartListGetCartListDataCategoriesProducts,
-} from '@meepshop/types/gqls/store';
-
 // graphql import
-import { getCartList } from './gqls';
 import { useProductsColumnsFragment } from './gqls/useProductsColumns';
-import { priceFragment } from './gqls/price';
+import { priceComputedCartFragment } from './gqls/price';
 
 // definition
 const Cart: NextPage = React.memo(() => {
   const role = useContext(RoleContext);
-  const { data } = useQuery<getCartListType>(getCartList, {
-    fetchPolicy: 'cache-and-network',
-  });
-  const order = data?.getCartList?.data?.[0];
-  const products = order?.categories?.[0]?.products || [];
-  const { hasError, checkErrors } = useCheckErrors(products);
+  const { cartItems, cartProducts } = useMapCartItem();
+  const computedCart = useComputedCart(cartItems, cartProducts);
+  const { hasError, checkErrors } = useCheckErrors(
+    computedCart?.computedLineItems || null,
+  );
 
   return (
     <>
       <div className={styles.root}>
-        {!data ? (
+        {!computedCart ? (
           <Spin indicator={<LoadingOutlined spin />} />
         ) : (
           <>
             <CheckoutSteps step="cart" />
 
-            {!order || !products.length ? (
+            {!computedCart.computedLineItems.length ? (
               <Empty />
             ) : (
               <>
@@ -57,13 +50,13 @@ const Cart: NextPage = React.memo(() => {
                 <Products
                   products={filter(
                     useProductsColumnsFragment,
-                    products as getCartListGetCartListDataCategoriesProducts[],
+                    computedCart.computedLineItems,
                   )}
                   hasError={hasError}
                 />
 
                 <Price
-                  order={filter(priceFragment, order)}
+                  computedCart={filter(priceComputedCartFragment, computedCart)}
                   checkErrors={checkErrors}
                 />
               </>

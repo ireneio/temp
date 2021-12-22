@@ -6,7 +6,7 @@ import { useRouter } from '@meepshop/link';
 import styles from '../styles/products.less';
 
 // graphql import
-import { useProductsColumnsFragment as useProductsColumnsFragmentType } from '@meepshop/types/gqls/store';
+import { computedCart_computedCart_ComputedCart_computedLineItems as computedCartComputedCartComputedCartComputedLineItemsType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface ReturnType {
@@ -16,7 +16,7 @@ interface ReturnType {
 
 // definition
 export default (
-  products: (useProductsColumnsFragmentType | null)[],
+  products: computedCartComputedCartComputedCartComputedLineItemsType[] | null,
 ): ReturnType => {
   const [hasError, setHasError] = useState(false);
   const { push } = useRouter();
@@ -25,7 +25,10 @@ export default (
     hasError,
     checkErrors: useCallback(() => {
       if (
-        products.some(product => product?.type === 'product' && product?.error)
+        products?.some(
+          product =>
+            product.type === 'PRODUCT' && product.status !== 'PURCHASABLE',
+        )
       ) {
         setHasError(true);
         const dom = document.querySelector(`.${styles.error}`);

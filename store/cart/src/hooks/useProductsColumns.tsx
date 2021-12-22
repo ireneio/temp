@@ -52,11 +52,11 @@ export default (hasError: boolean): ReturnType => {
           width: isMobile ? 102 : 124,
           render: (
             image: useProductsColumnsFragmentType['coverImage'],
-            { productId, type, error },
+            { productId, type, status },
           ) => {
             const disabled =
-              type !== 'product' ||
-              ['DISCONTINUED', 'NOT_AVAILABLE'].includes(error || '');
+              type !== 'PRODUCT' ||
+              ['DISCONTINUED', 'NOT_AVAILABLE'].includes(status || '');
 
             return (
               <Switch
@@ -70,7 +70,7 @@ export default (hasError: boolean): ReturnType => {
                 <Thumbnail
                   image={image}
                   className={`${styles.img} ${
-                    error !== 'NOT_AVAILABLE' ? '' : styles.offline
+                    status !== 'NOT_AVAILABLE' ? '' : styles.offline
                   }`}
                 />
               </Switch>
@@ -84,21 +84,21 @@ export default (hasError: boolean): ReturnType => {
           render: (
             title: useProductsColumnsFragmentType['title'],
             {
-              cartId,
               productId,
               specs,
-              activityInfo,
               type,
-              error,
+              status,
               variant,
+              discountAllocations,
+              cartId,
               ...product
             },
           ) => {
-            const retailPrice = product.retailPrice || 0;
+            const retailPrice = product.unitPrice || 0;
             const quantity = product.quantity || 0;
             const disabled =
-              type !== 'product' ||
-              ['DISCONTINUED', 'NOT_AVAILABLE'].includes(error || '');
+              type !== 'PRODUCT' ||
+              ['DISCONTINUED', 'NOT_AVAILABLE'].includes(status || '');
 
             return (
               <>
@@ -112,10 +112,10 @@ export default (hasError: boolean): ReturnType => {
                 >
                   <span
                     className={`${styles.title} ${
-                      error !== 'NOT_AVAILABLE' ? '' : styles.offline
+                      status !== 'NOT_AVAILABLE' ? '' : styles.offline
                     }`}
                   >
-                    {error === 'DISCONTINUED'
+                    {status === 'DISCONTINUED'
                       ? t('product-deleted')
                       : getLanguage(title)}
                   </span>
@@ -124,17 +124,17 @@ export default (hasError: boolean): ReturnType => {
                 {!specs ? null : (
                   <div
                     className={`${styles.specs} ${
-                      error !== 'NOT_AVAILABLE' ? '' : styles.offline
+                      status !== 'NOT_AVAILABLE' ? '' : styles.offline
                     }`}
                   >
                     {specs.map(spec => getLanguage(spec?.title)).join('/')}
                   </div>
                 )}
 
-                {!activityInfo?.length ? null : (
+                {!discountAllocations?.length ? null : (
                   <div className={styles.tags}>
-                    {activityInfo.map(activity => (
-                      <span key={activity?.id}>
+                    {discountAllocations.map(activity => (
+                      <span key={activity?.activityId}>
                         <TagOutlined />
 
                         <span>{getLanguage(activity?.title)}</span>
@@ -145,43 +145,43 @@ export default (hasError: boolean): ReturnType => {
 
                 {/** mobile view */}
                 <div className={styles.mobile}>
-                  {type !== 'product' ? (
+                  {type !== 'PRODUCT' ? (
                     <div className={styles.price}>{t('gift')}</div>
                   ) : (
                     <>
-                      {error &&
-                      ['DISCONTINUED', 'NOT_AVAILABLE'].includes(
-                        error,
+                      {['DISCONTINUED', 'NOT_AVAILABLE'].includes(
+                        status,
                       ) ? null : (
                         <div className={styles.price}>
                           {c(retailPrice * quantity)}
                         </div>
                       )}
 
-                      {error &&
-                      [
+                      {[
                         'DISCONTINUED',
                         'NOT_AVAILABLE',
                         'OUT_OF_STOCK',
-                      ].includes(error) ? (
+                      ].includes(status) ? (
                         <div className={styles.error}>
                           <ExclamationCircleOutlined />
-                          {hasError ? t(`${error}-warning`) : t(error)}
+                          {hasError ? t(`${status}-warning`) : t(status)}
                         </div>
                       ) : (
                         <>
                           <ProductAmountSelector
                             size="large"
                             className={`${styles.select} ${
-                              !error ? '' : styles.withError
+                              status === 'PURCHASABLE' ? '' : styles.withError
                             }`}
                             variant={variant}
                             value={quantity}
-                            onChange={updateProduct(cartId || '')}
+                            onChange={updateProduct(cartId)}
                           />
 
-                          {!error ? null : (
-                            <div className={styles.amountError}>{t(error)}</div>
+                          {status === 'PURCHASABLE' ? null : (
+                            <div className={styles.amountError}>
+                              {t(status)}
+                            </div>
                           )}
                         </>
                       )}
@@ -194,20 +194,20 @@ export default (hasError: boolean): ReturnType => {
         },
         {
           title: t('price'),
-          dataIndex: ['retailPrice'],
+          dataIndex: ['unitPrice'],
           className: styles.price,
           width: '15%',
           align: 'center',
           responsive: ['md'],
           render: (
-            retailPrice: useProductsColumnsFragmentType['retailPrice'],
-            { type, error },
+            unitPrice: useProductsColumnsFragmentType['unitPrice'],
+            { type, status },
           ) => {
-            if (type !== 'product') return t('gift');
+            if (type !== 'PRODUCT') return t('gift');
 
-            if (error) return null;
+            if (status !== 'PURCHASABLE') return null;
 
-            return c(retailPrice || 0);
+            return c(unitPrice || 0);
           },
         },
         {
@@ -218,18 +218,17 @@ export default (hasError: boolean): ReturnType => {
           responsive: ['md'],
           render: (
             quantity: useProductsColumnsFragmentType['quantity'],
-            { cartId, type, variant, error },
+            { type, variant, status, cartId },
           ) => {
-            if (type !== 'product') return null;
+            if (type !== 'PRODUCT') return null;
 
             if (
-              error &&
-              ['DISCONTINUED', 'NOT_AVAILABLE', 'OUT_OF_STOCK'].includes(error)
+              ['DISCONTINUED', 'NOT_AVAILABLE', 'OUT_OF_STOCK'].includes(status)
             )
               return (
                 <div className={styles.error}>
                   <ExclamationCircleOutlined />
-                  {hasError ? t(`${error}-warning`) : t(error)}
+                  {hasError ? t(`${status}-warning`) : t(status)}
                 </div>
               );
 
@@ -238,15 +237,15 @@ export default (hasError: boolean): ReturnType => {
                 <ProductAmountSelector
                   size="large"
                   className={`${styles.select} ${
-                    !error ? '' : styles.withError
+                    status === 'PURCHASABLE' ? '' : styles.withError
                   }`}
                   variant={variant}
                   value={quantity || 0}
-                  onChange={updateProduct(cartId || '')}
+                  onChange={updateProduct(cartId)}
                 />
 
-                {!error ? null : (
-                  <div className={styles.amountError}>{t(error)}</div>
+                {status === 'PURCHASABLE' ? null : (
+                  <div className={styles.amountError}>{t(status)}</div>
                 )}
               </>
             );
@@ -260,24 +259,28 @@ export default (hasError: boolean): ReturnType => {
           align: 'center',
           responsive: ['md'],
           render: (
-            _totalPrice: useProductsColumnsFragmentType['totalPrice'],
-            { type, retailPrice, quantity, error },
+            _totalPrice: number,
+            { type, unitPrice, quantity, status },
           ) =>
-            type !== 'product' || error
+            type !== 'PRODUCT' || status !== 'PURCHASABLE'
               ? null
-              : c((retailPrice || 0) * (quantity || 0)),
+              : c((unitPrice || 0) * (quantity || 0)),
         },
         {
           dataIndex: ['cartId'],
           width: isMobile ? 28 : 48,
           align: 'center',
-          render: (cartId, { type }) =>
-            type !== 'product' ? null : (
+          render: (
+            cartId: useProductsColumnsFragmentType['cartId'],
+            { type },
+          ) => {
+            return type !== 'PRODUCT' ? null : (
               <CloseOutlined
                 className={styles.delete}
                 onClick={() => removeProduct(cartId)}
               />
-            ),
+            );
+          },
         },
       ],
       styles: `

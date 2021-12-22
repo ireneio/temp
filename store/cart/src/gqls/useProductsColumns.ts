@@ -2,48 +2,48 @@
 import { gql } from '@apollo/client';
 
 // graphql import
+import { LineItemFragment } from '@meepshop/apollo/lib/gqls/LineItem';
 import { productAmountSelectorFragment } from '@meepshop/product-amount-selector/gqls';
-import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 
 // definition
 export const useProductsColumnsFragment = gql`
-  fragment useProductsColumnsFragment on productsObjectType {
+  fragment useProductsColumnsFragment on LineItem {
     id
-    cartId
-    productId
-    variantId
+    ...LineItemFragment
     quantity
+    unitPrice
     type
-    activityInfo {
-      id
+    status
+    cartId(cartProducts: $cartProducts) @client
+    discountAllocations {
+      activityId: id
       title {
         ...localeFragment
       }
     }
-    retailPrice
-    totalPrice
+    coverImage {
+      id
+      ...thumbnailFragment
+    }
+    title {
+      ...localeFragment
+    }
+    variant {
+      id
+      ...productAmountSelectorFragment
+    }
     specs {
       id
       title {
         ...localeFragment
       }
     }
-    title {
-      ...localeFragment
-    }
-    coverImage {
-      id
-      ...thumbnailFragment
-    }
-    variant {
-      id
-      ...productAmountSelectorFragment
-    }
-    error: _error
   }
 
-  ${productAmountSelectorFragment}
-  ${thumbnailFragment}
+  ${LineItemFragment}
   ${localeFragment}
+  ${thumbnailFragment}
+  ${productAmountSelectorFragment}
 `;

@@ -29,10 +29,13 @@ export default React.memo(({ products, hasError }: PropsType) => {
         columns={columns}
         dataSource={products}
         pagination={false}
-        onRow={({ error }) => ({
-          className: `${styles.row} ${!error ? '' : styles.error}`,
+        rowKey={product => product.id}
+        onRow={({ status }) => ({
+          className: `${styles.row} ${
+            status === 'PURCHASABLE' ? '' : styles.error
+          }`,
           style:
-            hasError && error
+            hasError && status !== 'PURCHASABLE'
               ? {
                   backgroundColor: transformColor(colors[1])
                     .alpha(0.15)
