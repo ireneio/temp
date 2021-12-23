@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.106 (2021-12-23)
+
+#### :rocket: New Feature
+
+- [#1999](https://github.com/meepshop/meep-lerna/pull/1999) 【優化】Admin SEO：admin 登入頁標題 & 官網登入文字 - Design / 前端 ([@happycat6323](https://github.com/happycat6323))
+- [#2005](https://github.com/meepshop/meep-lerna/pull/2005) 新增 @admin/order-print package ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- [#2001](https://github.com/meepshop/meep-lerna/pull/2001) 【個別店家】 前台文字顏色與後台顏色不一致 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.105 (2021-12-22)
 
 #### :rocket: New Feature
