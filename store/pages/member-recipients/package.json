@@ -4,16 +4,16 @@
   "description": "Member recipients for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.104",
+  "version": "0.80.106",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/address-cascader": "^0.80.104",
-    "@meepshop/context": "^0.80.104",
-    "@meepshop/link": "^0.80.104",
-    "@meepshop/locales": "^0.80.104",
-    "@meepshop/utils": "^0.80.104",
-    "@store/utils": "^0.80.104"
+    "@meepshop/address-cascader": "^0.80.106",
+    "@meepshop/context": "^0.80.106",
+    "@meepshop/link": "^0.80.106",
+    "@meepshop/locales": "^0.80.106",
+    "@meepshop/utils": "^0.80.106",
+    "@store/utils": "^0.80.106"
   },
   "keywords": ["member", "recipients", "store"]
 }
