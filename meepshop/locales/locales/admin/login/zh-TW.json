@@ -1,4 +1,5 @@
 {
+  "title": "登入商店後台",
   "required": "必填",
   "email": {
     "placeholder": "輸入註冊 Email"

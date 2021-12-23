@@ -36,6 +36,8 @@ export default React.memo(({ setAction }: PropsType) => {
         <Form onFinish={login}>
           <img src={loginLogo} alt="Meepshop" />
 
+          <h1>{t('title')}</h1>
+
           <FormItem
             name={['email']}
             rules={[

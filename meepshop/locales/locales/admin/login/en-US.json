@@ -1,4 +1,5 @@
 {
+  "title": "Login store background",
   "required": "Required",
   "email": {
     "placeholder": "Enter registration Email"

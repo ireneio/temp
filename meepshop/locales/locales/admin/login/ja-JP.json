@@ -1,4 +1,5 @@
 {
+  "title": "ログインストアの背景",
   "required": "必須",
   "email": {
     "placeholder": "登録メールアドレスを入力してください"
