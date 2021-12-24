@@ -28,20 +28,6 @@ declare interface ECP {
 declare interface Window {
   storePreviousPageUrl?: string;
   events: EventTarget;
-  FB?: {
-    XFBML: {
-      parse: (dom: HTMLElement) => void;
-    };
-    login: (
-      callback: (response: {
-        status: 'connected';
-        authResponse: { accessToken: string };
-      }) => void,
-      options: {
-        scope: string;
-      },
-    ) => void;
-  };
   fbq?: (
     eventName: string,
     type: string,

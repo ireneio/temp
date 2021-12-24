@@ -1,6 +1,6 @@
 // import
 import React, { useMemo } from 'react';
-import Head from 'next/head';
+import Script from 'next/script';
 import { useQuery } from '@apollo/client';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
@@ -31,14 +31,20 @@ export default React.memo(({ children }) => {
       appId: (storeIsLoginEnabled ? storeAppId : null) || defaultAppId,
     };
   }, [data]);
-  const { fb, fbScript } = useFb(appId, version);
+  const { onLoad, fb } = useFb(appId, version);
 
   if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return (
     <>
-      <Head>{fbScript}</Head>
-
+      {!appId ? null : (
+        <Script
+          id="fb-sdk-js"
+          strategy="lazyOnload"
+          src="https://connect.facebook.net/en_US/sdk.js"
+          onLoad={onLoad}
+        />
+      )}
       <FbContext.Provider
         value={{
           fb,
