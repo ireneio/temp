@@ -1,20 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { connect } from 'react-redux';
 import { isEmpty } from 'fbjs';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 
-import { withTranslation } from '@meepshop/locales';
-import { Role as RoleContext } from '@meepshop/context';
-import withContext from '@store/utils/lib/withContext';
-
-import * as Utils from 'utils';
-import { Container, Error as ErrorComponent } from 'components';
+import { Container } from 'components';
 import ProductDiscontinued from 'components/ProductDiscontinued';
 
-class Product extends React.Component {
+export default class Product extends React.Component {
   static getInitialProps = async context => {
     const { XMeepshopDomain, userAgent, query } = context;
     const { pId } = query;
@@ -26,7 +20,6 @@ class Product extends React.Component {
   };
 
   static propTypes = {
-    error: PropTypes.string,
     product: PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.object,
@@ -34,13 +27,8 @@ class Product extends React.Component {
     }).isRequired,
   };
 
-  static defaultProps = { error: null };
-
   render() {
-    const { error, product, page } = this.props;
-
-    /* Display Error View */
-    if (error) return <ErrorComponent error={error} />;
+    const { product, page } = this.props;
 
     if (isEmpty(product)) return <Spin indicator={<LoadingOutlined spin />} />;
 
@@ -107,17 +95,3 @@ class Product extends React.Component {
     );
   }
 }
-
-const mapStateToProps = state => {
-  /* Handle error */
-  const error = Utils.getStateError(state);
-  if (error) return { error };
-
-  return {};
-};
-
-export default connect(mapStateToProps)(
-  withTranslation('common')(
-    withContext(RoleContext, role => ({ role }))(Product),
-  ),
-);

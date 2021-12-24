@@ -1,11 +1,9 @@
 import React from 'react';
 import { gql } from '@apollo/client';
-import { connect } from 'react-redux';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { defaultAdTrack } from '@meepshop/context/lib/AdTrack';
 
-import * as Utils from 'utils';
 import { Container, Error } from 'components';
 import useAdminPreview from 'hooks/useAdminPreview';
 
@@ -56,14 +54,4 @@ Page.getInitialProps = async ctx => {
   };
 };
 
-const mapStateToProps = (state, props) => {
-  if (props.error) return props;
-
-  const error = Utils.getStateError(state);
-
-  if (error) return { error };
-
-  return {};
-};
-
-export default connect(mapStateToProps)(Page);
+export default Page;

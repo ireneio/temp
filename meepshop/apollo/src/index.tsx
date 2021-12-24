@@ -108,13 +108,6 @@ export const buildWithApollo = (
       return { ...appProps, error: e };
     }
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore FIXME: fix conflict between withReduxSaga and appWithTranslation
-    if (appProps.initialProps)
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore FIXME: fix conflict between withReduxSaga and appWithTranslation
-      appProps.pageProps = appProps.initialProps.pageProps;
-
     if (res?.writableEnded) return appProps;
 
     if (typeof window === 'undefined')

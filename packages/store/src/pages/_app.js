@@ -2,9 +2,6 @@ import React from 'react';
 import NextApp from 'next/app';
 import Head from 'next/head';
 import getConfig from 'next/config';
-import { Provider } from 'react-redux';
-import withRedux from 'next-redux-wrapper';
-import withReduxSaga from 'next-redux-saga';
 import { notification } from 'antd';
 import { getUnixTime } from 'date-fns';
 
@@ -27,10 +24,9 @@ import AdTrackProvider from '@store/ad-track';
 
 import { log } from '@meepshop/logger/lib/gqls/log';
 
-import { Error, CloseView } from 'components';
+import { CloseView } from 'components';
 import Router from 'next/router';
 import * as Utils from 'utils';
-import configureStore from 'ducks/store';
 import withCookies from 'utils/withCookies';
 import usePage from 'hooks/usePage';
 import useExpiringPoints from 'hooks/useExpiringPoints';
@@ -230,12 +226,10 @@ class App extends NextApp {
 
   render() {
     const {
-      error,
       closed,
       Component,
       pageProps,
       router,
-      store,
       storeName,
       storeDescription,
       logoImage,
@@ -246,8 +240,6 @@ class App extends NextApp {
       client,
     } = this.props;
 
-    /* Handle error */
-    if (error) return <Error error={error} />;
     /* Store is closed */
     if (closed) return <CloseView closed={closed} />;
 
@@ -314,18 +306,16 @@ class App extends NextApp {
                       <AdTrackProvider>
                         <CartProvider>
                           <FormDataProvider>
-                            <Provider store={store}>
-                              <Component
-                                {...pageProps}
-                                product={product}
-                                page={page}
-                                client={client}
-                                url={{
-                                  asPath: router.asPath,
-                                  query: router.query,
-                                }}
-                              />
-                            </Provider>
+                            <Component
+                              {...pageProps}
+                              product={product}
+                              page={page}
+                              client={client}
+                              url={{
+                                asPath: router.asPath,
+                                query: router.query,
+                              }}
+                            />
 
                             <ActionButton />
                           </FormDataProvider>
@@ -346,11 +336,7 @@ class App extends NextApp {
 export default appWithTranslation(
   withDomain(
     withApollo(
-      withRedux(configureStore)(
-        withReduxSaga(
-          withCookies(withHook(usePage)(withHook(useExpiringPoints)(App))),
-        ),
-      ),
+      withCookies(withHook(usePage)(withHook(useExpiringPoints)(App))),
     ),
   ),
 );

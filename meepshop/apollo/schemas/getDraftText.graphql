@@ -1,7 +1,7 @@
 scalar DraftText
 
 extend type Query {
-  # FIXME: should remove after redux removed
+  # FIXME: should remove after using page.modules
   getDraftText(input: String): DraftText
 }
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { UserAgent } from 'fbjs';
 
 import { withTranslation } from '@meepshop/locales';
@@ -22,7 +21,7 @@ const { isBrowser } = UserAgent;
 @withContext(CurrencyContext)
 @withContext(FbContext)
 @withContext(RoleContext, role => ({ role }))
-class Container extends React.Component {
+export default class Container extends React.Component {
   static propTypes = {
     page: PropTypes.shape({ id: PropTypes.string }).isRequired,
     userAgent: PropTypes.string.isRequired,
@@ -69,14 +68,3 @@ class Container extends React.Component {
     );
   }
 }
-
-const mapStateToProps = state => {
-  /* Handle error */
-  const error = Utils.getStateError(state);
-
-  if (error) return { error };
-
-  return {};
-};
-
-export default connect(mapStateToProps)(Container);
