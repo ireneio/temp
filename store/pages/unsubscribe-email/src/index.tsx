@@ -8,7 +8,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Divider, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
-import Link, { useRouter } from '@meepshop/link';
+import Link from '@meepshop/link';
 
 import useUnsubscribe from './hooks/useUnsubscribe';
 import styles from './styles/index.less';
@@ -21,15 +21,16 @@ import { getStoreName } from './gqls';
 
 // typescript definition
 interface PropsType {
+  userId: string;
+  type: string;
   namespacesRequired: string[];
 }
 
 // definition
-const UnsubscribeEmail: NextPage<PropsType> = React.memo(() => {
+const UnsubscribeEmail: NextPage<PropsType> = React.memo(({ userId, type }) => {
   const { t } = useTranslation('unsubscribe-email');
-  const { query } = useRouter();
   const { data } = useQuery<getStoreNameType>(getStoreName);
-  const { loading } = useUnsubscribe();
+  const { loading } = useUnsubscribe(userId, type);
   const name = data?.viewer?.store?.description?.name;
 
   if (loading) return <Spin indicator={<LoadingOutlined spin />} />;
@@ -40,13 +41,13 @@ const UnsubscribeEmail: NextPage<PropsType> = React.memo(() => {
         <h1>
           {t('title')}
           <span>{name}</span>
-          {query?.from !== 'reward-point-reminder'
+          {type !== 'reward-point-reminder'
             ? null
             : t('reward-point-reminder.title')}
         </h1>
-        <p>{t(`${query?.from}.0`)}</p>
+        <p>{t(`${type}.0`)}</p>
         <Divider />
-        <p>{t(`${query?.from}.1`)}</p>
+        <p>{t(`${type}.1`)}</p>
 
         <Link href="/">
           <Button size="large" type="primary">
@@ -58,8 +59,19 @@ const UnsubscribeEmail: NextPage<PropsType> = React.memo(() => {
   );
 });
 
-UnsubscribeEmail.getInitialProps = async () => ({
-  namespacesRequired: ['@meepshop/locales/namespacesRequired'],
-});
+UnsubscribeEmail.getInitialProps = async ({ query }) => {
+  const userId = query.userid || query.userId;
+  const type = query.from || query.type;
+
+  // FIXME: should use get getServerSideProps return notFound
+  if (typeof userId !== 'string' || typeof type !== 'string')
+    throw new Error('[FIXME] type/userId is undefined');
+
+  return {
+    userId,
+    type,
+    namespacesRequired: ['@meepshop/locales/namespacesRequired'],
+  };
+};
 
 export default UnsubscribeEmail;

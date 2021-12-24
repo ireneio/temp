@@ -15,7 +15,7 @@ import {
 import { unsubscribeFromNotification } from '../gqls/useUnsubscribe';
 
 // definition
-export default (): { loading: boolean } => {
+export default (userId: string, type: string): { loading: boolean } => {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const [mutation] = useMutation<
@@ -29,20 +29,16 @@ export default (): { loading: boolean } => {
   });
 
   useEffect(() => {
-    if (
-      typeof router.query.userid === 'string' &&
-      typeof router.query.from === 'string'
-    )
-      mutation({
-        variables: {
-          input: {
-            userId: router.query.userid,
-            service: router.query.from
-              .replace(/-/g, '_')
-              .toUpperCase() as SubscriptionServiceEnum,
-          },
+    mutation({
+      variables: {
+        input: {
+          userId,
+          service: type
+            .replace(/-/g, '_')
+            .toUpperCase() as SubscriptionServiceEnum,
         },
-      });
+      },
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
