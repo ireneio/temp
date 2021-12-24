@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## 0.80.107 (2021-12-24)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1915](https://github.com/meepshop/meep-lerna/pull/1915) 內部開單 - 搬 graphql api 到 next api routes ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#1965](https://github.com/meepshop/meep-lerna/pull/1965) 內部開單 - 前台無正確顯示頁面不存在 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- Other
+  - [#1982](https://github.com/meepshop/meep-lerna/pull/1982) 內部開單 - @admin/tap-pay 的 useTapPay.tsx ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1981](https://github.com/meepshop/meep-lerna/pull/1981) 內部開單 - @admin/login 的 useGrecaptcha.tsx ([@Lexiwu](https://github.com/Lexiwu))
+  - [#1896](https://github.com/meepshop/meep-lerna/pull/1896) 內部開單 - @store/fb 的 useFb.tsx ([@Lexiwu](https://github.com/Lexiwu))
+- `store`
+  - [#1991](https://github.com/meepshop/meep-lerna/pull/1991) 前端內部開單 - /unsubscribe 網址規格化 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.106 (2021-12-23)
 
 #### :rocket: New Feature
