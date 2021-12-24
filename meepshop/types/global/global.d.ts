@@ -46,6 +46,7 @@ declare interface Window {
   ) => void;
   gtag?: (eventName: string, type: string, option?: {}) => void;
   grecaptcha?: {
+    ready: (readyFunc: () => void) => void;
     render: (dom: HTMLElement, options: { sitekey: string }) => void;
     getResponse: () => string;
     reset: () => void;

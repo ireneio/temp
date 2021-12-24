@@ -1,9 +1,8 @@
 // import
 import React from 'react';
-import Head from 'next/head';
 import { Form, Input, Checkbox, Button } from 'antd';
+import Script from 'next/script';
 
-// import Link from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
 import { loginLogo } from '@meepshop/images';
 import { useValidateEmail } from '@meepshop/validator';
@@ -24,13 +23,18 @@ const { Password } = Input;
 
 export default React.memo(({ setAction }: PropsType) => {
   const { t } = useTranslation('login');
-  const { grecaptcha, grecaptchaRef, grecaptchaScript } = useGrecaptcha();
+  const { grecaptcha, grecaptchaRef, onLoad } = useGrecaptcha();
   const { loading, login } = useLogin(grecaptcha);
   const validateEmail = useValidateEmail(true);
 
   return (
     <>
-      <Head>{grecaptchaScript}</Head>
+      <Script
+        id="recaptcha-js"
+        strategy="lazyOnload"
+        src="https://www.google.com/recaptcha/api.js"
+        onLoad={onLoad}
+      />
 
       <div className={styles.root}>
         <Form onFinish={login}>
