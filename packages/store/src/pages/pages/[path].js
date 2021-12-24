@@ -7,7 +7,7 @@ import { withTranslation } from '@meepshop/locales';
 import { log } from '@meepshop/logger/lib/gqls/log';
 
 import * as Utils from 'utils';
-import { Container, Error } from 'components';
+import { Container, Error, ErrorPageNotFound } from 'components';
 import * as CONST from 'constants';
 
 class Pages extends React.Component {
@@ -57,7 +57,7 @@ class Pages extends React.Component {
 
     const { page } = this.props;
 
-    if (!page) return null;
+    if (!page) return <ErrorPageNotFound />;
 
     const { tabTitle = '' } = page;
     const { keywords, description, image } = page.seo || {};
