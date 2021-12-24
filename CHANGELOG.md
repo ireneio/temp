@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.108 (2021-12-24)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#1978](https://github.com/meepshop/meep-lerna/pull/1978) 前台 - 移除 redux 改用 apollo-client query ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.107 (2021-12-24)
 
 #### :boom: Breaking Change
