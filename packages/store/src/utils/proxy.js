@@ -3,12 +3,19 @@ export default (url, callback) => async (req, res) => {
   const response = await fetch(url, {
     method: 'post',
     headers: {
+      ...Object.keys(req.headers)
+        .filter(key => /apollographql/.test(key) || /x-meepshop/.test(key))
+        .reduce(
+          (result, key) => ({
+            ...result,
+            [key]: req.headers[key],
+          }),
+          {},
+        ),
       'Content-Type': 'application/json',
       'x-meepshop-domain': req.headers.host,
       'x-meepshop-authorization-token':
-        req.url === '/api/landing-page/graphql'
-          ? req.cookies['x-meepshop-authorization-landing-page-token'] || null
-          : req.cookies['x-meepshop-authorization-token'] || null,
+        req.cookies['x-meepshop-authorization-token'] || null,
       'accept-language':
         (req.cookies['next-i18next'] || '').replace('_', '-') || null,
     },
@@ -16,8 +23,11 @@ export default (url, callback) => async (req, res) => {
     body: JSON.stringify(req.body),
   });
 
-  if (response.status >= 400)
-    throw new Error(`${response.status}: ${response.statusText}(${response})`);
+  if (response.status !== 200) {
+    res.writeHead(response.status, response.headers);
+    res.end(await response.text());
+    return;
+  }
 
   const html = (await callback(req, res, response)) || (await response.text());
 

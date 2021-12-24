@@ -10,8 +10,6 @@ const { default: initialLogger } = require('@meepshop/logger');
 const { default: serverLogger } = require('@meepshop/logger/lib/server');
 
 const { publicRuntimeConfig } = require('../../next.config');
-const api = require('./routers/api');
-const mapCookiesToHeaders = require('./mapCookiesToHeaders');
 
 const { STORE_DOMAIN } = publicRuntimeConfig;
 const app = nextApp({
@@ -91,10 +89,6 @@ app.prepare().then(() => {
 
     await next();
   });
-
-  // api
-  server.post('/api/graphql', mapCookiesToHeaders, api);
-  server.post('/api/landing-page/graphql', mapCookiesToHeaders, api);
 
   // FIXME: should remove
   server.post('/checkout/thank-you-page/:id', (req, res) => {
