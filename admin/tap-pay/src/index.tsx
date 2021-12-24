@@ -1,7 +1,7 @@
 // import
 import React from 'react';
-import Head from 'next/head';
 import { Progress } from 'antd';
+import Script from 'next/script';
 
 import { useTranslation } from '@meepshop/locales';
 import {
@@ -27,12 +27,17 @@ interface PropsType {
 export default React.memo(
   ({ setPrime, hasErrors, loading, success }: PropsType) => {
     const { t } = useTranslation('tap-pay');
-    const { tapPayScript, errors } = useTapPay(setPrime, hasErrors);
+    const { onLoad, errors } = useTapPay(setPrime, hasErrors);
 
     return (
       <>
         <div className={styles.root}>
-          <Head>{tapPayScript}</Head>
+          <Script
+            id="tap-pay-sdk-js"
+            strategy="lazyOnload"
+            src="https://js.tappaysdk.com/tpdirect/v5.1.0"
+            onLoad={onLoad}
+          />
 
           {['number', 'expiry', 'ccv'].map(key => (
             <div key={key}>

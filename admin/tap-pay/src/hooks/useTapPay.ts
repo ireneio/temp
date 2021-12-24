@@ -1,5 +1,5 @@
 // import
-import React, { useEffect, useState, useMemo } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 import { Modal } from 'antd';
 import getConfig from 'next/config';
 
@@ -9,6 +9,8 @@ import { useTranslation } from '@meepshop/locales';
 type StatusType = 'number' | 'expiry' | 'ccv';
 
 // definition
+let initialTapPay: typeof window['TPDirect'];
+
 const {
   publicRuntimeConfig: { ENV },
 } = getConfig();
@@ -17,29 +19,24 @@ export default (
   setPrime: (prime: string | null) => void,
   hasErrors: boolean,
 ): {
-  tapPayScript: React.ReactNode;
+  onLoad: () => void;
   errors: string[];
 } => {
   const { t } = useTranslation('tap-pay');
-  const [tapPay, setTapPay] = useState<typeof window['TPDirect']>();
+  const [tapPay, setTapPay] = useState<typeof window['TPDirect']>(
+    initialTapPay,
+  );
   const [cardType, setCardType] = useState<string>();
   const [errors, setErrors] = useState<string[]>([]);
 
   useEffect(() => {
-    const tapPayInterval = setInterval(() => {
-      if (window.TPDirect) clearInterval(tapPayInterval);
-      setTapPay(window.TPDirect);
-    }, 100);
-  }, []);
-
-  useEffect(() => {
-    if (tapPay)
-      tapPay.setupSDK(
-        '13026',
-        'app_cmuVL2x5q6AGvmxP1i7sVtPAoKdqd3UpkEupUf5MRJZIJNR8B92cqq52Yv1B',
-        ENV === 'production' ? 'production' : 'sandbox',
-      );
-  }, [tapPay]);
+    if (hasErrors && cardType === 'unknown')
+      Modal.warning({
+        title: t('card-type-unknown.title'),
+        content: t('card-type-unknown.description'),
+        okText: t('ok'),
+      });
+  }, [hasErrors, cardType, t]);
 
   useEffect(() => {
     if (tapPay)
@@ -64,7 +61,7 @@ export default (
           },
         },
       });
-  }, [tapPay, t]);
+  }, [t, tapPay]);
 
   useEffect(() => {
     if (tapPay)
@@ -87,21 +84,24 @@ export default (
           );
         }
       });
-  }, [tapPay, setPrime]);
-
-  useEffect(() => {
-    if (hasErrors && cardType === 'unknown')
-      Modal.warning({
-        title: t('card-type-unknown.title'),
-        content: t('card-type-unknown.description'),
-        okText: t('ok'),
-      });
-  }, [hasErrors, cardType, t]);
+  }, [setPrime, tapPay]);
 
   return {
-    tapPayScript: (
-      <script src="https://js.tappaysdk.com/tpdirect/v5.1.0" async defer />
-    ),
+    onLoad: useCallback(() => {
+      if (!window.TPDirect) return;
+
+      const tapPayFunc = window.TPDirect;
+
+      initialTapPay = tapPayFunc;
+
+      setTapPay(tapPayFunc);
+
+      tapPayFunc.setupSDK(
+        '13026',
+        'app_cmuVL2x5q6AGvmxP1i7sVtPAoKdqd3UpkEupUf5MRJZIJNR8B92cqq52Yv1B',
+        ENV === 'production' ? 'production' : 'sandbox',
+      );
+    }, []),
     errors: useMemo(() => (hasErrors ? ['number', 'expiry', 'ccv'] : errors), [
       hasErrors,
       errors,
