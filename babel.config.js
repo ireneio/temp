@@ -41,13 +41,10 @@ module.exports = {
         antd: {
           transform: key => `antd/lib/${kebabCase(key)}`,
         },
-        'date-fns': {
-          transform: 'date-fns/${member}',
-        },
-        '^(@ant-design/icons)$': {
+        '^(@ant-design/icons|date-fns)$': {
           transform: '${1}/${member}',
         },
-        '^(fbjs|validator)$': {
+        '^(fbjs|validator|react-use)$': {
           transform: '${1}/lib/${member}',
         },
         '^@(meepshop|store|admin)/(icons|context|hooks|validator)$': {
