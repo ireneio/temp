@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.109 (2021-12-27)
+
+#### :rocket: New Feature
+
+- [#1958](https://github.com/meepshop/meep-lerna/pull/1958) 【優化】綠界 - 混稅電子發票 - Design / 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.108 (2021-12-24)
 
 #### :boom: Breaking Change
