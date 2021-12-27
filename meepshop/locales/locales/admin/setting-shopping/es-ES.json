@@ -131,7 +131,10 @@
         "title": "Método de emisión",
         "ECPAY": {
           "name": "Green World se abre automáticamente",
-          "tip": "Los precios de venta de todos los productos en la tienda son impuestos incluidos / tipo de pista de carácter: monto de impuesto general / categoría imponible: imponible"
+          "tip": {
+            "0": "El precio de todos los productos de la tienda es la categoría de impuestos / canciones: Impuesto general / Categoría de impuestos predeterminados: Impuesto al impuesto",
+            "1": "* Si necesita abrir facturas libres de impuestos o mixtas, solicite categorías de impuestos en el mundo verde, luego cambie el pago del impuesto del producto, para no abrir la factura fallida"
+          }
         },
         "MANUAL": {
           "name": "Emisión manual",

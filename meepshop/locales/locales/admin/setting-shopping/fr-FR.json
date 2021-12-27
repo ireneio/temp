@@ -131,7 +131,10 @@
         "title": "Méthode d'émission",
         "ECPAY": {
           "name": "Green World ouvert automatiquement",
-          "tip": "Les prix de vente de tous les produits du magasin sont tous TTC / type de piste de caractère: montant général de la taxe / catégorie taxable: taxable"
+          "tip": {
+            "0": "Le prix de tous les produits de magasin est la catégorie taxable / piste: Taxe générale / Catégorie d'impôt prédéfinie: Taxe d'impôt",
+            "1": "* Si vous avez besoin d'ouvrir des factures exemptes de droits ou mixtes, veuillez postuler à des catégories d'impôt dans le monde vert, puis modifiez le paiement de la taxe sur le produit afin de ne pas avoir échoué."
+          }
         },
         "MANUAL": {
           "name": "Édition manuelle",

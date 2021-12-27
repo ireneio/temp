@@ -131,7 +131,10 @@
         "title": "Issuing method",
         "ECPAY": {
           "name": "Green World automatically opened",
-          "tip": "The selling price of the goods in the store is all tax-included / type of character track: general tax amount / taxable category: taxable"
+          "tip": {
+            "0": "The price of all store products is the taxable / track category: general tax / preset tax category: tax tax",
+            "1": "* If you need to open duty-free or mixed invoices, please apply for tax categories in the green world, then change the product tax payment, so as not to open the invoice failed"
+          }
         },
         "MANUAL": {
           "name": "Manual issuance",

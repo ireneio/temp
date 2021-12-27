@@ -55,7 +55,8 @@ export default React.memo(() => {
       </div>
 
       <div className={styles.callout}>
-        {t('invoice.electronic.0.ECPAY.tip')}
+        <div>{t('invoice.electronic.0.ECPAY.tip.0')}</div>
+        <div>{t('invoice.electronic.0.ECPAY.tip.1')}</div>
       </div>
 
       <h5 className={styles.h5}>{t('invoice.electronic.2.title')}</h5>

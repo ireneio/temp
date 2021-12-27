@@ -131,7 +131,10 @@
         "title": "Metode penerbitan",
         "ECPAY": {
           "name": "Green World otomatis terbuka",
-          "tip": "Harga jual semua barang di toko sudah termasuk pajak / type track karakter: jumlah pajak umum / kategori kena pajak: kena pajak"
+          "tip": {
+            "0": "Harga semua produk toko adalah kategori kena pajak / track: Pajak Umum / Pajak Preset Kategori: Pajak Pajak",
+            "1": "* Jika Anda perlu membuka faktur bebas bea atau campuran, silakan melamar kategori pajak di dunia hijau, kemudian ubah pembayaran pajak produk, agar tidak membuka faktur gagal"
+          }
         },
         "MANUAL": {
           "name": "Penerbitan manual",

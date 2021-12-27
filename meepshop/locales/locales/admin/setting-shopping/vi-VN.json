@@ -131,7 +131,10 @@
         "title": "Phương thức phát hành",
         "ECPAY": {
           "name": "Green World tự động mở",
-          "tip": "Giá bán hàng hóa trong cửa hàng đều đã bao gồm thuế / Loại: Thuế chung / Loại chịu thuế: Có thuế"
+          "tip": {
+            "0": "Giá của tất cả các sản phẩm cửa hàng là loại thuế / theo dõi: Thuế chung / Loại thuế đặt trước: Thuế thuế",
+            "1": "* Nếu bạn cần mở hóa đơn miễn thuế hoặc hỗn hợp, vui lòng đăng ký các danh mục thuế trong thế giới xanh, sau đó thay đổi thanh toán thuế sản phẩm, để không mở hóa đơn không thành công"
+          }
         },
         "MANUAL": {
           "name": "Phát hành thủ công",
