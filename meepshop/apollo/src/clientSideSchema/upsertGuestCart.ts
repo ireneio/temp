@@ -1,10 +1,9 @@
-// typescript definition
-// FIXME 應該用 @meepshop/types generated types
-interface GuestCartType {
+// graphql typescript
+import { CartItemInput } from '@meepshop/types/gqls/meepshop';
+
+// typescript definiton
+interface CartItem extends CartItemInput {
   __typename: 'CartItem';
-  productId: string;
-  quantity: number;
-  variantId: string;
 }
 
 // definition
@@ -13,31 +12,34 @@ export const resolvers = {
     upsertGuestCart: (
       _: unknown,
       {
-        input: { productId, quantity, variantId },
+        input,
       }: {
-        input: GuestCartType;
+        input: CartItemInput[];
       },
     ) => {
       const guestCart = JSON.parse(
         localStorage.getItem('guestCart') || '[]',
-      ) as GuestCartType[];
-      const index = guestCart.findIndex(p => p.productId === productId);
+      ) as CartItem[];
 
-      if (index === -1) {
-        localStorage.setItem(
-          'guestCart',
-          JSON.stringify([
-            ...guestCart,
-            { __typename: 'CartItem', productId, quantity, variantId },
-          ]),
-        );
-      } else {
-        guestCart[index] = {
-          ...guestCart[index],
-          quantity: guestCart[index].quantity + quantity,
-        };
-        localStorage.setItem('guestCart', JSON.stringify(guestCart));
-      }
+      input.forEach(({ productId, quantity, variantId }) => {
+        const index = guestCart.findIndex(item => item.variantId === variantId);
+
+        if (index === -1) {
+          localStorage.setItem(
+            'guestCart',
+            JSON.stringify([
+              ...guestCart,
+              { __typename: 'CartItem', productId, quantity, variantId },
+            ]),
+          );
+        } else {
+          guestCart[index] = {
+            ...guestCart[index],
+            quantity: guestCart[index].quantity + quantity,
+          };
+          localStorage.setItem('guestCart', JSON.stringify(guestCart));
+        }
+      });
 
       return {
         __typename: 'OkResponse',
