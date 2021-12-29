@@ -4,13 +4,13 @@
   "description": "Convenience store map modal for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.109",
+  "version": "0.80.110",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/convenience-store-map": "^0.80.109",
+    "@meepshop/convenience-store-map": "^0.80.110",
     "@meepshop/locales": "^0.80.109",
-    "@meepshop/utils": "^0.80.106"
+    "@meepshop/utils": "^0.80.110"
   },
   "keywords": ["convenience store map modal", "meepshop"]
 }

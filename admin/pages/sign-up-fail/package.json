@@ -4,13 +4,13 @@
   "description": "Admin sign up fail",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.109",
+  "version": "0.80.110",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/ad-track": "^0.80.106",
-    "@meepshop/images": "^0.80.106",
-    "@meepshop/link": "^0.80.106",
+    "@meepshop/images": "^0.80.110",
+    "@meepshop/link": "^0.80.110",
     "@meepshop/locales": "^0.80.109"
   },
   "keywords": ["admin", "sign up fail"]
