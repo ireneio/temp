@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.80.110 (2021-12-29)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1964](https://github.com/meepshop/meep-lerna/pull/1964) 內部開單 - @meepshop/cart 改只拿購物車數量 ([@Lexiwu](https://github.com/Lexiwu))
+- Other
+  - [#1998](https://github.com/meepshop/meep-lerna/pull/1998) 內部開單 - 開新的 cart hook ([@piovischioh](https://github.com/piovischioh))
+  - [#2004](https://github.com/meepshop/meep-lerna/pull/2004) 內部開單 - 新增 @admin/filter-buttons ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#2020](https://github.com/meepshop/meep-lerna/pull/2020) (@store/cart) Fix client import ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#1998](https://github.com/meepshop/meep-lerna/pull/1998) 內部開單 - 開新的 cart hook ([@piovischioh](https://github.com/piovischioh))
+- [#2013](https://github.com/meepshop/meep-lerna/pull/2013) 內部開單 - 加入 react-use ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.109 (2021-12-27)
 
 #### :rocket: New Feature
