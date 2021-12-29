@@ -10,8 +10,9 @@ import ProductAmountSelector from '@meepshop/product-amount-selector';
 
 // graphql typescript
 import {
-  quantityVariantFragment,
-  quantityProductInfoModuleFragment,
+  useVariantLineItemFragment as useVariantLineItemFragmentType,
+  quantityVariantFragment as quantityVariantFragmentType,
+  quantityProductInfoModuleFragment as quantityProductInfoModuleFragmentType,
 } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
@@ -19,10 +20,11 @@ import { productAmountSelectorFragment } from '@meepshop/product-amount-selector
 
 // typescript definition
 export interface PropsType
-  extends quantityProductInfoModuleFragment,
+  extends quantityProductInfoModuleFragmentType,
     Pick<ProductAmountSelectorPropsType, 'value' | 'onChange'> {
-  variant: quantityVariantFragment | null;
+  variant: quantityVariantFragmentType | null;
   quantityInCart: number;
+  cart: useVariantLineItemFragmentType[] | null;
 }
 
 // definition

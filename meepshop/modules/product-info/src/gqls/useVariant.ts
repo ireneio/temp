@@ -30,3 +30,13 @@ export const useVariantOrderListFragment = gql`
     }
   }
 `;
+
+export const useVariantLineItemFragment = gql`
+  fragment useVariantLineItemFragment on LineItem {
+    id
+    productId
+    quantity
+    variantId
+    cartId(cartProducts: $cartProducts) @client
+  }
+`;

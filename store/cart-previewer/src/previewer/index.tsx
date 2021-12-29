@@ -1,6 +1,5 @@
 // import
-import React, { useContext, useRef, useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
+import React, { useContext, useRef, useEffect, useState, useMemo } from 'react';
 import { filter } from 'graphql-anywhere';
 import { LeftOutlined } from '@ant-design/icons';
 import transformColor from 'color';
@@ -15,16 +14,11 @@ import { useTranslation } from '@meepshop/locales';
 import Empty from './Empty';
 import Products from './Products';
 import Price from './Price';
+import useMapCartItem from './hooks/useMapCartItem';
+import useComputedCart from './hooks/useComputedCart';
 import styles from './styles/index.less';
 
-// graphql typescript
-import {
-  getCartListInPreviewer as getCartListInPreviewerType,
-  getCartListInPreviewer_getCartList_data_categories_products as getCartListInPreviewerGetCartListDataCategoriesProductsType,
-} from '@meepshop/types/gqls/store';
-
 // graphql import
-import { getCartListInPreviewer } from './gqls';
 import { useProductsColumnsInPreviewerFragment } from './gqls/useProductsColumns';
 import { priceInPreviewerFragment } from './gqls/price';
 
@@ -38,11 +32,30 @@ export default React.memo(({ onClose }: PropsType) => {
   const colors = useContext(ColorsContext);
   const { c } = useContext(CurrencyContext);
   const { t } = useTranslation('cart-previewer');
-  const { data } = useQuery<getCartListInPreviewerType>(getCartListInPreviewer);
+  const mapCartItem = useMapCartItem();
+  const computedCart = useComputedCart(
+    mapCartItem?.cartItems || null,
+    mapCartItem?.cartProducts || null,
+  );
   const productsRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
-  const order = data?.getCartList?.data?.[0];
-  const products = order?.categories?.[0]?.products || [];
+  const productTotal = useMemo(
+    () =>
+      (computedCart?.computedLineItems || []).reduce(
+        (total, { quantity, unitPrice }) =>
+          total + (quantity || 0) * (unitPrice || 0),
+        0,
+      ),
+    [computedCart],
+  );
+  const discountTotal = useMemo(
+    () =>
+      (computedCart?.productsDiscount || []).reduce(
+        (total, activity) => total + (activity?.discountPrice || 0),
+        0,
+      ),
+    [computedCart],
+  );
 
   useEffect(() => {
     const productsNode = productsRef.current;
@@ -68,7 +81,7 @@ export default React.memo(({ onClose }: PropsType) => {
           {t('cart')}
         </div>
 
-        {!order || !products.length ? (
+        {!computedCart || !computedCart.computedLineItems.length ? (
           <Empty onClose={onClose} />
         ) : (
           <>
@@ -76,17 +89,26 @@ export default React.memo(({ onClose }: PropsType) => {
               <Products
                 products={filter(
                   useProductsColumnsInPreviewerFragment,
-                  products as getCartListInPreviewerGetCartListDataCategoriesProductsType[],
+                  computedCart.computedLineItems,
                 )}
               />
 
-              <Price order={filter(priceInPreviewerFragment, order)} />
+              <Price
+                computedCart={filter(priceInPreviewerFragment, computedCart)}
+                productTotal={productTotal}
+              />
             </div>
 
             <div className={styles.footer}>
               <div>
                 <span>{t('total')}</span>
-                <span>{c(order.priceInfo?.total || 0)}</span>
+                <span>
+                  {c(
+                    productTotal -
+                      discountTotal -
+                      computedCart.orderDiscount.totalDiscount,
+                  )}
+                </span>
               </div>
 
               <Link href="/cart">

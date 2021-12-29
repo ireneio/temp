@@ -2,7 +2,7 @@
 import { gql } from '@apollo/client';
 
 // graphql import
-import { previewerFragment } from './index';
+import { previewerFragment } from './useMapCartItem';
 
 // definition
 export const removeProductInPreviewer = gql`

@@ -25,9 +25,7 @@ export default class CartCount extends React.PureComponent {
     return (
       <Badge
         className={styles.root}
-        count={(carts?.categories.products || [])
-          .filter(({ type }) => type === 'product')
-          .reduce((result, { quantity }) => result + quantity, 0)}
+        count={carts.reduce((result, { quantity }) => result + quantity, 0)}
         showZero={false}
       >
         {children}

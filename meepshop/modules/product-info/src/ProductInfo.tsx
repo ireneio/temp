@@ -16,8 +16,9 @@ import useVariant from './hooks/useVariant';
 
 // graphql typescript
 import {
-  productInfoFragment,
+  productInfoFragment as productInfoFragmentType,
   productInfoFragment_product as productInfoFragmentProduct,
+  useVariantLineItemFragment as useVariantLineItemFragmentType,
   quantityProductInfoModuleFragment as quantityProductInfoModuleFragmentType,
 } from '@meepshop/types/gqls/meepshop';
 
@@ -36,14 +37,19 @@ import {
   addButtonVariantFragment,
   addButtonStockNotificationFragment,
 } from './gqls/addButton';
-import { useVariantOrderListFragment } from './gqls/useVariant';
+import { useVariantLineItemFragment } from './gqls/useVariant';
 import {
   mobileSpecSelectorProductFragment,
   mobileSpecSelectorVariantFragment,
 } from './mobileSpecSelector/gqls';
 
+// typescript definition
+interface PropsType extends productInfoFragmentType {
+  cart: useVariantLineItemFragmentType[] | null;
+}
+
 // definition
-export default React.memo((props: productInfoFragment) => {
+export default React.memo((props: PropsType) => {
   const {
     unfoldedVariants,
     drawerOnMobile,
@@ -56,7 +62,7 @@ export default React.memo((props: productInfoFragment) => {
   const [quantity, setQuantity] = useState<QuantityPropsType['value']>(0);
   const { variant, setVariant, quantityInCart } = useVariant<
     productInfoFragmentProduct
-  >(product, filter(useVariantOrderListFragment, cart));
+  >(product, filter(useVariantLineItemFragment, cart));
   const [visible, setVisible] = useState(false);
 
   return !product ? null : (
@@ -75,10 +81,11 @@ export default React.memo((props: productInfoFragment) => {
       />
 
       <Quantity
-        {...filter<quantityProductInfoModuleFragmentType, productInfoFragment>(
-          quantityProductInfoModuleFragment,
-          props,
-        )}
+        {...filter<
+          quantityProductInfoModuleFragmentType,
+          productInfoFragmentType
+        >(quantityProductInfoModuleFragment, props)}
+        cart={filter(useVariantLineItemFragment, cart)}
         variant={filter(quantityVariantFragment, variant)}
         value={quantity}
         onChange={setQuantity}

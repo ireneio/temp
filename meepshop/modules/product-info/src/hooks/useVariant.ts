@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
 // graphql typecript
 import {
   useVariantProductFragment,
-  useVariantOrderListFragment,
+  useVariantLineItemFragment as useVariantLineItemFragmentType,
 } from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
@@ -15,7 +15,7 @@ type VariantType<P extends useVariantProductFragment> = NonNullable<
 // definition
 export default <P extends useVariantProductFragment>(
   product: P | null,
-  cart: useVariantOrderListFragment | null,
+  cart: useVariantLineItemFragmentType[] | null,
 ): {
   variant: VariantType<P> | null;
   setVariant: (variant: VariantType<P> | null) => void;
@@ -30,8 +30,8 @@ export default <P extends useVariantProductFragment>(
   );
   const quantityInCart = useMemo(
     () =>
-      cart?.data?.[0]?.categories?.[0]?.products?.find(
-        productInCart => variant && productInCart?.variantId === variant?.id,
+      cart?.find(
+        productInCart => variant && productInCart.variantId === variant?.id,
       )?.quantity || 0,
     [cart, variant],
   );

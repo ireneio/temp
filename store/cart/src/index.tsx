@@ -26,8 +26,11 @@ import { priceComputedCartFragment } from './gqls/price';
 // definition
 const Cart: NextPage = React.memo(() => {
   const role = useContext(RoleContext);
-  const { cartItems, cartProducts } = useMapCartItem();
-  const computedCart = useComputedCart(cartItems, cartProducts);
+  const mapCartItem = useMapCartItem();
+  const computedCart = useComputedCart(
+    mapCartItem?.cartItems || null,
+    mapCartItem?.cartProducts || null,
+  );
   const { hasError, checkErrors } = useCheckErrors(
     computedCart?.computedLineItems || null,
   );

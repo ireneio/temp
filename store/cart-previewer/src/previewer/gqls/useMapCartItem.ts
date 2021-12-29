@@ -2,8 +2,8 @@
 import { gql } from '@apollo/client';
 
 // definition
-export const cartOrderFragment = gql`
-  fragment cartOrderFragment on Order {
+export const previewerFragment = gql`
+  fragment previewerFragment on Order {
     id
     categories {
       products {
@@ -16,15 +16,15 @@ export const cartOrderFragment = gql`
   }
 `;
 
-export const getCartList = gql`
-  query getCartList {
+export const getCartListInPreviewer = gql`
+  query getCartListInPreviewer {
     getCartList {
       data {
         id
-        ...cartOrderFragment
+        ...previewerFragment
       }
     }
   }
 
-  ${cartOrderFragment}
+  ${previewerFragment}
 `;

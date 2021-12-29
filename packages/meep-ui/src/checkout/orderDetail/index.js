@@ -6,6 +6,7 @@ import { Form, InputNumber, Button, Modal, notification } from 'antd';
 import uuid from 'uuid';
 import transformColor from 'color';
 import { useMutation } from '@apollo/client';
+import { areEqual } from 'fbjs';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/locales';
@@ -108,13 +109,14 @@ export default class OrderDetail extends React.PureComponent {
   };
 
   state = {
+    loading: true,
     showDetail: false,
     computeOrderData: {
       paymentList: [],
       shipmentList: [],
     },
     // eslint-disable-next-line react/destructuring-assignment
-    products: this.props.carts?.categories.products || [],
+    products: this.props.carts || [],
     choosePayment: null,
     chooseShipment: null,
     productHasError: false,
@@ -177,8 +179,8 @@ export default class OrderDetail extends React.PureComponent {
 
     const { carts } = this.props;
 
-    if (prevProps.carts?.id !== carts?.id) {
-      this.computeOrderList({ products: carts?.categories.products || [] });
+    if (!areEqual(prevProps.carts, carts)) {
+      this.computeOrderList({ products: carts || [] });
     }
   }
 
@@ -290,9 +292,7 @@ export default class OrderDetail extends React.PureComponent {
         points,
         paymentId,
         shipmentId,
-        products: (fieldsValue.products || products).filter(
-          ({ type }) => type === 'product',
-        ),
+        products: fieldsValue.products || products,
       }),
     );
 
@@ -324,6 +324,7 @@ export default class OrderDetail extends React.PureComponent {
         ({ shipmentId: id }) => id === shipmentId,
       ),
       isChecking: false,
+      loading: false,
     });
   };
 
@@ -480,6 +481,7 @@ export default class OrderDetail extends React.PureComponent {
       isSynchronizeUserInfo,
       isSaveAsReceiverTemplate,
       isChecking,
+      loading,
     } = this.state;
 
     const { storeName } = storeSetting;
@@ -726,10 +728,12 @@ export default class OrderDetail extends React.PureComponent {
           activityInfo={activityInfo}
           priceInfo={priceInfo}
           showDetail={showDetail}
-          products={products}
+          products={loading ? [] : products}
           productHasError={productHasError}
           updateProducts={newProducts => {
-            this.computeOrderList({ products: newProducts });
+            this.computeOrderList({
+              products: newProducts.filter(({ type }) => type === 'product'),
+            });
           }}
           closeDetail={() =>
             this.setState({ showDetail: false }, () => {

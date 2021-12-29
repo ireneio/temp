@@ -8,10 +8,11 @@ import {
   Colors as ColorsContext,
   Role as RoleContext,
 } from '@meepshop/context';
-import CartContext from '@meepshop/cart';
 import { useRouter } from '@meepshop/link';
 import withContext from '@store/utils/lib/withContext';
 import { NOTLOGIN, ISUSER } from 'constants/isLogin';
+
+import useGetCart from './hooks/useGetCart';
 
 import {
   getContextData,
@@ -32,6 +33,7 @@ export default React.memo(
 
     children,
   }) => {
+    const carts = useGetCart();
     const { data } = useQuery(getContextData);
     const { query } = useRouter();
     const { data: productInContext } = useQuery(getProductInDecoratorsRoot, {
@@ -62,7 +64,6 @@ export default React.memo(
     const colors = useContext(ColorsContext);
     const apps = useContext(AppsContext);
     const { c } = useContext(CurrencyContext);
-    const { carts } = useContext(CartContext);
     const role = useContext(RoleContext);
 
     return (

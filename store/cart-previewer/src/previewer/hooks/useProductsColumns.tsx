@@ -47,11 +47,11 @@ export default (): ReturnType => {
           width: 84,
           render: (
             image: useProductsColumnsInPreviewerFragmentType['coverImage'],
-            { productId, type, error },
+            { productId, type, status },
           ) => {
             const disabled =
-              type !== 'product' ||
-              ['DISCONTINUED', 'NOT_AVAILABLE'].includes(error || '');
+              type !== 'PRODUCT' ||
+              ['DISCONTINUED', 'NOT_AVAILABLE'].includes(status || '');
 
             return (
               <Switch
@@ -65,7 +65,7 @@ export default (): ReturnType => {
                 <Thumbnail
                   image={image}
                   className={`${styles.img} ${
-                    error !== 'NOT_AVAILABLE' ? '' : styles.offline
+                    status !== 'NOT_AVAILABLE' ? '' : styles.offline
                   }`}
                 />
               </Switch>
@@ -77,13 +77,13 @@ export default (): ReturnType => {
           width: '100%',
           render: (
             title: useProductsColumnsInPreviewerFragmentType['title'],
-            { productId, specs, activityInfo, type, error, ...product },
+            { productId, specs, discountAllocations, type, status, ...product },
           ) => {
-            const retailPrice = product.retailPrice || 0;
+            const retailPrice = product.unitPrice || 0;
             const quantity = product.quantity || 0;
             const disabled =
-              type !== 'product' ||
-              ['DISCONTINUED', 'NOT_AVAILABLE'].includes(error || '');
+              type !== 'PRODUCT' ||
+              ['DISCONTINUED', 'NOT_AVAILABLE'].includes(status || '');
 
             return (
               <>
@@ -97,10 +97,10 @@ export default (): ReturnType => {
                 >
                   <span
                     className={`${styles.title} ${
-                      error !== 'NOT_AVAILABLE' ? '' : styles.offline
+                      status !== 'NOT_AVAILABLE' ? '' : styles.offline
                     }`}
                   >
-                    {error === 'DISCONTINUED'
+                    {status === 'DISCONTINUED'
                       ? t('product-deleted')
                       : getLanguage(title)}
                   </span>
@@ -109,17 +109,17 @@ export default (): ReturnType => {
                 {!specs ? null : (
                   <div
                     className={`${styles.specs} ${
-                      error !== 'NOT_AVAILABLE' ? '' : styles.offline
+                      status !== 'NOT_AVAILABLE' ? '' : styles.offline
                     }`}
                   >
                     {specs.map(spec => getLanguage(spec?.title)).join('/')}
                   </div>
                 )}
 
-                {!activityInfo?.length ? null : (
+                {!discountAllocations?.length ? null : (
                   <div className={styles.tags}>
-                    {activityInfo.map(activity => (
-                      <span key={activity?.id}>
+                    {discountAllocations.map(activity => (
+                      <span key={activity?.activityId}>
                         <TagOutlined />
 
                         <span>{getLanguage(activity?.title)}</span>
@@ -128,25 +128,27 @@ export default (): ReturnType => {
                   </div>
                 )}
 
-                {type !== 'product' ? (
+                {type !== 'PRODUCT' ? (
                   <div className={styles.price}>{t('gift')}</div>
                 ) : (
                   <>
-                    {error &&
-                    ['DISCONTINUED', 'NOT_AVAILABLE'].includes(error) ? null : (
+                    {status &&
+                    ['DISCONTINUED', 'NOT_AVAILABLE'].includes(
+                      status,
+                    ) ? null : (
                       <div className={styles.price}>
                         <span>{`${quantity}×`}</span>
                         <span>{c(retailPrice)}</span>
                       </div>
                     )}
 
-                    {error &&
+                    {status &&
                     ['DISCONTINUED', 'NOT_AVAILABLE', 'OUT_OF_STOCK'].includes(
-                      error,
+                      status,
                     ) ? (
                       <div className={styles.error}>
                         <ExclamationCircleOutlined />
-                        {t(error)}
+                        {t(status)}
                       </div>
                     ) : null}
                   </>
@@ -159,7 +161,7 @@ export default (): ReturnType => {
           dataIndex: ['cartId'],
           width: 20,
           render: (cartId, { type }) =>
-            type !== 'product' ? null : (
+            type !== 'PRODUCT' ? null : (
               <CloseOutlined
                 className={styles.delete}
                 onClick={() => removeProduct(cartId)}

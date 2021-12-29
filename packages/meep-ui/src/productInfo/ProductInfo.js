@@ -28,21 +28,12 @@ import { PRODUCT_TYPE, LIMITED, ORDERABLE, OUT_OF_STOCK } from './constants';
 @withTranslation('product-info')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withContext(CartContext)
-@withHook(({ productData, carts }) =>
-  useVariant(productData, {
-    data: [
-      {
-        ...carts,
-        categories: [carts?.categories],
-      },
-    ],
-  }),
-)
+@enhancer
+@withHook(({ productData, carts }) => useVariant(productData, carts))
 @withHook(() => ({
   client: useApolloClient(),
   addToCartNotification: useAddToCartNotification(),
 }))
-@enhancer
 @radium
 export default class ProductInfo extends React.PureComponent {
   name = 'product-info';

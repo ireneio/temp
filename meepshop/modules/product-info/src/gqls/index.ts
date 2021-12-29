@@ -22,10 +22,7 @@ import {
   mobileSpecSelectorProductFragment,
   mobileSpecSelectorVariantFragment,
 } from '../mobileSpecSelector/gqls';
-import {
-  useVariantOrderListFragment,
-  useVariantProductFragment,
-} from './useVariant';
+import { useVariantProductFragment } from './useVariant';
 
 // definition
 export const productInfoFragment = gql`
@@ -58,9 +55,6 @@ export const productInfoFragment = gql`
       id
       ...addButtonStockNotificationFragment
     }
-    cart {
-      ...useVariantOrderListFragment
-    }
   }
 
   ${descriptionProductFragment}
@@ -73,7 +67,6 @@ export const productInfoFragment = gql`
   ${addButtonStockNotificationFragment}
   ${mobileSpecSelectorProductFragment}
   ${mobileSpecSelectorVariantFragment}
-  ${useVariantOrderListFragment}
   ${useVariantProductFragment}
   ${productSpecSelectorFragment}
 `;

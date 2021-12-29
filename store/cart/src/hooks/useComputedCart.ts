@@ -21,17 +21,18 @@ interface ComputedProductsType
 
 // definition
 export default (
-  cartItems: computedCartVariablesType['cartItems'],
-  cartProducts: computedCartVariablesType['cartProducts'],
+  cartItems: computedCartVariablesType['cartItems'] | null,
+  cartProducts: computedCartVariablesType['cartProducts'] | null,
 ): ComputedProductsType | null => {
   const { data } = useQuery<computedCartType, computedCartVariablesType>(
     computedCart,
     {
       fetchPolicy: 'cache-and-network',
       variables: {
-        cartItems,
-        cartProducts,
+        cartItems: cartItems || [],
+        cartProducts: cartProducts || [],
       },
+      skip: !cartItems || !cartProducts,
     },
   );
 
