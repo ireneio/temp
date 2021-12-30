@@ -325,6 +325,9 @@ export default class OrderDetail extends React.PureComponent {
       ),
       isChecking: false,
       loading: false,
+      productHasError: newProducts.some(
+        product => product?.type === 'product' && product?.error,
+      ),
     });
   };
 
