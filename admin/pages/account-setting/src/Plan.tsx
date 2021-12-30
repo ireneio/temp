@@ -1,11 +1,8 @@
-// typescript import
-import { languageType } from '@meepshop/locales';
-
 // import
 import React from 'react';
 import { Button } from 'antd';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Link from '@meepshop/link';
 import Block from '@admin/block';
 
@@ -21,7 +18,8 @@ interface PropsType {
 
 // definition
 export default React.memo(({ viewer }: PropsType) => {
-  const { t, i18n } = useTranslation('account-setting');
+  const { t } = useTranslation('account-setting');
+  const getLanguage = useGetLanguage();
 
   const accountType = viewer?.store?.metaData?.accountType;
   const billingType = viewer?.store?.setting?.billing?.billingType;
@@ -61,7 +59,7 @@ export default React.memo(({ viewer }: PropsType) => {
           <>
             <div className={styles.currentPlan}>{t('plan.current-plan')}</div>
             <div className={styles.plan}>
-              {planName?.[i18n.language as languageType] || planName?.zh_TW}
+              {getLanguage(planName)}
               <span>{` /${t('plan.contract-plan')}`}</span>
             </div>
             <div className={styles.prompt}>{t('plan.contact-consultant')}</div>
@@ -72,7 +70,7 @@ export default React.memo(({ viewer }: PropsType) => {
           <>
             <div className={styles.currentPlan}>{t('plan.current-plan')}</div>
             <div className={styles.plan}>
-              {planName?.[i18n.language as languageType] || planName?.zh_TW}
+              {getLanguage(planName)}
               <span>{` /${t('plan.monthly-plan')}`}</span>
             </div>
           </>

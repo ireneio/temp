@@ -1,8 +1,6 @@
 // typescript import
 import { QueryResult } from '@apollo/client';
 
-import { languageType } from '@meepshop/locales';
-
 import useSelectedPageType from '../hooks/useSelectedPage';
 
 // import
@@ -10,7 +8,7 @@ import React from 'react';
 import { filter } from 'graphql-anywhere';
 import { Tooltip } from 'antd';
 
-import { useTranslation } from '@meepshop/locales';
+import { useGetLanguage } from '@meepshop/locales';
 import Switch from '@meepshop/switch';
 
 import PrefixIcon from './PrefixIcon';
@@ -55,9 +53,8 @@ export default React.memo(
     editVisibleId,
     setEditVisibleId,
   }: PropsType) => {
-    const { i18n } = useTranslation('page-manager');
-    const title =
-      page.title?.[i18n.language as languageType] || page.title?.zh_TW;
+    const getLanguage = useGetLanguage();
+    const title = getLanguage(page.title);
     const { titleRef, isOverflow } = useTitleOverflow(
       editVisibleId === page.id,
       title,

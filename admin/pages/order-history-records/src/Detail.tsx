@@ -1,10 +1,7 @@
-// typescript import
-import { languageType } from '@meepshop/locales';
-
 // import
 import React, { useContext } from 'react';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
 
 import styles from './styles/detail.less';
@@ -25,7 +22,8 @@ export default React.memo(({ orderHistoryRecord }: PropsType) => {
     adjustAmountDelta,
     totalAmountDelta,
   } = orderHistoryRecord;
-  const { t, i18n } = useTranslation('order-history-records');
+  const { t } = useTranslation('order-history-records');
+  const getLanguage = useGetLanguage();
   const { c } = useContext(CurrencyContext);
 
   return (
@@ -46,10 +44,7 @@ export default React.memo(({ orderHistoryRecord }: PropsType) => {
                     {(specs || []).length === 0 ? null : (
                       <div className={styles.specs}>
                         {specs
-                          ?.map(
-                            spec =>
-                              spec?.title?.[i18n.language as languageType],
-                          )
+                          ?.map(spec => getLanguage(spec?.title))
                           .filter(Boolean)
                           .join(' / ')}
                       </div>

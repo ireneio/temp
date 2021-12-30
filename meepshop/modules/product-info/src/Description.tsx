@@ -1,10 +1,7 @@
-// typescript import
-import { languageType } from '@meepshop/locales';
-
 // import
 import React, { useContext } from 'react';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import {
   Apps as AppsContext,
   Currency as CurrencyContext,
@@ -27,21 +24,16 @@ interface PropsType {
 
 // definition
 export default React.memo(({ product, variant, viewer }: PropsType) => {
-  const { t, i18n } = useTranslation('product-info');
+  const { t } = useTranslation('product-info');
+  const getLanguage = useGetLanguage();
   const { c } = useContext(CurrencyContext);
   const apps = useContext(AppsContext);
-  const description =
-    product?.description?.[i18n.language as languageType] ||
-    product?.description?.zh_TW;
+  const description = getLanguage(product?.description);
   const applicableActivities = product?.applicableActivities || [];
 
   return (
     <div>
-      {!product?.title ? null : (
-        <h1>
-          {product.title[i18n.language as languageType] || product.title.zh_TW}
-        </h1>
-      )}
+      {!product?.title ? null : <h1>{getLanguage(product.title)}</h1>}
 
       {!variant?.sku ? null : <div>{variant.sku}</div>}
 
@@ -56,9 +48,7 @@ export default React.memo(({ product, variant, viewer }: PropsType) => {
       {applicableActivities.length === 0 ? null : (
         <div>
           {applicableActivities.map(activity => {
-            const title =
-              activity?.title?.[i18n.language as languageType] ||
-              activity?.title?.zh_TW;
+            const title = getLanguage(activity?.title);
 
             return !title ? null : <div key={title}>{title}</div>;
           })}

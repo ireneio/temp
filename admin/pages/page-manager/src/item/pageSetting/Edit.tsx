@@ -1,15 +1,13 @@
 // typescript import
 import { QueryResult } from '@apollo/client';
 
-import { languageType } from '@meepshop/locales';
-
 // import
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { CloseOutlined } from '@ant-design/icons';
 import { Form, Input, Button } from 'antd';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Tooltip from '@admin/tooltip';
 import { usePortalTarget } from '@admin/hooks';
 import {
@@ -52,7 +50,8 @@ export default React.memo(
   }: PropsType) => {
     const portalTarget = usePortalTarget();
     const validatePagePath = useValidatePagePath(path);
-    const { t, i18n } = useTranslation('page-manager');
+    const { t } = useTranslation('page-manager');
+    const getLanguage = useGetLanguage();
     const renamePageWithSEO = useRenamePageWithSEO(
       id || 'id' /* SHOULD_NOT_BE_NULL */,
       pageType,
@@ -83,9 +82,7 @@ export default React.memo(
             <FormItem
               name={['title']}
               rules={[{ required: true, message: t('form.required') }]}
-              initialValue={
-                title?.[i18n.language as languageType] || title?.zh_TW
-              }
+              initialValue={getLanguage(title)}
             >
               <Input placeholder={t('form.title.placeholder')} />
             </FormItem>

@@ -1,13 +1,10 @@
-// typescript import
-import { languageType } from '@meepshop/locales';
-
 import { OrdersQueryResult } from '../constants';
 
 // import
 import React, { useMemo } from 'react';
 import { Select } from 'antd';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 
 import emptyArrayToUndefined from '../utils/emptyArrayToUndefined';
 
@@ -43,7 +40,8 @@ export default ({
   filter,
   setFilter,
 }: PropsType): React.ReactElement => {
-  const { t, i18n } = useTranslation('orders');
+  const { t } = useTranslation('orders');
+  const getLanguage = useGetLanguage();
   const Options = useMemo(() => {
     switch (optionsKey) {
       case 'paymentIdList':
@@ -56,7 +54,7 @@ export default ({
           title: advancedSearchStorePaymentFragmentTitle;
         }[]).map(({ id, title }) => (
           <Option key={id} value={id}>
-            {title[i18n.language as languageType] || title.zh_TW}
+            {getLanguage(title)}
           </Option>
         ));
 
@@ -69,7 +67,7 @@ export default ({
           ),
         );
     }
-  }, [t, i18n, options, optionsKey, storePayments, storeShipments]);
+  }, [t, getLanguage, options, optionsKey, storePayments, storeShipments]);
 
   return (
     <Select<string[]>

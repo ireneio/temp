@@ -1,11 +1,8 @@
-// typescript import
-import { languageType } from '@meepshop/locales';
-
 // import
 import React from 'react';
 import { Spin, Button } from 'antd';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Link from '@meepshop/link';
 
 import Instruction from './Instruction';
@@ -30,14 +27,13 @@ export default React.memo(
     store: { domain, defaultDomain },
     page: { id, title, pageType, path },
   }: PropsType) => {
-    const { t, i18n } = useTranslation('page-manager');
+    const { t } = useTranslation('page-manager');
+    const getLanguage = useGetLanguage();
     const { loading, scale, iframeRef, onLoad } = useIframeLoading(id);
 
     return (
       <div className={styles.root}>
-        <div className={styles.title}>
-          {title?.[i18n.language as languageType] || title?.zh_TW}
-        </div>
+        <div className={styles.title}>{getLanguage(title)}</div>
 
         <Spin wrapperClassName={styles.iframe} spinning={loading}>
           <iframe

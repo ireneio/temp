@@ -1,10 +1,7 @@
-// typescript import
-import { languageType } from '@meepshop/locales';
-
 // import
 import { useMemo } from 'react';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 
 import { ACION_TYPES } from '../constants';
 
@@ -19,7 +16,8 @@ export default (
   user: useTitleUserFragmentType | null,
   page: useTitleMenuPageObjectTypeFragmentType,
 ): string | null => {
-  const { t, i18n } = useTranslation('menu');
+  const { t } = useTranslation('menu');
+  const getLanguage = useGetLanguage();
 
   return useMemo(() => {
     const { action, params, title } = page;
@@ -34,7 +32,7 @@ export default (
             ? user?.memberGroup?.name
             : null;
 
-        return title?.[i18n.language as languageType] || title?.zh_TW || null;
+        return getLanguage(title) || null;
 
       case 'zh_TW':
       case 'en_US':
@@ -76,7 +74,7 @@ export default (
         return 'RM MYR';
 
       default:
-        return title?.[i18n.language as languageType] || title?.zh_TW || null;
+        return getLanguage(title) || null;
     }
-  }, [page, user, t, i18n]);
+  }, [page, user, t, getLanguage]);
 };

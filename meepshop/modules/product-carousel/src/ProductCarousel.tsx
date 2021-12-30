@@ -1,5 +1,4 @@
 // typescript import
-import { languageType } from '@meepshop/locales';
 import { CarouselRef } from 'antd/lib/carousel';
 
 // import
@@ -7,7 +6,7 @@ import React, { useRef } from 'react';
 import { filter } from 'graphql-anywhere';
 
 import Carousel from '@meepshop/carousel';
-import { useTranslation } from '@meepshop/locales';
+import { useGetLanguage } from '@meepshop/locales';
 
 import useImages from './hooks/useImages';
 import useSlickActive from './hooks/useSlickActive';
@@ -29,7 +28,7 @@ interface PropsType extends productCarouselProductCarouselModuleFragment {
 // definition
 export default React.memo(
   ({ id, className, productCarouselType, autoPlay, product }: PropsType) => {
-    const { i18n } = useTranslation();
+    const getLanguage = useGetLanguage();
     const carouselRef = useRef<CarouselRef>(null);
     const bottomRef = useRef<CarouselRef>(null);
     const images = useImages(filter(useImagesFragment, product));
@@ -39,10 +38,7 @@ export default React.memo(
       id,
       images,
       autoPlay,
-      alt:
-        product?.title?.[i18n.language as languageType] ||
-        product?.title?.zh_TW ||
-        null,
+      alt: getLanguage(product?.title) || null,
       width: 100,
       hoverPause: false,
       showIndicator: false,

@@ -1,12 +1,9 @@
-// typescript import
-import { languageType } from '@meepshop/locales';
-
 // import
 import React from 'react';
 import { filter } from 'graphql-anywhere';
 
 import Image from '@meepshop/image';
-import { useTranslation } from '@meepshop/locales';
+import { useGetLanguage } from '@meepshop/locales';
 
 import styles from './styles/index.less';
 
@@ -28,7 +25,7 @@ interface PropsType extends productCollectionsProductCollectionsModuleFragment {
 // definition
 export default React.memo(
   ({ className, productCollectionsType, percentWidth, product }: PropsType) => {
-    const { i18n } = useTranslation();
+    const getLanguage = useGetLanguage();
     const images = (product?.galleries?.[1]?.images || []).filter(
       Boolean,
     ) as productCollectionsProductCollectionsModuleFragmentProductGalleriesImages[];
@@ -57,10 +54,7 @@ export default React.memo(
                   link: null,
                   width: parseInt(percentWidth.replace(/WIDTH/, ''), 10),
                   justifyContent: 'CENTER' as JustifyContent,
-                  alt:
-                    product?.title?.[i18n.language as languageType] ||
-                    product?.title?.zh_TW ||
-                    null,
+                  alt: getLanguage(product?.title) || null,
                 })}
               />
             </div>

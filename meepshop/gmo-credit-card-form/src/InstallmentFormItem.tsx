@@ -1,14 +1,12 @@
 // typescript import
 import { RefSelectProps } from 'antd/lib/select';
 
-import { languageType } from '@meepshop/locales';
-
 // import
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Cascader, Select } from 'antd';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 
 import useOptions from './hooks/useOptions';
 import styles from './styles/installmentFormItem.less';
@@ -41,7 +39,8 @@ const InstallmentForm = React.memo(
     onChange,
     forwardedRef,
   }: PropsType) => {
-    const { t, i18n } = useTranslation('gmo-credit-card-form');
+    const { t } = useTranslation('gmo-credit-card-form');
+    const getLanguage = useGetLanguage();
     const cardNumberFormat = cardNumber.replace(/ - /g, '');
     const { data, error, loading } = useQuery<
       getGmoAvailableInstallmentsType,
@@ -108,9 +107,7 @@ const InstallmentForm = React.memo(
             <h4>{t('not-gmo-bank')}</h4>
 
             {allGmoBankInstallments
-              ?.map(
-                ({ name }) => name[i18n.language as languageType] || name.zh_TW,
-              )
+              ?.map(({ name }) => getLanguage(name))
               .join(t('dot'))}
           </div>
         )}

@@ -1,12 +1,10 @@
 // typescript import
 import { CascaderOptionType } from 'antd/lib/cascader';
 
-import { languageType } from '@meepshop/locales';
-
 // import
 import { useMemo } from 'react';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 
 // graphql typescript
 import { useOptionsFragment as useOptionsFragmentType } from '@meepshop/types/gqls/meepshop';
@@ -15,20 +13,21 @@ import { useOptionsFragment as useOptionsFragmentType } from '@meepshop/types/gq
 export default (
   allGmoBankInstallments: useOptionsFragmentType[] | null,
 ): CascaderOptionType[] => {
-  const { t, i18n } = useTranslation('gmo-credit-card-form');
+  const { t } = useTranslation('gmo-credit-card-form');
+  const getLanguage = useGetLanguage();
 
   return useMemo(
     (): CascaderOptionType[] =>
       (allGmoBankInstallments || []).map(
         ({ name, code, installments }, index) => ({
           value: index.toString(),
-          label: name[i18n.language as languageType] || name.zh_TW,
+          label: getLanguage(name),
           children: installments.map(installment => ({
             value: `${code || ''}${installment}`,
             label: `${installment} ${t('installment')}`,
           })),
         }),
       ),
-    [t, i18n.language, allGmoBankInstallments],
+    [t, getLanguage, allGmoBankInstallments],
   );
 };

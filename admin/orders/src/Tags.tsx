@@ -1,13 +1,11 @@
 // typescript import
-import { languageType } from '@meepshop/locales';
-
 import { OrdersQueryResult } from './constants';
 
 // import
 import React from 'react';
 import { Tag } from 'antd';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 
 import { TAGS_KEYS } from './constants';
 import emptyArrayToUndefined from './utils/emptyArrayToUndefined';
@@ -29,7 +27,8 @@ interface PropsType extends Pick<OrdersQueryResult, 'variables' | 'refetch'> {
 // definition
 export default React.memo(
   ({ variables, refetch, storePayments, storeShipments }: PropsType) => {
-    const { t, i18n } = useTranslation('orders');
+    const { t } = useTranslation('orders');
+    const getLanguage = useGetLanguage();
 
     return (
       <div className={styles.root}>
@@ -66,9 +65,7 @@ export default React.memo(
                   closable
                 >
                   {t(`advanced-search.${key}-title`)}：
-                  {!title
-                    ? t(`${key}.${option}`)
-                    : title[i18n.language as languageType] || title.zh_TW}
+                  {!title ? t(`${key}.${option}`) : getLanguage(title)}
                 </Tag>
               );
             },
