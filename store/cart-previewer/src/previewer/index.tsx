@@ -81,7 +81,7 @@ export default React.memo(({ onClose }: PropsType) => {
           {t('cart')}
         </div>
 
-        {!computedCart || !computedCart.computedLineItems.length ? (
+        {!computedCart?.computedLineItems.length ? (
           <Empty onClose={onClose} />
         ) : (
           <>
