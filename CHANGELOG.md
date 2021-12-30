@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.80.111 (2021-12-30)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#2021](https://github.com/meepshop/meep-lerna/pull/2021) 【BUG】贈品不正常加入購物車 ([@HsuTing](https://github.com/HsuTing))
+  - [#2019](https://github.com/meepshop/meep-lerna/pull/2019) 【BUG】結帳頁 - 刪除購物車內無法購買 or 需調整數量的商品項目後，無法建立訂單 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.110 (2021-12-29)
 
 #### :rocket: New Feature
