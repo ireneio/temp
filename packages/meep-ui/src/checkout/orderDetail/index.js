@@ -292,7 +292,9 @@ export default class OrderDetail extends React.PureComponent {
         points,
         paymentId,
         shipmentId,
-        products: fieldsValue.products || products,
+        products: (fieldsValue.products || products).filter(
+          ({ type }) => type !== 'gift',
+        ),
       }),
     );
 
