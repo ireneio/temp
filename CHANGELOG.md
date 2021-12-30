@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.80.112 (2021-12-30)
+
+#### :rocket: New Feature
+
+- [#1926](https://github.com/meepshop/meep-lerna/pull/1926) 內部開單 - 將 @admin/_, @meepshop/_ 改用 useGetLanguage ([@happycat6323](https://github.com/happycat6323))
+- [#2011](https://github.com/meepshop/meep-lerna/pull/2011) 內部開單 - paymentAgainOrderList 加入 redirectUrl ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.111 (2021-12-30)
 
 #### :bug: Bug Fix
