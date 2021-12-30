@@ -5,12 +5,14 @@ import { message } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import FormDataContext from '@meepshop/form-data';
+import { useRouter } from '@meepshop/link';
 
 // graphql typescript
 import {
   payOrderAgain as payOrderAgainType,
   payOrderAgainVariables as payOrderAgainVariablesType,
   usePayOrderAgainFragment as usePayOrderAgainFragmentType,
+  PaymentTemplateEnum as PaymentTemplateEnumType,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
@@ -23,6 +25,7 @@ export default ({
 }: usePayOrderAgainFragmentType): (() => void) => {
   const { t } = useTranslation('member-orders');
   const setFormData = useContext(FormDataContext);
+  const { domain } = useRouter();
   const [payOrderAgainMutation] = useMutation<
     payOrderAgainType,
     payOrderAgainVariablesType
@@ -47,9 +50,14 @@ export default ({
           {
             orderId: id || 'null-id', // SHOULD_NOT_BE_NULL
             paymentId: paymentInfo?.list?.[0]?.paymentId || 'null-id', // SHOULD_NOT_BE_NULL
+            redirectUrl: ['allpay', 'ecpay2'].includes(
+              paymentInfo?.list?.[0]?.template as PaymentTemplateEnumType,
+            )
+              ? `https://${domain}/api/redirect/checkout/thank-you-page/[orderId]`
+              : `https://${domain}/checkout/thank-you-page/[orderId]`,
           },
         ],
       },
     });
-  }, [paymentInfo, id, payOrderAgainMutation]);
+  }, [paymentInfo, id, payOrderAgainMutation, domain]);
 };

@@ -11,6 +11,7 @@ export const usePayOrderAgainFragment = gql`
     paymentInfo {
       list {
         paymentId
+        template
       }
     }
   }
