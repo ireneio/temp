@@ -1,52 +1,10 @@
-@container: {
-  padding: 24px 32px;
-};
-
 .root {
-  margin: 48px auto;
-  padding: 0px 24px;
-  max-width: 1056px;
-
-  h1 {
-    @container();
-    margin: 0px;
-    font-size: 30px;
-    border-bottom: 1px solid #e6ebf1;
-
-    img {
-      width: 60px;
-      height: 60px;
-      margin: 0px 24px 0px 0px;
-    }
-  }
-}
-
-.info {
-  @container();
-  font-size: 16px;
-  line-height: 24px;
-  border-bottom: 1px solid #e6ebf1;
-
-  & > div {
-    display: flex;
-
-    & > div {
-      &:first-child {
-        margin: 0px 24px 0px 0px;
-        width: 100px;
-        color: #a4adbb;
-      }
-    }
-
-    &:not(:last-child) {
-      margin: 0px 0px 16px;
-    }
-  }
+  padding: 24px 32px 0;
+  max-width: 1256px;
+  border-top: 1px solid #e6ebf1;
 }
 
 .list {
-  @container();
-
   :global(.ant-list) {
     margin: 16px 0px;
     font-size: 16px;
