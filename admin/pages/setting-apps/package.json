@@ -4,11 +4,11 @@
   "description": "setting apps for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.110",
+  "version": "0.80.113",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/header": "^0.80.110",
+    "@admin/header": "^0.80.113",
     "@meepshop/context": "^0.80.110",
     "@meepshop/images": "^0.80.110",
     "@meepshop/link": "^0.80.110",
