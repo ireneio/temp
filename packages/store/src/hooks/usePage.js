@@ -1,7 +1,6 @@
-import { useContext, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 
-import CookiesContext from '@meepshop/cookies';
 import { useTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
 
@@ -10,12 +9,10 @@ import modifyWidgetDataInClient from 'utils/modifyWidgetDataInClient';
 import getJoinedModule from 'utils/getJoinedModule';
 
 export default () => {
-  const { cookies } = useContext(CookiesContext);
   const { i18n } = useTranslation('common');
   const router = useRouter();
   const { data, client } = useQuery(getPage, {
     variables: {
-      identity: cookies?.identity,
       path: router.query.path || '',
       productSearch: !router.query.pId
         ? undefined

@@ -199,7 +199,7 @@ export const usePagePageFragment = gql`
 
     smartConversionModule {
       id
-      displaySample(token: $identity) {
+      displaySample {
         eventName
         image {
           id
@@ -232,7 +232,6 @@ export const usePagePageFragment = gql`
 
 export const getPage = gql`
   query getPage(
-    $identity: String
     $path: String!
     $productSearch: searchInputObjectType
     $isHomePage: Boolean!

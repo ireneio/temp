@@ -9,7 +9,7 @@ import { editorFragment } from '../editor/gqls';
 
 // definition
 export const getPageEditorPage = gql`
-  query getPageEditorPage($input: StorePageFilterInput, $identity: String) {
+  query getPageEditorPage($input: StorePageFilterInput) {
     viewer {
       id
       store {

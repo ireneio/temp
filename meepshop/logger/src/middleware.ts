@@ -12,7 +12,7 @@ export default (req: NextApiRequest, res: NextApiResponse): void => {
     host: req.headers.host as string,
     userAgent: req.headers['user-agent'] as string,
     url: 'will be overridden',
-    identity: 'will be overridden',
+    identity: req.cookies.identity,
   });
   const { type, ...data } = req.body;
   const isTypeError = !type || !LOG_TYPES.includes(type);
