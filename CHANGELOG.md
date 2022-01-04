@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.113 (2022-01-04)
+
+#### :rocket: New Feature
+
+- [#1862](https://github.com/meepshop/meep-lerna/pull/1862) 【重構】訂單變更紀錄 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :house: Internal
+
+- `store`
+  - [#1987](https://github.com/meepshop/meep-lerna/pull/1987) 內部開單 - 移除智慧轉換元件 input ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.112 (2021-12-30)
 
 #### :rocket: New Feature
