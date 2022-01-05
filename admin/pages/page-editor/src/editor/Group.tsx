@@ -1,5 +1,5 @@
 // typescript import
-import { ModulesType } from './hooks/useModules';
+import { ModulesType } from '../constants';
 
 // import
 import React from 'react';
@@ -27,7 +27,12 @@ interface PropsType {
 // definition
 export default React.memo(({ data, childModules, isOnlyGroup }: PropsType) => {
   const { t } = useTranslation('page-editor');
-  const [{ isOver, isDragging }, dropRef, dragRef] = useGroupDnd({
+  const [
+    { isOver, isGroupOver, isDragging },
+    dropRef,
+    dragRef,
+    preview,
+  ] = useGroupDnd({
     data,
     childModules,
   });
@@ -40,15 +45,17 @@ export default React.memo(({ data, childModules, isOnlyGroup }: PropsType) => {
       <div
         id={id}
         className={`${styles.group} ${isOver ? styles.isOver : ''} ${
-          isEmpty ? styles.isEmpty : ''
-        } ${isDragging ? styles.isDragging : ''}`}
+          isGroupOver ? styles.isGroupOver : ''
+        } ${isEmpty ? styles.isEmpty : ''} ${
+          isDragging ? styles.isDragging : ''
+        }`}
         style={{
           width: percentWidth.replace(/^WIDTH(.*)$/, '$1%'),
           minWidth,
         }}
         ref={dropRef}
       >
-        <div className={styles.handler}>
+        <div className={styles.handler} ref={preview}>
           <UpDownIcon ref={dragRef} />
 
           <div>{t(`modules.${__typename}`)}</div>

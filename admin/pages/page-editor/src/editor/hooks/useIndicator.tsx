@@ -12,11 +12,22 @@ import {
   CaretDownOutlined,
 } from '@ant-design/icons';
 
+import styles from '../styles/useIndicator.less';
+import { ModuleIcons } from '../../constants';
+
+// typescript definition
+interface PropsType {
+  currentOffset: XYCoord | null;
+  toward?: Direction['toward'];
+  module: keyof typeof ModuleIcons;
+}
+
 // definition
-export default (
-  currentOffset: XYCoord | null,
-  toward?: Direction['toward'],
-): React.ReactNode => {
+export default ({
+  currentOffset,
+  toward,
+  module,
+}: PropsType): React.ReactNode => {
   const style = useMemo(() => {
     if (!currentOffset) {
       return {
@@ -32,17 +43,29 @@ export default (
   }, [currentOffset]);
 
   return useMemo(() => {
-    switch (toward) {
-      case 'right':
-        return <CaretRightOutlined style={style} />;
-      case 'left':
-        return <CaretLeftOutlined style={style} />;
-      case 'up':
-        return <CaretUpOutlined style={style} />;
-      case 'down':
-        return <CaretDownOutlined style={style} />;
-      default:
-        return null;
-    }
-  }, [style, toward]);
+    const arrow = (() => {
+      switch (toward) {
+        case 'right':
+          return <CaretRightOutlined />;
+        case 'left':
+          return <CaretLeftOutlined />;
+        case 'up':
+          return <CaretUpOutlined />;
+        case 'down':
+          return <CaretDownOutlined />;
+        default:
+          return null;
+      }
+    })();
+    const Icon = ModuleIcons[module];
+
+    return (
+      <div className={`${styles.root} ${styles[toward || '']}`} style={style}>
+        <div>
+          <Icon />
+        </div>
+        {arrow}
+      </div>
+    );
+  }, [module, style, toward]);
 };

@@ -1,5 +1,5 @@
 // typescript import
-import { DragObjectType } from '../hooks/useCustomDrag';
+import { DragObjectType } from '../../constants';
 
 // graphql typescript
 import { editorFragment_modules as editorFragmentModules } from '@meepshop/types/gqls/admin';

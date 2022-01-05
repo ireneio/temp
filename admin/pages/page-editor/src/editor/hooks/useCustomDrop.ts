@@ -1,9 +1,8 @@
 // typescript import
 import { XYCoord, DropTargetMonitor } from 'react-dnd';
 
-import { ModulesType } from './useModules';
+import { ModulesType, DragObjectType } from '../../constants';
 import { Direction } from './useDirection';
-import { DragObjectType } from './useCustomDrag';
 
 // import
 import { useState, useEffect, useCallback, useRef, useContext } from 'react';
@@ -16,9 +15,8 @@ import ModuleContext from '../context/module';
 import move from '../utils/move';
 
 // typescript definition
-interface PropsType {
-  data: ModulesType['data'];
-  parentNode: ModulesType['parentNode'];
+interface PropsType extends ModulesType {
+  data: NonNullable<ModulesType['data']>;
   level: number;
 }
 
@@ -46,7 +44,7 @@ export default ({
   const { modules, setModules } = useContext(ModuleContext);
 
   const [{ isOver }, dropRef] = useDrop<DragObjectType, void, CollectedProps>({
-    accept: 'module',
+    accept: 'MODULE',
     drop: useCallback(
       (item: DragObjectType) => {
         if (!direction || !modules || !parentNode) return;
@@ -91,7 +89,7 @@ export default ({
       },
       [id, level, direction, parentNode, modules, setModules],
     ),
-    canDrop: useCallback((item: DragObjectType) => item.data.id !== id, [id]),
+    canDrop: useCallback((item: DragObjectType) => item.data?.id !== id, [id]),
     hover: useCallback(
       (_item, monitor: DropTargetMonitor) => {
         if (!monitor.isOver({ shallow: true }) || !monitor.canDrop()) return;

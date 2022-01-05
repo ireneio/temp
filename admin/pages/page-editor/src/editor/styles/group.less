@@ -45,7 +45,7 @@
   &.isOver {
     background-color: rgba(#ffba1f, 0.15);
 
-    &::after {
+    &.isGroupOver::after {
       border: 2px dashed #ffba1f;
       border-top: 8px solid #feac5e;
     }
@@ -64,7 +64,7 @@
 
 .handler {
   position: absolute;
-  z-index: 2;
+  z-index: 4;
   top: 0;
   right: 0;
   display: none;

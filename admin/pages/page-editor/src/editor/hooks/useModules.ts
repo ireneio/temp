@@ -11,13 +11,6 @@ import {
   editorFragment_modules_GroupModule as editorFragmentModulesGroupModule,
 } from '@meepshop/types/gqls/admin';
 
-// typescript definition
-export interface ModulesType {
-  data: editorFragmentModules;
-  children?: HierarchyNode<editorFragmentModules>[];
-  parentNode: HierarchyNode<editorFragmentModules> | null;
-}
-
 // definition
 const treemap = stratify<
   | editorFragmentModules

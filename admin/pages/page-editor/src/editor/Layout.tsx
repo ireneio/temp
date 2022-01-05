@@ -1,5 +1,5 @@
 // typescript import
-import { ModulesType } from './hooks/useModules';
+import { ModulesType } from '../constants';
 
 // import
 import React from 'react';
@@ -9,8 +9,8 @@ import styles from './styles/layout.less';
 
 // typescript definition
 interface PropsType {
-  data: ModulesType['data'];
-  childModules?: ModulesType['children'];
+  data: NonNullable<ModulesType['data']>;
+  childModules: ModulesType['children'];
   parentNode: ModulesType['parentNode'];
   settings: {
     minWidth: string;

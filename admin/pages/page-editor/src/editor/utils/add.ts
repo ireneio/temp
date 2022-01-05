@@ -5,11 +5,9 @@ import { DragObjectType } from '../../constants';
 import uuid from 'uuid/v4';
 import findIndex from 'ramda/src/findIndex';
 import insert from 'ramda/src/insert';
-import move from 'ramda/src/move';
 import propEq from 'ramda/src/propEq';
 
-import add from './add';
-import reparent from './reparent';
+import { DEFAULT_MODULE_DATA } from '../../constants';
 
 // graphql typescript
 import {
@@ -30,24 +28,23 @@ export default (
     wrap: boolean;
   },
 ): editorFragmentModules[] => {
-  if (!item.data) return add(modules, dropId, item, { append, wrap });
-
-  const dragIndex = findIndex(propEq('id', item.data.id))(modules);
   const dropIndex = findIndex(propEq('id', dropId))(modules);
 
-  if (dragIndex < 0 || dropIndex < 0) return modules;
+  if (dropIndex < 0 || !item.module) return modules;
 
-  const modifiedModules = modules.slice();
+  const modifiedModules = insert(
+    append ? dropIndex + 1 : dropIndex,
+    {
+      id: uuid(),
+      parentId: modules[dropIndex].parentId,
+      ...DEFAULT_MODULE_DATA[item.module],
+    },
+    modules,
+  );
 
-  modifiedModules[dragIndex].parentId = modules[dropIndex].parentId;
-
-  if (!wrap) {
-    return reparent(
-      move(dragIndex, append ? dropIndex + 1 : dropIndex, modifiedModules),
-      dropId,
-      item,
-    );
-  }
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore FIXME: DEFAULT_MODULE_DATA
+  if (!wrap) return modifiedModules;
 
   const layout: editorFragmentModulesLayoutModule = {
     __typename: 'LayoutModule',
@@ -55,16 +52,10 @@ export default (
     parentId: modules[dropIndex].parentId,
   };
 
-  modifiedModules[dragIndex].parentId = layout.id;
   modifiedModules[dropIndex].parentId = layout.id;
+  modifiedModules[dropIndex + 1].parentId = layout.id;
 
-  return reparent(
-    insert(
-      dropIndex,
-      layout,
-      move(dragIndex, append ? dropIndex + 1 : dropIndex, modifiedModules),
-    ),
-    dropId,
-    item,
-  );
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore FIXME: DEFAULT_MODULE_DATA
+  return insert(dropIndex, layout, modifiedModules);
 };

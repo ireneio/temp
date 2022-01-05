@@ -5,6 +5,7 @@ import { gql } from '@apollo/client';
 import { pageUserFragment, pagePageFragment } from '@meepshop/page/gqls';
 
 import { headerStoreFragment } from './header';
+import { sidebarFragment } from '../sidebar/gqls';
 import { editorFragment } from '../editor/gqls';
 
 // definition
@@ -16,11 +17,11 @@ export const getPageEditorPage = gql`
         id
         page(input: $input) {
           id
-
           ...pagePageFragment
           ...editorFragment
         }
         ...headerStoreFragment
+        ...sidebarFragment
       }
       ...pageUserFragment
     }
@@ -29,5 +30,6 @@ export const getPageEditorPage = gql`
   ${pageUserFragment}
   ${pagePageFragment}
   ${headerStoreFragment}
+  ${sidebarFragment}
   ${editorFragment}
 `;

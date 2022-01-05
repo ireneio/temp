@@ -4,35 +4,37 @@ import {
   DragSourceOptions,
   DragSourceMonitor,
   DropTargetMonitor,
+  ConnectDragPreview,
 } from 'react-dnd';
 
-import { ModulesType } from './useModules';
+import { ModulesType, DragObjectType } from '../../constants';
 
 // import
-import { useEffect, useContext, useCallback } from 'react';
+import { useContext, useCallback } from 'react';
 import { useDrop, useDrag } from 'react-dnd';
-import { getEmptyImage } from 'react-dnd-html5-backend';
-import * as R from 'ramda';
+import uuid from 'uuid/v4';
+import findIndex from 'ramda/src/findIndex';
+import insert from 'ramda/src/insert';
+import move from 'ramda/src/move';
+import propEq from 'ramda/src/propEq';
 
+import reparent from '../utils/reparent';
 import ModuleContext from '../context/module';
+import { DEFAULT_MODULE_DATA } from '../../constants';
 
 // typescript definition
 interface PropsType {
-  data: ModulesType['data'];
+  data: NonNullable<ModulesType['data']>;
   childModules: ModulesType['children'];
 }
 
 interface DropCollectedProps {
-  isOver?: boolean;
+  isOver: boolean;
+  isGroupOver: boolean;
 }
 
 interface DragCollectedProps {
   isDragging: boolean;
-}
-
-interface DragObjectType {
-  type: string;
-  data: ModulesType['data'];
 }
 
 // definition
@@ -43,6 +45,7 @@ export default ({
   DropCollectedProps & DragCollectedProps,
   DragElementWrapper<unknown>,
   DragElementWrapper<DragSourceOptions>,
+  ConnectDragPreview,
 ] => {
   const { id } = data;
   const { modules, setModules } = useContext(ModuleContext);
@@ -52,7 +55,7 @@ export default ({
     DragCollectedProps
   >({
     item: {
-      type: 'group',
+      type: 'GROUP',
       data,
     },
     collect: useCallback(
@@ -62,16 +65,16 @@ export default ({
       [],
     ),
   });
-  const [{ isOver }, dropRef] = useDrop<
+  const [{ isOver, isGroupOver }, dropRef] = useDrop<
     DragObjectType,
     void,
     DropCollectedProps
   >({
-    accept: ['module', 'group'],
+    accept: ['MODULE', 'GROUP'],
     canDrop: useCallback(
       (item: DragObjectType) => {
-        if (item.data.id === id) return false;
-        if (item.type === 'group') return true;
+        if (item.data?.id === id) return false;
+        if (item.type === 'GROUP') return true;
         if (!childModules) return true;
         return false;
       },
@@ -79,23 +82,42 @@ export default ({
     ),
     drop: useCallback(
       (item: DragObjectType) => {
-        const { type } = item;
-
         if (!modules) return;
 
-        if (type === 'group') {
-          const modifiedModules = R.move(
-            R.findIndex(R.propEq('id', item.data.id))(modules),
-            R.findIndex(R.propEq('id', id))(modules),
+        const { type } = item;
+        const groupIndex = findIndex(propEq('id', id))(modules);
+
+        if (item.module) {
+          setModules(
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-ignore FIXME: DEFAULT_MODULE_DATA
+            insert(
+              groupIndex,
+              {
+                id: uuid(),
+                parentId: type === 'GROUP' ? 'root' : id,
+                ...DEFAULT_MODULE_DATA[item.module],
+              },
+              modules,
+            ),
+          );
+          return;
+        }
+
+        if (type === 'GROUP') {
+          const modifiedModules = move(
+            findIndex(propEq('id', item.data?.id))(modules),
+            groupIndex,
             modules,
           );
 
           setModules(modifiedModules);
+          return;
         }
 
-        if (type === 'module') {
+        if (type === 'MODULE') {
           const modifiedModules = modules.map(module => {
-            if (module.id !== id) return module;
+            if (module.id !== item.data?.id) return module;
 
             return {
               ...module,
@@ -103,7 +125,7 @@ export default ({
             };
           });
 
-          setModules(modifiedModules);
+          setModules(reparent(modifiedModules, id, item));
         }
       },
       [id, modules, setModules],
@@ -111,21 +133,20 @@ export default ({
     collect: useCallback(
       (monitor: DropTargetMonitor) => ({
         isOver: monitor.canDrop() && monitor.isOver(),
+        isGroupOver: monitor.getItemType() === 'GROUP',
       }),
       [],
     ),
   });
 
-  useEffect(() => {
-    preview(getEmptyImage());
-  }, [preview]);
-
   return [
     {
       isOver,
+      isGroupOver,
       isDragging,
     },
     dropRef,
     dragRef,
+    preview,
   ];
 };

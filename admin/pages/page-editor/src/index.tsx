@@ -28,6 +28,7 @@ import { pageUserFragment, pagePageFragment } from '@meepshop/page/gqls';
 
 import { getPageEditorPage } from './gqls';
 import { headerStoreFragment } from './gqls/header';
+import { sidebarFragment } from './sidebar/gqls';
 import { editorFragment } from './editor/gqls';
 
 // typescript definition
@@ -55,7 +56,7 @@ const PageEditor: NextPage<PropsType> = React.memo(
     return (
       <DndProvider backend={HTML5Backend}>
         <div className={styles.root}>
-          <Sidebar />
+          <Sidebar Store={filter(sidebarFragment, data.viewer.store)} />
 
           <div className={styles.content}>
             <Header store={filter(headerStoreFragment, data.viewer.store)} />

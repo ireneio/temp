@@ -46,6 +46,11 @@ const getPageModules = (
     parentId: 'root',
   },
   {
+    ...getModule({}, {}),
+    id: uuid(),
+    parentId: 'group-id-2',
+  },
+  {
     __typename: 'LayoutModule',
     id: 'layout-id-1',
     parentId: 'group-id-2',
@@ -56,34 +61,24 @@ const getPageModules = (
     parentId: 'layout-id-1',
   },
   {
-    __typename: 'LayoutModule',
-    id: 'layout-id-2',
-    parentId: 'group-id-2',
-  },
-  {
     ...getModule({}, {}),
     id: uuid(),
-    parentId: 'layout-id-2',
-  },
-  {
-    ...getModule({}, {}),
-    id: uuid(),
-    parentId: 'layout-id-2',
+    parentId: 'layout-id-1',
   },
   {
     __typename: 'LayoutModule',
-    id: 'layout-id-3',
+    id: 'layout-id-2',
+    parentId: 'layout-id-1',
+  },
+  {
+    ...getModule({}, {}),
+    id: uuid(),
     parentId: 'layout-id-2',
   },
   {
     ...getModule({}, {}),
     id: uuid(),
-    parentId: 'layout-id-3',
-  },
-  {
-    ...getModule({}, {}),
-    id: uuid(),
-    parentId: 'layout-id-3',
+    parentId: 'layout-id-2',
   },
 ];
 

@@ -5,7 +5,7 @@ import {
   DragSourceMonitor,
 } from 'react-dnd';
 
-import { ModulesType } from './useModules';
+import { ModulesType, DragObjectType } from '../../constants';
 
 // import
 import { useEffect, useCallback } from 'react';
@@ -13,18 +13,11 @@ import { useDrag } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
 // typescript definition
-interface PropsType {
-  data: ModulesType['data'];
-  parentNode: ModulesType['parentNode'];
+interface PropsType extends ModulesType {
   level: number;
 }
-
 interface CollectedProps {
   isDragging: boolean;
-}
-
-export interface DragObjectType extends PropsType {
-  type: string;
 }
 
 // definition
@@ -39,7 +32,7 @@ export default ({
     CollectedProps
   >({
     item: {
-      type: 'module',
+      type: 'MODULE',
       data,
       parentNode,
       level,

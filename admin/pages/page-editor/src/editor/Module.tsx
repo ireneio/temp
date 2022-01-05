@@ -1,5 +1,5 @@
 // typescript import
-import { ModulesType } from './hooks/useModules';
+import { ModulesType } from '../constants';
 
 // import
 import React from 'react';
@@ -17,7 +17,7 @@ import styles from './styles/module.less';
 
 // typescript definition
 interface PropsType {
-  data: ModulesType['data'];
+  data: NonNullable<ModulesType['data']>;
   parentNode: ModulesType['parentNode'];
   settings: {
     minWidth: string;
@@ -29,7 +29,7 @@ interface PropsType {
 export default React.memo(
   ({ data, parentNode, settings: { level } }: PropsType) => {
     const { t } = useTranslation('page-editor');
-    const { __typename } = data;
+    const { id, __typename } = data;
     const Module = modules[__typename];
     const [{ isOver, direction }, dropRef] = useCustomDrop({
       data,
@@ -44,6 +44,7 @@ export default React.memo(
 
     return (
       <div
+        id={id}
         className={`${styles.root} ${isOver ? styles.isOver : ''} ${
           direction ? styles[direction.toward] : ''
         } ${direction?.isBorderline ? styles.isBorderline : ''} ${
