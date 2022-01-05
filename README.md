@@ -14,6 +14,7 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 - `storybook:pre`: Run this command before running `storybook` command.
 - `test`: Run testing.
 - `tsc`: Run typescript.
+- `link:env`: link dev env to `@meepshop/next-admin`、`@meepshop/next-store`
 
 ## Write packages with template
 
@@ -32,8 +33,9 @@ Before `new schema` can work, you can use `storybook` to write the new component
 
 #### Write packages with dev server
 
-1. Run `yarn dev`.
-2. Run `yarn lerna run dev --stream --scope @meepshop/next-admin` or `yarn lerna run dev --stream --scope @meepshop/next-store`.
+1. Run `yarn link:env`.
+2. Run `yarn dev`.
+3. Run `yarn lerna run dev --stream --scope @meepshop/next-admin` or `yarn lerna run dev --stream --scope @meepshop/next-store`.
 
 #### Write unit testing
 
@@ -41,9 +43,10 @@ See [@meepshop/mock-types](./packages/mock-types) to learn more detail.
 
 #### (optional) Build with prod server
 
-1. Run `yarn prod`.
-2. Run `yarn lerna run prod --stream --scope @meepshop/next-admin` or `yarn lerna run prod --stream --scope @meepshop/next-store`.
-3. Run `yarn lerna run start --stream --scope @meepshop/next-admin` or `yarn lerna run start --stream --scope @meepshop/next-store`.
+1. Run `yarn link:env`.
+2. Run `yarn prod`.
+3. Run `yarn lerna run prod --stream --scope @meepshop/next-admin` or `yarn lerna run prod --stream --scope @meepshop/next-store`.
+4. Run `yarn lerna run start --stream --scope @meepshop/next-admin` or `yarn lerna run start --stream --scope @meepshop/next-store`.
 
 #### Package architecture
 

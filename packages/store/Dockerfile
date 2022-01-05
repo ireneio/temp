@@ -27,11 +27,8 @@ COPY ./lib ./lib
 RUN sh lerna-cache.sh restore lib
 RUN NODE_ENV=production yarn meep-cli locales link ./meepshop/locales/locales
 
-ARG VERSION
-
 EXPOSE 14401
-ENV VERSION=$VERSION
-ENV API=http://meepshop-api:15265
 ENV NODE_ENV=production
+ENV MEEPSHOP_API=http://meepshop-api:15265
 ENV ENV=stage
 CMD ["yarn", "--cwd", "./packages/store", "start"]

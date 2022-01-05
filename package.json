@@ -13,11 +13,13 @@
     "admin/refactor/*"
   ],
   "scripts": {
-    "build": "NODE_ENV=production && make babel-all && build-fragment-types && types codegen all && meep-cli locales link ./meepshop/locales/locales && lerna run prod --stream",
+    "build": "NODE_ENV=production make babel-all && build-fragment-types && types codegen all && meep-cli locales link ./meepshop/locales/locales && NEXT_PUBLIC_VERSION=$(yarn --silent build:version) lerna run prod --stream",
+    "build:version": "if [ -z \"${CIRCLE_TAG}\" ]]; then echo $CIRCLE_BRANCH; else echo $CIRCLE_TAG; fi",
     "clean": "lerna run clean --stream && lerna exec 'rm -rf ./lib' --stream && lerna clean && make clean",
     "dev": "make babel-changed BABEL_OPTION=\"--delete-dir-on-start -w\"",
     "preinstall": "patch-package --reverse || echo \"no patch packages\"",
     "postinstall": "patch-package && echo FIXME && yarn babel ./node_modules/rifm/dist -d ./node_modules/rifm/dist --verbose && cp ./node_modules/cross-context-events/dist/index.js ./node_modules/cross-context-events/dist/cross-context-events.js",
+    "link:env": "for type in local development production; do for filePath in ./admin/server ./packages/store; do ln -snf $(pwd)/.env.$type $filePath/src; done; done",
     "lint": "NODE_ENV=test esw --cache --color --ext js,ts,tsx",
     "lint:prettier": "yarn lint --quiet --rule \"prettier/prettier: off\"",
     "lint:watch": "yarn lint:prettier -w",

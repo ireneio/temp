@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import withHook from '@store/utils/lib/withHook';
 import ForgotPasswordView from '@store/forgot-password';
 
-import * as Utils from 'utils';
 import { Container } from 'components';
 import * as Template from 'template';
 import useTemplatesMenus from 'hooks/useTemplatesMenus';
@@ -11,14 +10,13 @@ import useTemplatesMenus from 'hooks/useTemplatesMenus';
 class ForgotPassword extends Component {
   static getInitialProps = async context => {
     const {
-      req,
       query: { token },
+      XMeepshopDomain,
+      userAgent,
     } = context;
 
     // FIXME: should use get getServerSideProps return notFound
     if (!token) throw new Error('[FIXME] token is undefined');
-
-    const { XMeepshopDomain, userAgent } = Utils.getReqArgs(req);
 
     return { token, userAgent, XMeepshopDomain };
   };

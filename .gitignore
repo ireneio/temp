@@ -16,7 +16,7 @@ lib
 coverage
 
 # env
-.env
+.env.local
 
 # locale
 locale.json

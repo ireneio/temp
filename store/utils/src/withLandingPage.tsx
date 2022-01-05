@@ -6,16 +6,11 @@ import {
   HttpLink,
   InMemoryCache,
 } from '@apollo/client';
-import getConfig from 'next/config';
 
 import { Role as RoleContext } from '@meepshop/context';
 import { RoleProvider } from '@meepshop/context/lib/Role';
 
 // definition
-const {
-  publicRuntimeConfig: { VERSION },
-} = getConfig();
-
 export default (
   Component: React.ComponentType<{}> & {
     getInitialProps?: () => void;
@@ -30,7 +25,7 @@ export default (
 
     const firstPurchaseClient = new ApolloClient({
       name: 'landing-page',
-      version: VERSION,
+      version: process.env.NEXT_PUBLIC_VERSION,
       cache: new InMemoryCache(),
       link: new HttpLink({
         uri: '/api/landing-page/graphql',

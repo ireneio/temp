@@ -1,15 +1,9 @@
 // import
-import getConfig from 'next/config';
-
 import proxy from 'utils/proxy';
 
 // definition
-const {
-  publicRuntimeConfig: { API },
-} = getConfig();
-
 export default proxy(
-  `${API}/auth/landing_page/access_token`,
+  `${process.env.MEEPSHOP_API}/auth/landing_page/access_token`,
   async (req, res, response) => {
     const { token, ...data } = await response.json();
 

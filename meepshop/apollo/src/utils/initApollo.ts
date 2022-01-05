@@ -16,7 +16,6 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { RetryLink } from '@apollo/client/link/retry';
 import { createNetworkStatusNotifier } from 'react-apollo-network-status';
-import getConfig from 'next/config';
 
 import initialLogger from '@meepshop/logger';
 
@@ -54,9 +53,6 @@ export interface ConfigType {
 
 // definition
 const { link, useApolloNetworkStatus } = createNetworkStatusNotifier();
-const {
-  publicRuntimeConfig: { API, VERSION },
-} = getConfig();
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 
@@ -85,7 +81,7 @@ const create = (
 
   return new ApolloClient({
     name,
-    version: `${VERSION}-${
+    version: `${process.env.NEXT_PUBLIC_VERSION}-${
       typeof window === 'undefined' ? 'server' : 'browser'
     }`,
     connectToDevTools: typeof window !== 'undefined',
@@ -122,7 +118,10 @@ const create = (
       errorLink(errorFilter, logger),
       link,
       setContext(() => ({
-        uri: typeof window !== 'undefined' ? '/api/graphql' : `${API}/graphql`,
+        uri:
+          typeof window !== 'undefined'
+            ? '/api/graphql'
+            : `${process.env.MEEPSHOP_API}/graphql`,
         credentials: 'include',
         headers: {
           ...(!ctx

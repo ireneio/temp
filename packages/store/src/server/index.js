@@ -1,4 +1,13 @@
 const path = require('path');
+
+require('dotenv').config({
+  path: path.resolve(
+    __dirname,
+    process.env.NODE_ENV !== 'production'
+      ? '../.env.development'
+      : '../.env.production',
+  ),
+});
 const uuid = require('uuid/v4');
 const nextApp = require('next');
 const express = require('express');
@@ -9,9 +18,6 @@ const helmet = require('helmet');
 const { default: initialLogger } = require('@meepshop/logger');
 const { default: serverLogger } = require('@meepshop/logger/lib/server');
 
-const { publicRuntimeConfig } = require('../../next.config');
-
-const { STORE_DOMAIN } = publicRuntimeConfig;
 const app = nextApp({
   dir: path.resolve(__dirname, '..'),
   dev: process.env.NODE_ENV !== 'production',
@@ -85,7 +91,8 @@ app.prepare().then(() => {
   server.use(helmet());
 
   server.use(async (req, res, next) => {
-    if (STORE_DOMAIN) req.headers.host = STORE_DOMAIN;
+    if (process.env.NEXT_PUBLIC_STORE_DOMAIN)
+      req.headers.host = process.env.NEXT_PUBLIC_STORE_DOMAIN;
 
     await next();
   });

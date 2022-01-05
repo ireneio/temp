@@ -3,13 +3,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 // import
 import uaParser from 'ua-parser-js';
-import getConfig from 'next/config';
 
 // definition
-const {
-  publicRuntimeConfig: { VERSION },
-} = getConfig();
-
 export default (req: NextApiRequest, res: NextApiResponse): void => {
   const {
     browser,
@@ -20,7 +15,7 @@ export default (req: NextApiRequest, res: NextApiResponse): void => {
 
   res.end(
     `
-      <header>Welcome to next-admin ${VERSION}</header>
+      <header>Welcome to next-admin ${process.env.NEXT_PUBLIC_VERSION}</header>
       <main>
         Your information:
           <ul>

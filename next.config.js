@@ -80,8 +80,6 @@ module.exports = nextConfig =>
         },
         publicRuntimeConfig: {
           ...nextConfig.publicRuntimeConfig,
-          API: process.env.API || 'https://api.stage.meepcloud.com',
-          VERSION: process.env.VERSION || +new Date(),
           ENV: process.env.ENV || 'stage',
           LOG_LEVEL: process.env.LOG_LEVEL || 'info',
         },

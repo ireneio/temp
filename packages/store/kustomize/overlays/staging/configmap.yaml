@@ -4,5 +4,4 @@ metadata:
   name: next-store
   namespace: default
 data:
-  external.api: "https://api.stage.meepcloud.com"
   env: "stage"

@@ -1,12 +1,7 @@
 // import
 import uaParser from 'ua-parser-js';
-import getConfig from 'next/config';
 
 // definition
-const {
-  publicRuntimeConfig: { VERSION },
-} = getConfig();
-
 export default (req, res) => {
   const {
     browser,
@@ -19,7 +14,7 @@ export default (req, res) => {
   res.setHeader('content-type', 'text/html');
   res.end(
     `
-      <header>Welcome to next-store ${VERSION}</header>
+      <header>Welcome to next-store ${process.env.NEXT_PUBLIC_VERSION}</header>
       <main>
         Your information:
           <ul>

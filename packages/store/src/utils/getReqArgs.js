@@ -2,11 +2,6 @@
  * @name getReqArgs
  * @argument {Object} req requset or window
  */
-import getConfig from 'next/config';
-
-const {
-  publicRuntimeConfig: { STORE_DOMAIN },
-} = getConfig();
 
 export default req => {
   if (typeof window === 'undefined') {
@@ -19,7 +14,8 @@ export default req => {
   }
 
   return {
-    XMeepshopDomain: STORE_DOMAIN || window.location.host,
+    XMeepshopDomain:
+      process.env.NEXT_PUBLIC_STORE_DOMAIN || window.location.host,
     userAgent: window.navigator.userAgent,
   };
 };

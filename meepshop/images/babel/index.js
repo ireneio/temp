@@ -3,7 +3,7 @@ const fs = require('fs');
 const nodePath = require('path');
 
 require('dotenv').config({
-  path: nodePath.resolve(__dirname, '../../../.env'),
+  path: nodePath.resolve(__dirname, '../../../.env.local'),
 });
 const { declare } = require('@babel/helper-plugin-utils');
 const { transformSync } = require('@babel/core');

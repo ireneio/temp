@@ -9,7 +9,6 @@ import {
   HttpLink,
   InMemoryCache,
 } from '@apollo/client';
-import getConfig from 'next/config';
 
 // graphql typescript
 import {
@@ -33,10 +32,6 @@ type createOrderType = MutationTuple<
 >;
 
 // definition
-const {
-  publicRuntimeConfig: { VERSION },
-} = getConfig();
-
 export default (
   viewer: useCreateOrderFragmentType | null,
 ): [createOrderType[0], Pick<createOrderType[1], 'loading' | 'client'>] => {
@@ -44,7 +39,7 @@ export default (
     () =>
       new ApolloClient({
         name: 'landing-page',
-        version: VERSION,
+        version: process.env.NEXT_PUBLIC_VERSION,
         cache: new InMemoryCache(),
         link: new HttpLink({
           uri: '/api/landing-page/graphql',

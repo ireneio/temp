@@ -1,7 +1,6 @@
 import React from 'react';
 import NextApp from 'next/app';
 import Head from 'next/head';
-import getConfig from 'next/config';
 import { notification } from 'antd';
 import { getUnixTime } from 'date-fns';
 
@@ -31,10 +30,6 @@ import withCookies from 'utils/withCookies';
 import usePage from 'hooks/usePage';
 import useExpiringPoints from 'hooks/useExpiringPoints';
 
-const {
-  publicRuntimeConfig: { API },
-} = getConfig();
-
 notification.config({ placement: 'topRight', duration: 1.5 });
 
 Router.onRouteChangeStart = url => {
@@ -58,16 +53,19 @@ class App extends NextApp {
     const { XMeepshopDomain, userAgent } = Utils.getReqArgs(req);
 
     if (typeof window === 'undefined') {
-      const { valid } = await fetch(`${API}/auth/validate_token`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'content-type': 'application/json',
+      const { valid } = await fetch(
+        `${process.env.MEEPSHOP_API}/auth/validate_token`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({
+            token: req.cookies['x-meepshop-authorization-token'],
+          }),
         },
-        body: JSON.stringify({
-          token: req.cookies['x-meepshop-authorization-token'],
-        }),
-      }).then(result => result.json());
+      ).then(result => result.json());
 
       if (!valid) {
         res.cookie('x-meepshop-authorization-token', '', {
@@ -79,7 +77,9 @@ class App extends NextApp {
     }
 
     const response = await fetch(
-      typeof window === 'undefined' ? `${API}/graphql` : '/api/graphql',
+      typeof window === 'undefined'
+        ? `${process.env.MEEPSHOP_API}/graphql`
+        : '/api/graphql',
       {
         method: 'post',
         headers:
