@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.114 (2022-01-05)
+
+#### :rocket: New Feature
+
+- `mock-types`
+  - [#2007](https://github.com/meepshop/meep-lerna/pull/2007) @admin/page-editor - 新增加入元件、群組 dnd ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `store`
+  - [#1733](https://github.com/meepshop/meep-lerna/pull/1733) 內部開單 - publicRuntimeConfig 部分改用 Environment Variables ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.113 (2022-01-04)
 
 #### :rocket: New Feature
