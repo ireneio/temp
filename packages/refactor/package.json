@@ -4,12 +4,12 @@
   "description": "Temporary package for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.113",
+  "version": "0.80.114",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.113",
-    "@meepshop/context": "^0.80.110",
-    "@meepshop/images": "^0.80.110",
-    "@meepshop/link": "^0.80.110",
+    "@meepshop/apollo": "^0.80.114",
+    "@meepshop/context": "^0.80.114",
+    "@meepshop/images": "^0.80.114",
+    "@meepshop/link": "^0.80.114",
     "@meepshop/locales": "^0.80.109",
     "@meepshop/logger": "^0.80.113"
   },
