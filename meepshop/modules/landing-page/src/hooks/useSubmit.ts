@@ -51,7 +51,7 @@ export default ({
   payment,
   form,
 }: SubmitArguType): SubmitReturnType => {
-  const [mutation, { loading, client }] = useCreateOrder(
+  const [mutation, { loading }] = useCreateOrder(
     filter(useCreateOrderFragment, viewer),
   );
   const { t } = useTranslation('landing-page');
@@ -267,8 +267,6 @@ export default ({
 
             if (formData?.url) {
               if (!formData.url?.startsWith('line')) {
-                if (client) client.stop();
-
                 setFormData(formData);
                 return;
               }
@@ -300,7 +298,6 @@ export default ({
         payment,
         mutation,
         loading,
-        client,
         t,
         router,
         adTrack,

@@ -56,13 +56,7 @@ export default (
   const [createOrderInLandingPageMutation, { loading, client }] = useMutation<
     createOrderInLandingPageType,
     createOrderInLandingPageVariables
-  >(createOrderInLandingPage, {
-    onCompleted: async () => {
-      if (!client) return;
-
-      await client.resetStore();
-    },
-  });
+  >(createOrderInLandingPage);
 
   return useMemo(
     () =>

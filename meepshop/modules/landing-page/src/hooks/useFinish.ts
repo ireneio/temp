@@ -27,12 +27,14 @@ import {
   ConvenienceStoreTypeEnum,
   InvoiceTypeEnum,
   EInvoiceCarrierTypeEnum,
+  useFinishLandingUserFragment as useFinishLandingUserFragmentType,
 } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
 import { useLinkFragment } from '@meepshop/hooks/lib/gqls/useLink';
 
 import { useCreateOrderFragment } from '../gqls/useCreateOrder';
+import { useFinishLandingUserFragment } from '../gqls/useFinish';
 
 // graphql definition
 interface FinishOptionsType {
@@ -97,7 +99,7 @@ export default ({
   loading: boolean;
   onFinish: (values: ValuesType) => void;
 } => {
-  const [mutation, { loading, client }] = useCreateOrder(
+  const [mutation, { loading }] = useCreateOrder(
     filter(useCreateOrderFragment, viewer),
   );
   const { t } = useTranslation('landing-page');
@@ -262,6 +264,37 @@ export default ({
                   }),
             },
           },
+          update: (cache, { data: createOrderData }) => {
+            if (!createOrderData?.createOrder || !viewer) return;
+
+            cache.writeFragment<useFinishLandingUserFragmentType>({
+              id: viewer.id || 'userId' /** SHOULD_NOT_BE_NULL */,
+              fragment: useFinishLandingUserFragment,
+              data: {
+                __typename: 'User',
+                id: viewer.id || 'userId' /** SHOULD_NOT_BE_NULL */,
+                orders: !viewer.orders
+                  ? null
+                  : {
+                      ...viewer.orders,
+                      __typename: 'OrderConnection',
+                      edges: [
+                        {
+                          __typename: 'OrderEdge',
+                          node: {
+                            __typename: 'Order',
+                            id:
+                              createOrderData.createOrder.order?.id ||
+                              'orderId' /** SHOULD_NOT_BE_NULL */,
+                          },
+                        },
+                        ...viewer.orders.edges,
+                      ],
+                      total: viewer.orders.total + 1,
+                    },
+              },
+            });
+          },
         });
 
         const {
@@ -304,8 +337,6 @@ export default ({
 
         if (formData?.url) {
           if (!formData.url?.startsWith('line')) {
-            if (client) client.stop();
-
             setFormData(formData);
             return;
           }
@@ -335,7 +366,6 @@ export default ({
         payment,
         mutation,
         loading,
-        client,
         t,
         router,
         adTrack,

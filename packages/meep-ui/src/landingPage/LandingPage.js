@@ -32,7 +32,7 @@ const { Item: FormItem } = Form;
 @enhancer
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withHook(({ user, redirectPage, params }) => {
-  const { product, loading } = useLandingPageProduct(params?.ids);
+  const { product, orders, loading } = useLandingPageProduct(params?.ids);
   const [form] = Form.useForm();
   const [storeComputeOrderList, setStoreComputeOrderList] = useState(null);
   const [choosePayment, setChoosePayment] = useState(null);
@@ -40,7 +40,7 @@ const { Item: FormItem } = Form;
   return {
     ...useFinish({
       landingPageModule: {
-        viewer: user,
+        viewer: { ...user, orders },
         product,
         redirectPage: {
           __typename: 'CustomLink',

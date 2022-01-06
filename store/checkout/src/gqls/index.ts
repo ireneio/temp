@@ -3,10 +3,11 @@ import { gql } from '@apollo/client';
 
 // graphql import
 import { useUpdateUserFragment } from './useUpdateUser';
+import { useCreateUserFragment } from './useCreateOrder';
 
 // definition
 export const getCheckoutInfo = gql`
-  query getCheckoutInfo {
+  query getCheckoutInfo($first: PositiveInt!) {
     viewer {
       id
       name
@@ -14,22 +15,6 @@ export const getCheckoutInfo = gql`
         mobile
       }
       address {
-        country {
-          id
-        }
-        city {
-          id
-        }
-        area {
-          id
-        }
-        street
-        zipCode
-      }
-      shippableRecipientAddresses {
-        id
-        name
-        mobile
         country {
           id
         }
@@ -53,8 +38,10 @@ export const getCheckoutInfo = gql`
         }
       }
       ...useUpdateUserFragment
+      ...useCreateUserFragment
     }
   }
 
   ${useUpdateUserFragment}
+  ${useCreateUserFragment}
 `;

@@ -25,9 +25,14 @@ export default ids => {
         showVariants: true,
         showMainFile: true,
       },
+      first: 10,
     },
     skip: !ids,
   });
 
-  return { product: data?.computeProductList?.data?.[0], loading };
+  return {
+    product: data?.computeProductList?.data?.[0],
+    orders: data?.viewer.orders || null,
+    loading,
+  };
 };

@@ -3,6 +3,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
+import { filter } from 'graphql-anywhere';
 
 import useCreateOrder from './hooks/useCreateOrder';
 import useUpdateUser from './hooks/useUpdateUser';
@@ -11,6 +12,7 @@ import useUpdateUser from './hooks/useUpdateUser';
 import {
   getCheckoutInfo as getCheckoutInfoType,
   getCheckoutInfo_viewer as getCheckoutInfoViewer,
+  getCheckoutInfoVariables as getCheckoutInfoVariablesType,
   getCheckoutInfo_viewer_additionalInfo as getCheckoutInfoViewerAdditionalInfo,
   getCheckoutInfo_viewer_shippableRecipientAddresses as getCheckoutInfoViewerShippableRecipientAddresses,
   getCheckoutInfo_viewer_store_setting_checkoutFields as getCheckoutInfoViewerStoreSettingCheckoutFields,
@@ -18,6 +20,7 @@ import {
 
 // graphql import
 import { getCheckoutInfo } from './gqls';
+import { useCreateUserFragment } from './gqls/useCreateOrder';
 
 // typescript definition
 interface PropsType {
@@ -34,9 +37,16 @@ interface PropsType {
 
 // definition
 export default React.memo(({ children }: PropsType) => {
-  const { data } = useQuery<getCheckoutInfoType>(getCheckoutInfo);
+  const { data } = useQuery<getCheckoutInfoType, getCheckoutInfoVariablesType>(
+    getCheckoutInfo,
+    {
+      variables: {
+        first: 10,
+      },
+    },
+  );
   const viewer = data?.viewer || null;
-  const createOrder = useCreateOrder();
+  const createOrder = useCreateOrder(filter(useCreateUserFragment, viewer));
   const updateUser = useUpdateUser(viewer);
 
   if (!viewer) return <Spin indicator={<LoadingOutlined spin />} />;

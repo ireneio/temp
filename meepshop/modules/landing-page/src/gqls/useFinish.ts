@@ -7,6 +7,20 @@ import { useLinkFragment } from '@meepshop/hooks/lib/gqls/useLink';
 import { useCreateOrderFragment } from './useCreateOrder';
 
 // definition
+export const useFinishLandingUserFragment = gql`
+  fragment useFinishLandingUserFragment on User {
+    id
+    orders {
+      edges {
+        node {
+          id
+        }
+      }
+      total
+    }
+  }
+`;
+
 export const useFinishLandingPageModuleFragment = gql`
   fragment useFinishLandingPageModuleFragment on LandingPageModule {
     id
@@ -19,10 +33,12 @@ export const useFinishLandingPageModuleFragment = gql`
     viewer {
       id
       email
+      ...useFinishLandingUserFragment
       ...useCreateOrderFragment
     }
   }
 
+  ${useFinishLandingUserFragment}
   ${useCreateOrderFragment}
   ${useLinkFragment}
 `;

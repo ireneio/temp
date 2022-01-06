@@ -11,7 +11,7 @@ export const getOrders = gql`
   query getOrders($first: PositiveInt!, $cursor: String) {
     viewer {
       id
-      orders(first: $first, after: $cursor) {
+      orders(first: $first, after: $cursor) @connection(key: "orders") {
         edges {
           ...useColumnsOrdersFragment
         }

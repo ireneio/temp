@@ -1,7 +1,10 @@
 import { gql } from '@apollo/client';
 
 export const getLandingPageProduct = gql`
-  query getLandingPageProduct($search: searchInputObjectType) {
+  query getLandingPageProduct(
+    $search: searchInputObjectType
+    $first: PositiveInt!
+  ) {
     computeProductList(search: $search) {
       data {
         id
@@ -26,6 +29,18 @@ export const getLandingPageProduct = gql`
             zh_TW
           }
         }
+      }
+    }
+
+    viewer {
+      id
+      orders(first: $first) {
+        edges {
+          node {
+            id
+          }
+        }
+        total
       }
     }
   }
