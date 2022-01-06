@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.80.115 (2022-01-06)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#2003](https://github.com/meepshop/meep-lerna/pull/2003) 【優化】色彩計畫新增：前台/會員「註冊」、「登入」按鈕色 ([@Lexiwu](https://github.com/Lexiwu))
+- `meep-ui`
+  - [#1947](https://github.com/meepshop/meep-lerna/pull/1947) 【BUG】一頁式購物車 - 使用站內付信用卡金流免登入購買，無跳轉至付款頁面 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :house: Internal
+
+- `meep-ui`
+  - [#2018](https://github.com/meepshop/meep-lerna/pull/2018) 內部開單 - 移除 @store/notification ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#1997](https://github.com/meepshop/meep-lerna/pull/1997) 內部開單 - 研究 @connection directive ([@happycat6323](https://github.com/happycat6323))
+  - [#2029](https://github.com/meepshop/meep-lerna/pull/2029) (@admin/refactor-history-records) Fix import ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.114 (2022-01-05)
 
 #### :rocket: New Feature
