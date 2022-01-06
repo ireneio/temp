@@ -1,5 +1,5 @@
 // typescript import
-import { DataProxy, QueryResult, MutationFunction } from '@apollo/client';
+import { DataProxy, MutationFunction } from '@apollo/client';
 
 // import
 import { useMutation } from '@apollo/client';
@@ -8,23 +8,18 @@ import { useMutation } from '@apollo/client';
 import {
   uploadImages as uploadImagesType,
   uploadImagesVariables as uploadImagesVariablesType,
-  getImages as getImagesType,
-  getImagesVariables as getImagesVariablesType,
   useUploadImagesUserFragment as useUploadImagesUserFragmentType,
-  useUploadImagesWriteCache as useUploadImagesWriteCacheType,
-  useUploadImagesWriteCacheVariables as useUploadImagesWriteCacheVariablesType,
-  useUploadImagesWriteCache_viewer_images_edges_node as useUploadImagesWriteCacheViewerImagesEdgesNodeType,
+  useUploadImagesUserFragment_images_edges_node as useUploadImagesUserFragmentImagesEdgesNodeType,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
 import {
-  useUploadImagesWriteCache,
+  useUploadImagesUserFragment,
   uploadImages,
 } from '../gqls/useUploadImages';
 
 // definition
 export default (
-  variables: QueryResult<getImagesType, getImagesVariablesType>['variables'],
   viewer: useUploadImagesUserFragmentType | null,
 ): MutationFunction<uploadImagesType, uploadImagesVariablesType> => {
   const [mutation] = useMutation<uploadImagesType, uploadImagesVariablesType>(
@@ -40,38 +35,32 @@ export default (
         )
           return;
 
-        cache.writeQuery<
-          useUploadImagesWriteCacheType,
-          useUploadImagesWriteCacheVariablesType
-        >({
-          query: useUploadImagesWriteCache,
-          variables,
+        cache.writeFragment<useUploadImagesUserFragmentType>({
+          id: viewer.id,
+          fragment: useUploadImagesUserFragment,
+          fragmentName: 'useUploadImagesUserFragment',
           data: {
-            viewer: !viewer
+            ...viewer,
+            images: !viewer.images
               ? null
               : {
-                  ...viewer,
-                  images: !viewer.images
-                    ? null
-                    : {
-                        ...viewer.images,
-                        edges: [
-                          ...createImages.images.map(
-                            ({
-                              id,
-                              scaledSrc,
-                            }: useUploadImagesWriteCacheViewerImagesEdgesNodeType) => ({
-                              __typename: 'ImageEdge' as const,
-                              node: {
-                                __typename: 'Image' as const,
-                                id,
-                                scaledSrc,
-                              },
-                            }),
-                          ),
-                          ...viewer.images.edges,
-                        ],
-                      },
+                  ...viewer.images,
+                  edges: [
+                    ...createImages.images.map(
+                      ({
+                        id,
+                        scaledSrc,
+                      }: useUploadImagesUserFragmentImagesEdgesNodeType) => ({
+                        __typename: 'ImageEdge' as const,
+                        node: {
+                          __typename: 'Image' as const,
+                          id,
+                          scaledSrc,
+                        },
+                      }),
+                    ),
+                    ...viewer.images.edges,
+                  ],
                 },
           },
         });

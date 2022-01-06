@@ -1,6 +1,3 @@
-// typescript import
-import { QueryResult } from '@apollo/client';
-
 // import
 import React from 'react';
 
@@ -9,18 +6,10 @@ import styles from './styles/imageUpload.less';
 import { IMAGE_TYPES } from './constants';
 
 // graphql typescript
-import {
-  getImages as getImagesType,
-  getImagesVariables as getImagesVariablesType,
-  useUploadImagesUserFragment as useUploadImagesUserFragmentType,
-} from '@meepshop/types/gqls/admin';
+import { useUploadImagesUserFragment as useUploadImagesUserFragmentType } from '@meepshop/types/gqls/admin';
 
 // typescript definition
-interface PropsType
-  extends Pick<
-    QueryResult<getImagesType, getImagesVariablesType>,
-    'variables'
-  > {
+interface PropsType {
   forwardedRef: React.Ref<HTMLInputElement>;
   multiple?: boolean;
   viewer: useUploadImagesUserFragmentType | null;
@@ -28,8 +17,8 @@ interface PropsType
 
 // definition
 const ImageUpload = React.memo(
-  ({ forwardedRef, variables, multiple, viewer }: PropsType) => {
-    const filesOnChange = useFilesOnChange(variables, viewer);
+  ({ forwardedRef, multiple, viewer }: PropsType) => {
+    const filesOnChange = useFilesOnChange(viewer);
 
     return (
       <input

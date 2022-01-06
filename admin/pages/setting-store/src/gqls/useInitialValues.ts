@@ -2,7 +2,7 @@
 import { gql } from '@apollo/client';
 
 // graphql import
-import { useUploadImageOnScaledURLsFragment } from '@admin/media-gallery/gqls';
+import { useUploadImagesScaledURLsFragment } from '@admin/media-gallery/gqls';
 
 // definition
 export const useInitialValuesFragment = gql`
@@ -25,19 +25,19 @@ export const useInitialValuesFragment = gql`
     logoImage {
       id
       scaledSrc {
-        ...useUploadImageOnScaledURLsFragment
+        ...useUploadImagesScaledURLsFragment
       }
     }
     mobileLogoImage {
       id
       scaledSrc {
-        ...useUploadImageOnScaledURLsFragment
+        ...useUploadImagesScaledURLsFragment
       }
     }
     faviconImage {
       id
       scaledSrc {
-        ...useUploadImageOnScaledURLsFragment
+        ...useUploadImagesScaledURLsFragment
       }
     }
     metaData {
@@ -45,5 +45,5 @@ export const useInitialValuesFragment = gql`
     }
   }
 
-  ${useUploadImageOnScaledURLsFragment}
+  ${useUploadImagesScaledURLsFragment}
 `;

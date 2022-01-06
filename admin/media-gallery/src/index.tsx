@@ -17,7 +17,7 @@ import styles from './styles/index.less';
 import {
   getImages as getImagesType,
   getImagesVariables as getImagesVariablesType,
-  getImages_viewer_images_edges_node as getImagesViewerImagesEdgesNode,
+  getImages_viewer_images_edges_node as getImagesViewerImagesEdgesNodeType,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
@@ -26,7 +26,8 @@ import { useLoadMoreImagesFragment } from './gqls/useLoadMoreImages';
 import { useUploadImagesUserFragment } from './gqls/useUploadImages';
 
 // typescript definition
-export type ImageNodeType = getImagesViewerImagesEdgesNode;
+export type ImageNodeType = getImagesViewerImagesEdgesNodeType;
+
 export interface PropsType {
   buttons?: React.ReactNode;
   value?: null | ImageNodeType | ImageNodeType[];
@@ -60,11 +61,11 @@ export default React.memo(
     });
 
     const [selectedImgs, setSelectedImgs] = useState<
-      getImagesViewerImagesEdgesNode[]
+      getImagesViewerImagesEdgesNodeType[]
     >(
       value instanceof Array
         ? value
-        : ([value].filter(Boolean) as getImagesViewerImagesEdgesNode[]),
+        : ([value].filter(Boolean) as getImagesViewerImagesEdgesNodeType[]),
     );
 
     const imageUploadRef = useRef<HTMLInputElement>(null);
@@ -95,7 +96,6 @@ export default React.memo(
                   : [...tagList, tag];
 
                 refetch({
-                  ...variables,
                   filter: {
                     ...variables?.filter,
                     tagList: newTagList.length === 0 ? undefined : newTagList,
@@ -117,7 +117,6 @@ export default React.memo(
 
               <ImageUpload
                 ref={imageUploadRef}
-                variables={variables}
                 multiple={multiple}
                 viewer={filter(
                   useUploadImagesUserFragment,

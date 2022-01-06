@@ -1,6 +1,3 @@
-// typescript import
-import { QueryResult } from '@apollo/client';
-
 // import
 import React from 'react';
 import { Modal, Popover, Button, notification } from 'antd';
@@ -14,11 +11,7 @@ import { IMAGE_TYPES } from '../constants';
 import styles from '../styles/useFilesOnChange.less';
 
 // graphql typescript
-import {
-  getImages as getImagesType,
-  getImagesVariables as getImagesVariablesType,
-  useUploadImagesUserFragment as useUploadImagesUserFragmentType,
-} from '@meepshop/types/gqls/admin';
+import { useUploadImagesUserFragment as useUploadImagesUserFragmentType } from '@meepshop/types/gqls/admin';
 
 // definition
 const readImageBuffer = (file: File): Promise<ArrayBuffer> =>
@@ -62,10 +55,9 @@ const readImageData = (
   });
 
 export default (
-  variables: QueryResult<getImagesType, getImagesVariablesType>['variables'],
   viewer: useUploadImagesUserFragmentType | null,
 ): ((e: React.ChangeEvent<HTMLInputElement>) => Promise<void>) => {
-  const uploadImage = useUploadImages(variables, viewer);
+  const uploadImage = useUploadImages(viewer);
   const { t } = useTranslation('media-gallery');
 
   return async ({ target: { files } }: React.ChangeEvent<HTMLInputElement>) => {

@@ -4,12 +4,13 @@ import { gql } from '@apollo/client';
 // graphql import
 import { useLoadMoreImagesFragment } from './useLoadMoreImages';
 import {
-  useUploadImagesImageFragment,
-  useUploadImageOnScaledURLsFragment,
+  useUploadImagesUserFragment,
+  useUploadImagesScaledURLsFragment,
 } from './useUploadImages';
 
 // definition
-export { useUploadImageOnScaledURLsFragment };
+export { useUploadImagesScaledURLsFragment };
+
 export const getImages = gql`
   query getImages(
     $search: searchInputObjectType
@@ -19,14 +20,10 @@ export const getImages = gql`
   ) {
     viewer {
       id
-      images(first: $first, after: $after, filter: $filter) {
-        edges {
-          node {
-            id
-            ...useUploadImagesImageFragment
-          }
-        }
+      ...useUploadImagesUserFragment
 
+      images(first: $first, after: $after, filter: $filter)
+        @connection(key: "images", filter: ["filter"]) {
         pageInfo {
           ...useLoadMoreImagesFragment
         }
@@ -41,6 +38,6 @@ export const getImages = gql`
     }
   }
 
-  ${useUploadImagesImageFragment}
+  ${useUploadImagesUserFragment}
   ${useLoadMoreImagesFragment}
 `;

@@ -2,8 +2,8 @@
 import { gql } from '@apollo/client';
 
 // definition
-export const useUploadImageOnScaledURLsFragment = gql`
-  fragment useUploadImageOnScaledURLsFragment on ScaledURLs {
+export const useUploadImagesScaledURLsFragment = gql`
+  fragment useUploadImagesScaledURLsFragment on ScaledURLs {
     h200
     w60
     w120
@@ -19,57 +19,28 @@ export const useUploadImageOnScaledURLsFragment = gql`
   }
 `;
 
-export const useUploadImagesImageFragment = gql`
-  fragment useUploadImagesImageFragment on Image {
-    __typename
-    id
-    scaledSrc {
-      __typename
-      ...useUploadImageOnScaledURLsFragment
-    }
-  }
-
-  ${useUploadImageOnScaledURLsFragment}
-`;
-
 export const useUploadImagesUserFragment = gql`
   fragment useUploadImagesUserFragment on User {
     __typename
     id
-    images(first: $first, after: $after, filter: $filter) {
+    images(first: $first, after: $after, filter: $filter)
+      @connection(key: "images", filter: ["filter"]) {
       __typename
       edges {
         __typename
         node {
+          __typename
           id
-          ...useUploadImagesImageFragment
+          scaledSrc {
+            __typename
+            ...useUploadImagesScaledURLsFragment
+          }
         }
       }
-
-      pageInfo {
-        __typename
-        hasNextPage
-        endCursor
-      }
     }
   }
 
-  ${useUploadImagesImageFragment}
-`;
-
-export const useUploadImagesWriteCache = gql`
-  query useUploadImagesWriteCache(
-    $first: PositiveInt
-    $after: String
-    $filter: ImageFilterInput
-  ) {
-    viewer {
-      id
-      ...useUploadImagesUserFragment
-    }
-  }
-
-  ${useUploadImagesUserFragment}
+  ${useUploadImagesScaledURLsFragment}
 `;
 
 export const uploadImages = gql`
@@ -78,18 +49,24 @@ export const uploadImages = gql`
       ... on CreateImagesSuccessResponse {
         __typename
         images {
+          __typename
           id
-          ...useUploadImagesImageFragment
+          scaledSrc {
+            __typename
+            ...useUploadImagesScaledURLsFragment
+          }
         }
       }
+
       ... on DataLimitExceededError {
         message
       }
+
       ... on InvalidFileExtensionError {
         message
       }
     }
   }
 
-  ${useUploadImagesImageFragment}
+  ${useUploadImagesScaledURLsFragment}
 `;
