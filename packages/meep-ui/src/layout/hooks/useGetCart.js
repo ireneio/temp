@@ -7,7 +7,9 @@ import { getCartList } from '../gqls/useGetCart';
 
 // definition
 export default () => {
-  const { data } = useQuery(getCartList);
+  const { data } = useQuery(getCartList, {
+    fetchPolicy: 'cache-and-network',
+  });
   const products =
     data?.getCartList?.data?.[0]?.categories?.[0]?.products || [];
 
