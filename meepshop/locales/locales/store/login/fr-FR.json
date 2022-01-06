@@ -19,5 +19,12 @@
   "address": "Pays",
   "zip-code": "code postal",
   "street": "Adresse",
-  "send-reset-password-mail": "réinitialiser le mot de passe"
+  "send-reset-password-mail": "réinitialiser le mot de passe",
+  "invalid-email-or-password": "Erreur de boîtes aux lettres ou de mot de passe",
+  "login-success": "Connectez-vous sucablement",
+  "forget-password-success": "Envoyé avec succès à la boîte aux lettres",
+  "forget-password-failure-message": "Mot de passe oublié: une erreur s'est produite",
+  "cannot-find-user": "Cette boîte aux lettres n'est pas enregistrée",
+  "signup-success": "L'inscription est complète",
+  "signup-failure-message": "Inscription: Erreurs"
 }

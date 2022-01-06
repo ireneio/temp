@@ -19,5 +19,12 @@
   "address": "País",
   "zip-code": "Código postal",
   "street": "Dirección",
-  "send-reset-password-mail": "Restablecer la contraseña"
+  "send-reset-password-mail": "Restablecer la contraseña",
+  "invalid-email-or-password": "Error de buzón o contraseña",
+  "login-success": "firmemente",
+  "forget-password-success": "Enviado con éxito al buzón",
+  "forget-password-failure-message": "Olvidó su contraseña: se produjo un error",
+  "cannot-find-user": "Este buzón no está registrado",
+  "signup-success": "El registro está completo",
+  "signup-failure-message": "Inscripción: Errores"
 }

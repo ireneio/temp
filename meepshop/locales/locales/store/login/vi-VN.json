@@ -19,5 +19,12 @@
   "address": "Quốc gia",
   "zip-code": "Mã bưu điện",
   "street": "Địa Chỉ",
-  "send-reset-password-mail": "Gửi thư cài đặt lại mật khẩu"
+  "send-reset-password-mail": "Gửi thư cài đặt lại mật khẩu",
+  "invalid-email-or-password": "Hộp thư hoặc lỗi mật khẩu",
+  "login-success": "Đăng nhập một cách nhẹ nhàng",
+  "forget-password-success": "Gửi thành công vào hộp thư",
+  "forget-password-failure-message": "Quên mật khẩu của bạn: Xảy ra lỗi",
+  "cannot-find-user": "Hộp thư này chưa được đăng ký",
+  "signup-success": "Đăng ký đã hoàn tất",
+  "signup-failure-message": "Đăng ký: Lỗi"
 }

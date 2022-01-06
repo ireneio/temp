@@ -19,5 +19,12 @@
   "address": "Country",
   "zip-code": "Postal Code",
   "street": "Address",
-  "send-reset-password-mail": "Reset Password"
+  "send-reset-password-mail": "Reset Password",
+  "invalid-email-or-password": "Mailbox or password error",
+  "login-success": "sign in suceesfully",
+  "forget-password-success": "Successfully sent to the mailbox",
+  "forget-password-failure-message": "Forgot your password: an error occurred",
+  "cannot-find-user": "This mailbox is not registered",
+  "signup-success": "Registration is complete",
+  "signup-failure-message": "Registration: Errors"
 }

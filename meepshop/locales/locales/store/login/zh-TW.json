@@ -19,5 +19,12 @@
   "address": "地區",
   "zip-code": "郵遞區號",
   "street": "地址",
-  "send-reset-password-mail": "寄送重設密碼信"
+  "send-reset-password-mail": "寄送重設密碼信",
+  "invalid-email-or-password": "信箱或密碼錯誤",
+  "login-success": "登入成功",
+  "forget-password-success": "成功寄送至信箱",
+  "forget-password-failure-message": "忘記密碼：發生錯誤",
+  "cannot-find-user": "此信箱未註冊",
+  "signup-success": "註冊完成",
+  "signup-failure-message": "註冊：發生錯誤"
 }

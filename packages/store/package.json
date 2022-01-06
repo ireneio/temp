@@ -33,6 +33,7 @@
     "@store/ecpay": "^0.80.114",
     "@store/fb": "^0.80.114",
     "@store/forgot-password": "^0.80.114",
+    "@store/login": "^0.1.0",
     "@store/member-order": "^0.80.114",
     "@store/member-order-applications": "^0.80.114",
     "@store/member-order-apply": "^0.80.114",

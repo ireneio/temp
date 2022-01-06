@@ -1,0 +1,44 @@
+@import '~@meepshop/utils/lib/styles/styles.less';
+@value screenSmMax from '@meepshop/utils/styles/variables.less';
+
+.root {
+  :global(.ant-form-item) {
+    margin-bottom: 14px;
+  }
+}
+
+.optionsWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2px;
+
+  > div {
+    cursor: pointer;
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.fbLoginButton {
+  min-width: 88px;
+  color: #fff;
+  background: linear-gradient(#4c69ba, #3b55a0);
+  border: 1px solid #4c69ba;
+  border-radius: 4px;
+  box-shadow: 0 -1px 0 #354c8c;
+  font-family: 'Helvetica neue', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.goBackButton {
+  display: none;
+
+  @media (max-width: @screen-sm-max) {
+    display: inline-block;
+  }
+}

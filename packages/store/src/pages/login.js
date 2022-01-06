@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import LoginView from '@meepshop/meep-ui/lib/login';
+import LoginView from '@store/login';
 import withHook from '@store/utils/lib/withHook';
 
 import { Container } from 'components';

@@ -19,5 +19,12 @@
   "address": "国",
   "zip-code": "郵便番号",
   "street": "住所",
-  "send-reset-password-mail": "パスワード再設定メールを送信"
+  "send-reset-password-mail": "パスワード再設定メールを送信",
+  "invalid-email-or-password": "メールボックスまたはパスワードエラー",
+  "login-success": "合格にサインインします",
+  "forget-password-success": "メールボックスに正常に送信されました",
+  "forget-password-failure-message": "パスワードを忘れました：エラーが発生しました",
+  "cannot-find-user": "このメールボックスは登録されていません",
+  "signup-success": "登録は完了です",
+  "signup-failure-message": "登録：エラー"
 }

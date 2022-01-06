@@ -19,5 +19,12 @@
   "address": "Negara",
   "zip-code": "Kode Pos",
   "street": "Alamat",
-  "send-reset-password-mail": "Setel Ulang Kata Sandi"
+  "send-reset-password-mail": "Setel Ulang Kata Sandi",
+  "invalid-email-or-password": "Kotak surat atau kesalahan kata sandi",
+  "login-success": "Masuk penuh",
+  "forget-password-success": "Berhasil dikirim ke kotak surat",
+  "forget-password-failure-message": "Lupa kata sandi Anda: Terjadi kesalahan",
+  "cannot-find-user": "Kotak surat ini tidak terdaftar",
+  "signup-success": "Pendaftaran selesai",
+  "signup-failure-message": "Pendaftaran: Kesalahan"
 }

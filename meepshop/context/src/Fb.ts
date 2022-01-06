@@ -5,7 +5,7 @@ import React from 'react';
 type windowFBType = NonNullable<typeof window['FB']>;
 
 export interface FbType extends Omit<windowFBType, 'login'> {
-  login: (redirectPath?: string) => void;
+  login: (redirectPath?: string) => Promise<void>;
 }
 
 // definition

@@ -19,5 +19,12 @@
   "address": "ประเทศ",
   "zip-code": "รหัสไปรษณีย์",
   "street": "ที่อยู่",
-  "send-reset-password-mail": "รีเซ็ตรหัสผ่าน"
+  "send-reset-password-mail": "รีเซ็ตรหัสผ่าน",
+  "invalid-email-or-password": "ข้อผิดพลาดกล่องจดหมายหรือรหัสผ่าน",
+  "login-success": "ลงชื่อเข้าใช้",
+  "forget-password-success": "ส่งไปยังกล่องจดหมายเรียบร้อยแล้ว",
+  "forget-password-failure-message": "ลืมรหัสผ่าน: เกิดข้อผิดพลาด",
+  "cannot-find-user": "กล่องจดหมายนี้ไม่ได้ลงทะเบียน",
+  "signup-success": "การลงทะเบียนเสร็จสมบูรณ์",
+  "signup-failure-message": "การลงทะเบียน: ข้อผิดพลาด"
 }
