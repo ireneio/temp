@@ -4,13 +4,13 @@
   "description": "Meepshop product collections",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.114",
+  "version": "0.80.115",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/image": "^0.80.114",
-    "@meepshop/locales": "^0.80.109",
-    "@meepshop/utils": "^0.80.114"
+    "@meepshop/image": "^0.80.115",
+    "@meepshop/locales": "^0.80.115",
+    "@meepshop/utils": "^0.80.115"
   },
   "keywords": ["collections", "meepshop", "product"]
 }
