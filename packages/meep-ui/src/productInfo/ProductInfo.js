@@ -1,15 +1,16 @@
 import React from 'react';
+import Notification from 'rc-notification';
 import { gql, useApolloClient } from '@apollo/client';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { Modal } from 'antd';
 import memoizeOne from 'memoize-one';
 
+import { AddToCartIcon } from '@meepshop/icons';
 import { withTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import CartContext from '@meepshop/cart';
 import ProductSpecSelector from '@meepshop/product-spec-selector';
-import useAddToCartNotification from '@store/notification/lib/hooks/useAddToCartNotification';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
 import MobileSpecSelector from '@meepshop/product-info/lib/mobileSpecSelector';
@@ -20,6 +21,7 @@ import { COLOR_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
 import { ISUSER, NOTLOGIN } from 'constants/isLogin';
 
 import * as styles from './styles';
+import lessStyles from './styles/productInfo.less';
 import Description from './Description';
 import QuantityButton from './QuantityButton';
 import AddButton from './AddButton';
@@ -30,10 +32,7 @@ import { PRODUCT_TYPE, LIMITED, ORDERABLE, OUT_OF_STOCK } from './constants';
 @withContext(CartContext)
 @enhancer
 @withHook(({ productData, carts }) => useVariant(productData, carts))
-@withHook(() => ({
-  client: useApolloClient(),
-  addToCartNotification: useAddToCartNotification(),
-}))
+@withHook(() => ({ client: useApolloClient() }))
 @radium
 export default class ProductInfo extends React.PureComponent {
   name = 'product-info';
@@ -127,15 +126,17 @@ export default class ProductInfo extends React.PureComponent {
   addToCart = async () => {
     const {
       adTrack,
+      t,
+      colors,
       productData,
       type,
       addProductToCart,
-      addToCartNotification,
       variant,
     } = this.props;
     const { quantity } = this.state;
 
     this.setState({ isAddingItem: true });
+
     await addProductToCart({
       variables: {
         search: {
@@ -149,6 +150,7 @@ export default class ProductInfo extends React.PureComponent {
         },
       },
     });
+
     adTrack.addToCart({
       eventName: type === 'pop-up' ? 'ec-popup' : 'ec',
       id: productData.id,
@@ -157,7 +159,38 @@ export default class ProductInfo extends React.PureComponent {
       specs: variant.specs,
       price: variant.totalPrice,
     });
-    addToCartNotification();
+
+    Notification.newInstance(
+      {
+        prefixCls: lessStyles.root,
+        style: {},
+      },
+      notification => {
+        notification.notice({
+          content: (
+            <>
+              <div className={lessStyles.wrapper}>
+                <AddToCartIcon />
+                {t('added-to-cart')}
+              </div>
+
+              <style
+                dangerouslySetInnerHTML={{
+                  __html: `
+                    .${lessStyles.wrapper} {
+                      background-color: ${colors[3]};
+                      color: ${colors[0]};
+                    }
+                  `,
+                }}
+              />
+            </>
+          ),
+          onClose: () => notification.destroy(),
+        });
+      },
+    );
+
     this.setState({ isAddingItem: false });
   };
 
