@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.116 (2022-01-06)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#2035](https://github.com/meepshop/meep-lerna/pull/2035) 【BUG】前台 - 商品加入購物車 - 彈窗無自動收合 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.115 (2022-01-06)
 
 #### :rocket: New Feature
