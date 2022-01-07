@@ -1,0 +1,149 @@
+.root {
+  overflow: hidden;
+}
+
+.sheet {
+  width: 210mm;
+  min-height: 296mm;
+  border: 1px #d3d3d3 solid;
+  border-radius: 2px;
+  margin-bottom: 32px;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.envelope {
+  height: 100%;
+  border: 1pt solid #000;
+  padding: 5mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  div {
+    color: #000;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.envelopeType1x1 {
+  padding: 0mm;
+  font-size: 16pt;
+  line-height: 1.5;
+
+  > div {
+    transform: rotateZ(90deg);
+    transform-origin: 105mm 105mm;
+    width: 296mm;
+    padding: 20mm;
+    height: 210mm;
+  }
+}
+
+.envelopeType1x2 {
+  padding: 0mm;
+  font-size: 14pt;
+  line-height: 1.5;
+
+  > div {
+    width: 100%;
+    padding: 15mm 10mm;
+    height: 148.5mm;
+  }
+}
+
+.envelopeType2x2 {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 13pt;
+  line-height: 1.5;
+  width: 210mm;
+  padding: 0mm;
+
+  > div {
+    width: 105mm;
+    padding: 5mm;
+    height: 148.5mm;
+  }
+
+  .envelope {
+    transform: rotateZ(90deg);
+    transform-origin: 47.5mm;
+    height: 95mm;
+    width: 138.5mm;
+    border: 1pt solid #000;
+    padding: 2.5mm;
+  }
+
+  .sender {
+    font-size: 12pt;
+  }
+
+  .recipientWrapper {
+    font-size: 16pt;
+  }
+
+  .tel {
+    font-size: 13pt;
+  }
+}
+
+.envelopeType2x5 {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0mm;
+  font-size: 8pt;
+  line-height: 1.5;
+
+  > div {
+    width: 50%;
+    padding: 2.5mm;
+    height: 59.4mm;
+  }
+
+  .envelope {
+    padding: 2.5mm;
+  }
+
+  .sender {
+    font-size: 7pt;
+  }
+
+  .recipientWrapper {
+    font-size: 11pt;
+  }
+
+  .tel {
+    font-size: 8pt;
+  }
+}
+
+.sender {
+  font-size: 14pt;
+  text-align: left;
+}
+
+.recipientWrapper {
+  display: flex;
+  justify-content: center;
+  font-size: 22pt;
+}
+
+.recipient {
+  max-width: 80%;
+}
+
+.tel {
+  font-size: 16pt;
+}
+
+.orderNo {
+  text-align: right;
+}
