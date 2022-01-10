@@ -4,12 +4,12 @@
   "description": "Member wish list page for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.115",
+  "version": "0.80.117",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/context": "^0.80.115",
-    "@meepshop/locales": "^0.80.115",
+    "@meepshop/locales": "^0.80.117",
     "@meepshop/thumbnail": "^0.80.115",
     "@store/utils": "^0.80.115",
     "date-fns": "^2.15.0"

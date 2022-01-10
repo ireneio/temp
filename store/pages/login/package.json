@@ -4,16 +4,16 @@
   "description": "store login",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.115",
+  "version": "0.80.117",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/address-cascader": "^0.80.115",
+    "@meepshop/address-cascader": "^0.80.117",
     "@meepshop/context": "^0.80.115",
-    "@meepshop/draft-text": "^0.80.115",
+    "@meepshop/draft-text": "^0.80.117",
     "@meepshop/link": "^0.80.115",
-    "@meepshop/locales": "^0.80.115",
-    "@meepshop/validator": "^0.80.115",
+    "@meepshop/locales": "^0.80.117",
+    "@meepshop/validator": "^0.80.117",
     "color": "^3.0.0"
   },
   "keywords": ["login", "store"]

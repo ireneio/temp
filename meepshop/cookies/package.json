@@ -4,14 +4,14 @@
   "description": "Cookies context for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.115",
+  "version": "0.80.117",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.115",
-    "@meepshop/hooks": "^0.80.115",
+    "@meepshop/apollo": "^0.80.117",
+    "@meepshop/hooks": "^0.80.117",
     "@meepshop/link": "^0.80.115",
-    "@meepshop/locales": "^0.80.115",
+    "@meepshop/locales": "^0.80.117",
     "@meepshop/logger": "^0.80.115",
     "js-cookie": "^2.2.1"
   },
