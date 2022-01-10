@@ -34,7 +34,13 @@ export default (
         ...options,
         variables,
         update: (cache, { data }) => {
-          if (!data?.createOrder || !viewer || !variables) return;
+          if (
+            !data?.createOrder ||
+            data.createOrder.order?.error ||
+            !viewer ||
+            !variables
+          )
+            return;
 
           const countryId = variables.input?.address?.countryId;
           const cityId = variables.input?.address?.cityId;
