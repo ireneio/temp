@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.117 (2022-01-10)
+
+#### :rocket: New Feature
+
+- [#2025](https://github.com/meepshop/meep-lerna/pull/2025) 【重構】訂單/訂單列印：建立小白單 - 地址貼條 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- [#2036](https://github.com/meepshop/meep-lerna/pull/2036) 【BUG】結帳失敗返回購物車頁，頁面一直呈現 loading 狀態 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.116 (2022-01-06)
 
 #### :bug: Bug Fix
