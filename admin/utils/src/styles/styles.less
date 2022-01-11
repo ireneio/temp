@@ -9,6 +9,30 @@
   border: 0px;
 }
 
+:global(.ant-input-search-button),
+:global(.ant-input-search-button:hover),
+:global(.ant-input-search-button:focus) {
+  border-left: none;
+}
+
+:global(.ant-input-search .ant-input:hover),
+:global(.ant-input-search .ant-input:focus) {
+  border-right: none;
+  box-shadow: none;
+}
+
+:global(.ant-input-search:hover),
+:global(.ant-input-search:focus) {
+  :global(.ant-input-search-button) {
+    border-color: #25dbe8;
+  }
+
+  :global(.ant-input) {
+    border-color: #25dbe8;
+    border-right: none;
+  }
+}
+
 :global(.ant-cascader-menus) {
   :global(.ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled)),
   :global(.ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled):hover) {

@@ -3,6 +3,7 @@ import React, { useState, useContext, useRef } from 'react';
 import { LeftOutlined } from '@ant-design/icons';
 import { Affix } from 'antd';
 
+import { OpenNewPageIcon } from '@meepshop/icons';
 import Link from '@meepshop/link';
 import { CollapsedContext } from '@admin/wrapper';
 import Switch from '@meepshop/switch';
@@ -10,9 +11,15 @@ import Switch from '@meepshop/switch';
 import styles from './styles/index.less';
 
 // typescript definition
+interface LinkType {
+  text: string;
+  url: string;
+}
+
 interface PropsType {
   title: React.ReactNode;
   prevTitle?: string;
+  link?: LinkType;
   backTo?: string;
   disableAffix?: boolean;
   buttons?: React.ReactNode;
@@ -24,6 +31,7 @@ export default React.memo(
   ({
     title,
     prevTitle,
+    link,
     backTo,
     buttons,
     disableAffix,
@@ -64,7 +72,19 @@ export default React.memo(
                 </Link>
               )}
 
-              {title}
+              <div className={styles.title}>
+                {title}
+
+                {!link ? null : (
+                  <Link href={link.url} target="_blank">
+                    <a href={link.url}>
+                      {link.text}
+
+                      <OpenNewPageIcon />
+                    </a>
+                  </Link>
+                )}
+              </div>
             </h1>
 
             {buttons}
