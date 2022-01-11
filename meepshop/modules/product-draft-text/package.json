@@ -4,11 +4,11 @@
   "description": "Meepshop product draft text",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.117",
+  "version": "0.80.118",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/draft-text": "^0.80.117"
+    "@meepshop/draft-text": "^0.80.118"
   },
   "keywords": ["draft text", "meepshop", "product"]
 }

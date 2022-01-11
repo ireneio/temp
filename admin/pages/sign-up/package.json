@@ -4,7 +4,7 @@
   "description": "Admin sign up",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.117",
+  "version": "0.80.118",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -12,8 +12,8 @@
     "@admin/message": "^0.80.115",
     "@meepshop/images": "^0.80.115",
     "@meepshop/link": "^0.80.115",
-    "@meepshop/locales": "^0.80.117",
-    "@meepshop/validator": "^0.80.117"
+    "@meepshop/locales": "^0.80.118",
+    "@meepshop/validator": "^0.80.118"
   },
   "keywords": ["admin", "sign up"]
 }
