@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.80.118 (2022-01-11)
+
+#### :rocket: New Feature
+
+- [#2000](https://github.com/meepshop/meep-lerna/pull/2000) 內部開單 - 修改 @admin/header , 修改 ant-input search style ([@happycat6323](https://github.com/happycat6323))
+- [#2032](https://github.com/meepshop/meep-lerna/pull/2032) 【重構】訂單/訂單列印：建立小白單 - 出貨單 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.117 (2022-01-10)
 
 #### :rocket: New Feature
