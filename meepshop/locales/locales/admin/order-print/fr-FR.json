@@ -1,4 +1,63 @@
 {
+  "packing-list": "Expédition",
+  "order-no": "Numéro de commande",
+  "order-date": "Dates d'ordre",
+  "order-status": "Statut de la commande",
+  "order-shipment": "Transport",
+  "order-payment": "mode de paiement",
+  "order-detail-ship-no": "Numéro de suivi",
+  "order-person": "S'abonner",
+  "order-receiver": "destinataire",
+  "order-receiver-tel": "Le téléphone du destinataire",
+  "order-detail-recipient-comment": "Notes d'ordre",
+  "order-detail-invoice-type": "Catégorie de facturation",
+  "order-detail-invoice-number": "Numéro de facture",
+  "order-detail-invoice-date": "Horaire d'ouverture",
+  "total-count": "le total",
+  "product-discount": "Remise des produits de base",
+  "order-discount": "Ordre de commande",
+  "shipping": "cargaison",
+  "order-detail-payment-fee": "Frais de flux d'or",
+  "order-money": "montant de la commande",
+  "yuan": "Yuan",
+  "order-product-title": "Numéro de produit / Nom",
+  "order-product-sku": "Numéro de produit",
+  "order-product-specs": "spécification",
+  "order-product-quantity": "quantité",
+  "order-product-totalPrice": "Total",
+  "per-amount": "Quantité unique",
+  "gift": "Offrir un cadeau",
+  "adjust": "régler",
   "receive": "recevoir",
-  "order-no": "Numéro de commande"
+  "status": {
+    "0": "Traitement",
+    "1": "Cas d'ordre",
+    "2": "annuler la commande",
+    "3": "Rétraction"
+  },
+  "invoice": {
+    "type": {
+      "ECPAY_ELECTRONIC": "Facture électronique",
+      "MANUAL_ELECTRONIC": "Facture électronique",
+      "PAPER": "Facture de papier"
+    },
+    "PAPER": {
+      "DUPLICATE": "Facture de type Su",
+      "TRIPLICATE": "Triple facture",
+      "DONATION": "Don"
+    },
+    "MANUAL_ELECTRONIC": {
+      "TRIPLICATE": "Société",
+      "DONATION": "Don"
+    },
+    "ECPAY_ELECTRONIC": {
+      "TRIPLICATE": "Société",
+      "DONATION": "Don"
+    },
+    "carrier": {
+      "MEMBERSHIP": "Transporteur",
+      "MOBILE_BARCODE": "Carrier de code à barres mobiles",
+      "CITIZEN_DIGITAL_CERTIFICATE": "Périphérique naturelle de la personne"
+    }
+  }
 }

@@ -1,4 +1,63 @@
 {
+  "packing-list": "運送",
+  "order-no": "注文番号",
+  "order-date": "注文日付",
+  "order-status": "注文の状況",
+  "order-shipment": "交通",
+  "order-payment": "支払方法",
+  "order-detail-ship-no": "追跡番号",
+  "order-person": "購読",
+  "order-receiver": "受信者",
+  "order-receiver-tel": "受信者の電話",
+  "order-detail-recipient-comment": "注文ノート",
+  "order-detail-invoice-type": "請求書カテゴリー",
+  "order-detail-invoice-number": "請求書番号",
+  "order-detail-invoice-date": "開始時間",
+  "total-count": "合計",
+  "product-discount": "商品ディスカウント",
+  "order-discount": "注文割引",
+  "shipping": "貨物",
+  "order-detail-payment-fee": "ゴールドフローフィー",
+  "order-money": "注文金額",
+  "yuan": "元",
+  "order-product-title": "製品番号/名前",
+  "order-product-sku": "製品番号",
+  "order-product-specs": "仕様",
+  "order-product-quantity": "量",
+  "order-product-totalPrice": "小計",
+  "per-amount": "一回の量",
+  "gift": "贈り物をする",
+  "adjust": "調整",
   "receive": "受け取る",
-  "order-no": "注文番号"
+  "status": {
+    "0": "処理",
+    "1": "注文ケース",
+    "2": "注文をキャンセルする",
+    "3": "retr"
+  },
+  "invoice": {
+    "type": {
+      "ECPAY_ELECTRONIC": "電子請求書",
+      "MANUAL_ELECTRONIC": "電子請求書",
+      "PAPER": "紙の請求書"
+    },
+    "PAPER": {
+      "DUPLICATE": "スエットの請求書",
+      "TRIPLICATE": "トリプルボイス",
+      "DONATION": "寄付"
+    },
+    "MANUAL_ELECTRONIC": {
+      "TRIPLICATE": "会社",
+      "DONATION": "寄付"
+    },
+    "ECPAY_ELECTRONIC": {
+      "TRIPLICATE": "会社",
+      "DONATION": "寄付"
+    },
+    "carrier": {
+      "MEMBERSHIP": "メンバーキャリア",
+      "MOBILE_BARCODE": "モバイルバーコードキャリア",
+      "CITIZEN_DIGITAL_CERTIFICATE": "天然人信用証明書"
+    }
+  }
 }

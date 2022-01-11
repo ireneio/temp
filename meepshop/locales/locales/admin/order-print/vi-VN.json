@@ -1,4 +1,63 @@
 {
+  "packing-list": "Đang chuyển hàng",
+  "order-no": "Thứ tự số",
+  "order-date": "Ngày đặt hàng.",
+  "order-status": "Tình trạng đặt hàng",
+  "order-shipment": "Vận tải",
+  "order-payment": "Phương thức thanh toán",
+  "order-detail-ship-no": "số theo dõi",
+  "order-person": "Đặt mua",
+  "order-receiver": "người nhận",
+  "order-receiver-tel": "Điện thoại của người nhận",
+  "order-detail-recipient-comment": "ghi chú đặt hàng.",
+  "order-detail-invoice-type": "Hóa đơn loại.",
+  "order-detail-invoice-number": "Số hóa đơn",
+  "order-detail-invoice-date": "Thời gian mở cửa",
+  "total-count": "toàn bộ",
+  "product-discount": "Giảm giá hàng hóa",
+  "order-discount": "ĐẶT HÀNG ĐẶT HÀNG",
+  "shipping": "vận chuyển hàng hóa",
+  "order-detail-payment-fee": "Phí vàng dòng chảy.",
+  "order-money": "số lượng đơn đặt hàng",
+  "yuan": "Yuan.",
+  "order-product-title": "Số sản phẩm / tên",
+  "order-product-sku": "Số sản phẩm",
+  "order-product-specs": "Sự chỉ rõ",
+  "order-product-quantity": "số lượng",
+  "order-product-totalPrice": "Tổng phụ",
+  "per-amount": "Một lượng duy nhất",
+  "gift": "Cho một món quà",
+  "adjust": "điều chỉnh",
   "receive": "nhận được",
-  "order-no": "Thứ tự số"
+  "status": {
+    "0": "Xử lý",
+    "1": "Trường hợp đặt hàng",
+    "2": "hủy đơn hàng",
+    "3": "Rút lại"
+  },
+  "invoice": {
+    "type": {
+      "ECPAY_ELECTRONIC": "Hóa đơn điện tử",
+      "MANUAL_ELECTRONIC": "Hóa đơn điện tử",
+      "PAPER": "Hóa đơn giấy."
+    },
+    "PAPER": {
+      "DUPLICATE": "Hóa đơn loại SU",
+      "TRIPLICATE": "Hóa đơn ba",
+      "DONATION": "Quyên góp"
+    },
+    "MANUAL_ELECTRONIC": {
+      "TRIPLICATE": "Công ty",
+      "DONATION": "Quyên góp"
+    },
+    "ECPAY_ELECTRONIC": {
+      "TRIPLICATE": "Công ty",
+      "DONATION": "Quyên góp"
+    },
+    "carrier": {
+      "MEMBERSHIP": "Người vận chuyển thành viên",
+      "MOBILE_BARCODE": "Carcode Mobile Carrier.",
+      "CITIZEN_DIGITAL_CERTIFICATE": "Người mang mầm bệnh tự nhiên"
+    }
+  }
 }

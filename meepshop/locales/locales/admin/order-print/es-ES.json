@@ -1,4 +1,63 @@
 {
+  "packing-list": "Transporte",
+  "order-no": "Número de orden",
+  "order-date": "Fechas de pedido",
+  "order-status": "Estado del pedido",
+  "order-shipment": "Transporte",
+  "order-payment": "método de pago",
+  "order-detail-ship-no": "el número de rastreo",
+  "order-person": "Suscribir",
+  "order-receiver": "recipiente",
+  "order-receiver-tel": "El teléfono del destinatario",
+  "order-detail-recipient-comment": "pedidos",
+  "order-detail-invoice-type": "Categoría de factura",
+  "order-detail-invoice-number": "Número de factura",
+  "order-detail-invoice-date": "Hora de apertura",
+  "total-count": "total",
+  "product-discount": "Descuento en productos básicos",
+  "order-discount": "Orden de descuento",
+  "shipping": "transporte",
+  "order-detail-payment-fee": "Cuota de flujo de oro",
+  "order-money": "Total de la orden",
+  "yuan": "Yuan",
+  "order-product-title": "Número de producto / nombre",
+  "order-product-sku": "Número de producto",
+  "order-product-specs": "Especificación",
+  "order-product-quantity": "cantidad",
+  "order-product-totalPrice": "Total parcial",
+  "per-amount": "Cantidad única",
+  "gift": "Dar un regalo",
+  "adjust": "ajustar",
   "receive": "recibir",
-  "order-no": "Número de orden"
+  "status": {
+    "0": "Procesando",
+    "1": "Funda de pedido",
+    "2": "cancelar orden",
+    "3": "Retracción"
+  },
+  "invoice": {
+    "type": {
+      "ECPAY_ELECTRONIC": "Factura electrónica",
+      "MANUAL_ELECTRONIC": "Factura electrónica",
+      "PAPER": "Factura de papel"
+    },
+    "PAPER": {
+      "DUPLICATE": "Factura de su-tipo",
+      "TRIPLICATE": "Factura triple",
+      "DONATION": "Donación"
+    },
+    "MANUAL_ELECTRONIC": {
+      "TRIPLICATE": "Compañía",
+      "DONATION": "Donación"
+    },
+    "ECPAY_ELECTRONIC": {
+      "TRIPLICATE": "Compañía",
+      "DONATION": "Donación"
+    },
+    "carrier": {
+      "MEMBERSHIP": "Proveedor de miembros",
+      "MOBILE_BARCODE": "Portador de código de barras móvil",
+      "CITIZEN_DIGITAL_CERTIFICATE": "Portador de credenciales de persona natural"
+    }
+  }
 }

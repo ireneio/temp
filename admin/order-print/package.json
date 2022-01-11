@@ -8,7 +8,10 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/locales": "^0.80.117"
+    "@admin/utils": "^0.80.110",
+    "@meepshop/locales": "^0.80.117",
+    "@meepshop/utils": "^0.80.110",
+    "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "order", "print"]
 }

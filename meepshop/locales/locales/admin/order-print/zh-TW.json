@@ -1,4 +1,63 @@
 {
-   "receive": "收",
-   "order-no": "訂單編號"
+    "packing-list": "出貨單",
+    "order-no": "訂單編號",
+    "order-date": "訂購日期",
+    "order-status": "訂單狀態",
+    "order-shipment": "運送方式",
+    "order-payment": "付款方式",
+    "order-detail-ship-no": "物流編號",
+    "order-person": "訂購人",
+    "order-receiver": "收件人",
+    "order-receiver-tel": "收件人電話",
+    "order-detail-recipient-comment": "訂單備註",
+    "order-detail-invoice-type": "發票類別",
+    "order-detail-invoice-number": "發票號碼",
+    "order-detail-invoice-date": "開立時間",
+    "total-count": "總計",
+    "product-discount": "商品折扣",
+    "order-discount": "訂單折扣",
+    "shipping": "運費",
+    "order-detail-payment-fee": "金流手續費",
+    "order-money": "訂單金額",
+    "yuan": "元",
+    "order-product-title": "商品編號/名稱",
+    "order-product-sku": "商品編號",
+    "order-product-specs": "規格",
+    "order-product-quantity": "數量",
+    "order-product-totalPrice": "小計",
+    "per-amount": "單筆金額",
+    "gift": "贈品",
+    "adjust": "調整",
+    "receive": "收",
+    "status": {
+        "0": "處理中",
+        "1": "訂單結案",
+        "2": "取消訂單",
+        "3": "退換貨處理"
+    },
+    "invoice": {
+        "type": {
+            "ECPAY_ELECTRONIC": "電子發票",
+            "MANUAL_ELECTRONIC": "電子發票",
+            "PAPER": "紙本發票"
+        },
+        "PAPER": {
+            "DUPLICATE": "二聯式發票",
+            "TRIPLICATE": "三聯式發票",
+            "DONATION": "捐贈"
+        },
+        "MANUAL_ELECTRONIC": {
+            "TRIPLICATE": "公司戶",
+            "DONATION": "捐贈"
+        },
+        "ECPAY_ELECTRONIC": {
+            "TRIPLICATE": "公司戶",
+            "DONATION": "捐贈"
+        },
+        "carrier": {
+            "MEMBERSHIP": "會員載具",
+            "MOBILE_BARCODE": "手機條碼載具",
+            "CITIZEN_DIGITAL_CERTIFICATE": "自然人憑證載具"
+        }
+    }
 }

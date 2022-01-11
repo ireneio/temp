@@ -1,4 +1,63 @@
 {
+  "packing-list": "การส่งสินค้า",
+  "order-no": "หมายเลขสั่งซื้อ",
+  "order-date": "วันที่สั่งซื้อ",
+  "order-status": "สถานะการสั่งซื้อ",
+  "order-shipment": "การขนส่ง",
+  "order-payment": "วิธีการชำระเงิน",
+  "order-detail-ship-no": "หมายเลขติดตาม",
+  "order-person": "ติดตาม",
+  "order-receiver": "ผู้รับ",
+  "order-receiver-tel": "โทรศัพท์ของผู้รับ",
+  "order-detail-recipient-comment": "บันทึกการสั่งซื้อ",
+  "order-detail-invoice-type": "หมวดหมู่ใบแจ้งหนี้",
+  "order-detail-invoice-number": "เลขใบสั่งของ",
+  "order-detail-invoice-date": "เวลาเปิด",
+  "total-count": "ทั้งหมด",
+  "product-discount": "ส่วนลดสินค้า",
+  "order-discount": "ส่วนลดสั่งซื้อ",
+  "shipping": "การขนส่งสินค้า",
+  "order-detail-payment-fee": "ค่าธรรมเนียมการไหลของทองคำ",
+  "order-money": "จำนวนการสั่งซื้อ",
+  "yuan": "หยวน",
+  "order-product-title": "หมายเลขผลิตภัณฑ์ / ชื่อ",
+  "order-product-sku": "หมายเลขผลิตภัณฑ์",
+  "order-product-specs": "ข้อมูลจำเพาะ",
+  "order-product-quantity": "ปริมาณ",
+  "order-product-totalPrice": "ผลรวมย่อย",
+  "per-amount": "จำนวนเดียว",
+  "gift": "ให้ของขวัญ",
+  "adjust": "ปรับ",
   "receive": "ได้รับ",
-  "order-no": "หมายเลขสั่งซื้อ"
+  "status": {
+    "0": "กำลังประมวลผล",
+    "1": "สั่งซื้อ",
+    "2": "ยกเลิกคำสั่งซื้อ",
+    "3": "การหดกลับ"
+  },
+  "invoice": {
+    "type": {
+      "ECPAY_ELECTRONIC": "ใบแจ้งหนี้อิเล็กทรอนิกส์",
+      "MANUAL_ELECTRONIC": "ใบแจ้งหนี้อิเล็กทรอนิกส์",
+      "PAPER": "ใบแจ้งหนี้กระดาษ"
+    },
+    "PAPER": {
+      "DUPLICATE": "ใบแจ้งหนี้ประเภท SU",
+      "TRIPLICATE": "ใบแจ้งหนี้สามใบ",
+      "DONATION": "การบริจาค"
+    },
+    "MANUAL_ELECTRONIC": {
+      "TRIPLICATE": "บริษัท",
+      "DONATION": "การบริจาค"
+    },
+    "ECPAY_ELECTRONIC": {
+      "TRIPLICATE": "บริษัท",
+      "DONATION": "การบริจาค"
+    },
+    "carrier": {
+      "MEMBERSHIP": "ผู้ให้บริการสมาชิก",
+      "MOBILE_BARCODE": "ผู้ให้บริการบาร์โค้ดมือถือ",
+      "CITIZEN_DIGITAL_CERTIFICATE": "ผู้ให้บริการข้อมูลประจำตัวบุคคลธรรมดา"
+    }
+  }
 }

@@ -1,4 +1,63 @@
 {
+  "packing-list": "Pengiriman",
+  "order-no": "Jumlah order",
+  "order-date": "Pesan Tanggal",
+  "order-status": "Status pemesanan",
+  "order-shipment": "Angkutan",
+  "order-payment": "Cara Pembayaran",
+  "order-detail-ship-no": "melacak nomor",
+  "order-person": "Langganan",
+  "order-receiver": "penerima",
+  "order-receiver-tel": "Telepon penerima",
+  "order-detail-recipient-comment": "memesan catatan",
+  "order-detail-invoice-type": "Faktur Kategori.",
+  "order-detail-invoice-number": "Nomor faktur",
+  "order-detail-invoice-date": "Waktu pembukaan",
+  "total-count": "total",
+  "product-discount": "Diskon komoditas",
+  "order-discount": "Diskon pesanan",
+  "shipping": "kargo",
+  "order-detail-payment-fee": "Biaya aliran emas",
+  "order-money": "jumlah pesanan",
+  "yuan": "Yuan",
+  "order-product-title": "Nomor / Nama Produk",
+  "order-product-sku": "Nomor produk",
+  "order-product-specs": "Spesifikasi",
+  "order-product-quantity": "kuantitas",
+  "order-product-totalPrice": "Subtotal.",
+  "per-amount": "Jumlah tunggal",
+  "gift": "Berikan hadiah",
+  "adjust": "menyesuaikan",
   "receive": "menerima",
-  "order-no": "Jumlah order"
+  "status": {
+    "0": "Pengolahan",
+    "1": "Kasus Pesanan",
+    "2": "Batalkan pesanan",
+    "3": "Pencabutan"
+  },
+  "invoice": {
+    "type": {
+      "ECPAY_ELECTRONIC": "Faktur elektronik.",
+      "MANUAL_ELECTRONIC": "Faktur elektronik.",
+      "PAPER": "Faktur kertas."
+    },
+    "PAPER": {
+      "DUPLICATE": "Faktur tipe su",
+      "TRIPLICATE": "Tiga Faktur",
+      "DONATION": "Sumbangan"
+    },
+    "MANUAL_ELECTRONIC": {
+      "TRIPLICATE": "Perusahaan",
+      "DONATION": "Sumbangan"
+    },
+    "ECPAY_ELECTRONIC": {
+      "TRIPLICATE": "Perusahaan",
+      "DONATION": "Sumbangan"
+    },
+    "carrier": {
+      "MEMBERSHIP": "Anggota Carrier.",
+      "MOBILE_BARCODE": "Operator barcode seluler",
+      "CITIZEN_DIGITAL_CERTIFICATE": "Operator kredensial orang alami"
+    }
+  }
 }

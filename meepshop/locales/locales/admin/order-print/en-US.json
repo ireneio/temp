@@ -1,4 +1,63 @@
 {
+  "packing-list": "Shipping",
+  "order-no": "Order number",
+  "order-date": "Order dates",
+  "order-status": "Order Status",
+  "order-shipment": "Transportation",
+  "order-payment": "payment method",
+  "order-detail-ship-no": "tracking number",
+  "order-person": "Subscribe",
+  "order-receiver": "recipient",
+  "order-receiver-tel": "The recipient's phone",
+  "order-detail-recipient-comment": "order notes",
+  "order-detail-invoice-type": "Invoice category",
+  "order-detail-invoice-number": "Invoice number",
+  "order-detail-invoice-date": "Opening time",
+  "total-count": "total",
+  "product-discount": "Commodity discount",
+  "order-discount": "Order discount",
+  "shipping": "freight",
+  "order-detail-payment-fee": "Gold flow fee",
+  "order-money": "order amount",
+  "yuan": "Yuan",
+  "order-product-title": "Product number / name",
+  "order-product-sku": "Product Number",
+  "order-product-specs": "Specification",
+  "order-product-quantity": "quantity",
+  "order-product-totalPrice": "Subtotal",
+  "per-amount": "Single amount",
+  "gift": "Give a gift",
+  "adjust": "adjust",
   "receive": "receive",
-  "order-no": "Order number"
+  "status": {
+    "0": "Processing",
+    "1": "Order case",
+    "2": "cancel order",
+    "3": "Retraction"
+  },
+  "invoice": {
+    "type": {
+      "ECPAY_ELECTRONIC": "Electronic invoice",
+      "MANUAL_ELECTRONIC": "Electronic invoice",
+      "PAPER": "Paper invoice"
+    },
+    "PAPER": {
+      "DUPLICATE": "SU-type invoice",
+      "TRIPLICATE": "Triple invoice",
+      "DONATION": "Donation"
+    },
+    "MANUAL_ELECTRONIC": {
+      "TRIPLICATE": "Company",
+      "DONATION": "Donation"
+    },
+    "ECPAY_ELECTRONIC": {
+      "TRIPLICATE": "Company",
+      "DONATION": "Donation"
+    },
+    "carrier": {
+      "MEMBERSHIP": "Member carrier",
+      "MOBILE_BARCODE": "Mobile barcode carrier",
+      "CITIZEN_DIGITAL_CERTIFICATE": "Natural person credential carrier"
+    }
+  }
 }
