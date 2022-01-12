@@ -4,7 +4,7 @@
   "description": "admin server",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.119",
+  "version": "0.80.120",
   "main": "./next.config.js",
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect=localhost:9229' next dev ./src -p 14405",
@@ -35,7 +35,7 @@
     "@admin/setting-redirects": "^0.80.119",
     "@admin/setting-shopping": "^0.80.119",
     "@admin/setting-store": "^0.80.119",
-    "@admin/setting-third-party": "^0.80.119",
+    "@admin/setting-third-party": "^0.80.120",
     "@admin/sign-up": "^0.80.119",
     "@admin/sign-up-fail": "^0.80.119",
     "@admin/smart-conversion-analysis": "^0.80.119",
