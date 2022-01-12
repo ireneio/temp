@@ -4,7 +4,7 @@
   "description": "Create a logger object for debug",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.115",
+  "version": "0.80.119",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {

@@ -4,13 +4,13 @@
   "description": "admin order print",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.118",
+  "version": "0.80.119",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/utils": "^0.80.118",
-    "@meepshop/locales": "^0.80.118",
-    "@meepshop/utils": "^0.80.110",
+    "@admin/utils": "^0.80.119",
+    "@meepshop/locales": "^0.80.119",
+    "@meepshop/utils": "^0.80.119",
     "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "order", "print"]
