@@ -48,8 +48,7 @@ export default React.memo(({ storePaymentId, isInstallment }: PropsType) => {
   if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
 
   const { gmoUser, viewer } = data;
-  const gmoRememberCardEnabled =
-    viewer?.store?.experiment?.gmoRememberCardEnabled || false;
+  const gmoRememberCardEnabled = viewer?.store?.gmoRememberCardEnabled || false;
   const cardNumberFront = gmoUser?.cardNumberFront || null;
   const cardNumberLater = gmoUser?.cardNumberLater || null;
 

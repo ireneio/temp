@@ -63,9 +63,9 @@ export const getUserInfo = gql`
             isEnabled
           }
         }
-        experiment {
-          gmoRememberCardEnabled
-        }
+        gmoRememberCardEnabled: checkUnleashToggle(
+          name: "T2653_storeCnameWhitelistForGmoRememberCardEnabled"
+        )
       }
       hasGmoCreditCard
     }

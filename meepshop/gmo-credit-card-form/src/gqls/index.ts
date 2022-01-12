@@ -14,9 +14,9 @@ export const getGMOUser = gql`
       id
       store {
         id
-        experiment {
-          gmoRememberCardEnabled
-        }
+        gmoRememberCardEnabled: checkUnleashToggle(
+          name: "T2653_storeCnameWhitelistForGmoRememberCardEnabled"
+        )
       }
     }
   }

@@ -66,8 +66,7 @@ export default React.memo(() => {
     group?.slice(-1)[0] || {};
   const { name: groupName = '', type = 'normal' } = memberGroup || {};
   const { lockedBirthday = null, rewardPointReminder } = store?.setting || {};
-  const gmoRememberCardEnabled =
-    store?.experiment?.gmoRememberCardEnabled || false;
+  const gmoRememberCardEnabled = store?.gmoRememberCardEnabled || false;
 
   return (
     <div className={styles.root}>

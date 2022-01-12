@@ -9,9 +9,9 @@ import { gaViewIdFragment } from './gaViewId';
 // definition
 export const useBlocksFragment = gql`
   fragment useBlocksFragment on Store {
-    experiment {
-      ecfitEnabled
-    }
+    ecfitEnabled: checkUnleashToggle(
+      name: "T2235_storeCnameWhitelistForECFIT_Enabled"
+    )
 
     facebookSetting {
       ...facebookFragment

@@ -47,7 +47,7 @@ export default (store: useBlocksFragmentType | null): BlockType[] =>
             />
           ),
         },
-        !store?.experiment?.ecfitEnabled
+        !store?.ecfitEnabled
           ? null
           : {
               key: 'ecfit',
