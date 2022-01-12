@@ -55,6 +55,7 @@ export default () => {
     storeDescription: store?.description?.introduction || '',
     logoImage: store?.logoImage,
     faviconImage: store?.faviconImage,
+    backToTopButtonEnabled: store?.setting?.backToTopButtonEnabled || false,
     product,
     page: useMemo(() => {
       const page =

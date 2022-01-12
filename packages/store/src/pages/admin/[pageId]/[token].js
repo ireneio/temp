@@ -3,12 +3,13 @@ import { gql } from '@apollo/client';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { defaultAdTrack } from '@meepshop/context/lib/AdTrack';
+import ActionButton from '@meepshop/action-button';
 
 import { Container, Error } from 'components';
 import useAdminPreview from 'hooks/useAdminPreview';
 
 const Page = React.memo(({ error, ...props }) => {
-  const { product, page } = useAdminPreview();
+  const { product, backToTopButtonEnabled, page } = useAdminPreview();
 
   if (error) return <Error error={error} />;
 
@@ -18,6 +19,11 @@ const Page = React.memo(({ error, ...props }) => {
         style={{ userSelect: 'none', pointerEvents: 'none', height: '100%' }}
       >
         <Container {...props} product={product} page={page} />
+
+        <ActionButton
+          backToTopButtonEnabled={backToTopButtonEnabled}
+          goToButton={page?.goToButton || null}
+        />
       </div>
     </AdTrackContext.Provider>
   );

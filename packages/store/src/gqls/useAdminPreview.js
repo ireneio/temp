@@ -1,5 +1,7 @@
 import { gql } from '@apollo/client';
 
+import { goToButtonFragment } from '@meepshop/action-button/lib/gqls/goToButton';
+
 import { usePagePageFragment } from './usePage';
 
 export const adminPreview = gql`
@@ -12,10 +14,15 @@ export const adminPreview = gql`
         page(input: $input) {
           id
           ...usePagePageFragment
+          ...goToButtonFragment
+        }
+        setting {
+          backToTopButtonEnabled
         }
       }
     }
   }
 
   ${usePagePageFragment}
+  ${goToButtonFragment}
 `;

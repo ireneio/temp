@@ -21,6 +21,7 @@ export default () => {
 
   return {
     product,
+    backToTopButtonEnabled: store?.setting?.backToTopButtonEnabled || false,
     page: useMemo(() => {
       const page = store?.page;
 

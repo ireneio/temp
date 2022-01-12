@@ -1,28 +1,26 @@
+// typescript import
+import { PropsType as GoToButtonPropsType } from './GoToButton';
+
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 
 import GoToButton from './GoToButton';
 import BackToTop from './BackToTop';
 
-import useActionButton from './hooks/useActionButton';
 import styles from './styles/index.less';
 
-// graphql import
-import { backToTopFragment } from './gqls/backToTop';
+// typescript definition
+interface PropsType extends GoToButtonPropsType {
+  backToTopButtonEnabled: boolean;
+}
 
 // definition
-export default React.memo(() => {
-  const data = useActionButton();
-  const store = data?.viewer?.store;
-
-  if (!store) return null;
-
-  return (
+export default React.memo(
+  ({ backToTopButtonEnabled, goToButton }: PropsType) => (
     <div className={styles.root}>
-      <GoToButton goToButton={store.page?.goToButton || null} />
+      <GoToButton goToButton={goToButton} />
 
-      <BackToTop store={filter(backToTopFragment, store)} />
+      {!backToTopButtonEnabled ? null : <BackToTop />}
     </div>
-  );
-});
+  ),
+);

@@ -11,7 +11,7 @@ import styles from './styles/goToButton.less';
 import { goToButtonFragment_goToButton as goToButtonFragmentGoToButton } from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
-interface PropsType {
+export interface PropsType {
   goToButton: goToButtonFragmentGoToButton | null;
 }
 

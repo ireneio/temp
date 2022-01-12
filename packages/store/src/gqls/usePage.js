@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
 
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+import { goToButtonFragment } from '@meepshop/action-button/lib/gqls/goToButton';
 import { handleModuleDataMenuFragment } from '@meepshop/meep-ui/lib/menu/gqls/handleModuleData';
 
 const usePageProductFragment = gql`
@@ -282,14 +283,19 @@ export const getPage = gql`
         defaultHomePage @include(if: $isHomePage) {
           id
           ...usePagePageFragment
+          ...goToButtonFragment
         }
         customPage(path: $path) @include(if: $isCustomPage) {
           id
           ...usePagePageFragment
+          ...goToButtonFragment
         }
         defaultProductListPage @include(if: $isProductsPage) {
           id
           ...usePagePageFragment
+        }
+        setting {
+          backToTopButtonEnabled
         }
       }
     }
@@ -297,5 +303,6 @@ export const getPage = gql`
 
   ${localeFragment}
   ${usePagePageFragment}
+  ${goToButtonFragment}
   ${usePageProductFragment}
 `;

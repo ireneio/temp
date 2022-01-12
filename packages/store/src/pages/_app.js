@@ -234,6 +234,7 @@ class App extends NextApp {
       storeDescription,
       logoImage,
       faviconImage,
+      backToTopButtonEnabled,
       i18n,
       product,
       page,
@@ -317,7 +318,10 @@ class App extends NextApp {
                               }}
                             />
 
-                            <ActionButton />
+                            <ActionButton
+                              backToTopButtonEnabled={backToTopButtonEnabled}
+                              goToButton={page?.goToButton || null}
+                            />
                           </FormDataProvider>
                         </CartProvider>
                       </AdTrackProvider>

@@ -7,22 +7,9 @@ import { Colors as ColorsContext } from '@meepshop/context';
 
 import styles from './styles/backToTop.less';
 
-// graphql typescript
-import { backToTopFragment as backToTopFragmentType } from '@meepshop/types/gqls/meepshop';
-
-// typescript definition
-interface PropsType {
-  store: backToTopFragmentType;
-}
-
 // definition
-export default React.memo(({ store }: PropsType) => {
+export default React.memo(() => {
   const colors = useContext(ColorsContext);
-
-  const backToTopButtonEnabled =
-    store?.setting?.backToTopButtonEnabled || false;
-
-  if (!backToTopButtonEnabled) return null;
 
   return (
     <BackTop
