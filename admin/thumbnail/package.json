@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "@admin/thumbnail",
+  "description": "Thumbnail for admin",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/images": "^0.80.115"
+  },
+  "keywords": ["admin", "thumbnail"]
+}

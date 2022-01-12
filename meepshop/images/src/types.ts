@@ -20,6 +20,7 @@ export const oops_w110 = mockData;
 export const pageManagerPageTipPath_w200 = mockData;
 export const pageManagerPageTipTab_w200 = mockData;
 export const pageNotFound_w635 = mockData;
+export const placeholderThumbnail_w60 = mockData;
 export const placeholderThumbnail_w120 = mockData;
 export const spinner_w100 = mockData;
 export const tapPayGenieLoading_w288 = mockData;
