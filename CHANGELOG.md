@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.120 (2022-01-12)
+
+#### :rocket: New Feature
+
+- [#1990](https://github.com/meepshop/meep-lerna/pull/1990) 內部開單 - 前端實作移除 storeExperiment ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.119 (2022-01-12)
 
 #### :rocket: New Feature
