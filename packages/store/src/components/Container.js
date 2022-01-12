@@ -47,9 +47,9 @@ export default class Container extends React.Component {
       window.meepShopStore.debugger = { 'Container-props': this.props };
     }
 
-    const location = Utils.uriParser(this.props);
     const {
       /* props(not in context) */
+      userAgent,
       page,
       product,
       children,
@@ -57,10 +57,9 @@ export default class Container extends React.Component {
 
     return (
       <Layout
-        location={location}
         goTo={Utils.goTo}
         product={product}
-        radiumConfig={{ userAgent: location.userAgent }} // for radium media query
+        radiumConfig={{ userAgent }} // for radium media query
         {...page}
       >
         {children}

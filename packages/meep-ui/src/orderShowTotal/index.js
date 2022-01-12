@@ -4,13 +4,10 @@ import radium from 'radium';
 
 import withHook from '@store/utils/lib/withHook';
 import { withTranslation, useGetLanguage } from '@meepshop/locales';
+import { useRouter } from '@meepshop/link';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import {
-  ID_TYPE,
-  LOCATION_TYPE,
-  POSITIVE_NUMBER_TYPE,
-} from 'constants/propTypes';
+import { ID_TYPE, POSITIVE_NUMBER_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles';
 
@@ -41,13 +38,13 @@ const getActivityInfo = activityInfo =>
 @withTranslation('order-show-total')
 @withHook(() => ({
   getLanguage: useGetLanguage(),
+  router: useRouter(),
 }))
 @enhancer
 @radium
 export default class OrderShowTotal extends React.PureComponent {
   static propTypes = {
     /** context */
-    location: LOCATION_TYPE.isRequired,
     transformCurrency: PropTypes.func.isRequired,
 
     /** props */
@@ -80,11 +77,11 @@ export default class OrderShowTotal extends React.PureComponent {
   render() {
     const {
       /** context */
-      location,
       transformCurrency,
 
       /** props */
       t,
+      router,
       getLanguage,
       style,
       productPrice,
@@ -94,7 +91,7 @@ export default class OrderShowTotal extends React.PureComponent {
       isChoosenSipment,
       activityInfo,
     } = this.props;
-    const { pathname } = location;
+    const { pathname } = router;
 
     return (
       <div style={[styles.root, style]}>

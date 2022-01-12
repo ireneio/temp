@@ -25,9 +25,6 @@ export const enhancer = withContext(EnhancerContext);
 
 export default React.memo(
   ({
-    /** context variables from props */
-    location,
-
     /** context func from props */
     goTo,
 
@@ -81,7 +78,6 @@ export default React.memo(
           },
           productInContext:
             productInContext?.computeProductList?.data?.[0] || null,
-          location,
 
           /** context func from props */
           goTo,

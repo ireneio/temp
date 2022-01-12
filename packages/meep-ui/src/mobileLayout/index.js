@@ -6,24 +6,23 @@ import { MenuOutlined } from '@ant-design/icons';
 import { Affix, Drawer } from 'antd';
 import transformColor from 'color';
 
+import { useRouter } from '@meepshop/link';
+import withHook from '@store/utils/lib/withHook';
+
 import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
 import Menu from 'menu';
-import {
-  COLOR_TYPE,
-  STORE_SETTING_TYPE,
-  LOCATION_TYPE,
-} from 'constants/propTypes';
+import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
 
 import styles from './styles/index.less';
 import notMemoizedGetPages from './utils/getPages';
 
+@withHook(() => ({ router: useRouter() }))
 @enhancer
 export default class MobileLayout extends React.PureComponent {
   static propTypes = {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
-    location: LOCATION_TYPE.isRequired,
     storeSetting: STORE_SETTING_TYPE.isRequired,
 
     /** props */
@@ -49,10 +48,10 @@ export default class MobileLayout extends React.PureComponent {
 
   componentDidUpdate(prevProps) {
     const {
-      location: { href },
+      router: { asPath },
     } = this.props;
 
-    if (href !== prevProps.location.href)
+    if (asPath !== prevProps.router.asPath)
       setTimeout(() => {
         if (!this.isUnmounted) this.setState({ visible: false });
       }, 0);

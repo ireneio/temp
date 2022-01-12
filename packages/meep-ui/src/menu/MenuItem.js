@@ -15,7 +15,6 @@ import withHook from '@store/utils/lib/withHook';
 import { enhancer } from 'layout/DecoratorsRoot';
 import Link from 'link';
 import {
-  LOCATION_TYPE,
   ONE_OF_LOCALE_TYPE,
   ISLOGIN_TYPE,
   ID_TYPE,
@@ -58,7 +57,6 @@ export default class MenuItem extends React.PureComponent {
 
   static propTypes = {
     /** context, TODO: remove */
-    location: LOCATION_TYPE.isRequired,
     locale: ONE_OF_LOCALE_TYPE.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,

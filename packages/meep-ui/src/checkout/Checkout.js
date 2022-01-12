@@ -6,13 +6,14 @@ import uuid from 'uuid/v4';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import FormDataContext from '@meepshop/form-data';
 import { withTranslation } from '@meepshop/locales';
+import { useRouter } from '@meepshop/link';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
 import CheckoutWrapper from '@store/checkout';
 import { formatGmo } from '@meepshop/gmo-credit-card-form';
 
 import { enhancer } from 'layout/DecoratorsRoot';
-import { LOCATION_TYPE, ISLOGIN_TYPE } from 'constants/propTypes';
+import { ISLOGIN_TYPE } from 'constants/propTypes';
 import { NOTLOGIN } from 'constants/isLogin';
 
 import OrderDetail from './orderDetail';
@@ -20,7 +21,10 @@ import OrderDetail from './orderDetail';
 @withTranslation('checkout')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withContext(FormDataContext, setFormData => ({ setFormData }))
-@withHook(() => ({ client: useApolloClient() }))
+@withHook(() => ({
+  client: useApolloClient(),
+  router: useRouter(),
+}))
 @enhancer
 export default class Checkout extends React.PureComponent {
   formRef = React.createRef();
@@ -29,7 +33,6 @@ export default class Checkout extends React.PureComponent {
 
   static propTypes = {
     /** context */
-    location: LOCATION_TYPE.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
     goTo: PropTypes.func.isRequired,
 
@@ -62,12 +65,12 @@ export default class Checkout extends React.PureComponent {
   ) => {
     const {
       /** context */
-      location,
       isLogin,
       goTo,
 
       /** props */
       client,
+      router,
       t,
       adTrack,
       setFormData,
@@ -88,7 +91,7 @@ export default class Checkout extends React.PureComponent {
     // TODO: should rewrite form data controller
     this.setState({ isSubmitting: true, orderInfo });
 
-    const { host: domain } = location;
+    const { domain } = router;
     const {
       products,
       choosePayment,

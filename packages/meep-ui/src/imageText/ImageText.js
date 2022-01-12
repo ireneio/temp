@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import radium, { StyleRoot } from 'radium';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
+import { useRouter } from '@meepshop/link';
 import withContext from '@store/utils/lib/withContext';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import Image from 'image';
 import Link from 'deprecated/link';
 
 import {
-  LOCATION_TYPE,
   CONTENT_WIDTH_TYPE,
   POSITIVE_NUMBER_TYPE,
   COLOR_TYPE,
@@ -25,11 +26,11 @@ import {
 import styles from './styles/index.less';
 
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
+@withHook(() => ({ router: useRouter() }))
 @enhancer
 @radium
 export default class ImageText extends React.PureComponent {
   static propTypes = {
-    location: LOCATION_TYPE.isRequired,
     files: PropTypes.arrayOf(PropTypes.shape({}).isRequired),
     newWindow: PropTypes.bool,
     contentWidth: CONTENT_WIDTH_TYPE.isRequired,
@@ -82,11 +83,11 @@ export default class ImageText extends React.PureComponent {
   };
 
   generateUrl = () => {
-    const { location, files } = this.props;
-    const { pathname, search } = location;
+    const { router, files } = this.props;
+    const { asPath } = router;
     const { href } = files?.[0] || {};
 
-    if (/^#/.test(href)) return `${pathname}${search}${href}`;
+    if (/^#/.test(href)) return `${asPath}${href}`;
 
     if (href && !/(^\/)|(^http)|(^tel:+)/.test(href)) return `//${href}`;
 

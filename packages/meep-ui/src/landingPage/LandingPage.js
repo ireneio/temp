@@ -14,7 +14,6 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import {
   ID_TYPE,
   URL_TYPE,
-  LOCATION_TYPE,
   COLOR_TYPE,
   ISLOGIN_TYPE,
   CONTENT_WIDTH_TYPE,
@@ -71,7 +70,6 @@ export default class LandingPage extends React.PureComponent {
 
   static propTypes = {
     /** context */
-    location: LOCATION_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
     goTo: PropTypes.func.isRequired,

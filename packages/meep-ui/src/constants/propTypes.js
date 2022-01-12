@@ -194,13 +194,6 @@ export const ISLOGIN_TYPE = PropTypes.oneOf(
   Object.keys(ISLOGIN).map(key => ISLOGIN[key]),
 );
 
-export const LOCATION_TYPE = PropTypes.shape({
-  href: PropTypes.string.isRequired,
-  host: PropTypes.string.isRequired,
-  pathname: PropTypes.string.isRequired,
-  search: PropTypes.string.isRequired,
-});
-
 export const CUSTOM_TRACKING_TYPE = PropTypes.shape({
   status: PropTypes.bool.isRequired,
   eventLabel: PropTypes.string.isRequired,
@@ -239,7 +232,6 @@ export const CONTEXT_TYPES = {
   storeSetting: STORE_SETTING_TYPE.isRequired,
   colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
   locale: ONE_OF_LOCALE_TYPE.isRequired,
-  location: LOCATION_TYPE.isRequired,
   carts: PropTypes.shape({}).isRequired,
 
   /** context func from props */

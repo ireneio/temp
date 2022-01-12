@@ -7,6 +7,7 @@ import { ProfileOutlined, AppstoreOutlined } from '@ant-design/icons';
 import { Pagination, Select } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
+import { useRouter } from '@meepshop/link';
 import { Sensor as SensorContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
@@ -17,7 +18,6 @@ import {
   COLOR_TYPE,
   ONE_OF_LOCALE_TYPE,
   ISLOGIN_TYPE,
-  LOCATION_TYPE,
 } from 'constants/propTypes';
 import Link from 'deprecated/link';
 
@@ -34,8 +34,9 @@ import * as styles from './styles';
   ({
     id,
     params: { offset = 0, sort = 'createdAt-desc', limit = 20, ...restParams },
-    location: { search },
   }) => {
+    const router = useRouter();
+
     const params = useMemo(
       () => ({
         id,
@@ -43,9 +44,9 @@ import * as styles from './styles';
         sort,
         limit,
         ...restParams,
-        ...queryString.parse(search),
+        ...router.query,
       }),
-      [id, offset, sort, limit, restParams, search],
+      [id, offset, sort, limit, restParams, router],
     );
     const { data, loading } = useProducts(params);
 
@@ -56,6 +57,7 @@ import * as styles from './styles';
       page: useMemo(() => parseInt(params.offset / params.limit, 10) + 1, [
         params,
       ]),
+      router,
     };
   },
 )
@@ -106,7 +108,6 @@ export default class ProductList extends React.PureComponent {
     /** props from context */
     carts: PropTypes.shape({}),
     locale: ONE_OF_LOCALE_TYPE.isRequired,
-    location: LOCATION_TYPE.isRequired,
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
     transformCurrency: PropTypes.func.isRequired,
@@ -157,13 +158,13 @@ export default class ProductList extends React.PureComponent {
   renderPagination = (current, type, originalElement) => {
     const {
       t,
-      location: { pathname, search },
+      router: { pathname, query: routerQuery },
       colors,
       page,
       params: { limit },
     } = this.props;
     const query = {
-      ...queryString.parse(search),
+      ...routerQuery,
       offset: (current - 1) * limit,
     };
 
@@ -257,7 +258,7 @@ export default class ProductList extends React.PureComponent {
 
       t,
 
-      location: { pathname, search },
+      router: { pathname, query },
       colors,
       isLogin,
       transformCurrency,
@@ -309,7 +310,7 @@ export default class ProductList extends React.PureComponent {
                       ) : (
                         <Link
                           href={`${pathname}?${queryString.stringify({
-                            ...queryString.parse(search),
+                            ...query,
                             sort: option.value,
                             offset: 0,
                           })}`}
