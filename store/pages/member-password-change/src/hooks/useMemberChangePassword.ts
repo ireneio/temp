@@ -49,10 +49,10 @@ export default ({
   });
 
   return useCallback(
-    ({ confirmPassword: _, ...input }) => {
+    ({ confirmPassword: _, ...passwordInput }) => {
       mutation({
         variables: {
-          input,
+          passwordInput,
         },
       });
     },

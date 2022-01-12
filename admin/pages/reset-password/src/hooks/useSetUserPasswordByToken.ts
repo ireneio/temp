@@ -56,11 +56,11 @@ export default (): {
     loading,
     response,
     setUserPasswordByToken: useCallback(
-      ({ confirmPassword: _, ...input }) => {
+      ({ confirmPassword: _, ...passwordInput }) => {
         mutation({
           variables: {
-            input: {
-              ...input,
+            passwordInput: {
+              ...passwordInput,
               token,
             },
           },

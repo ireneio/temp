@@ -9,8 +9,8 @@ export const isResetPasswordTokenValid = gql`
 `;
 
 export const setUserPasswordByToken = gql`
-  mutation setUserPasswordByToken($input: SetUserPasswordByTokenInput!) {
-    setUserPasswordByToken(input: $input) {
+  mutation setUserPasswordByToken($passwordInput: SetUserPasswordByTokenInput) {
+    setUserPasswordByToken(passwordInput: $passwordInput) {
       status
     }
   }

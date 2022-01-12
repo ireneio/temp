@@ -65,9 +65,9 @@ export default (
 
   return {
     changeUserPassword: useCallback(
-      ({ confirmPassword: _, ...input }) => {
+      ({ confirmPassword: _, ...passwordInput }) => {
         mutation({
-          variables: { input },
+          variables: { passwordInput },
         });
       },
       [mutation],

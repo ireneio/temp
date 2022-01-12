@@ -52,11 +52,11 @@ export default (token: string): ((values: ValuesType) => void) => {
   );
 
   return useCallback(
-    input => {
+    passwordInput => {
       mutation({
         variables: {
-          input: {
-            ...input,
+          passwordInput: {
+            ...passwordInput,
             token,
           },
         },
