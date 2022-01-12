@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.80.119 (2022-01-12)
+
+#### :rocket: New Feature
+
+- [#2037](https://github.com/meepshop/meep-lerna/pull/2037) 內部開單 - 調整變更密碼的 input name，避免被 apollo studio 記錄密碼 ([@happycat6323](https://github.com/happycat6323))
+- [#2015](https://github.com/meepshop/meep-lerna/pull/2015) @admin/header, @admin/block 樣式優化 ([@piovischioh](https://github.com/piovischioh))
+- [#2039](https://github.com/meepshop/meep-lerna/pull/2039) 內部開單 - 新增 @adimn/thumbnail ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `store`
+  - [#1994](https://github.com/meepshop/meep-lerna/pull/1994) 內部開單 - @meepshop/action-button 改從 props 拿到資料 ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`, `store`
+  - [#2017](https://github.com/meepshop/meep-lerna/pull/2017) 內部開單 - 移除 location 改用 @meepshop/link ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.118 (2022-01-11)
 
 #### :rocket: New Feature
