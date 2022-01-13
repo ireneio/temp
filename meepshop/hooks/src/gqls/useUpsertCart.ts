@@ -2,7 +2,7 @@
 import { gql } from '@apollo/client';
 
 // graphql import
-import { useMergeCartUserFragment } from './useMergeCart';
+import { useMergeCartFragment } from './useMergeCart';
 
 // definition
 const useUpsertCartUpsertCartResponseFragment = gql`
@@ -19,24 +19,39 @@ const useUpsertCartUpsertCartResponseFragment = gql`
   }
 `;
 
-export const useUpsertCartUserFragment = gql`
-  fragment useUpsertCartUserFragment on User {
-    id
-    ...useMergeCartUserFragment
-  }
-
-  ${useMergeCartUserFragment}
-`;
-
 export const upsertCart = gql`
-  mutation upsertCart($isShopper: Boolean!, $input: [CartItemInput!]!) {
+  mutation upsertCart(
+    $isShopper: Boolean!
+    $input: [CartItemInput!]!
+    $guestInput: [CartItemInput!]!
+  ) {
     upsertCart(input: $input) @include(if: $isShopper) {
       ...useUpsertCartUpsertCartResponseFragment
     }
-    upsertGuestCart(input: $input) @client @skip(if: $isShopper) {
+
+    upsertGuestCart(input: $guestInput) @client {
       ...useUpsertCartUpsertCartResponseFragment
     }
   }
 
   ${useUpsertCartUpsertCartResponseFragment}
+`;
+
+export const useUpsertCartUserFragment = gql`
+  fragment useUpsertCartUserFragment on User {
+    id
+    cart {
+      ... on Cart {
+        cartItems {
+          ...useMergeCartFragment
+        }
+      }
+    }
+
+    guestCart @client {
+      ...useMergeCartFragment
+    }
+  }
+
+  ${useMergeCartFragment}
 `;

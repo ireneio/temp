@@ -11,7 +11,7 @@ import {
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { getComputedCart } from '../gqls/useGetCartComputed';
+import { getComputedCart } from '../gqls/useComputedCart';
 
 // typescript definition
 interface ComputedProductsType

@@ -1,42 +1,29 @@
 // import
-import { useMemo } from 'react';
+import { useCallback } from 'react';
 
 // graphql typescript
-import {
-  useMergeCartUserFragment as useMergeCartUserFragmentType,
-  useMergeCartCartItemFragment as useMergeCartCartItemFragmentType,
-} from '@meepshop/types/gqls/meepshop';
+import { useMergeCartFragment as useMergeCartFragmentType } from '@meepshop/types/gqls/meepshop';
+
+// typescript definition
+type mergeCartType<V = useMergeCartFragmentType> = (
+  cartItems: V[],
+  newCartItem: V,
+) => V[];
 
 // definition
-export default ({
-  cart,
-  guestCart,
-}: useMergeCartUserFragmentType): useMergeCartCartItemFragmentType[] =>
-  useMemo(() => {
-    return guestCart.reduce(
-      (prev, { productId, quantity, variantId }) => {
-        const index = prev.findIndex(item => item.variantId === variantId);
+export default (): mergeCartType =>
+  useCallback((cartItems, { productId, quantity, variantId }) => {
+    const newCartItems = [...cartItems];
+    const cartItem = newCartItems.find(item => item.variantId === variantId);
 
-        if (index === -1) {
-          return [
-            ...prev,
-            {
-              __typename: 'CartItem' as const,
-              productId,
-              quantity,
-              variantId,
-            },
-          ];
-        }
+    if (!cartItem)
+      newCartItems.push({
+        __typename: 'CartItem' as const,
+        productId,
+        quantity,
+        variantId,
+      });
+    else cartItem.quantity += quantity;
 
-        // eslint-disable-next-line no-param-reassign
-        prev[index] = {
-          ...prev[index],
-          quantity: prev[index].quantity + quantity,
-        };
-
-        return prev;
-      },
-      cart?.__typename === 'Cart' ? [...cart.cartItems] : [],
-    );
-  }, [cart, guestCart]);
+    return newCartItems;
+  }, []);

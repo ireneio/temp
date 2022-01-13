@@ -1,5 +1,5 @@
 // import
-import { useContext, useEffect } from 'react';
+import { useContext, useMemo, useEffect, useCallback } from 'react';
 import { filter } from 'graphql-anywhere';
 
 import { Role as RoleContext } from '@meepshop/context';
@@ -10,31 +10,48 @@ import useUpsertCart from './useUpsertCart';
 // graphql typescript
 import {
   useCartFragment as useCartFragmentType,
-  useMergeCartCartItemFragment as useMergeCartCartItemFragmentType,
+  useMergeCartFragment as useMergeCartFragmentType,
 } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
-import { useMergeCartUserFragment } from './gqls/useMergeCart';
+import { useMergeCartFragment } from './gqls/useMergeCart';
 import { useUpsertCartUserFragment } from './gqls/useUpsertCart';
 
 // typescript definition
-interface PropsType {
-  viewer: useCartFragmentType;
+export interface CartType {
+  cartItems: useMergeCartFragmentType[];
+  upsertCart: (cartItem: useMergeCartFragmentType) => Promise<void>;
 }
 
 // definition
-export default ({ viewer }: PropsType): useMergeCartCartItemFragmentType[] => {
+export default (viewer: useCartFragmentType | null): CartType => {
   const isShopper = useContext(RoleContext) === 'SHOPPER';
-  const mergedCart = useMergeCart(filter(useMergeCartUserFragment, viewer));
+  const { cart, guestCart } = useMemo(
+    () => ({
+      cart: viewer?.cart?.__typename !== 'Cart' ? [] : viewer.cart.cartItems,
+      guestCart: viewer?.guestCart || [],
+    }),
+    [viewer],
+  );
+  const mergeCart = useMergeCart();
+  const cartItems = useMemo(
+    () =>
+      !isShopper
+        ? filter(useMergeCartFragment, guestCart)
+        : filter(useMergeCartFragment, guestCart).reduce(mergeCart, cart),
+    [guestCart, cart, isShopper, mergeCart],
+  );
   const upsertCart = useUpsertCart(filter(useUpsertCartUserFragment, viewer));
-  const { guestCart } = viewer;
 
   useEffect(() => {
-    if (isShopper && guestCart.length > 0) {
-      upsertCart(mergedCart);
-      localStorage.removeItem('guestCart');
-    }
-  }, [guestCart, isShopper, mergedCart, upsertCart]);
+    if (isShopper && guestCart.length > 0) upsertCart(cartItems);
+  }, [guestCart, isShopper, cartItems, upsertCart]);
 
-  return mergedCart;
+  return {
+    cartItems,
+    upsertCart: useCallback(
+      cartItem => upsertCart(mergeCart(cartItems, cartItem)),
+      [cartItems, mergeCart, upsertCart],
+    ),
+  };
 };
