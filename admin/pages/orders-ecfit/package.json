@@ -4,12 +4,12 @@
   "description": "Orders ecfit page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.119",
+  "version": "0.80.121",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/orders": "^0.80.119",
-    "@meepshop/locales": "^0.80.119",
+    "@admin/orders": "^0.80.121",
+    "@meepshop/locales": "^0.80.121",
     "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "ecfit", "orders"]

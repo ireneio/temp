@@ -4,11 +4,11 @@
   "description": "Store core module to control the all modules",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.120",
+  "version": "0.80.121",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/modules": "^0.80.120",
+    "@meepshop/modules": "^0.80.121",
     "@store/utils": "^0.80.119",
     "d3-hierarchy": "^1.1.6"
   },

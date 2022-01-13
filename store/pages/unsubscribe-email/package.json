@@ -4,12 +4,12 @@
   "description": "Use to unsubscribe email",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.119",
+  "version": "0.80.121",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/link": "^0.80.119",
-    "@meepshop/locales": "^0.80.119",
+    "@meepshop/locales": "^0.80.121",
     "@store/utils": "^0.80.119"
   },
   "keywords": ["store", "unsubscribe email"]
