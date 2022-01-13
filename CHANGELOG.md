@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.80.121 (2022-01-13)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#2028](https://github.com/meepshop/meep-lerna/pull/2028) 內部開單 - 修改 @meepshop/cookies 的 getInitialProps ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#2030](https://github.com/meepshop/meep-lerna/pull/2030) admin 媒體櫃 - 新架構 header 規範 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :house: Internal
+
+- `store`
+  - [#2028](https://github.com/meepshop/meep-lerna/pull/2028) 內部開單 - 修改 @meepshop/cookies 的 getInitialProps ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#2051](https://github.com/meepshop/meep-lerna/pull/2051) 內部開單 - 修改 upsertGuestCart 行為 以及 useMergeCart ([@HsuTing](https://github.com/HsuTing))
+  - [#2045](https://github.com/meepshop/meep-lerna/pull/2045) 內部開單 - 優化 @admin/order-history-records ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.120 (2022-01-12)
 
 #### :rocket: New Feature
