@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.122 (2022-01-13)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#2033](https://github.com/meepshop/meep-lerna/pull/2033) 內部開單 - 修改 @meepshop/link 的 getInitialProps ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `store`
+  - [#2033](https://github.com/meepshop/meep-lerna/pull/2033) 內部開單 - 修改 @meepshop/link 的 getInitialProps ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.121 (2022-01-13)
 
 #### :rocket: New Feature
