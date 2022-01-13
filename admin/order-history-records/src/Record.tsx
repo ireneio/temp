@@ -12,14 +12,14 @@ import Detail from './Detail';
 import styles from './styles/record.less';
 
 // graphql typescript
-import { recordFragment } from '@meepshop/types/gqls/admin';
+import { recordFragment as recordFragmentType } from '@meepshop/types/gqls/admin';
 
 // graphql import
 import { detailFragment } from './gqls/detail';
 
 // typescript definition
 interface PropsType {
-  orderHistoryRecord: recordFragment;
+  orderHistoryRecord: recordFragmentType;
   isOpened: boolean;
   setIsOpened: (isOpened: boolean) => void;
 }

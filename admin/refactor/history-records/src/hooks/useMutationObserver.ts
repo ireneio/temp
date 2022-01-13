@@ -7,7 +7,7 @@ import { refactorOrderHistoryRecordsFragment as refactorOrderHistoryRecordsFragm
 
 // typescript definition
 export interface OrderHistoryType {
-  records?: refactorOrderHistoryRecordsFragmentType[];
+  auditLogs?: refactorOrderHistoryRecordsFragmentType[];
   height: number;
 }
 
@@ -16,17 +16,17 @@ const config = { attributes: true, childList: true, subtree: true };
 
 export default (
   setProps: (value: OrderHistoryType) => void,
-  records?: refactorOrderHistoryRecordsFragmentType[],
+  auditLogs?: refactorOrderHistoryRecordsFragmentType[],
 ): React.RefObject<HTMLDivElement> => {
   const orderHistoryRecordsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observeCallback = (): void => {
-      if (orderHistoryRecordsRef.current && records) {
+      if (orderHistoryRecordsRef.current && auditLogs) {
         const { height } = getElementPosition(orderHistoryRecordsRef.current);
 
         setProps({
-          records,
+          auditLogs,
           height,
         });
       }
@@ -42,7 +42,7 @@ export default (
     return () => {
       obs.disconnect();
     };
-  }, [records, setProps]);
+  }, [auditLogs, setProps]);
 
   return orderHistoryRecordsRef;
 };

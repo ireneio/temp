@@ -26,18 +26,18 @@ interface PropsType {
 // definition
 const RefactorOrderHistoryRecords: NextPage<PropsType> = React.memo(
   ({ orderId }) => {
-    const [{ records }, setProps] = useCrossContextEvents<OrderHistoryType>(
+    const [{ auditLogs }, setProps] = useCrossContextEvents<OrderHistoryType>(
       `history-records/${orderId}`,
       { height: 0 },
     );
-    const orderHistoryRecordsRef = useMutationObserver(setProps, records);
+    const orderHistoryRecordsRef = useMutationObserver(setProps, auditLogs);
 
-    if (!records) return null;
+    if (!auditLogs) return null;
 
     return (
       <div ref={orderHistoryRecordsRef}>
         <OrderHistoryRecords
-          auditLogs={filter(refactorOrderHistoryRecordsFragment, records)}
+          auditLogs={filter(refactorOrderHistoryRecordsFragment, auditLogs)}
         />
       </div>
     );
