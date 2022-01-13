@@ -4,7 +4,7 @@
   "suggestion": "Suggested image size: each image does not exceed 50 million pixels, and the maximum length and width are 5000 * 5000px",
   "no-pictures": "Currently No Image",
   "add-pictures": "Add New Image",
-  "upload": "Upload",
+  "upload": "upload image",
   "save": "Save",
   "fail": "Failed",
   "confirm": "determine",

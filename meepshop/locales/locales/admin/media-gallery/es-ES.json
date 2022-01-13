@@ -4,7 +4,7 @@
   "suggestion": "Tamaño de imagen sugerido: cada imagen no supera los 50 millones de píxeles, y la longitud y el ancho máximos son 5000 * 5000px",
   "no-pictures": "Actualmente sin imagen",
   "add-pictures": "Añadir nueva imagen",
-  "upload": "Subir",
+  "upload": "cargar imagen",
   "save": "Salvar",
   "fail": "Fallida",
   "confirm": "determinar",

@@ -98,7 +98,7 @@
   "try-another-word": "Please try other keywords",
   "seo": {
     "back": "Back",
-    "select": "Select"
+    "ok": "Sure"
   },
   "create-page": {
     "error": "Add failed"

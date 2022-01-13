@@ -110,7 +110,10 @@ export default React.memo(
 
         <div className={styles.content}>
           <div className={styles.header}>
-            {t('title')}
+            <div className={styles.title}>
+              <p className={styles.titleTxt}>{t('title')}</p>
+              <p className={styles.suggestion}>{t('suggestion')}</p>
+            </div>
 
             <div className={styles.buttons}>
               {buttons}
@@ -150,14 +153,11 @@ export default React.memo(
                 type="primary"
                 size="large"
               >
-                {t('add-pictures')}
+                {t('upload')}
               </Button>
-
-              <div>{t('suggestion')}</div>
             </div>
           ) : (
             <>
-              <div className={styles.suggestion}>{t('suggestion')}</div>
               <div className={styles.body} onScroll={loadMoreImages}>
                 {images.map(({ node }) => (
                   <Card

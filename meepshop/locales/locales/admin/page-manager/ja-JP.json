@@ -98,7 +98,7 @@
   "try-another-word": "他のキーワードをお試しください",
   "seo": {
     "back": " 戻る",
-    "select": "選択してください"
+    "ok": "もちろん"
   },
   "create-page": {
     "error": "追加できませんでした"

@@ -98,7 +98,7 @@
   "try-another-word": "Pruebe con otras palabras clave",
   "seo": {
     "back": "atrás",
-    "select": "Seleccionar"
+    "ok": "Seguro"
   },
   "create-page": {
     "error": "Agregar falló"

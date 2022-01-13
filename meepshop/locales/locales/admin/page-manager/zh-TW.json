@@ -98,7 +98,7 @@
   "try-another-word": "請試試其他關鍵字",
   "seo": {
     "back": "返回",
-    "select": "選取"
+    "ok": "確定"
   },
   "create-page": {
     "error": "新增失敗"

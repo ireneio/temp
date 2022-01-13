@@ -64,7 +64,7 @@ const ImageInput = React.memo(
                     </Button>
                   }
                   value={value}
-                  buttonText={t('selected')}
+                  buttonText={t('ok')}
                   onChange={(node: ImageNodeType) => {
                     if (onChange) onChange(node);
                     setVisible(false);

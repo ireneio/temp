@@ -98,7 +98,7 @@
   "try-another-word": "Veuillez essayer d'autres mots clés",
   "seo": {
     "back": "Retour",
-    "select": "Sélectionner"
+    "ok": "Sûr"
   },
   "create-page": {
     "error": "L'ajout a échoué"

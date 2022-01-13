@@ -57,7 +57,7 @@ const UploadImage = React.memo(
                       {t('seo.back')}
                     </Button>
                   }
-                  buttonText={t('seo.select')}
+                  buttonText={t('seo.ok')}
                   value={findImage}
                   onChange={(node: GalleryPropsType['value']) => {
                     if (onChange && !Array.isArray(node))
