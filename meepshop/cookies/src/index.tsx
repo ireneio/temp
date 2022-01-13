@@ -1,9 +1,10 @@
 // typescript import
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
-import { AppContext, AppProps } from 'next/app';
+import { AppProps } from 'next/app';
+import { NextPageContext } from 'next';
 import { CookieAttributes } from 'js-cookie';
 
-import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
+import { NextAppType } from '@meepshop/types';
 import { I18nPropsType, languageType } from '@meepshop/locales';
 
 import { getCookiesType } from './hooks/useCookies';
@@ -35,22 +36,26 @@ export interface CookiesType {
 
 export type getCookiesArgumentType = Parameters<getCookiesType>[0];
 
-interface CustomCtx extends AppContext {
-  ctx: AppContext['ctx'] & {
-    client: ApolloClient<NormalizedCacheObject>;
-    req: {
-      i18n: I18nPropsType['i18n'];
-      language: I18nPropsType['i18n']['language'];
-      cookies: CookiesType['cookies'];
-    };
-    res: {
-      cookie: CookiesType['setCookie'];
-    };
+export interface CustomCtx extends NextPageContext {
+  client: ApolloClient<NormalizedCacheObject>;
+  req: NextPageContext['req'] & {
+    i18n: I18nPropsType['i18n'];
+    language: I18nPropsType['i18n']['language'];
+    cookies: CookiesType['cookies'];
+  };
+  res: NextPageContext['res'] & {
+    cookie: CookiesType['setCookie'];
   };
 }
 
-interface WithCookiesPropsType extends AppProps {
+interface PropsType {
   initialCookies: CookiesType['cookies'];
+}
+
+interface ReturnType {
+  appWithCookies: (App: NextAppType) => NextAppType;
+  getServerSideCookiesContextProps: (ctx: CustomCtx) => Promise<PropsType>;
+  getClientSideCookiesContextProps: (ctx: CustomCtx) => Promise<PropsType>;
 }
 
 // definition
@@ -59,68 +64,62 @@ const CookiesContext = React.createContext<CookiesType>({
   setCookie: emptyFunction,
 });
 
-export const withCookies = (getCookies: getCookiesType) => (
-  App: NextAppType,
-): NextAppType => {
-  const WithCookies = ({
-    initialCookies,
-    ...props
-  }: WithCookiesPropsType): React.ReactElement => {
-    const { cookies, setCookie } = useCookies(initialCookies, getCookies);
+export const withCookies = (getCookies: getCookiesType): ReturnType => ({
+  appWithCookies: App => {
+    const Component = ({
+      initialCookies,
+      ...props
+    }: PropsType & AppProps): React.ReactElement => {
+      const { cookies, setCookie } = useCookies(initialCookies, getCookies);
 
-    return (
-      <CookiesContext.Provider
-        value={{
-          cookies,
-          setCookie,
-        }}
-      >
-        <App {...props} />
-      </CookiesContext.Provider>
-    );
-  };
+      return (
+        <CookiesContext.Provider
+          value={{
+            cookies,
+            setCookie,
+          }}
+        >
+          <App {...props} />
+        </CookiesContext.Provider>
+      );
+    };
 
-  WithCookies.getInitialProps = async (
-    ctx: CustomCtx,
-  ): Promise<NextAppGetInitialPropsType<WithCookiesPropsType>> => {
-    const {
-      ctx: { client, res, req, pathname },
-    } = ctx;
-    const initialCookies = await getCookies(
-      typeof window === 'undefined'
-        ? {
-            pathname,
-            client,
-            i18n: req.i18n,
-            language: req.language,
-            cookie: {
-              get: (key: string) => req.cookies[key],
-              set: (
-                key: string,
-                value: string,
-                options?: CookieAttributesType,
-              ) => {
-                req.cookies[key] = value;
-                res.cookie(key, value, options);
-              },
-            },
-          }
-        : {
-            pathname,
-            client,
-            i18n: i18n as I18nPropsType['i18n'],
-            language: i18n.language as languageType,
-            cookie,
-          },
-    );
+    Component.getInitialProps = App.getInitialProps;
+
+    return Component;
+  },
+  getServerSideCookiesContextProps: async ctx => {
+    const { client, res, req, pathname } = ctx;
 
     return {
-      ...(await App.getInitialProps(ctx)),
-      initialCookies,
+      initialCookies: await getCookies({
+        pathname,
+        client,
+        i18n: req.i18n,
+        language: req.language,
+        cookie: {
+          get: (key: string) => req.cookies[key],
+          set: (key: string, value: string, options?: CookieAttributesType) => {
+            req.cookies[key] = value;
+            res.cookie(key, value, options);
+          },
+        },
+      }),
     };
-  };
+  },
+  getClientSideCookiesContextProps: async ctx => {
+    const { client, pathname } = ctx;
 
-  return WithCookies;
-};
+    return {
+      initialCookies: await getCookies({
+        pathname,
+        client,
+        i18n: i18n as I18nPropsType['i18n'],
+        language: i18n.language as languageType,
+        cookie,
+      }),
+    };
+  },
+});
 
 export default CookiesContext;

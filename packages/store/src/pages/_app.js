@@ -26,7 +26,11 @@ import { log } from '@meepshop/logger/lib/gqls/log';
 import { CloseView } from 'components';
 import Router from 'next/router';
 import * as Utils from 'utils';
-import withCookies from 'utils/withCookies';
+import {
+  appWithCookies,
+  getServerSideCookiesContextProps,
+  getClientSideCookiesContextProps,
+} from 'utils/withCookies';
 import usePage from 'hooks/usePage';
 import useExpiringPoints from 'hooks/useExpiringPoints';
 
@@ -146,6 +150,9 @@ class App extends NextApp {
     }
 
     return {
+      ...(typeof window === 'undefined'
+        ? await getServerSideCookiesContextProps(ctx)
+        : await getClientSideCookiesContextProps(ctx)),
       pageProps: {
         ...pageProps,
         namespacesRequired: [
@@ -340,7 +347,7 @@ class App extends NextApp {
 export default appWithTranslation(
   withDomain(
     withApollo(
-      withCookies(withHook(usePage)(withHook(useExpiringPoints)(App))),
+      appWithCookies(withHook(usePage)(withHook(useExpiringPoints)(App))),
     ),
   ),
 );

@@ -19,7 +19,11 @@ const IGNORE_PATHNAME = [
   '/reset-password/[token]',
 ];
 
-export default withCookies(
+export const {
+  appWithCookies,
+  getServerSideCookiesContextProps,
+  getClientSideCookiesContextProps,
+} = withCookies(
   async ({
     pathname,
     client,

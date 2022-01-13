@@ -2,6 +2,7 @@
 import { AppContext, AppInitialProps } from 'next/app';
 
 import { CustomCtx } from '@meepshop/utils/lib/handler';
+import { CustomCtx as CookiesCustomCtx } from '@meepshop/cookies';
 
 // import
 import React from 'react';
@@ -21,11 +22,15 @@ import withApollo from '@admin/apollo';
 import AdTrackProvider from '@admin/ad-track';
 import CurrencyProvider from '@admin/currency';
 
-import withCookies from '../utils/withCookies';
+import {
+  appWithCookies,
+  getServerSideCookiesContextProps,
+  getClientSideCookiesContextProps,
+} from '../utils/withCookies';
 
 // tyepscript definition
 interface CustomAppContext extends AppContext {
-  ctx: AppContext['ctx'] & CustomCtx;
+  ctx: AppContext['ctx'] & CustomCtx & CookiesCustomCtx;
 }
 
 // definition
@@ -43,6 +48,9 @@ class App extends NextApp<AppInitialProps> {
     } = (await Component.getInitialProps?.(ctx)) || {};
 
     return {
+      ...(typeof window === 'undefined'
+        ? await getServerSideCookiesContextProps(ctx)
+        : await getClientSideCookiesContextProps(ctx)),
       pageProps: {
         ...pageProps,
         namespacesRequired: [
@@ -96,4 +104,4 @@ class App extends NextApp<AppInitialProps> {
   }
 }
 
-export default appWithTranslation(withDomain(withApollo(withCookies(App))));
+export default appWithTranslation(withDomain(withApollo(appWithCookies(App))));
