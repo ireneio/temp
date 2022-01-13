@@ -4,11 +4,11 @@
   "description": "Use to manage react hooks",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.121",
+  "version": "0.80.122",
   "main": "./index.js",
   "types": "./src/types.ts",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.121",
+    "@meepshop/apollo": "^0.80.122",
     "@meepshop/context": "^0.80.119",
     "@meepshop/logger": "^0.80.119",
     "@meepshop/utils": "^0.80.119",
