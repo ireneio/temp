@@ -7,7 +7,7 @@ import React from 'react';
 import NextApp from 'next/app';
 
 import { appWithTranslation } from '@meepshop/locales';
-import { withDomain } from '@meepshop/link';
+import { appWithDomain } from '@meepshop/link';
 
 // definition
 class SSR extends NextApp {
@@ -22,4 +22,4 @@ class SSR extends NextApp {
   }
 }
 
-export default appWithTranslation(withDomain(SSR));
+export default appWithTranslation(appWithDomain(SSR));

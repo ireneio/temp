@@ -15,7 +15,11 @@ import '@admin/utils/lib/styles';
 import { appWithTranslation } from '@meepshop/locales';
 import { EventsProvider } from '@meepshop/context/lib/Events';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
-import { withDomain } from '@meepshop/link';
+import {
+  appWithDomain,
+  getServerSideDomainContextProps,
+  getClientSideDomainContextProps,
+} from '@meepshop/link';
 import handler from '@meepshop/utils/lib/handler';
 import Switch from '@meepshop/switch';
 import withApollo from '@admin/apollo';
@@ -40,6 +44,7 @@ class App extends NextApp<AppInitialProps> {
   public static getInitialProps = async ({
     Component,
     ctx,
+    router,
   }: CustomAppContext): Promise<AppInitialProps> => {
     await handler(ctx);
 
@@ -48,6 +53,9 @@ class App extends NextApp<AppInitialProps> {
     } = (await Component.getInitialProps?.(ctx)) || {};
 
     return {
+      ...(typeof window === 'undefined'
+        ? getServerSideDomainContextProps(ctx, router)
+        : getClientSideDomainContextProps()),
       ...(typeof window === 'undefined'
         ? await getServerSideCookiesContextProps(ctx)
         : await getClientSideCookiesContextProps(ctx)),
@@ -104,4 +112,6 @@ class App extends NextApp<AppInitialProps> {
   }
 }
 
-export default appWithTranslation(withDomain(withApollo(appWithCookies(App))));
+export default appWithTranslation(
+  appWithDomain(withApollo(appWithCookies(App))),
+);

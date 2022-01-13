@@ -1,44 +1,33 @@
 // typescript import
 import { AppContext, AppProps } from 'next/app';
+import { NextPageContext } from 'next';
 
-import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
+import { NextAppType } from '@meepshop/types';
 
 // import
 import React from 'react';
 
 // typescript definition
-interface CustomCtx extends AppContext {
-  ctx: AppContext['ctx'] & {
-    req: {
-      headers: {
-        host: string;
-      };
-    };
-  };
-}
-
-interface PropsType extends AppProps {
+interface PropsType {
   domain: string | null;
-  serverRouter: CustomCtx['router'] | null;
+  serverRouter: AppContext['router'] | null;
 }
 
 // definition
-const DomainContext = React.createContext<
-  Pick<PropsType, 'domain' | 'serverRouter'>
->({
+const DomainContext = React.createContext<PropsType>({
   domain: null,
   serverRouter: null,
 });
 
-export const withDomain = (App: NextAppType): NextAppType => {
-  const WithDomain = ({
+export const appWithDomain = (App: NextAppType): NextAppType => {
+  const Component = ({
     domain,
     serverRouter,
     ...props
-  }: PropsType): React.ReactElement => (
+  }: PropsType & AppProps): React.ReactElement => (
     <DomainContext.Provider
       value={{
-        domain: typeof window !== 'undefined' ? window.location.host : domain,
+        domain,
         serverRouter,
       }}
     >
@@ -46,15 +35,22 @@ export const withDomain = (App: NextAppType): NextAppType => {
     </DomainContext.Provider>
   );
 
-  WithDomain.getInitialProps = async (
-    ctx: CustomCtx,
-  ): Promise<NextAppGetInitialPropsType<PropsType>> => ({
-    ...(await App.getInitialProps(ctx)),
-    domain: ctx.ctx.req?.headers.host,
-    serverRouter: typeof window === 'undefined' ? ctx.router : null,
-  });
+  Component.getInitialProps = App.getInitialProps;
 
-  return WithDomain;
+  return Component;
 };
+
+export const getServerSideDomainContextProps = (
+  ctx: NextPageContext,
+  router: AppContext['router'],
+): PropsType => ({
+  domain: ctx.req?.headers.host || null,
+  serverRouter: router,
+});
+
+export const getClientSideDomainContextProps = (): PropsType => ({
+  domain: window.location.host,
+  serverRouter: null,
+});
 
 export default DomainContext;

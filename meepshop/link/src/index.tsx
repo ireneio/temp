@@ -14,7 +14,12 @@ interface PropsType extends Omit<LinkProps, 'as' | 'href'> {
 }
 
 // definition
-export { default as DomainContext, withDomain } from './Domain';
+export {
+  default as DomainContext,
+  appWithDomain,
+  getServerSideDomainContextProps,
+  getClientSideDomainContextProps,
+} from './Domain';
 export { default as useRouter } from './hooks/useRouter';
 
 export default React.memo(

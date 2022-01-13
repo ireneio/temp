@@ -14,7 +14,11 @@ import { RoleProvider } from '@meepshop/context/lib/Role';
 import { SensorProvider } from '@meepshop/context/lib/Sensor';
 import { CartProvider } from '@meepshop/cart';
 import { FormDataProvider } from '@meepshop/form-data';
-import { withDomain } from '@meepshop/link';
+import {
+  appWithDomain,
+  getServerSideDomainContextProps,
+  getClientSideDomainContextProps,
+} from '@meepshop/link';
 import withHook from '@store/utils/lib/withHook';
 import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';
@@ -51,7 +55,7 @@ Router.onRouteChangeComplete = () => {
 };
 
 class App extends NextApp {
-  static async getInitialProps({ Component, ctx }) {
+  static async getInitialProps({ Component, ctx, router }) {
     const { req, res } = ctx;
     let pageProps = {};
     const { XMeepshopDomain, userAgent } = Utils.getReqArgs(req);
@@ -150,6 +154,9 @@ class App extends NextApp {
     }
 
     return {
+      ...(typeof window === 'undefined'
+        ? getServerSideDomainContextProps(ctx, router)
+        : getClientSideDomainContextProps()),
       ...(typeof window === 'undefined'
         ? await getServerSideCookiesContextProps(ctx)
         : await getClientSideCookiesContextProps(ctx)),
@@ -345,7 +352,7 @@ class App extends NextApp {
 }
 
 export default appWithTranslation(
-  withDomain(
+  appWithDomain(
     withApollo(
       appWithCookies(withHook(usePage)(withHook(useExpiringPoints)(App))),
     ),
