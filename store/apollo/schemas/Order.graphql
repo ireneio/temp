@@ -5,7 +5,4 @@ extend type OrderApply {
 
 extend type Order {
   applications: [OrderApply!]!
-  isAvailableForPayLater: Boolean!
-  isAvailableForOrderApply: Boolean!
-  isOrderApplied: Boolean!
 }
