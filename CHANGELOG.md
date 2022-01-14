@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.123 (2022-01-14)
+
+#### :bug: Bug Fix
+
+- Other
+  - [#2061](https://github.com/meepshop/meep-lerna/pull/2061) 【BUG】前台 - 進到頁面會先 loading 空白 ([@HsuTing](https://github.com/HsuTing))
+  - [#2060](https://github.com/meepshop/meep-lerna/pull/2060) (@meepshop/apollo) Remove client side schema ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#2053](https://github.com/meepshop/meep-lerna/pull/2053) 【BUG】前台 - 選選樂 - 點選可訂購時通知我，「您尚未登入會員，是否轉跳至會員登入頁面？」彈窗文字跑版 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.122 (2022-01-13)
 
 #### :rocket: New Feature
