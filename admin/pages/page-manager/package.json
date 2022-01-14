@@ -4,7 +4,7 @@
   "description": "admin page manager page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.122",
+  "version": "0.80.123",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -13,7 +13,7 @@
     "@admin/message": "^0.80.119",
     "@admin/tooltip": "^0.80.119",
     "@admin/utils": "^0.80.119",
-    "@admin/wrapper": "^0.80.122",
+    "@admin/wrapper": "^0.80.123",
     "@meepshop/icons": "^0.80.119",
     "@meepshop/images": "^0.80.119",
     "@meepshop/link": "^0.80.122",
