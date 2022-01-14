@@ -59,10 +59,7 @@ const UnsubscribeEmail: NextPage<PropsType> = React.memo(({ userId, type }) => {
   );
 });
 
-UnsubscribeEmail.getInitialProps = async ({ query }) => {
-  const userId = query.userid || query.userId;
-  const type = query.from || query.type;
-
+UnsubscribeEmail.getInitialProps = async ({ query: { userId, type } }) => {
   // FIXME: should use get getServerSideProps return notFound
   if (typeof userId !== 'string' || typeof type !== 'string')
     throw new Error('[FIXME] type/userId is undefined');
