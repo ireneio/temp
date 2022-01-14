@@ -111,7 +111,10 @@ export default class Product extends React.PureComponent {
 
     return (
       <div style={styles.root}>
-        <Style scopeSelector=".ant-modal" rules={styles.modalStyle(colors)} />
+        <Style
+          scopeSelector=".activity-group"
+          rules={styles.modalStyle(colors)}
+        />
 
         <Image
           image={coverImage || { scaledSrc: placeholderThumbnail }}
