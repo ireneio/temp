@@ -1,5 +1,6 @@
 // import
 import React, { useContext } from 'react';
+import { filter } from 'graphql-anywhere';
 import { Table } from 'antd';
 import transformColor from 'color';
 
@@ -8,27 +9,44 @@ import { Colors as ColorsContext } from '@meepshop/context';
 import useProductsColumns from './hooks/useProductsColumns';
 import styles from './styles/products.less';
 
+// graphql typescript
+import {
+  productsInPreviewerUserFragment as productsInPreviewerUserFragmentType,
+  productsInPreviewerLineItemFragment as productsInPreviewerLineItemFragmentType,
+  useProductsColumnsInPreviewerLineItemFragment as useProductsColumnsInPreviewerLineItemFragmentType,
+} from '@meepshop/types/gqls/store';
+
 // graphql import
-import { useProductsColumnsInPreviewerFragment as useProductsColumnsInPreviewerFragmentType } from '@meepshop/types/gqls/store';
+import {
+  useProductsColumnsInPreviewerUserFragment,
+  useProductsColumnsInPreviewerLineItemFragment,
+} from './gqls/useProductsColumns';
 
 // typescript definition
 interface PropsType {
-  products: useProductsColumnsInPreviewerFragmentType[];
+  viewer: productsInPreviewerUserFragmentType | null;
+  products: productsInPreviewerLineItemFragmentType[];
 }
 
 // definition
-export default React.memo(({ products }: PropsType) => {
+export default React.memo(({ viewer, products }: PropsType) => {
   const colors = useContext(ColorsContext);
-  const { columns, styles: columnStyles } = useProductsColumns();
+  const { columns, styles: columnStyles } = useProductsColumns(
+    filter(useProductsColumnsInPreviewerUserFragment, viewer),
+  );
 
   return (
     <>
-      <Table<useProductsColumnsInPreviewerFragmentType>
+      <Table<useProductsColumnsInPreviewerLineItemFragmentType>
         className={styles.root}
         columns={columns}
-        dataSource={products}
+        dataSource={filter(
+          useProductsColumnsInPreviewerLineItemFragment,
+          products,
+        )}
         showHeader={false}
         pagination={false}
+        rowKey="id"
       />
 
       <style

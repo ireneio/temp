@@ -2,12 +2,23 @@
 import { gql } from '@apollo/client';
 
 // graphql import
+import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
+
 import { priceInPreviewerFragment } from './price';
-import { useProductsColumnsInPreviewerFragment } from './useProductsColumns';
+import { productsInPreviewerLineItemFragment } from './products';
 
 // definition
-export const getComputedCart = gql`
-  query getComputedCart(
+export const useComputedCartInPreviewerFragment = gql`
+  fragment useComputedCartInPreviewerFragment on User {
+    id
+    ...useCartFragment
+  }
+
+  ${useCartFragment}
+`;
+
+export const computedCartInPreviewer = gql`
+  query computedCartInPreviewer(
     $cartItems: [CartItemInput!]!
     $cartProducts: [CartProductsInput!]!
   ) {
@@ -15,10 +26,11 @@ export const getComputedCart = gql`
       ... on ComputedCart {
         computedLineItems {
           id
-          ...useProductsColumnsInPreviewerFragment
+          ...productsInPreviewerLineItemFragment
         }
         ...priceInPreviewerFragment
       }
+
       ... on UnhandledError {
         message
       }
@@ -26,5 +38,5 @@ export const getComputedCart = gql`
   }
 
   ${priceInPreviewerFragment}
-  ${useProductsColumnsInPreviewerFragment}
+  ${productsInPreviewerLineItemFragment}
 `;

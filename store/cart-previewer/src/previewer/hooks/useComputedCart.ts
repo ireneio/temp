@@ -2,39 +2,45 @@
 import { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 
+import useMapCartItem from './useMapCartItem';
+
 // graphql typescript
 import {
-  getComputedCart as getComputedCartType,
-  getComputedCartVariables as getComputedCartVariablesType,
-  getComputedCart_computedCart_ComputedCart as getComputedCartComputedCartComputedCartType,
-  getComputedCart_computedCart_ComputedCart_computedLineItems as getComputedCartComputedCartComputedCartComputedLineItemsType,
+  computedCartInPreviewer as computedCartInPreviewerType,
+  computedCartInPreviewerVariables as computedCartInPreviewerVariablesType,
+  computedCartInPreviewer_computedCart_ComputedCart as computedCartInPreviewerComputedCartComputedCartType,
+  computedCartInPreviewer_computedCart_ComputedCart_computedLineItems as computedCartInPreviewerComputedCartComputedCartComputedLineItemsType,
+  useComputedCartInPreviewerFragment as useComputedCartInPreviewerFragmentType,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { getComputedCart } from '../gqls/useComputedCart';
+import { computedCartInPreviewer } from '../gqls/useComputedCart';
 
 // typescript definition
 interface ComputedProductsType
-  extends getComputedCartComputedCartComputedCartType {
-  computedLineItems: getComputedCartComputedCartComputedCartComputedLineItemsType[];
+  extends computedCartInPreviewerComputedCartComputedCartType {
+  computedLineItems: computedCartInPreviewerComputedCartComputedCartComputedLineItemsType[];
 }
 
 // definition
 export default (
-  cartItems: getComputedCartVariablesType['cartItems'] | null,
-  cartProducts: getComputedCartVariablesType['cartProducts'] | null,
+  // FIXME: using useCart and useCartFragment in T9918
+  _viewer: useComputedCartInPreviewerFragmentType | null,
 ): ComputedProductsType | null => {
-  const { data } = useQuery<getComputedCartType, getComputedCartVariablesType>(
-    getComputedCart,
-    {
-      fetchPolicy: 'cache-and-network',
-      variables: {
-        cartItems: cartItems || [],
-        cartProducts: cartProducts || [],
-      },
-      skip: !cartItems || !cartProducts,
+  const mapCartItem = useMapCartItem();
+  const cartItems = mapCartItem?.cartItems || null;
+  const cartProducts = mapCartItem?.cartProducts || null;
+  const { data } = useQuery<
+    computedCartInPreviewerType,
+    computedCartInPreviewerVariablesType
+  >(computedCartInPreviewer, {
+    fetchPolicy: 'cache-and-network',
+    variables: {
+      cartItems: cartItems || [],
+      cartProducts: cartProducts || [],
     },
-  );
+    skip: !cartItems || !cartProducts,
+  });
 
   return useMemo(() => {
     if (!data || data.computedCart.__typename !== 'ComputedCart') return null;
@@ -44,7 +50,7 @@ export default (
       computedLineItems: (data.computedCart?.computedLineItems?.filter(
         Boolean,
       ) ||
-        []) as getComputedCartComputedCartComputedCartComputedLineItemsType[],
+        []) as computedCartInPreviewerComputedCartComputedCartComputedLineItemsType[],
     };
   }, [data]);
 };

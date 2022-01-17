@@ -14,28 +14,33 @@ import { useTranslation } from '@meepshop/locales';
 import Empty from './Empty';
 import Products from './Products';
 import Price from './Price';
-import useMapCartItem from './hooks/useMapCartItem';
 import useComputedCart from './hooks/useComputedCart';
 import styles from './styles/index.less';
 
+// graphql typescript
+import { previewerUserFragment as previewerUserFragmentType } from '@meepshop/types/gqls/store';
+
 // graphql import
-import { useProductsColumnsInPreviewerFragment } from './gqls/useProductsColumns';
+import { useComputedCartInPreviewerFragment } from './gqls/useComputedCart';
+import {
+  productsInPreviewerUserFragment,
+  productsInPreviewerLineItemFragment,
+} from './gqls/products';
 import { priceInPreviewerFragment } from './gqls/price';
 
 // typescript definition
-interface PropsType {
+export interface PropsType {
+  viewer: previewerUserFragmentType | null;
   onClose: () => void;
 }
 
 // definition
-export default React.memo(({ onClose }: PropsType) => {
+export default React.memo(({ viewer, onClose }: PropsType) => {
   const colors = useContext(ColorsContext);
   const { c } = useContext(CurrencyContext);
   const { t } = useTranslation('cart-previewer');
-  const mapCartItem = useMapCartItem();
   const computedCart = useComputedCart(
-    mapCartItem?.cartItems || null,
-    mapCartItem?.cartProducts || null,
+    filter(useComputedCartInPreviewerFragment, viewer),
   );
   const productsRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -87,8 +92,9 @@ export default React.memo(({ onClose }: PropsType) => {
           <>
             <div className={styles.products} ref={productsRef}>
               <Products
+                viewer={filter(productsInPreviewerUserFragment, viewer)}
                 products={filter(
-                  useProductsColumnsInPreviewerFragment,
+                  productsInPreviewerLineItemFragment,
                   computedCart.computedLineItems,
                 )}
               />

@@ -23,16 +23,22 @@ import useRemoveProduct from './useRemoveProduct';
 import styles from '../styles/useProductsColumns.less';
 
 // graphql typescript
-import { useProductsColumnsInPreviewerFragment as useProductsColumnsInPreviewerFragmentType } from '@meepshop/types/gqls/store';
+import {
+  useProductsColumnsInPreviewerUserFragment as useProductsColumnsInPreviewerUserFragmentType,
+  useProductsColumnsInPreviewerLineItemFragment as useProductsColumnsInPreviewerLineItemFragmentType,
+} from '@meepshop/types/gqls/store';
 
-// import graphql
+// typescript definition
 interface ReturnType {
-  columns: ColumnProps<useProductsColumnsInPreviewerFragmentType>[];
+  columns: ColumnProps<useProductsColumnsInPreviewerLineItemFragmentType>[];
   styles: string;
 }
 
 // definition
-export default (): ReturnType => {
+export default (
+  // FIXME: using useCart and useCartFragment in T9918
+  _viewer: useProductsColumnsInPreviewerUserFragmentType | null,
+): ReturnType => {
   const { t } = useTranslation('cart-previewer');
   const getLanguage = useGetLanguage();
   const { c } = useContext(CurrencyContext);
@@ -46,7 +52,7 @@ export default (): ReturnType => {
           dataIndex: ['coverImage'],
           width: 84,
           render: (
-            image: useProductsColumnsInPreviewerFragmentType['coverImage'],
+            image: useProductsColumnsInPreviewerLineItemFragmentType['coverImage'],
             { productId, type, status },
           ) => {
             const disabled =
@@ -76,7 +82,7 @@ export default (): ReturnType => {
           dataIndex: ['title'],
           width: '100%',
           render: (
-            title: useProductsColumnsInPreviewerFragmentType['title'],
+            title: useProductsColumnsInPreviewerLineItemFragmentType['title'],
             { productId, specs, discountAllocations, type, status, ...product },
           ) => {
             const retailPrice = product.unitPrice || 0;
@@ -160,7 +166,10 @@ export default (): ReturnType => {
         {
           dataIndex: ['cartId'],
           width: 20,
-          render: (cartId, { type }) =>
+          render: (
+            cartId: useProductsColumnsInPreviewerLineItemFragmentType['cartId'],
+            { type },
+          ) =>
             type !== 'PRODUCT' ? null : (
               <CloseOutlined
                 className={styles.delete}

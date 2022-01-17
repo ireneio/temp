@@ -474,7 +474,10 @@ export default class MenuItem extends React.PureComponent {
                 (level === 1 &&
                   (isModule || ['fixedTop', 'secondTop'].includes(menuType))))
             }
-            render={children => <CartPreviewer>{children}</CartPreviewer>}
+            // FIXME: using viewer in T9918
+            render={children => (
+              <CartPreviewer viewer={null}>{children}</CartPreviewer>
+            )}
           >
             <AntdMenuItem {...menuItemProps} />
           </Switch>
