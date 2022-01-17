@@ -7,7 +7,11 @@ import React from 'react';
 import NextApp from 'next/app';
 
 import { appWithTranslation } from '@meepshop/locales';
-import { appWithDomain, getServerSideDomainContextProps } from '@meepshop/link';
+import {
+  appWithDomain,
+  getServerSideDomainContextProps,
+  getClientSideDomainContextProps,
+} from '@meepshop/link';
 
 // definition
 class SSR extends NextApp {
@@ -15,7 +19,9 @@ class SSR extends NextApp {
     ctx,
     router,
   }: AppContext): Promise<AppInitialProps> => ({
-    ...getServerSideDomainContextProps(ctx, router),
+    ...(typeof window === 'undefined'
+      ? getServerSideDomainContextProps(ctx, router)
+      : getClientSideDomainContextProps()),
     pageProps: { namespacesRequired: ['common'] },
   });
 

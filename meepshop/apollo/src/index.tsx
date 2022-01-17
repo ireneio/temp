@@ -95,6 +95,7 @@ export const buildWithApollo = (
               })(),
           };
     const client = initApollo({ ...config, loggerInfo }, undefined, ctx);
+    const ssrProps = await SSR.getInitialProps(ctx);
     let appProps: Omit<PropsType, 'Component' | 'router'> = {
       pageProps: { namespacesRequired: ['apollo'] },
       loggerInfo,
@@ -105,15 +106,12 @@ export const buildWithApollo = (
     try {
       appProps = await App.getInitialProps(ctx);
     } catch (e) {
-      return { ...appProps, error: e };
+      return { ...ssrProps, ...appProps, error: e };
     }
 
     if (res?.writableEnded) return appProps;
-
     if (typeof window === 'undefined')
       try {
-        const ssrProps = await SSR.getInitialProps(ctx);
-
         await getDataFromTree(
           <ApolloProvider client={client}>
             <SSR {...ssrProps}>
