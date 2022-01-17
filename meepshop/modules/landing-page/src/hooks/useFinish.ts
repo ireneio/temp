@@ -33,7 +33,7 @@ import {
 // graphql import
 import { useLinkFragment } from '@meepshop/hooks/lib/gqls/useLink';
 
-import { useCreateOrderFragment } from '../gqls/useCreateOrder';
+import { useCreateOrderInLandingPageFragment } from '../gqls/useCreateOrder';
 import { useFinishLandingUserFragment } from '../gqls/useFinish';
 
 // graphql definition
@@ -100,7 +100,7 @@ export default ({
   onFinish: (values: ValuesType) => void;
 } => {
   const [mutation, { loading }] = useCreateOrder(
-    filter(useCreateOrderFragment, viewer),
+    filter(useCreateOrderInLandingPageFragment, viewer),
   );
   const { t } = useTranslation('landing-page');
   const router = useRouter();

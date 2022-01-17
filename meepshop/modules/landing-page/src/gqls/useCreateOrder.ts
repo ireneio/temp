@@ -6,8 +6,8 @@ import { formDataFragment } from '@meepshop/form-data/gqls';
 import { createOrderFragment } from '@meepshop/utils/lib/gqls/createOrder';
 
 // defintion
-export const useCreateOrderFragment = gql`
-  fragment useCreateOrderFragment on User {
+export const useCreateOrderInLandingPageFragment = gql`
+  fragment useCreateOrderInLandingPageFragment on User {
     id
     role
   }

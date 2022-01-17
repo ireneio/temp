@@ -4,7 +4,7 @@ import { gql } from '@apollo/client';
 // graphql import
 import { useLinkFragment } from '@meepshop/hooks/lib/gqls/useLink';
 
-import { useCreateOrderFragment } from './useCreateOrder';
+import { useCreateOrderInLandingPageFragment } from './useCreateOrder';
 
 // definition
 export const useFinishLandingUserFragment = gql`
@@ -34,12 +34,12 @@ export const useFinishLandingPageModuleFragment = gql`
       id
       email
       ...useFinishLandingUserFragment
-      ...useCreateOrderFragment
+      ...useCreateOrderInLandingPageFragment
     }
   }
 
   ${useFinishLandingUserFragment}
-  ${useCreateOrderFragment}
+  ${useCreateOrderInLandingPageFragment}
   ${useLinkFragment}
 `;
 

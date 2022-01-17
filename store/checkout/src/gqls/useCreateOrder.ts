@@ -5,8 +5,8 @@ import { gql } from '@apollo/client';
 import { formDataFragment } from '@meepshop/form-data/gqls';
 
 // definition
-export const useCreateUserFragment = gql`
-  fragment useCreateUserFragment on User {
+export const useCreateOrderFragment = gql`
+  fragment useCreateOrderFragment on User {
     id
     hasGmoCreditCard
     orders(first: $first) {
@@ -47,7 +47,7 @@ export const updateOrders = gql`
   query updateOrders($first: PositiveInt!) {
     viewer {
       id
-      ...useCreateUserFragment
+      ...useCreateOrderFragment
     }
 
     getCartList {
@@ -57,7 +57,7 @@ export const updateOrders = gql`
     }
   }
 
-  ${useCreateUserFragment}
+  ${useCreateOrderFragment}
 `;
 
 export const createOrder = gql`

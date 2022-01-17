@@ -16,7 +16,7 @@ import {
   landingPageAccessTokenVariables,
   createOrderInLandingPage as createOrderInLandingPageType,
   createOrderInLandingPageVariables,
-  useCreateOrderFragment as useCreateOrderFragmentType,
+  useCreateOrderInLandingPageFragment as useCreateOrderInLandingPageFragmentType,
 } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
@@ -33,7 +33,7 @@ type createOrderType = MutationTuple<
 
 // definition
 export default (
-  viewer: useCreateOrderFragmentType | null,
+  viewer: useCreateOrderInLandingPageFragmentType | null,
 ): [createOrderType[0], Pick<createOrderType[1], 'loading' | 'client'>] => {
   const firstPurchaseClient = useMemo(
     () =>

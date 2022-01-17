@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 
 // graphql import
 import { useUpdateUserFragment } from './useUpdateUser';
-import { useCreateUserFragment } from './useCreateOrder';
+import { useCreateOrderFragment } from './useCreateOrder';
 
 // definition
 export const getCheckoutInfo = gql`
@@ -38,10 +38,10 @@ export const getCheckoutInfo = gql`
         }
       }
       ...useUpdateUserFragment
-      ...useCreateUserFragment
+      ...useCreateOrderFragment
     }
   }
 
   ${useUpdateUserFragment}
-  ${useCreateUserFragment}
+  ${useCreateOrderFragment}
 `;

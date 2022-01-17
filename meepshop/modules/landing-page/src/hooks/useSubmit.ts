@@ -29,7 +29,7 @@ import {
 // graphql import
 import { useLinkFragment } from '@meepshop/hooks/lib/gqls/useLink';
 
-import { useCreateOrderFragment } from '../gqls/useCreateOrder';
+import { useCreateOrderInLandingPageFragment } from '../gqls/useCreateOrder';
 
 // graphql definition
 interface SubmitArguType {
@@ -52,7 +52,7 @@ export default ({
   form,
 }: SubmitArguType): SubmitReturnType => {
   const [mutation, { loading }] = useCreateOrder(
-    filter(useCreateOrderFragment, viewer),
+    filter(useCreateOrderInLandingPageFragment, viewer),
   );
   const { t } = useTranslation('landing-page');
   const router = useRouter();

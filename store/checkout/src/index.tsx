@@ -20,7 +20,7 @@ import {
 
 // graphql import
 import { getCheckoutInfo } from './gqls';
-import { useCreateUserFragment } from './gqls/useCreateOrder';
+import { useCreateOrderFragment } from './gqls/useCreateOrder';
 
 // typescript definition
 interface PropsType {
@@ -46,7 +46,7 @@ export default React.memo(({ children }: PropsType) => {
     },
   );
   const viewer = data?.viewer || null;
-  const createOrder = useCreateOrder(filter(useCreateUserFragment, viewer));
+  const createOrder = useCreateOrder(filter(useCreateOrderFragment, viewer));
   const updateUser = useUpdateUser(viewer);
 
   if (!viewer) return <Spin indicator={<LoadingOutlined spin />} />;

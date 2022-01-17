@@ -9,7 +9,7 @@ import { useMutation } from '@apollo/client';
 import {
   createOrder as createOrderType,
   createOrderVariables as createOrderVariablesType,
-  useCreateUserFragment as useCreateUserFragmentType,
+  useCreateOrderFragment as useCreateOrderFragmentType,
   updateOrders as updateOrdersType,
 } from '@meepshop/types/gqls/store';
 
@@ -18,7 +18,7 @@ import { createOrder, updateOrders } from '../gqls/useCreateOrder';
 
 // definition
 export default (
-  viewer: useCreateUserFragmentType | null,
+  viewer: useCreateOrderFragmentType | null,
 ): MutationFunction<createOrderType, createOrderVariablesType> => {
   const [mutation] = useMutation<createOrderType, createOrderVariablesType>(
     createOrder,
