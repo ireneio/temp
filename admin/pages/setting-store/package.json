@@ -14,7 +14,6 @@
     "@admin/media-gallery": "^0.80.121",
     "@admin/message": "^0.80.119",
     "@admin/tooltip": "^0.80.119",
-    "@meepshop/hooks": "^0.80.123",
     "@meepshop/images": "^0.80.119",
     "@meepshop/locales": "^0.80.121"
   },

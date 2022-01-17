@@ -1,9 +1,9 @@
 import { useMemo, useEffect, useContext } from 'react';
+import { usePrevious } from 'react-use';
 import { useQuery } from '@apollo/client';
 import { areEqual } from 'fbjs';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
-import { usePrevious } from '@meepshop/hooks';
 
 import { getProducts } from '../gqls/useProducts';
 

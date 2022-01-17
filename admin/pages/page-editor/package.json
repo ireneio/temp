@@ -10,7 +10,6 @@
   "dependencies": {
     "@admin/tooltip": "^0.80.119",
     "@meepshop/cookies": "^0.80.123",
-    "@meepshop/hooks": "^0.80.123",
     "@meepshop/icons": "^0.80.119",
     "@meepshop/images": "^0.80.119",
     "@meepshop/locales": "^0.80.121",

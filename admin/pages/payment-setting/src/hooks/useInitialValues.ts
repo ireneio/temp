@@ -3,9 +3,8 @@ import { FormInstance } from 'antd/lib/form';
 
 // import
 import { useMemo, useEffect } from 'react';
+import { usePrevious } from 'react-use';
 import { areEqual } from 'fbjs';
-
-import { usePrevious } from '@meepshop/hooks';
 
 // graphql typescript
 import {

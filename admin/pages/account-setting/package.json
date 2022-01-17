@@ -11,7 +11,6 @@
     "@admin/block": "^0.80.123",
     "@admin/header": "^0.80.123",
     "@admin/message": "^0.80.119",
-    "@meepshop/hooks": "^0.80.123",
     "@meepshop/link": "^0.80.122",
     "@meepshop/locales": "^0.80.121",
     "@meepshop/utils": "^0.80.119",
