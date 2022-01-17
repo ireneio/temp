@@ -15,7 +15,9 @@ export default (): ((locale?: localeFragment | null) => string) => {
 
   return useCallback(
     locale =>
-      locale ? locale[i18n.language as languageType] || locale.zh_TW || '' : '',
+      locale?.[i18n.language.replace('-', '_') as languageType] ||
+      locale?.zh_TW ||
+      '',
     [i18n],
   );
 };
