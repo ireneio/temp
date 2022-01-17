@@ -6,8 +6,9 @@ import { Direction } from './useDirection';
 
 // import
 import { useState, useEffect, useCallback, useRef, useContext } from 'react';
-import { usePrevious } from 'react-use';
 import { useDrop } from 'react-dnd';
+
+import { usePrevious } from '@meepshop/hooks';
 
 import useDirection from './useDirection';
 import ModuleContext from '../context/module';
@@ -39,7 +40,7 @@ export default ({
   const divRef = useRef<HTMLDivElement>();
   const [position, setPosition] = useState<Position | null>(null);
   const previousPosition = usePrevious(position);
-  const direction = useDirection(position, previousPosition || null, level);
+  const direction = useDirection(position, previousPosition, level);
   const { modules, setModules } = useContext(ModuleContext);
 
   const [{ isOver }, dropRef] = useDrop<DragObjectType, void, CollectedProps>({

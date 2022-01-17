@@ -3,7 +3,8 @@ import { Position } from './useCustomDrop';
 
 // import
 import { useMemo } from 'react';
-import { usePrevious } from 'react-use';
+
+import { usePrevious } from '@meepshop/hooks';
 
 // typescript definition
 export interface Direction {
@@ -54,5 +55,5 @@ export default (
 
   const previousDirection = usePrevious(direction);
 
-  return direction || previousDirection || null;
+  return direction || previousDirection;
 };

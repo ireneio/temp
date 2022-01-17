@@ -7,13 +7,13 @@ import { CookiesType } from '../index';
 
 // import
 import { useState, useEffect, useCallback } from 'react';
-import { usePrevious } from 'react-use';
 import { useApolloClient } from '@apollo/client';
 import { areEqual } from 'fbjs';
 import cookie from 'js-cookie';
 
 import { useTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
+import { usePrevious } from '@meepshop/hooks';
 
 // typescript definition
 export type getCookiesType = (ctx: {
