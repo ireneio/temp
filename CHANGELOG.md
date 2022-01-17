@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.80.124 (2022-01-17)
+
+#### :rocket: New Feature
+
+- [#2059](https://github.com/meepshop/meep-lerna/pull/2059) 內部開單 - 建立後台商品指定物流 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#2074](https://github.com/meepshop/meep-lerna/pull/2074) 【BUG】後台登入網址：https://admin.meepshop.tw/ 異常 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- Other
+  - [#2069](https://github.com/meepshop/meep-lerna/pull/2069) 修改語系的寫法：admin 的 tmpl , meep-lerna 的 getLanguage 允許支援 zh-TW 系列 ([@happycat6323](https://github.com/happycat6323))
+  - [#2065](https://github.com/meepshop/meep-lerna/pull/2065) (@store/checkout, @meepshop/landing-page) rename fragment ([@HsuTing](https://github.com/HsuTing))
+  - [#2063](https://github.com/meepshop/meep-lerna/pull/2063) (@store/cart) Add new gqls ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`, `store`
+  - [#2067](https://github.com/meepshop/meep-lerna/pull/2067) 內部開單 - usePrevious 改用 react-use ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`
+  - [#2064](https://github.com/meepshop/meep-lerna/pull/2064) (@store/cart-previewer) Add new gqls ([@HsuTing](https://github.com/HsuTing))
+  - [#2062](https://github.com/meepshop/meep-lerna/pull/2062) (@meepshop/frontend) should use string rowKey ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.123 (2022-01-14)
 
 #### :bug: Bug Fix
