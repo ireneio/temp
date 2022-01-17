@@ -1,0 +1,28 @@
+@import '~@admin/utils/styles/variables.less';
+
+.header {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search {
+  width: 208px;
+  margin-right: 10px;
+
+  input {
+    height: 32px;
+  }
+}
+
+.row {
+  cursor: pointer;
+
+  :global(.ant-table-cell) {
+    padding: 12px;
+  }
+}
+
+.selected {
+  color: @primary-color;
+}

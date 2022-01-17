@@ -1,0 +1,18 @@
+{
+  "title": "Logistics được chỉ định sản phẩm",
+  "instruction": "Dạy lưu ý",
+  "empty": "Hàng miễn phí",
+  "selected": "/ Đã chọn",
+  "count": "Cái bút",
+  "search": "Tìm kiếm hàng hóa",
+  "change-applicable-shipments": "Thay đổi hậu cần áp dụng",
+  "all-shipments": "Cửa hàng Logistics.",
+  "applicable-shipments-removed": "Hậu cần áp dụng đã bị xóa",
+  "product": {
+    "title": "tên sản phẩm",
+    "sku": "Số sản phẩm",
+    "applicable-shipments": "Logistics áp dụng",
+    "applicable-shipments-tip": "Logistics chưa tìm thấy sẽ hiển thị nhiều văn bản nông hơn",
+    "tags": "Nhãn hàng hóa"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Producto Diseñado Logística",
+  "instruction": "Nota de enseñanza",
+  "empty": "Bienes gratis",
+  "selected": "/ Seleccionado",
+  "count": "Lápiz",
+  "search": "Búsqueda de bienes",
+  "change-applicable-shipments": "Cambiar logística aplicable",
+  "all-shipments": "Logística de la tienda",
+  "applicable-shipments-removed": "Logística aplicable ha sido eliminada.",
+  "product": {
+    "title": "nombre del producto",
+    "sku": "Número de producto",
+    "applicable-shipments": "Logística aplicable",
+    "applicable-shipments-tip": "La logística sin flujo mostrará más texto superficial.",
+    "tags": "Etiqueta de productos básicos"
+  }
+}

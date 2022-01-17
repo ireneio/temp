@@ -1,0 +1,18 @@
+{
+  "title": "Product designated logistics",
+  "instruction": "Teaching note",
+  "empty": "Free goods",
+  "selected": "/ Selected",
+  "count": "Pen",
+  "search": "Search goods",
+  "change-applicable-shipments": "Change applicable logistics",
+  "all-shipments": "Store logistics",
+  "applicable-shipments-removed": "Applicable logistics has been deleted",
+  "product": {
+    "title": "product name",
+    "sku": "Product Number",
+    "applicable-shipments": "Applicable logistics",
+    "applicable-shipments-tip": "Unpowed logistics will display more shallow text",
+    "tags": "Commodity label"
+  }
+}

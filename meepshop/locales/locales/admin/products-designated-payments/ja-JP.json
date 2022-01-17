@@ -1,0 +1,18 @@
+{
+  "title": "商品指定物流",
+  "instruction": "注意事項",
+  "empty": "無料の商品",
+  "selected": "/選択した",
+  "count": "ペン",
+  "search": "商品を検索",
+  "change-applicable-shipments": "適用可能なロジスティクスを変更します",
+  "all-shipments": "ストアロジスティクス",
+  "applicable-shipments-removed": "該当する物流は削除されました",
+  "product": {
+    "title": "商品名",
+    "sku": "製品番号",
+    "applicable-shipments": "適用物流",
+    "applicable-shipments-tip": "未知の物流はより浅いテキストを表示します",
+    "tags": "商品ラベル"
+  }
+}

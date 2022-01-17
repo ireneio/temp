@@ -1,0 +1,18 @@
+{
+  "title": "Produk logistik yang ditunjuk",
+  "instruction": "Catatan Pengajaran",
+  "empty": "Barang-barang gratis",
+  "selected": "/ Terpilih",
+  "count": "Pena",
+  "search": "Cari barang",
+  "change-applicable-shipments": "Ubah logistik yang berlaku",
+  "all-shipments": "Simpan logistik",
+  "applicable-shipments-removed": "Logistik yang berlaku telah dihapus",
+  "product": {
+    "title": "nama Produk",
+    "sku": "Nomor produk",
+    "applicable-shipments": "Logistik yang berlaku",
+    "applicable-shipments-tip": "Logistik yang tidak terpogok akan menampilkan teks yang lebih dangkal",
+    "tags": "Label komoditas"
+  }
+}

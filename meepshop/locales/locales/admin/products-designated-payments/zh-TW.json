@@ -1,0 +1,18 @@
+{
+  "title": "商品指定物流",
+  "instruction": "教學說明",
+  "empty": "無商品資料",
+  "selected": " / 已選取 ",
+  "count": " 筆",
+  "search": "搜尋商品",
+  "change-applicable-shipments": "變更適用物流",
+  "all-shipments": "全店物流",
+  "applicable-shipments-removed": "適用物流已被刪除",
+  "product": {
+    "title": "商品名稱",
+    "sku": "商品編號",
+    "applicable-shipments": "適用物流",
+    "applicable-shipments-tip": "未開啟的物流會以較淺的文字顯示",
+    "tags": "商品標籤"
+  }
+}
