@@ -26,16 +26,23 @@ import useRemoveProduct from './useRemoveProduct';
 import styles from '../styles/useProductsColumns.less';
 
 // graphql typescript
-import { useProductsColumnsFragment as useProductsColumnsFragmentType } from '@meepshop/types/gqls/store';
+import {
+  useProductsColumnsUserFragment as useProductsColumnsUserFragmentType,
+  useProductsColumnsLineItemFragment as useProductsColumnsLineItemFragmentType,
+} from '@meepshop/types/gqls/store';
 
-// import graphql
+// typescript definition
 interface ReturnType {
-  columns: ColumnProps<useProductsColumnsFragmentType>[];
+  columns: ColumnProps<useProductsColumnsLineItemFragmentType>[];
   styles: string;
 }
 
 // definition
-export default (hasError: boolean): ReturnType => {
+export default (
+  // FIXME: using useCart and useCartFragment in T9918
+  _viewer: useProductsColumnsUserFragmentType | null,
+  hasError: boolean,
+): ReturnType => {
   const { t } = useTranslation('cart');
   const getLanguage = useGetLanguage();
   const { c } = useContext(CurrencyContext);
@@ -51,7 +58,7 @@ export default (hasError: boolean): ReturnType => {
           dataIndex: ['coverImage'],
           width: isMobile ? 102 : 124,
           render: (
-            image: useProductsColumnsFragmentType['coverImage'],
+            image: useProductsColumnsLineItemFragmentType['coverImage'],
             { productId, type, status },
           ) => {
             const disabled =
@@ -82,7 +89,7 @@ export default (hasError: boolean): ReturnType => {
           dataIndex: ['title'],
           width: isMobile ? '100%' : '55%',
           render: (
-            title: useProductsColumnsFragmentType['title'],
+            title: useProductsColumnsLineItemFragmentType['title'],
             {
               productId,
               specs,
@@ -200,7 +207,7 @@ export default (hasError: boolean): ReturnType => {
           align: 'center',
           responsive: ['md'],
           render: (
-            unitPrice: useProductsColumnsFragmentType['unitPrice'],
+            unitPrice: useProductsColumnsLineItemFragmentType['unitPrice'],
             { type, status },
           ) => {
             if (type !== 'PRODUCT') return t('gift');
@@ -217,7 +224,7 @@ export default (hasError: boolean): ReturnType => {
           align: 'center',
           responsive: ['md'],
           render: (
-            quantity: useProductsColumnsFragmentType['quantity'],
+            quantity: useProductsColumnsLineItemFragmentType['quantity'],
             { type, variant, status, cartId },
           ) => {
             if (type !== 'PRODUCT') return null;
@@ -271,7 +278,7 @@ export default (hasError: boolean): ReturnType => {
           width: isMobile ? 28 : 48,
           align: 'center',
           render: (
-            cartId: useProductsColumnsFragmentType['cartId'],
+            cartId: useProductsColumnsLineItemFragmentType['cartId'],
             { type },
           ) => {
             return type !== 'PRODUCT' ? null : (

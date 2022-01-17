@@ -14,23 +14,24 @@ import Empty from './Empty';
 import Login from './Login';
 import Products from './Products';
 import Price from './Price';
-import useMapCartItem from './hooks/useMapCartItem';
 import useComputedCart from './hooks/useComputedCart';
 import useCheckErrors from './hooks/useCheckErrors';
 import styles from './styles/index.less';
 
 // graphql import
-import { useProductsColumnsFragment } from './gqls/useProductsColumns';
+import { useComputedCartFragment } from './gqls/useComputedCart';
+import {
+  productsUserFragment,
+  productsLineItemFragment,
+} from './gqls/products';
 import { priceComputedCartFragment } from './gqls/price';
 
 // definition
 const Cart: NextPage = React.memo(() => {
   const role = useContext(RoleContext);
-  const mapCartItem = useMapCartItem();
-  const computedCart = useComputedCart(
-    mapCartItem?.cartItems || null,
-    mapCartItem?.cartProducts || null,
-  );
+  // FIXME: using useQuery and getCart in T9918
+  const viewer = null;
+  const computedCart = useComputedCart(filter(useComputedCartFragment, viewer));
   const { hasError, checkErrors } = useCheckErrors(
     computedCart?.computedLineItems || null,
   );
@@ -50,8 +51,9 @@ const Cart: NextPage = React.memo(() => {
               {role !== 'GUEST' ? null : <Login />}
 
               <Products
+                viewer={filter(productsUserFragment, viewer)}
                 products={filter(
-                  useProductsColumnsFragment,
+                  productsLineItemFragment,
                   computedCart.computedLineItems,
                 )}
                 hasError={hasError}
