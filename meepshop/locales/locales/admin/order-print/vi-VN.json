@@ -1,4 +1,11 @@
 {
+  "picking-list": "Nhặt",
+  "total": "toàn bộ",
+  "serial-number": "Số seri",
+  "vendor-sku": "Nhà sản xuất số",
+  "title": "tên sản phẩm",
+  "warehouse-number": "Kho số",
+  "quantity": "Số lượng phân phối",
   "packing-list": "Đang chuyển hàng",
   "order-no": "Thứ tự số",
   "order-date": "Ngày đặt hàng.",
@@ -17,7 +24,7 @@
   "product-discount": "Giảm giá hàng hóa",
   "order-discount": "ĐẶT HÀNG ĐẶT HÀNG",
   "shipping": "vận chuyển hàng hóa",
-  "order-detail-payment-fee": "Phí vàng dòng chảy.",
+  "order-detail-payment-fee": "Phí vàng dòng chảy",
   "order-money": "số lượng đơn đặt hàng",
   "yuan": "Yuan.",
   "order-product-title": "Số sản phẩm / tên",
@@ -31,7 +38,7 @@
   "receive": "nhận được",
   "status": {
     "0": "Xử lý",
-    "1": "Trường hợp đặt hàng",
+    "1": "Trường hợp đặt hàng.",
     "2": "hủy đơn hàng",
     "3": "Rút lại"
   },

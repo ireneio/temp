@@ -1,0 +1,56 @@
+.root {
+  min-height: 296mm;
+  border: 1px #d3d3d3 solid;
+  border-radius: 2px;
+  margin-bottom: 32px;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 5mm 10mm;
+  line-height: 1.4;
+  font-size: 11pt;
+  color: #000;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.title {
+  margin-bottom: 5mm;
+  text-align: center;
+  font-size: 12pt;
+
+  > p {
+    font-size: 14pt;
+    margin-bottom: 0;
+  }
+}
+
+.table {
+  :global(.ant-table-thead > tr > th) {
+    background-color: #fff;
+    padding: 1mm;
+    font-size: 11pt;
+    line-height: 1.5;
+    border-bottom: 1.5pt solid #000;
+    font-weight: 700;
+  }
+
+  :global(.ant-table-row:hover > td) {
+    background-color: #fff;
+  }
+
+  td {
+    padding: 1mm;
+    vertical-align: top;
+    border-bottom: 1pt dashed #000;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #000;
+    word-break: break-all;
+  }
+}
+
+.total {
+  text-align: right;
+}

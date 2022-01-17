@@ -1,4 +1,11 @@
 {
+  "picking-list": "選ぶ",
+  "total": "合計",
+  "serial-number": "シリアルナンバー",
+  "vendor-sku": "メーカー番号",
+  "title": "商品名",
+  "warehouse-number": "倉庫番号",
+  "quantity": "分配量",
   "packing-list": "運送",
   "order-no": "注文番号",
   "order-date": "注文日付",

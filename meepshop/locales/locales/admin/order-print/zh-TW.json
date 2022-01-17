@@ -1,4 +1,11 @@
 {
+    "picking-list": "揀貨單",
+    "total": "合計",
+    "serial-number": "序號",
+    "vendor-sku": "廠商編號",
+    "title": "商品名稱",
+    "warehouse-number": "倉庫編號",
+    "quantity": "配貨數量",
     "packing-list": "出貨單",
     "order-no": "訂單編號",
     "order-date": "訂購日期",

@@ -1,4 +1,11 @@
 {
+  "picking-list": "Memilih",
+  "total": "total",
+  "serial-number": "Nomor seri",
+  "vendor-sku": "Nomor Produsen.",
+  "title": "nama Produk",
+  "warehouse-number": "Nomor gudang",
+  "quantity": "Kuantitas Distribusi",
   "packing-list": "Pengiriman",
   "order-no": "Jumlah order",
   "order-date": "Pesan Tanggal",

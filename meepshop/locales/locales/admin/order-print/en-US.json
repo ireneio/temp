@@ -1,4 +1,11 @@
 {
+  "picking-list": "Pick",
+  "total": "total",
+  "serial-number": "Serial number",
+  "vendor-sku": "Manufacturer number",
+  "title": "product name",
+  "warehouse-number": "Warehouse number",
+  "quantity": "Distribution quantity",
   "packing-list": "Shipping",
   "order-no": "Order number",
   "order-date": "Order dates",
