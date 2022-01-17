@@ -97,8 +97,8 @@ const Redirects: NextPage<PropsType> = React.memo(() => {
             routingRules.slice(current * pageSize, (current + 1) * pageSize),
           )}
           columns={columns}
-          rowKey={item => item.id}
           rowClassName={() => styles.row}
+          rowKey="id"
         />
       </div>
     </Header>

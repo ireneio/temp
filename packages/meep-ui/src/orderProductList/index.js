@@ -42,25 +42,23 @@ export default enhancer(
                 <p className={styles.emptyCartText}>{t('empty-cart')}</p>
               </>
             ) : (
-              <>
-                <Table
-                  className={styles.table}
-                  dataSource={products}
-                  columns={columns}
-                  rowKey={({ id }) => id}
-                  onRow={({ error }) => ({
-                    style:
-                      productHasError &&
-                      ['NOT_AVAILABLE', 'DISCONTINUED'].includes(error || '')
-                        ? {
-                            background: colors[5],
-                          }
-                        : {},
-                  })}
-                  showHeader={false}
-                  pagination={false}
-                />
-              </>
+              <Table
+                className={styles.table}
+                dataSource={products}
+                columns={columns}
+                onRow={({ error }) => ({
+                  style:
+                    productHasError &&
+                    ['NOT_AVAILABLE', 'DISCONTINUED'].includes(error || '')
+                      ? {
+                          background: colors[5],
+                        }
+                      : {},
+                })}
+                showHeader={false}
+                pagination={false}
+                rowKey="id"
+              />
             )}
           </div>
 

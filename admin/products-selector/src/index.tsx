@@ -142,7 +142,6 @@ export default React.memo(
                 )
               : selected
           }
-          rowKey={record => record.id || 'null-id'}
           loading={loading}
           columns={columns}
           pagination={false}
@@ -180,6 +179,7 @@ export default React.memo(
               />
             ),
           }}
+          rowKey="id"
         />
 
         <Footer

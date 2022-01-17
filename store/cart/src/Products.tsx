@@ -29,7 +29,6 @@ export default React.memo(({ products, hasError }: PropsType) => {
         columns={columns}
         dataSource={products}
         pagination={false}
-        rowKey={product => product.id}
         onRow={({ status }) => ({
           className: `${styles.row} ${
             status === 'PURCHASABLE' ? '' : styles.error
@@ -43,6 +42,7 @@ export default React.memo(({ products, hasError }: PropsType) => {
                 }
               : {},
         })}
+        rowKey="id"
       />
 
       <style

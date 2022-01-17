@@ -36,38 +36,36 @@ const Cart: NextPage = React.memo(() => {
   );
 
   return (
-    <>
-      <div className={styles.root}>
-        {!computedCart ? (
-          <Spin indicator={<LoadingOutlined spin />} />
-        ) : (
-          <>
-            <CheckoutSteps step="cart" />
+    <div className={styles.root}>
+      {!computedCart ? (
+        <Spin indicator={<LoadingOutlined spin />} />
+      ) : (
+        <>
+          <CheckoutSteps step="cart" />
 
-            {!computedCart.computedLineItems.length ? (
-              <Empty />
-            ) : (
-              <>
-                {role !== 'GUEST' ? null : <Login />}
+          {!computedCart.computedLineItems.length ? (
+            <Empty />
+          ) : (
+            <>
+              {role !== 'GUEST' ? null : <Login />}
 
-                <Products
-                  products={filter(
-                    useProductsColumnsFragment,
-                    computedCart.computedLineItems,
-                  )}
-                  hasError={hasError}
-                />
+              <Products
+                products={filter(
+                  useProductsColumnsFragment,
+                  computedCart.computedLineItems,
+                )}
+                hasError={hasError}
+              />
 
-                <Price
-                  computedCart={filter(priceComputedCartFragment, computedCart)}
-                  checkErrors={checkErrors}
-                />
-              </>
-            )}
-          </>
-        )}
-      </div>
-    </>
+              <Price
+                computedCart={filter(priceComputedCartFragment, computedCart)}
+                checkErrors={checkErrors}
+              />
+            </>
+          )}
+        </>
+      )}
+    </div>
   );
 });
 

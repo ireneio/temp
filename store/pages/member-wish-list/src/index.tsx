@@ -37,13 +37,13 @@ export default React.memo(() => {
   return (
     <div className={styles.root}>
       <Table
-        rowKey={({ productId }) => productId}
         columns={columns}
         dataSource={filter<useColumnsWishlistProductFragmentType[]>(
           useColumnsWishlistProductFragment,
           wishList.filter(Boolean) /** SHOULD_NOT_BE_NULL */,
         )}
         pagination={false}
+        rowKey="productId"
       />
     </div>
   );

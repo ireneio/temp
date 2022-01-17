@@ -41,13 +41,13 @@ export default React.memo(() => {
   return (
     <div className={styles.root}>
       <Table<useColumnsRecipientAddressFragmentType>
-        rowKey={({ id }) => id}
         columns={columns}
         dataSource={filter<useColumnsRecipientAddressFragmentType[]>(
           useColumnsRecipientAddressFragment,
           shippableRecipientAddresses,
         )}
         pagination={false}
+        rowKey="id"
       />
 
       <Form
