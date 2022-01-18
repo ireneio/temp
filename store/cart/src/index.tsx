@@ -18,6 +18,9 @@ import useComputedCart from './hooks/useComputedCart';
 import useCheckErrors from './hooks/useCheckErrors';
 import styles from './styles/index.less';
 
+// Use to copy mixin.less
+import './styles/mixin.less';
+
 // graphql import
 import { useComputedCartFragment } from './gqls/useComputedCart';
 import {
