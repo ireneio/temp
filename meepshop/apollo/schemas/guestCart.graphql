@@ -1,3 +1,13 @@
+type GuestCart {
+  cartItems: [CartItem!]!
+}
+
+type ServerGuestCart {
+  message: String
+}
+
+union ViewGuestCartResponse = GuestCart | ServerGuestCart
+
 extend type User {
-  guestCart: [CartItem!]!
+  guestCart: ViewGuestCartResponse!
 }

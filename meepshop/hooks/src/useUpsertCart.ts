@@ -35,14 +35,21 @@ export default (
         variables: {
           isShopper,
           input,
-          guestInput: !isShopper ? [] : input,
+          guestInput: isShopper ? [] : input,
         },
         update: (cache: DataProxy, { data }) => {
-          if (data?.upsertCart.__typename !== 'OkResponse' || !viewer) return;
+          if (
+            (data?.upsertCart || data?.upsertGuestCart)?.__typename !==
+              'OkResponse' ||
+            !viewer
+          )
+            return;
 
           cache.writeFragment<useUpsertCartUserFragmentType>({
-            id: viewer.id || 'null-id', // SHOULD_NOT_BE_NULL
+            // FIXME: T10004, use cache.identify
+            id: viewer.id || '$ROOT_QUERY.viewer',
             fragment: useUpsertCartUserFragment,
+            fragmentName: 'useUpsertCartUserFragment',
             data: {
               ...viewer,
               cart: !isShopper
@@ -51,7 +58,10 @@ export default (
                     __typename: 'Cart',
                     cartItems,
                   },
-              guestCart: isShopper ? [] : cartItems,
+              guestCart: {
+                __typename: 'GuestCart',
+                cartItems: isShopper ? [] : cartItems,
+              },
             },
           });
         },

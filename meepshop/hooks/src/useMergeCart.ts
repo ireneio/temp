@@ -14,7 +14,10 @@ type mergeCartType<V = useMergeCartFragmentType> = (
 export default (): mergeCartType =>
   useCallback((cartItems, { productId, quantity, variantId }) => {
     const newCartItems = [...cartItems];
-    const cartItem = newCartItems.find(item => item.variantId === variantId);
+    const cartItemIndex = newCartItems.findIndex(
+      item => item.variantId === variantId,
+    );
+    const cartItem = newCartItems[cartItemIndex];
 
     if (!cartItem)
       newCartItems.push({
@@ -24,6 +27,8 @@ export default (): mergeCartType =>
         variantId,
       });
     else cartItem.quantity += quantity;
+
+    if (cartItem?.quantity === 0) newCartItems.splice(cartItemIndex, 1);
 
     return newCartItems;
   }, []);

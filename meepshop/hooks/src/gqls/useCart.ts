@@ -17,7 +17,11 @@ export const useCartFragment = gql`
       }
     }
     guestCart @client {
-      ...useMergeCartFragment
+      ... on GuestCart {
+        cartItems {
+          ...useMergeCartFragment
+        }
+      }
     }
     ...useUpsertCartUserFragment
   }

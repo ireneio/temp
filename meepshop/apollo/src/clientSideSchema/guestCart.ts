@@ -1,6 +1,14 @@
 // definition
 export const resolvers = {
   User: {
-    guestCart: () => JSON.parse(localStorage.getItem('guestCart') || '[]'),
+    guestCart: () =>
+      typeof window === 'undefined'
+        ? {
+            __typename: 'ServerGuestCart',
+          }
+        : {
+            __typename: 'GuestCart',
+            cartItems: JSON.parse(localStorage.getItem('guestCart') || '[]'),
+          },
   },
 };

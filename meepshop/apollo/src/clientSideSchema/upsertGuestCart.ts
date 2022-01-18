@@ -12,7 +12,15 @@ export const resolvers = {
         input: CartItemInput[];
       },
     ) => {
-      localStorage.setItem('guestCart', JSON.stringify(input));
+      localStorage.setItem(
+        'guestCart',
+        JSON.stringify(
+          input.map(cartItem => ({
+            ...cartItem,
+            __typename: 'CartItem',
+          })),
+        ),
+      );
 
       return {
         __typename: 'OkResponse',

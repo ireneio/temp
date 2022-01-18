@@ -39,8 +39,10 @@ export const upsertCart = gql`
 
 export const useUpsertCartUserFragment = gql`
   fragment useUpsertCartUserFragment on User {
+    __typename
     id
     cart {
+      __typename
       ... on Cart {
         cartItems {
           ...useMergeCartFragment
@@ -49,7 +51,12 @@ export const useUpsertCartUserFragment = gql`
     }
 
     guestCart @client {
-      ...useMergeCartFragment
+      __typename
+      ... on GuestCart {
+        cartItems {
+          ...useMergeCartFragment
+        }
+      }
     }
   }
 
