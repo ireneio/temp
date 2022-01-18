@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@meepshop/select",
+  "description": "Meepshop select module",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.80.123",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/context": "^0.80.119",
+    "color": "^3.0.0"
+  },
+  "keywords": ["meepshop", "select"]
+}
