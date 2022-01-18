@@ -1,4 +1,0 @@
-extend type User {
-  tel: String
-  mobile: String
-}
