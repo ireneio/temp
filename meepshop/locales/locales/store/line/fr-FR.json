@@ -1,0 +1,4 @@
+{
+  "login": "connexion",
+  "login-fail": "La connexion de ligne a échoué, veuillez réessayer"
+}
