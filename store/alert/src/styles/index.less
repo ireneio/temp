@@ -1,0 +1,42 @@
+@import '~@store/utils/styles/variables.less';
+
+.root {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 12px 24px;
+
+  :global(.anticon) {
+    font-size: 20px;
+  }
+
+  &:global(.ant-alert-warning) {
+    background-color: #fffbe6;
+    border: 1px solid #ffd666;
+
+    :global(.ant-alert-message),
+    :global(.anticon) {
+      color: #d48806;
+    }
+  }
+
+  &:global(.ant-alert-error) {
+    background-color: #fdf3f0;
+    border: 1px solid #ffccc7;
+
+    :global(.ant-alert-message),
+    :global(.anticon) {
+      color: #bd373c;
+    }
+  }
+
+  @media (max-width: @screen-sm-max) {
+    font-size: 14px;
+    line-height: 22px;
+    padding: 10px 16px;
+
+    :global(.anticon) {
+      font-size: 18px;
+    }
+  }
+}
