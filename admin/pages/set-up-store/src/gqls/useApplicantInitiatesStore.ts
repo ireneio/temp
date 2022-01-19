@@ -14,7 +14,7 @@ export const applicantInitiatesStore = gql`
   mutation applicantInitiatesStore($input: ApplicantInitiatesStoreInput!) {
     applicantInitiatesStore(input: $input) {
       status
-      token
+      authorizationToken
     }
   }
 `;

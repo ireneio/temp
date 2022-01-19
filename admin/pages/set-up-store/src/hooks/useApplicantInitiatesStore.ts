@@ -47,10 +47,14 @@ export default (): {
     applicantInitiatesStoreType,
     applicantInitiatesStoreVariablesType
   >(applicantInitiatesStore, {
-    onCompleted: ({ applicantInitiatesStore: { status, token } }) => {
-      if (status === 'SUCCESS' && token) {
+    onCompleted: ({
+      applicantInitiatesStore: { status, authorizationToken },
+    }) => {
+      if (status === 'SUCCESS' && authorizationToken) {
         adTrack.custom('點擊', '月租註冊_啟用商店', '月租註冊');
-        authorizeStoreMutation({ variables: { input: { token } } });
+        authorizeStoreMutation({
+          variables: { input: { token: authorizationToken } },
+        });
       } else message.error(status);
     },
   });
