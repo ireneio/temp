@@ -7,8 +7,6 @@ export { default as Colors } from './Colors';
 export * from './Colors';
 export { default as Currency } from './Currency';
 export * from './Currency';
-export { default as Events } from './Events';
-export * from './Events';
 export { default as Fb } from './Fb';
 export * from './Fb';
 export { default as Role } from './Role';

@@ -7,7 +7,6 @@ import { getUnixTime } from 'date-fns';
 import '@store/utils/lib/styles';
 import ActionButton from '@meepshop/action-button';
 import { appWithTranslation } from '@meepshop/locales';
-import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
 import { RoleProvider } from '@meepshop/context/lib/Role';
@@ -311,41 +310,39 @@ class App extends NextApp {
           />
           <meta key="og:locale" property="og:locale" content={i18n.language} />
         </Head>
-        <EventsProvider>
-          <FbProvider>
-            <RoleProvider>
-              <ColorsProvider>
-                <AppsProvider>
-                  <SensorProvider>
-                    <CurrencyProvider>
-                      <AdTrackProvider>
-                        <CartProvider>
-                          <FormDataProvider>
-                            <Component
-                              {...pageProps}
-                              product={product}
-                              page={page}
-                              client={client}
-                              url={{
-                                asPath: router.asPath,
-                                query: router.query,
-                              }}
-                            />
+        <FbProvider>
+          <RoleProvider>
+            <ColorsProvider>
+              <AppsProvider>
+                <SensorProvider>
+                  <CurrencyProvider>
+                    <AdTrackProvider>
+                      <CartProvider>
+                        <FormDataProvider>
+                          <Component
+                            {...pageProps}
+                            product={product}
+                            page={page}
+                            client={client}
+                            url={{
+                              asPath: router.asPath,
+                              query: router.query,
+                            }}
+                          />
 
-                            <ActionButton
-                              backToTopButtonEnabled={backToTopButtonEnabled}
-                              goToButton={page?.goToButton || null}
-                            />
-                          </FormDataProvider>
-                        </CartProvider>
-                      </AdTrackProvider>
-                    </CurrencyProvider>
-                  </SensorProvider>
-                </AppsProvider>
-              </ColorsProvider>
-            </RoleProvider>
-          </FbProvider>
-        </EventsProvider>
+                          <ActionButton
+                            backToTopButtonEnabled={backToTopButtonEnabled}
+                            goToButton={page?.goToButton || null}
+                          />
+                        </FormDataProvider>
+                      </CartProvider>
+                    </AdTrackProvider>
+                  </CurrencyProvider>
+                </SensorProvider>
+              </AppsProvider>
+            </ColorsProvider>
+          </RoleProvider>
+        </FbProvider>
       </>
     );
   }

@@ -27,7 +27,6 @@ declare interface ECP {
 
 declare interface Window {
   storePreviousPageUrl?: string;
-  events: EventTarget;
   fbq?: (
     eventName: string,
     type: string,

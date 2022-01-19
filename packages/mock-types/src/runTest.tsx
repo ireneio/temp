@@ -1,6 +1,4 @@
 // import
-import events from 'events';
-
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { mount, ReactWrapper } from 'enzyme';
@@ -10,7 +8,6 @@ import { emptyFunction } from 'fbjs';
 import mock from './mock';
 
 // definition
-const mockEvents = new events.EventEmitter();
 const mockLog = jest.fn();
 const log = (...messages: string[]): void => {
   const str = messages.join('');
@@ -27,11 +24,6 @@ const log = (...messages: string[]): void => {
   mockLog(...messages);
 };
 
-window.events = {
-  dispatchEvent: (event: Event) => mockEvents.emit(event.toString()),
-  addEventListener: mockEvents.on,
-  removeEventListener: mockEvents.off,
-};
 global.console.error = log;
 global.console.warn = log;
 

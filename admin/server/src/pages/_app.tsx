@@ -13,7 +13,6 @@ import dynamic from 'next/dynamic';
 
 import '@admin/utils/lib/styles';
 import { appWithTranslation } from '@meepshop/locales';
-import { EventsProvider } from '@meepshop/context/lib/Events';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
 import {
   appWithDomain,
@@ -91,22 +90,20 @@ class App extends NextApp<AppInitialProps> {
           <meta name="viewport" content="" />
         </Head>
 
-        <EventsProvider>
-          <AdTrackProvider>
-            <Switch
-              isTrue={!noWrapper}
-              render={children => (
-                <AppsProvider>
-                  <CurrencyProvider>
-                    <Wrapper>{children}</Wrapper>
-                  </CurrencyProvider>
-                </AppsProvider>
-              )}
-            >
-              <Component {...pageProps} />
-            </Switch>
-          </AdTrackProvider>
-        </EventsProvider>
+        <AdTrackProvider>
+          <Switch
+            isTrue={!noWrapper}
+            render={children => (
+              <AppsProvider>
+                <CurrencyProvider>
+                  <Wrapper>{children}</Wrapper>
+                </CurrencyProvider>
+              </AppsProvider>
+            )}
+          >
+            <Component {...pageProps} />
+          </Switch>
+        </AdTrackProvider>
       </>
     );
   }

@@ -3,7 +3,6 @@ import React from 'react';
 
 import '@store/utils/lib/styles';
 import { appWithTranslation } from '@meepshop/locales';
-import { EventsProvider } from '@meepshop/context/lib/Events';
 import { ColorsProvider } from '@meepshop/context/lib/Colors';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
 import { RoleProvider } from '@meepshop/context/lib/Role';
@@ -19,19 +18,17 @@ export default withApollo(
   appWithTranslation(
     React.memo(({ children }) => (
       <MockTypes>
-        <EventsProvider>
-          <FbProvider>
-            <RoleProvider>
-              <ColorsProvider>
-                <AppsProvider>
-                  <CurrencyProvider>
-                    <AdTrackProvider>{children}</AdTrackProvider>
-                  </CurrencyProvider>
-                </AppsProvider>
-              </ColorsProvider>
-            </RoleProvider>
-          </FbProvider>
-        </EventsProvider>
+        <FbProvider>
+          <RoleProvider>
+            <ColorsProvider>
+              <AppsProvider>
+                <CurrencyProvider>
+                  <AdTrackProvider>{children}</AdTrackProvider>
+                </CurrencyProvider>
+              </AppsProvider>
+            </ColorsProvider>
+          </RoleProvider>
+        </FbProvider>
       </MockTypes>
     )),
   ),

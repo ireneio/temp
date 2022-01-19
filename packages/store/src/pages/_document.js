@@ -1,8 +1,5 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import htmlescape from 'htmlescape';
-
-import { globalEvents } from '@meepshop/context/lib/Events';
 
 export default class MyDocument extends Document {
   static async getInitialProps({ req, res, renderPage }) {
@@ -23,31 +20,15 @@ export default class MyDocument extends Document {
   }
 
   render() {
-    const { XMeepshopDomain, lang } = this.props;
+    const { lang } = this.props;
 
     return (
       /* eslint-disable */
       <Html lang={lang}>
-        <Head>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: globalEvents,
-            }}
-          />
-        </Head>
+        <Head />
 
         <body id="meepshop">
           <Main />
-
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.meepShopStore = {
-                  XMeepshopDomain: ${htmlescape(XMeepshopDomain || '')}
-                };
-              `,
-            }}
-          />
 
           <NextScript />
         </body>

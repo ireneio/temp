@@ -42,11 +42,6 @@ export default class Container extends React.Component {
   }
 
   render() {
-    // Debugger
-    if (typeof window === 'object') {
-      window.meepShopStore.debugger = { 'Container-props': this.props };
-    }
-
     const {
       /* props(not in context) */
       userAgent,
