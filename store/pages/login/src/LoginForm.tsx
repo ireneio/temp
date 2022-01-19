@@ -6,9 +6,9 @@ import React, { useState, useContext } from 'react';
 import { Form, Button, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
-import { useRouter } from '@meepshop/link';
 import { Colors as ColorsContext, Fb as FbContext } from '@meepshop/context';
 import { useValidateEmail } from '@meepshop/validator';
+import { FbLoginIcon } from '@meepshop/icons';
 
 import useLogin from './hooks/useLogin';
 import { SIGNUP, FORGET_PSW } from './constants';
@@ -21,7 +21,6 @@ const { Password } = Input;
 export default React.memo(
   ({ setOptions }: { setOptions: (options: OptionsType) => void }) => {
     const { t } = useTranslation('login');
-    const router = useRouter();
     const colors = useContext(ColorsContext);
     const { fb, isLoginEnabled } = useContext(FbContext);
     const validateEmail = useValidateEmail();
@@ -83,6 +82,7 @@ export default React.memo(
           {!isLoginEnabled ? null : (
             <Button
               className={styles.fbLoginButton}
+              icon={<FbLoginIcon />}
               onClick={async () => {
                 if (!fb || fbLoginLoading) return;
 
@@ -95,15 +95,6 @@ export default React.memo(
               {t('fb-login')}
             </Button>
           )}
-
-          <Button
-            className={styles.goBackButton}
-            style={{ borderColor: colors[5] }}
-            onClick={() => router.push(window.storePreviousPageUrl || '/')}
-            size="large"
-          >
-            {t('go-back')}
-          </Button>
         </div>
       </Form>
     );
