@@ -4,16 +4,16 @@
   "description": "Bill page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.124",
+  "version": "0.80.125",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/header": "^0.80.124",
-    "@admin/tap-pay": "^0.80.124",
-    "@meepshop/context": "^0.80.119",
-    "@meepshop/hooks": "^0.80.124",
-    "@meepshop/link": "^0.80.122",
-    "@meepshop/locales": "^0.80.124",
+    "@admin/header": "^0.80.125",
+    "@admin/tap-pay": "^0.80.125",
+    "@meepshop/context": "^0.80.125",
+    "@meepshop/hooks": "^0.80.125",
+    "@meepshop/link": "^0.80.125",
+    "@meepshop/locales": "^0.80.125",
     "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "bill"]

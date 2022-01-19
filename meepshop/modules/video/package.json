@@ -4,12 +4,12 @@
   "description": "Meepshop video module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.124",
+  "version": "0.80.125",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/context": "^0.80.119",
-    "@meepshop/hooks": "^0.80.124",
+    "@meepshop/context": "^0.80.125",
+    "@meepshop/hooks": "^0.80.125",
     "react-player": "^2.9.0"
   },
   "keywords": ["meepshop", "video"]
