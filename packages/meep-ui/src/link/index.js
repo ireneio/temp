@@ -56,6 +56,13 @@ export default class Link extends React.PureComponent {
         hash,
       },
     });
+
+    setTimeout(() => {
+      if (hash) {
+        const dom = document.querySelector(hash);
+        dom.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 500);
   };
 
   render() {
