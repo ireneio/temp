@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## 0.80.125 (2022-01-19)
+
+#### :rocket: New Feature
+
+- [#2080](https://github.com/meepshop/meep-lerna/pull/2080) 內部開單 - @store/cart 新增 title ([@happycat6323](https://github.com/happycat6323))
+- [#2075](https://github.com/meepshop/meep-lerna/pull/2075) 內部開單 - 新增 @meepshop/select ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#2070](https://github.com/meepshop/meep-lerna/pull/2070) 【BUG】 手機裝置 - 頁面群組連結無法跳到指定位置 ([@happycat6323](https://github.com/happycat6323))
+  - [#2068](https://github.com/meepshop/meep-lerna/pull/2068) 【BUG】商品版型，頁面群組跳轉異常 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#2047](https://github.com/meepshop/meep-lerna/pull/2047) 【BUG】手機版 - 登入頁 - 按鈕跑版 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#2079](https://github.com/meepshop/meep-lerna/pull/2079) 內部開單 - 修正 guestCart 問題 ([@HsuTing](https://github.com/HsuTing))
+  - [#2077](https://github.com/meepshop/meep-lerna/pull/2077) (@store/apollo) Remove client side schema ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `mock-types`, `store`, `storybook`
+  - [#2041](https://github.com/meepshop/meep-lerna/pull/2041) 內部開單 - 移除 eventsContext ([@Lexiwu](https://github.com/Lexiwu))
+- Other
+  - [#2066](https://github.com/meepshop/meep-lerna/pull/2066) 內部開單 - 新增 @store/line package ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.124 (2022-01-17)
 
 #### :rocket: New Feature
