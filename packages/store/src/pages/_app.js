@@ -58,6 +58,10 @@ class App extends NextApp {
     const { req, res } = ctx;
     let pageProps = {};
     const { XMeepshopDomain, userAgent } = Utils.getReqArgs(req);
+    const domainContextProps =
+      typeof window === 'undefined'
+        ? getServerSideDomainContextProps(ctx, router)
+        : getClientSideDomainContextProps();
 
     if (typeof window === 'undefined') {
       const { valid } = await fetch(
@@ -124,6 +128,7 @@ class App extends NextApp {
       /* The store is closed */
       if (storeStatus === 'CLOSE')
         return {
+          ...domainContextProps,
           closed: adminStatus === 'OPEN' ? 'RESTED' : 'CLOSED',
           pageProps,
         };
@@ -140,7 +145,7 @@ class App extends NextApp {
           httpOnly: true,
         });
         res.redirect(302, '/');
-        return { pageProps };
+        return { ...domainContextProps, pageProps };
       }
     }
 
@@ -153,9 +158,7 @@ class App extends NextApp {
     }
 
     return {
-      ...(typeof window === 'undefined'
-        ? getServerSideDomainContextProps(ctx, router)
-        : getClientSideDomainContextProps()),
+      ...domainContextProps,
       ...(typeof window === 'undefined'
         ? await getServerSideCookiesContextProps(ctx)
         : await getClientSideCookiesContextProps(ctx)),
