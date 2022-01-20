@@ -1,5 +1,44 @@
 # CHANGELOG
 
+## 0.80.126 (2022-01-20)
+
+#### :boom: Breaking Change
+
+- `client`
+  - [#2038](https://github.com/meepshop/meep-lerna/pull/2038) 內部開單 - 移除 /authorize-store ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- Other
+  - [#2078](https://github.com/meepshop/meep-lerna/pull/2078) 內部開單 - 修改 @meepshop/address-cascader style ([@happycat6323](https://github.com/happycat6323))
+  - [#2090](https://github.com/meepshop/meep-lerna/pull/2090) 內部開單 - 新增 @store/radio ([@happycat6323](https://github.com/happycat6323))
+  - [#2082](https://github.com/meepshop/meep-lerna/pull/2082) 內部開單 - 新增 @store/alert ([@happycat6323](https://github.com/happycat6323))
+- `client`
+  - [#2038](https://github.com/meepshop/meep-lerna/pull/2038) 內部開單 - 移除 /authorize-store ([@piovischioh](https://github.com/piovischioh))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#2089](https://github.com/meepshop/meep-lerna/pull/2089) 內部開單 - C532 上版出現額外問題 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#2088](https://github.com/meepshop/meep-lerna/pull/2088) (@admin/apollo) Fix schema error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `client`
+  - [#2038](https://github.com/meepshop/meep-lerna/pull/2038) 內部開單 - 移除 /authorize-store ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#2089](https://github.com/meepshop/meep-lerna/pull/2089) 內部開單 - C532 上版出現額外問題 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#2073](https://github.com/meepshop/meep-lerna/pull/2073) 【重構】訂單/訂單列印：建立小白單 - 店到店物流單 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.125 (2022-01-19)
 
 #### :rocket: New Feature
