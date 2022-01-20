@@ -66,5 +66,43 @@
       "MOBILE_BARCODE": "Operator barcode seluler",
       "CITIZEN_DIGITAL_CERTIFICATE": "Operator kredensial orang alami"
     }
+  },
+  "store-shipment": {
+    "sender-name": "pengirim",
+    "receiver-name": "Menjemput",
+    "due-date": "Periode pembayaran",
+    "csv-store-name": "Ambil toko",
+    "notice": "Staf",
+    "qr-code": "Kode batang khusus logistik",
+    "tooltip": "Ketika Anda mengubah 7-11 logistik versi yang dimodifikasi tunggal, silakan klik halaman lain untuk mencetak atau ke operasi latar belakang hijau.",
+    "how": "Cara mencetak kapal",
+    "print-shipment": "7-11 Logistik Daftar Single",
+    "UNI": {
+      "title": "7-Eleven Daftar Layanan Pengiriman",
+      "barcodeTitle": "Tolong letakkan di layanan pengiriman tas khusus tunggal",
+      "cvs-payment-no": "Kode Layanan Pengiriman",
+      "company-name": "Nama dagang",
+      "fee": "Kirim biaya pengiriman",
+      "notice": {
+        "1": "Batas volume: Bahan ≦ 45 * 30 * 30cm, sisi terpanjang ≦ 45cm, dan pesanan layanan dapat sepenuhnya diratakan \"pesanan layanan adalah 10 * 14 cm\".",
+        "2": "Berat <5kg.",
+        "3": "Layanan pengiriman disisipkan oleh pengirim: pesanan pengiriman layanan diambil ke dalam tas tas tunggal layanan, dan dilampirkan pada paket, toko dapat penerima.",
+        "4": "Paket pengiriman dan penggantian tidak dapat dibatalkan setelah surat."
+      }
+    },
+    "HILIFE": {
+      "title": "Lair Fuxi ke surat toko",
+      "barcodeTitle": "Kode Bar Khusus Pembayaran Toko",
+      "shipment-no": "Pesan satu nomor",
+      "payment-no": "Kirim Kode",
+      "ecpay-id": "Kode pabrik",
+      "notice": {
+        "1": "Oleskan yang teratas, dua barcings dan membuka faktur dan tanda terima kepada konsumen.",
+        "2": "Setelah menyelesaikan koleksi, itu tidak akan dikembalikan.",
+        "3": "Jika kode batang tidak dapat disikat secara normal, gunakan tangan Anda untuk lulus mode barcode.",
+        "4": "Silakan kirim dokumen ke parsel dan konfirmasikan bahwa itu kuat.",
+        "5": "Paket harus diserahkan kepada Driver Logistik Budaya pada hari yang sama."
+      }
+    }
   }
 }

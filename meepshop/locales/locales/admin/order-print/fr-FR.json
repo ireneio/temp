@@ -66,5 +66,43 @@
       "MOBILE_BARCODE": "Carrier de code à barres mobiles",
       "CITIZEN_DIGITAL_CERTIFICATE": "Périphérique naturelle de la personne"
     }
+  },
+  "store-shipment": {
+    "sender-name": "expéditeur",
+    "receiver-name": "Ramasser",
+    "due-date": "Délai de paiement",
+    "csv-store-name": "Ramasser le magasin",
+    "notice": "Personnel",
+    "qr-code": "Code bar logistique spécial",
+    "tooltip": "Lorsque vous modifiez la version à modification unique de la logistique 7-11, cliquez sur une autre page à imprimer ou à l'opération de fond vert.",
+    "how": "Comment imprimer des expéditeurs",
+    "print-shipment": "7-11 Logistique Single List",
+    "UNI": {
+      "title": "7-ELEVEN LISTE DE SERVICE DE LIVRAISON",
+      "barcodeTitle": "S'il vous plaît mettez-le dans le service de livraison un seul sac spécial",
+      "cvs-payment-no": "Code de service de livraison",
+      "company-name": "Appellations commerciales",
+      "fee": "Envoyer les frais d'expédition",
+      "notice": {
+        "1": "Limite de volume: Matériau 45 * 30 * 30cm, le côté le plus long de 45 cm et la commande de service peut être complètement aplatie \"La commande de service est de 10 * 14 cm\".",
+        "2": "Poids <5 kg.",
+        "3": "Le service d'envoi est collé par l'expéditeur: la commande de service d'envoi est prise dans le sac à un service unique et est joint au package, le magasin peut être destinataire.",
+        "4": "Le package d'envoi et de remplacement ne peut pas être annulé après le courrier."
+      }
+    },
+    "HILIFE": {
+      "title": "Lair fuxi au magasin de magasin",
+      "barcodeTitle": "Paiement de magasin Code de barre spécial",
+      "shipment-no": "Commander un numéro unique",
+      "payment-no": "Envoyer le code",
+      "ecpay-id": "Code d'usine",
+      "notice": {
+        "1": "Badigeonner le haut, deux barcages et des factures ouvertes et des reçus aux consommateurs.",
+        "2": "Après avoir terminé la collection, il ne sera pas remboursé.",
+        "3": "Si le code à barres ne peut pas être brossé normalement, utilisez votre main pour passer le mode code à barres.",
+        "4": "Veuillez envoyer le document sur le colis et confirmer que c'est ferme.",
+        "5": "Le paquet doit être remis au pilote de la logistique culturelle le même jour."
+      }
+    }
   }
 }

@@ -1,0 +1,182 @@
+.root {
+  width: 105mm;
+  height: 148.5mm;
+  padding: 8mm 10mm;
+}
+
+.wrap {
+  width: 85mm;
+  height: 124.5mm;
+  border: 1pt solid black;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 11pt;
+  font-weight: 500;
+  text-align: center;
+  height: 8mm;
+  line-height: 8mm;
+  border-bottom: 1pt solid black;
+  margin-bottom: 0;
+}
+
+.barcode {
+  font-size: 9pt;
+  line-height: 11pt;
+  text-align: center;
+  padding: 1mm 2mm;
+  border-bottom: 0.75pt solid rgba(0, 0, 0, 0.3);
+
+  img {
+    display: block;
+    margin: 0 auto;
+    height: 8mm;
+
+    & + p {
+      line-height: 11pt;
+      margin-bottom: 0.5mm;
+      margin-top: 0.5mm;
+    }
+  }
+}
+
+.barcodeLength1 {
+  width: 42mm;
+}
+
+.barcodeLength2 {
+  width: 61mm;
+}
+
+.barcodeLength3 {
+  width: 24mm;
+}
+
+.barcodeLength4 {
+  width: 44mm;
+}
+
+.barcodeLength5 {
+  width: 46.5mm;
+}
+
+.barcodeTitle {
+  margin-bottom: 2pt;
+}
+
+.orderNo {
+  font-size: 12pt;
+  height: 8mm;
+  line-height: 8mm;
+  letter-spacing: 1pt;
+  margin-bottom: 0;
+}
+
+.details {
+  font-size: 9pt;
+  line-height: 12pt;
+  padding: 2mm;
+  border-bottom: 0.75pt solid rgba(0, 0, 0, 0.3);
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.minor {
+  display: flex;
+}
+
+.left {
+  flex: 1;
+}
+
+.uniRight {
+  flex: none;
+  width: 30%;
+}
+
+.hilifeRight {
+  flex: none;
+  width: 40mm;
+}
+
+.main {
+  margin-top: 2mm;
+  line-height: 13pt;
+  font-size: 10pt;
+  font-weight: 500;
+}
+
+.notice {
+  font-size: 9pt;
+  padding: 1mm 2mm;
+  line-height: 11pt;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  ol {
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  li {
+    list-style-position: inside;
+  }
+}
+
+.qrcode {
+  display: flex;
+  align-items: center;
+  font-size: 9pt;
+  line-height: 10pt;
+  margin-top: 1mm;
+}
+
+.qrcodeLeft {
+  width: 14mm;
+  text-align: center;
+}
+
+.qrcodeRight {
+  flex: 1;
+
+  p:first-child {
+    margin-bottom: 2pt;
+  }
+}
+
+.markWrap {
+  display: flex;
+  margin-top: 5mm;
+}
+
+.mark {
+  align-self: center;
+  text-align: center;
+  flex: none;
+  width: 20mm;
+
+  img {
+    width: 13mm;
+  }
+}
+
+.code {
+  flex: 1;
+  text-align: center;
+
+  p {
+    font-size: 9pt;
+    line-height: 10pt;
+    margin-bottom: 2pt;
+  }
+
+  img {
+    height: 8mm;
+  }
+}

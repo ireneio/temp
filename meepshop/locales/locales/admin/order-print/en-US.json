@@ -66,5 +66,43 @@
       "MOBILE_BARCODE": "Mobile barcode carrier",
       "CITIZEN_DIGITAL_CERTIFICATE": "Natural person credential carrier"
     }
+  },
+  "store-shipment": {
+    "sender-name": "sender",
+    "receiver-name": "Pick-up",
+    "due-date": "Payment period",
+    "csv-store-name": "Pick up the store",
+    "notice": "Staff",
+    "qr-code": "Logistics special bar code",
+    "tooltip": "When you change the 7-11 logistics single-modified version, please click another page to print or to the green background operation.",
+    "how": "How to print the ship",
+    "print-shipment": "7-11 logistics single list",
+    "UNI": {
+      "title": "7-Eleven delivery service list",
+      "barcodeTitle": "Please put it in the delivery service single special bag",
+      "cvs-payment-no": "Delivery service code",
+      "company-name": "Trade Names",
+      "fee": "Send shipping cost",
+      "notice": {
+        "1": "Volume limit: Material ≦ 45 * 30 * 30cm, the longest side ≦ 45cm, and the service order can be completely flattened \"service order is 10 * 14cm\".",
+        "2": "Weight <5kg.",
+        "3": "The sending service is pasted by the sender: the sending service order is taken into the service single-specific bag, and it is attached to the package, the store can recipient.",
+        "4": "The sending and replacement package cannot be canceled after the mail."
+      }
+    },
+    "HILIFE": {
+      "title": "Lair Fuxi to the store mail",
+      "barcodeTitle": "Store payment special bar code",
+      "shipment-no": "Order single number",
+      "payment-no": "Send code",
+      "ecpay-id": "Factory code",
+      "notice": {
+        "1": "Brush the top one, two barcings and open invoices and receipts to consumers.",
+        "2": "After completing the collection, it will not refund.",
+        "3": "If the bar code cannot be brushed normally, use your hand to pass the barcode mode.",
+        "4": "Please send the document to the parcel and confirm that it is firm.",
+        "5": "The package must be handed over to the cultural logistics driver at the same day."
+      }
+    }
   }
 }

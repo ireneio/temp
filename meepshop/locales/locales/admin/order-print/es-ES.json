@@ -66,5 +66,43 @@
       "MOBILE_BARCODE": "Portador de código de barras móvil",
       "CITIZEN_DIGITAL_CERTIFICATE": "Portador de credenciales de persona natural"
     }
+  },
+  "store-shipment": {
+    "sender-name": "remitente",
+    "receiver-name": "Levantar",
+    "due-date": "Periodo de pago",
+    "csv-store-name": "Recoger la tienda",
+    "notice": "Personal",
+    "qr-code": "Código de barras especiales de logística",
+    "tooltip": "Cuando cambie la versión modificada de 7-11 logística, haga clic en otra página para imprimir o a la operación de fondo verde.",
+    "how": "Cómo imprimir el barco",
+    "print-shipment": "7-11 Logística Lista individual",
+    "UNI": {
+      "title": "Lista de servicios de entrega de 7-Eleven",
+      "barcodeTitle": "Por favor, póngalo en la bolsa especial del servicio de entrega.",
+      "cvs-payment-no": "Código de servicio de entrega",
+      "company-name": "Nombres comerciales",
+      "fee": "Enviar el costo de envío",
+      "notice": {
+        "1": "Límite de volumen: material ≦ 45 * 30 * 30 cm, el lado más largo ≦ 45 cm, y la orden de servicio puede ser completamente aplanada \"El orden de servicio es de 10 * 14 cm\".",
+        "2": "Peso <5kg.",
+        "3": "El servicio de envío está pegado por el remitente: el pedido de servicio de envío se lleva a cabo en la bolsa única de servicio específica, y se adjunta al paquete, el destinatario de la tienda puede.",
+        "4": "El paquete de envío y reemplazo no se puede cancelar después del correo."
+      }
+    },
+    "HILIFE": {
+      "title": "Lair Fuxi a la tienda Mail",
+      "barcodeTitle": "Código de barras especiales de pago de la tienda",
+      "shipment-no": "Número de pedido único",
+      "payment-no": "Enviar código",
+      "ecpay-id": "Código de fábrica",
+      "notice": {
+        "1": "Cepille la parte superior, dos facturas y las facturas abiertas y los recibos a los consumidores.",
+        "2": "Después de completar la colección, no se reembolsará.",
+        "3": "Si el código de la barra no se puede cepillar normalmente, use su mano para pasar el modo de código de barras.",
+        "4": "Por favor envíe el documento a la parcela y confirme que es firme.",
+        "5": "El paquete debe ser entregado al conductor logístico cultural en el mismo día."
+      }
+    }
   }
 }

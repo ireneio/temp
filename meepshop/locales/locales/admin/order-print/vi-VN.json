@@ -66,5 +66,43 @@
       "MOBILE_BARCODE": "Carcode Mobile Carrier.",
       "CITIZEN_DIGITAL_CERTIFICATE": "Người mang mầm bệnh tự nhiên"
     }
+  },
+  "store-shipment": {
+    "sender-name": "người gửi",
+    "receiver-name": "Nhặt lên",
+    "due-date": "Thời gian thanh toán",
+    "csv-store-name": "Nhặt cửa hàng",
+    "notice": "Nhân viên",
+    "qr-code": "Mã vạch đặc biệt Logistics",
+    "tooltip": "Khi bạn thay đổi phiên bản sửa đổi một cách đơn lẻ 7-11, vui lòng nhấp vào trang khác để in hoặc vào hoạt động nền xanh.",
+    "how": "Cách in tàu",
+    "print-shipment": "7-11 Danh sách hậu cần",
+    "UNI": {
+      "title": "Danh sách dịch vụ giao hàng 7-Eleven",
+      "barcodeTitle": "Vui lòng đặt nó trong dịch vụ giao hàng Túi đặc biệt",
+      "cvs-payment-no": "Mã dịch vụ giao hàng",
+      "company-name": "Tên thương mại",
+      "fee": "Gửi chi phí vận chuyển",
+      "notice": {
+        "1": "Giới hạn thể tích: Chất liệu ≦ 45 * 30 * 30cm, Mặt dài nhất ≦ 45cm và đơn hàng dịch vụ có thể được hoàn toàn phẳng \"Đơn hàng dịch vụ là 10 * 14cm\".",
+        "2": "Trọng lượng <5kg.",
+        "3": "Dịch vụ gửi được dán bởi người gửi: Đơn đặt hàng dịch vụ gửi được đưa vào dịch vụ một túi dành riêng cho dịch vụ và nó được đính kèm với gói, cửa hàng có thể nhận được.",
+        "4": "Gói gửi và thay thế không thể bị hủy sau thư."
+      }
+    },
+    "HILIFE": {
+      "title": "Lair Fuxi đến cửa hàng thư",
+      "barcodeTitle": "Lưu trữ thanh toán mã vạch đặc biệt",
+      "shipment-no": "Đặt hàng một số",
+      "payment-no": "Gửi mã",
+      "ecpay-id": "Mã nhà máy",
+      "notice": {
+        "1": "Chải một cái trên cùng, hai mãn chân và hóa đơn mở và biên lai cho người tiêu dùng.",
+        "2": "Sau khi hoàn thành bộ sưu tập, nó sẽ không hoàn lại tiền.",
+        "3": "Nếu mã vạch không thể được chải bình thường, hãy sử dụng tay của bạn để truyền chế độ mã vạch.",
+        "4": "Vui lòng gửi tài liệu đến bưu kiện và xác nhận rằng nó là công ty.",
+        "5": "Gói phải được bàn giao cho người lái xe Logistics văn hóa cùng ngày."
+      }
+    }
   }
 }
