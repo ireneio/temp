@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+  flex-direction: column;
+
+  > div:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  :global(.ant-radio-wrapper) {
+    font-size: 16px;
+    line-height: 24px;
+
+    > span:last-child {
+      padding: 0px 16px;
+    }
+
+    :global(.ant-radio-checked) + span {
+      font-weight: 500;
+    }
+  }
+}
+
+.description {
+  margin: 12px 0px 4px;
+  padding: 16px 24px;
+  font-size: 14px;
+  line-height: 22px;
+}

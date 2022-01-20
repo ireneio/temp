@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@store/radio",
+  "description": "store radio module",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.80.123",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/context": "^0.80.125",
+    "color": "^3.0.0"
+  },
+  "keywords": ["radio", "store"]
+}
