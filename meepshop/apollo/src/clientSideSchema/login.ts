@@ -38,6 +38,7 @@ export const resolvers = {
         message: null,
         role: null,
         adminStatus: null,
+        token: null,
       };
 
       if (res.status !== 200)
