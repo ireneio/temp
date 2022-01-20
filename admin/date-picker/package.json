@@ -4,12 +4,12 @@
   "description": "Admin date picker component with antd",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.125",
+  "version": "0.80.126",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/date-picker": "^0.80.125",
-    "@meepshop/locales": "^0.80.125",
+    "@meepshop/date-picker": "^0.80.126",
+    "@meepshop/locales": "^0.80.126",
     "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "date picker"]

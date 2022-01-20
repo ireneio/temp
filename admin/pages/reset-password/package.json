@@ -4,13 +4,13 @@
   "description": "Admin reset password page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.125",
+  "version": "0.80.126",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/images": "^0.80.125",
-    "@meepshop/link": "^0.80.125",
-    "@meepshop/locales": "^0.80.125"
+    "@meepshop/images": "^0.80.126",
+    "@meepshop/link": "^0.80.126",
+    "@meepshop/locales": "^0.80.126"
   },
   "keywords": ["admin", "password", "reset"]
 }

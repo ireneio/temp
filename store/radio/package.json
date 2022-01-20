@@ -4,11 +4,11 @@
   "description": "store radio module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.123",
+  "version": "0.80.126",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.125",
+    "@meepshop/context": "^0.80.126",
     "color": "^3.0.0"
   },
   "keywords": ["radio", "store"]
