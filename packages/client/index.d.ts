@@ -13,7 +13,7 @@ export {
   ApolloProvider,
   MutationTuple,
 } from '@apollo/react-hooks';
-export { ApolloLink, split, from } from 'apollo-link';
+export { ApolloLink, Operation, split, from } from 'apollo-link';
 export { HttpLink } from 'apollo-link-http';
 export {
   InMemoryCache,

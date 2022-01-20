@@ -1,14 +1,14 @@
 // import
-import { split, HttpLink } from '@apollo/client';
-import { getMainDefinition } from '@apollo/client/utilities';
+import { split, from, HttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import { createUploadLink } from 'apollo-upload-client';
 
 import { buildWithApollo } from '@meepshop/apollo';
 
-import * as authorizeStore from './authorizeStore';
 import * as OrderConnection from './OrderConnection';
 import * as Page from './Page';
 import * as User from './User';
+import getTestOperation from './utils/getTestOperation';
 
 // definition
 const shouldIgnoreErrorMessages = [
@@ -49,24 +49,16 @@ const shouldIgnoreErrorMessages = [
 export default buildWithApollo({
   name: 'admin',
   terminatingLink: split(
-    ({ query }) => {
-      const definition = getMainDefinition(query);
-
-      return (
-        definition.kind === 'OperationDefinition' &&
-        definition.operation === 'mutation' &&
-        definition.name?.value === 'uploadImages'
-      );
-    },
-    createUploadLink(),
-    new HttpLink(),
+    getTestOperation('applicantInitiatesStore'),
+    from([
+      setContext(() => ({
+        uri: '/api/authorize',
+      })),
+      new HttpLink(),
+    ]),
+    split(getTestOperation('uploadImages'), createUploadLink(), new HttpLink()),
   ),
-  resolvers: [
-    authorizeStore.resolvers,
-    OrderConnection.resolvers,
-    Page.resolvers,
-    User.resolvers,
-  ],
+  resolvers: [OrderConnection.resolvers, Page.resolvers, User.resolvers],
   errorFilter: ({ message }: Error) =>
     !shouldIgnoreErrorMessages.includes(message),
 });

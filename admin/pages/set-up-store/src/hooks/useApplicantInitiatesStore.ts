@@ -8,18 +8,13 @@ import { useRouter } from '@meepshop/link';
 
 // graphql typescript
 import {
-  authorizeStore as authorizeStoreType,
-  authorizeStoreVariables as authorizeStoreVariablesType,
   applicantInitiatesStore as applicantInitiatesStoreType,
   applicantInitiatesStoreVariables as applicantInitiatesStoreVariablesType,
   AdminCurrencyEnum,
 } from '@meepshop/types/gqls/admin';
 
 // graqphl import
-import {
-  authorizeStore,
-  applicantInitiatesStore,
-} from '../gqls/useApplicantInitiatesStore';
+import { applicantInitiatesStore } from '../gqls/useApplicantInitiatesStore';
 
 // typescript definition
 interface ValuesType {
@@ -33,28 +28,15 @@ export default (): {
   applicantInitiatesStore: (values: ValuesType) => void;
 } => {
   const adTrack = useContext(AdTrackContext);
-  const { query, push } = useRouter();
-  const [authorizeStoreMutation] = useMutation<
-    authorizeStoreType,
-    authorizeStoreVariablesType
-  >(authorizeStore, {
-    onCompleted: ({ authorizeStore: { status: authorizeStoreStatus } }) => {
-      if (authorizeStoreStatus === 'OK') push('/');
-      else message.error(authorizeStoreStatus);
-    },
-  });
+  const { query, replace } = useRouter();
   const [mutation, { loading }] = useMutation<
     applicantInitiatesStoreType,
     applicantInitiatesStoreVariablesType
   >(applicantInitiatesStore, {
-    onCompleted: ({
-      applicantInitiatesStore: { status, authorizationToken },
-    }) => {
-      if (status === 'SUCCESS' && authorizationToken) {
+    onCompleted: ({ applicantInitiatesStore: { status } }) => {
+      if (status === 'SUCCESS') {
         adTrack.custom('點擊', '月租註冊_啟用商店', '月租註冊');
-        authorizeStoreMutation({
-          variables: { input: { token: authorizationToken } },
-        });
+        replace('/');
       } else message.error(status);
     },
   });
