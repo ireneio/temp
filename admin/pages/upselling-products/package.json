@@ -4,7 +4,7 @@
   "description": "upselling products",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.126",
+  "version": "0.80.127",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -13,7 +13,7 @@
     "@admin/products-selector": "^0.80.126",
     "@admin/tooltip": "^0.80.125",
     "@admin/utils": "^0.80.126",
-    "@meepshop/hooks": "^0.80.126",
+    "@meepshop/hooks": "^0.80.127",
     "@meepshop/icons": "^0.80.125",
     "@meepshop/link": "^0.80.126",
     "@meepshop/locales": "^0.80.126",
