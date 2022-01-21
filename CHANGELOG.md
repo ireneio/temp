@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.127 (2022-01-21)
+
+#### :bug: Bug Fix
+
+- [#2095](https://github.com/meepshop/meep-lerna/pull/2095) (@meepshop/apollo) Fix login default data ([@HsuTing](https://github.com/HsuTing))
+- [#2094](https://github.com/meepshop/meep-lerna/pull/2094) (@admin/apollo) Fix schema error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#2026](https://github.com/meepshop/meep-lerna/pull/2026) 內部開單 - 移除 post routes ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.126 (2022-01-20)
 
 #### :boom: Breaking Change
