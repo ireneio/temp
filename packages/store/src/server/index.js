@@ -97,14 +97,6 @@ app.prepare().then(() => {
     await next();
   });
 
-  // FIXME: should remove
-  server.post('/checkout/thank-you-page/:id', (req, res) => {
-    const { logger } = req;
-
-    logger.warn('should use /api/checkout/thank-you-page/:id');
-    res.redirect(`https://${req.get('host')}${req.originalUrl}`);
-  });
-
   server.all('*', (req, res) => handler(req, res));
 
   // error handler
