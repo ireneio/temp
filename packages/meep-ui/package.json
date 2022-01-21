@@ -6,7 +6,6 @@
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.80.127",
   "dependencies": {
-    "@meepshop/address-cascader": "^0.80.126",
     "@meepshop/apollo": "^0.80.127",
     "@meepshop/cart": "^0.80.125",
     "@meepshop/context": "^0.80.126",
@@ -15,6 +14,7 @@
     "@meepshop/divider": "^0.80.126",
     "@meepshop/draft-text": "^0.80.127",
     "@meepshop/facebook-wall": "^0.80.127",
+    "@meepshop/form-address-cascader": "^0.80.126",
     "@meepshop/form-data": "^0.80.125",
     "@meepshop/gmo-credit-card-form": "^0.80.126",
     "@meepshop/google-map": "^0.80.125",

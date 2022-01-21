@@ -6,7 +6,7 @@ import { Form, Input, Cascader } from 'antd';
 import { withTranslation } from '@meepshop/locales';
 import AddressCascader, {
   validateAddressCascader,
-} from '@meepshop/address-cascader';
+} from '@meepshop/form-address-cascader';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {

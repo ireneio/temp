@@ -11,7 +11,7 @@ import {
   Apps as AppsContext,
 } from '@meepshop/context';
 import { useValidateEmail } from '@meepshop/validator';
-import AddressCascader from '@meepshop/address-cascader';
+import AddressCascader from '@meepshop/form-address-cascader';
 
 import useSiginup from './hooks/useSignup';
 import useValidateConfirmPassword from './hooks/useValidateConfirmPassword';

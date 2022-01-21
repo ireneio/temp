@@ -9,7 +9,7 @@ import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 import AddressCascader, {
   validateAddressCascader,
-} from '@meepshop/address-cascader';
+} from '@meepshop/form-address-cascader';
 import DatePicker from '@meepshop/date-picker';
 
 import RemoveCreditCardInfo from './RemoveCreditCardInfo';

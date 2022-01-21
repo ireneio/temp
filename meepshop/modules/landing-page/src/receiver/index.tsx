@@ -15,7 +15,7 @@ import validateMobile from '@meepshop/utils/lib/validate/mobile';
 import { useTranslation } from '@meepshop/locales';
 import AddressCascader, {
   validateAddressCascader,
-} from '@meepshop/address-cascader';
+} from '@meepshop/form-address-cascader';
 import { Colors as ColorsContext } from '@meepshop/context';
 import { useValidateEmail } from '@meepshop/validator';
 

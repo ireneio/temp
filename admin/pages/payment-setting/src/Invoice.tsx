@@ -5,7 +5,7 @@ import { Form, Input, Divider, Radio, Alert, Row, Col } from 'antd';
 import Block from '@admin/block';
 import Tooltip from '@admin/tooltip';
 import country from '@admin/utils/lib/country';
-import AddressCascader from '@meepshop/address-cascader';
+import AddressCascader from '@meepshop/form-address-cascader';
 import { useTranslation } from '@meepshop/locales';
 
 import styles from './styles/invoice.less';

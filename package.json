@@ -5,6 +5,7 @@
   "workspaces": [
     "packages/*",
     "meepshop/*",
+    "meepshop/form/*",
     "meepshop/modules/*",
     "store/*",
     "store/pages/*",

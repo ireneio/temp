@@ -6,7 +6,7 @@ import transformColor from 'color';
 
 import AddressCascader, {
   validateAddressCascader,
-} from '@meepshop/address-cascader';
+} from '@meepshop/form-address-cascader';
 import { Colors as ColorsContext, Fb as FbContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/locales';
 import LoginModal from '@meepshop/login-modal';

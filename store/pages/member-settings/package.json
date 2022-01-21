@@ -8,10 +8,10 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/address-cascader": "^0.80.126",
     "@meepshop/apollo": "^0.80.127",
     "@meepshop/context": "^0.80.126",
     "@meepshop/date-picker": "^0.80.126",
+    "@meepshop/form-address-cascader": "^0.80.126",
     "@meepshop/locales": "^0.80.126",
     "@store/utils": "^0.80.126",
     "date-fns": "^2.15.0"
