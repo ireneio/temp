@@ -25,6 +25,7 @@
     "meepshop/*",
     "meepshop/form/*",
     "meepshop/modules/*",
+    "meepshop/form/*",
     "store/*",
     "store/pages/*",
     "admin/*",
