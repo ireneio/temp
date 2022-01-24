@@ -41,6 +41,7 @@ export const useUpsertCartUserFragment = gql`
   fragment useUpsertCartUserFragment on User {
     __typename
     id
+    role
     cart {
       __typename
       ... on Cart {

@@ -1,12 +1,9 @@
 // import
-import { useContext, useMemo, useEffect, useCallback } from 'react';
+import { useMemo, useCallback } from 'react';
 import { filter } from 'graphql-anywhere';
-
-import { Role as RoleContext } from '@meepshop/context';
 
 import useMergeCart from './useMergeCart';
 import useUpsertCart from './useUpsertCart';
-import useInitializeGuestCart from './useInitializeGuestCart';
 
 // graphql typescript
 import {
@@ -22,12 +19,14 @@ import { useUpsertCartUserFragment } from './gqls/useUpsertCart';
 export interface CartType {
   loading: boolean;
   cartItems: useMergeCartFragmentType[];
-  upsertCart: (cartItem: useMergeCartFragmentType) => Promise<void>;
+  upsertCart: (
+    cartItem: useMergeCartFragmentType | useMergeCartFragmentType[],
+  ) => Promise<void>;
 }
 
 // definition
 export default (viewer: useCartFragmentType | null): CartType => {
-  const isShopper = useContext(RoleContext) === 'SHOPPER';
+  const isShopper = viewer?.role === 'SHOPPER';
   const { cart, guestCart } = useMemo(
     () => ({
       cart: viewer?.cart?.__typename !== 'Cart' ? [] : viewer.cart.cartItems,
@@ -48,16 +47,14 @@ export default (viewer: useCartFragmentType | null): CartType => {
   );
   const upsertCart = useUpsertCart(filter(useUpsertCartUserFragment, viewer));
 
-  useInitializeGuestCart(viewer?.id || null);
-  useEffect(() => {
-    if (isShopper && guestCart.length > 0) upsertCart(cartItems);
-  }, [guestCart, isShopper, cartItems, upsertCart]);
-
   return {
     loading: viewer?.guestCart?.__typename !== 'GuestCart',
     cartItems,
     upsertCart: useCallback(
-      cartItem => upsertCart(mergeCart(cartItems, cartItem)),
+      cartItem =>
+        upsertCart(
+          cartItem instanceof Array ? cartItem : mergeCart(cartItems, cartItem),
+        ),
       [cartItems, mergeCart, upsertCart],
     ),
   };

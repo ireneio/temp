@@ -2,7 +2,7 @@
 import { gql } from '@apollo/client';
 
 // graphql import
-import { useMergeCartFragment } from './useMergeCart';
+import { useMergeCartFragment } from '@meepshop/hooks/lib/gqls/useMergeCart';
 
 // definition
 export const useInitializeGuestCartFragment = gql`

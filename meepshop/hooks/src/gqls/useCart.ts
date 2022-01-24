@@ -9,6 +9,7 @@ import { useUpsertCartUserFragment } from './useUpsertCart';
 export const useCartFragment = gql`
   fragment useCartFragment on User {
     id
+    role
     cart {
       ... on Cart {
         cartItems {

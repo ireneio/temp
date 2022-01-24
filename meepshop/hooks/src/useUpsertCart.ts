@@ -2,10 +2,8 @@
 import { DataProxy } from '@apollo/client';
 
 // import
-import { useContext, useCallback } from 'react';
+import { useCallback } from 'react';
 import { useMutation } from '@apollo/client';
-
-import { Role as RoleContext } from '@meepshop/context';
 
 // graphql typescript
 import {
@@ -22,7 +20,7 @@ import { upsertCart, useUpsertCartUserFragment } from './gqls/useUpsertCart';
 export default (
   viewer: useUpsertCartUserFragmentType | null,
 ): ((cartItems: useMergeCartFragmentType[]) => Promise<void>) => {
-  const isShopper = useContext(RoleContext) === 'SHOPPER';
+  const isShopper = viewer?.role === 'SHOPPER';
   const [mutation] = useMutation<upsertCartType, upsertCartVariablesType>(
     upsertCart,
   );
