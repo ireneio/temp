@@ -16,7 +16,7 @@ interface PropsType extends ConvenienceStorePropsType {
 
 // definition
 export default React.memo(({ close, ...props }: PropsType) => {
-  const { t } = useTranslation('convenience-store-map-modal');
+  const { t } = useTranslation('form-convenience-store-map');
 
   return (
     <Modal

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@meepshop/convenience-store-map-modal",
+  "name": "@meepshop/form-convenience-store-map",
   "description": "Convenience store map modal for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",

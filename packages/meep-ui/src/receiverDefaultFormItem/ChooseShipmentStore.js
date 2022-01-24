@@ -5,7 +5,7 @@ import radium from 'radium';
 import { Form, Input, Button } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
-import ConvenienceStoreMapModal from '@meepshop/convenience-store-map-modal';
+import ConvenienceStoreMap from '@meepshop/form-convenience-store-map';
 import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
@@ -229,7 +229,7 @@ export default class ChooseShipmentStore extends React.PureComponent {
         ))}
 
         {!openConvenienceStoreMap ? null : (
-          <ConvenienceStoreMapModal
+          <ConvenienceStoreMap
             shipmentType={
               shipmentTemplate === 'allpay'
                 ? ECPAY_SHIPMENT_TYPE_ENUM(allpay.logisticsSubType)
