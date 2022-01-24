@@ -67,9 +67,11 @@ export default React.memo(({ viewer, uniMartC2CRedirectInfo }: PropsType) => {
         </form>
       )}
       <div className={styles.root}>
-        <StoreShipmentDetail
-          viewer={filter(storeShipmentDetailFragment, viewer)}
-        />
+        <div className={styles.detail}>
+          <StoreShipmentDetail
+            viewer={filter(storeShipmentDetailFragment, viewer)}
+          />
+        </div>
       </div>
     </>
   );
