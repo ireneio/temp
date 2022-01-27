@@ -8,7 +8,6 @@ import {
   Currency as CurrencyContext,
   Colors as ColorsContext,
 } from '@meepshop/context';
-import CartContext from '@meepshop/cart';
 import { CartDeleteIcon } from '@meepshop/icons';
 import { placeholderThumbnail_w120 as placeholderThumbnail } from '@meepshop/images';
 import Link from '@meepshop/link';
@@ -16,37 +15,24 @@ import ProductAmountSelector from '@meepshop/product-amount-selector';
 
 import styles from './styles/useColumns.less';
 
-export default ({ productHasError, onChange }) => {
+export default ({ productHasError, upsertCart }) => {
   const { t } = useTranslation('order-product-list');
   const getLanguage = useGetLanguage();
   const { c } = useContext(CurrencyContext);
   const colors = useContext(ColorsContext);
-  const { updateProductInCart, removeProductFromCart } = useContext(
-    CartContext,
-  );
 
   const changeProduct = useCallback(
-    cartId => async value => {
-      await updateProductInCart({
-        variables: {
-          search: {
-            productsInfo: {
-              updateData: {
-                id: cartId,
-                quantity: value,
-              },
-            },
-          },
-        },
+    async value => {
+      await upsertCart({
+        ...value,
+        __typename: 'CartItem',
       });
-
-      if (onChange) onChange({ cartId, quantity: value });
 
       notification.success({
         message: t('update-product-in-cart'),
       });
     },
-    [onChange, t, updateProductInCart],
+    [t, upsertCart],
   );
 
   return useMemo(
@@ -86,10 +72,11 @@ export default ({ productHasError, onChange }) => {
             activityInfo,
             error,
             retailPrice,
-            quantity,
             type,
-            cartId,
             variant,
+            productId,
+            quantity,
+            variantId,
           },
         ) => (
           <div
@@ -176,7 +163,13 @@ export default ({ productHasError, onChange }) => {
                       className={`${styles.select} ${styles.mobile}`}
                       variant={variant}
                       value={quantity}
-                      onChange={changeProduct(cartId)}
+                      onChange={newQuantity => {
+                        changeProduct({
+                          productId,
+                          quantity: newQuantity - quantity,
+                          variantId,
+                        });
+                      }}
                     />
 
                     {!error ? null : (
@@ -193,7 +186,7 @@ export default ({ productHasError, onChange }) => {
       },
       {
         dataIndex: ['quantity'],
-        render: (quantity, { error, type, cartId, variant }) => {
+        render: (quantity, { error, type, productId, variantId, variant }) => {
           if (
             type !== 'product' ||
             ['DISCONTINUED', 'NOT_AVAILABLE', 'OUT_OF_STOCK'].includes(error)
@@ -206,7 +199,13 @@ export default ({ productHasError, onChange }) => {
                 className={styles.select}
                 variant={variant}
                 value={quantity}
-                onChange={changeProduct(cartId)}
+                onChange={newQuantity => {
+                  changeProduct({
+                    productId,
+                    quantity: newQuantity - quantity,
+                    variantId,
+                  });
+                }}
               />
 
               {!error ? null : <div>{t(error)}</div>}
@@ -215,8 +214,8 @@ export default ({ productHasError, onChange }) => {
         },
       },
       {
-        dataIndex: ['cartId'],
-        render: (cartId, { type }) => (
+        dataIndex: ['quantity'],
+        render: (quantity, { type, productId, variantId }) => (
           <div
             className={type === 'product' ? '' : styles.gift}
             style={{
@@ -229,17 +228,12 @@ export default ({ productHasError, onChange }) => {
                   <CartDeleteIcon
                     className={styles.cartDelete}
                     onClick={async () => {
-                      await removeProductFromCart({
-                        variables: {
-                          search: {
-                            productsInfo: {
-                              deleteData: cartId,
-                            },
-                          },
-                        },
+                      await upsertCart({
+                        __typename: 'CartItem',
+                        productId,
+                        quantity: quantity * -1,
+                        variantId,
                       });
-
-                      if (onChange) onChange({ cartId, quantity: 0 });
 
                       notification.success({
                         message: t('remove-product-from-cart'),
@@ -254,15 +248,6 @@ export default ({ productHasError, onChange }) => {
         ),
       },
     ],
-    [
-      productHasError,
-      t,
-      getLanguage,
-      c,
-      colors,
-      removeProductFromCart,
-      onChange,
-      changeProduct,
-    ],
+    [productHasError, t, getLanguage, c, colors, changeProduct, upsertCart],
   );
 };

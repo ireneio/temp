@@ -1,7 +1,7 @@
 // import
 import React, { useContext } from 'react';
 import { filter } from 'graphql-anywhere';
-import { Table } from 'antd';
+import { Table, Skeleton } from 'antd';
 import transformColor from 'color';
 
 import { Colors as ColorsContext } from '@meepshop/context';
@@ -57,6 +57,21 @@ export default React.memo(({ viewer, products, hasError }: PropsType) => {
                 }
               : {},
         })}
+        locale={{
+          emptyText: [1, 2].map(key => (
+            <Skeleton
+              key={key}
+              avatar={{
+                shape: 'square',
+                size: 105,
+              }}
+              paragraph={{
+                rows: 2,
+              }}
+              active
+            />
+          )),
+        }}
         rowKey="id"
       />
 
@@ -70,6 +85,10 @@ export default React.memo(({ viewer, products, hasError }: PropsType) => {
             .${styles.root} .ant-table-thead > tr > th,
             .${styles.root} .ant-table-tbody > tr > td {
               border-bottom: 1px solid ${colors[5]};
+            }
+
+            .${styles.root} .ant-table.ant-table-empty .ant-table-tbody > tr > td {
+              border-bottom: 0px;
             }
 
             ${columnStyles}

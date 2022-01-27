@@ -1,5 +1,7 @@
 import { gql } from '@apollo/client';
 
+import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
+
 export const getContextData = gql`
   query getContextData {
     viewer {
@@ -95,6 +97,7 @@ export const getContextData = gql`
           }
         }
       }
+      ...useCartFragment
     }
 
     getStockNotificationList {
@@ -120,6 +123,8 @@ export const getContextData = gql`
       }
     }
   }
+
+  ${useCartFragment}
 `;
 
 export const getProductInDecoratorsRoot = gql`

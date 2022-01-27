@@ -7,7 +7,6 @@
   "version": "0.80.127",
   "dependencies": {
     "@meepshop/apollo": "^0.80.127",
-    "@meepshop/cart": "^0.80.125",
     "@meepshop/context": "^0.80.126",
     "@meepshop/date-picker": "^0.80.126",
     "@meepshop/divider": "^0.80.126",

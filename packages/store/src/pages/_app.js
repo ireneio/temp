@@ -11,7 +11,6 @@ import { ColorsProvider } from '@meepshop/context/lib/Colors';
 import { AppsProvider } from '@meepshop/context/lib/Apps';
 import { RoleProvider } from '@meepshop/context/lib/Role';
 import { SensorProvider } from '@meepshop/context/lib/Sensor';
-import { CartProvider } from '@meepshop/cart';
 import { FormDataProvider } from '@meepshop/form-data';
 import {
   appWithDomain,
@@ -313,6 +312,7 @@ class App extends NextApp {
           />
           <meta key="og:locale" property="og:locale" content={i18n.language} />
         </Head>
+
         <FbProvider>
           <RoleProvider>
             <ColorsProvider>
@@ -320,25 +320,23 @@ class App extends NextApp {
                 <SensorProvider>
                   <CurrencyProvider>
                     <AdTrackProvider>
-                      <CartProvider>
-                        <FormDataProvider>
-                          <Component
-                            {...pageProps}
-                            product={product}
-                            page={page}
-                            client={client}
-                            url={{
-                              asPath: router.asPath,
-                              query: router.query,
-                            }}
-                          />
+                      <FormDataProvider>
+                        <Component
+                          {...pageProps}
+                          product={product}
+                          page={page}
+                          client={client}
+                          url={{
+                            asPath: router.asPath,
+                            query: router.query,
+                          }}
+                        />
 
-                          <ActionButton
-                            backToTopButtonEnabled={backToTopButtonEnabled}
-                            goToButton={page?.goToButton || null}
-                          />
-                        </FormDataProvider>
-                      </CartProvider>
+                        <ActionButton
+                          backToTopButtonEnabled={backToTopButtonEnabled}
+                          goToButton={page?.goToButton || null}
+                        />
+                      </FormDataProvider>
                     </AdTrackProvider>
                   </CurrencyProvider>
                 </SensorProvider>

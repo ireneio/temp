@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Table } from 'antd';
+import { Table, Skeleton } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
@@ -22,11 +22,31 @@ export default enhancer(
       activityInfo,
       isChoosenSipment,
       productHasError,
-      onChange,
+      loading,
+      upsertCart,
     }) => {
       const { t } = useTranslation('order-product-list');
       const colors = useContext(ColorsContext);
-      const columns = useColumns({ productHasError, onChange });
+      const columns = useColumns({ productHasError, upsertCart });
+
+      if (loading)
+        return (
+          <div
+            className={`${styles.root} ${styles.loading} ${className || ''}`}
+            style={style}
+          >
+            {[1, 2, 3].map(key => (
+              <Skeleton
+                key={key}
+                avatar={{
+                  shape: 'square',
+                  size: 72,
+                }}
+                active
+              />
+            ))}
+          </div>
+        );
 
       return (
         <div className={`${styles.root} ${className || ''}`} style={style}>

@@ -58,11 +58,7 @@ export default class Checkout extends React.PureComponent {
     this.isUnmounted = true;
   }
 
-  submit = (createOrder, updateUser, checkoutFields) => async (
-    isPayment,
-    info,
-    otherDetailInfo,
-  ) => {
+  submit = async (isPayment, info, otherDetailInfo) => {
     const {
       /** context */
       isLogin,
@@ -182,7 +178,7 @@ export default class Checkout extends React.PureComponent {
 
     const { user } = this.props;
 
-    const { error, data } = await createOrder({
+    const { error, data } = await this.createOrder({
       variables: {
         input: {
           idempotentKey: this.idempotentKey,
@@ -245,8 +241,9 @@ export default class Checkout extends React.PureComponent {
           cvsType,
           cvsCode,
           userId: user.id,
-          userInfo: Object.keys(checkoutFields).every(
-            key => key === '__typename' || checkoutFields[key] === 'HIDDEN',
+          userInfo: Object.keys(this.checkoutFields).every(
+            key =>
+              key === '__typename' || this.checkoutFields[key] === 'HIDDEN',
           )
             ? {
                 name: user?.name,
@@ -307,7 +304,7 @@ export default class Checkout extends React.PureComponent {
     if (global.window) window.sessionStorage.clear();
 
     const input = ['name', 'mobile', 'address'].reduce((result, fieldName) => {
-      if (checkoutFields?.[fieldName] === 'HIDDEN') return result;
+      if (this.checkoutFields?.[fieldName] === 'HIDDEN') return result;
 
       switch (fieldName) {
         case 'name':
@@ -343,7 +340,7 @@ export default class Checkout extends React.PureComponent {
       }
     }, {});
 
-    await updateUser({
+    await this.updateUser({
       variables: {
         input,
       },
@@ -394,26 +391,32 @@ export default class Checkout extends React.PureComponent {
           checkoutFields,
           createOrder,
           updateUser,
-        }) => (
-          <OrderDetail
-            {...this.props}
-            {...orderOtherDetailInfo}
-            user={{
-              name,
-              mobile,
-              address,
-            }}
-            shippableRecipientAddresses={shippableRecipientAddresses}
-            checkoutFields={checkoutFields}
-            errors={errors}
-            orderInfo={orderInfo}
-            submit={this.submit(createOrder, updateUser, checkoutFields)}
-            isSubmitting={isSubmitting}
-            onChange={data => {
-              this.setState(data);
-            }}
-          />
-        )}
+        }) => {
+          this.createOrder = createOrder;
+          this.updateUser = updateUser;
+          this.checkoutFields = checkoutFields;
+
+          return (
+            <OrderDetail
+              {...this.props}
+              {...orderOtherDetailInfo}
+              user={{
+                name,
+                mobile,
+                address,
+              }}
+              shippableRecipientAddresses={shippableRecipientAddresses}
+              checkoutFields={checkoutFields}
+              errors={errors}
+              orderInfo={orderInfo}
+              submit={this.submit}
+              isSubmitting={isSubmitting}
+              onChange={data => {
+                this.setState(data);
+              }}
+            />
+          );
+        }}
       </CheckoutWrapper>
     );
   }

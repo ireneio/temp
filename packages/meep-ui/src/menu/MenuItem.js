@@ -382,6 +382,7 @@ export default class MenuItem extends React.PureComponent {
       menuItemStyle,
       hasLevelThree,
       iconSize,
+      user,
       ...props
     } = this.props;
 
@@ -474,9 +475,8 @@ export default class MenuItem extends React.PureComponent {
                 (level === 1 &&
                   (isModule || ['fixedTop', 'secondTop'].includes(menuType))))
             }
-            // FIXME: using viewer in T9918
             render={children => (
-              <CartPreviewer viewer={null}>{children}</CartPreviewer>
+              <CartPreviewer viewer={user}>{children}</CartPreviewer>
             )}
           >
             <AntdMenuItem {...menuItemProps} />

@@ -3,6 +3,7 @@ import { ColumnProps } from 'antd/lib/table';
 
 // import
 import React, { useMemo, useContext } from 'react';
+import { filter } from 'graphql-anywhere';
 import {
   TagOutlined,
   CloseOutlined,
@@ -14,12 +15,12 @@ import {
   Currency as CurrencyContext,
   Colors as ColorsContext,
 } from '@meepshop/context';
+import { useCart } from '@meepshop/hooks';
 import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Link from '@meepshop/link';
 import Switch from '@meepshop/switch';
 import Thumbnail from '@meepshop/thumbnail';
 
-import useRemoveProduct from './useRemoveProduct';
 import styles from '../styles/useProductsColumns.less';
 
 // graphql typescript
@@ -27,6 +28,9 @@ import {
   useProductsColumnsInPreviewerUserFragment as useProductsColumnsInPreviewerUserFragmentType,
   useProductsColumnsInPreviewerLineItemFragment as useProductsColumnsInPreviewerLineItemFragmentType,
 } from '@meepshop/types/gqls/store';
+
+// graphql import
+import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
 
 // typescript definition
 interface ReturnType {
@@ -36,14 +40,13 @@ interface ReturnType {
 
 // definition
 export default (
-  // FIXME: using useCart and useCartFragment in T9918
-  _viewer: useProductsColumnsInPreviewerUserFragmentType | null,
+  viewer: useProductsColumnsInPreviewerUserFragmentType | null,
 ): ReturnType => {
   const { t } = useTranslation('cart-previewer');
   const getLanguage = useGetLanguage();
   const { c } = useContext(CurrencyContext);
   const colors = useContext(ColorsContext);
-  const removeProduct = useRemoveProduct();
+  const { upsertCart } = useCart(filter(useCartFragment, viewer));
 
   return useMemo(
     () => ({
@@ -164,16 +167,23 @@ export default (
           },
         },
         {
-          dataIndex: ['cartId'],
+          dataIndex: ['quantity'],
           width: 20,
           render: (
-            cartId: useProductsColumnsInPreviewerLineItemFragmentType['cartId'],
-            { type },
+            quantity: useProductsColumnsInPreviewerLineItemFragmentType['quantity'],
+            { type, productId, variantId },
           ) =>
             type !== 'PRODUCT' ? null : (
               <CloseOutlined
                 className={styles.delete}
-                onClick={() => removeProduct(cartId)}
+                onClick={() =>
+                  upsertCart({
+                    __typename: 'CartItem' as const,
+                    productId,
+                    quantity: (quantity || 0) * -1,
+                    variantId,
+                  })
+                }
               />
             ),
         },
@@ -191,6 +201,6 @@ export default (
         }
       `,
     }),
-    [c, colors, getLanguage, removeProduct, t],
+    [t, getLanguage, c, colors, upsertCart],
   );
 };

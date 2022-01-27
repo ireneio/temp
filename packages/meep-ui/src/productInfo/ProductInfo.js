@@ -9,7 +9,6 @@ import memoizeOne from 'memoize-one';
 import { AddToCartIcon } from '@meepshop/icons';
 import { withTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
-import CartContext from '@meepshop/cart';
 import ProductSpecSelector from '@meepshop/product-spec-selector';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
@@ -29,7 +28,6 @@ import { PRODUCT_TYPE, LIMITED, ORDERABLE, OUT_OF_STOCK } from './constants';
 
 @withTranslation('product-info')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
-@withContext(CartContext)
 @enhancer
 @withHook(({ productData, carts }) => useVariant(productData, carts))
 @withHook(() => ({ client: useApolloClient() }))
@@ -130,25 +128,18 @@ export default class ProductInfo extends React.PureComponent {
       colors,
       productData,
       type,
-      addProductToCart,
+      upsertCart,
       variant,
     } = this.props;
     const { quantity } = this.state;
 
     this.setState({ isAddingItem: true });
 
-    await addProductToCart({
-      variables: {
-        search: {
-          productsInfo: {
-            createData: {
-              productId: productData.id,
-              variantId: variant.id,
-              quantity,
-            },
-          },
-        },
-      },
+    await upsertCart({
+      __typename: 'CartItem',
+      productId: productData.id,
+      quantity,
+      variantId: variant.id,
     });
 
     adTrack.addToCart({

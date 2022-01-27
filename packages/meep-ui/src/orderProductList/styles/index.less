@@ -5,6 +5,19 @@
   flex-direction: column;
 }
 
+.loading {
+  padding: 0px 25px;
+
+  :global(.ant-skeleton) {
+    padding: 19px 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  :global(.ant-skeleton-avatar) {
+    border-radius: 10px;
+  }
+}
+
 .productList {
   flex-grow: 1;
   max-height: 100%;

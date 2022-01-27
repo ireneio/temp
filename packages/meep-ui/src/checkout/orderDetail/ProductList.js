@@ -30,7 +30,6 @@ export default class ProductList extends React.PureComponent {
     showDetail: PropTypes.bool.isRequired,
     products: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
     productHasError: PropTypes.bool.isRequired,
-    updateProducts: PropTypes.func.isRequired,
     closeDetail: PropTypes.func.isRequired,
   };
 
@@ -44,28 +43,6 @@ export default class ProductList extends React.PureComponent {
     this.isComponentMounted = true;
   }
 
-  updateProducts = ({ cartId, quantity }) => {
-    const { products, updateProducts } = this.props;
-
-    updateProducts(
-      products.reduce(
-        (result, { cartId: id, quantity: preQuantity, ...product }) => {
-          if (id === cartId && quantity === 0) return result;
-
-          return [
-            ...result,
-            {
-              ...product,
-              cartId: id,
-              quantity: id === cartId ? quantity : preQuantity,
-            },
-          ];
-        },
-        [],
-      ),
-    );
-  };
-
   render() {
     const {
       colors,
@@ -76,6 +53,7 @@ export default class ProductList extends React.PureComponent {
       productHasError,
       isChoosenSipment,
       closeDetail,
+      loading,
     } = this.props;
 
     return (
@@ -105,7 +83,7 @@ export default class ProductList extends React.PureComponent {
           priceInfo={priceInfo}
           productHasError={productHasError}
           isChoosenSipment={isChoosenSipment}
-          onChange={this.updateProducts}
+          loading={loading}
         />
       </StyleRoot>
     );

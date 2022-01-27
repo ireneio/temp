@@ -111,10 +111,10 @@ export default (
                         street: variables.input.address?.street || null,
                       },
                     ],
-              },
-              getCartList: {
-                __typename: 'OrderList',
-                data: [],
+                cart: {
+                  __typename: 'Cart',
+                  cartItems: [],
+                },
               },
             },
           });

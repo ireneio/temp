@@ -47,6 +47,10 @@ export const modifyAntdStyle = colors => ({
     borderColor: colors[4],
   },
 
+  '.ant-spin-dot-item': {
+    background: colors[4],
+  },
+
   '.ant-checkbox + span': {
     padding: '0px 0px 0px 8px',
     userSelect: 'none',

@@ -1,6 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
+import { filter } from 'graphql-anywhere';
 
 import {
   Apps as AppsContext,
@@ -8,11 +9,13 @@ import {
   Colors as ColorsContext,
   Role as RoleContext,
 } from '@meepshop/context';
+import { useCart } from '@meepshop/hooks';
 import { useRouter } from '@meepshop/link';
 import withContext from '@store/utils/lib/withContext';
-import { NOTLOGIN, ISUSER } from 'constants/isLogin';
 
-import useGetCart from './hooks/useGetCart';
+import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
+
+import { NOTLOGIN, ISUSER } from 'constants/isLogin';
 
 import {
   getContextData,
@@ -30,7 +33,6 @@ export default React.memo(
 
     children,
   }) => {
-    const carts = useGetCart();
     const { data } = useQuery(getContextData);
     const { query } = useRouter();
     const { data: productInContext } = useQuery(getProductInDecoratorsRoot, {
@@ -62,6 +64,9 @@ export default React.memo(
     const apps = useContext(AppsContext);
     const { c } = useContext(CurrencyContext);
     const role = useContext(RoleContext);
+    const { loading, cartItems, upsertCart } = useCart(
+      filter(useCartFragment, data?.viewer || null),
+    );
 
     return (
       <EnhancerContext.Provider
@@ -88,7 +93,9 @@ export default React.memo(
           colors,
           hasStoreAppPlugin: pluginName => apps[pluginName].isInstalled,
           transformCurrency: c,
-          carts,
+          carts: cartItems,
+          cartLoading: loading,
+          upsertCart,
         }}
       >
         {children({

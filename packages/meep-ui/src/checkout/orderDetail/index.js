@@ -2,10 +2,10 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { LeftOutlined } from '@ant-design/icons';
-import { Form, InputNumber, Button, Modal, notification } from 'antd';
+import { Spin, Form, InputNumber, Button, Modal, notification } from 'antd';
 import uuid from 'uuid';
 import transformColor from 'color';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { areEqual } from 'fbjs';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
@@ -23,6 +23,7 @@ import { computeOrderList, getVariables } from 'utils/getComputeOrderQuery';
 
 import PaymentDefaultFormItem from 'paymentDefaultFormItem';
 
+import { computedCartInCheckout } from './gqls';
 import { PRESERVED_FIELDS, DEFERRED_FIELDS } from '../constants';
 
 import UserInfo from './UserInfo';
@@ -80,6 +81,23 @@ const { Item: FormItem } = Form;
   }, [user, orderInfo, errors]),
 }))
 @enhancer
+@withHook(({ carts, cartLoading }) => {
+  const { data } = useQuery(computedCartInCheckout, {
+    fetchPolicy: 'cache-and-network',
+    variables: {
+      cartItems: carts.map(({ __typename: _, ...cartItem }) => cartItem),
+    },
+    skip: cartLoading,
+  });
+
+  return {
+    cartLoading: cartLoading || !data?.computedCart,
+    carts:
+      data?.computedCart?.computedLineItems.filter(
+        ({ type }) => type !== 'GIFT',
+      ) || [],
+  };
+})
 @radium
 export default class OrderDetail extends React.PureComponent {
   isEmptyCart = false;
@@ -116,7 +134,7 @@ export default class OrderDetail extends React.PureComponent {
       shipmentList: [],
     },
     // eslint-disable-next-line react/destructuring-assignment
-    products: this.props.carts || [],
+    products: [],
     choosePayment: null,
     chooseShipment: null,
     productHasError: false,
@@ -241,12 +259,14 @@ export default class OrderDetail extends React.PureComponent {
       t,
       adTrack,
       isSubmitting,
+      cartLoading,
+      carts,
     } = this.props;
     const { products, computeOrderData, isChecking } = this.state;
 
-    if (isSubmitting || isChecking) return;
+    if (isSubmitting || isChecking || cartLoading) return;
 
-    if (products.length === 0) {
+    if (carts.length === 0) {
       this.isEmptyCart = true;
       Modal.warning({
         title: t('cart-is-empty'),
@@ -475,6 +495,8 @@ export default class OrderDetail extends React.PureComponent {
       isSubmitting,
       shippableRecipientAddresses,
       checkoutFields,
+      cartLoading,
+      carts,
     } = this.props;
     const {
       showDetail,
@@ -524,32 +546,38 @@ export default class OrderDetail extends React.PureComponent {
               {storeName}
 
               <div className={styles.phoneSizeWrapper}>
-                <div>
-                  {t('total-price')}：{transformCurrency(total)}
-                  <div className={styles.cartButton}>
-                    <Button
-                      onClick={() =>
-                        this.setState({ showDetail: true }, () => {
-                          document.querySelector('body').style.overflow =
-                            'hidden';
-                        })
-                      }
-                    >
-                      {t('cart')}
-                    </Button>
+                {cartLoading ? (
+                  <Spin />
+                ) : (
+                  <>
+                    <div>
+                      {t('total-price')}：{transformCurrency(total)}
+                      <div className={styles.cartButton}>
+                        <Button
+                          onClick={() =>
+                            this.setState({ showDetail: true }, () => {
+                              document.querySelector('body').style.overflow =
+                                'hidden';
+                            })
+                          }
+                        >
+                          {t('cart')}
+                        </Button>
 
-                    {!productHasError ? null : <ErrorMultiIcon />}
-                  </div>
-                </div>
+                        {!productHasError ? null : <ErrorMultiIcon />}
+                      </div>
+                    </div>
 
-                {!productHasError ? null : (
-                  <div className={styles.cartError}>
-                    {t('cart-has-error.0')}
+                    {!productHasError ? null : (
+                      <div className={styles.cartError}>
+                        {t('cart-has-error.0')}
 
-                    <span>{t('cart')}</span>
+                        <span>{t('cart')}</span>
 
-                    {t('cart-has-error.1')}
-                  </div>
+                        {t('cart-has-error.1')}
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             </div>
@@ -735,11 +763,7 @@ export default class OrderDetail extends React.PureComponent {
           showDetail={showDetail}
           products={loading ? [] : products}
           productHasError={productHasError}
-          updateProducts={newProducts => {
-            this.computeOrderList({
-              products: newProducts.filter(({ type }) => type === 'product'),
-            });
-          }}
+          loading={cartLoading || (carts.length !== 0 && products.length === 0)}
           closeDetail={() =>
             this.setState({ showDetail: false }, () => {
               document.querySelector('body').style = '';

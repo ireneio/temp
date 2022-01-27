@@ -40,6 +40,15 @@ export const useCreateOrderFragment = gql`
       street
       zipCode
     }
+    cart {
+      ... on Cart {
+        cartItems {
+          productId
+          quantity
+          variantId
+        }
+      }
+    }
   }
 `;
 
@@ -48,12 +57,6 @@ export const updateOrders = gql`
     viewer {
       id
       ...useCreateOrderFragment
-    }
-
-    getCartList {
-      data {
-        id
-      }
     }
   }
 

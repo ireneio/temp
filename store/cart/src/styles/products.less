@@ -15,6 +15,23 @@
     }
   }
 
+  :global(.ant-table-tbody) > tr:global(.ant-table-placeholder):hover > td {
+    background: initial;
+  }
+
+  :global(.ant-table-empty .ant-table-cell) {
+    padding: 0px;
+
+    :global(.ant-skeleton) {
+      padding: 24px 0px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    :global(.ant-skeleton-avatar) {
+      border-radius: 10px;
+    }
+  }
+
   .row {
     > td {
       padding: 24px 24px 24px 0;

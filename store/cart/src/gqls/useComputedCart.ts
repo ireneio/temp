@@ -18,10 +18,7 @@ export const useComputedCartFragment = gql`
 `;
 
 export const computedCart = gql`
-  query computedCart(
-    $cartItems: [CartItemInput!]!
-    $cartProducts: [CartProductsInput!]!
-  ) {
+  query computedCart($cartItems: [CartItemInput!]!) {
     computedCart(cartItems: $cartItems) {
       ... on ComputedCart {
         computedLineItems {

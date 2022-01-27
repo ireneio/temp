@@ -1,16 +1,25 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
+import { filter } from 'graphql-anywhere';
 
+import { useApolloNetworkStatus } from '@meepshop/apollo';
 import { useTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
+import { useCart } from '@meepshop/hooks';
+
+import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
 
 import { getPage } from 'gqls/usePage';
 import modifyWidgetDataInClient from 'utils/modifyWidgetDataInClient';
 import getJoinedModule from 'utils/getJoinedModule';
 
+import useInitializeGuestCart from './useInitializeGuestCart';
+
 export default () => {
+  const { numPendingQueries } = useApolloNetworkStatus();
   const { i18n } = useTranslation('common');
   const router = useRouter();
+  const [mergingCart, setMergingCart] = useState(false);
   const { data, client } = useQuery(getPage, {
     variables: {
       path: router.query.path || '',
@@ -44,8 +53,29 @@ export default () => {
       isProductsPage: router.pathname === '/products',
     },
   });
+  const { cartItems, upsertCart } = useCart(
+    filter(useCartFragment, data?.viewer || null),
+  );
   const store = data?.viewer?.store || null;
   const product = data?.computeProductList?.data?.[0] || null;
+
+  // FIXME: should simpify
+  useInitializeGuestCart(data?.viewer?.id || null);
+  useEffect(() => {
+    if (
+      !mergingCart &&
+      data?.viewer?.role === 'SHOPPER' &&
+      numPendingQueries === 0 &&
+      (data?.viewer.guestCart.cartItems || []).length !== 0
+    ) {
+      setMergingCart(true);
+
+      (async () => {
+        await upsertCart(cartItems);
+        setMergingCart(false);
+      })();
+    }
+  }, [data, cartItems, mergingCart, upsertCart, numPendingQueries]);
 
   return {
     i18n,

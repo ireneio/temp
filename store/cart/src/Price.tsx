@@ -1,5 +1,6 @@
 // import
 import React, { useContext, useMemo } from 'react';
+import { Skeleton } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import transformColor from 'color';
 
@@ -20,63 +21,74 @@ import {
 
 // typescript definition
 interface PropsType {
-  computedCart: Omit<priceComputedCartFragmentType, 'computedLineItems'> & {
-    computedLineItems: priceComputedCartFragmentComputedLineItemsType[];
-  };
+  computedCart:
+    | (Omit<priceComputedCartFragmentType, 'computedLineItems'> & {
+        computedLineItems: priceComputedCartFragmentComputedLineItemsType[];
+      })
+    | null;
   checkErrors: () => void;
 }
 
 // definition
-export default React.memo(
-  ({
-    computedCart: { computedLineItems, productsDiscount, orderDiscount },
-    checkErrors,
-  }: PropsType) => {
-    const colors = useContext(ColorsContext);
-    const { c } = useContext(CurrencyContext);
-    const { push } = useRouter();
-    const { t } = useTranslation('cart');
-    const getLanguage = useGetLanguage();
-    const productTotal = useMemo(
-      () =>
-        computedLineItems.reduce(
-          (total, { quantity, unitPrice }) =>
-            total + (quantity || 0) * (unitPrice || 0),
-          0,
-        ),
-      [computedLineItems],
-    );
-    const discountTotal = useMemo(
-      () =>
-        productsDiscount.reduce(
-          (total, activity) => total + (activity?.discountPrice || 0),
-          0,
-        ),
-      [productsDiscount],
-    );
+export default React.memo(({ computedCart, checkErrors }: PropsType) => {
+  const colors = useContext(ColorsContext);
+  const { c } = useContext(CurrencyContext);
+  const { push } = useRouter();
+  const { t } = useTranslation('cart');
+  const getLanguage = useGetLanguage();
+  const productTotal = useMemo(
+    () =>
+      (computedCart?.computedLineItems || []).reduce(
+        (total, { quantity, unitPrice }) =>
+          total + (quantity || 0) * (unitPrice || 0),
+        0,
+      ),
+    [computedCart],
+  );
+  const discountTotal = useMemo(
+    () =>
+      (computedCart?.productsDiscount || []).reduce(
+        (total, activity) => total + (activity?.discountPrice || 0),
+        0,
+      ),
+    [computedCart],
+  );
 
-    return (
-      <>
-        <div className={styles.root}>
-          <div
-            onClick={() => {
-              const url = window.storePreviousPageUrl || '/';
-              push(!url.startsWith('/checkout') ? url : '/');
-            }}
-          >
-            <LeftOutlined />
-            {t('go-back-to-store')}
-          </div>
+  return (
+    <>
+      <div className={styles.root}>
+        <div
+          onClick={() => {
+            const url = window.storePreviousPageUrl || '/';
+            push(!url.startsWith('/checkout') ? url : '/');
+          }}
+        >
+          <LeftOutlined />
+          {t('go-back-to-store')}
+        </div>
 
-          <div>
-            <div className={styles.total}>
-              <div>
-                <div>{t('product-total')}</div>
-                <div>{c(productTotal)}</div>
-              </div>
+        <div>
+          <div className={styles.total}>
+            {!computedCart ? (
+              <Skeleton
+                title={false}
+                paragraph={{
+                  rows: 4,
+                  width: '100%',
+                }}
+                active
+              />
+            ) : (
+              <>
+                <div>
+                  <div>{t('product-total')}</div>
+                  <div>{c(productTotal)}</div>
+                </div>
 
-              {[...productsDiscount, ...orderDiscount.discountAllocations].map(
-                activity => {
+                {[
+                  ...computedCart.productsDiscount,
+                  ...computedCart.orderDiscount.discountAllocations,
+                ].map(activity => {
                   if (!activity) return null;
 
                   const { title } = activity;
@@ -92,28 +104,31 @@ export default React.memo(
                       <div>- {c(discountPrice)}</div>
                     </div>
                   );
-                },
-              )}
+                })}
 
-              <div>
-                <div>{t('total')}</div>
-                <div>
-                  {c(
-                    productTotal - discountTotal - orderDiscount.totalDiscount,
-                  )}
+                <div className={styles.priceTotal}>
+                  <div>{t('total')}</div>
+                  <div>
+                    {c(
+                      productTotal -
+                        discountTotal -
+                        computedCart.orderDiscount.totalDiscount,
+                    )}
+                  </div>
                 </div>
-              </div>
-            </div>
+              </>
+            )}
+          </div>
 
-            <div className={styles.button} onClick={checkErrors}>
-              {t('go-to-checkout')}
-            </div>
+          <div className={styles.button} onClick={checkErrors}>
+            {t('go-to-checkout')}
           </div>
         </div>
+      </div>
 
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
             .${styles.root} {
               color: ${colors[3]};
             }
@@ -124,9 +139,8 @@ export default React.memo(
               box-shadow: 0 1px 5px 0 ${transformColor(colors[2]).alpha(0.2)};
             }
           `,
-          }}
-        />
-      </>
-    );
-  },
-);
+        }}
+      />
+    </>
+  );
+});

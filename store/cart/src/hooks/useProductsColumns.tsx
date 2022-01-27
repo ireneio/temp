@@ -3,6 +3,7 @@ import { ColumnProps } from 'antd/lib/table';
 
 // import
 import React, { useMemo, useContext } from 'react';
+import { filter } from 'graphql-anywhere';
 import {
   TagOutlined,
   CloseOutlined,
@@ -15,14 +16,13 @@ import {
   Colors as ColorsContext,
   Sensor as SensorContext,
 } from '@meepshop/context';
+import { useCart } from '@meepshop/hooks';
 import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Link from '@meepshop/link';
 import ProductAmountSelector from '@meepshop/product-amount-selector';
 import Switch from '@meepshop/switch';
 import Thumbnail from '@meepshop/thumbnail';
 
-import useUpdateProduct from './useUpdateProduct';
-import useRemoveProduct from './useRemoveProduct';
 import styles from '../styles/useProductsColumns.less';
 
 // graphql typescript
@@ -30,6 +30,9 @@ import {
   useProductsColumnsUserFragment as useProductsColumnsUserFragmentType,
   useProductsColumnsLineItemFragment as useProductsColumnsLineItemFragmentType,
 } from '@meepshop/types/gqls/store';
+
+// graphql import
+import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
 
 // typescript definition
 interface ReturnType {
@@ -39,8 +42,7 @@ interface ReturnType {
 
 // definition
 export default (
-  // FIXME: using useCart and useCartFragment in T9918
-  _viewer: useProductsColumnsUserFragmentType | null,
+  viewer: useProductsColumnsUserFragmentType | null,
   hasError: boolean,
 ): ReturnType => {
   const { t } = useTranslation('cart');
@@ -48,8 +50,7 @@ export default (
   const { c } = useContext(CurrencyContext);
   const colors = useContext(ColorsContext);
   const { isMobile } = useContext(SensorContext);
-  const updateProduct = useUpdateProduct();
-  const removeProduct = useRemoveProduct();
+  const { upsertCart } = useCart(filter(useCartFragment, viewer));
 
   return useMemo(
     () => ({
@@ -97,7 +98,7 @@ export default (
               status,
               variant,
               discountAllocations,
-              cartId,
+              variantId,
               ...product
             },
           ) => {
@@ -182,7 +183,14 @@ export default (
                             }`}
                             variant={variant}
                             value={quantity}
-                            onChange={updateProduct(cartId)}
+                            onChange={newQuantity =>
+                              upsertCart({
+                                __typename: 'CartItem' as const,
+                                productId,
+                                quantity: newQuantity - (quantity || 0),
+                                variantId,
+                              })
+                            }
                           />
 
                           {status === 'PURCHASABLE' ? null : (
@@ -225,7 +233,7 @@ export default (
           responsive: ['md'],
           render: (
             quantity: useProductsColumnsLineItemFragmentType['quantity'],
-            { type, variant, status, cartId },
+            { type, variant, status, productId, variantId },
           ) => {
             if (type !== 'PRODUCT') return null;
 
@@ -248,7 +256,14 @@ export default (
                   }`}
                   variant={variant}
                   value={quantity || 0}
-                  onChange={updateProduct(cartId)}
+                  onChange={newQuantity =>
+                    upsertCart({
+                      __typename: 'CartItem' as const,
+                      productId,
+                      quantity: newQuantity - (quantity || 0),
+                      variantId,
+                    })
+                  }
                 />
 
                 {status === 'PURCHASABLE' ? null : (
@@ -274,20 +289,26 @@ export default (
               : c((unitPrice || 0) * (quantity || 0)),
         },
         {
-          dataIndex: ['cartId'],
+          dataIndex: ['quantity'],
           width: isMobile ? 28 : 48,
           align: 'center',
           render: (
-            cartId: useProductsColumnsLineItemFragmentType['cartId'],
-            { type },
-          ) => {
-            return type !== 'PRODUCT' ? null : (
+            quantity: useProductsColumnsLineItemFragmentType['quantity'],
+            { type, productId, variantId },
+          ) =>
+            type !== 'PRODUCT' ? null : (
               <CloseOutlined
                 className={styles.delete}
-                onClick={() => removeProduct(cartId)}
+                onClick={() =>
+                  upsertCart({
+                    __typename: 'CartItem' as const,
+                    productId,
+                    quantity: (quantity || 0) * -1,
+                    variantId,
+                  })
+                }
               />
-            );
-          },
+            ),
         },
       ],
       styles: `
@@ -302,15 +323,6 @@ export default (
         }
       `,
     }),
-    [
-      c,
-      colors,
-      hasError,
-      getLanguage,
-      isMobile,
-      removeProduct,
-      t,
-      updateProduct,
-    ],
+    [hasError, t, getLanguage, c, colors, isMobile, upsertCart],
   );
 };

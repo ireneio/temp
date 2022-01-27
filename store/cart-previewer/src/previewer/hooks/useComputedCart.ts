@@ -1,8 +1,9 @@
 // import
 import { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
+import { filter } from 'graphql-anywhere';
 
-import useMapCartItem from './useMapCartItem';
+import { useCart } from '@meepshop/hooks';
 
 // graphql typescript
 import {
@@ -14,6 +15,8 @@ import {
 } from '@meepshop/types/gqls/store';
 
 // graphql import
+import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
+
 import { computedCartInPreviewer } from '../gqls/useComputedCart';
 
 // typescript definition
@@ -24,22 +27,22 @@ interface ComputedProductsType
 
 // definition
 export default (
-  // FIXME: using useCart and useCartFragment in T9918
-  _viewer: useComputedCartInPreviewerFragmentType | null,
+  viewer: useComputedCartInPreviewerFragmentType | null,
 ): ComputedProductsType | null => {
-  const mapCartItem = useMapCartItem();
-  const cartItems = mapCartItem?.cartItems || null;
-  const cartProducts = mapCartItem?.cartProducts || null;
+  const { loading, cartItems } = useCart(filter(useCartFragment, viewer));
+  const cartItemsInput = useMemo(
+    () => cartItems.map(({ __typename: _, ...cartItem }) => cartItem),
+    [cartItems],
+  );
   const { data } = useQuery<
     computedCartInPreviewerType,
     computedCartInPreviewerVariablesType
   >(computedCartInPreviewer, {
     fetchPolicy: 'cache-and-network',
     variables: {
-      cartItems: cartItems || [],
-      cartProducts: cartProducts || [],
+      cartItems: cartItemsInput,
     },
-    skip: !cartItems || !cartProducts,
+    skip: loading,
   });
 
   return useMemo(() => {

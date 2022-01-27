@@ -2,7 +2,6 @@
 import { gql } from '@apollo/client';
 
 // graphql import
-import { LineItemFragment } from '@meepshop/apollo/lib/gqls/LineItem';
 import { productAmountSelectorFragment } from '@meepshop/product-amount-selector/gqls';
 import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
@@ -21,12 +20,12 @@ export const useProductsColumnsUserFragment = gql`
 export const useProductsColumnsLineItemFragment = gql`
   fragment useProductsColumnsLineItemFragment on LineItem {
     id
-    ...LineItemFragment
+    productId
     quantity
+    variantId
     unitPrice
     type
     status
-    cartId(cartProducts: $cartProducts) @client
     discountAllocations {
       activityId: id
       title {
@@ -52,7 +51,6 @@ export const useProductsColumnsLineItemFragment = gql`
     }
   }
 
-  ${LineItemFragment}
   ${localeFragment}
   ${thumbnailFragment}
   ${productAmountSelectorFragment}

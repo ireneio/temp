@@ -233,6 +233,8 @@ export const CONTEXT_TYPES = {
   colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
   locale: ONE_OF_LOCALE_TYPE.isRequired,
   carts: PropTypes.shape({}).isRequired,
+  cartLoading: PropTypes.bool.isRequired,
+  upsertCart: PropTypes.func.isRequired,
 
   /** context func from props */
   goTo: PropTypes.func.isRequired,
