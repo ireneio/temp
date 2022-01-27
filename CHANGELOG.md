@@ -1,5 +1,41 @@
 # CHANGELOG
 
+## 0.80.128 (2022-01-27)
+
+#### :boom: Breaking Change
+
+- `meep-ui`, `store`
+  - [#2056](https://github.com/meepshop/meep-lerna/pull/2056) 內部開單 - 移除 getCartList, changeCartList ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- `store`
+  - [#2043](https://github.com/meepshop/meep-lerna/pull/2043) 【功能】LINE 登入 - 前端：新增 @store/line package ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#2105](https://github.com/meepshop/meep-lerna/pull/2105) (@meepshop/hooks) Fix useCart ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#2103](https://github.com/meepshop/meep-lerna/pull/2103) (@meepshop/frontend) Remove duplicate workspace ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- Other
+  - [#2111](https://github.com/meepshop/meep-lerna/pull/2111) 內部開單 - 將 @store/line 改成 @meepshop/line ([@Lexiwu](https://github.com/Lexiwu))
+  - [#2085](https://github.com/meepshop/meep-lerna/pull/2085) 【重構】訂單/訂單列印：建立小白單 - 店到店物流單＋出貨單 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#2099](https://github.com/meepshop/meep-lerna/pull/2099) 內部開單 - 新增 meepshop/form 資料夾 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#2100](https://github.com/meepshop/meep-lerna/pull/2100) (@store/unsubscribe-email) Remove not used code ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#2107](https://github.com/meepshop/meep-lerna/pull/2107) 內部開單 - 搬移 @meepshop/convenience-store-map-modal ([@Lexiwu](https://github.com/Lexiwu))
+  - [#2098](https://github.com/meepshop/meep-lerna/pull/2098) 內部開單 - @meepshop/address-cascader 改為 @meepshop/form-address-cascader ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.127 (2022-01-21)
 
 #### :bug: Bug Fix
