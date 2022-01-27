@@ -4,13 +4,13 @@
   "description": "admin text-editor",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.127",
+  "version": "0.80.128",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/utils": "^0.80.126",
-    "@meepshop/apollo": "^0.80.127",
-    "@meepshop/locales": "^0.80.126",
+    "@meepshop/apollo": "^0.80.128",
+    "@meepshop/locales": "^0.80.128",
     "braft-editor": "^2.3.9",
     "braft-extensions": "^0.1.0",
     "react-color": "^2.18.1"
