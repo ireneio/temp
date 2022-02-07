@@ -11,6 +11,7 @@ import styles from './styles/index.less';
 // definition
 export default React.memo(({ type, ...props }: AlertProps) => (
   <Alert
+    {...props}
     className={styles.root}
     type={type}
     icon={
@@ -18,6 +19,5 @@ export default React.memo(({ type, ...props }: AlertProps) => (
         <ExclamationCircleOutlined />
       ) : null
     }
-    {...props}
   />
 ));
