@@ -240,7 +240,6 @@ export default class Checkout extends React.PureComponent {
           },
           cvsType,
           cvsCode,
-          userId: user.id,
           userInfo: Object.keys(this.checkoutFields).every(
             key =>
               key === '__typename' || this.checkoutFields[key] === 'HIDDEN',

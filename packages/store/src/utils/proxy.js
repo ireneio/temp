@@ -29,7 +29,8 @@ export default (url, callback) => async (req, res) => {
     return;
   }
 
-  const html = (await callback(req, res, response)) || (await response.text());
+  const html =
+    (await callback?.(req, res, response)) || (await response.text());
 
   res.writeHead(200, { 'Content-Type': 'application/json' });
   res.end(html);
