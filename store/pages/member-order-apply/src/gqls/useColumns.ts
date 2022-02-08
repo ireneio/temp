@@ -7,6 +7,30 @@ import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 // definition
+// FIXME: T10507
+export const useColumnsOrderProductAvailableForApplyMemberOrderApplyFragment = gql`
+  fragment useColumnsOrderProductAvailableForApplyMemberOrderApplyFragment on OrderProductAvailableForApply {
+    id
+    retailPrice
+    coverImage {
+      id
+      ...thumbnailFragment
+    }
+    title {
+      ...localeFragment
+    }
+    specs {
+      title {
+        ...localeFragment
+      }
+    }
+    availableQuantity @client
+  }
+
+  ${thumbnailFragment}
+  ${localeFragment}
+`;
+
 export const useColumnsProductsObjectTypeMemberOrderApplyFragment = gql`
   fragment useColumnsProductsObjectTypeMemberOrderApplyFragment on productsObjectType {
     id
@@ -35,7 +59,7 @@ export const useColumnsOrderMemberOrderApplyFragment = gql`
     id
     availableProductsForApply @client {
       id
-      ...useColumnsProductsObjectTypeMemberOrderApplyFragment
+      ...useColumnsOrderProductAvailableForApplyMemberOrderApplyFragment
     }
     products {
       id
@@ -44,6 +68,7 @@ export const useColumnsOrderMemberOrderApplyFragment = gql`
     ...availableProductsForApplyOrderFragment
   }
 
+  ${useColumnsOrderProductAvailableForApplyMemberOrderApplyFragment}
   ${useColumnsProductsObjectTypeMemberOrderApplyFragment}
   ${availableProductsForApplyOrderFragment}
 `;
