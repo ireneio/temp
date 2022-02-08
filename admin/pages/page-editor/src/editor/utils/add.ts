@@ -3,9 +3,7 @@ import { DragObjectType } from '../../constants';
 
 // import
 import uuid from 'uuid/v4';
-import findIndex from 'ramda/src/findIndex';
-import insert from 'ramda/src/insert';
-import propEq from 'ramda/src/propEq';
+import { findIndex, insert, propEq } from 'ramda';
 
 import { DEFAULT_MODULE_DATA } from '../../constants';
 

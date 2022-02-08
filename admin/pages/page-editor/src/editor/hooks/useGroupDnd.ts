@@ -13,10 +13,7 @@ import { ModulesType, DragObjectType } from '../../constants';
 import { useContext, useCallback } from 'react';
 import { useDrop, useDrag } from 'react-dnd';
 import uuid from 'uuid/v4';
-import findIndex from 'ramda/src/findIndex';
-import insert from 'ramda/src/insert';
-import move from 'ramda/src/move';
-import propEq from 'ramda/src/propEq';
+import { findIndex, insert, move, propEq } from 'ramda';
 
 import reparent from '../utils/reparent';
 import ModuleContext from '../context/module';

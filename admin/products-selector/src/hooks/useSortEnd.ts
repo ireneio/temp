@@ -1,6 +1,6 @@
 // import
 import { useCallback } from 'react';
-import move from 'ramda/src/move';
+import { move } from 'ramda';
 
 // graphql typescript
 import { useProductsColumnsFragment as useProductsColumnsFragmentType } from '@meepshop/types/gqls/admin';
