@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.129 (2022-02-08)
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#2117](https://github.com/meepshop/meep-lerna/pull/2117) 內部開單 - 修改 createOrder userId 寫法 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#2123](https://github.com/meepshop/meep-lerna/pull/2123) (@store/apollo) Fix schema error ([@HsuTing](https://github.com/HsuTing))
+  - [#2121](https://github.com/meepshop/meep-lerna/pull/2121) (@store/alert) Fix props ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.128 (2022-01-27)
 
 #### :boom: Breaking Change
