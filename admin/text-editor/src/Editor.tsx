@@ -15,6 +15,7 @@ import styles from './styles/index.less';
 // typescript definition
 export interface PropsType extends BraftEditorProps {
   wordLimit?: number;
+  disabled?: boolean;
 }
 
 interface EditorPropsType {

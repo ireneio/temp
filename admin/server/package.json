@@ -25,6 +25,7 @@
     "@admin/page-manager": "^0.80.128",
     "@admin/payment-setting": "^0.80.128",
     "@admin/plan-setting": "^0.80.128",
+    "@admin/refactor-newsletter": "^0.80.97",
     "@admin/refactor-order-history-records": "^0.80.128",
     "@admin/refactor-text-editor": "^0.80.128",
     "@admin/reset-password": "^0.80.128",

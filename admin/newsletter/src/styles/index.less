@@ -1,0 +1,53 @@
+.root {
+  :global(.ant-drawer-header) {
+    padding: 8px 10px 8px 20px;
+  }
+
+  :global(.ant-drawer-title) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #666;
+
+    :global(.ant-btn) {
+      margin-right: 10px;
+    }
+  }
+
+  :global(.ant-drawer-body) {
+    padding: 15px 40px 40px;
+
+    :global(.bf-media) {
+      color: #ffffff;
+    }
+  }
+}
+
+.info {
+  display: flex;
+  margin-bottom: 20px;
+  color: #666;
+
+  > div:last-child {
+    width: 100%;
+  }
+
+  > div:first-child {
+    width: 130px;
+    margin-right: 10px;
+  }
+}
+
+.textEditor {
+  color: initial;
+}
+
+.gallery {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+}

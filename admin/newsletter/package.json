@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "@admin/newsletter",
+  "description": "Admin newsletter",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.80.97",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/hooks": "^0.80.125",
+    "@admin/media-gallery": "^0.80.128",
+    "@admin/text-editor": "^0.80.128",
+    "@meepshop/locales": "^0.80.128",
+    "braft-editor": "^2.3.9",
+    "braft-utils": "^3.0.12"
+  },
+  "keywords": ["admin", "newsletter"]
+}
