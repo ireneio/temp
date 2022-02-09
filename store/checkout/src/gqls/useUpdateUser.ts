@@ -14,6 +14,7 @@ export const useUpdateUserFragment = gql`
   fragment useUpdateUserFragment on User {
     id
     name
+    mobile
     additionalInfo {
       mobile
     }

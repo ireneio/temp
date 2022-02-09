@@ -315,6 +315,7 @@ export default class Checkout extends React.PureComponent {
         case 'mobile':
           return {
             ...result,
+            mobile: userMobile,
             additionalInfo: {
               mobile: userMobile,
             },

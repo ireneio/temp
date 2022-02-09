@@ -12,7 +12,7 @@ import { useTranslation } from '@meepshop/locales';
 // graphql typescript
 import {
   updateUserList as updateUserListType,
-  updateUserListVariables,
+  updateUserListVariables as updateUserListVariablesType,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
@@ -29,7 +29,7 @@ export default (
   const { t } = useTranslation('account-setting');
   const [mutation, { loading }] = useMutation<
     updateUserListType,
-    updateUserListVariables
+    updateUserListVariablesType
   >(updateUserList, {
     onCompleted: data => {
       if (!data?.updateUserList?.[0]?.id) {
@@ -53,6 +53,8 @@ export default (
               {
                 ...values,
                 id,
+                tel: values.additionalInfo.tel,
+                mobile: values.additionalInfo.mobile,
               },
             ],
           },

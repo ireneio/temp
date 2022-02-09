@@ -74,6 +74,7 @@ export default (
               email,
               password,
               registeredCode,
+              mobile,
               additionalInfo: {
                 mobile,
               },

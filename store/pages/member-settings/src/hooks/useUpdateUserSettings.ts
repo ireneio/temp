@@ -60,6 +60,8 @@ export default (id: string | null): ((values: ValuesType) => void) => {
     }) => {
       const input = {
         ...values,
+        tel: values.additionalInfo.tel,
+        mobile: values.additionalInfo.mobile,
         birthday: !birthday
           ? null
           : {
