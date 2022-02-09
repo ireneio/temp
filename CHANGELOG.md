@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.80.130 (2022-02-09)
+
+#### :rocket: New Feature
+
+- [#1954](https://github.com/meepshop/meep-lerna/pull/1954) 【重構】電子報 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#2109](https://github.com/meepshop/meep-lerna/pull/2109) 【BUG】前台 - 建立訂單 - 訂單管理列表需重新整理頁面，才會出現最新訂單 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :house: Internal
+
+- `meep-ui`, `store`
+  - [#2072](https://github.com/meepshop/meep-lerna/pull/2072) 內部開單 - usePrevious 改用 react-use ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`
+  - [#2106](https://github.com/meepshop/meep-lerna/pull/2106) 內部開單 - user input 相關加入 tel/mobile ([@Lexiwu](https://github.com/Lexiwu))
+- Other
+  - [#2125](https://github.com/meepshop/meep-lerna/pull/2125) 內部開單 - 修改 ramda import ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.129 (2022-02-08)
 
 #### :bug: Bug Fix
