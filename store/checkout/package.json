@@ -4,7 +4,7 @@
   "description": "Use to build checkout page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.128",
+  "version": "0.80.130",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {

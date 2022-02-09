@@ -4,17 +4,17 @@
   "description": "Products designated payments page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.128",
+  "version": "0.80.130",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/filter-buttons": "^0.80.125",
-    "@admin/header": "^0.80.128",
-    "@admin/table": "^0.80.128",
+    "@admin/header": "^0.80.130",
+    "@admin/table": "^0.80.130",
     "@admin/thumbnail": "^0.80.126",
     "@admin/tooltip": "^0.80.125",
     "@admin/utils": "^0.80.126",
-    "@meepshop/locales": "^0.80.128",
+    "@meepshop/locales": "^0.80.130",
     "@meepshop/utils": "^0.80.126"
   },
   "keywords": ["admin", "products designated payments"]
