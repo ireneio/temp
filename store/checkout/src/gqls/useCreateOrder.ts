@@ -9,7 +9,7 @@ export const useCreateOrderFragment = gql`
   fragment useCreateOrderFragment on User {
     id
     hasGmoCreditCard
-    orders(first: $first) {
+    orders(first: $first) @connection(key: "orders") {
       __typename
       edges {
         __typename
