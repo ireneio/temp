@@ -13,7 +13,6 @@
     "@admin/tooltip": "^0.80.125",
     "@admin/utils": "^0.80.126",
     "@meepshop/form-address-cascader": "^0.80.128",
-    "@meepshop/hooks": "^0.80.128",
     "@meepshop/locales": "^0.80.128"
   },
   "keywords": ["admin", "payment", "setting"]

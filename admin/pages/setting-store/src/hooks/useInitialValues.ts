@@ -5,9 +5,8 @@ import { ImageNodeType } from '@admin/media-gallery';
 
 // import
 import { useMemo, useEffect } from 'react';
+import { usePrevious } from 'react-use';
 import { areEqual } from 'fbjs';
-
-import { usePrevious } from '@meepshop/hooks';
 
 // graphql typescript
 import {
@@ -88,7 +87,8 @@ export default (
   const prevInitialValues = usePrevious(initialValues);
 
   useEffect(() => {
-    if (!areEqual(prevInitialValues, initialValues)) resetFields();
+    if (prevInitialValues && !areEqual(prevInitialValues, initialValues))
+      resetFields();
   }, [resetFields, initialValues, prevInitialValues]);
 
   return initialValues;

@@ -1,9 +1,9 @@
 import { useMemo, useEffect, useContext } from 'react';
+import { usePrevious } from 'react-use';
 import { useQuery } from '@apollo/client';
 import { areEqual } from 'fbjs';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
-import { usePrevious } from '@meepshop/hooks';
 
 import { getProducts } from '../gqls/useProducts';
 
@@ -118,7 +118,11 @@ export default ({
   const { data, loading } = useQuery(getProducts, { variables });
 
   useEffect(() => {
-    if (data?.computeProductList?.data && !areEqual(prevVariables, variables)) {
+    if (
+      prevVariables &&
+      data?.computeProductList?.data &&
+      !areEqual(prevVariables, variables)
+    ) {
       const dom = document.getElementById(id);
 
       setTimeout(() => {

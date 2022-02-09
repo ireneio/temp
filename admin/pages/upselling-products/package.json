@@ -13,7 +13,6 @@
     "@admin/products-selector": "^0.80.128",
     "@admin/tooltip": "^0.80.125",
     "@admin/utils": "^0.80.126",
-    "@meepshop/hooks": "^0.80.128",
     "@meepshop/icons": "^0.80.125",
     "@meepshop/link": "^0.80.126",
     "@meepshop/locales": "^0.80.128",

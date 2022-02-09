@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
+import { usePrevious } from 'react-use';
 import { useQuery } from '@apollo/client';
 import { getUnixTime, addDays } from 'date-fns';
 import { notification } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
-import { usePrevious } from '@meepshop/hooks';
 
 import { getExpiringPoints } from '../gqls/useExpiringPoints';
 

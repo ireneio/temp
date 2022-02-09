@@ -13,7 +13,6 @@
     "@admin/text-editor": "^0.80.128",
     "@admin/tooltip": "^0.80.125",
     "@meepshop/context": "^0.80.126",
-    "@meepshop/hooks": "^0.80.128",
     "@meepshop/locales": "^0.80.128",
     "@meepshop/utils": "^0.80.126",
     "braft-editor": "^2.3.9",

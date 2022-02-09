@@ -6,13 +6,13 @@ import { InvoiceType } from './useInvoiceType';
 
 // import
 import { useMemo, useEffect, useContext } from 'react';
+import { usePrevious } from 'react-use';
 import { areEqual } from 'fbjs';
 import { filter } from 'graphql-anywhere';
 import { createEditorState } from '@admin/text-editor';
 
 import { useTranslation } from '@meepshop/locales';
 import { Apps as AppsContext } from '@meepshop/context';
-import { usePrevious } from '@meepshop/hooks';
 
 import useInvoiceType from './useInvoiceType';
 
@@ -143,7 +143,8 @@ export default (
   const prevInitialValues = usePrevious(initialValues);
 
   useEffect(() => {
-    if (!areEqual(prevInitialValues, initialValues)) resetFields();
+    if (prevInitialValues && !areEqual(prevInitialValues, initialValues))
+      resetFields();
   }, [resetFields, initialValues, prevInitialValues]);
 
   return initialValues;

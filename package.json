@@ -147,6 +147,7 @@
     "apollo-link": "1.2.14",
     "bizcharts": "4.0.17",
     "query-string": "5.1.1",
+    "react-use": "15.3.4",
     "url-parse": "1.4.7",
     "draft-js": "0.11.7"
   }

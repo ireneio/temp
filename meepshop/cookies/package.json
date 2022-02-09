@@ -9,7 +9,6 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/apollo": "^0.80.128",
-    "@meepshop/hooks": "^0.80.128",
     "@meepshop/link": "^0.80.126",
     "@meepshop/locales": "^0.80.128",
     "@meepshop/logger": "^0.80.125",
