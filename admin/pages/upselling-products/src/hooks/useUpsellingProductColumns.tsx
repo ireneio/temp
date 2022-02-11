@@ -5,7 +5,7 @@ import { ColumnProps } from 'antd/lib/table';
 import React, { useMemo } from 'react';
 
 import { useTranslation } from '@meepshop/locales';
-import Thumbnail from '@meepshop/thumbnail';
+import Thumbnail from '@admin/thumbnail';
 
 import styles from '../styles/useUpsellingProductColumns.less';
 
@@ -33,7 +33,7 @@ export default (): ColumnProps<useUpsellingProductColumnsFragmentType>[] => {
         render: (
           coverImage: useUpsellingProductColumnsFragmentType['coverImage'],
         ) => {
-          return <Thumbnail image={coverImage} />;
+          return <Thumbnail image={coverImage} size={48} />;
         },
       },
       {

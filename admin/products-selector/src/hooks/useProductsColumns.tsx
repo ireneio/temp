@@ -10,7 +10,7 @@ import { CloseOutlined } from '@ant-design/icons';
 
 import { DragIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/locales';
-import Thumbnail from '@meepshop/thumbnail';
+import Thumbnail from '@admin/thumbnail';
 
 import styles from '../styles/useProductsColumns.less';
 import { format } from '../utils';
@@ -61,7 +61,11 @@ export default ({
             coverImage: useProductsColumnsFragmentType['coverImage'],
           ) => {
             return (
-              <Thumbnail image={coverImage} className={styles.thumbnail} />
+              <Thumbnail
+                image={coverImage}
+                className={styles.thumbnail}
+                size={40}
+              />
             );
           },
         },
@@ -119,7 +123,13 @@ export default ({
         dataIndex: ['coverImage'],
         width: 56,
         render: (coverImage: useProductsColumnsFragmentType['coverImage']) => {
-          return <Thumbnail image={coverImage} className={styles.thumbnail} />;
+          return (
+            <Thumbnail
+              image={coverImage}
+              className={styles.thumbnail}
+              size={40}
+            />
+          );
         },
       },
       {
