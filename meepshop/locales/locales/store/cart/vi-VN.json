@@ -37,6 +37,11 @@
     "NO_PRODUCTS": "Bất kỳ mục nào để thêm sản phẩm này vào giỏ hàng",
     "MAX": "Đã đạt đến giới hạn trên"
   },
+  "shipment": {
+    "title": "Chọn Chế độ vận chuyển",
+    "alert-tip-1": "Vui lòng chọn cách vận chuyển",
+    "alert-tip-2": "Hiện tại không có cách nào để sử dụng, xin vui lòng liên hệ với chúng tôi để xử lý"
+  },
   "specific-shipment": {
     "title": "Chọn Phương thức Logistics",
     "no-shipment-tip": "Hiện tại không có cách nào để sử dụng, xin vui lòng liên hệ với chúng tôi để xử lý",

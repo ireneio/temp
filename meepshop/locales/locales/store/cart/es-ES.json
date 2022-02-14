@@ -37,6 +37,11 @@
     "NO_PRODUCTS": "Cualquier artículo para agregar este producto al carrito de la compra.",
     "MAX": "Ha alcanzado el límite superior"
   },
+  "shipment": {
+    "title": "Seleccione el modo de envío",
+    "alert-tip-1": "Por favor, seleccione una forma de transporte.",
+    "alert-tip-2": "Actualmente no hay forma de usar, por favor contáctenos para manejar"
+  },
   "specific-shipment": {
     "title": "Seleccionar método de logística",
     "no-shipment-tip": "Actualmente no hay forma de usar, por favor contáctenos para manejar",

@@ -37,6 +37,11 @@
     "NO_PRODUCTS": "任一商品加入購物車即可選購此商品",
     "MAX": "已達購買上限"
   },
+  "shipment":{
+    "title": "選擇運送方式",
+    "alert-tip-1": "請選擇一種運送方式",
+    "alert-tip-2": "目前沒有可以使用的運送方式，請聯繫我們處理"
+  },
   "specific-shipment":{
     "title": "選擇物流方式",
     "no-shipment-tip": "目前沒有可以使用的運送方式，請聯繫我們處理",

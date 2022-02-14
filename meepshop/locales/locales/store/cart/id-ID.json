@@ -37,6 +37,11 @@
     "NO_PRODUCTS": "Setiap item untuk menambahkan produk ini ke keranjang belanja",
     "MAX": "Telah mencapai batas atas"
   },
+  "shipment": {
+    "title": "Pilih Mode Pengiriman",
+    "alert-tip-1": "Silakan pilih cara transportasi",
+    "alert-tip-2": "Saat ini tidak ada cara untuk digunakan, silakan hubungi kami untuk menangani"
+  },
   "specific-shipment": {
     "title": "Pilih Metode Logistik",
     "no-shipment-tip": "Saat ini tidak ada cara untuk digunakan, silakan hubungi kami untuk menangani",

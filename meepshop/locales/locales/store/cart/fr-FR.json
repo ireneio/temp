@@ -37,6 +37,11 @@
     "NO_PRODUCTS": "Tout article pour ajouter ce produit au panier",
     "MAX": "A atteint la limite supérieure"
   },
+  "shipment": {
+    "title": "Sélectionnez le mode d'expédition",
+    "alert-tip-1": "Veuillez sélectionner un moyen de transport",
+    "alert-tip-2": "Il n'y a actuellement aucun moyen d'utiliser, s'il vous plaît contactez-nous pour gérer"
+  },
   "specific-shipment": {
     "title": "Sélectionnez la méthode logistique",
     "no-shipment-tip": "Il n'y a actuellement aucun moyen d'utiliser, s'il vous plaît contactez-nous pour gérer",
