@@ -36,5 +36,12 @@
     "LIMITED": "已達加購上限",
     "NO_PRODUCTS": "任一商品加入購物車即可選購此商品",
     "MAX": "已達購買上限"
+  },
+  "specific-shipment":{
+    "title": "選擇物流方式",
+    "no-shipment-tip": "目前沒有可以使用的運送方式，請聯繫我們處理",
+    "error-shipment-1":"您有",
+    "error-shipment-2":"項商品無法使用此運送方式結帳",
+    "check": "查看無法運送商品"
   }
 }

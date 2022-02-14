@@ -36,5 +36,12 @@
     "LIMITED": "Has up to purchase upper limit",
     "NO_PRODUCTS": "Any item to add this product to the shopping cart",
     "MAX": "Has reached the upper limit"
+  },
+  "specific-shipment": {
+    "title": "Select logistics mode",
+    "no-shipment-tip": "There is currently no way to use, please contact us to handle",
+    "error-shipment-1": "You have",
+    "error-shipment-2": "Item items cannot be checked",
+    "check": "View unable to ship products"
   }
 }

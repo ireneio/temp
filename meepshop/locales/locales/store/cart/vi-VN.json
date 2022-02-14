@@ -36,5 +36,12 @@
     "LIMITED": "Lên để mua giới hạn trên",
     "NO_PRODUCTS": "Bất kỳ mục nào để thêm sản phẩm này vào giỏ hàng",
     "MAX": "Đã đạt đến giới hạn trên"
+  },
+  "specific-shipment": {
+    "title": "Chọn Phương thức Logistics",
+    "no-shipment-tip": "Hiện tại không có cách nào để sử dụng, xin vui lòng liên hệ với chúng tôi để xử lý",
+    "error-shipment-1": "Bạn có",
+    "error-shipment-2": "Mục vật phẩm không thể được kiểm tra",
+    "check": "Xem không thể vận chuyển sản phẩm"
   }
 }

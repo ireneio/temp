@@ -36,5 +36,12 @@
     "LIMITED": "Memiliki hingga membeli batas atas",
     "NO_PRODUCTS": "Setiap item untuk menambahkan produk ini ke keranjang belanja",
     "MAX": "Telah mencapai batas atas"
+  },
+  "specific-shipment": {
+    "title": "Pilih Metode Logistik",
+    "no-shipment-tip": "Saat ini tidak ada cara untuk digunakan, silakan hubungi kami untuk menangani",
+    "error-shipment-1": "Kamu punya",
+    "error-shipment-2": "Item item tidak dapat diperiksa",
+    "check": "Lihat Tidak Dapat Mengirim Produk"
   }
 }

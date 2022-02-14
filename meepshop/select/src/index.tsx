@@ -38,6 +38,13 @@ export default React.memo(({ ...props }: SelectProps<string | number>) => {
 
             .${
               styles.root
+            } .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+              background-color: ${transformColor(colors[3]).alpha(0.03)};
+              color: ${transformColor(colors[3]).alpha(0.25)};
+            }
+
+            .${
+              styles.root
             } .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
               border-color: ${colors[5]};
               box-shadow: 0 0 0 2px ${transformColor(colors[5]).alpha(0.2)};
@@ -55,6 +62,17 @@ export default React.memo(({ ...props }: SelectProps<string | number>) => {
             .${styles.root} .ant-select-item {
               color: ${colors[3]};
             }
+
+            .${
+              styles.root
+            } .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selection-item, 
+            .${
+              styles.root
+            } .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-arrow
+            {
+              color: ${transformColor(colors[3]).alpha(0.25)};
+            }
+            
 
             .${styles.root} .ant-select-clear {
               background-color: ${colors[0]};

@@ -23,9 +23,11 @@
     "@meepshop/product-draft-text": "^0.80.130",
     "@meepshop/product-spec-selector": "^0.80.130",
     "@meepshop/product-video": "^0.80.130",
+    "@meepshop/select": "^0.80.126",
     "@meepshop/switch": "^0.80.125",
     "@meepshop/thumbnail": "^0.80.126",
     "@meepshop/utils": "^0.80.126",
+    "@store/alert": "^0.80.129",
     "@store/checkout-steps": "^0.80.130",
     "@store/utils": "^0.80.126",
     "color": "^3.0.0"

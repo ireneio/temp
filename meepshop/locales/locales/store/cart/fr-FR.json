@@ -36,5 +36,12 @@
     "LIMITED": "A jusqu'à acheter la limite supérieure",
     "NO_PRODUCTS": "Tout article pour ajouter ce produit au panier",
     "MAX": "A atteint la limite supérieure"
+  },
+  "specific-shipment": {
+    "title": "Sélectionnez la méthode logistique",
+    "no-shipment-tip": "Il n'y a actuellement aucun moyen d'utiliser, s'il vous plaît contactez-nous pour gérer",
+    "error-shipment-1": "Vous avez",
+    "error-shipment-2": "Les articles d'article ne peuvent pas être vérifiés",
+    "check": "Afficher Impossible d'expédier des produits"
   }
 }
