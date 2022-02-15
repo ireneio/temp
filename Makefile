@@ -19,7 +19,7 @@ clean:
 
 define babel-build
 	ln -snf $(ROOT)/meepshop/types/lib/bin/index.js ./node_modules/.bin/types
-	ln -snf $(ROOT)/meepshop/apollo/lib/bin/index.js ./node_modules/.bin/build-fragment-types
+	ln -snf $(ROOT)/meepshop/apollo/lib/bin/index.js ./node_modules/.bin/build-cache-config
 	ln -snf $(ROOT)/packages/generate/lib/bin/index.js ./node_modules/.bin/generate
 	ln -snf $(ROOT)/packages/storybook/lib/bin/index.js ./node_modules/.bin/storybook
   yarn lerna exec \

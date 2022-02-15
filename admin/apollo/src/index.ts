@@ -46,8 +46,15 @@ const shouldIgnoreErrorMessages = [
   'FAIL_03_ORDER_STATUS_WRONG_OR_NOT_ALLOWED',
 ];
 
+export const resolvers = [
+  OrderConnection.resolvers,
+  Page.resolvers,
+  User.resolvers,
+];
+
 export default buildWithApollo({
   name: 'admin',
+  resolvers,
   terminatingLink: split(
     getTestOperation('applicantInitiatesStore'),
     from([
@@ -58,7 +65,6 @@ export default buildWithApollo({
     ]),
     split(getTestOperation('uploadImages'), createUploadLink(), new HttpLink()),
   ),
-  resolvers: [OrderConnection.resolvers, Page.resolvers, User.resolvers],
   errorFilter: ({ message }: Error) =>
     !shouldIgnoreErrorMessages.includes(message),
 });

@@ -148,7 +148,7 @@ export default ({
         ...data,
         computeProductList: {
           ...data.computeProductList,
-          data: data.computeProductList.data.sort(
+          data: [...data.computeProductList.data].sort(
             (a, b) => order.indexOf(a.id) - order.indexOf(b.id),
           ),
         },

@@ -10,16 +10,18 @@ import * as UpdateShopperInfoResponse from './UpdateShopperInfoResponse';
 import * as User from './User';
 
 // definition
+export const resolvers = [
+  applyForReturnOrExchangeWithOrder.resolvers,
+  Order.resolvers,
+  productsObjectType.resolvers,
+  UpdateShopperInfoResponse.resolvers,
+  User.resolvers,
+];
+
 export default buildWithApollo({
   name: 'store',
+  resolvers,
   terminatingLink: new HttpLink(),
-  resolvers: [
-    applyForReturnOrExchangeWithOrder.resolvers,
-    Order.resolvers,
-    productsObjectType.resolvers,
-    UpdateShopperInfoResponse.resolvers,
-    User.resolvers,
-  ],
   errorFilter: ({ message }: Error) =>
     message !== '[repository] getOrderWithProductsByIdProtectedScope error',
 });

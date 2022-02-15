@@ -71,7 +71,7 @@ workflows:
                 command: yarn meep-cli locales check-keys ./meepshop/locales/locales
             - run:
                 name: Generate fragment types
-                command: yarn build-fragment-types
+                command: yarn build-cache-config
           context: org-global
           filters:
             branches:

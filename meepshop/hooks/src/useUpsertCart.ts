@@ -44,8 +44,9 @@ export default (
             return;
 
           cache.writeFragment<useUpsertCartUserFragmentType>({
-            // FIXME: T10004, use cache.identify
-            id: viewer.id || '$ROOT_QUERY.viewer',
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-ignore FIXME: should use cache.identify
+            id: viewer.id,
             fragment: useUpsertCartUserFragment,
             fragmentName: 'useUpsertCartUserFragment',
             data: {

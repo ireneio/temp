@@ -9,7 +9,7 @@
   "types": "./src/index.ts",
   "dependencies": {
     "@meepshop/apollo": "^0.80.130",
-    "apollo-upload-client": "^10.0.1"
+    "apollo-upload-client": "^17.0.0"
   },
   "keywords": ["admin", "apollo client"]
 }

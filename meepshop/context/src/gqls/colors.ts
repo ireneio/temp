@@ -9,7 +9,6 @@ export const getColors = gql`
         id
         selected
         themes {
-          id
           colors
         }
       }

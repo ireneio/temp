@@ -107,7 +107,7 @@ export default (
     }
 
     if (currentSelectedPage) {
-      if (currentSelectedPage !== selectedPage)
+      if (currentSelectedPage.id !== selectedPage?.id)
         setSelectedPage(currentSelectedPage);
       return;
     }

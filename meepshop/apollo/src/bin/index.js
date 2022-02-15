@@ -6,6 +6,17 @@ import path from 'path';
 import fetch from 'isomorphic-unfetch';
 
 // definition
+const EXCLUDE_TYPE_POLICIES = [
+  'Query',
+  'Mutation',
+  '__Schema',
+  '__Type',
+  '__Field',
+  '__InputValue',
+  '__EnumValue',
+  '__Directive',
+];
+
 process.on('unhandledRejection', e => {
   throw e;
 });
@@ -29,6 +40,9 @@ process.on('unhandledRejection', e => {
               possibleTypes {
                 name
               }
+              fields {
+                name
+              }
             }
           }
         }
@@ -40,11 +54,33 @@ process.on('unhandledRejection', e => {
   if (errors) throw new Error(JSON.stringify(errors));
 
   // eslint-disable-next-line no-underscore-dangle
-  data.__schema.types = data.__schema.types.filter(
-    type => type.possibleTypes !== null,
+  const cacheConfig = data.__schema.types.reduce(
+    ({ possibleTypes, typePolicies }, type) => ({
+      possibleTypes: !type.possibleTypes
+        ? possibleTypes
+        : {
+            ...possibleTypes,
+            [type.name]: type.possibleTypes.map(subType => subType.name),
+          },
+      typePolicies:
+        type.kind !== 'OBJECT' ||
+        /(Response|Error)$/.test(type.name) ||
+        type.fields.some(({ name }) => name === 'id') ||
+        EXCLUDE_TYPE_POLICIES.includes(type.name)
+          ? typePolicies
+          : {
+              ...typePolicies,
+              [type.name]: { merge: true },
+            },
+    }),
+    {
+      possibleTypes: {},
+      typePolicies: {},
+    },
   );
+
   fs.writeFileSync(
-    path.resolve(__dirname, '../../fragmentTypes.json'),
-    JSON.stringify(data),
+    path.resolve(__dirname, '../../cacheConfig.json'),
+    JSON.stringify(cacheConfig),
   );
 })();

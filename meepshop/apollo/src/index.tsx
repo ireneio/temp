@@ -1,6 +1,6 @@
 // typescript import
 import { AppProps } from 'next/app';
-import { NormalizedCacheObject, HttpLink } from '@apollo/client';
+import { NormalizedCacheObject } from '@apollo/client';
 
 import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
 import { LoggerInfoType } from '@meepshop/logger';
@@ -147,8 +147,3 @@ export const buildWithApollo = (
 
   return WithApollo;
 };
-
-export default buildWithApollo({
-  name: 'meepshop',
-  terminatingLink: new HttpLink(),
-});

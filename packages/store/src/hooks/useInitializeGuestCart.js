@@ -11,13 +11,12 @@ export default viewerId => {
 
   useEffect(() => {
     client.writeFragment({
-      // FIXME: T10004, use cache.identify
-      id: viewerId || '$ROOT_QUERY.viewer',
+      id: viewerId /* SHOULD_NOT_BE_NULL */,
       fragment: useInitializeGuestCartFragment,
       fragmentName: 'useInitializeGuestCartFragment',
       data: {
         __typename: 'User',
-        id: viewerId || '$ROOT_QUERY.viewer',
+        id: viewerId /* SHOULD_NOT_BE_NULL */,
         guestCart: {
           __typename: 'GuestCart',
           cartItems: JSON.parse(localStorage.getItem('guestCart') || '[]'),

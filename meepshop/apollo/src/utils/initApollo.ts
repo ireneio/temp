@@ -11,7 +11,7 @@ import {
   ApolloClient,
   from,
   InMemoryCache,
-  IntrospectionFragmentMatcher,
+  defaultDataIdFromObject,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { RetryLink } from '@apollo/client/link/retry';
@@ -19,11 +19,11 @@ import { createNetworkStatusNotifier } from 'react-apollo-network-status';
 
 import initialLogger from '@meepshop/logger';
 
-// Generate by build-fragment-types
+// Generate by build-cache-config
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 // eslint-disable-next-line import/no-unresolved
-import fragmentTypes from '../../fragmentTypes';
+import cacheConfig from '../../cacheConfig';
 
 import * as ComputedCart from '../clientSideSchema/ComputedCart';
 import * as LineItem from '../clientSideSchema/LineItem';
@@ -69,10 +69,9 @@ const create = (
   ctx?: CustomCtxType,
 ): ApolloClient<NormalizedCacheObject> => {
   const cache = new InMemoryCache({
-    dataIdFromObject: ({ id }) => id,
-    fragmentMatcher: new IntrospectionFragmentMatcher({
-      introspectionQueryResultData: fragmentTypes,
-    }),
+    ...cacheConfig,
+    dataIdFromObject: (data: { id: string }) =>
+      data.id || defaultDataIdFromObject(data),
   }).restore(initialState || {});
   const logger = initialLogger(loggerInfo);
 

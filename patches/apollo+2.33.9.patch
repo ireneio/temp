@@ -1,8 +1,8 @@
 diff --git a/node_modules/apollo/lib/Command.js b/node_modules/apollo/lib/Command.js
-index d8dec76..a3cfc8e 100644
+index 60c1df9..f5ac35d 100644
 --- a/node_modules/apollo/lib/Command.js
 +++ b/node_modules/apollo/lib/Command.js
-@@ -58,7 +58,7 @@ class ProjectCommand extends command_1.default {
+@@ -72,7 +72,7 @@ class ProjectCommand extends command_1.default {
          const service = flags.key ? apollo_language_server_1.getServiceFromKey(flags.key) : undefined;
          const config = await apollo_language_server_1.loadConfig({
              configPath: flags.config && path_1.parse(path_1.resolve(flags.config)).dir,
