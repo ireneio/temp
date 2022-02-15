@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.80.131 (2022-02-15)
+
+#### :boom: Breaking Change
+
+- `client`, `meep-ui`, `mock-types`, `store`, `storybook`
+  - [#1967](https://github.com/meepshop/meep-lerna/pull/1967) 內部開單 - apollo-client 升級 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#2120](https://github.com/meepshop/meep-lerna/pull/2120) 內部開單 - 新增 選擇運送方式 (非指定物流) ([@Lexiwu](https://github.com/Lexiwu))
+- [#2119](https://github.com/meepshop/meep-lerna/pull/2119) 內部開單 - 選擇 運送方式 (指定物流) ([@Lexiwu](https://github.com/Lexiwu))
+- [#2138](https://github.com/meepshop/meep-lerna/pull/2138) 內部開單 - admin 的 @meepshop/thumbnail 改為 @admin/thumbnail ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.130 (2022-02-09)
 
 #### :rocket: New Feature
