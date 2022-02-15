@@ -4,11 +4,11 @@
   "description": "Thumbnail for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.126",
+  "version": "0.80.131",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/images": "^0.80.126"
+    "@meepshop/images": "^0.80.131"
   },
   "keywords": ["admin", "thumbnail"]
 }
