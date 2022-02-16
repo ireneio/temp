@@ -4,11 +4,11 @@
   "description": "Apollo client for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.131",
+  "version": "0.80.132",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.131",
+    "@meepshop/apollo": "^0.80.132",
     "apollo-upload-client": "^17.0.0"
   },
   "keywords": ["admin", "apollo client"]
