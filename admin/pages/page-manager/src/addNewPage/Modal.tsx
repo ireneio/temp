@@ -12,8 +12,8 @@ import {
   pageManagerPageTipPath_w200 as pageManagerPageTipPath,
   pageManagerPageTipTab_w200 as pageManagerPageTipTab,
 } from '@meepshop/images';
-import { useValidatePagePath } from '@meepshop/validator';
 
+import FormPagePath from '../FormPagePath';
 import ContainerSelect from './ContainerSelect';
 import useCreatePage from './hooks/useCreatePage';
 import styles from './styles/modal.less';
@@ -37,7 +37,6 @@ const { Item: FormItem } = Form;
 
 export default React.memo(({ pageType, variables, onClose }: PropsType) => {
   const { t } = useTranslation('page-manager');
-  const validatePagePath = useValidatePagePath();
   const createPage = useCreatePage(pageType, variables);
 
   return (
@@ -94,20 +93,7 @@ export default React.memo(({ pageType, variables, onClose }: PropsType) => {
               />
             </span>
 
-            <FormItem
-              name={['path']}
-              rules={[
-                {
-                  required: true,
-                  message: t('form.required'),
-                },
-                {
-                  validator: validatePagePath,
-                },
-              ]}
-            >
-              <Input placeholder={t('form.path.placeholder')} />
-            </FormItem>
+            <FormPagePath />
 
             <span className={styles.title}>
               {t('form.tabTitle.title')}

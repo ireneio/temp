@@ -2,8 +2,5 @@
   "email": {
     "invalid-format": "Silakan isi alamat email.",
     "already-exists": "Alamat email ini sudah terdaftar"
-  },
-  "page-path": {
-    "same-path": "Nama Situs Web Gandakan"
   }
 }

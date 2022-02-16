@@ -42,6 +42,7 @@
   },
   "form": {
     "required": "จำเป็นต้องใช้",
+    "same-path": "ชื่อ URL ซ้ำ",
     "title": {
       "title": "ชื่อหน้า",
       "placeholder": "กรุณาใส่ชื่อหน้า",

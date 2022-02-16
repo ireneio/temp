@@ -2,8 +2,5 @@
   "email": {
     "invalid-format": "S'il vous plaît, mettez une adresse email valide.",
     "already-exists": "cette adresse email est déjà enregistrée"
-  },
-  "page-path": {
-    "same-path": "Nom du site dupliqué"
   }
 }

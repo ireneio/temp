@@ -14,8 +14,8 @@ import {
   pageManagerPageTipPath_w200 as pageManagerPageTipPath,
   pageManagerPageTipTab_w200 as pageManagerPageTipTab,
 } from '@meepshop/images';
-import { useValidatePagePath } from '@meepshop/validator';
 
+import FormPagePath from '../../FormPagePath';
 import UploadImage from './UploadImage';
 import useRenamePageWithSEO from './hooks/useRenamePageWithSEO';
 import styles from './styles/edit.less';
@@ -49,7 +49,6 @@ export default React.memo(
     onClose,
   }: PropsType) => {
     const portalTarget = usePortalTarget();
-    const validatePagePath = useValidatePagePath(path);
     const { t } = useTranslation('page-manager');
     const getLanguage = useGetLanguage();
     const renamePageWithSEO = useRenamePageWithSEO(
@@ -105,22 +104,7 @@ export default React.memo(
                   />
                 </span>
 
-                <FormItem
-                  name={['path']}
-                  rules={[
-                    {
-                      required: true,
-                      message: t('form.required'),
-                    },
-                    {
-                      validator: validatePagePath,
-                    },
-                  ]}
-                  initialValue={path}
-                  validateTrigger="onBlur"
-                >
-                  <Input placeholder={t('form.path.placeholder')} />
-                </FormItem>
+                <FormPagePath initialValue={path} validateTrigger="onBlur" />
               </div>
 
               <div className={styles.formItem}>

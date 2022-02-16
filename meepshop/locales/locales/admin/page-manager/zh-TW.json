@@ -42,6 +42,7 @@
   },
   "form": {
     "required": "必填",
+    "same-path": "網址名稱重複",
     "title": {
       "title": "頁面名稱",
       "placeholder": "請輸入頁面名稱",

@@ -2,8 +2,5 @@
   "email": {
     "invalid-format": "Email chưa đúng",
     "already-exists": "Hộp thư này đã được đăng ký"
-  },
-  "page-path": {
-    "same-path": "Tên trang web trùng lặp"
   }
 }

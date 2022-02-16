@@ -14,13 +14,13 @@ import {
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { checkIfPageExistsBeforeCreatingPage } from './gqls/useValidatePagePath';
+import { checkIfPageExistsBeforeCreatingPage } from '../gqls/useValidatePagePath';
 
 // definition
 export default (
   initialValue?: string | null,
 ): NonNullable<FormListProps['rules']>[number]['validator'] => {
-  const { t } = useTranslation('validator');
+  const { t } = useTranslation('page-manager');
   const client = useApolloClient();
 
   return useCallback(
@@ -37,7 +37,7 @@ export default (
         },
       });
 
-      if (data?.isPagePathExists) throw new Error(t('page-path.same-path'));
+      if (data?.isPagePathExists) throw new Error(t('form.same-path'));
     },
     [initialValue, t, client],
   );

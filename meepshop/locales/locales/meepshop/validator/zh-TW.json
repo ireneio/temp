@@ -2,8 +2,5 @@
   "email": {
     "invalid-format": "信箱格式錯誤",
     "already-exists": "此信箱已註冊"
-  },
-  "page-path": {
-    "same-path": "網址名稱重複"
   }
 }

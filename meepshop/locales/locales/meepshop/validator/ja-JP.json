@@ -2,8 +2,5 @@
   "email": {
     "invalid-format": "メールアドレスに誤りがあります",
     "already-exists": "このメールアドレスはすでに使われています"
-  },
-  "page-path": {
-    "same-path": "重複したウェブサイト名"
   }
 }

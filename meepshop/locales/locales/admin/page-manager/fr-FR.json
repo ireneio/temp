@@ -42,6 +42,7 @@
   },
   "form": {
     "required": "Champs obligatoires",
+    "same-path": "Nom de l'URL Répéter",
     "title": {
       "title": "Titre de la page",
       "placeholder": "Veuillez entrer le titre de la page",

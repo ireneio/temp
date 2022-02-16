@@ -2,8 +2,5 @@
   "email": {
     "invalid-format": "Please enter a valid email address.",
     "already-exists": "This email address is already registered"
-  },
-  "page-path": {
-    "same-path": "Duplicated Website Name"
   }
 }
