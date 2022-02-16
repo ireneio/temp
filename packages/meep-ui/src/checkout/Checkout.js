@@ -34,7 +34,6 @@ export default class Checkout extends React.PureComponent {
   static propTypes = {
     /** context */
     isLogin: ISLOGIN_TYPE.isRequired,
-    goTo: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -62,7 +61,6 @@ export default class Checkout extends React.PureComponent {
     const {
       /** context */
       isLogin,
-      goTo,
 
       /** props */
       client,
@@ -360,16 +358,11 @@ export default class Checkout extends React.PureComponent {
 
     // ecpay 2.0
     if (paymentServiceTradeToken) {
-      goTo({
-        pathname: `/ecpay/${paymentServiceTradeToken}/${id}`,
-      });
+      router.push(`/ecpay/${paymentServiceTradeToken}/${id}`);
       return null;
     }
 
-    goTo({
-      pathname: `/checkout/thank-you-page/${id}`,
-    });
-
+    router.push(`/checkout/thank-you-page/${id}`);
     return null;
   };
 

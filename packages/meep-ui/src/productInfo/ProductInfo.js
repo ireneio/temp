@@ -8,6 +8,7 @@ import memoizeOne from 'memoize-one';
 
 import { AddToCartIcon } from '@meepshop/icons';
 import { withTranslation } from '@meepshop/locales';
+import { useRouter } from '@meepshop/link';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import ProductSpecSelector from '@meepshop/product-spec-selector';
 import withContext from '@store/utils/lib/withContext';
@@ -30,7 +31,10 @@ import { PRODUCT_TYPE, LIMITED, ORDERABLE, OUT_OF_STOCK } from './constants';
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @enhancer
 @withHook(({ productData, carts }) => useVariant(productData, carts))
-@withHook(() => ({ client: useApolloClient() }))
+@withHook(() => ({
+  client: useApolloClient(),
+  router: useRouter(),
+}))
 @radium
 export default class ProductInfo extends React.PureComponent {
   name = 'product-info';
@@ -54,7 +58,6 @@ export default class ProductInfo extends React.PureComponent {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
     transformCurrency: PropTypes.func.isRequired,
-    goTo: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -272,12 +275,12 @@ export default class ProductInfo extends React.PureComponent {
   render() {
     const {
       t,
+      router,
       productData,
       mode,
       transformCurrency,
       hasStoreAppPlugin,
       container,
-      goTo,
       showButton,
       drawerOnMobile,
       unfoldedVariantsOnMobile,
@@ -306,7 +309,7 @@ export default class ProductInfo extends React.PureComponent {
           className={this.name}
           visible={isModalOpen}
           onOk={() => {
-            goTo({ pathname: '/login' });
+            router.push('/login');
           }}
           okText={t('confirm')}
           cancelText={t('cancel')}
@@ -359,7 +362,6 @@ export default class ProductInfo extends React.PureComponent {
             colors={colors}
             hasStoreAppPlugin={hasStoreAppPlugin}
             isLogin={isLogin}
-            goTo={goTo}
             isAddingItem={isAddingItem}
             mode={mode}
             isMobile={isMobile}

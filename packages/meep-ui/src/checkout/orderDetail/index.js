@@ -10,6 +10,7 @@ import { areEqual } from 'fbjs';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { withTranslation } from '@meepshop/locales';
+import { useRouter } from '@meepshop/link';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
 import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
@@ -41,6 +42,7 @@ const { Item: FormItem } = Form;
 @withTranslation('checkout')
 @withContext(AdTrackContext)
 @withHook(({ user, orderInfo, errors }) => ({
+  router: useRouter(),
   mutation: useMutation(computeOrderList)[0],
   logMutation: useMutation(log)[0],
   form: Form.useForm()[0],
@@ -111,7 +113,6 @@ export default class OrderDetail extends React.PureComponent {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     storeSetting: STORE_SETTING_TYPE.isRequired,
     transformCurrency: PropTypes.func.isRequired,
-    goTo: PropTypes.func.isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
 
     /** props */
@@ -251,17 +252,7 @@ export default class OrderDetail extends React.PureComponent {
   checkCartIsEmpty = () => {
     if (this.isUnmounted || this.isEmptyCart) return;
 
-    const {
-      /** context */
-      goTo,
-
-      /** props */
-      t,
-      adTrack,
-      isSubmitting,
-      cartLoading,
-      carts,
-    } = this.props;
+    const { router, t, adTrack, isSubmitting, cartLoading, carts } = this.props;
     const { products, computeOrderData, isChecking } = this.state;
 
     if (isSubmitting || isChecking || cartLoading) return;
@@ -271,7 +262,7 @@ export default class OrderDetail extends React.PureComponent {
       Modal.warning({
         title: t('cart-is-empty'),
         okText: t('confirm-go-to'),
-        onOk: () => goTo({ pathname: '/' }),
+        onOk: () => router.push('/'),
       });
     } else if (!this.isTracked && computeOrderData.total) {
       this.isTracked = true;
@@ -485,11 +476,11 @@ export default class OrderDetail extends React.PureComponent {
       storeSetting,
       transformCurrency,
       hasStoreAppPlugin,
-      goTo,
 
       /** props */
       form,
       fields,
+      router,
       t,
       user,
       isSubmitting,
@@ -688,7 +679,7 @@ export default class OrderDetail extends React.PureComponent {
                 <div
                   className={styles.continueShopping}
                   style={{ color: colors[3] }}
-                  onClick={() => goTo({ pathname: '/cart' })}
+                  onClick={() => router.push('/cart')}
                 >
                   <LeftOutlined className={styles.continueShoppingIcon} />
 

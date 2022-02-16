@@ -4,13 +4,12 @@ import Head from 'next/head';
 
 import { log } from '@meepshop/logger/lib/gqls/log';
 
-import * as Utils from 'utils';
 import { Container, ErrorPageNotFound } from 'components';
 import * as CONST from 'constants';
 
 export default class Pages extends React.Component {
   static getInitialProps = async context => {
-    const { res, XMeepshopDomain, userAgent, query, client } = context;
+    const { res, XMeepshopDomain, userAgent, query, client, router } = context;
     const { path, pId } = query;
 
     // FIXME: should use get getServerSideProps return notFound
@@ -32,7 +31,7 @@ export default class Pages extends React.Component {
       });
 
       if (typeof window === 'undefined') res.redirect(302, `/product/${pId}`);
-      else Utils.goTo({ pathname: `/product/${pId}` });
+      else router.push(`/product/${pId}`);
 
       return {};
     }

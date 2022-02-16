@@ -236,9 +236,6 @@ export const CONTEXT_TYPES = {
   cartLoading: PropTypes.bool.isRequired,
   upsertCart: PropTypes.func.isRequired,
 
-  /** context func from props */
-  goTo: PropTypes.func.isRequired,
-
   /** context func from DecoratorsRoot */
   hasStoreAppPlugin: PropTypes.func.isRequired,
   transformCurrency: PropTypes.func.isRequired,

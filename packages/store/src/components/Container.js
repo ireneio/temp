@@ -12,8 +12,6 @@ import {
 import Layout from '@meepshop/meep-ui/lib/layout';
 import withContext from '@store/utils/lib/withContext';
 
-import * as Utils from 'utils';
-
 const { isBrowser } = UserAgent;
 
 @withTranslation('ducks')
@@ -52,7 +50,6 @@ export default class Container extends React.Component {
 
     return (
       <Layout
-        goTo={Utils.goTo}
         product={product}
         radiumConfig={{ userAgent }} // for radium media query
         {...page}

@@ -6,6 +6,7 @@ import { Button } from 'antd';
 import { HeartFilled, HeartOutlined, LoadingOutlined } from '@ant-design/icons';
 
 import { withTranslation } from '@meepshop/locales';
+import { useRouter } from '@meepshop/link';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
@@ -22,6 +23,7 @@ import { VARIANT_TYPE, ORDERABLE_TYPE } from './constants';
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @withHook(() => ({
   client: useApolloClient(),
+  router: useRouter(),
 }))
 @enhancer
 export default class AddButton extends React.Component {
@@ -40,7 +42,6 @@ export default class AddButton extends React.Component {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     hasStoreAppPlugin: PropTypes.func.isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
-    goTo: PropTypes.func.isRequired,
     mode: PropTypes.oneOf(['list', 'detail']).isRequired,
     isMobile: PropTypes.bool.isRequired,
     openDrawer: PropTypes.func.isRequired,
@@ -66,6 +67,7 @@ export default class AddButton extends React.Component {
   generateAddButton = () => {
     const {
       t,
+      router,
       variant,
       addToCart,
       addToNotificationList,
@@ -73,7 +75,6 @@ export default class AddButton extends React.Component {
       hasStoreAppPlugin,
       isLogin,
       colors,
-      goTo,
       isAddingItem,
       mode,
       openDrawer,
@@ -98,7 +99,7 @@ export default class AddButton extends React.Component {
         <Button
           {...config}
           onClick={() => {
-            goTo({ pathname: '/login' });
+            router.push('/login');
           }}
         >
           {t('login-first')}

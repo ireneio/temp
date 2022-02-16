@@ -72,7 +72,6 @@ export default class LandingPage extends React.PureComponent {
     /** context */
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     isLogin: ISLOGIN_TYPE.isRequired,
-    goTo: PropTypes.func.isRequired,
 
     /** @buildVariantsTree moduleProps.productData */
     productData: PropTypes.shape({

@@ -2,18 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
 import URL from 'url-parse';
-import queryString from 'query-string';
+
+import { useRouter } from '@meepshop/link';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { URL_TYPE } from 'constants/propTypes';
 
 import * as styles from './styles';
 
+@withHook(() => ({ router: useRouter() }))
 @enhancer
 @radium
 export default class Link extends React.PureComponent {
   static propTypes = {
-    goTo: PropTypes.func.isRequired,
     href: URL_TYPE,
     target: PropTypes.oneOf(['_self', '_blank', '_parent', '_top']),
     style: PropTypes.shape({}),
@@ -33,7 +35,7 @@ export default class Link extends React.PureComponent {
     // return when clicking with these following key
     if (e.shiftKey || e.metaKey || e.ctrlKey) return;
 
-    const { href, target, goTo, isStalled } = this.props;
+    const { href, target, isStalled, router } = this.props;
     const { host, pathname, query, hash } = new URL(href);
 
     if (
@@ -45,14 +47,17 @@ export default class Link extends React.PureComponent {
     }
 
     e.preventDefault();
-    goTo({
-      pathname,
-      params: {
-        search: queryString.parse(query),
+    router.push(
+      {
+        pathname,
+        search: query,
         hash,
       },
-      isStalled,
-    });
+      undefined,
+      {
+        scroll: !isStalled,
+      },
+    );
   };
 
   render() {

@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import URL from 'url-parse';
-import queryString from 'query-string';
+
+import { useRouter } from '@meepshop/link';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { URL_TYPE, HASH_TYPE } from 'constants/propTypes';
 
 import styles from './styles/index.less';
 
+@withHook(() => ({ router: useRouter() }))
 @enhancer
 export default class Link extends React.PureComponent {
   static propTypes = {
@@ -34,7 +37,7 @@ export default class Link extends React.PureComponent {
     // return when clicking with these following key
     if (e.shiftKey || e.metaKey || e.ctrlKey) return;
 
-    const { goTo, target } = this.props;
+    const { target, router } = this.props;
     const { host, pathname, query, hash } = new URL(
       /^#/.test(url)
         ? `${window.location.pathname}${window.location.search}${url}`
@@ -49,12 +52,10 @@ export default class Link extends React.PureComponent {
       return;
 
     e.preventDefault();
-    goTo({
+    router.push({
       pathname: pathname === '' ? '/' : pathname,
-      params: {
-        search: queryString.parse(query),
-        hash,
-      },
+      search: query,
+      hash,
     });
 
     setTimeout(() => {

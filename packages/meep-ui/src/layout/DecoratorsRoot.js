@@ -26,84 +26,73 @@ const EnhancerContext = React.createContext({});
 
 export const enhancer = withContext(EnhancerContext);
 
-export default React.memo(
-  ({
-    /** context func from props */
-    goTo,
-
-    children,
-  }) => {
-    const { data } = useQuery(getContextData);
-    const { query } = useRouter();
-    const { data: productInContext } = useQuery(getProductInDecoratorsRoot, {
-      skip: !query.pId,
-      variables: {
-        productSearch: {
-          size: 1,
-          from: 0,
-          filter: {
-            and: [
-              {
-                type: 'ids',
-                ids: [query.pId],
-              },
-            ],
-          },
-          sort: [
+export default React.memo(({ children }) => {
+  const { data } = useQuery(getContextData);
+  const { query } = useRouter();
+  const { data: productInContext } = useQuery(getProductInDecoratorsRoot, {
+    skip: !query.pId,
+    variables: {
+      productSearch: {
+        size: 1,
+        from: 0,
+        filter: {
+          and: [
             {
-              field: 'createdAt',
-              order: 'desc',
+              type: 'ids',
+              ids: [query.pId],
             },
           ],
-          showVariants: true,
-          showMainFile: true,
         },
-      },
-    });
-    const colors = useContext(ColorsContext);
-    const apps = useContext(AppsContext);
-    const { c } = useContext(CurrencyContext);
-    const role = useContext(RoleContext);
-    const { loading, cartItems, upsertCart } = useCart(
-      filter(useCartFragment, data?.viewer || null),
-    );
-
-    return (
-      <EnhancerContext.Provider
-        value={{
-          /** context variables from props */
-          cname: data?.viewer?.store?.cname || '',
-          storeSetting: {
-            ...data?.viewer?.store?.setting,
-            storeName: data?.viewer?.store?.description?.name || '',
-            logoUrl: data?.viewer?.store?.logoImage?.scaledSrc.h200 || '',
-            mobileLogoUrl:
-              data?.viewer?.store?.mobileLogoImage?.scaledSrc.w250 || '',
-            shippableCountries: data?.viewer?.store?.shippableCountries || [],
+        sort: [
+          {
+            field: 'createdAt',
+            order: 'desc',
           },
-          productInContext:
-            productInContext?.computeProductList?.data?.[0] || null,
+        ],
+        showVariants: true,
+        showMainFile: true,
+      },
+    },
+  });
+  const colors = useContext(ColorsContext);
+  const apps = useContext(AppsContext);
+  const { c } = useContext(CurrencyContext);
+  const role = useContext(RoleContext);
+  const { loading, cartItems, upsertCart } = useCart(
+    filter(useCartFragment, data?.viewer || null),
+  );
 
-          /** context func from props */
-          goTo,
-
-          isLogin: role === 'SHOPPER' ? ISUSER : NOTLOGIN,
-          user: data?.viewer || null,
-          stockNotificationList: data?.getStockNotificationList?.data || [],
-          colors,
-          hasStoreAppPlugin: pluginName => apps[pluginName].isInstalled,
-          transformCurrency: c,
-          carts: cartItems,
-          cartLoading: loading,
-          upsertCart,
-        }}
-      >
-        {children({
-          backgroundImage: data?.getColorList?.data?.[0]?.imgInfo,
-          hiddingMeepshopMaxInFooterEnabled:
-            data?.viewer?.store?.hiddingMeepshopMaxInFooterEnabled,
-        })}
-      </EnhancerContext.Provider>
-    );
-  },
-);
+  return (
+    <EnhancerContext.Provider
+      value={{
+        /** context variables from props */
+        cname: data?.viewer?.store?.cname || '',
+        storeSetting: {
+          ...data?.viewer?.store?.setting,
+          storeName: data?.viewer?.store?.description?.name || '',
+          logoUrl: data?.viewer?.store?.logoImage?.scaledSrc.h200 || '',
+          mobileLogoUrl:
+            data?.viewer?.store?.mobileLogoImage?.scaledSrc.w250 || '',
+          shippableCountries: data?.viewer?.store?.shippableCountries || [],
+        },
+        productInContext:
+          productInContext?.computeProductList?.data?.[0] || null,
+        isLogin: role === 'SHOPPER' ? ISUSER : NOTLOGIN,
+        user: data?.viewer || null,
+        stockNotificationList: data?.getStockNotificationList?.data || [],
+        colors,
+        hasStoreAppPlugin: pluginName => apps[pluginName].isInstalled,
+        transformCurrency: c,
+        carts: cartItems,
+        cartLoading: loading,
+        upsertCart,
+      }}
+    >
+      {children({
+        backgroundImage: data?.getColorList?.data?.[0]?.imgInfo,
+        hiddingMeepshopMaxInFooterEnabled:
+          data?.viewer?.store?.hiddingMeepshopMaxInFooterEnabled,
+      })}
+    </EnhancerContext.Provider>
+  );
+});

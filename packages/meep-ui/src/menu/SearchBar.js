@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { Input } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
+import { useRouter } from '@meepshop/link';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import withContext from '@store/utils/lib/withContext';
+import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 
@@ -12,15 +14,13 @@ import Icon from './Icon';
 import styles from './styles/searchBar.less';
 
 @withTranslation('menu')
+@withHook(() => ({ router: useRouter() }))
 @withContext(AdTrackContext, adTrack => ({ adTrack }))
 @enhancer
 export default class SearchBar extends React.PureComponent {
   preValue = '';
 
   static propTypes = {
-    /** context */
-    goTo: PropTypes.func.isRequired,
-
     /** props */
     adTrack: PropTypes.shape({}).isRequired,
   };
@@ -31,18 +31,17 @@ export default class SearchBar extends React.PureComponent {
   };
 
   search = ({ target: { value } }) => {
-    const { goTo, adTrack } = this.props;
+    const { router, adTrack } = this.props;
 
     if (this.preValue === value) return;
 
-    goTo({
+    router.push({
       pathname: '/products/',
-      params: {
-        search: {
-          search: value,
-        },
+      query: {
+        search: value,
       },
     });
+
     adTrack.search({ searchString: value });
     this.preValue = value;
   };
