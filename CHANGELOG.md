@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.80.132 (2022-02-16)
+
+#### :bug: Bug Fix
+
+- [#2122](https://github.com/meepshop/meep-lerna/pull/2122) 【BUG】取消訂閱連結 - 「標題」顏色顯示錯誤 ([@happycat6323](https://github.com/happycat6323))
+- [#2146](https://github.com/meepshop/meep-lerna/pull/2146) (@store/apollo) Fix schema error ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `store`
+  - [#2009](https://github.com/meepshop/meep-lerna/pull/2009) 內部開單 - 移除 goTo 改用 @meepshop/link ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#2114](https://github.com/meepshop/meep-lerna/pull/2114) 內部開單 - 搬 useValidatePagePath ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.131 (2022-02-15)
 
 #### :boom: Breaking Change
