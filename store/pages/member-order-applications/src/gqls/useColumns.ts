@@ -19,6 +19,27 @@ export const useColumnsOrderApplyFragment = gql`
   }
 `;
 
+export const useColumnsOrderApplyProductFragment = gql`
+  fragment useColumnsOrderApplyProductFragment on OrderApplyProduct {
+    id
+    coverImage {
+      id
+      ...thumbnailFragment
+    }
+    title {
+      ...localeFragment
+    }
+    specs {
+      title {
+        ...localeFragment
+      }
+    }
+  }
+
+  ${thumbnailFragment}
+  ${localeFragment}
+`;
+
 export const useColumnsProductsObjectTypeFragment = gql`
   fragment useColumnsProductsObjectTypeFragment on productsObjectType {
     id
@@ -50,12 +71,12 @@ export const useColumnsMemberOrderApplicationsFragment = gql`
         ...useColumnsOrderApplyFragment
         product {
           id
-          ...useColumnsProductsObjectTypeFragment
+          ...useColumnsOrderApplyProductFragment
         }
       }
     }
   }
 
   ${useColumnsOrderApplyFragment}
-  ${useColumnsProductsObjectTypeFragment}
+  ${useColumnsOrderApplyProductFragment}
 `;
