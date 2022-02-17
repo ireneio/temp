@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.133 (2022-02-17)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#2148](https://github.com/meepshop/meep-lerna/pull/2148) 【BUG】頁面會跳到 404 再轉回到正常頁面 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.132 (2022-02-16)
 
 #### :bug: Bug Fix
