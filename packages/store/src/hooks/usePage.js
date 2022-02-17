@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useState } from 'react';
+import { useMemo, useEffect, useState, useRef } from 'react';
 import { useQuery } from '@apollo/client';
 import { filter } from 'graphql-anywhere';
 
@@ -20,7 +20,7 @@ export default () => {
   const { i18n } = useTranslation('common');
   const router = useRouter();
   const [mergingCart, setMergingCart] = useState(false);
-  const { data, client } = useQuery(getPage, {
+  const { data: originalData, loading, client } = useQuery(getPage, {
     variables: {
       path: router.query.path || '',
       productSearch: !router.query.pId
@@ -53,11 +53,15 @@ export default () => {
       isProductsPage: router.pathname === '/products',
     },
   });
+  const prevData = useRef(originalData);
+  const data = loading && prevData.current ? prevData.current : originalData;
   const { cartItems, upsertCart } = useCart(
     filter(useCartFragment, data?.viewer || null),
   );
   const store = data?.viewer?.store || null;
   const product = data?.computeProductList?.data?.[0] || null;
+
+  if (originalData) prevData.current = originalData;
 
   // FIXME: should simpify
   useInitializeGuestCart(data?.viewer?.id || null);
