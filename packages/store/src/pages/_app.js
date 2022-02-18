@@ -12,11 +12,7 @@ import { AppsProvider } from '@meepshop/context/lib/Apps';
 import { RoleProvider } from '@meepshop/context/lib/Role';
 import { SensorProvider } from '@meepshop/context/lib/Sensor';
 import { FormDataProvider } from '@meepshop/form-data';
-import {
-  appWithDomain,
-  getServerSideDomainContextProps,
-  getClientSideDomainContextProps,
-} from '@meepshop/link';
+import { appWithDomain } from '@meepshop/link';
 import withHook from '@store/utils/lib/withHook';
 import withApollo from '@store/apollo';
 import FbProvider from '@store/fb';
@@ -28,11 +24,9 @@ import { log } from '@meepshop/logger/lib/gqls/log';
 import { CloseView } from 'components';
 import Router from 'next/router';
 import * as Utils from 'utils';
-import {
-  appWithCookies,
-  getServerSideCookiesContextProps,
-  getClientSideCookiesContextProps,
-} from 'utils/withCookies';
+import getClientSideProps from 'utils/getClientSideProps';
+import getServerSideProps from 'utils/getServerSideProps';
+import { appWithCookies } from 'utils/withCookies';
 import usePage from 'hooks/usePage';
 import useExpiringPoints from 'hooks/useExpiringPoints';
 
@@ -54,113 +48,24 @@ Router.onRouteChangeComplete = () => {
 
 class App extends NextApp {
   static async getInitialProps({ Component, ctx, router }) {
-    const { req, res } = ctx;
-    let pageProps = {};
-    const { XMeepshopDomain, userAgent } = Utils.getReqArgs(req);
-    const domainContextProps =
+    const { XMeepshopDomain, userAgent } = Utils.getReqArgs(ctx.req);
+
+    const initialProps =
       typeof window === 'undefined'
-        ? getServerSideDomainContextProps(ctx, router)
-        : getClientSideDomainContextProps();
+        ? await getServerSideProps(ctx, router)
+        : await getClientSideProps(ctx);
 
-    if (typeof window === 'undefined') {
-      const { valid } = await fetch(
-        `${process.env.MEEPSHOP_API}/auth/validate_token`,
-        {
-          method: 'POST',
-          credentials: 'include',
-          headers: {
-            'content-type': 'application/json',
-          },
-          body: JSON.stringify({
-            token: req.cookies['x-meepshop-authorization-token'],
-          }),
-        },
-      ).then(result => result.json());
+    if (initialProps.closed) return initialProps;
 
-      if (!valid) {
-        res.cookie('x-meepshop-authorization-token', '', {
-          maxAge: 0,
-          httpOnly: true,
-        });
-        delete req.cookies['x-meepshop-authorization-token'];
-      }
-    }
-
-    const response = await fetch(
-      typeof window === 'undefined'
-        ? `${process.env.MEEPSHOP_API}/graphql`
-        : '/api/graphql',
-      {
-        method: 'post',
-        headers:
-          typeof window === 'undefined'
-            ? {
-                'content-type': 'application/json',
-                'x-meepshop-domain': req.headers.host,
-                'x-meepshop-authorization-token':
-                  req.cookies['x-meepshop-authorization-token'],
-              }
-            : { 'content-type': 'application/json' },
-        credentials: typeof window === 'undefined' ? 'include' : 'same-origin',
-        body: JSON.stringify({
-          query: `
-            query checkStore {
-              viewer {
-                store {
-                  adminStatus
-                  metaData {
-                    storeStatus
-                  }
-                }
-              }
-            }
-          `,
-        }),
-      },
-    );
-
-    if (response.status < 400) {
-      const data = await response.json();
-      const storeStatus = data?.data?.viewer.store.metaData.storeStatus;
-      const adminStatus = data?.data?.viewer.store.adminStatus;
-
-      /* The store is closed */
-      if (storeStatus === 'CLOSE')
-        return {
-          ...domainContextProps,
-          closed: adminStatus === 'OPEN' ? 'RESTED' : 'CLOSED',
-          pageProps,
-        };
-    }
-
-    /**
-     * If token expired, we remove auth cookie and redirect to the same page
-     * to prevent 401 error.
-     */
-    if (response.status === 401) {
-      if (typeof window === 'undefined') {
-        res.cookie('x-meepshop-authorization-token', '', {
-          maxAge: 0,
-          httpOnly: true,
-        });
-        res.redirect(302, '/');
-        return { ...domainContextProps, pageProps };
-      }
-    }
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps({
+    const pageProps =
+      (await Component.getInitialProps?.({
         ...ctx,
         XMeepshopDomain,
         userAgent,
-      });
-    }
+      })) || {};
 
     return {
-      ...domainContextProps,
-      ...(typeof window === 'undefined'
-        ? await getServerSideCookiesContextProps(ctx)
-        : await getClientSideCookiesContextProps(ctx)),
+      ...initialProps,
       pageProps: {
         ...pageProps,
         namespacesRequired: [
