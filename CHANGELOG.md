@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.135 (2022-02-18)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#2034](https://github.com/meepshop/meep-lerna/pull/2034) 內部開單 - 簡化 @meepshop/next-store 的 \_app.tsx ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `store`
+  - [#2034](https://github.com/meepshop/meep-lerna/pull/2034) 內部開單 - 簡化 @meepshop/next-store 的 \_app.tsx ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.134 (2022-02-18)
 
 #### :rocket: New Feature
