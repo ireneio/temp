@@ -4,7 +4,7 @@
   "description": "Use to handle the global types",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.130",
+  "version": "0.80.134",
   "main": "./index.js",
   "bin": "./lib/bin/index.js",
   "types": "./index.ts",

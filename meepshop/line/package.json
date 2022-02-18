@@ -4,13 +4,13 @@
   "description": "ling login for next-store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.132",
+  "version": "0.80.134",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/icons": "^0.80.131",
-    "@meepshop/link": "^0.80.131",
-    "@meepshop/locales": "^0.80.132"
+    "@meepshop/icons": "^0.80.134",
+    "@meepshop/link": "^0.80.134",
+    "@meepshop/locales": "^0.80.134"
   },
   "keywords": ["line", "login", "meepshop"]
 }

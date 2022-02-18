@@ -4,11 +4,11 @@
   "description": "form data for creating order",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.125",
+  "version": "0.80.134",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/logger": "^0.80.125",
+    "@meepshop/logger": "^0.80.134",
     "react-adaptive-hooks": "^0.0.8"
   },
   "keywords": ["data", "form", "meepshop"]
