@@ -53,6 +53,7 @@
     "@babel/runtime": "^7.7.2",
     "@meepshop/meep-cli": "^1.37.0",
     "@next/bundle-analyzer": "^9.1.4",
+    "@testing-library/react-hooks": "^7.0.2",
     "@types/apollo-upload-client": "^14.1.0",
     "@types/clipboard": "^2.0.1",
     "@types/color": "^3.0.0",
