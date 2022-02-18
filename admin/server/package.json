@@ -27,6 +27,7 @@
     "@admin/plan-setting": "^0.80.132",
     "@admin/refactor-newsletter": "^0.80.132",
     "@admin/refactor-order-history-records": "^0.80.132",
+    "@admin/refactor-order-qa": "^0.80.132",
     "@admin/refactor-text-editor": "^0.80.132",
     "@admin/reset-password": "^0.80.132",
     "@admin/set-up-store": "^0.80.132",

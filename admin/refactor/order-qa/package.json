@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@admin/refactor-order-qa",
+  "description": "Admin refactor qa panel",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.80.132",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/hooks": "^0.80.125",
+    "@admin/order-qa": "^0.1.0"
+  },
+  "keywords": ["admin", "order", "qa", "refactor"]
+}
