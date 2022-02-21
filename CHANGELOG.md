@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.136 (2022-02-21)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#2084](https://github.com/meepshop/meep-lerna/pull/2084) 【功能】LINE 登入 - 前台加入 @store/line ([@Lexiwu](https://github.com/Lexiwu))
+- Other
+  - [#2081](https://github.com/meepshop/meep-lerna/pull/2081) 【功能】LINE 登入 - 前端：@admin/setting-third-party 新增開關及必填欄位 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#2113](https://github.com/meepshop/meep-lerna/pull/2113) 內部開單 - 加入 modal 到 @admin/products-designated-shipments ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.135 (2022-02-18)
 
 #### :rocket: New Feature
