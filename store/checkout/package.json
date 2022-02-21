@@ -8,8 +8,13 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@meepshop/context": "^0.80.136",
+    "@meepshop/form-address-cascader": "^0.80.136",
     "@meepshop/form-data": "^0.80.134",
-    "@meepshop/line": "^0.80.136"
+    "@meepshop/line": "^0.80.136",
+    "@meepshop/locales": "^0.80.136",
+    "@meepshop/validator": "^0.80.136",
+    "validator": "^13.5.2"
   },
   "keywords": ["checkout", "store"]
 }
