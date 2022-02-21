@@ -1,6 +1,9 @@
 // import
 import { gql } from '@apollo/client';
 
+// graphql import
+import { lineFragment } from '@meepshop/line/gqls';
+
 // definition
 export const getLoginMessage = gql`
   query getLoginMessage {
@@ -12,7 +15,12 @@ export const getLoginMessage = gql`
           shopperLoginMessageEnabled
           shopperLoginMessage
         }
+        lineLoginSetting {
+          ...lineFragment
+        }
       }
     }
   }
+
+  ${lineFragment}
 `;

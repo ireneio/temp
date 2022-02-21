@@ -8,7 +8,8 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/form-data": "^0.80.134"
+    "@meepshop/form-data": "^0.80.134",
+    "@meepshop/line": "^0.80.134"
   },
   "keywords": ["checkout", "store"]
 }

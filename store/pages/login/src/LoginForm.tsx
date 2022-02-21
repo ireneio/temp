@@ -3,8 +3,10 @@ import { OptionsType } from './constants';
 
 // import
 import React, { useState, useContext } from 'react';
-import { Form, Button, Input } from 'antd';
+import { Form, Button, Input, Divider } from 'antd';
+import { filter } from 'graphql-anywhere';
 
+import Line from '@meepshop/line';
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext, Fb as FbContext } from '@meepshop/context';
 import { useValidateEmail } from '@meepshop/validator';
@@ -14,89 +16,117 @@ import useLogin from './hooks/useLogin';
 import { SIGNUP, FORGET_PSW } from './constants';
 import styles from './styles/loginForm.less';
 
+// graphql typescript
+import { loginFormFragment as loginFormFragmentType } from '@meepshop/types/gqls/store';
+
+// graphql import
+import { lineFragment } from '@meepshop/line/gqls';
+
+// typescript definition
+interface PropsType {
+  lineLoginSetting: loginFormFragmentType | null;
+  setOptions: (options: OptionsType) => void;
+}
+
 // definition
 const { Item: FormItem } = Form;
 const { Password } = Input;
 
-export default React.memo(
-  ({ setOptions }: { setOptions: (options: OptionsType) => void }) => {
-    const { t } = useTranslation('login');
-    const colors = useContext(ColorsContext);
-    const { fb, isLoginEnabled } = useContext(FbContext);
-    const validateEmail = useValidateEmail();
-    const login = useLogin();
-    const [fbLoginLoading, setFbLoginLoading] = useState<boolean>(false);
+export default React.memo(({ setOptions, lineLoginSetting }: PropsType) => {
+  const { t } = useTranslation('login');
+  const colors = useContext(ColorsContext);
+  const { fb, isLoginEnabled: fbLoginEnable } = useContext(FbContext);
+  const validateEmail = useValidateEmail();
+  const login = useLogin();
+  const [fbLoginLoading, setFbLoginLoading] = useState<boolean>(false);
+  const lineLoginEnable = lineLoginSetting?.isLoginEnabled || null;
 
-    return (
-      <Form className={styles.root} onFinish={login}>
-        <FormItem
-          name={['email']}
-          rules={[
-            {
-              required: true,
-              message: t('email-is-required'),
-            },
-            {
-              validator: validateEmail.validator,
-            },
-          ]}
-          normalize={validateEmail.normalize}
-          validateTrigger="onBlur"
-        >
-          <Input placeholder={t('email-placeholder')} size="large" />
-        </FormItem>
+  return (
+    <Form className={styles.root} onFinish={login}>
+      <FormItem
+        name={['email']}
+        rules={[
+          {
+            required: true,
+            message: t('email-is-required'),
+          },
+          {
+            validator: validateEmail.validator,
+          },
+        ]}
+        normalize={validateEmail.normalize}
+        validateTrigger="onBlur"
+      >
+        <Input placeholder={t('email-placeholder')} size="large" />
+      </FormItem>
 
-        <FormItem
-          name={['password']}
-          rules={[
-            {
-              required: true,
-              message: t('password-is-required'),
-            },
-          ]}
-        >
-          <Password placeholder={t('password-placeholder')} size="large" />
-        </FormItem>
+      <FormItem
+        name={['password']}
+        rules={[
+          {
+            required: true,
+            message: t('password-is-required'),
+          },
+        ]}
+      >
+        <Password placeholder={t('password-placeholder')} size="large" />
+      </FormItem>
 
-        <div className={styles.optionsWrapper}>
-          <div onClick={() => setOptions(FORGET_PSW)}>
-            {t('forget-password')}
-          </div>
+      <div className={styles.optionsWrapper}>
+        <div onClick={() => setOptions(FORGET_PSW)}>{t('forget-password')}</div>
 
-          <div onClick={() => setOptions(SIGNUP)}>{t('join-us')}</div>
-        </div>
+        <div onClick={() => setOptions(SIGNUP)}>{t('join-us')}</div>
+      </div>
 
-        <div className={styles.buttonGroup}>
-          <Button
-            style={{
-              borderColor: colors[4],
-              backgroundColor: colors[4],
-              color: colors[2],
-            }}
-            htmlType="submit"
-            size="large"
-          >
-            {t('login')}
-          </Button>
+      <Button
+        style={{
+          borderColor: colors[4],
+          backgroundColor: colors[4],
+          color: colors[2],
+        }}
+        className={styles.login}
+        htmlType="submit"
+        size="large"
+      >
+        {t('login')}
+      </Button>
 
-          {!isLoginEnabled ? null : (
-            <Button
-              className={styles.fbLoginButton}
-              icon={<FbLoginIcon />}
-              onClick={async () => {
-                if (!fb || fbLoginLoading) return;
+      {fbLoginEnable || lineLoginEnable ? (
+        <>
+          <Divider className={styles.divider}>{t('or')}</Divider>
 
-                setFbLoginLoading(true);
-                await fb.login(window.storePreviousPageUrl || '/');
-                setFbLoginLoading(false);
-              }}
+          <div className={styles.buttonGroup}>
+            {!fbLoginEnable ? null : (
+              <Button
+                className={styles.fbLoginButton}
+                icon={<FbLoginIcon />}
+                onClick={async () => {
+                  if (!fb || fbLoginLoading) return;
+
+                  setFbLoginLoading(true);
+                  await fb.login(window.storePreviousPageUrl || '/');
+                  setFbLoginLoading(false);
+                }}
+                size="large"
+              >
+                {t('fb-login')}
+              </Button>
+            )}
+
+            <Line
+              className={styles.lineLoginButton}
               size="large"
-            >
-              {t('fb-login')}
-            </Button>
-          )}
-        </div>
-      </Form>
-    );
-  },
-);
+              redirectUrl={
+                // FIXME: T10267
+                typeof window === 'undefined'
+                  ? '/'
+                  : window.storePreviousPageUrl || '/'
+              }
+              lineLoginSetting={filter(lineFragment, lineLoginSetting)}
+            />
+          </div>
+        </>
+      ) : null}
+    </Form>
+  );
+});

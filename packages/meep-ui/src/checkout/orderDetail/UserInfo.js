@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input } from 'antd';
 import transformColor from 'color';
+import { filter } from 'graphql-anywhere';
 
 import AddressCascader, {
   validateAddressCascader,
@@ -14,6 +15,7 @@ import { FbLoginIcon } from '@meepshop/icons';
 import { useValidateEmail } from '@meepshop/validator';
 import withHook from '@store/utils/lib/withHook';
 import withContext from '@store/utils/lib/withContext';
+import Line from '@meepshop/line';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ISLOGIN_TYPE } from 'constants/propTypes';
@@ -22,6 +24,9 @@ import { NOTLOGIN } from 'constants/isLogin';
 import validateMobile from 'utils/validateMobile';
 
 import styles from './styles/userInfo.less';
+
+// eslint-disable-next-line import/order
+import { lineFragment } from '@meepshop/line/gqls';
 
 const { Item: FormItem } = Form;
 const { Password } = Input;
@@ -64,6 +69,7 @@ export default class UserInfo extends React.PureComponent {
       validateEmail,
       fb,
       isFbLoginEnabled,
+      lineLoginSetting,
       colors,
     } = this.props;
     const { isVisible, fbLoginLoading } = this.state;
@@ -83,30 +89,35 @@ export default class UserInfo extends React.PureComponent {
         {isLogin !== NOTLOGIN ? null : (
           <>
             <div className={styles.login}>
-              <div>{t('login-tip')}</div>
-              <div>
-                {!isFbLoginEnabled ? null : (
-                  <div
-                    className={styles.fb}
-                    onClick={async () => {
-                      if (!fb || fbLoginLoading) return;
+              <div className={styles.text}>{t('login-tip')}</div>
 
-                      this.setState({ fbLoginLoading: true });
-                      await fb.login();
-                      this.setState({ fbLoginLoading: false });
-                    }}
-                  >
-                    <FbLoginIcon />
-                    {t('fb-login')}
-                  </div>
-                )}
+              <Line
+                className={styles.line}
+                redirectUrl="/checkout"
+                lineLoginSetting={filter(lineFragment, lineLoginSetting)}
+              />
 
+              {!isFbLoginEnabled ? null : (
                 <div
-                  className={styles.member}
-                  onClick={() => this.setState({ isVisible: true })}
+                  className={styles.fb}
+                  onClick={async () => {
+                    if (!fb || fbLoginLoading) return;
+
+                    this.setState({ fbLoginLoading: true });
+                    await fb.login();
+                    this.setState({ fbLoginLoading: false });
+                  }}
                 >
-                  {t('login')}
+                  <FbLoginIcon />
+                  {t('fb-login')}
                 </div>
+              )}
+
+              <div
+                className={styles.member}
+                onClick={() => this.setState({ isVisible: true })}
+              >
+                {t('login')}
               </div>
             </div>
 
@@ -135,7 +146,7 @@ export default class UserInfo extends React.PureComponent {
                   <LoginModal
                     onClose={() => this.setState({ isVisible: false })}
                     initialEmail={getFieldValue(['userEmail'])}
-                    disabledFblogin
+                    disableThirdPartyLogin
                   />
                 )}
               </FormItem>

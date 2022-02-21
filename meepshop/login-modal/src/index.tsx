@@ -13,13 +13,13 @@ import styles from './styles/index.less';
 // typescript definition
 interface PropsType {
   onClose: () => void;
-  disabledFblogin?: boolean;
+  disableThirdPartyLogin?: boolean;
   initialEmail?: string;
 }
 
 // definition
 export default React.memo(
-  ({ onClose, disabledFblogin, initialEmail }: PropsType) => {
+  ({ onClose, disableThirdPartyLogin, initialEmail }: PropsType) => {
     const colors = useContext(ColorsContext);
     const { t } = useTranslation('login-modal');
     const [isForgetPassword, setIsForgetPassword] = useState(false);
@@ -46,7 +46,7 @@ export default React.memo(
           ) : (
             <Login
               onClose={onClose}
-              disabledFblogin={disabledFblogin}
+              disableThirdPartyLogin={disableThirdPartyLogin}
               initialEmail={initialEmail}
               setIsForgetPassword={setIsForgetPassword}
             />

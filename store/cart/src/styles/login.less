@@ -4,59 +4,101 @@
   width: 100%;
   padding: 16px 24px;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
   margin-bottom: 16px;
   font-size: 14px;
-  font-weight: 500;
   border-radius: 3px;
 
   @media (max-width: @screen-sm-max) {
     padding: 14px 16px 12px 16px;
-    display: block;
     margin-bottom: 12px;
   }
 
-  > div:first-child {
+  > * {
+    margin-right: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    line-height: 22px;
+    height: auto;
+
     @media (max-width: @screen-sm-max) {
-      margin-bottom: 8px;
+      &:not(.text) {
+        flex: 1 0 0%;
+        font-size: 14px;
+        padding: 8px 0px;
+      }
+
+      &:not(.member) {
+        margin-right: 8px;
+      }
+
+      &:first-child:nth-last-child(4) ~ * {
+        padding: 6px 5px;
+        font-size: 12px;
+      }
+
+      &:nth-last-child(1):nth-child(2) {
+        flex: 0.5;
+      }
+    }
+  }
+}
+
+.text {
+  flex: 1 0 auto;
+  text-align: left;
+
+  @media (max-width: @screen-sm-max) {
+    margin-bottom: 8px;
+    width: 100%;
+    flex: 1 0 calc(100% - 10px);
+
+    &:first-child:nth-last-child(2) {
+      flex: 1 0 0%;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.line {
+  padding: 8px 24px 8px 20px;
+
+  :global(.anticon) {
+    line-height: 14px;
+
+    @media (max-width: @screen-sm-max) {
+      font-size: 16px;
     }
   }
 
-  > div:last-child {
-    display: flex;
-
+  :global(.anticon + span) {
     @media (max-width: @screen-sm-max) {
-      justify-content: center;
+      margin-left: 6px;
     }
   }
 }
 
 .fb {
   padding: 8px 24px;
-  border-radius: 2px;
   background-color: #3b5998;
-  cursor: pointer;
   color: white;
-  margin-right: 16px;
-  font-weight: normal;
 
   :global(.anticon) {
     font-size: 16px;
     margin-right: 8px;
-  }
 
-  @media (max-width: @screen-sm-max) {
-    white-space: nowrap;
-    padding: 7px 18px;
+    @media (max-width: @screen-sm-max) {
+      font-size: 14px;
+      margin-right: 6px;
+    }
   }
 }
 
 .member {
   padding: 8px 40px;
-  border-radius: 2px;
-  cursor: pointer;
-  white-space: nowrap;
 }
 
 .message {

@@ -22,6 +22,7 @@
     "@meepshop/iframe": "^0.80.134",
     "@meepshop/images": "^0.80.134",
     "@meepshop/landing-page": "^0.80.134",
+    "@meepshop/line": "^0.80.134",
     "@meepshop/link": "^0.80.134",
     "@meepshop/locales": "^0.80.134",
     "@meepshop/logger": "^0.80.134",

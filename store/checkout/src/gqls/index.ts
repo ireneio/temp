@@ -2,6 +2,8 @@
 import { gql } from '@apollo/client';
 
 // graphql import
+import { lineFragment } from '@meepshop/line/gqls';
+
 import { useUpdateUserFragment } from './useUpdateUser';
 import { useCreateOrderFragment } from './useCreateOrder';
 
@@ -36,12 +38,16 @@ export const getCheckoutInfo = gql`
             address
           }
         }
+        lineLoginSetting {
+          ...lineFragment
+        }
       }
       ...useUpdateUserFragment
       ...useCreateOrderFragment
     }
   }
 
+  ${lineFragment}
   ${useUpdateUserFragment}
   ${useCreateOrderFragment}
 `;

@@ -14,6 +14,7 @@ import {
   getCheckoutInfo_viewer as getCheckoutInfoViewer,
   getCheckoutInfoVariables as getCheckoutInfoVariablesType,
   getCheckoutInfo_viewer_additionalInfo as getCheckoutInfoViewerAdditionalInfo,
+  getCheckoutInfo_viewer_store_lineLoginSetting as getCheckoutInfoViewerStoreLineLoginSettingType,
   getCheckoutInfo_viewer_shippableRecipientAddresses as getCheckoutInfoViewerShippableRecipientAddresses,
   getCheckoutInfo_viewer_store_setting_checkoutFields as getCheckoutInfoViewerStoreSettingCheckoutFields,
 } from '@meepshop/types/gqls/store';
@@ -29,6 +30,7 @@ interface PropsType {
       mobile: getCheckoutInfoViewerAdditionalInfo['mobile'];
       shippableRecipientAddresses: getCheckoutInfoViewerShippableRecipientAddresses[];
       checkoutFields: getCheckoutInfoViewerStoreSettingCheckoutFields | null;
+      lineLoginSetting: getCheckoutInfoViewerStoreLineLoginSettingType | null;
       createOrder: ReturnType<typeof useCreateOrder>;
       updateUser: ReturnType<typeof useUpdateUser>;
     },
@@ -57,6 +59,7 @@ export default React.memo(({ children }: PropsType) => {
     address: viewer.address,
     shippableRecipientAddresses: viewer.shippableRecipientAddresses,
     checkoutFields: viewer.store?.setting?.checkoutFields || null,
+    lineLoginSetting: viewer.store?.lineLoginSetting || null,
     createOrder,
     updateUser,
   });

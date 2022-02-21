@@ -3,8 +3,10 @@ import React, { useContext, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { UpOutlined, DownOutlined } from '@ant-design/icons';
 import transformColor from 'color';
+import { filter } from 'graphql-anywhere';
 
 import { Colors as ColorsContext, Fb as FbContext } from '@meepshop/context';
+import Line from '@meepshop/line';
 import DraftText from '@meepshop/draft-text';
 import { FbLoginIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/locales';
@@ -16,6 +18,8 @@ import styles from './styles/login.less';
 import { getLoginMessage as getLoginMessageType } from '@meepshop/types/gqls/store';
 
 // graphql import
+import { lineFragment } from '@meepshop/line/gqls';
+
 import { getLoginMessage } from './gqls/login';
 
 // definition
@@ -37,30 +41,35 @@ export default React.memo(() => {
   return (
     <>
       <div className={styles.login}>
-        <div>{t('login-tip')}</div>
-        <div>
-          {!isFbLoginEnabled ? null : (
-            <div
-              className={styles.fb}
-              onClick={async () => {
-                if (!fb || fbLoginLoading) return;
+        <div className={styles.text}>{t('login-tip')}</div>
 
-                setFbLoginLoading(true);
-                await fb.login();
-                setFbLoginLoading(false);
-              }}
-            >
-              <FbLoginIcon />
-              {t('fb-login')}
-            </div>
-          )}
+        <Line
+          className={styles.line}
+          redirectUrl="/cart"
+          lineLoginSetting={filter(lineFragment, store.lineLoginSetting)}
+        />
 
+        {!isFbLoginEnabled ? null : (
           <div
-            className={styles.member}
-            onClick={() => setIsLoginModalOpen(true)}
+            className={styles.fb}
+            onClick={async () => {
+              if (!fb || fbLoginLoading) return;
+
+              setFbLoginLoading(true);
+              await fb.login();
+              setFbLoginLoading(false);
+            }}
           >
-            {t('member-login')}
+            <FbLoginIcon />
+            {t('fb-login')}
           </div>
+        )}
+
+        <div
+          className={styles.member}
+          onClick={() => setIsLoginModalOpen(true)}
+        >
+          {t('member-login')}
         </div>
       </div>
 
@@ -90,7 +99,7 @@ export default React.memo(() => {
       {!isLoginModalOpen ? null : (
         <LoginModal
           onClose={() => setIsLoginModalOpen(false)}
-          disabledFblogin
+          disableThirdPartyLogin
         />
       )}
 

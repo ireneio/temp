@@ -16,7 +16,7 @@ import useLogin from './hooks/useLogin';
 // typescript definition
 interface PropsType {
   onClose?: () => void;
-  disabledFblogin?: boolean;
+  disableThirdPartyLogin?: boolean;
   initialEmail?: string;
   setIsForgetPassword: (isForgetPassword: boolean) => void;
 }
@@ -28,7 +28,7 @@ const { Password } = Input;
 export default React.memo(
   ({
     onClose,
-    disabledFblogin,
+    disableThirdPartyLogin,
     initialEmail,
     setIsForgetPassword,
   }: PropsType) => {
@@ -98,7 +98,7 @@ export default React.memo(
           </FormItem>
         </Form>
 
-        <LoginFooter disabledFblogin={disabledFblogin} />
+        <LoginFooter disableThirdPartyLogin={disableThirdPartyLogin} />
 
         <style
           dangerouslySetInnerHTML={{

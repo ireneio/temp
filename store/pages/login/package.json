@@ -12,6 +12,7 @@
     "@meepshop/draft-text": "^0.80.134",
     "@meepshop/form-address-cascader": "^0.80.134",
     "@meepshop/icons": "^0.80.134",
+    "@meepshop/line": "^0.80.134",
     "@meepshop/link": "^0.80.134",
     "@meepshop/locales": "^0.80.134",
     "@meepshop/validator": "^0.80.134",

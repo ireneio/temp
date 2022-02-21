@@ -14,6 +14,7 @@ import { SIGNUP, LOGIN, FORGET_PSW } from './constants';
 import { formFragment as formFragmentType } from '@meepshop/types/gqls/store';
 
 // graphql import
+import { loginFormFragment } from './gqls/loginFrom';
 import { signupFormFragment } from './gqls/signupForm';
 import { sendResetPswMailFormFragment } from './gqls/sendResetPswMailForm';
 
@@ -28,7 +29,15 @@ interface PropsType {
 export default React.memo(({ options, store, setOptions }: PropsType) => {
   switch (options) {
     case LOGIN:
-      return <LoginForm setOptions={setOptions} />;
+      return (
+        <LoginForm
+          lineLoginSetting={filter(
+            loginFormFragment,
+            store?.lineLoginSetting || null,
+          )}
+          setOptions={setOptions}
+        />
+      );
     case SIGNUP:
       return (
         <SignupForm

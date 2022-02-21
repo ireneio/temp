@@ -382,6 +382,7 @@ export default class Checkout extends React.PureComponent {
           address,
           shippableRecipientAddresses,
           checkoutFields,
+          lineLoginSetting,
           createOrder,
           updateUser,
         }) => {
@@ -400,6 +401,7 @@ export default class Checkout extends React.PureComponent {
               }}
               shippableRecipientAddresses={shippableRecipientAddresses}
               checkoutFields={checkoutFields}
+              lineLoginSetting={lineLoginSetting}
               errors={errors}
               orderInfo={orderInfo}
               submit={this.submit}

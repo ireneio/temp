@@ -485,6 +485,7 @@ export default class OrderDetail extends React.PureComponent {
       user,
       isSubmitting,
       shippableRecipientAddresses,
+      lineLoginSetting,
       checkoutFields,
       cartLoading,
       carts,
@@ -638,6 +639,7 @@ export default class OrderDetail extends React.PureComponent {
             <UserInfo
               user={user}
               checkoutFields={checkoutFields}
+              lineLoginSetting={lineLoginSetting}
               choosePaymentTemplate={(choosePayment || {}).template}
             />
 
