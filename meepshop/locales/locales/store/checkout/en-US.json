@@ -40,10 +40,40 @@
   "postal-code": "Postal Code",
   "address": "Address",
   "payment-info": "Payment / Delivery Type",
-  "same-as-user-info": "Bring member profile",
+  "same-as-user-info": "With the same member",
   "receiver-template": "Choose from Address Book",
   "save-as-receiver-template": "Add this Recipient to Address Book",
   "points-limit": "The maximum amount you can redeem is {{point}}.",
   "reward-points-can-use": "You have {{point}} reward points.",
-  "name-too-long": "Your name should not exceed {{amount}} words"
+  "name-too-long": "Your name should not exceed {{amount}} words",
+  "invoice": "bill",
+  "invoice-paper": "Paper invoice",
+  "invoice-title": "Invoice",
+  "invoice-number": "Uniform numbers",
+  "wrong-invoice-number": "Unified numbered error, please re-enter.",
+  "invoice-address": "Invoice address",
+  "invoice-e-invoice": "Electronic invoice",
+  "wrong-certificate": "Natural people's voucher bar code error, please re-enter.",
+  "wrong-barcode": "The phone bar code is incorrect, please re-enter.",
+  "invoice-donate": "Donation code",
+  "invoice-donate-description": "Please confirm that the donation code is entered correctly, and it cannot be changed after the invoice is donated.",
+  "invoice-search": "Donation code query",
+  "wrong-donate-code": "Donate code error, please re-enter.",
+  "error": "An error occurred",
+  "invoice-e-invoice-number": {
+    "moile-barcode": "Please enter your mobile barcode",
+    "citizen-digital-certificate": "Please enter a natural person credential barcode"
+  },
+  "invoice-e-invoice-type": {
+    "membershipCarrier": "Member carrier",
+    "mobileBarCodeCarrier": "Mobile barcode carrier",
+    "citizenDigitalCertificateCarrier": "Natural person credential carrier",
+    "triplicate": "Company",
+    "donation": "Donation"
+  },
+  "invoice-paper-type": {
+    "duplicate": "SU-type invoice",
+    "triplicate": "Triple invoice",
+    "donation": "Donation"
+  }
 }

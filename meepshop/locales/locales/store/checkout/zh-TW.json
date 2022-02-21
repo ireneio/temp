@@ -40,10 +40,40 @@
   "postal-code": "郵遞區號",
   "address": "地址",
   "payment-info": "購物方式",
-  "same-as-user-info": "帶入會員資料",
+  "same-as-user-info": "同會員資料",
   "receiver-template": "收件人範本",
   "save-as-receiver-template": "儲存為收件人範本",
   "points-limit": "折抵金額上限為 {{point}} 元",
   "reward-points-can-use": "您目前的購物金為 {{point}} 元，",
-  "name-too-long": "姓名欄位不得超過{{amount}}個字"
+  "name-too-long": "姓名欄位不得超過{{amount}}個字",
+  "invoice": "發票",
+  "invoice-paper": "紙本發票",
+  "invoice-title": "發票抬頭",
+  "invoice-number": "統一編號",
+  "wrong-invoice-number": "統一編號錯誤，請重新輸入。",
+  "invoice-address": "發票地址",
+  "invoice-e-invoice": "電子發票",
+  "wrong-certificate": "自然人憑證條碼錯誤，請重新輸入。",
+  "wrong-barcode": "手機條碼錯誤，請重新輸入。",
+  "invoice-donate": "受贈單位捐贈碼",
+  "invoice-donate-description": "請確認捐贈碼輸入正確，發票捐出後無法更改。",
+  "invoice-search": "捐贈碼查詢",
+  "wrong-donate-code": "捐贈碼錯誤，請重新輸入。",
+  "error": "發生錯誤",
+  "invoice-e-invoice-number": {
+    "moile-barcode": "請輸入手機條碼",
+    "citizen-digital-certificate": "請輸入自然人憑證條碼"
+  },
+  "invoice-e-invoice-type": {
+    "membershipCarrier": "會員載具",
+    "mobileBarCodeCarrier": "手機條碼載具",
+    "citizenDigitalCertificateCarrier": "自然人憑證載具",
+    "triplicate": "公司戶",
+    "donation": "捐贈"
+  },
+  "invoice-paper-type": {
+    "duplicate": "二聯式發票",
+    "triplicate": "三聯式發票",
+    "donation": "捐贈"
+  }
 }

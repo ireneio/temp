@@ -40,10 +40,40 @@
   "postal-code": "Mã bưu điện",
   "address": "Địa Chỉ",
   "payment-info": "Cách thức mua hàng",
-  "same-as-user-info": "Mang theo hồ sơ thành viên",
+  "same-as-user-info": "Với cùng một thành viên",
   "receiver-template": "Mẫu người nhận",
   "save-as-receiver-template": "Lưu mẫu người nhận",
   "points-limit": "Số tiền chiết khấu tối đa là {{point}} tệ",
   "reward-points-can-use": "Số tiền hiện tại của bạn là {{point}} tệ，",
-  "name-too-long": "Cột họ tên không được vượt quá {{amount}} từ"
+  "name-too-long": "Cột họ tên không được vượt quá {{amount}} từ",
+  "invoice": "hóa đơn thanh toán",
+  "invoice-paper": "Hóa đơn giấy.",
+  "invoice-title": "Hóa đơn",
+  "invoice-number": "Số đồng nhất",
+  "wrong-invoice-number": "Lỗi được đánh số hợp nhất, vui lòng nhập lại.",
+  "invoice-address": "Địa chỉ hoá đơn",
+  "invoice-e-invoice": "Hóa đơn điện tử",
+  "wrong-certificate": "Lỗi mã voucher của người dân tự nhiên, vui lòng nhập lại.",
+  "wrong-barcode": "Mã vạch điện thoại không chính xác, vui lòng nhập lại.",
+  "invoice-donate": "Quy định mã",
+  "invoice-donate-description": "Vui lòng xác nhận rằng mã quyên góp được nhập chính xác và nó không thể thay đổi sau khi hóa đơn được quyên góp.",
+  "invoice-search": "Truy vấn mã quyên góp.",
+  "wrong-donate-code": "Đóng góp lỗi mã, vui lòng nhập lại.",
+  "error": "Đã xảy ra lỗi",
+  "invoice-e-invoice-number": {
+    "moile-barcode": "Vui lòng nhập mã vạch điện thoại của bạn",
+    "citizen-digital-certificate": "Vui lòng nhập mã vạch thông tin xác thực người tự nhiên"
+  },
+  "invoice-e-invoice-type": {
+    "membershipCarrier": "Người vận chuyển thành viên",
+    "mobileBarCodeCarrier": "Carcode Mobile Carrier.",
+    "citizenDigitalCertificateCarrier": "Người mang mầm bệnh tự nhiên",
+    "triplicate": "Công ty",
+    "donation": "Quyên góp"
+  },
+  "invoice-paper-type": {
+    "duplicate": "Hóa đơn loại SU",
+    "triplicate": "Hóa đơn ba",
+    "donation": "Quyên góp"
+  }
 }

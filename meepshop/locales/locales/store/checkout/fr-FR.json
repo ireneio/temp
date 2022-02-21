@@ -40,10 +40,40 @@
   "postal-code": "code postal",
   "address": "Adresse",
   "payment-info": "Type de paiement / livraison",
-  "same-as-user-info": "Apportez le profil de membre",
+  "same-as-user-info": "Avec le même membre",
   "receiver-template": "Choisissez dans le carnet d'adresses",
   "save-as-receiver-template": "Ajouter ce destinataire au carnet d'adresses",
   "points-limit": "Le montant maximum que vous pouvez échanger est de {{point}}.",
   "reward-points-can-use": "Vous avez {{point}} points de récompense.",
-  "name-too-long": "Votre nom ne doit pas dépasser {{amount}} mots"
+  "name-too-long": "Votre nom ne doit pas dépasser {{amount}} mots",
+  "invoice": "facture",
+  "invoice-paper": "Facture de papier",
+  "invoice-title": "Facture d'achat",
+  "invoice-number": "Nombres uniformes",
+  "wrong-invoice-number": "Erreur numérotée unifiée, veuillez re-entrer.",
+  "invoice-address": "Adresse de facturation",
+  "invoice-e-invoice": "Facture électronique",
+  "wrong-certificate": "Erreur de code à barres de la barre des personnes naturelles, veuillez re-entrer.",
+  "wrong-barcode": "Le code de barre de téléphone est incorrect, veuillez rentrer à nouveau.",
+  "invoice-donate": "Code de don",
+  "invoice-donate-description": "Veuillez confirmer que le code de don est entré correctement et ne peut pas être modifié après le don de la facture.",
+  "invoice-search": "Query de code de donation",
+  "wrong-donate-code": "Faites un don d'erreur de code, veuillez re-entrer.",
+  "error": "Une erreur s'est produite",
+  "invoice-e-invoice-number": {
+    "moile-barcode": "Veuillez entrer votre code à barres de téléphone",
+    "citizen-digital-certificate": "S'il vous plaît entrer un code à barres d'informations d'identification de la personne naturelle"
+  },
+  "invoice-e-invoice-type": {
+    "membershipCarrier": "Transporteur",
+    "mobileBarCodeCarrier": "Carrier de code à barres mobiles",
+    "citizenDigitalCertificateCarrier": "Périphérique naturelle de la personne",
+    "triplicate": "Société",
+    "donation": "Don"
+  },
+  "invoice-paper-type": {
+    "duplicate": "Facture de type Su",
+    "triplicate": "Triple facture",
+    "donation": "Don"
+  }
 }

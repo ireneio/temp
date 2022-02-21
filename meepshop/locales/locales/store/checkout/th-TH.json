@@ -40,10 +40,40 @@
   "postal-code": "รหัสไปรษณีย์",
   "address": "ที่อยู่",
   "payment-info": "ประเภทการชำระเงิน / การจัดส่ง",
-  "same-as-user-info": "นำโปรไฟล์สมาชิก",
+  "same-as-user-info": "ด้วยสมาชิกเดียวกัน",
   "receiver-template": "เลือกจากสมุดที่อยู่",
   "save-as-receiver-template": "เพิ่มผู้รับนี้ในสมุดที่อยู่",
   "points-limit": "จำนวนเงินสูงสุดที่คุณสามารถแลกได้คือ {{point}}",
   "reward-points-can-use": "คุณมีคะแนน {{point}} คะแนน",
-  "name-too-long": "ชื่อของคุณไม่ควรเกิน {{amount}} คำ"
+  "name-too-long": "ชื่อของคุณไม่ควรเกิน {{amount}} คำ",
+  "invoice": "ใบแจ้งหนี้",
+  "invoice-paper": "ใบแจ้งหนี้กระดาษ",
+  "invoice-title": "ใบแจ้งหนี้",
+  "invoice-number": "ตัวเลขสม่ำเสมอ",
+  "wrong-invoice-number": "ข้อผิดพลาดที่กำหนดไว้ล่วงหน้าโปรดป้อนอีกครั้ง",
+  "invoice-address": "ที่อยู่ใบแจ้งหนี้",
+  "invoice-e-invoice": "ใบแจ้งหนี้อิเล็กทรอนิกส์",
+  "wrong-certificate": "ข้อผิดพลาดบาร์โค้ดบัตรกำนัลของคนธรรมชาติโปรดป้อนอีกครั้ง",
+  "wrong-barcode": "บาร์โค้ดโทรศัพท์ไม่ถูกต้องโปรดป้อนอีกครั้ง",
+  "invoice-donate": "รหัสบริจาค",
+  "invoice-donate-description": "โปรดยืนยันว่ารหัสการบริจาคถูกป้อนอย่างถูกต้องและไม่สามารถเปลี่ยนแปลงได้หลังจากบริจาคใบแจ้งหนี้",
+  "invoice-search": "สืบค้นรหัสบริจาค",
+  "wrong-donate-code": "ข้อผิดพลาดของรหัสบริจาคโปรดป้อนอีกครั้ง",
+  "error": "เกิดข้อผิดพลาด",
+  "invoice-e-invoice-number": {
+    "moile-barcode": "กรุณาใส่บาร์โค้ดในโทรศัพท์ของคุณ",
+    "citizen-digital-certificate": "โปรดป้อนบาร์โค้ดหนังสือรับรองบุคคลธรรมดา"
+  },
+  "invoice-e-invoice-type": {
+    "membershipCarrier": "ผู้ให้บริการสมาชิก",
+    "mobileBarCodeCarrier": "ผู้ให้บริการบาร์โค้ดมือถือ",
+    "citizenDigitalCertificateCarrier": "ผู้ให้บริการข้อมูลประจำตัวบุคคลธรรมดา",
+    "triplicate": "บริษัท",
+    "donation": "การบริจาค"
+  },
+  "invoice-paper-type": {
+    "duplicate": "ใบแจ้งหนี้ประเภท SU",
+    "triplicate": "ใบแจ้งหนี้สามใบ",
+    "donation": "การบริจาค"
+  }
 }

@@ -40,10 +40,40 @@
   "postal-code": "郵便番号",
   "address": "住所",
   "payment-info": "支払方法",
-  "same-as-user-info": "メンバープロファイルをもたらす",
+  "same-as-user-info": "同じ会員で",
   "receiver-template": "受取人テンプレート",
   "save-as-receiver-template": "受取人テンプレートとして保存",
   "points-limit": "最大で{{point}}元をご利用いただけます",
   "reward-points-can-use": "お客様の保有ポイントは{{point}}元分です。",
-  "name-too-long": "姓名欄は{{amount}}文字以内"
+  "name-too-long": "姓名欄は{{amount}}文字以内",
+  "invoice": "明細書",
+  "invoice-paper": "紙の請求書",
+  "invoice-title": "請求書",
+  "invoice-number": "均一な数字",
+  "wrong-invoice-number": "統一番号付きエラー、再入力してください。",
+  "invoice-address": "請求書の住所",
+  "invoice-e-invoice": "電子請求書",
+  "wrong-certificate": "ナチュラルピープルのバウチャーバーコードエラー、再入力してください。",
+  "wrong-barcode": "電話バーコードが正しくありませんので、再入力してください。",
+  "invoice-donate": "寄付コード",
+  "invoice-donate-description": "寄付コードが正しく入力され、請求書が寄付された後は変更できません。",
+  "invoice-search": "寄付コードクエリ",
+  "wrong-donate-code": "コードエラーを寄付してください。再入力してください。",
+  "error": "エラーが発生しました",
+  "invoice-e-invoice-number": {
+    "moile-barcode": "あなたの電話バーコードを入力してください",
+    "citizen-digital-certificate": "自然者信用証明書バーコードを入力してください"
+  },
+  "invoice-e-invoice-type": {
+    "membershipCarrier": "メンバーキャリア",
+    "mobileBarCodeCarrier": "モバイルバーコードキャリア",
+    "citizenDigitalCertificateCarrier": "天然人信用証明書",
+    "triplicate": "会社",
+    "donation": "寄付"
+  },
+  "invoice-paper-type": {
+    "duplicate": "スエットの請求書",
+    "triplicate": "トリプルボイス",
+    "donation": "寄付"
+  }
 }

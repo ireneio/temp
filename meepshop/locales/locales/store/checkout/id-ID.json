@@ -40,10 +40,40 @@
   "postal-code": "Kode Pos",
   "address": "Alamat",
   "payment-info": "Jenis Pembayaran / Pengiriman",
-  "same-as-user-info": "Bawa Profil Anggota",
+  "same-as-user-info": "Dengan anggota yang sama",
   "receiver-template": "Pilih dari Buku Alamat",
   "save-as-receiver-template": "Tambahkan Penerima ini ke Buku Alamat",
   "points-limit": "Jumlah maksimum yang dapat Anda tebus adalah {{point}}.",
   "reward-points-can-use": "Anda memiliki {{point}} poin hadiah.",
-  "name-too-long": "Nama Anda tidak boleh melebihi {{amount}} kata-kata"
+  "name-too-long": "Nama Anda tidak boleh melebihi {{amount}} kata-kata",
+  "invoice": "tagihan",
+  "invoice-paper": "Faktur kertas.",
+  "invoice-title": "Faktur",
+  "invoice-number": "Angka seragam.",
+  "wrong-invoice-number": "Kesalahan bernomor terpadu, silakan masuk kembali.",
+  "invoice-address": "Alamat faktur",
+  "invoice-e-invoice": "Faktur elektronik.",
+  "wrong-certificate": "Kesalahan Kode Bar Voucher Rakyat Alami, silakan masuk kembali.",
+  "wrong-barcode": "Kode batang telepon salah, harap masukkan kembali.",
+  "invoice-donate": "Kode Donasi.",
+  "invoice-donate-description": "Harap konfirmasi bahwa kode donasi dimasukkan dengan benar, dan tidak dapat diubah setelah faktur disumbangkan.",
+  "invoice-search": "Kueri Kode Donasi.",
+  "wrong-donate-code": "Donasi kesalahan kode, silakan masuk kembali.",
+  "error": "Terjadi kesalahan",
+  "invoice-e-invoice-number": {
+    "moile-barcode": "Silakan masukkan barcode telepon Anda",
+    "citizen-digital-certificate": "Silakan masukkan barcode kredensial orang alami"
+  },
+  "invoice-e-invoice-type": {
+    "membershipCarrier": "Anggota Carrier.",
+    "mobileBarCodeCarrier": "Operator barcode seluler",
+    "citizenDigitalCertificateCarrier": "Operator kredensial orang alami",
+    "triplicate": "Perusahaan",
+    "donation": "Sumbangan"
+  },
+  "invoice-paper-type": {
+    "duplicate": "Faktur tipe su",
+    "triplicate": "Tiga Faktur",
+    "donation": "Sumbangan"
+  }
 }

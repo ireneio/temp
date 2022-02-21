@@ -11,6 +11,7 @@
     "@meepshop/context": "^0.80.136",
     "@meepshop/form-address-cascader": "^0.80.136",
     "@meepshop/form-data": "^0.80.134",
+    "@meepshop/gmo-credit-card-form": "^0.80.136",
     "@meepshop/line": "^0.80.136",
     "@meepshop/locales": "^0.80.136",
     "@meepshop/utils": "^0.80.136",
