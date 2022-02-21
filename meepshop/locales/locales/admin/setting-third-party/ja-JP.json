@@ -25,6 +25,23 @@
       "placeholder": "Facebookアプリシークレット"
     }
   },
+  "line": {
+    "title": "ライン統合機能",
+    "description": "ライン開発者アカウント、シリアル回線登録とログイン機能を設定した後",
+    "tooltip": "行登録とログインを可能にする方法",
+    "toggle": {
+      "title": "ライン登録とログイン",
+      "description": "有効にすると、ラインアカウントのワンクリック登録を使用することができます。"
+    },
+    "channelId": {
+      "title": "チャンネルID",
+      "placeholder": "チャンネルIDを入力してください"
+    },
+    "channelSecret": {
+      "title": "チャンネルシークリー",
+      "placeholder": "チャンネル秘密を入力してください"
+    }
+  },
   "ecfit": {
     "title": "ECFIT第三者物流サービス",
     "description": "ワンストップEコマース物流統合システムは、ショップの入出庫等のトータルサービスをサポートし、ECFITと契約後シリアル接続設定をする必要があります。",

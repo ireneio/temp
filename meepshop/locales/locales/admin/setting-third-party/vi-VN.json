@@ -25,6 +25,23 @@
       "placeholder": "Bí mật ứng dụng Facebook"
     }
   },
+  "line": {
+    "title": "Chức năng tích hợp dòng",
+    "description": "Sau khi thiết lập với tài khoản nhà phát triển dòng của bạn, đăng ký dòng nối tiếp và chức năng đăng nhập",
+    "tooltip": "Cách bật Đăng ký và Đăng nhập",
+    "toggle": {
+      "title": "Đăng ký và đăng nhập",
+      "description": "Sau khi bật, bạn có thể sử dụng đăng ký một lần nhấp, đăng nhập vào cửa hàng trực tuyến của bạn để trở thành thành viên, không cần phải có chương trình đăng ký phức tạp để cung cấp trải nghiệm mua sắm thuận tiện."
+    },
+    "channelId": {
+      "title": "kênh ID",
+      "placeholder": "Vui lòng nhập ID kênh"
+    },
+    "channelSecret": {
+      "title": "Kênh bí mật",
+      "placeholder": "Vui lòng nhập bí mật kênh"
+    }
+  },
   "ecfit": {
     "title": "Dịch vụ hậu cần của bên thứ ba ECFIT",
     "description": "Hệ thống tích hợp hậu cần thương mại điện tử một cửa cung cấp một dịch vụ hoàn chỉnh bao gồm hỗ trợ cửa hàng phân phối sản phẩm và cần thực hiện cài đặt liên kết sau khi ký hợp đồng với ECFIT.",

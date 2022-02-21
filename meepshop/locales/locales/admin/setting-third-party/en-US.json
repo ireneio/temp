@@ -25,6 +25,23 @@
       "placeholder": "Facebook App Secret"
     }
   },
+  "line": {
+    "title": "LINE integration function",
+    "description": "After setting up with your Line Developer account, serial LINE registration and login function",
+    "tooltip": "How to enable Line Registration and Login",
+    "toggle": {
+      "title": "LINE registration and login",
+      "description": "After enabling, you can use the LINE account one-click registration, log in to your online store to become a member, do not need to have a complicated registration program to provide a convenient shopping experience."
+    },
+    "channelId": {
+      "title": "Channel ID",
+      "placeholder": "Please enter the Channel ID"
+    },
+    "channelSecret": {
+      "title": "Channel Secret",
+      "placeholder": "Please enter Channel Secret"
+    }
+  },
   "ecfit": {
     "title": "ECFIT Third Party Logistics Service",
     "description": "One-stop e-commerce logistics integration system offers a complete service including assisting the store in product delivery, and it needs to do linkage setting after signing a contract with ECFIT.",

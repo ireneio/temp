@@ -8,6 +8,7 @@ import message from '@admin/message';
 import { useTranslation } from '@meepshop/locales';
 
 import useUpdateFacebookSetting from './useUpdateFacebookSetting';
+import useUpdateLineLoginSetting from './useUpdateLineLoginSetting';
 import useUpdateEcfitSettings from './useUpdateEcfitSettings';
 import useSetGaViewId from './useSetGaViewId';
 
@@ -20,6 +21,11 @@ interface ValuesType {
     status: boolean;
     appId: string;
     appSecret: string;
+  };
+  line: {
+    status: boolean;
+    channelId: string;
+    channelSecret: string;
   };
   ecfit: {
     status: boolean;
@@ -41,6 +47,7 @@ export default (
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation('setting-third-party');
   const updateFacebookSetting = useUpdateFacebookSetting();
+  const updateLineLoginSetting = useUpdateLineLoginSetting();
   const updateEcfitSettings = useUpdateEcfitSettings();
   const { setGaViewId, processorStatus } = useSetGaViewId(
     storeId || 'null-id', // SHOULD_NOT_BE_NULL
@@ -49,7 +56,7 @@ export default (
   return {
     loading: loading || processorStatus === 'PROCESSING',
     save: useCallback(
-      async ({ facebook, ecfit, gaViewId }) => {
+      async ({ facebook, line, ecfit, gaViewId }) => {
         if (!storeId) return;
 
         setLoading(true);
@@ -59,6 +66,15 @@ export default (
             const { status: isLoginEnabled, ...input } = facebook;
 
             await updateFacebookSetting(storeId, {
+              ...input,
+              isLoginEnabled,
+            });
+          }
+
+          if (line) {
+            const { status: isLoginEnabled, ...input } = line;
+
+            await updateLineLoginSetting(storeId, {
               ...input,
               isLoginEnabled,
             });
@@ -84,12 +100,13 @@ export default (
         setLoading(false);
       },
       [
-        resetFields,
         storeId,
-        t,
-        updateFacebookSetting,
-        updateEcfitSettings,
         setGaViewId,
+        t,
+        resetFields,
+        updateFacebookSetting,
+        updateLineLoginSetting,
+        updateEcfitSettings,
       ],
     ),
   };

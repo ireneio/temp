@@ -25,6 +25,23 @@
       "placeholder": "Secreto de la aplicación de Facebook"
     }
   },
+  "line": {
+    "title": "Función de integración de línea",
+    "description": "Después de configurar con su cuenta de desarrollador de línea, registro de línea serie y función de inicio de sesión",
+    "tooltip": "Cómo habilitar el registro de línea y el inicio de sesión",
+    "toggle": {
+      "title": "Registro de línea e inicio de sesión",
+      "description": "Después de habilitar, puede usar el registro de clic en Cuenta de línea, inicie sesión en su tienda en línea para convertirse en miembro, no necesita tener un programa de registro complicado para proporcionar una experiencia de compra conveniente."
+    },
+    "channelId": {
+      "title": "Canal ID",
+      "placeholder": "Por favor ingrese la identificación del canal"
+    },
+    "channelSecret": {
+      "title": "Secreto de canal",
+      "placeholder": "Por favor ingrese el secreto del canal"
+    }
+  },
   "ecfit": {
     "title": "Servicio de logística de terceros ECFIT",
     "description": "El sistema integral de integración de logística de comercio electrónico ofrece un servicio completo que incluye ayudar a la tienda en la entrega del producto, y debe establecer una conexión después de firmar un contrato con ECFIT.",

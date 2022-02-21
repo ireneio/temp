@@ -5,10 +5,12 @@ import { filter } from 'graphql-anywhere';
 import {
   adminSettingThirdPartyEcfit,
   adminSettingThirdPartyFacebook,
+  adminSettingThirdPartyLine,
   webTrackGoogleAnalytics_w224 as webTrackGoogleAnalytics,
 } from '@meepshop/images';
 
 import FaceBook from '../Facebook';
+import Line from '../Line';
 import Ecfit from '../Ecfit';
 import GoogleAnalytics from '../GaViewId';
 
@@ -17,6 +19,7 @@ import { useBlocksFragment as useBlocksFragmentType } from '@meepshop/types/gqls
 
 // graphql import
 import { facebookFragment } from '../gqls/facebook';
+import { lineLineLoginSettingFragment } from '../gqls/line';
 import { ecfitFragment } from '../gqls/ecfit';
 
 // typescript definition
@@ -44,6 +47,21 @@ export default (store: useBlocksFragmentType | null): BlockType[] =>
           component: !store?.facebookSetting ? null : (
             <FaceBook
               facebookSetting={filter(facebookFragment, store.facebookSetting)}
+            />
+          ),
+        },
+        {
+          key: 'line',
+          src: adminSettingThirdPartyLine,
+          useToggle: true,
+          initialValue: Boolean(store?.lineLoginSetting.isLoginEnabled),
+          useToggleDescription: true,
+          component: !store?.lineLoginSetting ? null : (
+            <Line
+              lineSetting={filter(
+                lineLineLoginSettingFragment,
+                store.lineLoginSetting,
+              )}
             />
           ),
         },

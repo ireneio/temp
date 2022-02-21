@@ -25,6 +25,23 @@
       "placeholder": "Secret d'application Facebook"
     }
   },
+  "line": {
+    "title": "Fonction d'intégration de ligne",
+    "description": "Après avoir configuré avec votre compte de développeur de ligne, votre inscription de la ligne série et votre fonction de connexion",
+    "tooltip": "Comment activer l'enregistrement de la ligne et la connexion",
+    "toggle": {
+      "title": "Enregistrement de la ligne et connexion",
+      "description": "Une fois l'activation, vous pouvez utiliser le compte de ligne Enregistrement en un clic, vous connecter à votre boutique en ligne pour devenir membre, n'avez pas besoin d'avoir un programme d'enregistrement compliqué pour fournir une expérience de magasinage pratique."
+    },
+    "channelId": {
+      "title": "Identifiant de la chaine",
+      "placeholder": "S'il vous plaît entrer l'identifiant de la chaîne"
+    },
+    "channelSecret": {
+      "title": "Canal secret",
+      "placeholder": "S'il vous plaît entrer le secret de la chaîne"
+    }
+  },
   "ecfit": {
     "title": "Service de logistique tiers ECFIT",
     "description": "Le système d'intégration logistique à guichet unique pour le commerce électronique offre un service complet, notamment une assistance au magasin pour la livraison des produits. Il doit également établir la liaison après la signature d'un contrat avec ECFIT.",

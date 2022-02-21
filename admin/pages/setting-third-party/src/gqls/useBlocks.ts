@@ -5,6 +5,7 @@ import { gql } from '@apollo/client';
 import { facebookFragment } from './facebook';
 import { ecfitFragment } from './ecfit';
 import { gaViewIdFragment } from './gaViewId';
+import { lineLineLoginSettingFragment } from './line';
 
 // definition
 export const useBlocksFragment = gql`
@@ -23,10 +24,16 @@ export const useBlocksFragment = gql`
       isEnabled
     }
 
+    lineLoginSetting {
+      ...lineLineLoginSettingFragment
+      isLoginEnabled
+    }
+
     ...gaViewIdFragment
   }
 
   ${facebookFragment}
   ${ecfitFragment}
   ${gaViewIdFragment}
+  ${lineLineLoginSettingFragment}
 `;

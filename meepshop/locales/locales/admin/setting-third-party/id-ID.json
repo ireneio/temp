@@ -25,6 +25,23 @@
       "placeholder": "Rahasia Aplikasi Facebook"
     }
   },
+  "line": {
+    "title": "Fungsi integrasi garis",
+    "description": "Setelah mengatur dengan akun pengembang LINE Anda, pendaftaran baris serial dan fungsi login",
+    "tooltip": "Cara Mengaktifkan Pendaftaran dan Login LINE",
+    "toggle": {
+      "title": "Pendaftaran dan Login LINE",
+      "description": "Setelah mengaktifkan, Anda dapat menggunakan registrasi satu-klik akun baris, masuk ke toko online Anda untuk menjadi anggota, tidak perlu memiliki program pendaftaran yang rumit untuk memberikan pengalaman berbelanja yang nyaman."
+    },
+    "channelId": {
+      "title": "ID saluran",
+      "placeholder": "Silakan masukkan ID saluran"
+    },
+    "channelSecret": {
+      "title": "Saluran rahasia",
+      "placeholder": "Silakan masukkan rahasia saluran"
+    }
+  },
   "ecfit": {
     "title": "ECFIT Layanan Logistik Pihak Ketiga",
     "description": "Sistem integrasi logistik e-commerce satu atap menawarkan layanan lengkap termasuk membantu toko dalam pengiriman produk, dan perlu melakukan pengaturan hubungan setelah menandatangani kontrak dengan ECFIT.",

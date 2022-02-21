@@ -25,6 +25,23 @@
       "placeholder": "Facebook App Secret"
     }
   },
+  "line":{
+    "title": "LINE 整合功能",
+    "description": "配合您的 LINE developer 帳號設定後，串接 LINE 註冊及登入功能",
+    "tooltip": "如何啟用 Line 註冊與登入",
+    "toggle": {
+      "title": "Line 註冊與登入",
+      "description": "啟用後提供顧客使用 LINE 帳號一鍵註冊、登入您的網店成為會員，不需經過繁複的註冊程序，提供便利的購物體驗"
+    },
+    "channelId":{
+      "title": "Channel ID",
+      "placeholder": "請輸入 Channel ID"
+    },
+    "channelSecret":{
+      "title": "Channel Secret",
+      "placeholder": "請輸入 Channel secret"
+    }
+  },
   "ecfit": {
     "title": "ECFIT 第三方後勤服務",
     "description": "一站式的電商後勤整合系統，協助店家進出貨等完整服務，需與 ECFIT 簽約後做串接設定",
