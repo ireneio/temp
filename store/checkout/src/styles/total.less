@@ -1,0 +1,71 @@
+.root {
+  flex-shrink: 0;
+  font-size: 14px;
+  line-height: 24px;
+  width: 100%;
+  overflow: hidden;
+  padding: 8px 40px 32px;
+
+  :global(.ant-collapse) {
+    background-color: initial;
+  }
+
+  :global(.ant-collapse-item) {
+    display: flex;
+    flex-direction: column-reverse;
+    border: none;
+  }
+
+  :global(.ant-collapse-content-active) {
+    border-radius: unset;
+    padding-bottom: 4px;
+  }
+
+  :global(.ant-collapse-header) {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 0px;
+    font-size: 12px;
+    line-height: 17px;
+
+    :global(.anticon) {
+      display: block;
+      position: initial;
+      padding: 0px 4px;
+    }
+  }
+
+  :global(.ant-collapse-content-box) {
+    padding: 16px 0px 0px;
+
+    > div {
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 2px 8px;
+
+      > div:last-child {
+        font-size: 16px;
+        font-weight: 500;
+        white-space: nowrap;
+        margin-left: 8px;
+      }
+    }
+  }
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 600;
+
+  > div:last-child {
+    font-size: 24px;
+    line-height: 34px;
+    white-space: nowrap;
+    margin-left: 8px;
+  }
+}
