@@ -24,6 +24,14 @@
     "0": "請先調整",
     "1": "內無法購買的商品"
   },
+  "shipment": "運送方式",
+  "change": "變更",
+  "choose-store": "選擇取貨門市",
+  "rechoose-store": "重選門市",
+  "convenience-store": {
+    "CVSAddress": "門市地址",
+    "CVSStoreID": "門市代號"
+  },
   "user-info": "會員資料",
   "go-to-login": "前往登入",
   "email": "請輸入註冊信箱",

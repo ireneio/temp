@@ -11,7 +11,7 @@
   "total": "Tổng số hàng hóa",
   "payment": "Phí vàng dòng chảy",
   "not-choose-shipment": "Không được chọn",
-  "shipment": "vận chuyển hàng hóa",
+  "shipment": "Vận tải",
   "free-shipment": "miễn phí vận chuyển",
   "subtotal": "Tổng phụ",
   "cart-is-empty": "Xe hàng không có sản phẩm, xin vui lòng trở về cửa hàng để tiếp tục mua hàng",
@@ -23,6 +23,13 @@
   "cart-has-error": {
     "0": "Vui lòng điều chỉnh trước",
     "1": "Không thể mua hàng"
+  },
+  "change": "biến đổi",
+  "choose-store": "Chọn thị trường cửa đón",
+  "rechoose-store": "Đổi mới.",
+  "convenience-store": {
+    "CVSAddress": "Địa chỉ cửa hàng",
+    "CVSStoreID": "Mã thành phố nhà nước"
   },
   "user-info": "thông tin hội viên",
   "go-to-login": "Đi đến Đăng nhập.",

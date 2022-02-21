@@ -11,7 +11,7 @@
   "total": "Totalidad total",
   "payment": "Cuota de flujo de oro",
   "not-choose-shipment": "No seleccionado",
-  "shipment": "transporte",
+  "shipment": "Transporte",
   "free-shipment": "envío gratis",
   "subtotal": "Total parcial",
   "cart-is-empty": "Su carrito está vacío, regrese a la tienda y continúe comprando.",
@@ -23,6 +23,13 @@
   "cart-has-error": {
     "0": "Por favor, ajuste primero",
     "1": "Incapaz de comprar bienes"
+  },
+  "change": "cambio",
+  "choose-store": "Seleccione el mercado de la puerta de recogida",
+  "rechoose-store": "Renovar",
+  "convenience-store": {
+    "CVSAddress": "Dirección de la tienda",
+    "CVSStoreID": "Código de ciudad estatal"
   },
   "user-info": "Información del miembro",
   "go-to-login": "Ir a iniciar sesión",

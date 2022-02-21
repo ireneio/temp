@@ -11,7 +11,7 @@
   "total": "Total des produits",
   "payment": "Frais de flux d'or",
   "not-choose-shipment": "Non sélectionné",
-  "shipment": "cargaison",
+  "shipment": "Transport",
   "free-shipment": "livraison gratuite",
   "subtotal": "Total",
   "cart-is-empty": "Votre panier est vide, veuillez retourner au magasin et continuer vos achats.",
@@ -23,6 +23,13 @@
   "cart-has-error": {
     "0": "S'il vous plaît ajuster d'abord",
     "1": "Impossible d'acheter des biens"
+  },
+  "change": "monnaie",
+  "choose-store": "Sélectionnez le marché de la porte de ramassage",
+  "rechoose-store": "Rénover",
+  "convenience-store": {
+    "CVSAddress": "Adresse du magasin",
+    "CVSStoreID": "Code de la ville d'état"
   },
   "user-info": "Infos membres",
   "go-to-login": "Aller à la connexion",

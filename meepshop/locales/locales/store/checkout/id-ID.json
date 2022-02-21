@@ -11,7 +11,7 @@
   "total": "Total komoditas",
   "payment": "Biaya aliran emas",
   "not-choose-shipment": "Tidak dipilih",
-  "shipment": "kargo",
+  "shipment": "Angkutan",
   "free-shipment": "bebas biaya kirim",
   "subtotal": "Subtotal.",
   "cart-is-empty": "Keranjang Anda kosong, harap kembali ke toko dan lanjutkan berbelanja.",
@@ -23,6 +23,13 @@
   "cart-has-error": {
     "0": "Silakan sesuaikan dulu",
     "1": "Tidak dapat membeli barang"
+  },
+  "change": "mengubah",
+  "choose-store": "Pilih Pasar Pintu Pick-Up",
+  "rechoose-store": "Merenovasi",
+  "convenience-store": {
+    "CVSAddress": "Alamat toko",
+    "CVSStoreID": "Kode Kota Negara"
   },
   "user-info": "Info Anggota",
   "go-to-login": "Pergi ke login",

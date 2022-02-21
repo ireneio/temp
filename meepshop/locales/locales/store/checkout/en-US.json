@@ -11,7 +11,7 @@
   "total": "Total commodity",
   "payment": "Gold flow fee",
   "not-choose-shipment": "Unselected",
-  "shipment": "freight",
+  "shipment": "Transportation",
   "free-shipment": "free shipping",
   "subtotal": "Subtotal",
   "cart-is-empty": "Your cart is empty, please return to the store and continue shopping.",
@@ -23,6 +23,13 @@
   "cart-has-error": {
     "0": "Please adjust first",
     "1": "Unable to buy goods"
+  },
+  "change": "change",
+  "choose-store": "Select pick-up door market",
+  "rechoose-store": "Renovate",
+  "convenience-store": {
+    "CVSAddress": "Store address",
+    "CVSStoreID": "State city code"
   },
   "user-info": "Member Info",
   "go-to-login": "Go to login",
