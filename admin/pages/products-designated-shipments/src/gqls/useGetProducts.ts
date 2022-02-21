@@ -26,7 +26,7 @@ export const getAdminProducts = gql`
           }
           pageInfo {
             endCursor
-            currentInfo(input: { pageId: "products-designated-payments" })
+            currentInfo(input: { pageId: "products-designated-shipments" })
               @client {
               id
               current

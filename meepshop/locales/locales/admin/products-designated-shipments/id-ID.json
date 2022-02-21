@@ -6,6 +6,22 @@
   "count": "Pena",
   "search": "Cari barang",
   "change-applicable-shipments": "Ubah logistik yang berlaku",
+  "set-applicable-shipments": "Menyiapkan barang untuk menerapkan logistik",
+  "apply-changes-to": "Set perubahan ke",
+  "apply-changes-to-selected-item": "Set perubahan ke yang dipilih",
+  "item": "Barang",
+  "ok": "Konfirmasi",
+  "cancel": "Membatalkan",
+  "designated": {
+    "title": "Tentukan logistik yang berlaku",
+    "description": "Pilih produk secara manual untuk digunakan"
+  },
+  "all": {
+    "title": "Berlaku untuk seluruh logistik toko",
+    "description": "Set Otomatis Metode Pengiriman di Semua Diaktifkan"
+  },
+  "select-all": "Pilih Semua",
+  "cancel-select-all": "Membatalkan",
   "all-shipments": "Simpan logistik",
   "applicable-shipments-removed": "Logistik yang berlaku telah dihapus",
   "product": {

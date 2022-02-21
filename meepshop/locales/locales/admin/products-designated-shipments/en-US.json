@@ -6,6 +6,22 @@
   "count": "Pen",
   "search": "Search goods",
   "change-applicable-shipments": "Change applicable logistics",
+  "set-applicable-shipments": "Setting up goods to apply logistics",
+  "apply-changes-to": "Set of change to",
+  "apply-changes-to-selected-item": "Set of change to selected",
+  "item": "Item",
+  "ok": "confirm",
+  "cancel": "Cancel",
+  "designated": {
+    "title": "Specify applicable logistics",
+    "description": "Manually select the product to be used"
+  },
+  "all": {
+    "title": "Applicable to the whole store logistics",
+    "description": "Automatic set of shipping methods in all enabled"
+  },
+  "select-all": "select all",
+  "cancel-select-all": "Cancel",
   "all-shipments": "Store logistics",
   "applicable-shipments-removed": "Applicable logistics has been deleted",
   "product": {

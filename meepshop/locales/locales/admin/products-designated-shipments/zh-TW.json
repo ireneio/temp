@@ -6,6 +6,22 @@
   "count": " 筆",
   "search": "搜尋商品",
   "change-applicable-shipments": "變更適用物流",
+  "set-applicable-shipments": "設定商品適用物流",
+  "apply-changes-to": "套用變更至",
+  "apply-changes-to-selected-item": "套用變更至選取的",
+  "item": "項商品",
+  "ok": "確認",
+  "cancel": "取消",
+  "designated": {
+    "title": "指定適用物流",
+    "description": "手動選擇商品適用的運送方式"
+  },
+  "all": {
+    "title": "適用全店物流",
+    "description": "自動套用所有啟用中的運送方式"
+  },
+  "select-all": "全選",
+  "cancel-select-all": "取消全選",
   "all-shipments": "全店物流",
   "applicable-shipments-removed": "適用物流已被刪除",
   "product": {

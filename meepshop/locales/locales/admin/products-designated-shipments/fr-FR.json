@@ -6,6 +6,22 @@
   "count": "Stylo",
   "search": "Rechercher des biens",
   "change-applicable-shipments": "Changer la logistique applicable",
+  "set-applicable-shipments": "Mettre en place des marchandises à appliquer la logistique",
+  "apply-changes-to": "Ensemble de changement à",
+  "apply-changes-to-selected-item": "Ensemble de changement à sélectionner",
+  "item": "Article",
+  "ok": "confirmer",
+  "cancel": "Annuler",
+  "designated": {
+    "title": "Spécifier la logistique applicable",
+    "description": "Sélectionner manuellement le produit à utiliser"
+  },
+  "all": {
+    "title": "Applicable à toute la logistique du magasin",
+    "description": "Ensemble automatique de méthodes d'expédition dans tous Activé"
+  },
+  "select-all": "tout sélectionner",
+  "cancel-select-all": "Annuler",
   "all-shipments": "Magasin de la logistique",
   "applicable-shipments-removed": "La logistique applicable a été supprimée",
   "product": {

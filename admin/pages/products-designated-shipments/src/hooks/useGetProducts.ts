@@ -76,7 +76,7 @@ export default (): PropsType => {
           setCurrent({
             variables: {
               input: {
-                pageId: 'products-designated-payments',
+                pageId: 'products-designated-shipments',
                 current: newCurrent,
               },
             },

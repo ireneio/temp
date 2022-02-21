@@ -6,6 +6,22 @@
   "count": "Lápiz",
   "search": "Búsqueda de bienes",
   "change-applicable-shipments": "Cambiar logística aplicable",
+  "set-applicable-shipments": "Configuración de productos para aplicar logística.",
+  "apply-changes-to": "Conjunto de cambio a",
+  "apply-changes-to-selected-item": "Conjunto de cambio a seleccionado",
+  "item": "Articulo",
+  "ok": "confirmar",
+  "cancel": "Cancelar",
+  "designated": {
+    "title": "Especifique la logística aplicable.",
+    "description": "Seleccione manualmente el producto a utilizar."
+  },
+  "all": {
+    "title": "Aplicable a toda la tienda de logística de la tienda.",
+    "description": "Conjunto automático de métodos de envío en todos habilitados."
+  },
+  "select-all": "seleccionar todo",
+  "cancel-select-all": "Cancelar",
   "all-shipments": "Logística de la tienda",
   "applicable-shipments-removed": "Logística aplicable ha sido eliminada.",
   "product": {

@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "@admin/products-designated-payments",
-  "description": "Products designated payments page for admin",
+  "name": "@admin/products-designated-shipments",
+  "description": "Products designated shipments page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.80.134",
@@ -14,8 +14,9 @@
     "@admin/thumbnail": "^0.80.134",
     "@admin/tooltip": "^0.80.134",
     "@admin/utils": "^0.80.134",
+    "@meepshop/images": "^0.80.134",
     "@meepshop/locales": "^0.80.134",
     "@meepshop/utils": "^0.80.134"
   },
-  "keywords": ["admin", "products designated payments"]
+  "keywords": ["admin", "products designated shipments"]
 }

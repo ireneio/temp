@@ -1,0 +1,34 @@
+{
+  "title": "Logistics được chỉ định sản phẩm",
+  "instruction": "Dạy lưu ý",
+  "empty": "Hàng miễn phí",
+  "selected": "/ Đã chọn",
+  "count": "Cái bút",
+  "search": "Tìm kiếm hàng hóa",
+  "change-applicable-shipments": "Thay đổi hậu cần áp dụng",
+  "set-applicable-shipments": "Thiết lập hàng hóa để áp dụng hậu cần",
+  "apply-changes-to": "Bộ thay đổi",
+  "apply-changes-to-selected-item": "Bộ thay đổi cho đã chọn",
+  "item": "Mục",
+  "ok": "xác nhận",
+  "cancel": "Hủy bỏ",
+  "designated": {
+    "title": "Chỉ định hậu cần áp dụng",
+    "description": "Chọn thủ công sản phẩm sẽ được sử dụng"
+  },
+  "all": {
+    "title": "Áp dụng cho toàn bộ hậu cần cửa hàng",
+    "description": "Tự động tập hợp các phương thức vận chuyển trong tất cả các phép bật"
+  },
+  "select-all": "chọn tất cả",
+  "cancel-select-all": "Hủy bỏ",
+  "all-shipments": "Cửa hàng Logistics.",
+  "applicable-shipments-removed": "Hậu cần áp dụng đã bị xóa",
+  "product": {
+    "title": "tên sản phẩm",
+    "sku": "Số sản phẩm",
+    "applicable-shipments": "Logistics áp dụng",
+    "applicable-shipments-tip": "Logistics chưa tìm thấy sẽ hiển thị nhiều văn bản nông hơn",
+    "tags": "Nhãn hàng hóa"
+  }
+}

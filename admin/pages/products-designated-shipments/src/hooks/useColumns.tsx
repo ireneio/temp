@@ -15,7 +15,7 @@ import { useColumnsProductFragment as useColumnsProductFragmentType } from '@mee
 
 // definition
 export default (): ColumnProps<useColumnsProductFragmentType>[] => {
-  const { t } = useTranslation('products-designated-payments');
+  const { t } = useTranslation('products-designated-shipments');
   const getLanguage = useGetLanguage();
 
   return useMemo(
