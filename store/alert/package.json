@@ -4,11 +4,11 @@
   "description": "store alert module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.134",
+  "version": "0.80.136",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@store/utils": "^0.80.134"
+    "@store/utils": "^0.80.136"
   },
   "keywords": ["alert", "store"]
 }
