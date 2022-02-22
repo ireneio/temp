@@ -84,7 +84,7 @@ export default (
                 ? ('RETURN' as ApplicationTypeEnum)
                 : ('REPLACE' as ApplicationTypeEnum),
             orderProducts: selectedProducts.map((id: string) => ({
-              id,
+              id: id.split(':')[1], // FIXME: T10507
               quantity: quantitySelected[id],
               applicationInfo: {
                 comment: reason[id] || '',

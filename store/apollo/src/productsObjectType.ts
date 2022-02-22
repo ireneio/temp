@@ -14,7 +14,7 @@ interface DefaultDataType {
 
 // definition
 export const resolvers = {
-  productsObjectType: {
+  OrderProductAvailableForApply: {
     availableQuantity: ({
       id,
       quantity,
@@ -59,6 +59,8 @@ export const resolvers = {
           ? null
           : {
               ...product,
+              __typename: 'OrderProductAvailableForApply',
+              id: `OrderProductAvailableForApply:${product.id}`,
               getOrderApplyList,
             },
       );
