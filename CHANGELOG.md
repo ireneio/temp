@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.80.137 (2022-02-22)
+
+#### :rocket: New Feature
+
+- [#2132](https://github.com/meepshop/meep-lerna/pull/2132) 內部開單 - 新增 運送方式 區塊到 @store/checkout ([@happycat6323](https://github.com/happycat6323))
+- [#2129](https://github.com/meepshop/meep-lerna/pull/2129) 內部開單 - 新增 收件人資料 區塊到 @store/checkout ([@happycat6323](https://github.com/happycat6323))
+- [#2130](https://github.com/meepshop/meep-lerna/pull/2130) 內部開單 - 新增 總計資訊 區塊到 @store/checkout ([@happycat6323](https://github.com/happycat6323))
+- [#2131](https://github.com/meepshop/meep-lerna/pull/2131) 內部開單 - 新增 會員資料 區塊到 @store/checkout ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#2147](https://github.com/meepshop/meep-lerna/pull/2147) 【BUG】 前台 - 退換貨功能 - 頁面顯示錯誤訊息 500 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.136 (2022-02-21)
 
 #### :rocket: New Feature
