@@ -1,4 +1,0 @@
-extend type AffiliatePartner {
-  # FIXME in T10073
-  createdAt: DateTime!
-}
