@@ -116,7 +116,7 @@ export default class ProductInfo extends React.PureComponent {
       adTrack.viewProduct({
         id: productData.id,
         title: productData.title,
-        price: variant.totalPrice,
+        price: variant.retailPrice,
       });
   }
 
@@ -151,7 +151,7 @@ export default class ProductInfo extends React.PureComponent {
       title: productData.title,
       quantity,
       specs: variant.specs,
-      price: variant.totalPrice,
+      price: variant.retailPrice,
     });
 
     Notification.newInstance(

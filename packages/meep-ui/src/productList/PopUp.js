@@ -36,7 +36,7 @@ const getPopUpProducts = gql`
           sku
           listPrice
           suggestedPrice
-          totalPrice
+          retailPrice
           specs {
             id
             specId

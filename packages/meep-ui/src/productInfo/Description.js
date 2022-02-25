@@ -82,11 +82,11 @@ const Description = ({
               </span>
             ) : null}
           </div>
-          {variant.totalPrice ? (
+          {variant.retailPrice ? (
             <div style={styles.thePrice}>
               {memberSeePrice && isLogin !== ISUSER
                 ? t('member-see-price')
-                : transformCurrency(variant.totalPrice)}
+                : transformCurrency(variant.retailPrice)}
             </div>
           ) : null}
         </div>

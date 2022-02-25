@@ -35,7 +35,7 @@ export default class Product extends React.PureComponent {
       }),
       variants: PropTypes.arrayOf(
         PropTypes.shape({
-          totalPrice: POSITIVE_NUMBER_TYPE.isRequired,
+          retailPrice: POSITIVE_NUMBER_TYPE.isRequired,
         }),
       ).isRequired,
     }),
@@ -107,7 +107,7 @@ export default class Product extends React.PureComponent {
     const { openModal, target, isMobile } = this.state;
 
     const { id, title, variants, coverImage } = product;
-    const totalPrice = (variants[0] || {}).totalPrice || 0;
+    const retailPrice = (variants[0] || {}).retailPrice || 0;
 
     return (
       <div style={styles.root}>
@@ -130,7 +130,7 @@ export default class Product extends React.PureComponent {
           <div style={styles.productPrice}>
             {hasStoreAppPlugin('memberSeePrice') && isLogin !== ISUSER
               ? t('member-see-price')
-              : transformCurrency(totalPrice)}
+              : transformCurrency(retailPrice)}
           </div>
         </div>
         <div
