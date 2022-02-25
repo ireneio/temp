@@ -4,7 +4,7 @@
   "description": "Mock graphql type for storybook and testing",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.137",
+  "version": "0.80.138",
   "main": "./index.js",
   "scripts": {
     "clean": "rm -rf ./schema.json",
@@ -23,7 +23,7 @@
     "@meepshop/locales": "^0.80.137",
     "@meepshop/utils": "^0.80.136",
     "@store/ad-track": "^0.80.137",
-    "@store/apollo": "^0.80.137",
+    "@store/apollo": "^0.80.138",
     "@store/currency": "^0.80.137",
     "@store/fb": "^0.80.137",
     "@store/utils": "^0.80.136",
