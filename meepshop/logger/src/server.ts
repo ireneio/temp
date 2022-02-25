@@ -5,7 +5,7 @@ import getConfig from 'next/config';
 import { LOG_TYPES } from './constants';
 
 // definition
-// FIXME: remove after removing express
+// FIXME: remove getconfig after removing express
 const LOG_LEVEL =
   getConfig()?.publicRuntimeConfig.LOG_LEVEL || process.env.LOG_LEVEL || 'info';
 

@@ -4,10 +4,9 @@
 
 This project use `lerna` to manage `@store/*` and `@admin/*`.
 
-#### scripts
+## scripts
 
 - `clean`: Remove cache, lib, generated typescript and node_modules.
-- `generate`: Use to generate the new files.
 - `dev`: Run `dev` mode
 - `lint`, `lint:watch`: Run lint.
 - `prod`: Run `prod` mode.
@@ -18,37 +17,34 @@ This project use `lerna` to manage `@store/*` and `@admin/*`.
 
 ## Write packages with template
 
-```sh
-yarn generate <Package/Page/Component>
-```
+See [@meepshop/generate](./packages/generate/README.md).
 
-#### Write packages with storybook
+## Write packages with storybook
 
-Before `new schema` can work, you can use `storybook` to write the new component. In this mode, you can mock the result from `apollo-client`.
+See [@meepshop/storybook](./packages/storybook/README.md).
 
-1. Run `yarn storybook:pre` once.
-2. Run `yarn storybook dev <workspace>` to host `storybook`.
-3. Use `yarn storybook generate <package-name>` to generate the package story.
-4. (optional) If you need to give the props to component, you can add `mock.ts`. See [@meepshop/storybook](./packages/storybook) to learn more detail.
+## Write unit testing
 
-#### Write packages with dev server
+See [@meepshop/mock-types](./packages/mock-types/README.md).
+
+## Write packages with dev server
 
 1. Run `yarn link:env`.
 2. Run `yarn dev`.
 3. Run `yarn lerna run dev --stream --scope @meepshop/next-admin` or `yarn lerna run dev --stream --scope @meepshop/next-store`.
 
-#### Write unit testing
-
-See [@meepshop/mock-types](./packages/mock-types) to learn more detail.
-
-#### (optional) Build with prod server
+## (optional) Build with prod server
 
 1. Run `yarn link:env`.
-2. Run `yarn prod`.
+2. Run `yarn build`.
 3. Run `yarn lerna run prod --stream --scope @meepshop/next-admin` or `yarn lerna run prod --stream --scope @meepshop/next-store`.
 4. Run `yarn lerna run start --stream --scope @meepshop/next-admin` or `yarn lerna run start --stream --scope @meepshop/next-store`.
 
-#### Package architecture
+---
+
+## Architecture
+
+### Package
 
 ```sh
 workspace(store, admin...)
@@ -59,7 +55,7 @@ workspace(store, admin...)
 ├── mock.ts (optional)
 └── src
     ├── __tests__ (optional)
-    ├── styles, hooks, gqls, utils
+    ├── styles, hooks, gqls, utils (optional)
     ├── sub-components (optional)
     │   ├── styles, hooks, gqls, utils
     │   ├── constants.ts (optional)
@@ -68,7 +64,7 @@ workspace(store, admin...)
     └── index.tsx
 ```
 
-#### File architecture
+### File
 
 ```js
 // typescript import
@@ -84,10 +80,12 @@ workspace(store, admin...)
 // definition
 ```
 
-#### Fragment name rule
+### Fragment name rule
 
 - One fragment in a file: `file name` + `fragment`.
 - Multiple fragments in a file: `file name` + `type name` + `fragment`.
+
+---
 
 ## Project roadmap
 
@@ -114,30 +112,36 @@ workspace(store, admin...)
 
 ## lerna
 
-In this project, we use `yarn` with `lerna`. You can see [here](https://yarnpkg.com/lang/en/docs/workspaces/) to lerna why we use `yarn`, and `npm` does not support `workspace` directly.
-
-#### Relative files
-
 - lerna.json
 - `workspaces` in `package.json`
 
 ## babel
 
-In this project, we use `babel` to build the files expect `@meepshop/next-store` and `@meepshop/next-admin`. Owing to use `lerna`, we use `babel-plugin-css-modules-transform` to transform `less`, not use `css-module` with `less-loader`. In order to overwrite `antd style`, we use `preprocessCss` in `babel-plugin-css-modules-transform` to add `#meepshop` in the all class names. To make class names more recognizable, we use `generateScopedName` in `babel-plugin-css-modules-transform` to add the package name in each class name.
+- babel.config.js
 
-#### 3rd Plugins
+In this project, we use `babel` to build the files expect `@meepshop/next-store` and `@meepshop/next-admin`. Owing to use `lerna`, we use `babel-plugin-css-modules-transform` to transform `less`, not use `css-module` with `less-loader`.
+
+### Custom babel plugin
+
+- [@meepshop/images](./meepshop/images/README.md)
+- [@meepshop/icons](./meepshop/icons/README.md)
+- [@meepshop/locales](./meepshop/locales/README.md)
+- `addDisplayName`: add display names on react components when developing
+- `fixLoadable`: fix problems when using `Dynamic Import` with lerna
+
+### 3rd Plugins
 
 - [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports)
 - [babel-plugin-module-resolver](https://www.npmjs.com/package/babel-plugin-module-resolver)
 - [babel-plugin-css-modules-transform](https://www.npmjs.com/package/babel-plugin-css-modules-transform)
-
-#### Relative files
-
-- babel.config.js
+  - `preprocessCss`: wrap class names with `#meepshop` in order to overwrite `antd style`
+  - `generateScopedName`: prefix class name with its own package name to make it more recognizable
 
 ## Makefile
 
-#### Commands
+- Makefile
+
+### Commands
 
 - `babel-all`: Run babel command in the all pacakges without `@meepshop/next-store` and `@meepshop/next-admin`.
 
@@ -169,38 +173,30 @@ In this project, we use `babel` to build the files expect `@meepshop/next-store`
 - `tsc-basic`, `tsc`, `tsc:watch`: Run `tsc`.
 - `clean`: Remove `cache`, `lib` and `node_modules`.
 
-#### Relative files
-
-- Makefile
-
 ## typescript
+
+- tsconfig.json
+- apollo.config.js
+- [@meepshop/types](./meepshop/types/README.md)
 
 For static type checking, we use `typescript`. This will check the all files whose file extension is `.ts` or `.tsx`. The 3rd modules are defined in `node_modules/@type` and `types`. For `apollo-client`, we need to add graphql types. we use `apollo` to auto generate graphql types in `__generated__`.
 
-#### Relative files
-
-- tsconfig.json
-- types
-- apollo.config.js
-
 ## eslint
-
-Other eslint config is base on `airbnb` and `pretter`.
-
-#### Relative files
 
 - .eslintrc.js
 - .eslintignore
 
+Other eslint config is base on `airbnb` and `pretter`.
+
 ## prettier
-
-We run `prettier` with `lint-staged`.
-
-#### Relative files
 
 - .prettierrc.js
 
+We run `prettier` with `lint-staged`.
+
 ## lint-staged
+
+- .lintstagedrc.js
 
 Run some commands with git staged files.
 
@@ -210,11 +206,9 @@ Run some commands with git staged files.
 - `*.md`: prettier
 - `*.less`: pretter
 
-#### Relative files
-
-- .lintstagedrc.js
-
 ## husky
+
+- package.json
 
 Run some commands with git hook.
 
@@ -224,14 +218,12 @@ Run some commands with git hook.
 
 ## jest
 
-For `apollo-clinet`, we run the all combinations with [@meepshop/mock-types](./packages/mock-types).
-
-#### Relative files
-
 - jest.setup.js
 - jest.config.js
 
-[logo-image]: https://gc.meepcloud.com/meepshop/shop/hire/layout/553dbeef7b3649de2d24767e/images/67797-meepshop_logo_1104x372.png
+For `apollo-clinet`, we run the all combinations with [@meepshop/mock-types](./packages/mock-types).
+
+[logo-image]: https://img.meepshop.com/x4OWv2vSTUIxIiNnl1uM19HLZUn7xxNXRhYafAeUYuo/Z3M6Ly9pbWcubWVlcGNsb3VkLmNvbS9hc3NldHMvbWVlcHNob3BMb2dvXzJlZTE4NTQwLnN2Zw.svg
 [logo-url]: https://github.com/meepshop/meep-lerna
 [circleci-image]: https://circleci.com/gh/meepshop/meep-lerna.svg?style=svg&circle-token=e54a3d5ceee3a9f2139527c7614c8209ea772f90
 [circleci-url]: https://circleci.com/gh/meepshop/meep-lerna

@@ -11,7 +11,7 @@ type loggerType = Record<
 >;
 
 // definition
-// FIXME: remove after removing express
+// FIXME: remove getConfig after removing express
 const LOG_LEVEL =
   getConfig()?.publicRuntimeConfig.LOG_LEVEL || process.env.LOG_LEVEL || 'info';
 

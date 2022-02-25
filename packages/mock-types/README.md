@@ -4,7 +4,7 @@ This package is used to mock `apollo-client` request result.
 
 ## How to use in a component
 
-1. Run `yarn schema` to download the schema for the mock types.
+1. Run `yarn storybook:pre` to download the schema for the mock types.
 2. Use `Mock Provider` like this:
 
 ```js
