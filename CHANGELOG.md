@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.138 (2022-02-25)
+
+#### :bug: Bug Fix
+
+- [#2166](https://github.com/meepshop/meep-lerna/pull/2166) 【BUG】前台 - 退換貨查詢 - 商品名稱、圖片消失 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `store`
+  - [#2118](https://github.com/meepshop/meep-lerna/pull/2118) 內部開單 - 商品列表顯示金額改拿 retailPrice ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.137 (2022-02-22)
 
 #### :rocket: New Feature
