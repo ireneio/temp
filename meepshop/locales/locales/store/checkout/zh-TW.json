@@ -11,7 +11,7 @@
   "total": "商品總計",
   "payment": "金流手續費",
   "not-choose-shipment": "未選擇",
-  "shipment": "運費",
+  "shipment-price": "運費",
   "free-shipment": "免運費",
   "subtotal": "小計",
   "cart-is-empty": "購物車內沒有商品，請返回商店繼續購物",
@@ -24,6 +24,8 @@
     "0": "請先調整",
     "1": "內無法購買的商品"
   },
+  "products": "商品明細",
+  "gift": "贈品",
   "shipment": "運送方式",
   "change": "變更",
   "choose-store": "選擇取貨門市",

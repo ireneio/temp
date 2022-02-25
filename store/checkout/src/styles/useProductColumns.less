@@ -1,0 +1,64 @@
+@import '~@store/utils/styles/variables.less';
+
+.thumbnail {
+  width: 72px;
+  height: 72px;
+  cursor: pointer;
+
+  @media (max-width: @screen-sm-max) {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+.title {
+  font-size: 14px;
+  line-height: 22px;
+
+  & > div:first-child {
+    font-weight: 500;
+  }
+
+  .specs {
+    margin-top: 4px;
+    opacity: 0.65;
+  }
+
+  .activityInfo {
+    margin-top: 8px;
+
+    :global(.ant-tag) {
+      padding: 2px 8px 2px 6px;
+      border-radius: 3px;
+      border: none;
+      word-break: break-all;
+      white-space: pre-wrap;
+      display: flex;
+      width: fit-content;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 20px;
+
+      :global(.anticon) {
+        margin-right: 6px;
+        font-size: 13px;
+        line-height: 20px;
+      }
+    }
+  }
+}
+
+.retailPrice {
+  word-break: keep-all;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+
+  & > span {
+    font-weight: normal;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-right: 4px;
+  }
+}

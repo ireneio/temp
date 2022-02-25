@@ -11,7 +11,7 @@
   "total": "Tổng số hàng hóa",
   "payment": "Phí vàng dòng chảy",
   "not-choose-shipment": "Không được chọn",
-  "shipment": "Vận tải",
+  "shipment-price": "vận chuyển hàng hóa",
   "free-shipment": "miễn phí vận chuyển",
   "subtotal": "Tổng phụ",
   "cart-is-empty": "Xe hàng không có sản phẩm, xin vui lòng trở về cửa hàng để tiếp tục mua hàng",
@@ -24,6 +24,9 @@
     "0": "Vui lòng điều chỉnh trước",
     "1": "Không thể mua hàng"
   },
+  "products": "Chi tiết hàng hóa",
+  "gift": "Cho một món quà",
+  "shipment": "Vận tải",
   "change": "biến đổi",
   "choose-store": "Chọn thị trường cửa đón",
   "rechoose-store": "Đổi mới.",

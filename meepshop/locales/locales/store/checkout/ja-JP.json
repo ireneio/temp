@@ -11,7 +11,7 @@
   "total": "総商品",
   "payment": "ゴールドフローフィー",
   "not-choose-shipment": "非選択",
-  "shipment": "交通",
+  "shipment-price": "貨物",
   "free-shipment": "送料無料",
   "subtotal": "小計",
   "cart-is-empty": "買い物かごに商品が入っていません、ショップに戻ってショッピングを継続して下さい",
@@ -24,6 +24,9 @@
     "0": "第一に調整してください",
     "1": "商品を購入できません"
   },
+  "products": "商品の詳細",
+  "gift": "贈り物をする",
+  "shipment": "交通",
   "change": "変化する",
   "choose-store": "ピックアップドア市場を選択してください",
   "rechoose-store": "改装された",

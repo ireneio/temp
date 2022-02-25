@@ -11,7 +11,7 @@
   "total": "Totalidad total",
   "payment": "Cuota de flujo de oro",
   "not-choose-shipment": "No seleccionado",
-  "shipment": "Transporte",
+  "shipment-price": "transporte",
   "free-shipment": "envío gratis",
   "subtotal": "Total parcial",
   "cart-is-empty": "Su carrito está vacío, regrese a la tienda y continúe comprando.",
@@ -24,6 +24,9 @@
     "0": "Por favor, ajuste primero",
     "1": "Incapaz de comprar bienes"
   },
+  "products": "Detalles de la mercancía",
+  "gift": "Dar un regalo",
+  "shipment": "Transporte",
   "change": "cambio",
   "choose-store": "Seleccione el mercado de la puerta de recogida",
   "rechoose-store": "Renovar",

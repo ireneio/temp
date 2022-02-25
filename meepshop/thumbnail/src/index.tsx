@@ -1,6 +1,8 @@
 // import
-import React from 'react';
+import React, { useContext } from 'react';
+import transformColor from 'color';
 
+import { Colors as ColorsContext } from '@meepshop/context';
 import { placeholderThumbnail_w120 as placeholderThumbnail } from '@meepshop/images';
 
 import styles from './styles/index.less';
@@ -25,14 +27,33 @@ export default ({
   className,
   source,
   onClick,
-}: PropsType): React.ReactElement => (
-  <div className={`${styles.wrapper} ${className || ''}`} onClick={onClick}>
-    <div
-      className={styles.image}
-      style={{
-        backgroundImage: `url(${image?.scaledSrc?.[source || 'w120'] ||
-          placeholderThumbnail})`,
-      }}
-    />
-  </div>
-);
+}: PropsType): React.ReactElement => {
+  const colors = useContext(ColorsContext);
+
+  return (
+    <>
+      <div className={`${styles.wrapper} ${className || ''}`} onClick={onClick}>
+        <div
+          className={styles.image}
+          style={{
+            backgroundImage: `url(${image?.scaledSrc?.[source || 'w120'] ||
+              placeholderThumbnail})`,
+          }}
+        />
+      </div>
+
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+              .${styles.wrapper} {
+                border: 1px solid ${transformColor(colors[3]).alpha(0.1)};
+                box-shadow: 0px 1px 3px ${transformColor(colors[3]).alpha(
+                  0.08,
+                )};
+              }
+            `,
+        }}
+      />
+    </>
+  );
+};

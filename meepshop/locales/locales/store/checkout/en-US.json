@@ -11,7 +11,7 @@
   "total": "Total commodity",
   "payment": "Gold flow fee",
   "not-choose-shipment": "Unselected",
-  "shipment": "Transportation",
+  "shipment-price": "freight",
   "free-shipment": "free shipping",
   "subtotal": "Subtotal",
   "cart-is-empty": "Your cart is empty, please return to the store and continue shopping.",
@@ -24,6 +24,9 @@
     "0": "Please adjust first",
     "1": "Unable to buy goods"
   },
+  "products": "Commodity details",
+  "gift": "Give a gift",
+  "shipment": "Transportation",
   "change": "change",
   "choose-store": "Select pick-up door market",
   "rechoose-store": "Renovate",

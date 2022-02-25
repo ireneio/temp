@@ -81,7 +81,7 @@ export default React.memo(({ computeOrderList }: PropsType) => {
           <FormItem dependencies={['shipment']} noStyle>
             {({ getFieldValue }) => (
               <div>
-                <div>{t('shipment')}</div>
+                <div>{t('shipment-price')}</div>
                 <div>
                   {(() => {
                     if (
