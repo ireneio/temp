@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "@admin/affiliate-partners",
+  "description": "Affiliate partners page for admin",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/header": "^0.80.136",
+    "@admin/table": "^0.80.136",
+    "@meepshop/images": "^0.80.136",
+    "@meepshop/link": "^0.80.136",
+    "@meepshop/locales": "^0.80.136",
+    "date-fns": "^2.15.0"
+  },
+  "keywords": ["admin", "affiliate partners"]
+}

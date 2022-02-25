@@ -1,0 +1,17 @@
+{
+  "title": "Partner management",
+  "instruction": "Teaching note",
+  "manage-programs": "Management promotion",
+  "search": "Enter a partner name or mailbox",
+  "clear": "Empty",
+  "add": "New partner",
+  "name": "Partner name",
+  "email": "Contact Email",
+  "createdAt": "Establishment time",
+  "not-match": "Check no partner",
+  "empty": {
+    "title": "Grooming more easily through management partners",
+    "description": "Free payment partner name, contact method and other information, help team enhance communication efficiency.",
+    "add": "Establish a first partner"
+  }
+}

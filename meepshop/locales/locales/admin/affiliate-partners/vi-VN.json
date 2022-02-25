@@ -1,0 +1,17 @@
+{
+  "title": "Quản lý đối tác",
+  "instruction": "Dạy lưu ý",
+  "manage-programs": "Khuyến mãi quản lý.",
+  "search": "Nhập tên đối tác hoặc hộp thư",
+  "clear": "Trống rỗng",
+  "add": "Cộng sự mới",
+  "name": "Tên đối tác",
+  "email": "địa chỉ email liên lạc",
+  "createdAt": "Thời gian thành lập",
+  "not-match": "Kiểm tra không có đối tác",
+  "empty": {
+    "title": "Chăm sóc dễ dàng hơn thông qua các đối tác quản lý",
+    "description": "Tên đối tác thanh toán miễn phí, phương thức liên hệ và thông tin khác, giúp nhóm nâng cao hiệu quả giao tiếp.",
+    "add": "Thành lập một đối tác đầu tiên"
+  }
+}

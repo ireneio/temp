@@ -1,0 +1,17 @@
+{
+  "title": "Gestión de socios",
+  "instruction": "Nota de enseñanza",
+  "manage-programs": "Promoción de la gestión",
+  "search": "Ingrese un nombre de socio o buzón",
+  "clear": "Vacío",
+  "add": "Nuevo compañero",
+  "name": "Nombre del socio",
+  "email": "Email de contacto",
+  "createdAt": "Tiempo de establecimiento",
+  "not-match": "Revisa ningún compañero",
+  "empty": {
+    "title": "Aseo más fácilmente a través de socios de gestión",
+    "description": "Nombre del compañero de pago gratuito, el método de contacto y otra información, el equipo de ayuda para mejorar la eficiencia de la comunicación.",
+    "add": "Establecer un primer socio"
+  }
+}

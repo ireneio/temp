@@ -1,0 +1,17 @@
+{
+  "title": "Manajemen Mitra",
+  "instruction": "Catatan Pengajaran",
+  "manage-programs": "Promosi manajemen Promosi",
+  "search": "Masukkan nama mitra atau kotak surat",
+  "clear": "Kosong",
+  "add": "Mitra Baru",
+  "name": "Nama Mitra",
+  "email": "Kontak Email",
+  "createdAt": "Waktu pendirian",
+  "not-match": "Periksa tidak ada mitra",
+  "empty": {
+    "title": "Grooming lebih mudah melalui mitra manajemen",
+    "description": "Nama Mitra Pembayaran Gratis, Metode Kontak dan informasi lainnya, Bantuan Tim meningkatkan efisiensi komunikasi.",
+    "add": "Bangun mitra pertama"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "title": "合作夥伴管理",
+  "instruction": "教學說明",
+  "manage-programs": "管理推廣活動",
+  "search": "輸入夥伴名稱或信箱",
+  "clear": "清空搜尋",
+  "add": "新增夥伴",
+  "name": "合作夥伴名稱",
+  "email": "聯絡 Email",
+  "createdAt": "建立時間",
+  "not-match": "查無符合夥伴",
+  "empty": {
+    "title": "透過管理合作夥伴讓分潤推廣更輕鬆",
+    "description": "自由註記夥伴名稱、聯絡方式等資訊，幫助團隊提昇溝通效率。",
+    "add": "建立第一位夥伴"
+  }
+}

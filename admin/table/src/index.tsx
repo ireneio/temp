@@ -20,6 +20,7 @@ export interface PropsType<T>
 // definition
 export default React.memo(
   ({
+    className,
     optional,
     pagination,
     children,
@@ -27,7 +28,7 @@ export default React.memo(
     dataSource,
     ...props
   }: PropsType<{}>) => (
-    <div className={styles.root}>
+    <div className={`${styles.root} ${className || ''}`}>
       {children}
       <Table
         {...props}

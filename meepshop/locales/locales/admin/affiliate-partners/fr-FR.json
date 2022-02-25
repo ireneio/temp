@@ -1,0 +1,17 @@
+{
+  "title": "Gestion des partenaires",
+  "instruction": "Note d'enseignement",
+  "manage-programs": "Promotion de la gestion",
+  "search": "Entrez un nom de partenaire ou une boîte aux lettres",
+  "clear": "Vide",
+  "add": "Nouveau partenaire",
+  "name": "Nom de partenaire",
+  "email": "Email du contact",
+  "createdAt": "Temps d'établissement",
+  "not-match": "Vérifiez aucun partenaire",
+  "empty": {
+    "title": "Toilettage plus facilement par le biais de partenaires de gestion",
+    "description": "Nom du partenaire de paiement gratuit, méthode de contact et autres informations, aidez l'équipe à améliorer l'efficacité de la communication.",
+    "add": "Établir un premier partenaire"
+  }
+}
