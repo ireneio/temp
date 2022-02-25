@@ -1,0 +1,26 @@
+{
+  "title": "Activités de promotion et subvention",
+  "instruction": "Note d'enseignement",
+  "manage-partners": "Partenaire de gestion",
+  "search": "Entrez un nom actif ou partenaire",
+  "clear": "Vide",
+  "program-title": "Nom de l'événement",
+  "partner-name": "Partenaire",
+  "commission-rate": "Ratio des griefs",
+  "date": "Au cours de l'activité",
+  "never-end": "Ne jamais finir",
+  "effectiveness": "Résultats d'activité",
+  "add": "Nouvelle activité",
+  "not-match": "Capturé",
+  "tag": {
+    "NOT_START": "n'a pas commencé",
+    "IS_ENDED": "plus de",
+    "IN_PROGRESS": "en cours"
+  },
+  "empty": {
+    "title": "Prendre la coopération des partenaires par l'aide de la gravité",
+    "description": "Collaborer avec des partenaires pour promouvoir les marchandises, le suivi automatique et les résultats de calcul rendent des décisions de marketing plus précises.",
+    "add-no-partners": "Établir un premier partenaire",
+    "add-no-programs": "Établir des activités promotionnelles"
+  }
+}

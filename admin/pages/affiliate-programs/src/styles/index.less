@@ -1,0 +1,67 @@
+.root {
+  display: flex;
+  margin: 0px 0px 24px;
+
+  :global(.ant-input-group-wrapper) {
+    max-width: 256px;
+    margin: 0px 12px 0px 0px;
+
+    input {
+      height: 32px;
+    }
+  }
+
+  :global(.ant-btn-link) {
+    color: #5161c5;
+  }
+
+  &.empty {
+    margin: 0px 0px 16px;
+  }
+}
+
+.space {
+  flex: 1 0 auto;
+}
+
+.partners {
+  color: rgba(0, 0, 0, 0.85);
+  background: transparent;
+}
+
+.rowClassName {
+  cursor: pointer;
+}
+
+.affiliatePrograms {
+  min-width: 788px;
+
+  :global(.ant-table-container) table > thead > tr:first-child th,
+  :global(.ant-table-tbody) > tr > td {
+    &:first-child {
+      padding-left: 24px;
+    }
+
+    &:last-child {
+      padding-right: 20px;
+    }
+  }
+
+  :global(colgroup) > col {
+    &:nth-child(2) {
+      min-width: 88px !important;
+    }
+
+    &:nth-child(3) {
+      min-width: 88px !important;
+    }
+
+    &:last-child {
+      width: initial !important;
+    }
+  }
+
+  &.empty :global(.ant-table) {
+    display: none;
+  }
+}

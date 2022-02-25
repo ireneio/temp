@@ -1,0 +1,26 @@
+{
+  "title": "Kegiatan promosi dan hibah",
+  "instruction": "Catatan Pengajaran",
+  "manage-partners": "Mitra Manajemen",
+  "search": "Masukkan nama yang aktif atau mitra",
+  "clear": "Kosong",
+  "program-title": "Nama Acara",
+  "partner-name": "Mitra",
+  "commission-rate": "Rasio Keluhan.",
+  "date": "Selama kegiatan",
+  "never-end": "Tidak pernah berakhir",
+  "effectiveness": "HASIL AKTIVITAS.",
+  "add": "Aktivitas baru",
+  "not-match": "Ditangkap",
+  "tag": {
+    "NOT_START": "belum dimulai",
+    "IS_ENDED": "lebih",
+    "IN_PROGRESS": "sedang berlangsung"
+  },
+  "empty": {
+    "title": "Mengambil kerja sama mitra melalui bantuan gravitasi",
+    "description": "Berkolaborasi dengan mitra untuk mempromosikan barang, pelacakan otomatis, dan hasil perhitungan membuat keputusan pemasaran lebih akurat.",
+    "add-no-partners": "Bangun mitra pertama",
+    "add-no-programs": "Menetapkan kegiatan promosi"
+  }
+}

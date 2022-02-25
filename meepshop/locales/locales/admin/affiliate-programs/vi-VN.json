@@ -1,0 +1,26 @@
+{
+  "title": "Hoạt động xúc tiến và cấp",
+  "instruction": "Dạy lưu ý",
+  "manage-partners": "Đối tác quản lý.",
+  "search": "Nhập tên hoạt động hoặc đối tác",
+  "clear": "Trống rỗng",
+  "program-title": "Tên sự kiện.",
+  "partner-name": "Bạn đồng hành",
+  "commission-rate": "Tỷ lệ khiếu nại",
+  "date": "Trong quá trình hoạt động",
+  "never-end": "Không bao giờ kết thúc",
+  "effectiveness": "Kết quả hoạt động",
+  "add": "Hoạt động mới",
+  "not-match": "Bắt",
+  "tag": {
+    "NOT_START": "đã không bắt đầu",
+    "IS_ENDED": "kết thúc",
+    "IN_PROGRESS": "trong tiến trình"
+  },
+  "empty": {
+    "title": "Hợp tác của các đối tác thông qua sự hỗ trợ trọng lực",
+    "description": "Phối hợp với các đối tác để quảng bá hàng hóa, theo dõi tự động và kết quả tính toán khiến các quyết định tiếp thị chính xác hơn.",
+    "add-no-partners": "Thành lập một đối tác đầu tiên",
+    "add-no-programs": "Thiết lập các hoạt động quảng cáo"
+  }
+}

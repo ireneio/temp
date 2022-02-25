@@ -1,0 +1,26 @@
+{
+  "title": "プロモーション活動と助成金",
+  "instruction": "注意事項",
+  "manage-partners": "管理パートナー",
+  "search": "アクティブまたはパートナーの名前を入力してください",
+  "clear": "空",
+  "program-title": "イベント名",
+  "partner-name": "相棒",
+  "commission-rate": "哀れみの割合",
+  "date": "活動中",
+  "never-end": "終わらない",
+  "effectiveness": "活動結果",
+  "add": "新しい活動",
+  "not-match": "捕獲された",
+  "tag": {
+    "NOT_START": "起動していません",
+    "IS_ENDED": "以上",
+    "IN_PROGRESS": "進行中"
+  },
+  "empty": {
+    "title": "重力支援を通してパートナーの協力を行いなさい",
+    "description": "商品、自動追跡、および計算結果を宣伝するためにパートナーと協力して、マーケティングの決定をより正確にします。",
+    "add-no-partners": "最初のパートナーを確立します",
+    "add-no-programs": "プロモーション活動を確立します"
+  }
+}

@@ -15,6 +15,7 @@
     "@admin/account-setting": "^0.80.137",
     "@admin/ad-track": "^0.80.134",
     "@admin/affiliate-partners": "^0.1.0",
+    "@admin/affiliate-programs": "^0.1.0",
     "@admin/apollo": "^0.80.137",
     "@admin/bill": "^0.80.137",
     "@admin/bill-payment": "^0.80.137",

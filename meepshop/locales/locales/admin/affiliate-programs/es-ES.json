@@ -1,0 +1,26 @@
+{
+  "title": "Actividades de promoción y concesión.",
+  "instruction": "Nota de enseñanza",
+  "manage-partners": "Socio de gestión",
+  "search": "Ingrese un nombre activo o de pareja",
+  "clear": "Vacío",
+  "program-title": "Nombre del evento",
+  "partner-name": "Compañero",
+  "commission-rate": "Ratio de quejas",
+  "date": "Durante la actividad",
+  "never-end": "Nunca termina",
+  "effectiveness": "Resultados de actividad",
+  "add": "Nueva actividad",
+  "not-match": "Capturado",
+  "tag": {
+    "NOT_START": "no ha comenzado",
+    "IS_ENDED": "sobre",
+    "IN_PROGRESS": "en curso"
+  },
+  "empty": {
+    "title": "Tomar la cooperación de socios a través de la asistencia de la gravedad.",
+    "description": "Colaborar con socios para promover los bienes, el seguimiento automático y los resultados del cálculo hacen que las decisiones de comercialización sean más precisas.",
+    "add-no-partners": "Establecer un primer socio",
+    "add-no-programs": "Establecer actividades promocionales"
+  }
+}

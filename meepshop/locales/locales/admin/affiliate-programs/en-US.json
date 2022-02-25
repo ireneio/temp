@@ -1,0 +1,26 @@
+{
+  "title": "Promotion activities and grant",
+  "instruction": "Teaching note",
+  "manage-partners": "Management partner",
+  "search": "Enter an active or partner name",
+  "clear": "Empty",
+  "program-title": "Event name",
+  "partner-name": "Partner",
+  "commission-rate": "Grievance ratio",
+  "date": "During the activity",
+  "never-end": "Never end",
+  "effectiveness": "Activity results",
+  "add": "New activity",
+  "not-match": "Captured",
+  "tag": {
+    "NOT_START": "has not started",
+    "IS_ENDED": "over",
+    "IN_PROGRESS": "in progress"
+  },
+  "empty": {
+    "title": "Take the cooperation of partners through gravity assistance",
+    "description": "Collaborate with partners to promote goods, automatic tracking, and calculation results make marketing decisions more accurate.",
+    "add-no-partners": "Establish a first partner",
+    "add-no-programs": "Establish promotional activities"
+  }
+}

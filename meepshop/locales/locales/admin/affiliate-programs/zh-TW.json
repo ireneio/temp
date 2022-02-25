@@ -1,0 +1,26 @@
+{
+  "title": "推廣活動與分潤",
+  "instruction": "教學說明",
+  "manage-partners": "管理合作夥伴",
+  "search": "輸入活動或夥伴名稱",
+  "clear": "清空搜尋",
+  "program-title": "活動名稱",
+  "partner-name": "合作夥伴",
+  "commission-rate": "分潤比例",
+  "date": "活動期間",
+  "never-end": "永不結束",
+  "effectiveness": "活動成效",
+  "add": "新增活動",
+  "not-match": "查無符合活動",
+  "tag": {
+    "NOT_START": "未開始",
+    "IS_ENDED": "已結束",
+    "IN_PROGRESS": "進行中"
+  },
+  "empty": {
+    "title": "透過分潤協助追蹤與夥伴的合作成效",
+    "description": "與夥伴合作推廣商品，自動追蹤、計算成效讓行銷決策更精準。",
+    "add-no-partners": "建立第一位夥伴",
+    "add-no-programs": "建立推廣活動"
+  }
+}
