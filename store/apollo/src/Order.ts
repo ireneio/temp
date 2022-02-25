@@ -12,9 +12,14 @@ interface DefaultDataType {
   };
 }
 
+interface ApplicationProductType
+  extends Omit<orderOrderFragmentProducts, '__typename'> {
+  __typename: 'OrderApplyProduct';
+}
+
 interface ApplicationType extends orderOrderApplyFragmentType {
   extra: (orderOrderApplyFragmentType & {
-    product: orderOrderFragmentProducts | null;
+    product: ApplicationProductType | null;
   })[];
 }
 
@@ -52,6 +57,11 @@ export const resolvers = {
         const application = result.find(
           ({ returnId }) => returnId === getOrderApply.returnId,
         );
+        const product = products.find(
+          eachProduct =>
+            /** SHOULD_NOT_BE_NULL */
+            getOrderApply?.orderProductId === (eachProduct?.id || null),
+        );
 
         if (!application)
           return [
@@ -61,12 +71,13 @@ export const resolvers = {
               extra: [
                 {
                   ...getOrderApply,
-                  product:
-                    products.find(
-                      product =>
-                        /** SHOULD_NOT_BE_NULL */
-                        getOrderApply?.orderProductId === (product?.id || null),
-                    ) || null,
+                  product: !product
+                    ? null
+                    : {
+                        ...product,
+                        __typename: 'OrderApplyProduct',
+                        id: `OrderApplyProduct:${product.id}`,
+                      },
                 },
               ],
             },
@@ -76,12 +87,13 @@ export const resolvers = {
           ...application.extra,
           {
             ...getOrderApply,
-            product:
-              products.find(
-                product =>
-                  /** SHOULD_NOT_BE_NULL */
-                  getOrderApply?.orderProductId === (product?.id || null),
-              ) || null,
+            product: !product
+              ? null
+              : {
+                  ...product,
+                  __typename: 'OrderApplyProduct',
+                  id: `OrderApplyProduct:${product.id}`,
+                },
           },
         ];
 
