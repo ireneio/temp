@@ -377,6 +377,7 @@ class PayemntInfo extends React.PureComponent {
               paymentList={paymentList}
               shipmentList={shipmentList}
               couponInfo={couponInfo}
+              isLandingPage
             />
           )}
         </FormItem>

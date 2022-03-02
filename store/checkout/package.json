@@ -20,6 +20,7 @@
     "@meepshop/utils": "^0.80.136",
     "@meepshop/validator": "^0.80.137",
     "color": "^3.0.0",
+    "date-fns": "^2.15.0",
     "validator": "^13.5.2"
   },
   "keywords": ["checkout", "store"]

@@ -217,6 +217,7 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
       style,
       couponInfo,
       computeOrderList,
+      isLandingPage,
     } = this.props;
     const {
       choosePayment,
@@ -327,7 +328,7 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
           )}
         </FormItem>
 
-        {!hasStoreAppPlugin('coupon') ? null : (
+        {!hasStoreAppPlugin('coupon') || !isLandingPage ? null : (
           <FormItem dependencies={['coupon']} noStyle>
             {form => (
               <Coupon

@@ -2,9 +2,8 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import radium, { StyleRoot, Style } from 'radium';
 import { LeftOutlined } from '@ant-design/icons';
-import { Spin, Form, InputNumber, Button, Modal, notification } from 'antd';
+import { Spin, Form, Button, Modal, notification } from 'antd';
 import uuid from 'uuid';
-import transformColor from 'color';
 import { useMutation, useQuery } from '@apollo/client';
 import { areEqual } from 'fbjs';
 
@@ -17,6 +16,7 @@ import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
 import { ErrorMultiIcon } from '@meepshop/icons';
 import { log } from '@meepshop/logger/lib/gqls/log';
 import CheckoutSteps from '@store/checkout-steps';
+import Discount from '@store/checkout/lib/Discount';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE, STORE_SETTING_TYPE } from 'constants/propTypes';
@@ -27,6 +27,7 @@ import PaymentDefaultFormItem from 'paymentDefaultFormItem';
 import { computedCartInCheckout } from './gqls';
 import { PRESERVED_FIELDS, DEFERRED_FIELDS } from '../constants';
 
+import DiscountMonitor from './DiscountMonitor';
 import UserInfo from './UserInfo';
 import ReceiverInfo from './ReceiverInfo';
 import ProductList from './ProductList';
@@ -113,7 +114,6 @@ export default class OrderDetail extends React.PureComponent {
     colors: PropTypes.arrayOf(COLOR_TYPE.isRequired).isRequired,
     storeSetting: STORE_SETTING_TYPE.isRequired,
     transformCurrency: PropTypes.func.isRequired,
-    hasStoreAppPlugin: PropTypes.func.isRequired,
 
     /** props */
     t: PropTypes.func.isRequired,
@@ -475,7 +475,6 @@ export default class OrderDetail extends React.PureComponent {
       colors,
       storeSetting,
       transformCurrency,
-      hasStoreAppPlugin,
 
       /** props */
       form,
@@ -508,7 +507,6 @@ export default class OrderDetail extends React.PureComponent {
       total,
       paymentList,
       shipmentList,
-      couponInfo,
       userPoints,
       canUsePointsLimit,
       activityInfo,
@@ -585,56 +583,31 @@ export default class OrderDetail extends React.PureComponent {
                     computeOrderList={this.computeOrderList}
                     paymentList={paymentList}
                     shipmentList={shipmentList}
-                    couponInfo={couponInfo}
                   />
                 )}
               </FormItem>
-
-              {!(hasStoreAppPlugin('points') && userPoints > 0) ? null : (
-                <>
-                  <FormItem className={styles.formItem} name={['points']}>
-                    <InputNumber
-                      min={0}
-                      max={canUsePointsLimit || 0}
-                      placeholder={t('reward-points')}
-                      onBlur={({ target }) =>
-                        this.computeOrderList({
-                          points:
-                            target.value === ''
-                              ? 0
-                              : parseInt(target.value, 10),
-                        })
-                      }
-                    />
-                  </FormItem>
-
-                  <div
-                    className={styles.points}
-                    style={{
-                      color: colors[2],
-                      background: transformColor(colors[5]).alpha(0.15),
-                    }}
-                  >
-                    {t('reward-points-can-use', { point: userPoints || 0 })}
-
-                    <FormItem dependencies={['points']} noStyle>
-                      {({ getFieldValue }) => (
-                        <font
-                          style={{
-                            color:
-                              getFieldValue('points') > canUsePointsLimit || 0
-                                ? 'red'
-                                : 'inherit',
-                          }}
-                        >
-                          {t('points-limit', { point: canUsePointsLimit || 0 })}
-                        </font>
-                      )}
-                    </FormItem>
-                  </div>
-                </>
-              )}
             </div>
+
+            <FormItem dependencies={['coupon', 'points']} noStyle>
+              {({ getFieldValue }) => (
+                <DiscountMonitor
+                  coupon={getFieldValue(['coupon'])}
+                  points={getFieldValue(['points'])}
+                  computeOrderList={this.computeOrderList}
+                />
+              )}
+            </FormItem>
+
+            <Discount
+              computeOrderList={{
+                activityInfo,
+                priceInfo: {
+                  userPoints,
+                  canUsePointsLimit,
+                },
+                errorObj: computeOrderData?.couponInfo?.errorObj,
+              }}
+            />
 
             <UserInfo
               user={user}
