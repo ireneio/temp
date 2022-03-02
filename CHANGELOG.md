@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## 0.80.139 (2022-03-02)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#2102](https://github.com/meepshop/meep-lerna/pull/2102) 內部開單 - 新增 付款方式 折抵 區塊到 @store/checkout ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#2168](https://github.com/meepshop/meep-lerna/pull/2168) 內部開單 - 新增 商品明細 區塊到 @store/checkout ([@happycat6323](https://github.com/happycat6323))
+  - [#2164](https://github.com/meepshop/meep-lerna/pull/2164) 【功能】分潤系統 - 活動管理 - 後台 ([@HsuTing](https://github.com/HsuTing))
+  - [#2160](https://github.com/meepshop/meep-lerna/pull/2160) 【功能】分潤系統 - 夥伴管理 - 後台 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#2171](https://github.com/meepshop/meep-lerna/pull/2171) (@meepshop/frontend) Remove preReleaseSchemas ([@HsuTing](https://github.com/HsuTing))
+
+#### :memo: Documentation
+
+- `generate`, `mock-types`, `storybook`
+  - [#2161](https://github.com/meepshop/meep-lerna/pull/2161) Internal - update readme ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#2170](https://github.com/meepshop/meep-lerna/pull/2170) Remove CODEOWNERS ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.138 (2022-02-25)
 
 #### :bug: Bug Fix
