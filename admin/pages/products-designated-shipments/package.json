@@ -4,19 +4,19 @@
   "description": "Products designated shipments page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.137",
+  "version": "0.80.139",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/filter-buttons": "^0.80.134",
-    "@admin/header": "^0.80.137",
-    "@admin/table": "^0.80.137",
-    "@admin/thumbnail": "^0.80.136",
-    "@admin/tooltip": "^0.80.134",
-    "@admin/utils": "^0.80.136",
-    "@meepshop/images": "^0.80.136",
-    "@meepshop/locales": "^0.80.137",
-    "@meepshop/utils": "^0.80.136"
+    "@admin/filter-buttons": "^0.80.139",
+    "@admin/header": "^0.80.139",
+    "@admin/table": "^0.80.139",
+    "@admin/thumbnail": "^0.80.139",
+    "@admin/tooltip": "^0.80.139",
+    "@admin/utils": "^0.80.139",
+    "@meepshop/images": "^0.80.139",
+    "@meepshop/locales": "^0.80.139",
+    "@meepshop/utils": "^0.80.139"
   },
   "keywords": ["admin", "products designated shipments"]
 }

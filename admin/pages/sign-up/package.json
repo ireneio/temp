@@ -4,16 +4,16 @@
   "description": "Admin sign up",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.137",
+  "version": "0.80.139",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/ad-track": "^0.80.134",
-    "@admin/message": "^0.80.134",
-    "@meepshop/images": "^0.80.136",
-    "@meepshop/link": "^0.80.136",
-    "@meepshop/locales": "^0.80.137",
-    "@meepshop/validator": "^0.80.137"
+    "@admin/ad-track": "^0.80.139",
+    "@admin/message": "^0.80.139",
+    "@meepshop/images": "^0.80.139",
+    "@meepshop/link": "^0.80.139",
+    "@meepshop/locales": "^0.80.139",
+    "@meepshop/validator": "^0.80.139"
   },
   "keywords": ["admin", "sign up"]
 }
