@@ -26,7 +26,7 @@ export const getProductsInActivity = gql`
         }
         variants {
           id
-          retailPrice
+          totalPrice
         }
       }
       total

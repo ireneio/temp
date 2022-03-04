@@ -18,7 +18,7 @@ export const getProducts = gql`
           stock
           listPrice
           suggestedPrice
-          retailPrice
+          totalPrice
         }
         coverImage {
           id

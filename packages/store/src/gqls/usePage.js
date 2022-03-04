@@ -65,7 +65,7 @@ const usePageProductFragment = gql`
       retailPrice
       suggestedPrice
       discountPrice
-      retailPrice
+      totalPrice
       specs {
         id
         specId
