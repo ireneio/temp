@@ -1,0 +1,68 @@
+{
+  "back": "regreso",
+  "never-end": "Nunca termina",
+  "status": {
+    "NOT_START": "no ha comenzado",
+    "IS_ENDED": "sobre",
+    "IN_PROGRESS": "en curso"
+  },
+  "numberOfOrders": {
+    "title": "Número de pedido válido",
+    "tooltip": "Los pedidos cancelados no incorporan"
+  },
+  "totalAmountForCommission": {
+    "title": "Cantidad de liquidación total",
+    "tooltip": "La suma de la cantidad de liquidación de orden efectivo"
+  },
+  "totalCommission": {
+    "title": "Total de bonificación en ejecución",
+    "tooltip": "CANTIDAD DE ACUERDO RELACIONADA DE CADA X (%)"
+  },
+  "empty": "No hay información de pedido",
+  "order": {
+    "title": "Orden de las actividades de promoción",
+    "export": "Remitir",
+    "orderNo": "Número de orden",
+    "createdAt": "Tiempo de establecimiento",
+    "paymentStatus": "Estado de la cuenta",
+    "orderStatus": "Estado del pedido",
+    "total": "La cantidad total de pedidos",
+    "freight": "Pago",
+    "totalExcludeFreight": {
+      "title": "Cantidad fijada",
+      "tooltip": "PEDIDO CANTIDAD TOTAL - PAGO"
+    },
+    "commission": {
+      "title": "Prima",
+      "tooltip": "Cantidad de liquidación x Relación de gravedad (%)"
+    }
+  },
+  "paymentStatus": {
+    "WAITING": "esperando confirmación",
+    "NOTIFICATED": "Aviso de remesas",
+    "RECONCILED": "Finalización subordinada",
+    "DATA_ERROR": "Error de información",
+    "FAILED": "Pago fallido",
+    "REFUND": "Tratamiento de reembolso"
+  },
+  "orderStatus": {
+    "PROCESSING": "Procesando",
+    "CANCELED": "cancelar orden",
+    "RETURN": "Proceso de devolución",
+    "CLOSED": "Funda de pedido"
+  },
+  "export": {
+    "title": "Orden de marcha",
+    "subTitle": "Proporcionar un cálculo de grado del matrimonio, y todos los campos relacionados con el orden.",
+    "fileType": {
+      "title": "Formato de archivo",
+      "placeholder": "Por favor seleccione un formato de archivo"
+    },
+    "email": {
+      "title": "Receptor de E-mail",
+      "placeholder": "Por favor ingrese el buzón que recibe el enlace de descarga del archivo"
+    },
+    "ok": "Remitir",
+    "cancel": "Cancelar"
+  }
+}

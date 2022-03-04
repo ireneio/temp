@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "@admin/affiliate-program-statistics",
+  "description": "Affiliate program statistics page for admin",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/header": "^0.80.137",
+    "@admin/table": "^0.80.137",
+    "@admin/tooltip": "^0.80.134",
+    "@meepshop/context": "^0.80.136",
+    "@meepshop/icons": "^0.80.134",
+    "@meepshop/link": "^0.80.136",
+    "@meepshop/locales": "^0.80.137",
+    "date-fns": "^2.15.0"
+  },
+  "keywords": ["admin", "affiliate program statistics"]
+}

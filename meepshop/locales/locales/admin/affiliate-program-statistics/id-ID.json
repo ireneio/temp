@@ -1,0 +1,68 @@
+{
+  "back": "kembali",
+  "never-end": "Tidak pernah berakhir",
+  "status": {
+    "NOT_START": "belum dimulai",
+    "IS_ENDED": "lebih",
+    "IN_PROGRESS": "sedang berlangsung"
+  },
+  "numberOfOrders": {
+    "title": "Nomor pesanan yang valid.",
+    "tooltip": "Pesanan yang dibatalkan tidak dimasukkan"
+  },
+  "totalAmountForCommission": {
+    "title": "Total jumlah penyelesaian",
+    "tooltip": "Jumlah jumlah penyelesaian pesanan efektif"
+  },
+  "totalCommission": {
+    "title": "Menjalankan bonus total",
+    "tooltip": "Jumlah penyelesaian rasio bernilai X (%)"
+  },
+  "empty": "Tidak ada informasi pesanan",
+  "order": {
+    "title": "Pesanan kegiatan promosi.",
+    "export": "Mengampuni",
+    "orderNo": "Jumlah order",
+    "createdAt": "Waktu pendirian",
+    "paymentStatus": "Status akun",
+    "orderStatus": "Status pemesanan",
+    "total": "Jumlah total pesanan",
+    "freight": "Pembayaran",
+    "totalExcludeFreight": {
+      "title": "Jumlah penyelesaian",
+      "tooltip": "Pesanan Jumlah Total - Pembayaran"
+    },
+    "commission": {
+      "title": "Bonus",
+      "tooltip": "Jumlah penyelesaian x rasio gravitasi (%)"
+    }
+  },
+  "paymentStatus": {
+    "WAITING": "Menunggu kepastian",
+    "NOTIFICATED": "Pemberitahuan pengiriman uang",
+    "RECONCILED": "Penyelesaian bawahan.",
+    "DATA_ERROR": "Kesalahan informasi",
+    "FAILED": "Gagal Pembayaran",
+    "REFUND": "Pengobatan Pengembalian Dana"
+  },
+  "orderStatus": {
+    "PROCESSING": "Pengolahan",
+    "CANCELED": "Batalkan pesanan",
+    "RETURN": "Proses pengembalian",
+    "CLOSED": "Kasus Pesanan"
+  },
+  "export": {
+    "title": "Menjalankan pesanan",
+    "subTitle": "Berikan perhitungan nilai pernikahan, dan semua bidang terkait pemesanan",
+    "fileType": {
+      "title": "Format arsip.",
+      "placeholder": "Silakan pilih format file"
+    },
+    "email": {
+      "title": "Penerima e-mail",
+      "placeholder": "Silakan masukkan kotak surat yang menerima tautan unduhan file"
+    },
+    "ok": "Mengampuni",
+    "cancel": "Membatalkan"
+  }
+}

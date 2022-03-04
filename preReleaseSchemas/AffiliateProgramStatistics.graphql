@@ -1,0 +1,9 @@
+enum AffiliateProgramStatusEnum {
+  NOT_START
+  IS_ENDED
+  IN_PROGRESS
+}
+
+extend type AffiliateProgram {
+  status: AffiliateProgramStatusEnum!
+}

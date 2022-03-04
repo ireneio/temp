@@ -1,0 +1,68 @@
+{
+  "back": "return",
+  "never-end": "Never end",
+  "status": {
+    "NOT_START": "has not started",
+    "IS_ENDED": "over",
+    "IN_PROGRESS": "in progress"
+  },
+  "numberOfOrders": {
+    "title": "Valid order number",
+    "tooltip": "Canceled orders do not incorporate"
+  },
+  "totalAmountForCommission": {
+    "title": "Total settlement amount",
+    "tooltip": "The sum of the settlement amount of effective order"
+  },
+  "totalCommission": {
+    "title": "Running bonus total",
+    "tooltip": "Settlement amount X-graded ratio (%)"
+  },
+  "empty": "No order information",
+  "order": {
+    "title": "Promotion activities order",
+    "export": "Remit",
+    "orderNo": "Order number",
+    "createdAt": "Establishment time",
+    "paymentStatus": "Account status",
+    "orderStatus": "Order Status",
+    "total": "The total amount of orders",
+    "freight": "Payment",
+    "totalExcludeFreight": {
+      "title": "Settlement amount",
+      "tooltip": "Order total amount - payment"
+    },
+    "commission": {
+      "title": "Bonus",
+      "tooltip": "Settlement amount x gravity ratio (%)"
+    }
+  },
+  "paymentStatus": {
+    "WAITING": "Waiting for confirmation",
+    "NOTIFICATED": "Remittance notice",
+    "RECONCILED": "Subordinate completion",
+    "DATA_ERROR": "Information error",
+    "FAILED": "Payment Fail",
+    "REFUND": "Refund treatment"
+  },
+  "orderStatus": {
+    "PROCESSING": "Processing",
+    "CANCELED": "cancel order",
+    "RETURN": "Return process",
+    "CLOSED": "Order case"
+  },
+  "export": {
+    "title": "Running order",
+    "subTitle": "Provide a grade calculation of the marriage, and all order related fields",
+    "fileType": {
+      "title": "Archive format",
+      "placeholder": "Please select a file format"
+    },
+    "email": {
+      "title": "Recipient Email",
+      "placeholder": "Please enter the mailbox that receives the download file link"
+    },
+    "ok": "Remit",
+    "cancel": "Cancel"
+  }
+}

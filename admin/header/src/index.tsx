@@ -17,7 +17,7 @@ interface LinkType {
 }
 
 interface PropsType {
-  title: React.ReactNode;
+  title?: React.ReactNode;
   prevTitle?: string;
   link?: LinkType;
   backTo?: string;
@@ -72,19 +72,21 @@ export default React.memo(
                 </Link>
               )}
 
-              <div className={styles.title}>
-                {title}
+              {!title ? null : (
+                <div className={styles.title}>
+                  {title}
 
-                {!link ? null : (
-                  <Link href={link.url} target="_blank">
-                    <a href={link.url}>
-                      {link.text}
+                  {!link ? null : (
+                    <Link href={link.url} target="_blank">
+                      <a href={link.url}>
+                        {link.text}
 
-                      <OpenNewPageIcon />
-                    </a>
-                  </Link>
-                )}
-              </div>
+                        <OpenNewPageIcon />
+                      </a>
+                    </Link>
+                  )}
+                </div>
+              )}
             </h1>
 
             {buttons}

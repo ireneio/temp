@@ -1,0 +1,68 @@
+{
+  "back": "返回",
+  "never-end": "永不結束",
+  "status": {
+    "NOT_START": "未開始",
+    "IS_ENDED": "已結束",
+    "IN_PROGRESS": "進行中"
+  },
+  "numberOfOrders": {
+    "title": "有效訂單數",
+    "tooltip": "取消的訂單不會納入計算"
+  },
+  "totalAmountForCommission": {
+    "title": "結算金額總計",
+    "tooltip": "有效訂單的結算金額總和"
+  },
+  "totalCommission": {
+    "title": "分潤獎金總計",
+    "tooltip": "結算金額總計 x 分潤比例 (%)"
+  },
+  "empty": "無訂單資料",
+  "order": {
+    "title": "推廣活動訂單",
+    "export": "匯出訂單",
+    "orderNo": "訂單編號",
+    "createdAt": "建立時間",
+    "paymentStatus": "帳款狀態",
+    "orderStatus": "訂單狀態",
+    "total": "訂單總金額",
+    "freight": "實付運費",
+    "totalExcludeFreight": {
+      "title": "結算金額",
+      "tooltip": "訂單總金額 - 實付運費"
+    },
+    "commission": {
+      "title": "分潤獎金",
+      "tooltip": "結算金額 x 分潤比例 (%)"
+    }
+  },
+  "paymentStatus": {
+    "WAITING": "等待確認",
+    "NOTIFICATED": "匯款通知",
+    "RECONCILED": "對帳完成",
+    "DATA_ERROR": "資料錯誤",
+    "FAILED": "付款失敗",
+    "REFUND": "退款處理"
+  },
+  "orderStatus": {
+    "PROCESSING": "處理中",
+    "CANCELED": "取消訂單",
+    "RETURN": "退換貨處理",
+    "CLOSED": "訂單結案"
+  },
+  "export": {
+    "title": "匯出分潤訂單",
+    "subTitle": "提供分潤獎金額計算以及所有訂單相關欄位",
+    "fileType": {
+      "title": "檔案格式",
+      "placeholder": "請選擇檔案格式"
+    },
+    "email": {
+      "title": "收件 Email",
+      "placeholder": "請輸入接收下載檔案連結的信箱"
+    },
+    "ok": "匯出訂單",
+    "cancel": "取消"
+  }
+}

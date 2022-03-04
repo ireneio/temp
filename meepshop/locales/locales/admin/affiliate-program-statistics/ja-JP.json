@@ -1,0 +1,68 @@
+{
+  "back": "戻る",
+  "never-end": "終わらない",
+  "status": {
+    "NOT_START": "起動していません",
+    "IS_ENDED": "以上",
+    "IN_PROGRESS": "進行中"
+  },
+  "numberOfOrders": {
+    "title": "有効な注文番号",
+    "tooltip": "キャンセル注文は組み込まれていません"
+  },
+  "totalAmountForCommission": {
+    "title": "総決済金額",
+    "tooltip": "有効順序の決済額の合計"
+  },
+  "totalCommission": {
+    "title": "走っているボーナスの合計",
+    "tooltip": "決済額Xグレーデッド比（％）"
+  },
+  "empty": "注文情報なし",
+  "order": {
+    "title": "プロモーション活動の順序",
+    "export": "rem rem",
+    "orderNo": "注文番号",
+    "createdAt": "設立時間",
+    "paymentStatus": "アカウントのステータス",
+    "orderStatus": "注文の状況",
+    "total": "注文の総額",
+    "freight": "支払い",
+    "totalExcludeFreight": {
+      "title": "決済額",
+      "tooltip": "合計金額 - 支払い"
+    },
+    "commission": {
+      "title": "ボーナス",
+      "tooltip": "決済額X重力比（％）"
+    }
+  },
+  "paymentStatus": {
+    "WAITING": "確認を待ちます",
+    "NOTIFICATED": "送金通知",
+    "RECONCILED": "下位の完了",
+    "DATA_ERROR": "情報エラー",
+    "FAILED": "支払いの失敗",
+    "REFUND": "払い戻し治療"
+  },
+  "orderStatus": {
+    "PROCESSING": "処理",
+    "CANCELED": "注文をキャンセルする",
+    "RETURN": "返品プロセス",
+    "CLOSED": "注文ケース"
+  },
+  "export": {
+    "title": "実行順序",
+    "subTitle": "結婚のグレード計算を提供し、すべての注文関連フィールド",
+    "fileType": {
+      "title": "アーカイブフォーマット",
+      "placeholder": "ファイル形式を選択してください"
+    },
+    "email": {
+      "title": "受信者のEメール",
+      "placeholder": "ダウンロードファイルのリンクを受信するメールボックスを入力してください"
+    },
+    "ok": "rem rem",
+    "cancel": "キャンセル"
+  }
+}

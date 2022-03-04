@@ -1,0 +1,68 @@
+{
+  "back": "retourner",
+  "never-end": "Ne jamais finir",
+  "status": {
+    "NOT_START": "n'a pas commencé",
+    "IS_ENDED": "plus de",
+    "IN_PROGRESS": "en cours"
+  },
+  "numberOfOrders": {
+    "title": "Numéro de commande valide",
+    "tooltip": "Les commandes annulées n'incortent pas"
+  },
+  "totalAmountForCommission": {
+    "title": "Montant total de règlement",
+    "tooltip": "La somme de la quantité de règlement d'ordre efficace"
+  },
+  "totalCommission": {
+    "title": "Total de bonus en cours d'exécution",
+    "tooltip": "Montant de règlement Ratio de catégorie X (%)"
+  },
+  "empty": "Aucune information de commande",
+  "order": {
+    "title": "Commande d'activités de promotion",
+    "export": "Remettre",
+    "orderNo": "Numéro de commande",
+    "createdAt": "Temps d'établissement",
+    "paymentStatus": "Statut du compte",
+    "orderStatus": "Statut de la commande",
+    "total": "Le montant total des commandes",
+    "freight": "Paiement",
+    "totalExcludeFreight": {
+      "title": "Montant du règlement",
+      "tooltip": "Commande Montant total - Paiement"
+    },
+    "commission": {
+      "title": "Prime",
+      "tooltip": "Montant de règlement X Ratio de gravité (%)"
+    }
+  },
+  "paymentStatus": {
+    "WAITING": "En attente de confirmation",
+    "NOTIFICATED": "Avis de remise",
+    "RECONCILED": "Achèvement subordonné",
+    "DATA_ERROR": "Erreur d'information",
+    "FAILED": "Échec du paiement",
+    "REFUND": "Traitement de remboursement"
+  },
+  "orderStatus": {
+    "PROCESSING": "Traitement",
+    "CANCELED": "annuler la commande",
+    "RETURN": "Processus de retour",
+    "CLOSED": "Cas d'ordre"
+  },
+  "export": {
+    "title": "Ordre courrant",
+    "subTitle": "Fournir un calcul de grade du mariage et de tous les champs liés à la commande",
+    "fileType": {
+      "title": "Format d'archive",
+      "placeholder": "Veuillez sélectionner un format de fichier"
+    },
+    "email": {
+      "title": "Destinataire E-mail",
+      "placeholder": "Veuillez entrer la boîte aux lettres qui reçoit le lien de fichier de téléchargement"
+    },
+    "ok": "Remettre",
+    "cancel": "Annuler"
+  }
+}

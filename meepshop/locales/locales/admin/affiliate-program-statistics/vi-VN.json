@@ -1,0 +1,68 @@
+{
+  "back": "trở về",
+  "never-end": "Không bao giờ kết thúc",
+  "status": {
+    "NOT_START": "đã không bắt đầu",
+    "IS_ENDED": "kết thúc",
+    "IN_PROGRESS": "trong tiến trình"
+  },
+  "numberOfOrders": {
+    "title": "Số thứ tự hợp lệ",
+    "tooltip": "Đơn đặt hàng bị hủy không kết hợp"
+  },
+  "totalAmountForCommission": {
+    "title": "Tổng số tiền giải quyết",
+    "tooltip": "Tổng số tiền giải quyết thứ tự hiệu quả"
+  },
+  "totalCommission": {
+    "title": "Chạy tiền thưởng Tổng cộng",
+    "tooltip": "Tỷ lệ thanh toán X-phân loại tỷ lệ (%)"
+  },
+  "empty": "Không có thông tin đặt hàng",
+  "order": {
+    "title": "Hoạt động khuyến mãi Đặt hàng",
+    "export": "Nhiệm vụ được giao",
+    "orderNo": "Thứ tự số",
+    "createdAt": "Thời gian thành lập",
+    "paymentStatus": "Tình trạng tài khoản",
+    "orderStatus": "Tình trạng đặt hàng",
+    "total": "Tổng số đơn đặt hàng",
+    "freight": "Sự chi trả",
+    "totalExcludeFreight": {
+      "title": "Lượng giải quyết",
+      "tooltip": "Đặt hàng Tổng số tiền - Thanh toán"
+    },
+    "commission": {
+      "title": "Tặng kem",
+      "tooltip": "Tỷ lệ thanh toán x tỷ lệ trọng lực (%)"
+    }
+  },
+  "paymentStatus": {
+    "WAITING": "chờ đợi sự xác nhận",
+    "NOTIFICATED": "Thông báo chuyển tiền",
+    "RECONCILED": "Hoàn thành cấp dưới",
+    "DATA_ERROR": "Lỗi thông tin",
+    "FAILED": "Thanh toán thất bại",
+    "REFUND": "Điều trị hoàn tiền"
+  },
+  "orderStatus": {
+    "PROCESSING": "Xử lý",
+    "CANCELED": "hủy đơn hàng",
+    "RETURN": "Quá trình hoàn trả",
+    "CLOSED": "Trường hợp đặt hàng"
+  },
+  "export": {
+    "title": "Chạy đơn hàng",
+    "subTitle": "Cung cấp một phép tính lớp của cuộc hôn nhân, và tất cả các lĩnh vực liên quan đến đơn hàng",
+    "fileType": {
+      "title": "Định dạng lưu trữ",
+      "placeholder": "Vui lòng chọn một định dạng tệp"
+    },
+    "email": {
+      "title": "Người nhận E-mail",
+      "placeholder": "Vui lòng nhập hộp thư nhận được liên kết tệp tải xuống"
+    },
+    "ok": "Nhiệm vụ được giao",
+    "cancel": "Hủy bỏ"
+  }
+}
