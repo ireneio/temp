@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.140 (2022-03-04)
+
+#### :rocket: New Feature
+
+- [#2172](https://github.com/meepshop/meep-lerna/pull/2172) 【功能】分潤系統 - 績效報表 - 後台 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`, `store`
+  - [#2179](https://github.com/meepshop/meep-lerna/pull/2179) Revert: 內部開單 - 商品列表顯示金額改拿 retailPrice ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.139 (2022-03-02)
 
 #### :rocket: New Feature
