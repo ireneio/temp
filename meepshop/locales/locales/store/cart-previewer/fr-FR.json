@@ -10,5 +10,6 @@
   "DISCONTINUED": "Arrêter",
   "NOT_AVAILABLE": "Pas ouvert à acheter",
   "OUT_OF_STOCK": "Rupture de stock",
-  "cart-updated": "Mettre à jour son panier"
+  "cart-updated": "Mettre à jour son panier",
+  "upselling-product": "Biens achetés"
 }

@@ -10,12 +10,22 @@ import { productVideoProductFragment } from '@meepshop/product-video/gqls';
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 import {
+  useAddUpsellingUserFragment,
   useAddUpsellingVariantFragment,
   useAddUpsellingLineItemFragment,
 } from './useAddUpselling';
 import { useVariantFragment } from './useVariant';
 
 // definition
+export const modalUserFragment = gql`
+  fragment modalUserFragment on User {
+    id
+    ...useAddUpsellingUserFragment
+  }
+
+  ${useAddUpsellingUserFragment}
+`;
+
 export const modalProductFragment = gql`
   fragment modalProductFragment on Product {
     id

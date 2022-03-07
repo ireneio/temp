@@ -9,8 +9,10 @@
   "not-found-content": "The number of purchasable items might surpass its limit or the format is invalid.",
   "more-options": "… or key in desired QTY",
   "gift": "Free Gift",
+  "upselling-product": "Purchase goods",
   "remove-product-from-cart": "The items in cart have been updated.",
   "update-product-in-cart": "The items in cart have been updated.",
   "LIMIT_EXCEEDED": "Exceeding the purchase quantity",
-  "MINIMUM_NOT_REACHED": "No minimum number of purchases"
+  "MINIMUM_NOT_REACHED": "No minimum number of purchases",
+  "upselling-over-limit": "Plus the purchase of goods to purchase the upper limit of {{Amount}}, please adjust the quantity and continue checkout"
 }

@@ -24,8 +24,10 @@
   "OUT_OF_STOCK-warning": "Hapus barang stok",
   "LIMIT_EXCEEDED": "Melebihi jumlah pembelian",
   "MINIMUM_NOT_REACHED": "Tidak ada jumlah pembelian minimum",
+  "upselling-product": "Beli barang",
   "upselling": {
     "title": "tekan",
+    "hint": "Barang apa pun untuk menambahkan item berikut untuk dibeli",
     "AVAILABLE": "Tambahkan ke troli",
     "OUT_OF_STOCK": "habis terjual",
     "LIMITED": "Memiliki hingga membeli batas atas"
@@ -36,6 +38,10 @@
     "LIMITED": "Memiliki hingga membeli batas atas",
     "NO_PRODUCTS": "Setiap item untuk menambahkan produk ini ke keranjang belanja",
     "MAX": "Telah mencapai batas atas"
+  },
+  "alert": {
+    "upselling-over-limit": "Ditambah pembelian barang untuk membeli batas atas {{amount}}, harap sesuaikan kuantitas dan lanjutkan checkout",
+    "only-upselling": "Plus Purchase tidak dapat dibeli secara terpisah, silakan periksa dengan produk lain."
   },
   "shipment": {
     "title": "Pilih Mode Pengiriman",

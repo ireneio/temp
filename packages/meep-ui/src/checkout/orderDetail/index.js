@@ -99,6 +99,8 @@ const { Item: FormItem } = Form;
       data?.computedCart?.computedLineItems.filter(
         ({ type }) => type !== 'GIFT',
       ) || [],
+    upsellingLimitPerOrder:
+      data?.viewer?.store?.activeUpsellingArea?.limitPerOrder || 0,
   };
 })
 @radium
@@ -264,7 +266,20 @@ export default class OrderDetail extends React.PureComponent {
         okText: t('confirm-go-to'),
         onOk: () => router.push('/'),
       });
-    } else if (!this.isTracked && computeOrderData.total) {
+      return;
+    }
+
+    if (!carts.some(item => item.type === 'PRODUCT')) {
+      this.isEmptyCart = true;
+      Modal.warning({
+        title: t('only-upselling'),
+        okText: t('confirm-go-to'),
+        onOk: () => router.push('/'),
+      });
+      return;
+    }
+
+    if (!this.isTracked && computeOrderData.total) {
       this.isTracked = true;
       adTrack.beginCheckout({
         products: products.map(({ productId, ...product }) => ({
@@ -338,9 +353,7 @@ export default class OrderDetail extends React.PureComponent {
       ),
       isChecking: false,
       loading: false,
-      productHasError: newProducts.some(
-        product => product?.type === 'product' && product?.error,
-      ),
+      productHasError: false,
     });
   };
 
@@ -358,7 +371,7 @@ export default class OrderDetail extends React.PureComponent {
       isSaveAsReceiverTemplate,
     } = this.state;
     const checkProductError = products.some(
-      product => product?.type === 'product' && product?.error,
+      product => product?.type !== 'gift' && product?.error,
     );
 
     if (checkProductError) {
@@ -488,6 +501,7 @@ export default class OrderDetail extends React.PureComponent {
       checkoutFields,
       cartLoading,
       carts,
+      upsellingLimitPerOrder,
     } = this.props;
     const {
       showDetail,
@@ -736,6 +750,7 @@ export default class OrderDetail extends React.PureComponent {
             })
           }
           isChoosenSipment={Boolean(chooseShipment)}
+          upsellingLimitPerOrder={upsellingLimitPerOrder}
         />
       </StyleRoot>
     );

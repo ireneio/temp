@@ -79,116 +79,130 @@ export default ({ productHasError, upsertCart }) => {
             variantId,
           },
         ) => (
-          <div
-            className={styles.title}
-            style={{
-              color: transformColor(colors[3]).alpha(
-                error !== 'NOT_AVAILABLE' ? 1 : 0.25,
-              ),
-            }}
-          >
-            {getLanguage(title)}
-
-            {!specs ? null : (
-              <div
+          <>
+            {type !== 'upselling_product' ? null : (
+              <span
+                className={styles.upselling}
                 style={{
-                  color: transformColor(colors[3]).alpha(
-                    error !== 'NOT_AVAILABLE' ? 0.65 : 0.25,
-                  ),
+                  color: colors[0],
+                  backgroundColor: colors[3],
                 }}
               >
-                {specs
-                  .map(({ title: specTitle }) => getLanguage(specTitle))
-                  .join('/')}
-              </div>
+                {t('upselling-product')}
+              </span>
             )}
 
-            {(activityInfo || []).length === 0 ? null : (
-              <div className={styles.tags}>
-                {activityInfo.map(({ id, title: activityTitle }) => (
-                  <Tag
-                    key={id}
-                    style={{
-                      color: transformColor(colors[3]).alpha(0.85),
-                      opacity: error !== 'NOT_AVAILABLE' ? 1 : 0.45,
-                    }}
-                    color={transformColor(colors[5]).alpha(0.3)}
-                  >
-                    <TagOutlined />
+            <div
+              className={styles.title}
+              style={{
+                color: transformColor(colors[3]).alpha(
+                  error !== 'NOT_AVAILABLE' ? 1 : 0.25,
+                ),
+              }}
+            >
+              {getLanguage(title)}
 
-                    <span>{getLanguage(activityTitle)}</span>
-                  </Tag>
-                ))}
-              </div>
-            )}
-
-            {type !== 'product' ? null : (
-              <>
+              {!specs ? null : (
                 <div
-                  className={error ? '' : styles.price}
-                  style={
-                    !error
-                      ? {}
-                      : {
-                          color: productHasError
-                            ? '#d0011b'
-                            : transformColor(colors[3]).alpha(0.25),
-                        }
-                  }
+                  style={{
+                    color: transformColor(colors[3]).alpha(
+                      error !== 'NOT_AVAILABLE' ? 0.65 : 0.25,
+                    ),
+                  }}
                 >
-                  {!error
-                    ? c(retailPrice * quantity)
-                    : {
-                        DISCONTINUED: t(
-                          `DISCONTINUED${!productHasError ? '' : '-warning'}`,
-                        ),
-                        NOT_AVAILABLE: t(
-                          `product-not-online${
-                            !productHasError ? '' : '-warning'
-                          }`,
-                        ),
-                        OUT_OF_STOCK: t(
-                          `product-sold-out${
-                            !productHasError ? '' : '-warning'
-                          }`,
-                        ),
-                      }[error] || ''}
+                  {specs
+                    .map(({ title: specTitle }) => getLanguage(specTitle))
+                    .join('/')}
                 </div>
+              )}
 
-                {['DISCONTINUED', 'NOT_AVAILABLE', 'OUT_OF_STOCK'].includes(
-                  error,
-                ) ? null : (
-                  <>
-                    <ProductAmountSelector
-                      className={`${styles.select} ${styles.mobile}`}
-                      variant={variant}
-                      value={quantity}
-                      onChange={newQuantity => {
-                        changeProduct({
-                          productId,
-                          quantity: newQuantity - quantity,
-                          variantId,
-                        });
+              {(activityInfo || []).length === 0 ? null : (
+                <div className={styles.tags}>
+                  {activityInfo.map(({ id, title: activityTitle }) => (
+                    <Tag
+                      key={id}
+                      style={{
+                        color: transformColor(colors[3]).alpha(0.85),
+                        opacity: error !== 'NOT_AVAILABLE' ? 1 : 0.45,
                       }}
-                    />
+                      color={transformColor(colors[5]).alpha(0.3)}
+                    >
+                      <TagOutlined />
 
-                    {!error ? null : (
-                      <div className={`${styles.hasError} ${styles.mobile}`}>
-                        {t(error)}
-                      </div>
-                    )}
-                  </>
-                )}
-              </>
-            )}
-          </div>
+                      <span>{getLanguage(activityTitle)}</span>
+                    </Tag>
+                  ))}
+                </div>
+              )}
+
+              {type === 'gift' ? null : (
+                <>
+                  <div
+                    className={error ? '' : styles.price}
+                    style={
+                      !error
+                        ? {}
+                        : {
+                            color: productHasError
+                              ? '#d0011b'
+                              : transformColor(colors[3]).alpha(0.25),
+                          }
+                    }
+                  >
+                    {!error
+                      ? c(retailPrice * quantity)
+                      : {
+                          DISCONTINUED: t(
+                            `DISCONTINUED${!productHasError ? '' : '-warning'}`,
+                          ),
+                          NOT_AVAILABLE: t(
+                            `product-not-online${
+                              !productHasError ? '' : '-warning'
+                            }`,
+                          ),
+                          OUT_OF_STOCK: t(
+                            `product-sold-out${
+                              !productHasError ? '' : '-warning'
+                            }`,
+                          ),
+                        }[error] || ''}
+                  </div>
+
+                  {['DISCONTINUED', 'NOT_AVAILABLE', 'OUT_OF_STOCK'].includes(
+                    error,
+                  ) ? null : (
+                    <>
+                      <ProductAmountSelector
+                        className={`${styles.select} ${styles.mobile}`}
+                        variant={variant}
+                        value={quantity}
+                        onChange={newQuantity => {
+                          changeProduct({
+                            productId,
+                            quantity: newQuantity - quantity,
+                            variantId,
+                          });
+                        }}
+                      />
+
+                      {!error || error === 'EXCEED_LIMIT_PER_ORDER' ? null : (
+                        <div className={`${styles.hasError} ${styles.mobile}`}>
+                          {t(error)}
+                        </div>
+                      )}
+                    </>
+                  )}
+                </>
+              )}
+            </div>
+          </>
         ),
       },
       {
         dataIndex: ['quantity'],
         render: (quantity, { error, type, productId, variantId, variant }) => {
           if (
-            type !== 'product' ||
+            type === 'gift' ||
             ['DISCONTINUED', 'NOT_AVAILABLE', 'OUT_OF_STOCK'].includes(error)
           )
             return null;
@@ -208,7 +222,9 @@ export default ({ productHasError, upsertCart }) => {
                 }}
               />
 
-              {!error ? null : <div>{t(error)}</div>}
+              {!error || error === 'EXCEED_LIMIT_PER_ORDER' ? null : (
+                <div>{t(error)}</div>
+              )}
             </div>
           );
         },
@@ -217,13 +233,13 @@ export default ({ productHasError, upsertCart }) => {
         dataIndex: ['quantity'],
         render: (quantity, { type, productId, variantId }) => (
           <div
-            className={type === 'product' ? '' : styles.gift}
+            className={type !== 'gift' ? '' : styles.gift}
             style={{
-              color: type === 'product' ? colors[2] : colors[3],
+              color: type !== 'gift' ? colors[2] : colors[3],
             }}
           >
             {(() => {
-              if (type === 'product')
+              if (type !== 'gift')
                 return (
                   <CartDeleteIcon
                     className={styles.cartDelete}

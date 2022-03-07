@@ -15,6 +15,7 @@
   "free-shipment": "free shipping",
   "subtotal": "Subtotal",
   "cart-is-empty": "Your cart is empty, please return to the store and continue shopping.",
+  "only-upselling": "Plus purchase cannot be purchased separately, please check with other products.",
   "go-back-to-cart": "Return to shopping cart",
   "amount-details": "Item",
   "total-payment-amount": "Total amount of payment",

@@ -16,19 +16,26 @@ import styles from './styles/product.less';
 
 // graphql typescript
 import {
+  productUserFragment as productUserFragmentType,
   productProductFragment as productProductFragmentType,
   productLineItemFragment as productLineItemFragmentType,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { modalProductFragment, modalLineItemFragment } from './gqls/modal';
 import {
+  modalUserFragment,
+  modalProductFragment,
+  modalLineItemFragment,
+} from './gqls/modal';
+import {
+  useAddToCartUserFragment,
   useAddToCartProductFragment,
   useAddToCartLineItemFragment,
 } from './gqls/useAddToCart';
 
 // typescript definition
 interface PropsType {
+  viewer: productUserFragmentType;
   product: productProductFragmentType;
   cartItems: (productLineItemFragmentType | null)[];
   isOverLimit: boolean;
@@ -37,13 +44,14 @@ interface PropsType {
 
 // definition
 export default React.memo(
-  ({ product, cartItems, isOverLimit, isWithProducts }: PropsType) => {
+  ({ viewer, product, cartItems, isOverLimit, isWithProducts }: PropsType) => {
     const { t } = useTranslation('cart');
     const getLanguage = useGetLanguage();
     const colors = useContext(ColorsContext);
     const { c } = useContext(CurrencyContext);
     const [visible, setVisible] = useState(false);
     const { status, addToCart } = useAddToCart({
+      viewer: filter(useAddToCartUserFragment, viewer),
       product: filter(useAddToCartProductFragment, product),
       cartItems: filter(useAddToCartLineItemFragment, cartItems),
       setVisible,
@@ -98,6 +106,7 @@ export default React.memo(
 
         {!visible ? null : (
           <Modal
+            viewer={filter(modalUserFragment, viewer)}
             product={filter(modalProductFragment, product)}
             cartItems={filter(modalLineItemFragment, cartItems)}
             onCancel={() => setVisible(false)}

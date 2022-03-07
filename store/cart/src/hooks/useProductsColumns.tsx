@@ -110,6 +110,14 @@ export default (
 
             return (
               <>
+                {type !== 'UPSELLING_PRODUCT' ? null : (
+                  <div>
+                    <span className={styles.upselling}>
+                      {t('upselling-product')}
+                    </span>
+                  </div>
+                )}
+
                 <Switch
                   isTrue={!disabled}
                   render={children => (
@@ -153,7 +161,7 @@ export default (
 
                 {/** mobile view */}
                 <div className={styles.mobile}>
-                  {type !== 'PRODUCT' ? (
+                  {type === 'GIFT' ? (
                     <div className={styles.price}>{t('gift')}</div>
                   ) : (
                     <>
@@ -193,7 +201,9 @@ export default (
                             }
                           />
 
-                          {status === 'PURCHASABLE' ? null : (
+                          {['PURCHASABLE', 'EXCEED_LIMIT_PER_ORDER'].includes(
+                            status,
+                          ) ? null : (
                             <div className={styles.amountError}>
                               {t(status)}
                             </div>
@@ -218,7 +228,7 @@ export default (
             unitPrice: useProductsColumnsLineItemFragmentType['unitPrice'],
             { type, status },
           ) => {
-            if (type !== 'PRODUCT') return t('gift');
+            if (type === 'GIFT') return t('gift');
 
             if (status !== 'PURCHASABLE') return null;
 
@@ -235,7 +245,7 @@ export default (
             quantity: useProductsColumnsLineItemFragmentType['quantity'],
             { type, variant, status, productId, variantId },
           ) => {
-            if (type !== 'PRODUCT') return null;
+            if (type === 'GIFT') return null;
 
             if (
               ['DISCONTINUED', 'NOT_AVAILABLE', 'OUT_OF_STOCK'].includes(status)
@@ -266,7 +276,9 @@ export default (
                   }
                 />
 
-                {status === 'PURCHASABLE' ? null : (
+                {['PURCHASABLE', 'EXCEED_LIMIT_PER_ORDER'].includes(
+                  status,
+                ) ? null : (
                   <div className={styles.amountError}>{t(status)}</div>
                 )}
               </>
@@ -284,7 +296,7 @@ export default (
             _totalPrice: number,
             { type, unitPrice, quantity, status },
           ) =>
-            type !== 'PRODUCT' || status !== 'PURCHASABLE'
+            type === 'GIFT' || status !== 'PURCHASABLE'
               ? null
               : c((unitPrice || 0) * (quantity || 0)),
         },
@@ -296,7 +308,7 @@ export default (
             quantity: useProductsColumnsLineItemFragmentType['quantity'],
             { type, productId, variantId },
           ) =>
-            type !== 'PRODUCT' ? null : (
+            type === 'GIFT' ? null : (
               <CloseOutlined
                 className={styles.delete}
                 onClick={() =>
@@ -317,6 +329,10 @@ export default (
           box-shadow: 0 1px 3px 0 ${transformColor(colors[3]).alpha(
             0.08,
           )} !important;
+        }
+        .${styles.upselling} {
+          color: ${colors[0]};
+          background-color: ${colors[3]};
         }
         .${styles.tags} > span {
           background-color: ${transformColor(colors[3]).alpha(0.1)};

@@ -6,6 +6,8 @@ import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
 
 import { priceComputedCartFragment } from './price';
 import { productsLineItemFragment } from './products';
+import { upsellingLineItemFragment } from '../upselling/gqls';
+import { useCheckErrorsFragment } from './useCheckErrors';
 
 // definition
 export const useComputedCartFragment = gql`
@@ -24,6 +26,8 @@ export const computedCart = gql`
         computedLineItems {
           id
           ...productsLineItemFragment
+          ...upsellingLineItemFragment
+          ...useCheckErrorsFragment
         }
         ...priceComputedCartFragment
       }
@@ -36,4 +40,6 @@ export const computedCart = gql`
 
   ${priceComputedCartFragment}
   ${productsLineItemFragment}
+  ${upsellingLineItemFragment}
+  ${useCheckErrorsFragment}
 `;

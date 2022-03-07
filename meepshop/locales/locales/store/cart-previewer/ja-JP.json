@@ -10,5 +10,6 @@
   "DISCONTINUED": "やめる",
   "NOT_AVAILABLE": "購入に開かないで",
   "OUT_OF_STOCK": "在庫切れ",
-  "cart-updated": "ショッピングカートを更新します"
+  "cart-updated": "ショッピングカートを更新します",
+  "upselling-product": "商品を購入する"
 }

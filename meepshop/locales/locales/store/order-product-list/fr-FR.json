@@ -9,8 +9,10 @@
   "not-found-content": "Le nombre d'articles achetables peut dépasser sa limite ou le format n'est pas valide.",
   "more-options": "… Ou saisissez la quantité désirée",
   "gift": "Cadeau gratuit",
+  "upselling-product": "Biens achetés",
   "remove-product-from-cart": "Les articles du panier ont été mis à jour.",
   "update-product-in-cart": "Les articles du panier ont été mis à jour.",
   "LIMIT_EXCEEDED": "Dépasser la quantité d'achat",
-  "MINIMUM_NOT_REACHED": "Pas de nombre minimum d'achats"
+  "MINIMUM_NOT_REACHED": "Pas de nombre minimum d'achats",
+  "upselling-over-limit": "Plus l'achat de marchandises à acheter la limite supérieure de {{montant}}, veuillez ajuster la quantité et continuer la commande"
 }

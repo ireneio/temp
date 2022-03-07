@@ -24,8 +24,10 @@
   "OUT_OF_STOCK-warning": "Veuillez supprimer des marchandises en rupture de stock",
   "LIMIT_EXCEEDED": "Dépasser la quantité d'achat",
   "MINIMUM_NOT_REACHED": "Pas de nombre minimum d'achats",
+  "upselling-product": "Biens achetés",
   "upselling": {
     "title": "presse",
+    "hint": "Tout article pour ajouter les éléments suivants à acheter",
     "AVAILABLE": "Ajouter au panier",
     "OUT_OF_STOCK": "épuisé",
     "LIMITED": "A jusqu'à acheter la limite supérieure"
@@ -36,6 +38,10 @@
     "LIMITED": "A jusqu'à acheter la limite supérieure",
     "NO_PRODUCTS": "Tout article pour ajouter ce produit au panier",
     "MAX": "A atteint la limite supérieure"
+  },
+  "alert": {
+    "upselling-over-limit": "Plus l'achat de marchandises à acheter la limite supérieure de {{amount}}, veuillez ajuster la quantité et continuer la commande",
+    "only-upselling": "Plus l'achat ne peut pas être acheté séparément, veuillez vérifier avec d'autres produits."
   },
   "shipment": {
     "title": "Sélectionnez le mode d'expédition",

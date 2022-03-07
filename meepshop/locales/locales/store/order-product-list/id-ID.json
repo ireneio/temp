@@ -9,8 +9,10 @@
   "not-found-content": "Jumlah barang yang dapat dibeli mungkin melebihi batasnya atau formatnya tidak valid.",
   "more-options": "... atau masukkan QTY yang diinginkan",
   "gift": "Hadiah gratis",
+  "upselling-product": "Beli barang",
   "remove-product-from-cart": "Item dalam keranjang telah diperbarui.",
   "update-product-in-cart": "Item dalam keranjang telah diperbarui.",
   "LIMIT_EXCEEDED": "Melebihi jumlah pembelian",
-  "MINIMUM_NOT_REACHED": "Tidak ada jumlah pembelian minimum"
+  "MINIMUM_NOT_REACHED": "Tidak ada jumlah pembelian minimum",
+  "upselling-over-limit": "Ditambah pembelian barang untuk membeli batas atas {{jumlah}}, harap sesuaikan kuantitas dan lanjutkan checkout"
 }

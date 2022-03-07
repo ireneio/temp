@@ -6,10 +6,14 @@ import { languageType } from '@meepshop/locales';
 import React, { useMemo, useContext } from 'react';
 import { filter } from 'graphql-anywhere';
 
-import { Currency as CurrencyContext } from '@meepshop/context';
+import {
+  Colors as ColorsContext,
+  Currency as CurrencyContext,
+} from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
-
 import Thumbnail from '@meepshop/thumbnail';
+
+import styles from '../styles/useColumns.less';
 
 // graphql typescript
 import { useColumnsMemberOrderFragment as useColumnsMemberOrderFragmentType } from '@meepshop/types/gqls/store';
@@ -25,6 +29,7 @@ export default (): ColumnProps<useColumnsMemberOrderFragmentType>[] => {
     i18n: { language },
   } = useTranslation('member-order');
   const { c } = useContext(CurrencyContext);
+  const colors = useContext(ColorsContext);
 
   return useMemo(
     () => [
@@ -45,6 +50,19 @@ export default (): ColumnProps<useColumnsMemberOrderFragmentType>[] => {
           { specs, type, stock, quantity }: useColumnsMemberOrderFragmentType,
         ) => (
           <>
+            {type !== 'upselling_product' ? null : (
+              <div className={styles.tag}>
+                <span
+                  style={{
+                    color: colors[0],
+                    backgroundColor: colors[3],
+                  }}
+                >
+                  {t('product.upselling-product')}
+                </span>
+              </div>
+            )}
+
             {!value ? null : value[language as languageType] || value.zh_TW}
 
             <div>
@@ -111,6 +129,6 @@ export default (): ColumnProps<useColumnsMemberOrderFragmentType>[] => {
             : c((value || 0) * (quantity || 1)),
       },
     ],
-    [language, t, c],
+    [t, colors, language, c],
   );
 };

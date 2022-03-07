@@ -24,8 +24,10 @@
   "OUT_OF_STOCK-warning": "在庫品から削除してください",
   "LIMIT_EXCEEDED": "購入数量を超えています",
   "MINIMUM_NOT_REACHED": "最小購入数はありません",
+  "upselling-product": "商品を購入する",
   "upselling": {
     "title": "押す",
+    "hint": "以下の項目を購入するために追加する項目",
     "AVAILABLE": "カートに追加",
     "OUT_OF_STOCK": "完売",
     "LIMITED": "上限を購入する必要があります"
@@ -36,6 +38,10 @@
     "LIMITED": "上限を購入する必要があります",
     "NO_PRODUCTS": "ショッピングカートにこの製品を追加するためのアイテム",
     "MAX": "上限に達しました"
+  },
+  "alert": {
+    "upselling-over-limit": "加えて{{amount}}の上限を購入するための商品の購入は、数量を調整してチェックアウトを続けてください",
+    "only-upselling": "加算は別途購入できませんので、他の製品に確認してください。"
   },
   "shipment": {
     "title": "配送モードを選択してください",

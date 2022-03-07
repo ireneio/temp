@@ -9,8 +9,10 @@
   "not-found-content": "最大購買量をオーバーしているか様式が合っていません",
   "more-options": "…あるいは、自分で更に入力して下さい",
   "gift": "プレゼント",
+  "upselling-product": "商品を購入する",
   "remove-product-from-cart": "カート内の商品数量を変更しました",
   "update-product-in-cart": "カート内の商品数量を変更しました",
   "LIMIT_EXCEEDED": "購入数量を超えています",
-  "MINIMUM_NOT_REACHED": "最小購入数はありません"
+  "MINIMUM_NOT_REACHED": "最小購入数はありません",
+  "upselling-over-limit": "加えて{{金額}}の上限を購入するための商品の購入は、数量を調整してチェックアウトを続けてください"
 }

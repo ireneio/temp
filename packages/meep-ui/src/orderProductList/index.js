@@ -4,6 +4,7 @@ import { Table, Skeleton } from 'antd';
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 import { emptyCart_react as EmptyCart } from '@meepshop/images';
+import Alert from '@store/alert';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 
@@ -24,6 +25,7 @@ export default enhancer(
       productHasError,
       loading,
       upsertCart,
+      upsellingLimitPerOrder,
     }) => {
       const { t } = useTranslation('order-product-list');
       const colors = useContext(ColorsContext);
@@ -50,6 +52,20 @@ export default enhancer(
 
       return (
         <div className={`${styles.root} ${className || ''}`} style={style}>
+          {!products.some(
+            product => product.error === 'EXCEED_LIMIT_PER_ORDER',
+          ) ? null : (
+            <div className={styles.alert}>
+              <Alert
+                type="error"
+                message={t('upselling-over-limit', {
+                  amount: upsellingLimitPerOrder,
+                })}
+                showIcon
+              />
+            </div>
+          )}
+
           <div
             className={`${styles.productList} ${
               products.length !== 0 ? '' : styles.empty

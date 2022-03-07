@@ -9,7 +9,7 @@ import {
 
 // typescript definition
 interface PropsType {
-  upselling: useCheckLimitActiveUpsellingAreaFragmentType;
+  upselling: useCheckLimitActiveUpsellingAreaFragmentType | null;
   cartItems: (useCheckLimitLineItemFragmentType | null)[];
 }
 
@@ -24,17 +24,17 @@ export default ({ upselling, cartItems }: PropsType): ReturnType => {
     () =>
       cartItems.reduce(
         (prev, item) =>
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore FIXME: wait for schema
-          item?.type === 'UPSELLING' ? prev + item.quantity : prev,
+          item?.type === 'UPSELLING_PRODUCT'
+            ? prev + (item.quantity || 0)
+            : prev,
         0,
       ),
     [cartItems],
   );
   return {
     isOverLimit:
-      upselling.hasLimitPerOrder &&
-      upsellingQuantityInCart >= (upselling.limitPerOrder || 0),
+      Boolean(upselling?.hasLimitPerOrder) &&
+      upsellingQuantityInCart >= (upselling?.limitPerOrder || 0),
     isWithProducts: useMemo(
       () => cartItems.some(item => item?.type === 'PRODUCT'),
       [cartItems],

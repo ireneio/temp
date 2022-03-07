@@ -96,6 +96,14 @@ export default (
 
             return (
               <>
+                {type !== 'UPSELLING_PRODUCT' ? null : (
+                  <div>
+                    <span className={styles.upselling}>
+                      {t('upselling-product')}
+                    </span>
+                  </div>
+                )}
+
                 <Switch
                   isTrue={!disabled}
                   render={children => (
@@ -137,7 +145,7 @@ export default (
                   </div>
                 )}
 
-                {type !== 'PRODUCT' ? (
+                {type === 'GIFT' ? (
                   <div className={styles.price}>{t('gift')}</div>
                 ) : (
                   <>
@@ -173,7 +181,7 @@ export default (
             quantity: useProductsColumnsInPreviewerLineItemFragmentType['quantity'],
             { type, productId, variantId },
           ) =>
-            type !== 'PRODUCT' ? null : (
+            type === 'GIFT' ? null : (
               <CloseOutlined
                 className={styles.delete}
                 onClick={() =>
@@ -192,6 +200,10 @@ export default (
         .${styles.img} {
           border: 1px solid ${transformColor(colors[3]).alpha(0.1)};
           box-shadow: 0 1px 3px 0 ${transformColor(colors[3]).alpha(0.08)};
+        }
+        .${styles.upselling} {
+          color: ${colors[0]};
+          background-color: ${colors[3]};
         }
         .${styles.specs} {
           color: ${transformColor(colors[3]).alpha(0.8)};

@@ -70,8 +70,13 @@ const create = (
 ): ApolloClient<NormalizedCacheObject> => {
   const cache = new InMemoryCache({
     ...cacheConfig,
-    dataIdFromObject: (data: { id: string }) =>
-      data.id || defaultDataIdFromObject(data),
+    dataIdFromObject: (data: { id: string; __typename: string }) => {
+      const { id, __typename } = data;
+
+      if (__typename === 'GalleryImage') return `${__typename}:${id}`;
+
+      return id || defaultDataIdFromObject(data);
+    },
   }).restore(initialState || {});
   const logger = initialLogger(loggerInfo);
 

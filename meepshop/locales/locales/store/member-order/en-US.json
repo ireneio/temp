@@ -9,6 +9,7 @@
     "price": "Price",
     "subtotal": "Price",
     "gift": "Free Gift",
+    "upselling-product": "Purchase goods",
     "no-gift": "Out of Stock"
   },
   "sheet": {

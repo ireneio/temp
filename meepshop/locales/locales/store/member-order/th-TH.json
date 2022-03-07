@@ -9,6 +9,7 @@
     "price": "ราคา",
     "subtotal": "ราคา",
     "gift": "ของขวัญฟรี",
+    "upselling-product": "ซื้อสินค้า",
     "no-gift": "สินค้าหมด"
   },
   "sheet": {

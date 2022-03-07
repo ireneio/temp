@@ -10,5 +10,6 @@
   "DISCONTINUED": "หยุด",
   "NOT_AVAILABLE": "ไม่เปิดให้ซื้อ",
   "OUT_OF_STOCK": "สินค้าหมด",
-  "cart-updated": "อัพเดทตะกร้าสินค้า"
+  "cart-updated": "อัพเดทตะกร้าสินค้า",
+  "upselling-product": "ซื้อสินค้า"
 }

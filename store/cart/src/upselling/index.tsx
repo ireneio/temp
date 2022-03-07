@@ -21,12 +21,13 @@ import { RESPONSIVE } from './constants';
 
 // graphql typescript
 import {
-  upsellingActiveUpsellingAreaFragment as upsellingActiveUpsellingAreaFragmentType,
+  upsellingUserFragment as upsellingUserFragmentType,
   upsellingLineItemFragment as upsellingLineItemFragmentType,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
 import {
+  productUserFragment,
   productProductFragment,
   productLineItemFragment,
 } from './gqls/product';
@@ -37,8 +38,8 @@ import {
 
 // typescript definition
 interface PropsType {
-  upselling: upsellingActiveUpsellingAreaFragmentType;
-  cartItems: (upsellingLineItemFragmentType | null)[];
+  viewer: upsellingUserFragmentType;
+  cartItems: upsellingLineItemFragmentType[];
 }
 
 // definition
@@ -59,22 +60,32 @@ const CustomArrow = ({
   </span>
 );
 
-export default React.memo(({ upselling, cartItems }: PropsType) => {
+export default React.memo(({ viewer, cartItems }: PropsType) => {
   const { t } = useTranslation('cart');
   const colors = useContext(ColorsContext);
   const { isMobile } = useContext(SensorContext);
   const { isOverLimit, isWithProducts } = useCheckLimit({
-    upselling: filter(useCheckLimitActiveUpsellingAreaFragment, upselling),
+    upselling: filter(
+      useCheckLimitActiveUpsellingAreaFragment,
+      viewer.store?.activeUpsellingArea || null,
+    ),
     cartItems: filter(useCheckLimitLineItemFragment, cartItems),
   });
-  const { products } = upselling;
+  const activeUpsellingArea = viewer.store?.activeUpsellingArea;
+  const products = activeUpsellingArea?.products;
+
+  if (!activeUpsellingArea || !products) return null;
 
   return (
     <>
       <div className={styles.root}>
         <div className={styles.title}>
-          {upselling.title || t('upselling.title')}
+          {activeUpsellingArea.title || t('upselling.title')}
         </div>
+
+        {isWithProducts ? null : (
+          <div className={styles.hint}>{t('upselling.hint')}</div>
+        )}
 
         <Carousel
           className={styles.products}
@@ -92,6 +103,7 @@ export default React.memo(({ upselling, cartItems }: PropsType) => {
             !product ? null : (
               <Product
                 key={product.id}
+                viewer={filter(productUserFragment, viewer)}
                 product={filter(productProductFragment, product)}
                 cartItems={filter(productLineItemFragment, cartItems)}
                 isOverLimit={isOverLimit}
@@ -109,7 +121,8 @@ export default React.memo(({ upselling, cartItems }: PropsType) => {
               background-color: ${transformColor(colors[3]).alpha(0.08)};
             }
 
-            .${styles.title} {
+            .${styles.title},
+            .${styles.hint} {
               color: ${colors[3]};
             }
 

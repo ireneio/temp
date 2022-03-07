@@ -9,8 +9,10 @@
   "not-found-content": "超過最大購買量或格式不符",
   "more-options": "⋯⋯或自行輸入更多",
   "gift": "贈品",
+  "upselling-product": "加購品",
   "remove-product-from-cart": "更新購物車完成",
   "update-product-in-cart": "更新購物車完成",
   "LIMIT_EXCEEDED": "超出可購買數量",
-  "MINIMUM_NOT_REACHED": "未達最低購買數量"
+  "MINIMUM_NOT_REACHED": "未達最低購買數量",
+  "upselling-over-limit": "加購商品購買數量上限為 {{amount}} 個，請您調整數量再繼續結帳"
 }

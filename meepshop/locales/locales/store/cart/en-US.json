@@ -24,8 +24,10 @@
   "OUT_OF_STOCK-warning": "Please remove out of stock goods",
   "LIMIT_EXCEEDED": "Exceeding the purchase quantity",
   "MINIMUM_NOT_REACHED": "No minimum number of purchases",
+  "upselling-product": "Purchase goods",
   "upselling": {
     "title": "Press",
+    "hint": "Any item to add the following items to buy",
     "AVAILABLE": "add to the cart",
     "OUT_OF_STOCK": "sold out",
     "LIMITED": "Has up to purchase upper limit"
@@ -36,6 +38,10 @@
     "LIMITED": "Has up to purchase upper limit",
     "NO_PRODUCTS": "Any item to add this product to the shopping cart",
     "MAX": "Has reached the upper limit"
+  },
+  "alert": {
+    "upselling-over-limit": "Plus the purchase of goods to purchase the upper limit of {{amount}}, please adjust the quantity and continue checkout",
+    "only-upselling": "Plus purchase cannot be purchased separately, please check with other products."
   },
   "shipment": {
     "title": "Select shipping mode",

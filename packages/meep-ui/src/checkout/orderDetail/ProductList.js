@@ -8,7 +8,6 @@ import { enhancer } from 'layout/DecoratorsRoot';
 import { COLOR_TYPE } from 'constants/propTypes';
 import { PHONE_MEDIA } from 'constants/media';
 import { loadAnimation } from 'utils/addAnimation';
-
 import OrderProductList from 'orderProductList';
 
 import * as styles from './styles/productList';
@@ -54,6 +53,7 @@ export default class ProductList extends React.PureComponent {
       isChoosenSipment,
       closeDetail,
       loading,
+      upsellingLimitPerOrder,
     } = this.props;
 
     return (
@@ -84,6 +84,7 @@ export default class ProductList extends React.PureComponent {
           productHasError={productHasError}
           isChoosenSipment={isChoosenSipment}
           loading={loading}
+          upsellingLimitPerOrder={upsellingLimitPerOrder}
         />
       </StyleRoot>
     );

@@ -1,15 +1,22 @@
 // import
 import { useMemo, useCallback } from 'react';
-import { emptyFunction } from 'fbjs';
+import { filter } from 'graphql-anywhere';
+
+import { useCart } from '@meepshop/hooks';
 
 // graphql typescript
 import {
+  useAddToCartUserFragment as useAddToCartUserFragmentType,
   useAddToCartProductFragment as useAddToCartProductFragmentType,
   useAddToCartLineItemFragment as useAddToCartLineItemFragmentType,
 } from '@meepshop/types/gqls/store';
 
+// graphql import
+import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
+
 // typescript definition
 interface PropsType {
+  viewer: useAddToCartUserFragmentType;
   product: useAddToCartProductFragmentType;
   cartItems: (useAddToCartLineItemFragmentType | null)[];
   setVisible: (visible: boolean) => void;
@@ -23,11 +30,13 @@ interface ReturnType {
 
 // definition
 export default ({
+  viewer,
   product,
   cartItems,
   setVisible,
   isOverLimit,
 }: PropsType): ReturnType => {
+  const { upsertCart } = useCart(filter(useCartFragment, viewer));
   const availableQuantity =
     useMemo(
       () =>
@@ -61,9 +70,15 @@ export default ({
       if (product.specs?.length) {
         setVisible(true);
       } else {
-        // update cart
-        emptyFunction();
+        const variant = product.variants?.[0];
+        // SHOULD_NOT_BE_NULL
+        upsertCart({
+          __typename: 'CartItem' as const,
+          productId: product.id || 'null-id',
+          quantity: variant?.currentMinPurchasableQty || 0,
+          variantId: variant?.id || 'null-id',
+        });
       }
-    }, [availableQuantity, product, setVisible, isOverLimit]),
+    }, [isOverLimit, availableQuantity, product, setVisible, upsertCart]),
   };
 };

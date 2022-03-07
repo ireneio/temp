@@ -24,8 +24,10 @@
   "OUT_OF_STOCK-warning": "Vui lòng loại bỏ hàng hóa chứng khoán",
   "LIMIT_EXCEEDED": "Vượt quá số lượng mua",
   "MINIMUM_NOT_REACHED": "Không có số lượng mua tối thiểu",
+  "upselling-product": "Thánh toán đồ gia dụng",
   "upselling": {
     "title": "nhấn",
+    "hint": "Bất kỳ mục nào để thêm các mục sau để mua",
     "AVAILABLE": "Thêm vào giỏ hàng",
     "OUT_OF_STOCK": "bán hết",
     "LIMITED": "Lên để mua giới hạn trên"
@@ -36,6 +38,10 @@
     "LIMITED": "Lên để mua giới hạn trên",
     "NO_PRODUCTS": "Bất kỳ mục nào để thêm sản phẩm này vào giỏ hàng",
     "MAX": "Đã đạt đến giới hạn trên"
+  },
+  "alert": {
+    "upselling-over-limit": "Cộng với việc mua hàng hóa để mua giới hạn trên của {{amount}}, vui lòng điều chỉnh số lượng và tiếp tục thanh toán",
+    "only-upselling": "Cộng với mua hàng không thể được mua riêng, vui lòng kiểm tra với các sản phẩm khác."
   },
   "shipment": {
     "title": "Chọn Chế độ vận chuyển",

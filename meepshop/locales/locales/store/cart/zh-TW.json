@@ -24,8 +24,10 @@
   "OUT_OF_STOCK-warning": "請移除缺貨商品",
   "LIMIT_EXCEEDED": "超出可購買數量",
   "MINIMUM_NOT_REACHED": "未達最低購買數量",
+  "upselling-product": "加購品",
   "upselling": {
     "title": "加購商品",
+    "hint": "任一商品加入購物車即可選購下列商品",
     "AVAILABLE": "加入購物車",
     "OUT_OF_STOCK": "已售完",
     "LIMITED": "已達加購上限"
@@ -36,6 +38,10 @@
     "LIMITED": "已達加購上限",
     "NO_PRODUCTS": "任一商品加入購物車即可選購此商品",
     "MAX": "已達購買上限"
+  },
+  "alert": {
+    "upselling-over-limit": "加購商品購買數量上限為 {{amount}} 個，請您調整數量再繼續結帳",
+    "only-upselling": "加購品無法單獨購買，請與其他商品一同結帳"
   },
   "shipment":{
     "title": "選擇運送方式",

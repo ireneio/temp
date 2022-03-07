@@ -15,6 +15,7 @@
   "free-shipment": "免運費",
   "subtotal": "小計",
   "cart-is-empty": "購物車內沒有商品，請返回商店繼續購物",
+  "only-upselling": "加購品無法單獨購買，請與其他商品一同結帳",
   "go-back-to-cart": "返回購物車",
   "amount-details": "金額細項",
   "total-payment-amount": "付款總金額",

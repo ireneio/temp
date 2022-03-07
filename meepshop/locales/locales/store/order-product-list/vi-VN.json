@@ -9,8 +9,10 @@
   "not-found-content": "Vượt quá lượng mua lớn nhất hoặc không phù hợp định dạng",
   "more-options": "…hoặc tự nhập thêm",
   "gift": "tặng phẩm",
+  "upselling-product": "Thánh toán đồ gia dụng",
   "remove-product-from-cart": "Hoàn tất cập nhật giỏ hàng",
   "update-product-in-cart": "Hoàn tất cập nhật giỏ hàng",
   "LIMIT_EXCEEDED": "Vượt quá số lượng mua",
-  "MINIMUM_NOT_REACHED": "Không có số lượng mua tối thiểu"
+  "MINIMUM_NOT_REACHED": "Không có số lượng mua tối thiểu",
+  "upselling-over-limit": "Cộng với việc mua hàng hóa để mua giới hạn trên của {{}}, vui lòng điều chỉnh số lượng và tiếp tục thanh toán"
 }

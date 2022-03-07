@@ -10,5 +10,6 @@
   "DISCONTINUED": "Stop",
   "NOT_AVAILABLE": "Not open to buy",
   "OUT_OF_STOCK": "Out of stock",
-  "cart-updated": "Update shopping cart"
+  "cart-updated": "Update shopping cart",
+  "upselling-product": "Purchase goods"
 }

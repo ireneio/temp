@@ -13,8 +13,10 @@ import CheckoutSteps from '@store/checkout-steps';
 import './styles/mixin.less';
 import Empty from './Empty';
 import Login from './Login';
+import Alert from './Alert';
 import Products from './Products';
 import Price from './Price';
+import Upselling from './upselling';
 import useComputedCart from './hooks/useComputedCart';
 import useCheckErrors from './hooks/useCheckErrors';
 import styles from './styles/index.less';
@@ -24,12 +26,18 @@ import { getCart as getCartType } from '@meepshop/types/gqls/store';
 
 // graphql import
 import { getCart } from './gqls';
-import { useComputedCartFragment } from './gqls/useComputedCart';
+import { alertFragment } from './gqls/alert';
 import {
   productsUserFragment,
   productsLineItemFragment,
 } from './gqls/products';
 import { priceComputedCartFragment } from './gqls/price';
+import {
+  upsellingUserFragment,
+  upsellingLineItemFragment,
+} from './upselling/gqls';
+import { useComputedCartFragment } from './gqls/useComputedCart';
+import { useCheckErrorsFragment } from './gqls/useCheckErrors';
 
 // definition
 const Cart: NextPage = React.memo(() => {
@@ -37,34 +45,70 @@ const Cart: NextPage = React.memo(() => {
   const { data } = useQuery<getCartType>(getCart);
   const viewer = data?.viewer || null;
   const computedCart = useComputedCart(filter(useComputedCartFragment, viewer));
-  const { hasError, checkErrors } = useCheckErrors(
-    computedCart?.computedLineItems || null,
-  );
+  const {
+    isUpsellingOverLimit,
+    isOnlyUpselling,
+    hasError,
+    checkErrors,
+  } = useCheckErrors({
+    lineItems: filter(
+      useCheckErrorsFragment,
+      computedCart?.computedLineItems || [],
+    ),
+  });
+
+  const isEmpty = computedCart && !computedCart.computedLineItems.length;
 
   return (
     <div className={styles.root}>
-      <CheckoutSteps step="cart" />
+      <div className={styles.wrapper}>
+        <CheckoutSteps step="cart" />
 
-      {computedCart && !computedCart.computedLineItems.length ? (
-        <Empty />
-      ) : (
-        <>
-          {role !== 'GUEST' ? null : <Login />}
+        {!isEmpty ? null : <Empty />}
 
-          <Products
-            viewer={filter(productsUserFragment, viewer)}
-            products={filter(
-              productsLineItemFragment,
-              computedCart?.computedLineItems || [],
-            )}
-            hasError={hasError}
-          />
+        {role !== 'GUEST' || isEmpty ? null : <Login />}
 
+        {isEmpty ? null : (
+          <>
+            <Alert
+              activeUpsellingArea={filter(
+                alertFragment,
+                viewer?.store?.activeUpsellingArea || null,
+              )}
+              isUpsellingOverLimit={isUpsellingOverLimit}
+              isOnlyUpselling={isOnlyUpselling}
+              hasError={hasError}
+            />
+
+            <Products
+              viewer={filter(productsUserFragment, viewer)}
+              products={filter(
+                productsLineItemFragment,
+                computedCart?.computedLineItems || [],
+              )}
+              hasError={hasError}
+            />
+          </>
+        )}
+      </div>
+
+      {!viewer?.store?.activeUpsellingArea ? null : (
+        <Upselling
+          viewer={filter(upsellingUserFragment, viewer)}
+          cartItems={filter(
+            upsellingLineItemFragment,
+            computedCart?.computedLineItems || [],
+          )}
+        />
+      )}
+
+      {isEmpty ? null : (
+        <div className={styles.wrapper}>
           <Price
             computedCart={filter(priceComputedCartFragment, computedCart)}
             checkErrors={checkErrors}
           />
-        </>
+        </div>
       )}
     </div>
   );

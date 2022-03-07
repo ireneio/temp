@@ -22,6 +22,7 @@ import styles from './styles/modal.less';
 
 // graphql typescript
 import {
+  modalUserFragment as modalUserFragmentType,
   modalProductFragment as modalProductFragmentType,
   modalLineItemFragment as modalLineItemFragmentType,
 } from '@meepshop/types/gqls/store';
@@ -36,16 +37,17 @@ import {
 import { productCarouselProductFragment } from '@meepshop/product-carousel/gqls';
 import { productCollectionsProductFragment } from '@meepshop/product-collections/gqls';
 import { productDraftTextProductFragment } from '@meepshop/product-draft-text/gqls';
-import { productSpecSelectorFragment } from '@meepshop/product-spec-selector/gqls';
 import { productVideoProductFragment } from '@meepshop/product-video/gqls';
 
 import {
+  useAddUpsellingUserFragment,
   useAddUpsellingVariantFragment,
   useAddUpsellingLineItemFragment,
 } from './gqls/useAddUpselling';
 
 // typescript definition
 interface PropsType {
+  viewer: modalUserFragmentType;
   product: modalProductFragmentType;
   cartItems: (modalLineItemFragmentType | null)[];
   onCancel: () => void;
@@ -56,6 +58,7 @@ interface PropsType {
 // definition
 export default React.memo(
   ({
+    viewer,
     product,
     cartItems,
     onCancel,
@@ -71,8 +74,10 @@ export default React.memo(
     );
     const { status, addToCart } = useAddUpselling({
       productId: product.id || 'null-id',
+      viewer: filter(useAddUpsellingUserFragment, viewer),
       variant: filter(useAddUpsellingVariantFragment, variant),
       cartItems: filter(useAddUpsellingLineItemFragment, cartItems),
+      onCancel,
       isOverLimit,
       isWithProducts,
     });
@@ -111,9 +116,9 @@ export default React.memo(
               </div>
 
               <div className={styles.specs}>
-                <ProductSpecSelector
+                <ProductSpecSelector<modalProductFragmentType>
                   unfoldedVariants={false}
-                  product={filter(productSpecSelectorFragment, product)}
+                  product={product}
                   value={variant}
                   onChange={setVariant}
                 />
@@ -128,11 +133,11 @@ export default React.memo(
               </div>
             </div>
 
-            {!draftText && !hasCollections && !videoLink ? null : (
+            {!draftText.value && !hasCollections && !videoLink.value ? null : (
               <>
                 <div className={styles.divider} />
 
-                {!draftText ? null : (
+                {!draftText.value ? null : (
                   <div className={styles.draft}>
                     <ProductDraftText
                       id="upselling"
@@ -155,7 +160,7 @@ export default React.memo(
                   />
                 )}
 
-                {!videoLink ? null : (
+                {!videoLink.value ? null : (
                   <div className={styles.video}>
                     <ProductVideo
                       id="upselling"
