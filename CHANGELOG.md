@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.80.141 (2022-03-07)
+
+#### :bug: Bug Fix
+
+- [#2165](https://github.com/meepshop/meep-lerna/pull/2165) T10784 - fix @apollo/client@3.4.17 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#2165](https://github.com/meepshop/meep-lerna/pull/2165) T10784 - fix @apollo/client@3.4.17 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.140 (2022-03-04)
 
 #### :rocket: New Feature
