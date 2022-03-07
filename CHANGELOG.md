@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.142 (2022-03-07)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#2128](https://github.com/meepshop/meep-lerna/pull/2128) @store/cart, @store/cart-previewer, @meepshop/meep-ui/checkout, @store/member-order 加購品修改 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.141 (2022-03-07)
 
 #### :bug: Bug Fix
