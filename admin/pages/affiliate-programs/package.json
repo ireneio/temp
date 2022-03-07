@@ -4,18 +4,18 @@
   "description": "Affiliate programs page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.140",
+  "version": "0.80.142",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/date-picker": "^0.80.140",
-    "@admin/header": "^0.80.140",
-    "@admin/table": "^0.80.140",
+    "@admin/date-picker": "^0.80.142",
+    "@admin/header": "^0.80.142",
+    "@admin/table": "^0.80.142",
     "@admin/tooltip": "^0.80.140",
     "@meepshop/icons": "^0.80.140",
     "@meepshop/images": "^0.80.140",
     "@meepshop/link": "^0.80.140",
-    "@meepshop/locales": "^0.80.140",
+    "@meepshop/locales": "^0.80.142",
     "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "affiliate programs"]
