@@ -56,7 +56,7 @@ export default (
         key,
         duration: 0,
       });
-      startPolling(1000);
+      if (startPolling) startPolling(1000);
     }
 
     if (status === 'DONE' && result === 'OK')

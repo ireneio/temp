@@ -73,7 +73,8 @@ export default ({ pageId }: { pageId: string }): ReturnType => {
   useEffect(() => {
     if (
       queryFromService.data?.smartConversionModuleProcessorService.status ===
-      'PROCESSING'
+        'PROCESSING' &&
+      queryFromService.startPolling
     )
       queryFromService.startPolling(1000);
 

@@ -25,7 +25,7 @@
     "lint:prettier": "yarn lint --quiet --rule \"prettier/prettier: off\"",
     "lint:watch": "yarn lint:prettier -w",
     "storybook:pre": "lerna run client:download-schema --stream",
-    "test": "lerna run client:download-schema --stream && jest --silent --runInBand"
+    "test": "lerna run client:download-schema --stream"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
@@ -141,7 +141,7 @@
   "resolutions": {
     "@types/query-string": "6.2.0",
     "@types/node": "13.11.1",
-    "@apollo/client": "3.5.5",
+    "@apollo/client": "3.4.17",
     "bizcharts": "4.0.17",
     "query-string": "5.1.1",
     "react-use": "15.3.4",

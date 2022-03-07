@@ -36,7 +36,7 @@ export default ({
     onCompleted: ({ validatedConvenienceStoreAreas }) => {
       const cityId = variables?.input.cityId;
 
-      if (!cityId) return;
+      if (!cityId || !client) return;
 
       client.writeFragment<addressSelectCityFragmentType>({
         id: cityId,

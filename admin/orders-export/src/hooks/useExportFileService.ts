@@ -33,7 +33,9 @@ export default (): {
 
       switch (status) {
         case 'PROCESSING':
-          setTimeout(() => refetch(), 1000);
+          setTimeout(() => {
+            if (refetch) refetch();
+          }, 1000);
           break;
 
         case 'SUCCESS': {
