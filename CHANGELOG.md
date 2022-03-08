@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.143 (2022-03-08)
+
+#### :rocket: New Feature
+
+- [#1917](https://github.com/meepshop/meep-lerna/pull/1917) 新增 @admin/upselling-products ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.142 (2022-03-07)
 
 #### :rocket: New Feature
