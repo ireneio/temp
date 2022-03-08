@@ -4,11 +4,11 @@
   "description": "Use to select product amount",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.142",
+  "version": "0.80.143",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/locales": "^0.80.142"
+    "@meepshop/locales": "^0.80.143"
   },
   "keywords": ["meepshop", "products amount", "select"]
 }
