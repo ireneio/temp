@@ -33,10 +33,8 @@ export const initAdmin = gql`
         ...useCheckingAdminStatusFragment
         ...useFooterMenuListFragment
       }
-      permission @client {
-        ...useMenuListFragment
-      }
       ...userUserFragment
+      ...useMenuListFragment
     }
 
     getAuthorityList {
@@ -46,7 +44,6 @@ export const initAdmin = gql`
 
   ${userUserFragment}
   ${userAuthorityListFragment}
-
   ${storeMetaDataFragment}
   ${useCheckingAdminStatusFragment}
   ${useMenuListFragment}

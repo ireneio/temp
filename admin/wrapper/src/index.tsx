@@ -43,7 +43,6 @@ export default React.memo(({ children }: PropsType) => {
   const { isDone, collapsed, onBreakpoint, setCollapsed } = useCollapsed();
   const [transitionLoading, transitionEnd] = useTransitionEnd(collapsed);
   const isMerchant = data?.viewer?.role === 'MERCHANT';
-  const permission = data?.viewer?.permission;
   const isNotOpened = useCheckingAdminStatus(
     filter(useCheckingAdminStatusFragment, data?.viewer?.store || null),
   );
@@ -83,7 +82,7 @@ export default React.memo(({ children }: PropsType) => {
         <Menu
           isTrial={isTrial}
           isMerchant={isMerchant}
-          permission={filter(useMenuListFragment, permission || null)}
+          user={filter(useMenuListFragment, data?.viewer || null)}
           collapsed={collapsed}
           loading={transitionLoading}
           isNotOpened={isNotOpened}

@@ -1,5 +1,6 @@
 // typescript import
 import { DataProxy } from '@apollo/client';
+import { FormInstance } from 'antd/lib/form';
 
 import { ValuesType } from './useUpsellingInitialValues';
 
@@ -25,8 +26,8 @@ import {
 
 // definition
 export default (
+  { setFieldsValue }: FormInstance,
   id?: string | null,
-  initialValues?: ValuesType,
 ): {
   updateUpsellingSetting: (values: ValuesType) => void;
   loading: boolean;
@@ -40,7 +41,7 @@ export default (
   return {
     updateUpsellingSetting: useCallback(
       value => {
-        if (!id || !initialValues) return;
+        if (!id) return;
 
         const { dates = null, limitPerOrder = null, products, ...rest } = value;
         const startTime = dates?.[0]?.toISOString() || null;
@@ -50,13 +51,12 @@ export default (
           variables: {
             input: {
               ...rest,
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-              // @ts-ignore FIXME: input type error
               startTime,
               endTime,
               limitPerOrder,
+              hasLimitPerOrder: Boolean(limitPerOrder),
               // SHOULD_NOT_BE_NULL
-              productIds: products.map(product => product?.id || 'null-id'),
+              productIds: products.map(product => product.id || 'null-id'),
             },
           },
           update: (
@@ -79,6 +79,7 @@ export default (
                 startTime,
                 endTime,
                 limitPerOrder,
+                hasLimitPerOrder: Boolean(limitPerOrder),
                 products: products.map(product => ({
                   __typename: 'Product',
                   // SHOULD_NOT_BE_NULL
@@ -86,11 +87,12 @@ export default (
                 })),
               },
             });
+            setFieldsValue({ hasLimitPerOrder: Boolean(limitPerOrder) });
             message.success(t('success'));
           },
         });
       },
-      [id, initialValues, mutation, t],
+      [id, mutation, setFieldsValue, t],
     ),
     loading,
   };

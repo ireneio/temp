@@ -5,6 +5,7 @@ import { DateType } from './constants';
 
 // import
 import React, { useState } from 'react';
+import locale from 'antd/lib/date-picker/locale/en_US';
 import { startOfDay, endOfDay } from 'date-fns';
 import { emptyFunction } from 'fbjs';
 
@@ -77,6 +78,13 @@ export default React.memo(
                   </div>
                 ))
         }
+        locale={{
+          ...locale,
+          lang: {
+            ...locale.lang,
+            ok: t('ok'),
+          },
+        }}
       />
     );
   },

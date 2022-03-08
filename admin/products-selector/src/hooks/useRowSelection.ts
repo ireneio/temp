@@ -26,11 +26,11 @@ export default ({
       selectedRowKeys: selected.map(product => product.id as string),
       onSelect: (record, select) =>
         select
-          ? setSelected([...selected, record])
+          ? setSelected([record, ...selected])
           : setSelected(selected.filter(product => product.id !== record.id)),
       onSelectAll: (select, _, changeRows) =>
         select
-          ? setSelected([...selected, ...changeRows])
+          ? setSelected([...changeRows, ...selected])
           : setSelected(
               selected.filter(
                 product => !changeRows.some(row => row.id === product.id),

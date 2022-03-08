@@ -44,5 +44,6 @@
   "stock": "en stock",
   "price": "Vendre",
   "no-stock": "inventaire zéro",
-  "error": "erreur"
+  "error": "erreur",
+  "success": "Stockage réussi"
 }

@@ -105,12 +105,12 @@ export default React.memo(
                   <div>{t('tag-condition')}</div>
                   <Radio.Group
                     defaultValue={false}
-                    onChange={() => {
+                    onChange={({ target: { value } }) => {
                       refetch({
                         ...variables,
                         filter: {
                           ...variables?.filter,
-                          // isSearchTagStrictMode: value,
+                          isSearchTagStrictMode: value,
                         },
                       });
                     }}

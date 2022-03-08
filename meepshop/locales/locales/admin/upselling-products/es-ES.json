@@ -44,5 +44,6 @@
   "stock": "en stock",
   "price": "Vender",
   "no-stock": "Cero inventario",
-  "error": "error"
+  "error": "error",
+  "success": "Almacenamiento exitoso"
 }

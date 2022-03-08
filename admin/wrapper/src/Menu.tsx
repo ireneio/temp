@@ -18,7 +18,7 @@ import { useMenuListFragment as useMenuListFragmentType } from '@meepshop/types/
 interface PropsType {
   isTrial: boolean;
   isMerchant: boolean;
-  permission: useMenuListFragmentType | null;
+  user: useMenuListFragmentType | null;
   collapsed: boolean;
   loading: boolean;
   isNotOpened: boolean;
@@ -31,13 +31,13 @@ export default React.memo(
   ({
     isTrial,
     isMerchant,
-    permission,
+    user,
     collapsed,
     loading,
     isNotOpened,
   }: PropsType) => {
     const { t } = useTranslation('common');
-    const menuList = useMenuList(isMerchant, permission);
+    const menuList = useMenuList(isMerchant, user);
     const { openKeys, selectedKeys, onOpenChange } = useItemClick(
       menuList,
       collapsed,

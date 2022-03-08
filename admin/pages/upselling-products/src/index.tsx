@@ -2,10 +2,10 @@
 import { NextPage } from 'next';
 
 // import
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import { filter } from 'graphql-anywhere';
-import { LoadingOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { LoadingOutlined } from '@ant-design/icons';
 import { Form, Spin, Button, Radio, Input } from 'antd';
 import { areEqual } from 'fbjs';
 
@@ -13,7 +13,6 @@ import DatePicker from '@admin/date-picker';
 import Tooltip from '@admin/tooltip';
 import Link from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
-import { ChangeProductIcon } from '@meepshop/icons';
 
 import Products from './Products';
 import useDatesValidator from './hooks/useDatesValidator';
@@ -35,16 +34,19 @@ const { Group: RadioGroup } = Radio;
 const UpsellingProducts: NextPage = React.memo(() => {
   const { t } = useTranslation('upselling-products');
   const [form] = Form.useForm();
-  const [visible, setVisible] = useState(false);
   const { data } = useQuery<getUpsellingSettingType>(getUpsellingSetting);
   const upsellingSetting = data?.viewer?.store?.upsellingSetting;
+  const useUpsellingInitialValuesSetting = useMemo(
+    () => filter(useUpsellingInitialValuesFragment, upsellingSetting || null),
+    [upsellingSetting],
+  );
   const initialValues = useUpsellingInitialValues(
     form,
-    filter(useUpsellingInitialValuesFragment, upsellingSetting || null),
+    useUpsellingInitialValuesSetting,
   );
   const { updateUpsellingSetting, loading } = useUpdateUpsellingSetting(
+    form,
     upsellingSetting?.id,
-    initialValues,
   );
   const datesValidator = useDatesValidator();
 
@@ -64,14 +66,19 @@ const UpsellingProducts: NextPage = React.memo(() => {
             <div>
               {t('subtitle')}
 
-              <Link href="https://supportmeepshop.com" target="_blank">
-                <a href="https://supportmeepshop.com">{t('more')}</a>
+              <Link
+                href="https://supportmeepshop.com/knowledgebase/加價購/"
+                target="_blank"
+              >
+                <a href="https://supportmeepshop.com/knowledgebase/加價購/">
+                  {t('more')}
+                </a>
               </Link>
             </div>
 
             <FormItem shouldUpdate noStyle>
-              {({ getFieldsValue, resetFields, submit }) =>
-                areEqual(initialValues, getFieldsValue()) ? null : (
+              {({ resetFields, submit, getFieldsValue }) =>
+                areEqual(initialValues, getFieldsValue(true)) ? null : (
                   <div className={styles.controls}>
                     <Button onClick={() => resetFields()}>{t('cancel')}</Button>
 
@@ -113,7 +120,7 @@ const UpsellingProducts: NextPage = React.memo(() => {
                 </Radio>
               ))}
 
-              <FormItem dependencies={['hasUnlimitedDuration']} noStyle>
+              <FormItem dependencies={[['hasUnlimitedDuration']]} noStyle>
                 {({ getFieldValue }) =>
                   getFieldValue(['hasUnlimitedDuration']) ? null : (
                     <FormItem
@@ -159,7 +166,7 @@ const UpsellingProducts: NextPage = React.memo(() => {
                 </Radio>
               ))}
 
-              <FormItem dependencies={['hasLimitPerOrder']} noStyle>
+              <FormItem dependencies={[['hasLimitPerOrder']]} noStyle>
                 {({ getFieldValue }) =>
                   !getFieldValue(['hasLimitPerOrder']) ? null : (
                     <FormItem
@@ -195,30 +202,8 @@ const UpsellingProducts: NextPage = React.memo(() => {
             <Tooltip title={t('products.tip')} />
           </div>
 
-          <FormItem dependencies={['products']} noStyle>
-            {({ getFieldValue }) =>
-              !getFieldValue(['products'])?.length ? (
-                <div
-                  className={styles.addProducts}
-                  onClick={() => setVisible(true)}
-                >
-                  <PlusCircleOutlined />
-                  {t('products.add')}
-                </div>
-              ) : (
-                <div
-                  className={styles.adjustProducts}
-                  onClick={() => setVisible(true)}
-                >
-                  <ChangeProductIcon />
-                  {t('products.adjust')}
-                </div>
-              )
-            }
-          </FormItem>
-
           <FormItem name={['products']} noStyle>
-            <Products visible={visible} setVisible={setVisible} />
+            <Products />
           </FormItem>
         </div>
       </div>

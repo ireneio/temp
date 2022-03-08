@@ -7,5 +7,6 @@
   "last30Days": "Last 30 days",
   "custom": "Custom time",
   "start-date": "Start time",
-  "end-date": "End time"
+  "end-date": "End time",
+  "ok": "Sure"
 }

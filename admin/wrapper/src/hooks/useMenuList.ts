@@ -40,7 +40,7 @@ export const MENU_LIST: MenuListType = [
   'analytics',
   ['member', ['members', 'member-group', 'member-group-code']],
   ['design', ['page-manager', 'color-manager', 'menu-manager']],
-  ['marketing', ['discount', 'newsletter', 'web-track']],
+  ['marketing', ['discount', 'upselling', 'newsletter', 'web-track']],
   'file-manager',
   'setting',
 ];
@@ -71,6 +71,7 @@ export const URLS: { [key: string]: string } = {
   'color-manager': '/color-manager',
   'menu-manager': '/menus',
   discount: '/marketing-activities',
+  upselling: '/upselling-products',
   newsletter: '/newsletter',
   'web-track': '/web-track',
   'file-manager': '/file-manager',
@@ -104,10 +105,11 @@ const getMenuList = (
 
 export default (
   isMerchant: boolean,
-  permission: useMenuListFragmentType | null,
+  user: useMenuListFragmentType | null,
 ): MenuType[] => {
   const router = useRouter();
   const apps = useContext(AppsContext);
+  const permission = user?.permission;
   const enabledList = useMemo(
     () => ({
       orders: Boolean(isMerchant || permission?.orders?.isEnabled),
@@ -122,6 +124,7 @@ export default (
       design: Boolean(isMerchant || permission?.design?.isEnabled),
       newsletter: Boolean(apps.newsletters.isInstalled),
       'web-track': Boolean(apps.webTrack.isInstalled),
+      upselling: Boolean(user?.store?.upsellingEnabled),
       'file-manager': Boolean(isMerchant || permission?.fileManager?.isEnabled),
       setting: Boolean(isMerchant || permission?.setting?.isEnabled),
       'setting/notification': Boolean(
@@ -131,7 +134,7 @@ export default (
       ),
       'setting/redirects': Boolean(isMerchant),
     }),
-    [isMerchant, permission, apps],
+    [isMerchant, user, permission, apps],
   );
 
   useEffect(() => {

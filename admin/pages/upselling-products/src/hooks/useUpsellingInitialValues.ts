@@ -45,7 +45,7 @@ export default (
       limitPerOrder,
       products,
       dates: [
-        startTime ? new Date(startTime) : null,
+        startTime ? new Date(startTime) : new Date(),
         endTime ? new Date(endTime) : null,
       ] as const,
     };
@@ -53,8 +53,9 @@ export default (
   const prevInitialValues = usePrevious(initialValues);
 
   useEffect(() => {
-    if (prevInitialValues && !areEqual(prevInitialValues, initialValues))
+    if (!areEqual(prevInitialValues, initialValues)) {
       resetFields();
+    }
   }, [resetFields, initialValues, prevInitialValues]);
 
   return initialValues;

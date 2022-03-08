@@ -44,5 +44,6 @@
   "stock": "庫存",
   "price": "售價",
   "no-stock": "無庫存",
-  "error": "錯誤"
+  "error": "錯誤",
+  "success": "儲存成功"
 }

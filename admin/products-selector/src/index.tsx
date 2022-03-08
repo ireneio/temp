@@ -10,8 +10,7 @@ import { ComponentProps } from './constants';
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { filter } from 'graphql-anywhere';
-import { Modal, Table, Spin, Empty } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+import { Modal, Table, Empty } from 'antd';
 import { emptyFunction } from 'fbjs';
 
 import { productsEmpty } from '@meepshop/images';
@@ -94,20 +93,11 @@ export default React.memo(
     const sortEnd = useSortEnd({ selected, setSelected });
     const rowSelection = useRowSelection({ selected, setSelected });
     const adminProducts = data?.viewer?.store?.adminProducts;
+    const current = adminProducts?.pageInfo.currentInfo.current || 0;
 
     useEffect(() => {
       setStep(!products?.length ? 'search' : 'sort');
     }, [visible, products]);
-
-    if (!adminProducts) return <Spin indicator={<LoadingOutlined spin />} />;
-
-    const {
-      edges,
-      total,
-      pageInfo: {
-        currentInfo: { current },
-      },
-    } = adminProducts;
 
     return (
       <Modal
@@ -136,7 +126,7 @@ export default React.memo(
             step === 'search'
               ? filter<useProductsColumnsFragmentType[]>(
                   useProductsColumnsFragment,
-                  edges
+                  (adminProducts?.edges || [])
                     .slice(current * pageSize, (current + 1) * pageSize)
                     .map(edge => edge?.node),
                 )
@@ -185,7 +175,7 @@ export default React.memo(
         <Footer
           selectedLength={selected.length}
           current={current}
-          total={total}
+          total={adminProducts?.total || 0}
           changeProductsPage={changeProductsPage}
           setStep={setStep}
           step={step}

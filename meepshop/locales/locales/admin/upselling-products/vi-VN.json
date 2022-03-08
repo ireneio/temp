@@ -44,5 +44,6 @@
   "stock": "trong kho",
   "price": "Bán",
   "no-stock": "không hàng tồn kho",
-  "error": "sai lầm, điều sai, ngộ nhận"
+  "error": "sai lầm, điều sai, ngộ nhận",
+  "success": "Lưu trữ thành công"
 }

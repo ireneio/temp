@@ -44,5 +44,6 @@
   "stock": "persediaan",
   "price": "Menjual",
   "no-stock": "nol inventaris",
-  "error": "kesalahan"
+  "error": "kesalahan",
+  "success": "Penyimpanan yang berhasil"
 }
