@@ -157,6 +157,7 @@ class App extends NextApp {
       backToTopButtonEnabled,
       i18n,
       product,
+      loading,
       page,
       client,
     } = this.props;
@@ -229,6 +230,7 @@ class App extends NextApp {
                         <Component
                           {...pageProps}
                           product={product}
+                          loading={loading}
                           page={page}
                           client={client}
                           url={{

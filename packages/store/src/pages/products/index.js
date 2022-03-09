@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 import { Container } from 'components';
 
@@ -18,7 +20,9 @@ export default class Products extends React.Component {
   };
 
   render() {
-    const { page } = this.props;
+    const { loading, page } = this.props;
+
+    if (loading) return <Spin indicator={<LoadingOutlined spin />} />;
 
     if (!page) return null;
 

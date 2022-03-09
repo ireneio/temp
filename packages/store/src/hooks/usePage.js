@@ -91,6 +91,7 @@ export default () => {
     faviconImage: store?.faviconImage,
     backToTopButtonEnabled: store?.setting?.backToTopButtonEnabled || false,
     product,
+    loading,
     page: useMemo(() => {
       const page =
         store?.defaultHomePage ||

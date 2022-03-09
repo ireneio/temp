@@ -28,9 +28,10 @@ export default class Product extends React.Component {
   };
 
   render() {
-    const { product, page } = this.props;
+    const { loading, product, page } = this.props;
 
-    if (isEmpty(product)) return <Spin indicator={<LoadingOutlined spin />} />;
+    if (loading || isEmpty(product))
+      return <Spin indicator={<LoadingOutlined spin />} />;
 
     const { status, coverImage, title } = product;
 
