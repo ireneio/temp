@@ -33,12 +33,8 @@ const BillPayment: NextPage<PropsType> = React.memo(() => {
 
   return (
     <Header
-      title={
-        <>
-          {t('title')}
-          <div className={styles.description}>{t('description')}</div>
-        </>
-      }
+      title={t('title')}
+      description={t('description')}
       buttons={
         <div className={styles.button}>
           <Link href="/bill-payment/setting">

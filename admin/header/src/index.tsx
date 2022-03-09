@@ -19,6 +19,7 @@ interface LinkType {
 interface PropsType {
   title?: React.ReactNode;
   prevTitle?: string;
+  description?: string;
   link?: LinkType;
   backTo?: string;
   disableAffix?: boolean;
@@ -31,6 +32,7 @@ export default React.memo(
   ({
     title,
     prevTitle,
+    description,
     link,
     backTo,
     buttons,
@@ -86,6 +88,10 @@ export default React.memo(
                     </Link>
                   )}
                 </div>
+              )}
+
+              {!description ? null : (
+                <div className={styles.description}>{description}</div>
               )}
             </h1>
 

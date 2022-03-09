@@ -23,13 +23,9 @@ const SettingApps: NextPage<PropsType> = React.memo(() => {
 
   return (
     <Header
-      title={
-        <>
-          {t('title')}
-          <div className={styles.subTitle}>{t('subTitle')}</div>
-        </>
-      }
+      title={t('title')}
       prevTitle={t('common:setting')}
+      description={t('subTitle')}
       backTo="/setting"
       disableAffix
     >
