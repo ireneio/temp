@@ -16,3 +16,28 @@
 .icon {
   margin-left: 5px;
 }
+
+.edit {
+  display: none;
+}
+
+.offline {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.shipmentWrap:hover {
+  color: #0099c3;
+
+  .edit {
+    display: inline-block;
+    margin-left: 6px;
+  }
+
+  .offline {
+    color: #0099c3;
+  }
+}
+
+.shipment:not(:nth-last-child(2))::after {
+  content: '、';
+}

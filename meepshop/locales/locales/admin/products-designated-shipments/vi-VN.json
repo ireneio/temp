@@ -12,11 +12,13 @@
   "item": "Mục",
   "ok": "xác nhận",
   "cancel": "Hủy bỏ",
-  "designated": {
+  "filter-shipment": "Nhập tên hậu cần Tìm kiếm",
+  "filter-tag": "Nhập tìm kiếm tên nhãn",
+  "DESIGNATED": {
     "title": "Chỉ định hậu cần áp dụng",
     "description": "Chọn thủ công sản phẩm sẽ được sử dụng"
   },
-  "all": {
+  "ALL": {
     "title": "Áp dụng cho toàn bộ hậu cần cửa hàng",
     "description": "Tự động tập hợp các phương thức vận chuyển trong tất cả các phép bật"
   },

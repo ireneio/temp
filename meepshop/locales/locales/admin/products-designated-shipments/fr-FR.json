@@ -12,11 +12,13 @@
   "item": "Article",
   "ok": "confirmer",
   "cancel": "Annuler",
-  "designated": {
+  "filter-shipment": "Entrez la recherche sur le nom de la logistique",
+  "filter-tag": "Entrez la recherche de nom d'étiquette",
+  "DESIGNATED": {
     "title": "Spécifier la logistique applicable",
     "description": "Sélectionner manuellement le produit à utiliser"
   },
-  "all": {
+  "ALL": {
     "title": "Applicable à toute la logistique du magasin",
     "description": "Ensemble automatique de méthodes d'expédition dans tous Activé"
   },

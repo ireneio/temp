@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 
 // graphql import
 import { useColumnsProductFragment } from './useColumns';
+import { applicableShipmentsModalAdminProductsConnectionFragment } from './applicableShipmentsModal';
 
 // definition
 export const getAdminProducts = gql`
@@ -24,6 +25,9 @@ export const getAdminProducts = gql`
               ...useColumnsProductFragment
             }
           }
+
+          ...applicableShipmentsModalAdminProductsConnectionFragment
+
           pageInfo {
             endCursor
             currentInfo(input: { pageId: "products-designated-shipments" })
@@ -39,6 +43,7 @@ export const getAdminProducts = gql`
   }
 
   ${useColumnsProductFragment}
+  ${applicableShipmentsModalAdminProductsConnectionFragment}
 `;
 
 export const setProductsCurrent = gql`

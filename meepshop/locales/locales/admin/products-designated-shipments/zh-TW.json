@@ -12,11 +12,13 @@
   "item": "項商品",
   "ok": "確認",
   "cancel": "取消",
-  "designated": {
+  "filter-shipment":"輸入物流名稱搜尋",
+  "filter-tag":"輸入標籤名稱搜尋",
+  "DESIGNATED": {
     "title": "指定適用物流",
     "description": "手動選擇商品適用的運送方式"
   },
-  "all": {
+  "ALL": {
     "title": "適用全店物流",
     "description": "自動套用所有啟用中的運送方式"
   },

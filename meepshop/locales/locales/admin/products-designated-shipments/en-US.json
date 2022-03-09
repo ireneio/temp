@@ -12,11 +12,13 @@
   "item": "Item",
   "ok": "confirm",
   "cancel": "Cancel",
-  "designated": {
+  "filter-shipment": "Enter logistics name search",
+  "filter-tag": "Enter the label name Search",
+  "DESIGNATED": {
     "title": "Specify applicable logistics",
     "description": "Manually select the product to be used"
   },
-  "all": {
+  "ALL": {
     "title": "Applicable to the whole store logistics",
     "description": "Automatic set of shipping methods in all enabled"
   },

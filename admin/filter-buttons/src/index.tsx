@@ -38,6 +38,7 @@ export default React.memo(({ filters }: PropsType) => {
             <div className={styles.children}>
               {React.cloneElement(children, {
                 close: () => onChange(null),
+                onVisibleChange: () => onChange(null),
               })}
             </div>
           )}

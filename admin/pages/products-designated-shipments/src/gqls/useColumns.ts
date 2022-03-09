@@ -20,6 +20,14 @@ export const useColumnsProductFragment = gql`
       id
       sku
     }
+    applicableShipments {
+      id
+      status
+      title {
+        ...localeFragment
+      }
+    }
+    requireDesignatedShipment
   }
 
   ${localeFragment}

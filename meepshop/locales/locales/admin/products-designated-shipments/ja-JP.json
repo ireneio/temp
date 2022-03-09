@@ -12,11 +12,13 @@
   "item": "アイテム",
   "ok": "確認",
   "cancel": "キャンセル",
-  "designated": {
+  "filter-shipment": "ロジスティクス名検索を入力してください",
+  "filter-tag": "ラベル名検索を入力してください",
+  "DESIGNATED": {
     "title": "該当する物流を指定します",
     "description": "使用する製品を手動で選択してください"
   },
-  "all": {
+  "ALL": {
     "title": "店舗の物流全体に適用されます",
     "description": "すべての有効な出荷方法の自動セット"
   },

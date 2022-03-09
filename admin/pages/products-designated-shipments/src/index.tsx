@@ -5,14 +5,18 @@ import { NextPage } from 'next';
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { filter } from 'graphql-anywhere';
-import { Input, Button } from 'antd';
+import { Input, Button, Tag, Popover } from 'antd';
+import { TagFilled } from '@ant-design/icons';
 
 import FilterButtons from '@admin/filter-buttons';
 import Header from '@admin/header';
 import Table from '@admin/table';
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
+import { ShippingTruckFilledIcon } from '@meepshop/icons';
 
 import ApplicableShipmentsModal from './ApplicableShipmentsModal';
+import FilterProductTag from './FilterProductTag';
+import FilterShipment from './FilterShipment';
 import useGetProducts from './hooks/useGetProducts';
 import useColumns from './hooks/useColumns';
 import styles from './styles/index.less';
@@ -21,6 +25,7 @@ import styles from './styles/index.less';
 import {
   getStoreShipments as getStoreShipmentsType,
   useColumnsProductFragment as useColumnsProductFragmentType,
+  getStoreShipments_viewer_store_storeShipments as getStoreShipmentsViewerStoreStoreShipmentsType,
   getAdminProducts_viewer_store_adminProducts_edges_node as getAdminProductsViewerStoreAdminProductsEdgesNodeType,
 } from '@meepshop/types/gqls/admin';
 
@@ -29,7 +34,10 @@ import { getStoreShipments } from './gqls';
 import {
   applicableShipmentsModalProductFragment,
   applicableShipmentsModalStoreShipmentFragment,
+  applicableShipmentsModalAdminProductsConnectionFragment,
 } from './gqls/applicableShipmentsModal';
+import { filterProductTagFragment } from './gqls/filterProductTag';
+import { filterShipmentFragment } from './gqls/filterShipment';
 
 // typescript definition
 interface PropsType {
@@ -41,7 +49,22 @@ const { Search } = Input;
 
 const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
   const { t } = useTranslation('products-designated-shipments');
-  const { data } = useQuery<getStoreShipmentsType>(getStoreShipments);
+  const getLanguage = useGetLanguage();
+  const { data } = useQuery<getStoreShipmentsType>(getStoreShipments, {
+    variables: {
+      search: {
+        filter: {
+          and: [
+            {
+              type: 'exact',
+              field: 'type',
+              query: 'product',
+            },
+          ],
+        },
+      },
+    },
+  });
   const {
     loading,
     products,
@@ -51,11 +74,15 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
     pageSize,
     changePage,
   } = useGetProducts();
-  const columns = useColumns();
+  const [openModal, setOpenModal] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState<
     getAdminProductsViewerStoreAdminProductsEdgesNodeType[]
   >([]);
-  const [openModal, setOpenModal] = useState(false);
+  const [selectedProductTags, setSelectedProductTags] = useState<string[]>([]);
+  const [selectedShipments, setSelectedShipments] = useState<
+    getStoreShipmentsViewerStoreStoreShipmentsType[]
+  >([]);
+  const columns = useColumns(setOpenModal, setSelectedProducts);
 
   return (
     <Header
@@ -120,12 +147,52 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
                   {
                     text: t('product.tags'),
                     value: 'tags',
-                    children: <div />,
+                    children: (
+                      <Popover
+                        visible
+                        placement="bottomLeft"
+                        trigger="click"
+                        overlayClassName={styles.popover}
+                        align={{ offset: [-16, 0] }}
+                        content={
+                          <FilterProductTag
+                            productTags={filter(
+                              filterProductTagFragment,
+                              data?.getTagList?.data?.[0] || null,
+                            )}
+                            selectedProductTags={selectedProductTags}
+                            setSelectedProductTags={setSelectedProductTags}
+                            variables={variables}
+                            refetch={refetch}
+                          />
+                        }
+                      />
+                    ),
                   },
                   {
                     text: t('product.applicable-shipments'),
                     value: 'applicableShipments',
-                    children: <div />,
+                    children: (
+                      <Popover
+                        visible
+                        placement="bottomLeft"
+                        trigger="click"
+                        overlayClassName={styles.popover}
+                        align={{ offset: [-16, 0] }}
+                        content={
+                          <FilterShipment
+                            shipments={filter(
+                              filterShipmentFragment,
+                              data?.viewer?.store?.storeShipments || [],
+                            )}
+                            selectedShipments={selectedShipments}
+                            setSelectedShipments={setSelectedShipments}
+                            variables={variables}
+                            refetch={refetch}
+                          />
+                        }
+                      />
+                    ),
                   },
                 ]}
               />
@@ -137,7 +204,66 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
               </Button>
             )}
           </div>
-          {/* // FIXME: add tags view after T9544 */}
+
+          {selectedProductTags.map(tag => (
+            <Tag
+              key={tag}
+              icon={<TagFilled />}
+              className={`${styles.tag} ${styles.productTag}`}
+              closable
+              onClose={() => {
+                const selectedTags = [
+                  ...selectedProductTags.filter(selected => selected !== tag),
+                ];
+
+                setSelectedProductTags(selectedTags);
+
+                refetch({
+                  filter: {
+                    ...variables?.filter,
+                    tags: selectedTags,
+                  },
+                });
+              }}
+            >
+              {tag}
+            </Tag>
+          ))}
+
+          {selectedShipments.map(shipment => (
+            <Tag
+              key={shipment.id}
+              icon={<ShippingTruckFilledIcon className={styles.truck} />}
+              className={`${styles.tag} ${styles.shipmentTag}`}
+              closable
+              onClose={() => {
+                const newSelectedShipments = [
+                  ...selectedShipments.filter(
+                    selected => selected.id !== shipment.id,
+                  ),
+                ];
+                setSelectedShipments(newSelectedShipments);
+
+                refetch({
+                  filter: {
+                    ...variables?.filter,
+                    applicableShipments: newSelectedShipments
+                      .filter(
+                        selected =>
+                          selected.id &&
+                          selected.id !== 'noApplicableShipments',
+                      )
+                      .map(selected => selected.id) as string[],
+                    noApplicableShipments: newSelectedShipments.some(
+                      select => select.id === 'noApplicableShipments',
+                    ),
+                  },
+                });
+              }}
+            >
+              {getLanguage(shipment.title)}
+            </Tag>
+          ))}
         </>
       </Table>
 
@@ -152,6 +278,11 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
             data?.viewer?.store?.storeShipments || [],
           )}
           close={() => setOpenModal(false)}
+          storeId={data?.viewer?.store?.id || null}
+          products={filter(
+            applicableShipmentsModalAdminProductsConnectionFragment,
+            products || null,
+          )}
         />
       )}
     </Header>

@@ -2,23 +2,31 @@
 import React, { useState } from 'react';
 import { Form, Modal, Button, Checkbox } from 'antd';
 import { CheckCircleFilled } from '@ant-design/icons';
+import { filter } from 'graphql-anywhere';
 
 import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import { productsDesignatedShipmentsDeliveryTruck } from '@meepshop/images';
 
+import useSetProductDesignatedShipment from './hooks/useSetProductDesignatedShipment';
 import styles from './styles/applicableShipmentsModal.less';
 
 // graphql typescript
 import {
   applicableShipmentsModalProductFragment as applicableShipmentsModalProductFragmentType,
   applicableShipmentsModalStoreShipmentFragment as applicableShipmentsModalStoreShipmentFragmentType,
+  applicableShipmentsModalAdminProductsConnectionFragment as applicableShipmentsModalAdminProductsConnectionFragmentType,
 } from '@meepshop/types/gqls/admin';
+
+// graphql import
+import { useSetProductDesignatedShipmentStoreShipmentFragment } from './gqls/useSetProductDesignatedShipment';
 
 // typescript definition
 interface PropsType {
   selectedProducts: applicableShipmentsModalProductFragmentType[];
   shipments: applicableShipmentsModalStoreShipmentFragmentType[];
   close: () => void;
+  products: applicableShipmentsModalAdminProductsConnectionFragmentType | null;
+  storeId: string | null;
 }
 
 // definition
@@ -26,15 +34,28 @@ const { Item: FormItem } = Form;
 const { Group: CheckboxGroup } = Checkbox;
 
 export default React.memo(
-  ({ selectedProducts, shipments, close }: PropsType) => {
+  ({ selectedProducts, shipments, close, products, storeId }: PropsType) => {
     const { t } = useTranslation('products-designated-shipments');
     const getLanguage = useGetLanguage();
+    const setProductDesignatedShipment = useSetProductDesignatedShipment(
+      selectedProducts,
+      products,
+      storeId,
+      filter(useSetProductDesignatedShipmentStoreShipmentFragment, shipments),
+      close,
+    );
     const [form] = Form.useForm();
-    const [type, setType] = useState<'DESIGNATED' | 'ALL'>('DESIGNATED');
+    const [type, setType] = useState<'DESIGNATED' | 'ALL'>(
+      selectedProducts.length === 1 &&
+        !selectedProducts[0].requireDesignatedShipment
+        ? 'ALL'
+        : 'DESIGNATED',
+    );
 
     return (
-      <Form form={form}>
+      <Form form={form} onFinish={setProductDesignatedShipment}>
         <Modal
+          maskClosable={false}
           className={styles.root}
           width={552}
           title={t('set-applicable-shipments')}
@@ -62,7 +83,9 @@ export default React.memo(
                       type="primary"
                       onClick={submit}
                       disabled={
-                        !(getFieldValue(['applicableShipmentIds'])?.length > 0)
+                        type === 'DESIGNATED' &&
+                        (getFieldValue(['applicableShipmentIds']) || [])
+                          .length === 0
                       }
                     >
                       {t('ok')}
@@ -122,7 +145,17 @@ export default React.memo(
                   }}
                 </FormItem>
 
-                <FormItem name={['applicableShipmentIds']} noStyle>
+                <FormItem
+                  name={['applicableShipmentIds']}
+                  noStyle
+                  initialValue={
+                    selectedProducts.length === 1
+                      ? selectedProducts[0].applicableShipments.map(
+                          select => select.id,
+                        )
+                      : null
+                  }
+                >
                   <CheckboxGroup>
                     {shipments?.map(shipment => (
                       <Checkbox key={shipment.id} value={shipment.id}>

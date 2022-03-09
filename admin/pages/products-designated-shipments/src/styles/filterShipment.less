@@ -1,0 +1,55 @@
+.root {
+  width: 224px;
+  height: 324px;
+}
+
+.filterSearch {
+  padding: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+  input {
+    height: 32px;
+  }
+}
+
+.check {
+  display: none;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00b8d6;
+  margin-left: 0;
+}
+
+.filterList {
+  height: calc(324px - 56px);
+  overflow-y: scroll;
+
+  > div {
+    padding: 5px 24px 5px 14px;
+    font-size: 14px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.85);
+    background: #fff;
+    position: relative;
+    cursor: pointer;
+
+    &:first-child {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    &:hover {
+      background: #fafafa;
+    }
+
+    &.selected {
+      font-weight: 600;
+      background: #f5f6f7;
+
+      .check {
+        display: block;
+      }
+    }
+  }
+}

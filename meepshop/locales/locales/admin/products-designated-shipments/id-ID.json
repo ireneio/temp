@@ -12,11 +12,13 @@
   "item": "Barang",
   "ok": "Konfirmasi",
   "cancel": "Membatalkan",
-  "designated": {
+  "filter-shipment": "Masukkan pencarian nama logistik",
+  "filter-tag": "Masukkan pencarian nama label",
+  "DESIGNATED": {
     "title": "Tentukan logistik yang berlaku",
     "description": "Pilih produk secara manual untuk digunakan"
   },
-  "all": {
+  "ALL": {
     "title": "Berlaku untuk seluruh logistik toko",
     "description": "Set Otomatis Metode Pengiriman di Semua Diaktifkan"
   },

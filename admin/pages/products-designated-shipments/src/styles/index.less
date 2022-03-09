@@ -26,3 +26,55 @@
 .selected {
   color: @primary-color;
 }
+
+.popover {
+  :global(.ant-popover-arrow) {
+    display: none;
+  }
+
+  :global(.ant-popover-inner-content) {
+    padding: 0;
+  }
+}
+
+.tag {
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 10px;
+
+  span {
+    vertical-align: middle;
+  }
+
+  > span:nth-child(2) {
+    margin-left: 4px;
+  }
+}
+
+.productTag {
+  background: #fff2ef;
+  border: 0.5px solid #ffd597;
+  color: #71570f;
+
+  :global(.anticon-tag) {
+    color: rgba(232, 124, 63, 0.6);
+  }
+
+  :global(.anticon-close) {
+    color: #71570f;
+  }
+}
+
+.shipmentTag {
+  background: #ebf9fc;
+  border: 0.5px solid #98c6cd;
+  color: #363b4a;
+}
+
+.truck {
+  font-size: 16px;
+  color: rgba(81, 183, 190, 0.6);
+}
