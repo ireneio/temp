@@ -363,16 +363,18 @@ export default class ProductList extends React.PureComponent {
               />
             </div>
 
-            <PopUp
-              className={this.name}
-              title={t('modal-title')}
-              visible={Boolean(target)}
-              onCancel={this.handleModalClose}
-              type={type}
-              popUpGalleryView={popUpGalleryView}
-              target={target}
-              isMobile={isMobile}
-            />
+            {!target ? null : (
+              <PopUp
+                className={this.name}
+                title={t('modal-title')}
+                visible={Boolean(target)}
+                onCancel={this.handleModalClose}
+                type={type}
+                popUpGalleryView={popUpGalleryView}
+                target={target}
+                isMobile={isMobile}
+              />
+            )}
 
             {loading && <div style={styles.loading} />}
           </div>

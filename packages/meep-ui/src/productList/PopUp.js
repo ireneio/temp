@@ -111,7 +111,6 @@ const getPopUpProducts = gql`
         },
       },
     },
-    skip: !target,
   }),
 )
 @enhancer
@@ -127,12 +126,11 @@ export default class PopUp extends React.PureComponent {
     type: PropTypes.oneOf(['original', 'pop-up']).isRequired,
     popUpGalleryView: PropTypes.oneOf(['one', 'two', 'all', 'none']).isRequired,
 
-    target: PropTypes.string,
+    target: PropTypes.string.isRequired,
     isMobile: PropTypes.bool,
   };
 
   static defaultProps = {
-    target: null,
     isMobile: null,
   };
 
@@ -195,9 +193,7 @@ export default class PopUp extends React.PureComponent {
   };
 
   render() {
-    const { className, title, visible, onCancel, target, data } = this.props;
-
-    if (!target) return null;
+    const { className, title, visible, onCancel, data } = this.props;
 
     const product = data?.computeProductList?.data[0];
 

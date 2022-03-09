@@ -146,16 +146,18 @@ export default class Product extends React.PureComponent {
           {t('purchase')}
         </div>
 
-        <PopUp
-          className="activity-group"
-          title={t('select-spec')}
-          visible={openModal}
-          onCancel={this.toggleModal}
-          type="original"
-          popUpGalleryView="one"
-          target={target}
-          isMobile={isMobile}
-        />
+        {!target ? null : (
+          <PopUp
+            className="activity-group"
+            title={t('select-spec')}
+            visible={openModal}
+            onCancel={this.toggleModal}
+            type="original"
+            popUpGalleryView="one"
+            target={target}
+            isMobile={isMobile}
+          />
+        )}
       </div>
     );
   }
