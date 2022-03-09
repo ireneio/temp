@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.80.144 (2022-03-09)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#2159](https://github.com/meepshop/meep-lerna/pull/2159) 【個別店家】會員登入時跳出 404 ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#2173](https://github.com/meepshop/meep-lerna/pull/2173) 【後台】 後台 - 設定 - 網址重新導向、擴充功能＆帳單與付款，標題說明文字跑版 ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`
+  - [#2112](https://github.com/meepshop/meep-lerna/pull/2112) 【BUG】前台 - 會員登出後，商品「加入購物車」彈窗無法顯示 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.143 (2022-03-08)
 
 #### :rocket: New Feature
