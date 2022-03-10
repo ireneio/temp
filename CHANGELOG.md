@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.145 (2022-03-10)
+
+#### :rocket: New Feature
+
+- `storybook`
+  - [#2126](https://github.com/meepshop/meep-lerna/pull/2126) 內部開單 - 修改 購物車統計 、footer 滾動顯示 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- [#2169](https://github.com/meepshop/meep-lerna/pull/2169) 內部開單 - 套用新的商品指定物流 api ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.144 (2022-03-09)
 
 #### :bug: Bug Fix
