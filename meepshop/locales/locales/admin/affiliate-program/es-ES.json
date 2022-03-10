@@ -1,0 +1,58 @@
+{
+  "title": {
+    "add": "Nuevas actividades de promoción.",
+    "edit": "Promoción del editor"
+  },
+  "buttons": {
+    "cancel": "Cancelar",
+    "save": "Tienda",
+    "add": "Establecer un evento"
+  },
+  "validate": {
+    "required": "Ser requerido",
+    "products-empty": "Por favor seleccione los artículos",
+    "promo-code-exist": "Este parámetro ha sido utilizado"
+  },
+  "program-title": {
+    "title": "Nombre del evento",
+    "placeholder": "Por favor ingrese el nombre del evento"
+  },
+  "startAt": {
+    "title": "Tiempo de inicio de actividad",
+    "placeholder": "Por favor seleccione la hora de inicio",
+    "tooltip": "No se puede modificar después de que comience el evento."
+  },
+  "endAt": {
+    "title": "Evento final de tiempo",
+    "placeholder": "Por favor seleccione la hora de finalización",
+    "tooltip": "Tiempo de llamada antes del final del evento."
+  },
+  "partner": {
+    "title": "Compañero",
+    "placeholder": "Por favor busque o elija socios",
+    "empty": "Revisa ningún compañero"
+  },
+  "commissionRate": {
+    "title": "Ratio de quejas",
+    "tooltip": "Proporción de orden efectivo Mantenimiento de bonificaciones"
+  },
+  "products": {
+    "title": "Bienes de promoción",
+    "tooltip": "Se requiere que el pedido incluya al menos un producto promocional se incluirá en el cálculo de granulación.",
+    "specify": "Especificar bienes",
+    "all": "Aplicable a todos los productos de la tienda.",
+    "select": "Seleccione Bienes",
+    "selected-products": "Editar seleccionado {{amount}} artículos"
+  },
+  "promoCode": {
+    "title": "Parámetros de seguimiento de la promoción",
+    "placeholder": "Por favor ingrese un parámetro personalizado",
+    "example": {
+      "title": "Agregue los parámetros a la parte posterior de su tienda, el cliente se incorpora a la tienda para ingresar al almacén.",
+      "home": "Ejemplo de promoción del hogar",
+      "products": "Página del producto Ejemplo de promoción"
+    },
+    "copied": "Reproducido \"?ref={{promoCode}}\"",
+    "tooltip": "Copiar parámetros"
+  }
+}

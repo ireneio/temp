@@ -1,0 +1,58 @@
+{
+  "title": {
+    "add": "Nouvelles activités de promotion",
+    "edit": "Promotion de l'éditeur"
+  },
+  "buttons": {
+    "cancel": "Annuler",
+    "save": "boutique",
+    "add": "Établir un événement"
+  },
+  "validate": {
+    "required": "Être requis",
+    "products-empty": "Veuillez sélectionner des éléments",
+    "promo-code-exist": "Ce paramètre a été utilisé"
+  },
+  "program-title": {
+    "title": "Nom de l'événement",
+    "placeholder": "S'il vous plaît entrer le nom de l'événement"
+  },
+  "startAt": {
+    "title": "Heure de début de l'activité",
+    "placeholder": "Veuillez sélectionner l'heure de début",
+    "tooltip": "Ne peut pas modifier après le début de l'événement"
+  },
+  "endAt": {
+    "title": "Temps de fin d'événement",
+    "placeholder": "Veuillez sélectionner l'heure de fin",
+    "tooltip": "Temps d'appel avant la fin de l'événement"
+  },
+  "partner": {
+    "title": "Partenaire",
+    "placeholder": "Veuillez rechercher ou choisir des partenaires",
+    "empty": "Vérifiez aucun partenaire"
+  },
+  "commissionRate": {
+    "title": "Ratio des griefs",
+    "tooltip": "Proportion de bonus de maintien d'ordre efficace"
+  },
+  "products": {
+    "title": "Biens de promotion",
+    "tooltip": "L'ordre est nécessaire pour inclure au moins un produit promotionnel sera inclus dans le calcul de granulation.",
+    "specify": "Spécifier les biens",
+    "all": "Applicable à tous les magasins",
+    "select": "Sélectionner des marchandises",
+    "selected-products": "Modifier sélectionné {{amount}} éléments"
+  },
+  "promoCode": {
+    "title": "Paramètres de suivi de la promotion",
+    "placeholder": "S'il vous plaît entrer un paramètre personnalisé",
+    "example": {
+      "title": "Ajoutez les paramètres à l'arrière de votre magasin, le client est intégré au magasin pour entrer dans le magasin.",
+      "home": "Exemple de promotion de la maison",
+      "products": "Exemple de promotion de la page de produit"
+    },
+    "copied": "Reproduit \"?ref={{promoCode}}\"",
+    "tooltip": "Paramètres de copie"
+  }
+}

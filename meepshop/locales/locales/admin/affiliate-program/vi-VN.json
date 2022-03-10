@@ -1,0 +1,58 @@
+{
+  "title": {
+    "add": "Hoạt động khuyến mãi mới",
+    "edit": "Khuyến mãi của biên tập viên"
+  },
+  "buttons": {
+    "cancel": "Hủy bỏ",
+    "save": "cửa hàng",
+    "add": "Thiết lập một sự kiện"
+  },
+  "validate": {
+    "required": "Được yêu cầu",
+    "products-empty": "Vui lòng chọn các mục",
+    "promo-code-exist": "Tham số này đã được sử dụng"
+  },
+  "program-title": {
+    "title": "Tên sự kiện.",
+    "placeholder": "Vui lòng nhập tên sự kiện"
+  },
+  "startAt": {
+    "title": "Thời gian bắt đầu hoạt động",
+    "placeholder": "Vui lòng chọn thời gian bắt đầu",
+    "tooltip": "Không thể sửa đổi sau khi sự kiện bắt đầu"
+  },
+  "endAt": {
+    "title": "Thời gian kết thúc sự kiện",
+    "placeholder": "Vui lòng chọn thời gian kết thúc",
+    "tooltip": "Thời gian gọi trước khi kết thúc sự kiện"
+  },
+  "partner": {
+    "title": "Bạn đồng hành",
+    "placeholder": "Vui lòng tìm kiếm hoặc chọn đối tác",
+    "empty": "Kiểm tra không có đối tác"
+  },
+  "commissionRate": {
+    "title": "Tỷ lệ khiếu nại",
+    "tooltip": "Tỷ lệ tiền thưởng duy trì thứ tự hiệu quả"
+  },
+  "products": {
+    "title": "Khuyến mãi hàng hóa",
+    "tooltip": "Thứ tự được yêu cầu bao gồm ít nhất một sản phẩm khuyến mại sẽ được bao gồm trong tính toán tạo hạt.",
+    "specify": "Chỉ định hàng hóa",
+    "all": "Áp dụng cho tất cả các sản phẩm cửa hàng",
+    "select": "Chọn hàng",
+    "selected-products": "Chỉnh sửa các mục {{amount}} đã chọn"
+  },
+  "promoCode": {
+    "title": "Thông số theo dõi khuyến mãi.",
+    "placeholder": "Vui lòng nhập một tham số tùy chỉnh",
+    "example": {
+      "title": "Thêm các tham số vào mặt sau của cửa hàng của bạn, khách hàng được tích hợp vào cửa hàng để vào cửa hàng.",
+      "home": "Trang chủ Khuyến mãi Ví dụ.",
+      "products": "Trang sản phẩm Ví dụ khuyến mãi"
+    },
+    "copied": "Tái sản xuất \"?ref={{promoCode}}\"",
+    "tooltip": "Sao chép thông số"
+  }
+}

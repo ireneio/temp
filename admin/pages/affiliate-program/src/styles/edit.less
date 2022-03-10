@@ -1,0 +1,89 @@
+.addButtons {
+  margin: 16px 0px 0px;
+  width: 100%;
+  text-align: right;
+
+  :global(.ant-btn):last-child {
+    margin: 0px 0px 0px 12px;
+  }
+}
+
+.block {
+  padding: 24px;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.85);
+  background: #ffffff;
+  border-radius: 4px;
+
+  &:not(:first-child) {
+    margin: 16px 0px 0px;
+  }
+
+  :global(.ant-form-item) {
+    margin: 0px 0px 16px;
+
+    &.promoCode {
+      margin: 0px 0px 12px;
+    }
+
+    &.products {
+      margin: 8px 0px 0px;
+    }
+  }
+
+  :global(.ant-btn-background-ghost.ant-btn-primary) {
+    color: #5967c5;
+    border-color: #5967c5;
+  }
+}
+
+.title {
+  margin: 0px 0px 8px;
+
+  :global(.anticon) {
+    margin: 0px 0px 0px 5px;
+  }
+}
+
+.date {
+  display: flex;
+  width: 100%;
+
+  & > div {
+    width: 100%;
+
+    &:not(:last-child) {
+      margin: 0px 16px 0px 0px;
+    }
+  }
+
+  :global(.ant-picker) {
+    width: 100%;
+  }
+}
+
+.partner {
+  width: 258px;
+}
+
+.commissionRate {
+  width: 102px;
+}
+
+.productsType {
+  width: 258px;
+}
+
+.productsTypeDropdown:global(.ant-select-dropdown) {
+  :global(.ant-select-item-option-selected:not(.ant-select-item-option-disabled)) {
+    background: #f5f6f7;
+  }
+
+  :global(.ant-select-item-option-active:not(.ant-select-item-option-disabled)) {
+    background: #fafafa;
+  }
+
+  :global(.anticon) {
+    color: #5161c5;
+  }
+}

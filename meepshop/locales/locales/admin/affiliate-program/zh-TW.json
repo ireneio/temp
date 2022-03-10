@@ -1,0 +1,58 @@
+{
+  "title": {
+    "add": "新增推廣活動",
+    "edit": "編輯推廣活動"
+  },
+  "buttons": {
+    "cancel": "取消",
+    "save": "儲存",
+    "add": "建立活動"
+  },
+  "validate": {
+    "required": "必填",
+    "products-empty": "請選擇商品",
+    "promo-code-exist": "此參數已被使用"
+  },
+  "program-title": {
+    "title": "活動名稱",
+    "placeholder": "請輸入活動名稱"
+  },
+  "startAt": {
+    "title": "活動開始時間",
+    "placeholder": "請選擇開始時間",
+    "tooltip": "活動開始進行後不能修改"
+  },
+  "endAt": {
+    "title": "活動結束時間",
+    "placeholder": "請選擇結束時間",
+    "tooltip": "活動結束前可以任意修改結束時間"
+  },
+  "partner": {
+    "title": "合作夥伴",
+    "placeholder": "請搜尋或選擇夥伴",
+    "empty": "查無符合夥伴"
+  },
+  "commissionRate": {
+    "title": "分潤比例",
+    "tooltip": "有效訂單分潤獎金的比例"
+  },
+  "products": {
+    "title": "推廣商品",
+    "tooltip": "訂單中需包含至少一件推廣商品才會納入分潤計算",
+    "specify": "指定商品",
+    "all": "適用全店商品",
+    "select": "選擇商品",
+    "selected-products": "編輯已選 {{amount}} 項商品"
+  },
+  "promoCode": {
+    "title": "推廣追蹤參數",
+    "placeholder": "請輸入自訂參數",
+    "example": {
+      "title": "將參數加在您商店任一頁面網址後方，顧客經由含參數網址進入商店完成下單即納入分潤計算",
+      "home": "首頁推廣範例",
+      "products": "商品頁推廣範例"
+    },
+    "copied": "已複製 “?ref={{promoCode}}”",
+    "tooltip": "複製參數"
+  }
+}

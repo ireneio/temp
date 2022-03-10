@@ -1,0 +1,58 @@
+{
+  "title": {
+    "add": "新販売活動",
+    "edit": "編集者の昇進"
+  },
+  "buttons": {
+    "cancel": "キャンセル",
+    "save": "お店",
+    "add": "イベントを確立する"
+  },
+  "validate": {
+    "required": "要求される",
+    "products-empty": "アイテムを選択してください",
+    "promo-code-exist": "このパラメータが使用されています"
+  },
+  "program-title": {
+    "title": "イベント名",
+    "placeholder": "イベント名を入力してください"
+  },
+  "startAt": {
+    "title": "活動開始時刻",
+    "placeholder": "開始時刻を選択してください",
+    "tooltip": "イベントが始まった後に変更できません"
+  },
+  "endAt": {
+    "title": "イベント終了時刻",
+    "placeholder": "終了時刻を選択してください",
+    "tooltip": "イベント終了前の電話時間"
+  },
+  "partner": {
+    "title": "相棒",
+    "placeholder": "検索またはパートナーを選択してください",
+    "empty": "パートナーをチェックしません"
+  },
+  "commissionRate": {
+    "title": "哀れみの割合",
+    "tooltip": "有効な注文の維持賞の割合"
+  },
+  "products": {
+    "title": "プロモーショングッズ",
+    "tooltip": "注文は少なくとも1つの販売促進製品を含める必要があります造粒計算に含まれます。",
+    "specify": "商品を指定してください",
+    "all": "すべての店舗製品に適用されます",
+    "select": "商品を選択してください",
+    "selected-products": "選択した{{amount}}項目を編集します"
+  },
+  "promoCode": {
+    "title": "プロモーション追跡パラメータ",
+    "placeholder": "カスタムパラメータを入力してください",
+    "example": {
+      "title": "ストアの背面にパラメータを追加すると、顧客は店舗に入るために店に組み込まれています。",
+      "home": "ホームプロモーションの例",
+      "products": "製品ページPromationの例"
+    },
+    "copied": "\"?ref={{promoCode}}\"",
+    "tooltip": "パラメータをコピーする"
+  }
+}

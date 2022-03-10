@@ -7,6 +7,8 @@ import { useChangeProductsPageFragment } from './useChangeProductsPage';
 import { useProductsColumnsFragment } from './useProductsColumns';
 
 // definition
+export { useProductsColumnsFragment };
+
 export const getProducts = gql`
   query getProducts(
     $first: PositiveInt!

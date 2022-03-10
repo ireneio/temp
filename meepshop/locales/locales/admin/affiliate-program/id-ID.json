@@ -1,0 +1,58 @@
+{
+  "title": {
+    "add": "Kegiatan promosi baru",
+    "edit": "Promosi editor"
+  },
+  "buttons": {
+    "cancel": "Membatalkan",
+    "save": "toko",
+    "add": "Membangun acara"
+  },
+  "validate": {
+    "required": "Diperlukan",
+    "products-empty": "Silakan pilih item",
+    "promo-code-exist": "Parameter ini telah digunakan"
+  },
+  "program-title": {
+    "title": "Nama Acara",
+    "placeholder": "Silakan masukkan nama acara"
+  },
+  "startAt": {
+    "title": "Kegiatan Mulai Waktu",
+    "placeholder": "Silakan pilih waktu mulai",
+    "tooltip": "Tidak dapat memodifikasi setelah acara dimulai"
+  },
+  "endAt": {
+    "title": "Peristiwa akhir zaman",
+    "placeholder": "Silakan pilih waktu akhir",
+    "tooltip": "Panggil waktu sebelum akhir acara"
+  },
+  "partner": {
+    "title": "Mitra",
+    "placeholder": "Silakan cari atau pilih mitra",
+    "empty": "Periksa tidak ada mitra"
+  },
+  "commissionRate": {
+    "title": "Rasio Keluhan.",
+    "tooltip": "Proporsi tatanan efektif menopang bonus"
+  },
+  "products": {
+    "title": "Barang Promosi",
+    "tooltip": "Pesanan diperlukan untuk memasukkan setidaknya satu produk promosi akan dimasukkan dalam perhitungan granulasi.",
+    "specify": "Tentukan barang",
+    "all": "Berlaku untuk semua produk toko",
+    "select": "Pilih barang",
+    "selected-products": "Edit item yang dipilih {{amount}}"
+  },
+  "promoCode": {
+    "title": "Parameter Pelacakan Promosi.",
+    "placeholder": "Silakan masukkan parameter khusus",
+    "example": {
+      "title": "Tambahkan parameter ke bagian belakang toko Anda, pelanggan dimasukkan ke dalam toko untuk memasuki toko.",
+      "home": "Home Promotion Contoh.",
+      "products": "Contoh Halaman Produk Promosi"
+    },
+    "copied": "Direproduksi \"?ref={{promoCode}}\"",
+    "tooltip": "Salin Parameter"
+  }
+}

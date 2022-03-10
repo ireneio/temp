@@ -24,6 +24,7 @@ describe('check pages has namespacesRequired', () => {
                 orderId: 'orderId',
                 pageId: 'pageId',
                 affiliateProgramId: 'affiliateProgramId',
+                type: 'add',
               },
             })
           ).namespacesRequired,

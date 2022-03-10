@@ -41,7 +41,7 @@ import { useChangeProductsPageFragment } from './gqls/useChangeProductsPage';
 import { useProductsColumnsFragment } from './gqls/useProductsColumns';
 
 // typescript definition
-interface PropsType {
+export interface PropsType {
   visible: boolean;
   products?: useProductsColumnsFragmentType[];
   onCancel?: () => void;

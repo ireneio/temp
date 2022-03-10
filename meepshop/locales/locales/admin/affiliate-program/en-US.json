@@ -1,0 +1,58 @@
+{
+  "title": {
+    "add": "New promotion activities",
+    "edit": "Editor's promotion"
+  },
+  "buttons": {
+    "cancel": "Cancel",
+    "save": "store",
+    "add": "Establish an event"
+  },
+  "validate": {
+    "required": "Be required",
+    "products-empty": "Please select items",
+    "promo-code-exist": "This parameter has been used"
+  },
+  "program-title": {
+    "title": "Event name",
+    "placeholder": "Please enter the event name"
+  },
+  "startAt": {
+    "title": "Activity start time",
+    "placeholder": "Please select the start time",
+    "tooltip": "Can't modify after the event begins"
+  },
+  "endAt": {
+    "title": "Event end time",
+    "placeholder": "Please select the end time",
+    "tooltip": "Call time before the end of the event"
+  },
+  "partner": {
+    "title": "Partner",
+    "placeholder": "Please search or choose partners",
+    "empty": "Check no partner"
+  },
+  "commissionRate": {
+    "title": "Grievance ratio",
+    "tooltip": "Proportion of effective order sustain bonuses"
+  },
+  "products": {
+    "title": "Promotion goods",
+    "tooltip": "The order is required to include at least one promotional product will be included in the granulation calculation.",
+    "specify": "Specify goods",
+    "all": "Applicable to all store products",
+    "select": "Select goods",
+    "selected-products": "Edit Selected {{amount}} items"
+  },
+  "promoCode": {
+    "title": "Promotion tracking parameters",
+    "placeholder": "Please enter a custom parameter",
+    "example": {
+      "title": "Add the parameters to the back of your store, the customer is incorporated into the store to enter the store.",
+      "home": "Home promotion example",
+      "products": "Product page promotion example"
+    },
+    "copied": "Reproduced \"?ref={{promoCode}}\"",
+    "tooltip": "Copy parameters"
+  }
+}
