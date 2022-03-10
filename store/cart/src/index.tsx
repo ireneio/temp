@@ -16,6 +16,7 @@ import Login from './Login';
 import Alert from './Alert';
 import Products from './Products';
 import Price from './Price';
+import Footer from './Footer';
 import Upselling from './upselling';
 import useComputedCart from './hooks/useComputedCart';
 import useCheckErrors from './hooks/useCheckErrors';
@@ -106,8 +107,9 @@ const Cart: NextPage = React.memo(() => {
         <div className={styles.wrapper}>
           <Price
             computedCart={filter(priceComputedCartFragment, computedCart)}
-            checkErrors={checkErrors}
           />
+
+          <Footer checkErrors={checkErrors} />
         </div>
       )}
     </div>
