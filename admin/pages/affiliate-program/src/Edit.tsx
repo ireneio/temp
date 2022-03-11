@@ -12,7 +12,6 @@ import {
   Empty,
 } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
-import { areEqual } from 'fbjs';
 
 import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
@@ -81,35 +80,31 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
     <Form
       form={form}
       initialValues={programInitialValues}
-      validateTrigger="onBlur"
       onFinish={isAdd ? createAffiliateProgram : updateAffiliateProgram}
+      validateTrigger="onBlur"
     >
       <Header
         title={t(`title.${type}`)}
-        prevTitle={isAdd ? undefined : t('prev-title')}
-        backTo={isAdd ? undefined : '/affiliate/program'}
         buttons={
           isAdd ? null : (
             <FormItem shouldUpdate noStyle>
-              {({ getFieldsValue, getFieldsError, resetFields, submit }) =>
-                areEqual(programInitialValues, getFieldsValue()) ? null : (
-                  <div>
-                    <Button onClick={() => resetFields()}>
-                      {t('buttons.cancel')}
-                    </Button>
+              {({ getFieldsError, submit }) => (
+                <div>
+                  <Link href="/affiliate/programs">
+                    <Button>{t('buttons.cancel')}</Button>
+                  </Link>
 
-                    <Button
-                      onClick={submit}
-                      disabled={getFieldsError()?.some(
-                        ({ errors }) => errors.length,
-                      )}
-                      type="primary"
-                    >
-                      {t('buttons.save')}
-                    </Button>
-                  </div>
-                )
-              }
+                  <Button
+                    onClick={submit}
+                    disabled={getFieldsError()?.some(
+                      ({ errors }) => errors.length,
+                    )}
+                    type="primary"
+                  >
+                    {t('buttons.save')}
+                  </Button>
+                </div>
+              )}
             </FormItem>
           )
         }
@@ -313,25 +308,23 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
 
         {!isAdd ? null : (
           <FormItem shouldUpdate noStyle>
-            {({ getFieldsValue, getFieldsError, submit }) =>
-              areEqual(programInitialValues, getFieldsValue()) ? null : (
-                <div className={styles.addButtons}>
-                  <Link href="/affiliate/program">
-                    <Button type="text">{t('buttons.cancel')}</Button>
-                  </Link>
+            {({ getFieldsError, submit }) => (
+              <div className={styles.addButtons}>
+                <Link href="/affiliate/programs">
+                  <Button type="text">{t('buttons.cancel')}</Button>
+                </Link>
 
-                  <Button
-                    onClick={submit}
-                    disabled={getFieldsError()?.some(
-                      ({ errors }) => errors.length,
-                    )}
-                    type="primary"
-                  >
-                    {t('buttons.add')}
-                  </Button>
-                </div>
-              )
-            }
+                <Button
+                  onClick={submit}
+                  disabled={getFieldsError()?.some(
+                    ({ errors }) => errors.length,
+                  )}
+                  type="primary"
+                >
+                  {t('buttons.add')}
+                </Button>
+              </div>
+            )}
           </FormItem>
         )}
       </Header>

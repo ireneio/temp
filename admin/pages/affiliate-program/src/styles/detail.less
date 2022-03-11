@@ -1,0 +1,81 @@
+@import './mixin.less';
+
+.block {
+  @block();
+
+  & > div:not(.example) {
+    &:nth-child(odd) {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+      color: rgba(0, 0, 0, 0.45);
+
+      &:not(:first-child) {
+        margin: 24px 0px 0px;
+      }
+    }
+
+    &:nth-child(even) {
+      margin: 4px 0px 0px;
+      font-size: 16px;
+      line-height: 24px;
+      color: rgba(0, 0, 0, 0.65);
+    }
+  }
+
+  :global(.ant-btn) {
+    margin: 8px 0px 0px;
+    color: #5967c5;
+    border-color: #5967c5;
+  }
+}
+
+.programs,
+.delete :global(.ant-btn) {
+  background: transparent;
+}
+
+.delete {
+  margin: 16px 0px 0px;
+  width: 100%;
+  text-align: right;
+
+  :global(.ant-btn):hover {
+    color: #ed3441;
+    border-color: #ed3441;
+  }
+}
+
+.example {
+  margin: 12px 0px 0px;
+}
+
+.tag {
+  display: inline-block;
+  margin: 0px 0px 0px 8px;
+  padding: 0px 8px;
+  height: 20px;
+  font-size: 11px;
+  line-height: 20px;
+  color: #626c82;
+  background: #e6ebf1;
+  border-radius: 34px;
+
+  &.IN_PROGRESS {
+    color: #41a716;
+    background: #d9f7be;
+  }
+}
+
+.empty {
+  color: #faad14;
+
+  :global(.anticon) {
+    margin: 0px 4px 0px 12px;
+  }
+}
+
+.copy {
+  margin: 0px 0px 0px 8px;
+  color: #5967c5;
+}

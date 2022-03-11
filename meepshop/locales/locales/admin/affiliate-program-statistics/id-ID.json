@@ -2,8 +2,8 @@
   "back": "kembali",
   "never-end": "Tidak pernah berakhir",
   "status": {
-    "NOT_START": "belum dimulai",
-    "IS_ENDED": "lebih",
+    "NOT_STARTED": "belum dimulai",
+    "ENDED": "lebih",
     "IN_PROGRESS": "sedang berlangsung"
   },
   "numberOfOrders": {

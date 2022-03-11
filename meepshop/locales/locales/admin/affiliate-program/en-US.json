@@ -1,12 +1,17 @@
 {
   "title": {
     "add": "New promotion activities",
-    "edit": "Editor's promotion"
+    "edit": "Editor's promotion",
+    "detail": "Detailed information"
   },
+  "prev-title": "Promotion activities and grant",
   "buttons": {
     "cancel": "Cancel",
     "save": "store",
-    "add": "Establish an event"
+    "add": "Establish an event",
+    "programs": "Activity results",
+    "edit": "edit",
+    "delete": "Delete activity"
   },
   "validate": {
     "required": "Be required",
@@ -16,6 +21,13 @@
   "program-title": {
     "title": "Event name",
     "placeholder": "Please enter the event name"
+  },
+  "period": {
+    "title": "During the activity",
+    "never-end": "Never end",
+    "NOT_STARTED": "has not started",
+    "ENDED": "over",
+    "IN_PROGRESS": "in progress"
   },
   "startAt": {
     "title": "Activity start time",
@@ -42,7 +54,11 @@
     "specify": "Specify goods",
     "all": "Applicable to all store products",
     "select": "Select goods",
-    "selected-products": "Edit Selected {{amount}} items"
+    "selected-products": "Edit Selected {{amount}} items",
+    "all-products": "Applicable to all store products",
+    "specify-products": "Item designated goods",
+    "check-products": "View goods",
+    "empty": "The selected item has been deleted"
   },
   "promoCode": {
     "title": "Promotion tracking parameters",
@@ -54,5 +70,11 @@
     },
     "copied": "Reproduced \"?ref={{promoCode}}\"",
     "tooltip": "Copy parameters"
+  },
+  "delete": {
+    "title": "You sure you want to delete it?",
+    "content": "Cannot recover after promoting the deletion",
+    "ok": "DONE",
+    "success": "Successfully deleted"
   }
 }

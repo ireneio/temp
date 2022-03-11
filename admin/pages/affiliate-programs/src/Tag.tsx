@@ -18,9 +18,9 @@ interface PropsType {
 export default React.memo(({ node: { startAt, endAt } }: PropsType) => {
   const { t } = useTranslation('affiliate-programs');
   const status = useMemo(() => {
-    if (compareAsc(new Date(), new Date(startAt)) < 0) return 'NOT_START';
+    if (compareAsc(new Date(), new Date(startAt)) < 0) return 'NOT_STARTED';
 
-    if (endAt && compareAsc(new Date(endAt), new Date()) < 0) return 'IS_ENDED';
+    if (endAt && compareAsc(new Date(endAt), new Date()) < 0) return 'ENDED';
 
     return 'IN_PROGRESS';
   }, [startAt, endAt]);

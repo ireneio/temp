@@ -2,8 +2,8 @@
   "back": "regreso",
   "never-end": "Nunca termina",
   "status": {
-    "NOT_START": "no ha comenzado",
-    "IS_ENDED": "sobre",
+    "NOT_STARTED": "no ha comenzado",
+    "ENDED": "sobre",
     "IN_PROGRESS": "en curso"
   },
   "numberOfOrders": {

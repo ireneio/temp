@@ -13,8 +13,8 @@
   "add": "Aktivitas baru",
   "not-match": "Ditangkap",
   "tag": {
-    "NOT_START": "belum dimulai",
-    "IS_ENDED": "lebih",
+    "NOT_STARTED": "belum dimulai",
+    "ENDED": "lebih",
     "IN_PROGRESS": "sedang berlangsung"
   },
   "empty": {

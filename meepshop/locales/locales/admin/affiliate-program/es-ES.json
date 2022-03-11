@@ -1,12 +1,17 @@
 {
   "title": {
     "add": "Nuevas actividades de promoción.",
-    "edit": "Promoción del editor"
+    "edit": "Promoción del editor",
+    "detail": "Información detallada"
   },
+  "prev-title": "Actividades de promoción y concesión.",
   "buttons": {
     "cancel": "Cancelar",
     "save": "Tienda",
-    "add": "Establecer un evento"
+    "add": "Establecer un evento",
+    "programs": "Resultados de actividad",
+    "edit": "editar",
+    "delete": "Eliminar evento"
   },
   "validate": {
     "required": "Ser requerido",
@@ -16,6 +21,13 @@
   "program-title": {
     "title": "Nombre del evento",
     "placeholder": "Por favor ingrese el nombre del evento"
+  },
+  "period": {
+    "title": "Durante la actividad",
+    "never-end": "Nunca termina",
+    "NOT_STARTED": "no ha comenzado",
+    "ENDED": "sobre",
+    "IN_PROGRESS": "en curso"
   },
   "startAt": {
     "title": "Tiempo de inicio de actividad",
@@ -42,7 +54,11 @@
     "specify": "Especificar bienes",
     "all": "Aplicable a todos los productos de la tienda.",
     "select": "Seleccione Bienes",
-    "selected-products": "Editar seleccionado {{amount}} artículos"
+    "selected-products": "Editar seleccionado {{amount}} artículos",
+    "all-products": "Aplicable a todos los productos de la tienda.",
+    "specify-products": "Artículo designado mercancías",
+    "check-products": "Ver bienes",
+    "empty": "El artículo seleccionado ha sido borrado"
   },
   "promoCode": {
     "title": "Parámetros de seguimiento de la promoción",
@@ -54,5 +70,11 @@
     },
     "copied": "Reproducido \"?ref={{promoCode}}\"",
     "tooltip": "Copiar parámetros"
+  },
+  "delete": {
+    "title": "¿Seguro que quieres borrarlo?",
+    "content": "No se puede recuperar después de promover la eliminación",
+    "ok": "HECHO",
+    "success": "Borrado con éxito"
   }
 }

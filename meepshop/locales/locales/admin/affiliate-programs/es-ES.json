@@ -13,8 +13,8 @@
   "add": "Nueva actividad",
   "not-match": "Capturado",
   "tag": {
-    "NOT_START": "no ha comenzado",
-    "IS_ENDED": "sobre",
+    "NOT_STARTED": "no ha comenzado",
+    "ENDED": "sobre",
     "IN_PROGRESS": "en curso"
   },
   "empty": {

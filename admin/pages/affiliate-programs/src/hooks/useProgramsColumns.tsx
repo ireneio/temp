@@ -74,7 +74,7 @@ export default (): ColumnProps<useProgramsColumnsFragmentType>[] => {
         dataIndex: ['node', 'id'],
         width: 66,
         onCell: ({ node: { id } }) => ({
-          onClick: () => router.push(`/affiliate/programs/statistics/${id}`),
+          onClick: () => router.push(`/affiliate/programs/${id}/statistics`),
         }),
         render: () => (
           <Tooltip

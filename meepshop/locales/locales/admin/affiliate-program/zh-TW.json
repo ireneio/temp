@@ -1,12 +1,17 @@
 {
   "title": {
     "add": "新增推廣活動",
-    "edit": "編輯推廣活動"
+    "edit": "編輯推廣活動",
+    "detail": "活動詳細資訊"
   },
+  "prev-title": "推廣活動與分潤",
   "buttons": {
     "cancel": "取消",
     "save": "儲存",
-    "add": "建立活動"
+    "add": "建立活動",
+    "programs": "活動成效",
+    "edit": "編輯",
+    "delete": "刪除活動"
   },
   "validate": {
     "required": "必填",
@@ -16,6 +21,13 @@
   "program-title": {
     "title": "活動名稱",
     "placeholder": "請輸入活動名稱"
+  },
+  "period": {
+    "title": "活動期間",
+    "never-end": "永不結束",
+    "NOT_STARTED": "未開始",
+    "ENDED": "已結束",
+    "IN_PROGRESS": "進行中"
   },
   "startAt": {
     "title": "活動開始時間",
@@ -42,7 +54,11 @@
     "specify": "指定商品",
     "all": "適用全店商品",
     "select": "選擇商品",
-    "selected-products": "編輯已選 {{amount}} 項商品"
+    "selected-products": "編輯已選 {{amount}} 項商品",
+    "all-products": "適用全店商品",
+    "specify-products": "項指定商品",
+    "check-products": "查看商品",
+    "empty": "選定商品已被刪除"
   },
   "promoCode": {
     "title": "推廣追蹤參數",
@@ -54,5 +70,11 @@
     },
     "copied": "已複製 “?ref={{promoCode}}”",
     "tooltip": "複製參數"
+  },
+  "delete": {
+    "title": "確定要刪除嗎？",
+    "content": "推廣活動刪除後無法復原",
+    "ok": "Done",
+    "success": "成功刪除"
   }
 }

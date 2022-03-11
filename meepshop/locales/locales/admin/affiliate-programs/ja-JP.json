@@ -13,8 +13,8 @@
   "add": "新しい活動",
   "not-match": "捕獲された",
   "tag": {
-    "NOT_START": "起動していません",
-    "IS_ENDED": "以上",
+    "NOT_STARTED": "起動していません",
+    "ENDED": "以上",
     "IN_PROGRESS": "進行中"
   },
   "empty": {

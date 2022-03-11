@@ -1,12 +1,17 @@
 {
   "title": {
     "add": "Nouvelles activités de promotion",
-    "edit": "Promotion de l'éditeur"
+    "edit": "Promotion de l'éditeur",
+    "detail": "Des informations détaillées"
   },
+  "prev-title": "Activités de promotion et subvention",
   "buttons": {
     "cancel": "Annuler",
     "save": "boutique",
-    "add": "Établir un événement"
+    "add": "Établir un événement",
+    "programs": "Résultats d'activité",
+    "edit": "Éditer",
+    "delete": "Supprimer l'événement"
   },
   "validate": {
     "required": "Être requis",
@@ -16,6 +21,13 @@
   "program-title": {
     "title": "Nom de l'événement",
     "placeholder": "S'il vous plaît entrer le nom de l'événement"
+  },
+  "period": {
+    "title": "Au cours de l'activité",
+    "never-end": "Ne jamais finir",
+    "NOT_STARTED": "n'a pas commencé",
+    "ENDED": "plus de",
+    "IN_PROGRESS": "en cours"
   },
   "startAt": {
     "title": "Heure de début de l'activité",
@@ -42,7 +54,11 @@
     "specify": "Spécifier les biens",
     "all": "Applicable à tous les magasins",
     "select": "Sélectionner des marchandises",
-    "selected-products": "Modifier sélectionné {{amount}} éléments"
+    "selected-products": "Modifier sélectionné {{amount}} éléments",
+    "all-products": "Applicable à tous les magasins",
+    "specify-products": "Article des marchandises désignées",
+    "check-products": "Vue des biens",
+    "empty": "L'élément sélectionné a été supprimé"
   },
   "promoCode": {
     "title": "Paramètres de suivi de la promotion",
@@ -54,5 +70,11 @@
     },
     "copied": "Reproduit \"?ref={{promoCode}}\"",
     "tooltip": "Paramètres de copie"
+  },
+  "delete": {
+    "title": "Vous êtes sûr de vouloir le supprimer?",
+    "content": "Ne peut pas récupérer après la promotion de la suppression",
+    "ok": "TERMINÉ",
+    "success": "Supprimé avec succès"
   }
 }

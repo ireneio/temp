@@ -2,8 +2,8 @@
   "back": "戻る",
   "never-end": "終わらない",
   "status": {
-    "NOT_START": "起動していません",
-    "IS_ENDED": "以上",
+    "NOT_STARTED": "起動していません",
+    "ENDED": "以上",
     "IN_PROGRESS": "進行中"
   },
   "numberOfOrders": {

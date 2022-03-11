@@ -1,12 +1,17 @@
 {
   "title": {
     "add": "Hoạt động khuyến mãi mới",
-    "edit": "Khuyến mãi của biên tập viên"
+    "edit": "Khuyến mãi của biên tập viên",
+    "detail": "Thông tin chi tiết"
   },
+  "prev-title": "Hoạt động khuyến mãi và cấp",
   "buttons": {
     "cancel": "Hủy bỏ",
     "save": "cửa hàng",
-    "add": "Thiết lập một sự kiện"
+    "add": "Thiết lập một sự kiện",
+    "programs": "Kết quả hoạt động",
+    "edit": "biên tập",
+    "delete": "Xóa sự kiện"
   },
   "validate": {
     "required": "Được yêu cầu",
@@ -16,6 +21,13 @@
   "program-title": {
     "title": "Tên sự kiện.",
     "placeholder": "Vui lòng nhập tên sự kiện"
+  },
+  "period": {
+    "title": "Trong quá trình hoạt động",
+    "never-end": "Không bao giờ kết thúc",
+    "NOT_STARTED": "đã không bắt đầu",
+    "ENDED": "kết thúc",
+    "IN_PROGRESS": "trong tiến trình"
   },
   "startAt": {
     "title": "Thời gian bắt đầu hoạt động",
@@ -42,7 +54,11 @@
     "specify": "Chỉ định hàng hóa",
     "all": "Áp dụng cho tất cả các sản phẩm cửa hàng",
     "select": "Chọn hàng",
-    "selected-products": "Chỉnh sửa các mục {{amount}} đã chọn"
+    "selected-products": "Chỉnh sửa các mục {{amount}} đã chọn",
+    "all-products": "Áp dụng cho tất cả các sản phẩm cửa hàng",
+    "specify-products": "Mục được chỉ định hàng hóa",
+    "check-products": "Xem hàng hóa",
+    "empty": "Mục đã chọn đã bị xóa"
   },
   "promoCode": {
     "title": "Thông số theo dõi khuyến mãi.",
@@ -54,5 +70,11 @@
     },
     "copied": "Tái sản xuất \"?ref={{promoCode}}\"",
     "tooltip": "Sao chép thông số"
+  },
+  "delete": {
+    "title": "Bạn có chắc chắn muốn xóa nó?",
+    "content": "Không thể phục hồi sau khi thúc đẩy việc xóa",
+    "ok": "XONG",
+    "success": "Đã xóa thành công"
   }
 }

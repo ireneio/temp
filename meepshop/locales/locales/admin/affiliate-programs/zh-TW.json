@@ -13,8 +13,8 @@
   "add": "新增活動",
   "not-match": "查無符合活動",
   "tag": {
-    "NOT_START": "未開始",
-    "IS_ENDED": "已結束",
+    "NOT_STARTED": "未開始",
+    "ENDED": "已結束",
     "IN_PROGRESS": "進行中"
   },
   "empty": {

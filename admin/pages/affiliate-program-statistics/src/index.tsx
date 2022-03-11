@@ -46,7 +46,7 @@ const AffiliateProgramStatistics: NextPage<PropsType> = React.memo(
       affiliateProgramOrders,
     } = useAffiliateProgramStatistics(affiliateProgramId);
     const status =
-      affiliateProgramStatistics?.affiliateProgram.status || 'NOT_START';
+      affiliateProgramStatistics?.affiliateProgram.status || 'NOT_STARTED';
 
     return (
       <Header prevTitle={t('back')} backTo="/affiliate/programs" disableAffix>

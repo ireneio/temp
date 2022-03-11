@@ -1,23 +1,30 @@
 // typescript import
 import { NextPage } from 'next';
 
+import { PropsType as DetailPropsType } from './Detail';
 import { PropsType as EditPropsType } from './Edit';
 
 // import
 import React from 'react';
 
+// Use to copy mixin.less
+import './styles/mixin.less';
+
+import Detail from './Detail';
 import Edit from './Edit';
 
 // typescript definition
-interface PropsType extends EditPropsType {
+interface PropsType extends DetailPropsType, Omit<EditPropsType, 'type'> {
   namespacesRequired: string[];
+  type?: EditPropsType['type'];
 }
 
 // definition
 const AffiliateProgram: NextPage<PropsType> = React.memo(
   ({ affiliateProgramId, type }) =>
-    // TODO: detail page
-    !['add', 'edit'].includes(type) ? null : (
+    !type ? (
+      <Detail affiliateProgramId={affiliateProgramId} />
+    ) : (
       <Edit affiliateProgramId={affiliateProgramId} type={type} />
     ),
 );
@@ -30,7 +37,7 @@ AffiliateProgram.getInitialProps = async ({
     throw new Error('[FIXME] affiliateProgramId is undefined');
 
   // FIXME: should use get getServerSideProps return notFound
-  if (typeof type !== 'string' || !['add', 'edit'].includes(type))
+  if (type === 'string' && !['add', 'edit'].includes(type))
     throw new Error('[FIXME] type is not right');
 
   return {

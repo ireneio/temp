@@ -2,8 +2,8 @@
   "back": "trở về",
   "never-end": "Không bao giờ kết thúc",
   "status": {
-    "NOT_START": "đã không bắt đầu",
-    "IS_ENDED": "kết thúc",
+    "NOT_STARTED": "đã không bắt đầu",
+    "ENDED": "kết thúc",
     "IN_PROGRESS": "trong tiến trình"
   },
   "numberOfOrders": {

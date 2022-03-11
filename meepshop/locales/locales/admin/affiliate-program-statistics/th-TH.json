@@ -2,8 +2,8 @@
   "back": "กลับ",
   "never-end": "ไม่เคยจบ",
   "status": {
-    "NOT_START": "ยังไม่ได้เริ่ม",
-    "IS_ENDED": "เกิน",
+    "NOT_STARTED": "ยังไม่ได้เริ่ม",
+    "ENDED": "เกิน",
     "IN_PROGRESS": "กำลังดำเนินการ"
   },
   "numberOfOrders": {

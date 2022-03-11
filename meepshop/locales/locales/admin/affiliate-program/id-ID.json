@@ -1,12 +1,17 @@
 {
   "title": {
     "add": "Kegiatan promosi baru",
-    "edit": "Promosi editor"
+    "edit": "Promosi editor",
+    "detail": "Informasi rinci"
   },
+  "prev-title": "Kegiatan promosi dan hibah",
   "buttons": {
     "cancel": "Membatalkan",
     "save": "toko",
-    "add": "Membangun acara"
+    "add": "Membangun acara",
+    "programs": "HASIL AKTIVITAS.",
+    "edit": "Edit",
+    "delete": "Hapus acara"
   },
   "validate": {
     "required": "Diperlukan",
@@ -16,6 +21,13 @@
   "program-title": {
     "title": "Nama Acara",
     "placeholder": "Silakan masukkan nama acara"
+  },
+  "period": {
+    "title": "Selama kegiatan",
+    "never-end": "Tidak pernah berakhir",
+    "NOT_STARTED": "belum dimulai",
+    "ENDED": "lebih",
+    "IN_PROGRESS": "sedang berlangsung"
   },
   "startAt": {
     "title": "Kegiatan Mulai Waktu",
@@ -42,7 +54,11 @@
     "specify": "Tentukan barang",
     "all": "Berlaku untuk semua produk toko",
     "select": "Pilih barang",
-    "selected-products": "Edit item yang dipilih {{amount}}"
+    "selected-products": "Edit item yang dipilih {{amount}}",
+    "all-products": "Berlaku untuk semua produk toko",
+    "specify-products": "Barang barang yang ditunjuk",
+    "check-products": "Lihat Barang",
+    "empty": "Item yang dipilih telah dihapus"
   },
   "promoCode": {
     "title": "Parameter Pelacakan Promosi.",
@@ -54,5 +70,11 @@
     },
     "copied": "Direproduksi \"?ref={{promoCode}}\"",
     "tooltip": "Salin Parameter"
+  },
+  "delete": {
+    "title": "Anda yakin ingin menghapusnya?",
+    "content": "Tidak dapat pulih setelah mempromosikan penghapusan",
+    "ok": "SELESAI",
+    "success": "Berhasil dihapus"
   }
 }

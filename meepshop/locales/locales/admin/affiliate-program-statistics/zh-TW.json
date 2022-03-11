@@ -2,8 +2,8 @@
   "back": "返回",
   "never-end": "永不結束",
   "status": {
-    "NOT_START": "未開始",
-    "IS_ENDED": "已結束",
+    "NOT_STARTED": "未開始",
+    "ENDED": "已結束",
     "IN_PROGRESS": "進行中"
   },
   "numberOfOrders": {
