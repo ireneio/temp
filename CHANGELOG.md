@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 0.80.146 (2022-03-14)
+
+#### :rocket: New Feature
+
+- [#2184](https://github.com/meepshop/meep-lerna/pull/2184) 【BUG】加購區驗收測試：4-1 修復 ([@piovischioh](https://github.com/piovischioh))
+- [#2195](https://github.com/meepshop/meep-lerna/pull/2195) 【功能】分潤系統 - 活動細節預覽頁 - 後台 ([@HsuTing](https://github.com/HsuTing))
+- [#2178](https://github.com/meepshop/meep-lerna/pull/2178) 【功能】分潤系統 - 活動細節 - 後台 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#2185](https://github.com/meepshop/meep-lerna/pull/2185) 【BUG】加購區驗收測試：6-9 Scenario 3-1 修復 ([@piovischioh](https://github.com/piovischioh))
+  - [#2193](https://github.com/meepshop/meep-lerna/pull/2193) 【BUG】購物車加購區 - UI 樣式 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#2188](https://github.com/meepshop/meep-lerna/pull/2188) 【BUG】加購區驗收測試：2-3 修復 ([@piovischioh](https://github.com/piovischioh))
+  - [#2192](https://github.com/meepshop/meep-lerna/pull/2192) (@meepshop/frontend) Remove preReleaseSchema ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.145 (2022-03-10)
 
 #### :rocket: New Feature
