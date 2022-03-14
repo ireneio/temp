@@ -4,11 +4,11 @@
   "description": "Meepshop select module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.145",
+  "version": "0.80.146",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.145",
+    "@meepshop/context": "^0.80.146",
     "color": "^3.0.0"
   },
   "keywords": ["meepshop", "select"]

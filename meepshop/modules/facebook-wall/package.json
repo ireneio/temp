@@ -4,11 +4,11 @@
   "description": "Meepshop facebook wall",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.145",
+  "version": "0.80.146",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/hooks": "^0.80.145"
+    "@meepshop/hooks": "^0.80.146"
   },
   "keywords": ["facebook wall", "meepshop"]
 }

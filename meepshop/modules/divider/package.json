@@ -4,11 +4,11 @@
   "description": "Meepshop divider module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.145",
+  "version": "0.80.146",
   "main": "./index.js",
   "types": "./src/index.ts",
   "devDependencies": {
-    "@meepshop/utils": "^0.80.145"
+    "@meepshop/utils": "^0.80.146"
   },
   "keywords": ["divider", "meepshop"]
 }
