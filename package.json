@@ -11,6 +11,7 @@
     "store/pages/*",
     "admin/*",
     "admin/pages/*",
+    "admin/form/*",
     "admin/refactor/*"
   ],
   "scripts": {

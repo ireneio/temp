@@ -1,0 +1,56 @@
+{
+  "title": {
+    "add": "Add a partner",
+    "info": "Partner"
+  },
+  "prev-title": "Partner management",
+  "validate": {
+    "required": "Be required",
+    "same-partner-name": "This partner name has been used"
+  },
+  "open-url": "Open URL",
+  "buttons": {
+    "add": "Partner",
+    "save": "store",
+    "cancel": "Cancel"
+  },
+  "name": {
+    "title": "Partner name",
+    "placeholder": "Please enter a partner name"
+  },
+  "email": {
+    "title": "Contact Email",
+    "placeholder": "Please enter your partner Contact Email"
+  },
+  "phone": {
+    "title": "Contact phone",
+    "placeholder": "Please enter your partner contact phone"
+  },
+  "lineId": {
+    "title": "Line ID",
+    "placeholder": "Please enter a partner line ID"
+  },
+  "facebookUrl": {
+    "title": "Facebook URL",
+    "placeholder": "Please enter a partner Facebook URL"
+  },
+  "instagramUrl": {
+    "title": "Instagram URL",
+    "placeholder": "Please enter your partner Instagram URL"
+  },
+  "address": {
+    "title": "Contact Address",
+    "placeholder": "Please enter your partner contact address"
+  },
+  "memo": {
+    "title": "Remark",
+    "placeholder": "Please enter your partner note"
+  },
+  "create": {
+    "fail": "Establish a failure"
+  },
+  "update": {
+    "fail": "Storage failed",
+    "success": "Successful storage"
+  }
+}

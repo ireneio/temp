@@ -1,0 +1,56 @@
+{
+  "title": {
+    "add": "Tambahkan pasangan",
+    "info": "Mitra"
+  },
+  "prev-title": "Manajemen Mitra",
+  "validate": {
+    "required": "Diperlukan",
+    "same-partner-name": "Nama mitra ini telah digunakan"
+  },
+  "open-url": "Buka URL",
+  "buttons": {
+    "add": "Mitra",
+    "save": "toko",
+    "cancel": "Membatalkan"
+  },
+  "name": {
+    "title": "Nama Mitra",
+    "placeholder": "Silakan masukkan nama mitra"
+  },
+  "email": {
+    "title": "Kontak Email",
+    "placeholder": "Silakan masukkan email kontak mitra Anda"
+  },
+  "phone": {
+    "title": "Hubungi Telepon",
+    "placeholder": "Silakan masukkan telepon kontak pasangan Anda"
+  },
+  "lineId": {
+    "title": "ID LINE.",
+    "placeholder": "Silakan masukkan ID Garis Mitra"
+  },
+  "facebookUrl": {
+    "title": "URL Facebook",
+    "placeholder": "Silakan masukkan URL Facebook Mitra"
+  },
+  "instagramUrl": {
+    "title": "Instagram URL.",
+    "placeholder": "Silakan masukkan URL Instagram Mitra Anda"
+  },
+  "address": {
+    "title": "Kontak Alamat",
+    "placeholder": "Silakan masukkan alamat kontak mitra Anda"
+  },
+  "memo": {
+    "title": "Komentar",
+    "placeholder": "Silakan masukkan catatan pasangan Anda"
+  },
+  "create": {
+    "fail": "Menetapkan kegagalan"
+  },
+  "update": {
+    "fail": "Penyimpanan gagal",
+    "success": "Penyimpanan yang berhasil"
+  }
+}

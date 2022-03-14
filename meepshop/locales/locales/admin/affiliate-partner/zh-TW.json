@@ -1,0 +1,56 @@
+{
+  "title": {
+    "add": "新增合作夥伴",
+    "info": "合作夥伴"
+  },
+  "prev-title": "合作夥伴管理",
+  "validate": {
+    "required": "必填",
+    "same-partner-name": "此夥伴名稱已被使用"
+  },
+  "open-url": "開啟網址",
+  "buttons": {
+    "add": "建立夥伴",
+    "save": "儲存",
+    "cancel": "取消"
+  },
+  "name": {
+    "title": "合作夥伴名稱",
+    "placeholder": "請輸入夥伴名稱"
+  },
+  "email": {
+    "title": "聯絡 Email",
+    "placeholder": "請輸入夥伴聯絡 Email"
+  },
+  "phone": {
+    "title": "聯絡電話",
+    "placeholder": "請輸入夥伴聯絡電話"
+  },
+  "lineId": {
+    "title": "LINE ID",
+    "placeholder": "請輸入夥伴 LINE ID"
+  },
+  "facebookUrl": {
+    "title": "Facebook 網址",
+    "placeholder": "請輸入夥伴 Facebook 網址"
+  },
+  "instagramUrl": {
+    "title": "Instagram 網址",
+    "placeholder": "請輸入夥伴 Instagram 網址"
+  },
+  "address": {
+    "title": "聯絡地址",
+    "placeholder": "請輸入夥伴聯絡地址"
+  },
+  "memo": {
+    "title": "備註",
+    "placeholder": "請輸入夥伴備註"
+  },
+  "create": {
+    "fail": "建立失敗"
+  },
+  "update": {
+    "fail": "儲存失敗",
+    "success": "儲存成功"
+  }
+}

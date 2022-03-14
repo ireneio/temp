@@ -1,0 +1,56 @@
+{
+  "title": {
+    "add": "Agregar un compañero",
+    "info": "Compañero"
+  },
+  "prev-title": "Gestión de socios",
+  "validate": {
+    "required": "Ser requerido",
+    "same-partner-name": "Este nombre de socio ha sido utilizado"
+  },
+  "open-url": "URL ABIERTA",
+  "buttons": {
+    "add": "Compañero",
+    "save": "Tienda",
+    "cancel": "Cancelar"
+  },
+  "name": {
+    "title": "Nombre del socio",
+    "placeholder": "Por favor ingrese un nombre de socio"
+  },
+  "email": {
+    "title": "Email de contacto",
+    "placeholder": "Por favor ingrese su correo electrónico de contacto"
+  },
+  "phone": {
+    "title": "Teléfono de contacto",
+    "placeholder": "Por favor ingrese su teléfono."
+  },
+  "lineId": {
+    "title": "Identificación de línea",
+    "placeholder": "Por favor ingrese una identificación de línea de socios"
+  },
+  "facebookUrl": {
+    "title": "Facebook URL",
+    "placeholder": "Por favor ingrese una URL de Facebook de socio"
+  },
+  "instagramUrl": {
+    "title": "URL de Instagram",
+    "placeholder": "Por favor ingrese su Socio URL de Instagram"
+  },
+  "address": {
+    "title": "dirección de contacto",
+    "placeholder": "Por favor ingrese la dirección de contacto de su pareja"
+  },
+  "memo": {
+    "title": "Observación",
+    "placeholder": "Por favor ingrese su nota de socio"
+  },
+  "create": {
+    "fail": "Establecer un fracaso"
+  },
+  "update": {
+    "fail": "Almacenamiento falló",
+    "success": "Almacenamiento exitoso"
+  }
+}

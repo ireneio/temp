@@ -1,0 +1,56 @@
+{
+  "title": {
+    "add": "เพิ่มพันธมิตร",
+    "info": "พันธมิตร"
+  },
+  "prev-title": "การจัดการพันธมิตร",
+  "validate": {
+    "required": "เป็นที่ต้องการ",
+    "same-partner-name": "ชื่อพันธมิตรนี้ถูกใช้แล้ว"
+  },
+  "open-url": "เปิด URL",
+  "buttons": {
+    "add": "พันธมิตร",
+    "save": "เก็บ",
+    "cancel": "ยกเลิก"
+  },
+  "name": {
+    "title": "ชื่อพันธมิตร",
+    "placeholder": "โปรดป้อนชื่อพันธมิตร"
+  },
+  "email": {
+    "title": "ติดต่ออีเมล",
+    "placeholder": "โปรดป้อนอีเมลติดต่อคู่ของคุณ"
+  },
+  "phone": {
+    "title": "ติดต่อโทรศัพท์",
+    "placeholder": "โปรดป้อน Phone ติดต่อกับพันธมิตรของคุณ"
+  },
+  "lineId": {
+    "title": "ID บรรทัด",
+    "placeholder": "โปรดป้อน ID บรรทัดพันธมิตร"
+  },
+  "facebookUrl": {
+    "title": "URL Facebook",
+    "placeholder": "โปรดป้อน URL Facebook พันธมิตร"
+  },
+  "instagramUrl": {
+    "title": "URL Instagram",
+    "placeholder": "โปรดป้อน URL Instagram ของคู่ของคุณ"
+  },
+  "address": {
+    "title": "ที่อยู่ติดต่อ",
+    "placeholder": "โปรดป้อนที่อยู่ติดต่อคู่ของคุณ"
+  },
+  "memo": {
+    "title": "สังเกต",
+    "placeholder": "โปรดป้อนหมายเหตุคู่ของคุณ"
+  },
+  "create": {
+    "fail": "สร้างความล้มเหลว"
+  },
+  "update": {
+    "fail": "การเก็บรักษาล้มเหลว",
+    "success": "ที่เก็บข้อมูลที่ประสบความสำเร็จ"
+  }
+}

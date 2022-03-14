@@ -1,0 +1,56 @@
+{
+  "title": {
+    "add": "Thêm một đối tác",
+    "info": "Bạn đồng hành"
+  },
+  "prev-title": "Quản lý đối tác",
+  "validate": {
+    "required": "Được yêu cầu",
+    "same-partner-name": "Tên đối tác này đã được sử dụng"
+  },
+  "open-url": "Mở URL",
+  "buttons": {
+    "add": "Bạn đồng hành",
+    "save": "cửa hàng",
+    "cancel": "Hủy bỏ"
+  },
+  "name": {
+    "title": "Tên đối tác",
+    "placeholder": "Vui lòng nhập tên đối tác"
+  },
+  "email": {
+    "title": "địa chỉ email liên lạc",
+    "placeholder": "Vui lòng nhập email liên hệ đối tác của bạn"
+  },
+  "phone": {
+    "title": "Điện thoại liên hệ",
+    "placeholder": "Vui lòng nhập điện thoại liên hệ đối tác của bạn"
+  },
+  "lineId": {
+    "title": "Số dòng",
+    "placeholder": "Vui lòng nhập id dòng đối tác"
+  },
+  "facebookUrl": {
+    "title": "URL Facebook",
+    "placeholder": "Vui lòng nhập URL Facebook đối tác"
+  },
+  "instagramUrl": {
+    "title": "Url instagram",
+    "placeholder": "Vui lòng nhập URL Instagram đối tác của bạn"
+  },
+  "address": {
+    "title": "Địa chỉ liên lạc",
+    "placeholder": "Vui lòng nhập địa chỉ liên hệ đối tác của bạn"
+  },
+  "memo": {
+    "title": "Nhận xét",
+    "placeholder": "Vui lòng nhập ghi chú đối tác của bạn"
+  },
+  "create": {
+    "fail": "Thiết lập một thất bại"
+  },
+  "update": {
+    "fail": "Lưu trữ thất bại",
+    "success": "Lưu trữ thành công"
+  }
+}

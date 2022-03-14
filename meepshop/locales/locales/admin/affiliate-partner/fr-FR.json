@@ -1,0 +1,56 @@
+{
+  "title": {
+    "add": "Ajouter un partenaire",
+    "info": "Partenaire"
+  },
+  "prev-title": "Gestion des partenaires",
+  "validate": {
+    "required": "Être requis",
+    "same-partner-name": "Ce nom de partenaire a été utilisé"
+  },
+  "open-url": "Ouvrir le lien",
+  "buttons": {
+    "add": "Partenaire",
+    "save": "boutique",
+    "cancel": "Annuler"
+  },
+  "name": {
+    "title": "Nom de partenaire",
+    "placeholder": "S'il vous plaît entrer un nom de partenaire"
+  },
+  "email": {
+    "title": "Email du contact",
+    "placeholder": "Veuillez entrer votre partenaire contact email"
+  },
+  "phone": {
+    "title": "Numéro du contact",
+    "placeholder": "Veuillez entrer votre partenaire Contact téléphone"
+  },
+  "lineId": {
+    "title": "Id de ligne",
+    "placeholder": "S'il vous plaît entrer une identification de ligne partenaire"
+  },
+  "facebookUrl": {
+    "title": "L'adresse URL de Facebook",
+    "placeholder": "S'il vous plaît entrer une URL de partenaire Facebook"
+  },
+  "instagramUrl": {
+    "title": "URL Instagram",
+    "placeholder": "Veuillez entrer votre partenaire URL Instagram"
+  },
+  "address": {
+    "title": "Adresse de contact",
+    "placeholder": "Veuillez entrer votre adresse de contact de partenaire"
+  },
+  "memo": {
+    "title": "Remarque",
+    "placeholder": "S'il vous plaît entrer votre note de partenaire"
+  },
+  "create": {
+    "fail": "Établir un échec"
+  },
+  "update": {
+    "fail": "Échec du stockage",
+    "success": "Stockage réussi"
+  }
+}

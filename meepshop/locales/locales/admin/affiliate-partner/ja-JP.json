@@ -1,0 +1,56 @@
+{
+  "title": {
+    "add": "パートナーを追加します",
+    "info": "相棒"
+  },
+  "prev-title": "パートナー経営",
+  "validate": {
+    "required": "要求される",
+    "same-partner-name": "このパートナー名が使用されています"
+  },
+  "open-url": "URLを開く",
+  "buttons": {
+    "add": "相棒",
+    "save": "お店",
+    "cancel": "キャンセル"
+  },
+  "name": {
+    "title": "パートナー名",
+    "placeholder": "パートナー名を入力してください"
+  },
+  "email": {
+    "title": "連絡先メールアドレス",
+    "placeholder": "パートナー連絡先Eメールを入力してください"
+  },
+  "phone": {
+    "title": "電話に連絡する",
+    "placeholder": "パートナー連絡先電話を入力してください"
+  },
+  "lineId": {
+    "title": "ラインID",
+    "placeholder": "パートナーラインIDを入力してください"
+  },
+  "facebookUrl": {
+    "title": "FacebookのURL",
+    "placeholder": "パートナーのFacebook URLを入力してください"
+  },
+  "instagramUrl": {
+    "title": "InstagramのURL",
+    "placeholder": "あなたのパートナーInstagramのURLを入力してください"
+  },
+  "address": {
+    "title": "連絡先住所",
+    "placeholder": "パートナー連絡先住所を入力してください"
+  },
+  "memo": {
+    "title": "述べる",
+    "placeholder": "あなたのパートナーノートを入力してください"
+  },
+  "create": {
+    "fail": "失敗を確立する"
+  },
+  "update": {
+    "fail": "ストレージに失敗しました",
+    "success": "成功した記憶域"
+  }
+}
