@@ -43,7 +43,9 @@ import { useCheckErrorsFragment } from './gqls/useCheckErrors';
 // definition
 const Cart: NextPage = React.memo(() => {
   const role = useContext(RoleContext);
-  const { data } = useQuery<getCartType>(getCart);
+  const { data } = useQuery<getCartType>(getCart, {
+    fetchPolicy: 'cache-and-network',
+  });
   const viewer = data?.viewer || null;
   const computedCart = useComputedCart(filter(useComputedCartFragment, viewer));
   const {

@@ -85,7 +85,7 @@ const { Item: FormItem } = Form;
 }))
 @enhancer
 @withHook(({ carts, cartLoading }) => {
-  const { data } = useQuery(computedCartInCheckout, {
+  const { data, refetch } = useQuery(computedCartInCheckout, {
     fetchPolicy: 'cache-and-network',
     variables: {
       cartItems: carts.map(({ __typename: _, ...cartItem }) => cartItem),
@@ -101,6 +101,7 @@ const { Item: FormItem } = Form;
       ) || [],
     upsellingLimitPerOrder:
       data?.viewer?.store?.activeUpsellingArea?.limitPerOrder || 0,
+    refetch,
   };
 })
 @radium
@@ -362,7 +363,7 @@ export default class OrderDetail extends React.PureComponent {
 
     if (isChecking) return;
 
-    const { submit, t } = this.props;
+    const { submit, t, refetch } = this.props;
     const {
       computeOrderData,
       products,
@@ -405,9 +406,11 @@ export default class OrderDetail extends React.PureComponent {
           'OUT_OF_STOCK',
           'LIMIT_EXCEEDED',
           'MINIMUM_NOT_REACHED',
+          'EXCEED_LIMIT_PER_ORDER',
         ].includes(errorMessage)
       ) {
         notification.error({ message: t('pay-fail') });
+        await refetch();
         await this.computeOrderList();
         this.scrollToError();
         return;
