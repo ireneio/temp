@@ -12,6 +12,10 @@
   @media (max-width: @screen-sm-max) {
     padding: 24px 16px 24px;
     margin: 24px 0;
+
+    &:last-of-type {
+      margin-bottom: 72px;
+    }
   }
 }
 
@@ -36,6 +40,12 @@
   line-height: 24px;
   text-align: center;
   margin: -12px 0 16px;
+
+  @media (max-width: @screen-sm-max) {
+    text-align: left;
+    font-size: 14px;
+    line-height: 22px;
+  }
 }
 
 .products {

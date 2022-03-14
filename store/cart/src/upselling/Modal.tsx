@@ -209,7 +209,7 @@ export default React.memo(
               }
 
               .${styles.carousel} > div:first-child,
-              .${styles.carousel} .meepshop-image__index__wrapper {
+              .${styles.carousel} > div+div .meepshop-image__index__wrapper {
                 border: 1px solid ${transformColor(colors[3]).alpha(
                   0.1,
                 )} !important;
