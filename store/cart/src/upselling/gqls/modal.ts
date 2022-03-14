@@ -11,7 +11,7 @@ import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 import {
   useAddUpsellingUserFragment,
-  useAddUpsellingVariantFragment,
+  useAddUpsellingProductFragment,
   useAddUpsellingLineItemFragment,
 } from './useAddUpselling';
 import { useVariantFragment } from './useVariant';
@@ -41,13 +41,13 @@ export const modalProductFragment = gql`
       retailPrice
       suggestedPrice
       totalPrice
-      ...useAddUpsellingVariantFragment
     }
     ...productCarouselProductFragment
     ...productCollectionsProductFragment
     ...productDraftTextProductFragment
     ...productSpecSelectorFragment
     ...productVideoProductFragment
+    ...useAddUpsellingProductFragment
     ...useVariantFragment
   }
 
@@ -57,7 +57,7 @@ export const modalProductFragment = gql`
   ${productSpecSelectorFragment}
   ${productVideoProductFragment}
   ${localeFragment}
-  ${useAddUpsellingVariantFragment}
+  ${useAddUpsellingProductFragment}
   ${useVariantFragment}
 `;
 

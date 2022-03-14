@@ -1,8 +1,10 @@
 // import
-import { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, useContext } from 'react';
 import { filter } from 'graphql-anywhere';
 
 import { useCart } from '@meepshop/hooks';
+import { AdTrack as AdTrackContext } from '@meepshop/context';
+import { useGetLanguage } from '@meepshop/locales';
 
 // graphql typescript
 import {
@@ -36,7 +38,9 @@ export default ({
   setVisible,
   isOverLimit,
 }: PropsType): ReturnType => {
+  const { addToCart } = useContext(AdTrackContext);
   const { upsertCart } = useCart(filter(useCartFragment, viewer));
+  const getLanguage = useGetLanguage();
   const availableQuantity =
     useMemo(
       () =>
@@ -78,7 +82,27 @@ export default ({
           quantity: variant?.currentMinPurchasableQty || 0,
           variantId: variant?.id || 'null-id',
         });
+
+        addToCart({
+          eventName: 'upselling',
+          id: product.id || 'null-id',
+          title: {
+            // eslint-disable-next-line @typescript-eslint/camelcase
+            zh_TW: getLanguage(product.title),
+          },
+          quantity: variant?.currentMinPurchasableQty || 0,
+          specs: product.specs,
+          price: variant?.totalPrice || 0,
+        });
       }
-    }, [isOverLimit, availableQuantity, product, setVisible, upsertCart]),
+    }, [
+      isOverLimit,
+      availableQuantity,
+      product,
+      setVisible,
+      upsertCart,
+      addToCart,
+      getLanguage,
+    ]),
   };
 };

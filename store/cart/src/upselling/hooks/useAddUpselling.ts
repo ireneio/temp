@@ -1,13 +1,16 @@
 // import
-import { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, useContext } from 'react';
 import { filter } from 'graphql-anywhere';
 
 import { useCart } from '@meepshop/hooks';
+import { AdTrack as AdTrackContext } from '@meepshop/context';
+import { useGetLanguage } from '@meepshop/locales';
 
 // graphql typescript
 import {
   useAddUpsellingUserFragment as useAddUpsellingUserFragmentType,
   useAddUpsellingVariantFragment as useAddUpsellingVariantFragmentType,
+  useAddUpsellingProductFragment as useAddUpsellingProductFragmentType,
   useAddUpsellingLineItemFragment as useAddUpsellingLineItemFragmentType,
 } from '@meepshop/types/gqls/store';
 
@@ -16,7 +19,7 @@ import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
 
 // typescript definition
 interface PropsType {
-  productId: string;
+  product: useAddUpsellingProductFragmentType;
   viewer: useAddUpsellingUserFragmentType;
   variant: useAddUpsellingVariantFragmentType | null;
   cartItems: (useAddUpsellingLineItemFragmentType | null)[];
@@ -32,7 +35,7 @@ interface ReturnType {
 
 // definition
 export default ({
-  productId,
+  product,
   viewer,
   variant,
   cartItems,
@@ -40,7 +43,9 @@ export default ({
   isOverLimit,
   isWithProducts,
 }: PropsType): ReturnType => {
+  const { addToCart } = useContext(AdTrackContext);
   const { upsertCart } = useCart(filter(useCartFragment, viewer || null));
+  const getLanguage = useGetLanguage();
   const quantityInCart = useMemo(
     () =>
       cartItems.find(item => item?.variant?.id === variant?.id)?.quantity || 0,
@@ -66,11 +71,31 @@ export default ({
       // SHOULD_NOT_BE_NULL
       await upsertCart({
         __typename: 'CartItem' as const,
-        productId,
+        productId: product.id || 'null-id',
         quantity: variant?.currentMinPurchasableQty || 0,
         variantId: variant?.id || 'null-id',
       });
+
+      addToCart({
+        eventName: 'upselling',
+        id: product.id || 'null-id',
+        title: {
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          zh_TW: getLanguage(product.title),
+        },
+        quantity: variant?.currentMinPurchasableQty || 0,
+        specs: product.specs,
+        price: variant?.totalPrice || 0,
+      });
       onCancel();
-    }, [onCancel, productId, status, upsertCart, variant]),
+    }, [
+      addToCart,
+      getLanguage,
+      onCancel,
+      product,
+      status,
+      upsertCart,
+      variant,
+    ]),
   };
 };

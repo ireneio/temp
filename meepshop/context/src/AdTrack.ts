@@ -10,7 +10,7 @@ type customType = (
 ) => void;
 
 type addToCartType = (options: {
-  eventName: 'ec-popup' | 'ec' | 'lp';
+  eventName: 'ec-popup' | 'ec' | 'lp' | 'upselling';
   id: string;
   title: {
     zh_TW: string;

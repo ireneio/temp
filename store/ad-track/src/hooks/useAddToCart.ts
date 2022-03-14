@@ -21,24 +21,38 @@ export default (
       if (!adTracks) return;
 
       const { googleAnalyticsId } = adTracks;
+      const { event, type, label } = (() => {
+        switch (eventName) {
+          case 'ec-popup':
+            return {
+              event: 'trackCustom',
+              type: 'AddToCart_PopUp',
+              label: 'popup',
+            };
+          case 'upselling':
+            return {
+              event: 'trackCustom',
+              type: 'AddToCart_AdditionalPurchase',
+              label: 'AdditionalPurchase',
+            };
+          default:
+            return { event: 'track', type: 'AddToCart', label: 'general' };
+        }
+      })();
 
-      fbq(
-        eventName === 'ec-popup' ? 'trackCustom' : 'track',
-        eventName === 'ec-popup' ? 'AddToCart_PopUp' : 'AddToCart',
-        {
-          // eslint-disable-next-line @typescript-eslint/camelcase
-          content_ids: [id],
-          // eslint-disable-next-line @typescript-eslint/camelcase
-          content_type: 'product',
-          value: price,
-          currency,
-        },
-      );
+      fbq(event, type, {
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        content_ids: [id],
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        content_type: 'product',
+        value: price,
+        currency,
+      });
 
-      if (window.gtag && googleAnalyticsId)
+      if (window.gtag && googleAnalyticsId) {
         window.gtag('event', 'add_to_cart', {
           // eslint-disable-next-line @typescript-eslint/camelcase
-          event_label: eventName === 'ec-popup' ? 'popup' : 'general',
+          event_label: label,
           items: [
             {
               id,
@@ -54,6 +68,7 @@ export default (
             },
           ],
         });
+      }
     },
     [adTracks, fbq, currency],
   );

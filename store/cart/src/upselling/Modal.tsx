@@ -42,6 +42,7 @@ import { productVideoProductFragment } from '@meepshop/product-video/gqls';
 import {
   useAddUpsellingUserFragment,
   useAddUpsellingVariantFragment,
+  useAddUpsellingProductFragment,
   useAddUpsellingLineItemFragment,
 } from './gqls/useAddUpselling';
 
@@ -73,7 +74,7 @@ export default React.memo(
       product,
     );
     const { status, addToCart } = useAddUpselling({
-      productId: product.id || 'null-id',
+      product: filter(useAddUpsellingProductFragment, product),
       viewer: filter(useAddUpsellingUserFragment, viewer),
       variant: filter(useAddUpsellingVariantFragment, variant),
       cartItems: filter(useAddUpsellingLineItemFragment, cartItems),
