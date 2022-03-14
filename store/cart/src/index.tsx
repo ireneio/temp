@@ -93,7 +93,8 @@ const Cart: NextPage = React.memo(() => {
         )}
       </div>
 
-      {!viewer?.store?.activeUpsellingArea ? null : (
+      {!viewer?.store?.activeUpsellingArea ||
+      !viewer.store.activeUpsellingArea.products.length ? null : (
         <Upselling
           viewer={filter(upsellingUserFragment, viewer)}
           cartItems={filter(
