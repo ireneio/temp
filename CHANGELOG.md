@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## 0.80.147 (2022-03-15)
+
+#### :boom: Breaking Change
+
+- `store`
+  - [#2108](https://github.com/meepshop/meep-lerna/pull/2108) 內部開單 - 移除 express ([@HsuTing](https://github.com/HsuTing))
+
+#### :rocket: New Feature
+
+- [#2167](https://github.com/meepshop/meep-lerna/pull/2167) 【功能】分潤系統 - 夥伴細節 - 後台 ([@HsuTing](https://github.com/HsuTing))
+- [#2202](https://github.com/meepshop/meep-lerna/pull/2202) 內部開單 - 加入 @admin/form-url ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#2197](https://github.com/meepshop/meep-lerna/pull/2197) 內部開單 - 訂單匯出需要帶入 affiliateProgramId ([@HsuTing](https://github.com/HsuTing))
+- [#2196](https://github.com/meepshop/meep-lerna/pull/2196) 內部開單 - 分潤活動改用後端 status ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#2198](https://github.com/meepshop/meep-lerna/pull/2198) 內部開單 - 修改 next-admin paths ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 1
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.146 (2022-03-14)
 
 #### :rocket: New Feature
