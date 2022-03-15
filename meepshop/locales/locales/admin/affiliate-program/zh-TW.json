@@ -36,6 +36,7 @@
   },
   "endAt": {
     "title": "活動結束時間",
+    "disabled": "活動無期限",
     "placeholder": "請選擇結束時間",
     "tooltip": "活動結束前可以任意修改結束時間"
   },

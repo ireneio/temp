@@ -36,6 +36,7 @@
   },
   "endAt": {
     "title": "Temps de fin d'événement",
+    "disabled": "Pas de limite de temps",
     "placeholder": "Veuillez sélectionner l'heure de fin",
     "tooltip": "Temps d'appel avant la fin de l'événement"
   },

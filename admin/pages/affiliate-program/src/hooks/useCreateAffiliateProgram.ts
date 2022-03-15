@@ -28,14 +28,21 @@ export default (): ((values: ValuesType) => Promise<void>) => {
   >(createAffiliateProgram);
 
   return useCallback(
-    async ({ productsType, products, affiliatePartner, ...values }) => {
+    async ({
+      endAtDisabled,
+      productsType,
+      affiliatePartner,
+      products,
+      endAt,
+      ...values
+    }) => {
       await mutation({
         variables: {
           input: {
             ...values,
-            endAt: values.endAt,
-            affiliatePartnerId: affiliatePartner.id,
+            endAt: endAtDisabled ? null : endAt,
             allProducts: productsType === 'all',
+            affiliatePartnerId: affiliatePartner.id,
             productIds:
               productsType === 'all'
                 ? []

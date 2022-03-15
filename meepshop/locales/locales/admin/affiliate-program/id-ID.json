@@ -36,6 +36,7 @@
   },
   "endAt": {
     "title": "Peristiwa akhir zaman",
+    "disabled": "Tidak ada batas waktu",
     "placeholder": "Silakan pilih waktu akhir",
     "tooltip": "Panggil waktu sebelum akhir acara"
   },

@@ -9,6 +9,7 @@ import {
   InputNumber,
   DatePicker,
   Select,
+  Checkbox,
   Empty,
 } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
@@ -145,34 +146,57 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
                   placeholder={t('startAt.placeholder')}
                   showNow={false}
                   disabled={!isAdd}
+                  showTime={{
+                    format: 'HH:mm',
+                  }}
                   format="YYYY/MM/DD HH:mm"
-                  showTime
                 />
               </FormItem>
             </div>
 
             <div>
-              <div className={styles.title}>
-                {t('endAt.title')}
+              <div className={`${styles.title} ${styles.endAt}`}>
+                <div>
+                  {t('endAt.title')}
 
-                <Tooltip title={t('endAt.tooltip')} />
+                  <Tooltip title={t('endAt.tooltip')} />
+                </div>
+
+                <FormItem
+                  name={['endAtDisabled']}
+                  valuePropName="checked"
+                  noStyle
+                >
+                  <Checkbox>{t('endAt.disabled')}</Checkbox>
+                </FormItem>
               </div>
 
-              <FormItem
-                name={['endAt']}
-                rules={[
-                  {
-                    required: true,
-                    message: t('validate.required'),
-                  },
-                ]}
-              >
-                <DatePicker
-                  placeholder={t('endAt.placeholder')}
-                  showNow={false}
-                  format="YYYY/MM/DD HH:mm"
-                  showTime
-                />
+              <FormItem dependencies={['endAtDisabled']} noStyle>
+                {({ getFieldValue }) => (
+                  <FormItem
+                    name={['endAt']}
+                    rules={
+                      getFieldValue(['endAtDisabled'])
+                        ? []
+                        : [
+                            {
+                              required: true,
+                              message: t('validate.required'),
+                            },
+                          ]
+                    }
+                  >
+                    <DatePicker
+                      placeholder={t('endAt.placeholder')}
+                      showNow={false}
+                      showTime={{
+                        format: 'HH:mm',
+                      }}
+                      disabled={getFieldValue(['endAtDisabled'])}
+                      format="YYYY/MM/DD HH:mm"
+                    />
+                  </FormItem>
+                )}
               </FormItem>
             </div>
           </div>

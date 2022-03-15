@@ -36,6 +36,7 @@
   },
   "endAt": {
     "title": "Thời gian kết thúc sự kiện",
+    "disabled": "Không có giới hạn thời gian",
     "placeholder": "Vui lòng chọn thời gian kết thúc",
     "tooltip": "Thời gian gọi trước khi kết thúc sự kiện"
   },

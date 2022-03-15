@@ -36,6 +36,7 @@
   },
   "endAt": {
     "title": "Event end time",
+    "disabled": "No time limit",
     "placeholder": "Please select the end time",
     "tooltip": "Call time before the end of the event"
   },

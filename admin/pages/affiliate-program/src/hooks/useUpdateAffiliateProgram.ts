@@ -33,19 +33,32 @@ export default (
   >(updateAffiliateProgram);
 
   return useCallback(
-    async ({ productsType, products, ...values }) => {
+    async ({
+      endAtDisabled,
+      productsType,
+      affiliatePartner,
+      products,
+      endAt,
+      ...values
+    }) => {
       if (!affiliateProgram) {
         message.error(t('update.fail'));
         return;
       }
 
       const { id } = affiliateProgram;
+      const newProgram = {
+        ...values,
+        id,
+        endAt: endAtDisabled ? null : endAt,
+        allProducts: productsType === 'all',
+      };
 
       await mutation({
         variables: {
           input: {
-            ...values,
-            id,
+            ...newProgram,
+            affiliatePartnerId: affiliatePartner.id,
             productIds:
               productsType === 'all'
                 ? []
@@ -66,8 +79,8 @@ export default (
             fragmentName: 'useUpdateAffiliateProgramFragment',
             data: merge<
               useUpdateAffiliateProgramFragmentType,
-              Omit<ValuesType, 'productsType'>
-            >(affiliateProgram, { ...values, products }),
+              Omit<ValuesType, 'endAtDisabled' | 'productsType'>
+            >(affiliateProgram, { ...newProgram, affiliatePartner, products }),
           });
           message.success(t('update.success'));
         },

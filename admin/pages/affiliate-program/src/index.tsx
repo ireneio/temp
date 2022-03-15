@@ -37,13 +37,14 @@ AffiliateProgram.getInitialProps = async ({
     throw new Error('[FIXME] affiliateProgramId is undefined');
 
   // FIXME: should use get getServerSideProps return notFound
-  if (type === 'string' && !['add', 'edit'].includes(type))
-    throw new Error('[FIXME] type is not right');
+  if (type && type !== 'edit') throw new Error('[FIXME] type is not right');
 
   return {
     namespacesRequired: ['@meepshop/locales/namespacesRequired'],
     affiliateProgramId,
-    type: type as EditPropsType['type'],
+    type: (affiliateProgramId === 'add'
+      ? 'add'
+      : type) as EditPropsType['type'],
   };
 };
 
