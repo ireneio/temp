@@ -1,5 +1,9 @@
 // definition
 export default (url, callback) => async (req, res) => {
+  // FIXME: T10566, remove after next >= 12
+  if (typeof window === 'undefined' && process.env.NEXT_PUBLIC_STORE_DOMAIN)
+    req.headers.host = process.env.NEXT_PUBLIC_STORE_DOMAIN;
+
   const response = await fetch(url, {
     method: 'post',
     headers: {

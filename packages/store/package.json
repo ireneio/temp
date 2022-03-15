@@ -7,9 +7,9 @@
   "version": "0.80.146",
   "main": "./next.config.js",
   "scripts": {
-    "dev": "node --inspect=localhost:9230 src/server",
+    "dev": "NODE_OPTIONS='--inspect=localhost:9230' next dev ./src -p 14401",
     "prod": "rm -rf ./lib && next build ./src",
-    "start": "NODE_ENV=production node src/server"
+    "start": "NODE_ENV=production next start ./src -p 14401"
   },
   "dependencies": {
     "@meepshop/action-button": "^0.80.146",
@@ -47,16 +47,8 @@
     "@store/thank-you-page": "^0.80.146",
     "@store/unsubscribe-email": "^0.80.146",
     "@store/utils": "^0.80.146",
-    "body-parser": "^1.18.3",
-    "color": "^3.0.0",
-    "cookie-parser": "^1.4.4",
+    "cookie": "^0.4.1",
     "date-fns": "^2.15.0",
-    "express": "^4.17.1",
-    "express-http-proxy": "^1.6.0",
-    "helmet": "^3.21.2",
-    "htmlescape": "^1.1.1",
-    "http-status": "^1.4.0",
-    "js-cookie": "^2.2.1",
     "ua-parser-js": "^0.7.20"
   },
   "keywords": ["meepshop", "store"]

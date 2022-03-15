@@ -10,7 +10,6 @@ export default (req, res) => {
     device: { type = 'desktop', model = '', vendor = 'unknown' },
   } = uaParser(req.headers['user-agent']);
 
-  // FIXME: remove after express is removed
   res.setHeader('content-type', 'text/html');
   res.end(
     `

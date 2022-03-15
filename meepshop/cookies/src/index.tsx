@@ -1,3 +1,4 @@
+// FIXME: T10566, rewrite after next >= 12
 // typescript import
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { AppProps } from 'next/app';
@@ -13,6 +14,7 @@ import { getCookiesType } from './hooks/useCookies';
 import React from 'react';
 import { emptyFunction } from 'fbjs';
 import cookie from 'js-cookie';
+import { serialize } from 'cookie';
 
 import { i18n } from '@meepshop/locales';
 
@@ -101,7 +103,7 @@ export const withCookies = (getCookies: getCookiesType): ReturnType => ({
           get: (key: string) => req.cookies[key],
           set: (key: string, value: string, options?: CookieAttributesType) => {
             req.cookies[key] = value;
-            res.cookie(key, value, options);
+            res.setHeader('Set-Cookie', serialize(key, value, options));
           },
         },
       }),

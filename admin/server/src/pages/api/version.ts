@@ -13,6 +13,7 @@ export default (req: NextApiRequest, res: NextApiResponse): void => {
     device: { type = 'desktop', model = '', vendor = 'unknown' },
   } = uaParser(req.headers['user-agent']);
 
+  res.setHeader('content-type', 'text/html');
   res.end(
     `
       <header>Welcome to next-admin ${process.env.NEXT_PUBLIC_VERSION}</header>

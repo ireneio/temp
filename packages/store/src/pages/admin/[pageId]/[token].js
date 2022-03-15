@@ -50,7 +50,7 @@ Page.getInitialProps = async ctx => {
   if (!data?.isAdministratorToken)
     return { error: { status: 'ERROR_PAGE_NOT_FOUND' } };
 
-  ctx.res.header('X-Frame-Options', undefined);
+  ctx.res.setHeader('X-Frame-Options', '');
 
   return {
     userAgent,

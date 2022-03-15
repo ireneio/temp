@@ -1,3 +1,7 @@
+// import
+import { serialize } from 'cookie';
+import { add } from 'date-fns';
+
 // definition
 export default async (req, res) => {
   const { code, state, error } = req.query;
@@ -84,13 +88,18 @@ export default async (req, res) => {
     return;
   }
 
-  res.cookie(
-    'x-meepshop-authorization-token',
-    lineRes.data.lineLoginProcess.authorizationToken,
-    {
-      maxAge: 86400 * 1000 * 7,
-      httpOnly: true,
-    },
+  res.setHeader(
+    'Set-Cookie',
+    serialize(
+      'x-meepshop-authorization-token',
+      lineRes.data.lineLoginProcess.authorizationToken,
+      {
+        maxAge: 86400 * 1000 * 7,
+        expires: add(new Date(), { days: 7 }),
+        path: '/',
+        httpOnly: true,
+      },
+    ),
   );
 
   res.redirect(state);

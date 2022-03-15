@@ -1,7 +1,6 @@
 // typescript import
 import { AppContext, AppInitialProps } from 'next/app';
 
-import { CustomCtx } from '@meepshop/utils/lib/handler';
 import { CustomCtx as CookiesCustomCtx } from '@meepshop/cookies';
 
 // import
@@ -19,7 +18,6 @@ import {
   getServerSideDomainContextProps,
   getClientSideDomainContextProps,
 } from '@meepshop/link';
-import handler from '@meepshop/utils/lib/handler';
 import Switch from '@meepshop/switch';
 import withApollo from '@admin/apollo';
 import AdTrackProvider from '@admin/ad-track';
@@ -33,7 +31,7 @@ import {
 
 // tyepscript definition
 interface CustomAppContext extends AppContext {
-  ctx: AppContext['ctx'] & CustomCtx & CookiesCustomCtx;
+  ctx: AppContext['ctx'] & CookiesCustomCtx;
 }
 
 // definition
@@ -45,8 +43,6 @@ class App extends NextApp<AppInitialProps> {
     ctx,
     router,
   }: CustomAppContext): Promise<AppInitialProps> => {
-    await handler(ctx);
-
     const pageProps: {
       namespacesRequired?: string[];
     } = (await Component.getInitialProps?.(ctx)) || {};

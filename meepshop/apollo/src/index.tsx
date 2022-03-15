@@ -70,14 +70,19 @@ export const buildWithApollo = (
       router,
       ctx: { res, req },
     } = ctx;
+
+    // FIXME: T10566, remove after next >= 12
+    if (typeof window === 'undefined' && process.env.NEXT_PUBLIC_STORE_DOMAIN)
+      req.headers.host = process.env.NEXT_PUBLIC_STORE_DOMAIN;
+
     const loggerInfo =
       typeof window !== 'undefined'
         ? undefined
-        : req.loggerInfo || {
+        : {
             id: uuid(),
-            host: req.headers.host,
-            userAgent: req.headers['user-agent'],
-            url: req.url,
+            host: req.headers.host as string,
+            userAgent: req.headers['user-agent'] as string,
+            url: req.url as string,
             identity:
               req.cookies.identity ||
               (() => {
@@ -109,7 +114,6 @@ export const buildWithApollo = (
       return { ...ssrProps, ...appProps, error: e };
     }
 
-    if (res?.writableEnded) return appProps;
     if (typeof window === 'undefined')
       try {
         await getDataFromTree(

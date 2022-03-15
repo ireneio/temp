@@ -6,8 +6,6 @@ import {
   NormalizedCacheObject,
 } from '@apollo/client';
 
-import { LoggerInfoType } from '@meepshop/logger';
-
 // typescript definition
 export interface CustomCtxType<Req = {}, Res = {}> extends AppContext {
   ctx: AppContext['ctx'] & {
@@ -17,8 +15,6 @@ export interface CustomCtxType<Req = {}, Res = {}> extends AppContext {
         'x-meepshop-authorization-token': string;
         identity: string;
       };
-      // FIXME: remove after next-store remove express
-      loggerInfo: LoggerInfoType;
     };
     res: Res;
   };

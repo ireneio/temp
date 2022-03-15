@@ -12,6 +12,7 @@
     "@meepshop/link": "^0.80.146",
     "@meepshop/locales": "^0.80.146",
     "@meepshop/logger": "^0.80.146",
+    "cookie": "^0.4.1",
     "js-cookie": "^2.2.1"
   },
   "keywords": ["context", "cookies", "meepshop"]

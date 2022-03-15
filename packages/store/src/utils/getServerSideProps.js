@@ -1,5 +1,6 @@
 // import
 import { gql } from '@apollo/client';
+import { serialize } from 'cookie';
 
 import { getServerSideDomainContextProps } from '@meepshop/link';
 
@@ -24,10 +25,15 @@ export default async (ctx, router) => {
   ).then(result => result.json());
 
   if (!valid) {
-    res.cookie('x-meepshop-authorization-token', '', {
-      maxAge: 0,
-      httpOnly: true,
-    });
+    res.setHeader(
+      'Set-Cookie',
+      serialize('x-meepshop-authorization-token', '', {
+        maxAge: 0,
+        expires: new Date(),
+        path: '/',
+        httpOnly: true,
+      }),
+    );
     delete req.cookies['x-meepshop-authorization-token'];
   }
 

@@ -5,9 +5,9 @@ export default class MyDocument extends Document {
   static async getInitialProps({ req, res, renderPage }) {
     const { html, head, errorHtml, chunks } = renderPage();
 
-    if (res.append) {
-      res.append('Cache-Control', 'no-cache, no-store, must-revalidate');
-    }
+    // FIXME: T10566 should use revalidate, https://nextjs.org/docs/api-reference/next.config.js/headers#cache-control
+    if (typeof window === 'undefined')
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
 
     return {
       html,
