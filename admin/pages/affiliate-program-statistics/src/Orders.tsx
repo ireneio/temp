@@ -26,19 +26,25 @@ import { useProgramStatisticsLoadMoreFragment } from './gqls/useProgramStatistic
 
 // typescript defintion
 interface PropsType extends loadMoreType {
+  affiliateProgramId: string;
   affiliateProgramOrders: ordersAffiliateProgramOrdersConnectionFragmentType | null;
 }
 
 // definition
 export default React.memo(
-  ({ loading, fetchMore, affiliateProgramOrders }: PropsType) => {
+  ({
+    loading,
+    fetchMore,
+    affiliateProgramId,
+    affiliateProgramOrders,
+  }: PropsType) => {
     const { t } = useTranslation('affiliate-program-statistics');
     const columns = useProgramStatisticsColumns();
     const { current, onChange } = useProgramStatisticsLoadMore(
       filter(useProgramStatisticsLoadMoreFragment, affiliateProgramOrders),
       { loading, fetchMore },
     );
-    const exportOrders = useExportOrders();
+    const exportOrders = useExportOrders(affiliateProgramId);
 
     return (
       <Table<useProgramStatisticsColumnsFragmentType>

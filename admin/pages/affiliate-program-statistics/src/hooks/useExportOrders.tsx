@@ -20,7 +20,7 @@ import { exportOrders } from '../gqls/useExportOrders';
 const { Item: FormItem } = Form;
 const { Option } = Select;
 
-export default (): (() => void) => {
+export default (affiliateProgramId: string): (() => void) => {
   const [form] = Form.useForm();
   const { t } = useTranslation('affiliate-program-statistics');
   const [mutation] = useMutation<exportOrdersType, exportOrdersVariablesType>(
@@ -41,7 +41,7 @@ export default (): (() => void) => {
             input: {
               ...form.getFieldsValue(),
               filter: 'AFFILIATE_ORDER',
-              // FIXME: should add affiliateProgramId
+              affiliateProgramId,
             },
           },
         }),
@@ -80,5 +80,5 @@ export default (): (() => void) => {
         </>
       ),
     });
-  }, [form, t, mutation]);
+  }, [affiliateProgramId, form, t, mutation]);
 };

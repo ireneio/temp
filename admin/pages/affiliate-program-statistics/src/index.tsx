@@ -91,6 +91,7 @@ const AffiliateProgramStatistics: NextPage<PropsType> = React.memo(
         <Orders
           loading={loading}
           fetchMore={fetchMore}
+          affiliateProgramId={affiliateProgramId}
           affiliateProgramOrders={filter(
             ordersAffiliateProgramOrdersConnectionFragment,
             affiliateProgramOrders,
