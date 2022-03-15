@@ -1,3 +1,0 @@
-extend type AffiliateProgram {
-  allProducts: Boolean!
-}

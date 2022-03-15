@@ -33,9 +33,9 @@ export default (): ((values: ValuesType) => Promise<void>) => {
         variables: {
           input: {
             ...values,
-            // FIXME: should not be null
-            endAt: values.endAt || '',
+            endAt: values.endAt,
             affiliatePartnerId: affiliatePartner.id,
+            allProducts: productsType === 'all',
             productIds:
               productsType === 'all'
                 ? []
