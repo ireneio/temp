@@ -3,7 +3,6 @@ import { ColumnProps } from 'antd/lib/table';
 
 // import
 import React, { useMemo } from 'react';
-import { filter } from 'graphql-anywhere';
 import { format } from 'date-fns';
 
 import Tooltip from '@admin/tooltip';
@@ -11,14 +10,10 @@ import { useTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
 import { ChartIcon } from '@meepshop/icons';
 
-import Tag from '../Tag';
 import styles from '../styles/useProgramsColumns.less';
 
 // graphql typescript
 import { useProgramsColumnsFragment as useProgramsColumnsFragmentType } from '@meepshop/types/gqls/admin';
-
-// graphql import
-import { tagFragment } from '../gqls/tag';
 
 // definition
 export default (): ColumnProps<useProgramsColumnsFragmentType>[] => {
@@ -66,7 +61,9 @@ export default (): ColumnProps<useProgramsColumnsFragmentType>[] => {
             {!node.endAt
               ? t('never-end')
               : format(new Date(node.endAt), 'yyyy/MM/dd HH:mm')}
-            <Tag node={filter(tagFragment, node)} />
+            <span className={`${styles.tag} ${styles[node.status] || ''}`}>
+              {t(`tag.${node.status}`)}
+            </span>
           </>
         ),
       },
