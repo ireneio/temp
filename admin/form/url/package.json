@@ -4,11 +4,11 @@
   "description": "Form url for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.1.0",
+  "version": "0.80.147",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/locales": "^0.80.145",
+    "@meepshop/locales": "^0.80.147",
     "validator": "^13.5.2"
   },
   "keywords": ["admin", "form", "url"]
