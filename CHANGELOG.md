@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.149 (2022-03-16)
+
+#### :house: Internal
+
+- [#2163](https://github.com/meepshop/meep-lerna/pull/2163) 內部開單 - createOrder 成功之後，由前端發出 upsertCart 清空購物車 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 1
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.148 (2022-03-16)
 
 #### :rocket: New Feature
