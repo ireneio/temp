@@ -1,3 +1,24 @@
+export const PRESERVED_FIELDS = [
+  'userEmail',
+  'userName',
+  'userMobile',
+  'name',
+  'mobile',
+  'addressAndZipCode',
+  'street',
+  'invoice',
+  'invoiceTitle',
+  'invoiceVAT',
+  'invoiceAddress',
+  'invoiceDonate',
+  'invoiceEInvoiceNumber',
+  'notes',
+];
+
+export const COMPUTE_FIELDS = ['paymentId', 'coupon', 'points'];
+
+export const FILTER_ECPAY_PLAYFORM = ['Android', 'Windows Phone', 'iOS'];
+
 export const SHIPMENT_STORE_FIELDS = [
   'CVSStoreName',
   'CVSStoreID',

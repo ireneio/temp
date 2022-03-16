@@ -55,14 +55,14 @@ export default React.memo(({ isLogin, store, user }: PropsType) => {
 
   const synchronizeUserInfo = useSynchronizeUserInfo({
     allHidden,
-    user: filter(useSynchronizeUserInfoFragment, user),
+    user: filter(useSynchronizeUserInfoFragment, user || null),
   });
   const {
     canSaveAsTemplate,
     setReceiverWithTemplate,
   } = useSaveAsReceiverTemplate({
     isLogin,
-    user: filter(useSaveAsReceiverTemplateFragment, user),
+    user: filter(useSaveAsReceiverTemplateFragment, user || null),
   });
   const validateName = useValidateName();
   const { validateMobile, validateTaiwanMobileNumber } = useValidateMobile();
@@ -74,7 +74,7 @@ export default React.memo(({ isLogin, store, user }: PropsType) => {
   );
 
   return (
-    <>
+    <div className={styles.root}>
       <div className={styles.title}>
         {t('receiver-info')}
 
@@ -190,6 +190,7 @@ export default React.memo(({ isLogin, store, user }: PropsType) => {
                 ]}
               >
                 <AddressCascader
+                  size="large"
                   placeholder={[t('area'), t('postal-code')]}
                   shippableCountries={store?.shippableCountries || []}
                 />
@@ -234,7 +235,7 @@ export default React.memo(({ isLogin, store, user }: PropsType) => {
                 />
               </FormItem>
 
-              <Invoice invoice={getFieldValue(['invoice'])} />
+              <Invoice invoice={getFieldValue(['invoice']) || null} />
             </>
           )
         }
@@ -290,6 +291,6 @@ export default React.memo(({ isLogin, store, user }: PropsType) => {
           `,
         }}
       />
-    </>
+    </div>
   );
 });

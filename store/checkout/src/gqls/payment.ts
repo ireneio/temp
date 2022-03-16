@@ -2,10 +2,25 @@
 import { gql } from '@apollo/client';
 
 // definition
-export const paymentPaymentObjectTypeFragment = gql`
-  fragment paymentPaymentObjectTypeFragment on paymentObjectType {
-    paymentId
-    name
-    description
+export const paymentOrderFragment = gql`
+  fragment paymentOrderFragment on Order {
+    categories {
+      paymentList: paymentTemplates {
+        paymentId
+        name
+        description
+        template
+        paymentLater
+        accountInfo {
+          allpay {
+            ChoosePayment
+          }
+          gmo {
+            isInstallment
+            paymentType
+          }
+        }
+      }
+    }
   }
 `;

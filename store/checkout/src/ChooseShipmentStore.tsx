@@ -19,7 +19,7 @@ import { useConvenienceStoreFragment } from './gqls/useConvenienceStore';
 
 // typescript definition
 interface PropsType {
-  shipment: useConvenienceStoreFragmentType;
+  shipment: useConvenienceStoreFragmentType | null;
 }
 
 // definition

@@ -1,0 +1,70 @@
+@import '~@store/utils/styles/variables.less';
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 16px 16px 8px;
+  margin-bottom: 24px;
+
+  >span {
+    flex: 1 0 auto;
+    margin-bottom: 8px;
+  }
+
+  > *:not(span) {
+    padding: 4px 16px;
+    margin: 0px 8px 8px 0px;
+    border-radius: 2px;
+    height: auto;
+    white-space: nowrap;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    padding: 12px 12px 4px;
+    margin-bottom: 30px;
+
+    >span {
+      width: 100%;
+    }
+
+    > *:not(span) {
+      padding: 6px 23px;
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+}
+
+.line {
+  font-size: 12px;
+  line-height: 20px;
+
+  :global(.anticon) {
+    font-size: 16px;
+  }
+
+  :global(.anticon + span) {
+    @media (max-width: @screen-sm-max) {
+      margin-left: 6px;
+    }
+  }
+}
+
+.fb {
+  background-color: #3b5998;
+  color: white;
+
+  :global(.anticon) {
+    font-size: 12px;
+    margin-right: 8px;
+  }
+}
+
+.login {
+  margin: 0px 8px 8px 0px;
+}

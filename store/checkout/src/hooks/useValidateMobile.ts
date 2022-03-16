@@ -6,7 +6,7 @@ import { useTranslation } from '@meepshop/locales';
 
 // typescript definition
 interface ReturnType {
-  validateMobile: (value: string | null, shipmentTemplate: string) => void;
+  validateMobile: (value: string | null, shipmentTemplate?: string) => void;
   validateTaiwanMobileNumber: (value: string) => string;
 }
 

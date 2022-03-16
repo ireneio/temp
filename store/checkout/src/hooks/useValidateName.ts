@@ -7,13 +7,13 @@ import { useTranslation } from '@meepshop/locales';
 // definition
 export default (): ((
   value: string | null,
-  shipmentTemplate: string,
+  shipmentTemplate?: string,
 ) => void) => {
   const { t } = useTranslation('checkout');
 
   return useCallback(
     async (value, shipmentTemplate) => {
-      if (!value) return;
+      if (!value || !shipmentTemplate) return;
 
       switch (shipmentTemplate) {
         case 'ezship':

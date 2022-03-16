@@ -54,7 +54,7 @@ export default React.memo(({ validateFields, computeOrderList }: PropsType) => {
         trigger="onBlur"
         valuePropName="defaultValue"
       >
-        <Input placeholder={t('coupon.placeholder')} />
+        <Input placeholder={t('coupon.placeholder')} size="large" />
       </FormItem>
 
       {!couponInfo ? null : (

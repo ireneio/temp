@@ -1,0 +1,71 @@
+@import '~@store/utils/styles/variables.less';
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
+
+  >div:nth-child(2) {
+    display: flex;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    flex-direction: column-reverse;
+    margin-bottom: 40px;
+
+    >div:nth-child(2) {
+      display: block;
+    }
+  }
+}
+
+.continue {
+  height: 50px;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  :global(.anticon) {
+    margin-right: 6px;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 50px;
+    margin-top: 30px;
+  }
+}
+
+.paymentLater {
+  height: 50px;
+  min-width: 150px;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0px 5px 0px 0px;
+
+  @media (max-width: @screen-sm-max) {
+    height: 60px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0px 0px 5px;
+  }
+}
+
+.confirm {
+  height: 50px;
+  min-width: 150px;
+  font-size: 16px;
+  line-height: 24px;
+
+  @media (max-width: @screen-sm-max) {
+    height: 60px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 18px;
+  }
+}

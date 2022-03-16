@@ -21,7 +21,9 @@ interface ReturnType {
 }
 
 // definition
-export default (shipment: useConvenienceStoreFragmentType): ReturnType => {
+export default (
+  shipment: useConvenienceStoreFragmentType | null,
+): ReturnType => {
   const { data } = useQuery<
     getEcpayShipmentInfoType,
     getEcpayShipmentInfoVariablesType

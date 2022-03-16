@@ -1,19 +1,21 @@
 // import
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { Form, Select, Collapse } from 'antd';
 import transformColor from 'color';
+import { UserAgent } from 'fbjs';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 
+import { FILTER_ECPAY_PLAYFORM } from './constants';
 import styles from './styles/payment.less';
 
 // graphql typescript
-import { paymentPaymentObjectTypeFragment as paymentPaymentObjectTypeFragmentType } from '@meepshop/types/gqls/store';
+import { paymentOrderFragment as paymentOrderFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 interface PropsType {
-  paymentList: paymentPaymentObjectTypeFragmentType[];
+  computeOrderList: paymentOrderFragmentType | null;
 }
 
 // definition
@@ -21,9 +23,26 @@ const { Item: FormItem } = Form;
 const { Option } = Select;
 const { Panel } = Collapse;
 
-export default React.memo(({ paymentList }: PropsType) => {
+export default React.memo(({ computeOrderList }: PropsType) => {
   const { t } = useTranslation('checkout');
   const colors = useContext(ColorsContext);
+
+  const paymentList = useMemo(() => {
+    const payments = computeOrderList?.categories?.[0]?.paymentList || [];
+
+    const isECPayIgnorePlatform = FILTER_ECPAY_PLAYFORM.some(platform =>
+      UserAgent.isPlatform(platform),
+    );
+
+    return !isECPayIgnorePlatform
+      ? payments
+      : payments.filter(
+          payment =>
+            !['WebATM', 'BARCODE'].includes(
+              payment?.accountInfo?.allpay?.ChoosePayment || '',
+            ),
+        );
+  }, [computeOrderList]);
 
   return (
     <div className={styles.root}>
@@ -39,11 +58,15 @@ export default React.memo(({ paymentList }: PropsType) => {
         ]}
         validateTrigger="onBlur"
       >
-        <Select placeholder={t('payment')} disabled={paymentList.length === 0}>
-          {paymentList.map(({ paymentId, name }) =>
-            !paymentId ? null : (
-              <Option key={paymentId} value={paymentId}>
-                {name}
+        <Select
+          placeholder={t('payment')}
+          disabled={paymentList.length === 0}
+          size="large"
+        >
+          {paymentList.map(payment =>
+            !payment?.paymentId ? null : (
+              <Option key={payment.paymentId} value={payment.paymentId}>
+                {payment.name}
               </Option>
             ),
           )}
@@ -54,7 +77,7 @@ export default React.memo(({ paymentList }: PropsType) => {
         {({ getFieldValue, setFieldsValue }) =>
           setFieldsValue({
             payment: paymentList.find(
-              ({ paymentId }) => paymentId === getFieldValue(['paymentId']),
+              payment => payment?.paymentId === getFieldValue(['paymentId']),
             ),
           })
         }

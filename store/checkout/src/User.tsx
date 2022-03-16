@@ -17,7 +17,7 @@ import { userFragment as userFragmentType } from '@meepshop/types/gqls/store';
 // typescript definition
 interface PropsType {
   isLogin: boolean;
-  store: userFragmentType;
+  store: userFragmentType | null;
 }
 
 // definition
@@ -33,13 +33,19 @@ export default React.memo(({ isLogin, store }: PropsType) => {
   const mobile = store?.setting?.checkoutFields.mobile || '';
   const address = store?.setting?.checkoutFields.address || '';
 
+  if (isLogin && [name, mobile, address].every(field => field === 'HIDDEN'))
+    return null;
+
   return (
     <div className={styles.root}>
       <div className={styles.title}>
         <div>{t('user-info')}</div>
-        <div onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          {t('go-to-login')}
-        </div>
+
+        {isLogin ? null : (
+          <div onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            {t('go-to-login')}
+          </div>
+        )}
       </div>
 
       {isLogin ? null : (
@@ -155,6 +161,7 @@ export default React.memo(({ isLogin, store }: PropsType) => {
             validateTrigger="onBlur"
           >
             <AddressCascader
+              size="large"
               placeholder={[t('area'), t('postal-code')]}
               shippableCountries={store?.shippableCountries || []}
             />

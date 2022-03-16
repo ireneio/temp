@@ -9,7 +9,7 @@ import {
 
 // definition
 export default (
-  order: useActivitiesFragmentType,
+  order: useActivitiesFragmentType | null,
 ): useActivitiesFragmentActivityInfoType[] =>
   useMemo(
     () =>

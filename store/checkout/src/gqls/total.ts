@@ -7,7 +7,6 @@ import { useActivitiesFragment } from './useActivities';
 // definition
 export const totalOrderFragment = gql`
   fragment totalOrderFragment on Order {
-    id
     priceInfo {
       currency
       shipmentFee

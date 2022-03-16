@@ -65,6 +65,7 @@ export default React.memo(({ computeOrderList }: PropsType) => {
               min={0}
               max={canUsePointsLimit || 0}
               placeholder={t('points.placeholder')}
+              size="large"
             />
           </FormItem>
 

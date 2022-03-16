@@ -42,9 +42,13 @@ export default (): ColumnProps<useProductColumnsFragmentType>[] => {
       {
         dataIndex: ['title'],
         width: '100%',
-        render: (value, { specs, activityInfo }) => (
+        render: (value, { type, specs, activityInfo }) => (
           <div className={styles.title}>
-            <div>{getLanguage(value)}</div>
+            {type !== 'upselling_product' ? null : (
+              <p className={styles.upselling}>{t('upselling-product')}</p>
+            )}
+
+            <div className={styles.name}>{getLanguage(value)}</div>
 
             {!specs ? null : (
               <div className={styles.specs}>
@@ -72,7 +76,7 @@ export default (): ColumnProps<useProductColumnsFragmentType>[] => {
             {type !== 'product' ? null : (
               <>
                 <span>{`${quantity}X`}</span>
-                {c(value)}
+                {c(value || 0)}
               </>
             )}
 

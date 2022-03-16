@@ -7,7 +7,6 @@ import { couponFragment } from './coupon';
 // definition
 export const discountFragment = gql`
   fragment discountFragment on Order {
-    id
     priceInfo {
       userPoints
       canUsePointsLimit

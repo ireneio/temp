@@ -1,7 +1,20 @@
 @import '~@store/utils/styles/variables.less';
 @value screenSmMax from '@meepshop/utils/styles/variables.less';
 
+.root {
+  padding: 64px 42px;
+  flex-grow: 1;
+  height: 100%;
+  overflow-y: scroll;
+
+  @media (max-width: @screen-sm-max) {
+    padding: 0px;
+  }
+}
+
 .loading {
+  height: 100%;
+
   :global(.ant-skeleton) {
     padding: 19px 0px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
@@ -12,11 +25,26 @@
   }
 }
 
-.root {
-  padding: 64px 42px;
+.empty {
+  height: 100%;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  @media (max-width: @screen-sm-max) {
-    padding: 0px;
+  svg {
+    fill: none;
+    stroke: #e6e6e6;
+    stroke-width: 5.824;
+    transform: scale(-1, 1);
+  }
+
+  p {
+    margin: 17px 0px;
+    letter-spacing: 2px;
+    color: #6f7070;
+    font-size: 17px;
   }
 }
 

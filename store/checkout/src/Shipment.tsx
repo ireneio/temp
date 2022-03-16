@@ -39,7 +39,9 @@ export default React.memo(() => {
           !['allpay', 'ezship'].includes(
             getFieldValue(['shipment'])?.template,
           ) ? null : (
-            <ChooseShipmentStore shipment={getFieldValue(['shipment'])} />
+            <ChooseShipmentStore
+              shipment={getFieldValue(['shipment']) || null}
+            />
           )
         }
       </FormItem>

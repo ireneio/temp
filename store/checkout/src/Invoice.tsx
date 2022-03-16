@@ -13,7 +13,7 @@ import styles from './styles/invoice.less';
 
 // typescript definition
 interface PropsType {
-  invoice: string[];
+  invoice: string[] | null;
 }
 
 // definition

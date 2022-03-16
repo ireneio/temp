@@ -22,7 +22,7 @@ import { useActivitiesFragment } from './gqls/useActivities';
 
 // typescript definition
 interface PropsType {
-  computeOrderList: totalOrderFragmentType;
+  computeOrderList: totalOrderFragmentType | null;
 }
 
 // definition
@@ -39,7 +39,7 @@ export default React.memo(({ computeOrderList }: PropsType) => {
   );
 
   const { productPrice, paymentFee, shipmentFee, total } =
-    computeOrderList.priceInfo || {};
+    computeOrderList?.priceInfo || {};
 
   return (
     <div className={styles.root}>
@@ -71,7 +71,7 @@ export default React.memo(({ computeOrderList }: PropsType) => {
 
           {!paymentFee ? null : (
             <div>
-              <div>{t('payment')}</div>
+              <div>{t('payment-free')}</div>
               <div>
                 {paymentFee < 0 ? '-' : ''} {c(Math.abs(paymentFee))}
               </div>
