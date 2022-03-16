@@ -78,34 +78,46 @@ const AffiliatePartner: NextPage<PropsType> = React.memo(
         }
       >
         <Header
-          title={t(affiliatePartnerId === 'add' ? 'title.add' : 'title.info')}
-          prevTitle={t('prev-title')}
-          buttons={
-            affiliatePartnerId === 'add' ? null : (
-              <FormItem shouldUpdate noStyle>
-                {({ getFieldsValue, getFieldsError, resetFields, submit }) =>
-                  areEqual(partnerInitialValues, getFieldsValue()) ? null : (
-                    <div>
-                      <Button onClick={() => resetFields()}>
-                        {t('buttons.cancel')}
-                      </Button>
+          {...(affiliatePartnerId === 'add'
+            ? {
+                title: t('title.add'),
+              }
+            : {
+                title: t('title.info'),
+                prevTitle: t('prev-title'),
+                backTo: '/affiliate/partners',
+                buttons: (
+                  <FormItem shouldUpdate noStyle>
+                    {({
+                      getFieldsValue,
+                      getFieldsError,
+                      resetFields,
+                      submit,
+                    }) =>
+                      areEqual(
+                        partnerInitialValues,
+                        getFieldsValue(),
+                      ) ? null : (
+                        <div>
+                          <Button onClick={() => resetFields()}>
+                            {t('buttons.cancel')}
+                          </Button>
 
-                      <Button
-                        onClick={submit}
-                        disabled={getFieldsError()?.some(
-                          ({ errors }) => errors.length,
-                        )}
-                        type="primary"
-                      >
-                        {t('buttons.save')}
-                      </Button>
-                    </div>
-                  )
-                }
-              </FormItem>
-            )
-          }
-          backTo="/affiliate/partners"
+                          <Button
+                            onClick={submit}
+                            disabled={getFieldsError()?.some(
+                              ({ errors }) => errors.length,
+                            )}
+                            type="primary"
+                          >
+                            {t('buttons.save')}
+                          </Button>
+                        </div>
+                      )
+                    }
+                  </FormItem>
+                ),
+              })}
         >
           <div className={styles.root}>
             <div className={styles.title}>{t('name.title')}</div>
@@ -196,25 +208,23 @@ const AffiliatePartner: NextPage<PropsType> = React.memo(
 
           {affiliatePartnerId !== 'add' ? null : (
             <FormItem shouldUpdate noStyle>
-              {({ getFieldsValue, getFieldsError, resetFields, submit }) =>
-                areEqual(partnerInitialValues, getFieldsValue()) ? null : (
-                  <div className={styles.addButtons}>
-                    <Button onClick={() => resetFields()} type="text">
-                      {t('buttons.cancel')}
-                    </Button>
+              {({ getFieldsError, submit }) => (
+                <div className={styles.addButtons}>
+                  <Link href="/affiliate/partners">
+                    <Button type="text">{t('buttons.cancel')}</Button>
+                  </Link>
 
-                    <Button
-                      onClick={submit}
-                      disabled={getFieldsError()?.some(
-                        ({ errors }) => errors.length,
-                      )}
-                      type="primary"
-                    >
-                      {t('buttons.add')}
-                    </Button>
-                  </div>
-                )
-              }
+                  <Button
+                    onClick={submit}
+                    disabled={getFieldsError()?.some(
+                      ({ errors }) => errors.length,
+                    )}
+                    type="primary"
+                  >
+                    {t('buttons.add')}
+                  </Button>
+                </div>
+              )}
             </FormItem>
           )}
         </Header>

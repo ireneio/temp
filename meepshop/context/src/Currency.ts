@@ -4,7 +4,7 @@ import { emptyFunction } from 'fbjs';
 
 // typescript definition
 export interface CurrencyType {
-  c: (price: number) => string;
+  c: (price: number, disableSymbol?: boolean) => string;
   setCurrency: (currency: string) => void;
   currency: string;
 }
@@ -12,36 +12,44 @@ export interface CurrencyType {
 // definition
 export const defaultCurrency = 'TWD';
 
-export const format = (currency: string, price: number): string =>
+export const format = (
+  currency: string,
+  price: number,
+  disableSymbol = false,
+): string =>
   (() => {
     switch (currency) {
       case 'TWD':
-        return `NT$ ${price.toFixed(0)}`;
+        return [!disableSymbol && 'NT$', price.toFixed(0)];
       case 'CNY':
-        return `RMB￥${price.toFixed(2)}`;
+        return [!disableSymbol && 'RMB￥', price.toFixed(2)];
       case 'USD':
-        return `US$ ${price.toFixed(2)}`;
+        return [!disableSymbol && 'US$', price.toFixed(2)];
       case 'JPY':
-        return `JPY￥${price.toFixed(0)}`;
+        return [!disableSymbol && 'JPY￥', price.toFixed(0)];
       case 'EUR':
-        return `€ ${price.toFixed(2)}`;
+        return [!disableSymbol && '€', price.toFixed(2)];
       case 'VND':
-        return `₫ ${price.toFixed(0)}`;
+        return [!disableSymbol && '₫', price.toFixed(0)];
       case 'KRW':
-        return `₩ ${price.toFixed(0)}`;
+        return [!disableSymbol && '₩', price.toFixed(0)];
       case 'HKD':
-        return `HK$ ${price.toFixed(1)}`;
+        return [!disableSymbol && 'HK$', price.toFixed(1)];
       case 'MYR':
-        return `RM ${price.toFixed(2)}`;
+        return [!disableSymbol && 'RM', price.toFixed(2)];
       case 'SGD':
-        return `S$ ${price.toFixed(2)}`;
+        return [!disableSymbol && 'S$', price.toFixed(2)];
       default:
-        return price.toString();
+        return [price.toString()];
     }
-  })().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  })()
+    .filter(Boolean)
+    .join(' ')
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 export default React.createContext<CurrencyType>({
-  c: (price: number) => format('TWD', price),
+  c: (price: number, disableSymbol?: boolean) =>
+    format('TWD', price, disableSymbol),
   setCurrency: emptyFunction,
   currency: defaultCurrency,
 });

@@ -20,7 +20,11 @@ export default React.memo(({ children }) => {
   const currency = useMemo(() => data?.viewer?.store?.currency || 'TWD', [
     data,
   ]);
-  const c = useCallback((price: number) => format(currency, price), [currency]);
+  const c = useCallback(
+    (price: number, disableSymbol?: boolean) =>
+      format(currency, price, disableSymbol),
+    [currency],
+  );
 
   if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
 

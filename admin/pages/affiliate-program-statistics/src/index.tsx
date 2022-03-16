@@ -80,7 +80,7 @@ const AffiliateProgramStatistics: NextPage<PropsType> = React.memo(
                       ? affiliateProgramStatistics?.[key]
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                      : c(affiliateProgramStatistics?.[key] || 0)}
+                      : c(affiliateProgramStatistics?.[key] || 0, true)}
                   </div>
                 </div>
               </div>
