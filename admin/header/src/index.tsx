@@ -11,19 +11,18 @@ import Switch from '@meepshop/switch';
 import styles from './styles/index.less';
 
 // typescript definition
-interface LinkType {
-  text: string;
-  url: string;
-}
-
 interface PropsType {
   title?: React.ReactNode;
   prevTitle?: string;
   description?: string;
-  link?: LinkType;
+  link?: {
+    text: string;
+    url: string;
+  };
   backTo?: string;
   disableAffix?: boolean;
   buttons?: React.ReactNode;
+  maxWidth?: number;
   children?: React.ReactNode;
 }
 
@@ -37,6 +36,7 @@ export default React.memo(
     backTo,
     buttons,
     disableAffix,
+    maxWidth = 992,
     children: content,
   }: PropsType) => {
     const collapsed = useContext(CollapsedContext);
@@ -62,7 +62,7 @@ export default React.memo(
             </Affix>
           )}
         >
-          <div className={styles.header}>
+          <div className={styles.header} style={{ maxWidth: `${maxWidth}px` }}>
             <h1>
               {!backTo ? null : (
                 <Link href={backTo}>
@@ -98,7 +98,15 @@ export default React.memo(
             {buttons}
           </div>
         </Switch>
-        <div className={styles.content}>{content}</div>
+
+        <div
+          className={`${styles.content} ${
+            disableAffix ? styles.disableAffix : ''
+          }`}
+          style={{ maxWidth: `${maxWidth}px` }}
+        >
+          {content}
+        </div>
       </div>
     );
   },

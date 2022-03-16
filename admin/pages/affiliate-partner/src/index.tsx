@@ -118,6 +118,7 @@ const AffiliatePartner: NextPage<PropsType> = React.memo(
                   </FormItem>
                 ),
               })}
+          maxWidth={720}
         >
           <div className={styles.root}>
             <div className={styles.title}>{t('name.title')}</div>
