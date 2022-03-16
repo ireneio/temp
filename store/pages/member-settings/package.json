@@ -4,16 +4,16 @@
   "description": "Member settings for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.147",
+  "version": "0.80.148",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.147",
-    "@meepshop/context": "^0.80.147",
-    "@meepshop/date-picker": "^0.80.147",
-    "@meepshop/form-address-cascader": "^0.80.147",
-    "@meepshop/locales": "^0.80.147",
-    "@store/utils": "^0.80.147",
+    "@meepshop/apollo": "^0.80.148",
+    "@meepshop/context": "^0.80.148",
+    "@meepshop/date-picker": "^0.80.148",
+    "@meepshop/form-address-cascader": "^0.80.148",
+    "@meepshop/locales": "^0.80.148",
+    "@store/utils": "^0.80.148",
     "date-fns": "^2.15.0"
   },
   "keywords": ["member", "settings", "store"]
