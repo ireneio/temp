@@ -20,6 +20,8 @@ import {
 } from '@meepshop/types/gqls/store';
 
 // graphql import
+import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
+
 import { getCheckoutInfo } from './gqls';
 import { useCreateOrderFragment } from './gqls/useCreateOrder';
 
@@ -48,7 +50,10 @@ export default React.memo(({ children }: PropsType) => {
     },
   );
   const viewer = data?.viewer || null;
-  const createOrder = useCreateOrder(filter(useCreateOrderFragment, viewer));
+  const createOrder = useCreateOrder(
+    filter(useCreateOrderFragment, viewer),
+    filter(useCartFragment, viewer),
+  );
   const updateUser = useUpdateUser(viewer);
 
   if (!viewer) return <Spin indicator={<LoadingOutlined spin />} />;

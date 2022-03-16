@@ -40,15 +40,6 @@ export const useCreateOrderFragment = gql`
       street
       zipCode
     }
-    cart {
-      ... on Cart {
-        cartItems {
-          productId
-          quantity
-          variantId
-        }
-      }
-    }
   }
 `;
 

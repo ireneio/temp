@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 
 // graphql import
 import { lineFragment } from '@meepshop/line/gqls';
+import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
 
 import { useUpdateUserFragment } from './useUpdateUser';
 import { useCreateOrderFragment } from './useCreateOrder';
@@ -44,10 +45,12 @@ export const getCheckoutInfo = gql`
       }
       ...useUpdateUserFragment
       ...useCreateOrderFragment
+      ...useCartFragment
     }
   }
 
   ${lineFragment}
   ${useUpdateUserFragment}
   ${useCreateOrderFragment}
+  ${useCartFragment}
 `;
