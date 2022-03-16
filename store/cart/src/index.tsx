@@ -2,7 +2,8 @@
 import { NextPage } from 'next';
 
 // import
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
+import { Form } from 'antd';
 import { useQuery } from '@apollo/client';
 import { filter } from 'graphql-anywhere';
 
@@ -19,7 +20,8 @@ import Price from './Price';
 import Footer from './Footer';
 import Upselling from './upselling';
 import useComputedCart from './hooks/useComputedCart';
-import useCheckErrors from './hooks/useCheckErrors';
+import useScrollToError from './hooks/useScrollToError';
+import useInitialValue from './hooks/useInitialValue';
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -38,9 +40,11 @@ import {
   upsellingLineItemFragment,
 } from './upselling/gqls';
 import { useComputedCartFragment } from './gqls/useComputedCart';
-import { useCheckErrorsFragment } from './gqls/useCheckErrors';
+import { useInitialValueFragment } from './gqls/useInitialValue';
 
 // definition
+const { Item: FormItem } = Form;
+
 const Cart: NextPage = React.memo(() => {
   const role = useContext(RoleContext);
   const { data } = useQuery<getCartType>(getCart, {
@@ -48,22 +52,23 @@ const Cart: NextPage = React.memo(() => {
   });
   const viewer = data?.viewer || null;
   const computedCart = useComputedCart(filter(useComputedCartFragment, viewer));
-  const {
-    isUpsellingOverLimit,
-    isOnlyUpselling,
-    hasError,
-    checkErrors,
-  } = useCheckErrors({
-    lineItems: filter(
-      useCheckErrorsFragment,
-      computedCart?.computedLineItems || [],
-    ),
-  });
-
+  const initialLineItems = useMemo(
+    () =>
+      filter(useInitialValueFragment, computedCart?.computedLineItems || []),
+    [computedCart],
+  );
+  const [form] = Form.useForm();
+  const scrollToError = useScrollToError(form);
+  const initialValue = useInitialValue(form, initialLineItems);
   const isEmpty = computedCart && !computedCart.computedLineItems.length;
 
   return (
-    <div className={styles.root}>
+    <Form
+      className={styles.root}
+      form={form}
+      initialValues={initialValue}
+      scrollToFirstError
+    >
       <div className={styles.wrapper}>
         <CheckoutSteps step="cart" />
 
@@ -73,24 +78,31 @@ const Cart: NextPage = React.memo(() => {
 
         {isEmpty ? null : (
           <>
-            <Alert
-              activeUpsellingArea={filter(
-                alertFragment,
-                viewer?.store?.activeUpsellingArea || null,
+            <FormItem shouldUpdate noStyle>
+              {({ getFieldsError, getFieldValue }) => (
+                <Alert
+                  activeUpsellingArea={filter(
+                    alertFragment,
+                    viewer?.store?.activeUpsellingArea || null,
+                  )}
+                  getFieldValue={getFieldValue}
+                  getFieldsError={getFieldsError}
+                />
               )}
-              isUpsellingOverLimit={isUpsellingOverLimit}
-              isOnlyUpselling={isOnlyUpselling}
-              hasError={hasError}
-            />
+            </FormItem>
 
-            <Products
-              viewer={filter(productsUserFragment, viewer)}
-              products={filter(
-                productsLineItemFragment,
-                computedCart?.computedLineItems || [],
+            <FormItem shouldUpdate noStyle>
+              {({ getFieldsError }) => (
+                <Products
+                  viewer={filter(productsUserFragment, viewer)}
+                  products={filter(
+                    productsLineItemFragment,
+                    computedCart?.computedLineItems || [],
+                  )}
+                  getFieldsError={getFieldsError}
+                />
               )}
-              hasError={hasError}
-            />
+            </FormItem>
           </>
         )}
       </div>
@@ -112,10 +124,10 @@ const Cart: NextPage = React.memo(() => {
             computedCart={filter(priceComputedCartFragment, computedCart)}
           />
 
-          <Footer checkErrors={checkErrors} />
+          <Footer scrollToError={scrollToError} />
         </div>
       )}
-    </div>
+    </Form>
   );
 });
 

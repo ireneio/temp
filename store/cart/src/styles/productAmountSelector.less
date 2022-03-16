@@ -1,0 +1,23 @@
+@import '~@store/utils/styles/variables.less';
+
+.root {
+  width: 100%;
+
+  > div :global(.ant-select-selection-item) {
+    text-align: left;
+  }
+
+  &.error > div {
+    border-color: #bd373c !important;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    width: 45%;
+  }
+}
+
+.amountError {
+  font-size: 14px;
+  line-height: 22px;
+  color: #bd373c;
+}

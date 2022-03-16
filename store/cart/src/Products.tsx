@@ -1,5 +1,8 @@
+// typescript import
+import { FormInstance } from 'antd/lib/form';
+
 // import
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { filter } from 'graphql-anywhere';
 import { Table, Skeleton } from 'antd';
 import transformColor from 'color';
@@ -23,19 +26,21 @@ import {
 } from './gqls/useProductsColumns';
 
 // typescript definition
-interface PropsType {
+interface PropsType extends Pick<FormInstance, 'getFieldsError'> {
   viewer: productsUserFragmentType | null;
   products: productsLineItemFragmentType[];
-  hasError: boolean;
 }
 
 // definition
-export default React.memo(({ viewer, products, hasError }: PropsType) => {
+export default React.memo(({ viewer, products, getFieldsError }: PropsType) => {
   const colors = useContext(ColorsContext);
   const { columns, styles: columnStyles } = useProductsColumns(
     filter(useProductsColumnsUserFragment, viewer),
-    hasError,
   );
+  const error = getFieldsError();
+  const hasErrors = useMemo(() => error.some(({ errors }) => errors.length), [
+    error,
+  ]);
 
   return (
     <>
@@ -46,10 +51,10 @@ export default React.memo(({ viewer, products, hasError }: PropsType) => {
         pagination={false}
         onRow={({ status }) => ({
           className: `${styles.row} ${
-            status === 'PURCHASABLE' ? '' : styles.error
+            status !== 'PURCHASABLE' ? styles.error : ''
           }`,
           style:
-            hasError && status !== 'PURCHASABLE'
+            hasErrors && status !== 'PURCHASABLE'
               ? {
                   backgroundColor: transformColor(colors[1])
                     .alpha(0.15)

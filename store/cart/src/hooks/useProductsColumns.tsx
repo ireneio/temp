@@ -2,7 +2,8 @@
 import { ColumnProps } from 'antd/lib/table';
 
 // import
-import React, { useMemo, useContext } from 'react';
+import React, { useMemo, useContext, useCallback } from 'react';
+import { Form } from 'antd';
 import { filter } from 'graphql-anywhere';
 import {
   TagOutlined,
@@ -19,10 +20,10 @@ import {
 import { useCart } from '@meepshop/hooks';
 import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Link from '@meepshop/link';
-import ProductAmountSelector from '@meepshop/product-amount-selector';
 import Switch from '@meepshop/switch';
 import Thumbnail from '@meepshop/thumbnail';
 
+import ProductAmountSelector from '../ProductAmountSelector';
 import styles from '../styles/useProductsColumns.less';
 
 // graphql typescript
@@ -33,6 +34,10 @@ import {
 
 // graphql import
 import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
+import {
+  productAmountSelectorUserFragment,
+  productAmountSelectorLineItemFragment,
+} from '../gqls/productAmountSelector';
 
 // typescript definition
 interface ReturnType {
@@ -41,9 +46,10 @@ interface ReturnType {
 }
 
 // definition
+const { Item: FormItem } = Form;
+
 export default (
   viewer: useProductsColumnsUserFragmentType | null,
-  hasError: boolean,
 ): ReturnType => {
   const { t } = useTranslation('cart');
   const getLanguage = useGetLanguage();
@@ -51,6 +57,9 @@ export default (
   const colors = useContext(ColorsContext);
   const { isMobile } = useContext(SensorContext);
   const { upsertCart } = useCart(filter(useCartFragment, viewer));
+  const validator = useCallback(async (_, status) => {
+    throw new Error(status);
+  }, []);
 
   return useMemo(
     () => ({
@@ -91,19 +100,18 @@ export default (
           width: isMobile ? '100%' : '55%',
           render: (
             title: useProductsColumnsLineItemFragmentType['title'],
-            {
+            lineItem,
+            index,
+          ) => {
+            const {
               productId,
               specs,
               type,
               status,
-              variant,
               discountAllocations,
-              variantId,
-              ...product
-            },
-          ) => {
-            const retailPrice = product.unitPrice || 0;
-            const quantity = product.quantity || 0;
+              unitPrice,
+              quantity,
+            } = lineItem;
             const disabled =
               type !== 'PRODUCT' ||
               ['DISCONTINUED', 'NOT_AVAILABLE'].includes(status || '');
@@ -160,59 +168,63 @@ export default (
                 )}
 
                 {/** mobile view */}
-                <div className={styles.mobile}>
-                  {type === 'GIFT' ? (
-                    <div className={styles.price}>{t('gift')}</div>
-                  ) : (
-                    <>
-                      {['DISCONTINUED', 'NOT_AVAILABLE'].includes(
-                        status,
-                      ) ? null : (
-                        <div className={styles.price}>
-                          {c(retailPrice * quantity)}
-                        </div>
-                      )}
+                {!isMobile ? null : (
+                  <div className={styles.mobile}>
+                    {type === 'GIFT' ? (
+                      <div className={styles.price}>{t('gift')}</div>
+                    ) : (
+                      <>
+                        {['DISCONTINUED', 'NOT_AVAILABLE'].includes(
+                          status,
+                        ) ? null : (
+                          <div className={styles.price}>
+                            {c((unitPrice || 0) * (quantity || 0))}
+                          </div>
+                        )}
 
-                      {[
-                        'DISCONTINUED',
-                        'NOT_AVAILABLE',
-                        'OUT_OF_STOCK',
-                      ].includes(status) ? (
-                        <div className={styles.error}>
-                          <ExclamationCircleOutlined />
-                          {hasError ? t(`${status}-warning`) : t(status)}
-                        </div>
-                      ) : (
-                        <>
+                        {[
+                          'DISCONTINUED',
+                          'NOT_AVAILABLE',
+                          'OUT_OF_STOCK',
+                        ].includes(status) ? (
+                          <div className={styles.error}>
+                            <ExclamationCircleOutlined />
+
+                            <FormItem shouldUpdate noStyle>
+                              {({ getFieldError }) =>
+                                getFieldError(['products', index, 'status'])
+                                  .length
+                                  ? t(`${status}-warning`)
+                                  : t(status)
+                              }
+                            </FormItem>
+
+                            <FormItem
+                              name={['products', index, 'status']}
+                              rules={[{ validator }]}
+                              noStyle
+                              hidden
+                            >
+                              <input type="hidden" />
+                            </FormItem>
+                          </div>
+                        ) : (
                           <ProductAmountSelector
-                            size="large"
-                            className={`${styles.select} ${
-                              status === 'PURCHASABLE' ? '' : styles.withError
-                            }`}
-                            variant={variant}
-                            value={quantity}
-                            onChange={newQuantity =>
-                              upsertCart({
-                                __typename: 'CartItem' as const,
-                                productId,
-                                quantity: newQuantity - (quantity || 0),
-                                variantId,
-                              })
-                            }
+                            name={['products', index, 'quantity']}
+                            viewer={filter(
+                              productAmountSelectorUserFragment,
+                              viewer,
+                            )}
+                            lineItem={filter(
+                              productAmountSelectorLineItemFragment,
+                              lineItem,
+                            )}
                           />
-
-                          {['PURCHASABLE', 'EXCEED_LIMIT_PER_ORDER'].includes(
-                            status,
-                          ) ? null : (
-                            <div className={styles.amountError}>
-                              {t(status)}
-                            </div>
-                          )}
-                        </>
-                      )}
-                    </>
-                  )}
-                </div>
+                        )}
+                      </>
+                    )}
+                  </div>
+                )}
               </>
             );
           },
@@ -241,10 +253,9 @@ export default (
           width: '15%',
           align: 'center',
           responsive: ['md'],
-          render: (
-            quantity: useProductsColumnsLineItemFragmentType['quantity'],
-            { type, variant, status, productId, variantId },
-          ) => {
+          render: (_, lineItem, index) => {
+            const { type, status } = lineItem;
+
             if (type === 'GIFT') return null;
 
             if (
@@ -253,35 +264,35 @@ export default (
               return (
                 <div className={styles.error}>
                   <ExclamationCircleOutlined />
-                  {hasError ? t(`${status}-warning`) : t(status)}
+
+                  <FormItem shouldUpdate noStyle>
+                    {({ getFieldError }) =>
+                      getFieldError(['products', index, 'status']).length
+                        ? t(`${status}-warning`)
+                        : t(status)
+                    }
+                  </FormItem>
+
+                  <FormItem
+                    name={['products', index, 'status']}
+                    rules={[{ validator }]}
+                    noStyle
+                    hidden
+                  >
+                    <input type="hidden" />
+                  </FormItem>
                 </div>
               );
 
             return (
-              <>
-                <ProductAmountSelector
-                  size="large"
-                  className={`${styles.select} ${
-                    status === 'PURCHASABLE' ? '' : styles.withError
-                  }`}
-                  variant={variant}
-                  value={quantity || 0}
-                  onChange={newQuantity =>
-                    upsertCart({
-                      __typename: 'CartItem' as const,
-                      productId,
-                      quantity: newQuantity - (quantity || 0),
-                      variantId,
-                    })
-                  }
-                />
-
-                {['PURCHASABLE', 'EXCEED_LIMIT_PER_ORDER'].includes(
-                  status,
-                ) ? null : (
-                  <div className={styles.amountError}>{t(status)}</div>
+              <ProductAmountSelector
+                name={['products', index, 'quantity']}
+                viewer={filter(productAmountSelectorUserFragment, viewer)}
+                lineItem={filter(
+                  productAmountSelectorLineItemFragment,
+                  lineItem,
                 )}
-              </>
+              />
             );
           },
         },
@@ -339,6 +350,6 @@ export default (
         }
       `,
     }),
-    [hasError, t, getLanguage, c, colors, isMobile, upsertCart],
+    [isMobile, t, colors, getLanguage, c, validator, viewer, upsertCart],
   );
 };

@@ -65,34 +65,21 @@ div.img {
   }
 }
 
-.select {
-  width: 100%;
-
-  > div :global(.ant-select-selection-item) {
-    text-align: left;
-  }
-
-  @media (max-width: @screen-sm-max) {
-    width: 45%;
-  }
-
-  &.withError :global(.ant-select-selector) {
-    border-color: #bd373c;
-  }
-}
-
-.amountError {
-  font-size: 14px;
-  line-height: 22px;
-  color: #bd373c;
-}
-
 .delete {
   font-size: 24px;
   opacity: 0.5;
 
   @media (max-width: @screen-sm-max) {
     font-size: 16px;
+  }
+}
+
+.mobile {
+  display: none;
+  margin-top: 4px;
+
+  @media (max-width: @screen-sm-max) {
+    display: block;
   }
 }
 
@@ -105,14 +92,5 @@ div.img {
   span:first-child {
     font-size: 14px;
     margin-right: 5px;
-  }
-}
-
-.mobile {
-  display: none;
-  margin-top: 4px;
-
-  @media (max-width: @screen-sm-max) {
-    display: block;
   }
 }

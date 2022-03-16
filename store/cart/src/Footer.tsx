@@ -16,11 +16,11 @@ import styles from './styles/footer.less';
 
 // typescript definition
 interface PropsType {
-  checkErrors: () => void;
+  scrollToError: () => void;
 }
 
 // definition
-export default React.memo(({ checkErrors }: PropsType) => {
+export default React.memo(({ scrollToError }: PropsType) => {
   const { t } = useTranslation('cart');
   const colors = useContext(ColorsContext);
   const { isMobile } = useContext(SensorContext);
@@ -61,7 +61,7 @@ export default React.memo(({ checkErrors }: PropsType) => {
             {t('go-back-to-store')}
           </div>
 
-          <div className={styles.button} onClick={checkErrors}>
+          <div className={styles.button} onClick={scrollToError}>
             {t('go-to-checkout')}
           </div>
         </div>
