@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 0.80.148 (2022-03-16)
+
+#### :rocket: New Feature
+
+- Other
+  - [#2124](https://github.com/meepshop/meep-lerna/pull/2124) 內部開單 - @store/cart 改用 form 管理 error ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`, `store`
+  - [#2177](https://github.com/meepshop/meep-lerna/pull/2177) 內部開單 - 組合桌面板樣式 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#2213](https://github.com/meepshop/meep-lerna/pull/2213) fix(@meepshop/meep-ui): fix orderDetail gqls ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#2211](https://github.com/meepshop/meep-lerna/pull/2211) 內部開單 - 分潤修改 style 細節 ([@HsuTing](https://github.com/HsuTing))
+  - [#2209](https://github.com/meepshop/meep-lerna/pull/2209) 內部開單 - 分潤修改 style 細節 ([@HsuTing](https://github.com/HsuTing))
+  - [#2205](https://github.com/meepshop/meep-lerna/pull/2205) 內部開單 - 分潤修改 style 細節 - part1 ([@HsuTing](https://github.com/HsuTing))
+  - [#2204](https://github.com/meepshop/meep-lerna/pull/2204) (@meepshop/frontend) Remove preReleaseSchema ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#2124](https://github.com/meepshop/meep-lerna/pull/2124) 內部開單 - @store/cart 改用 form 管理 error ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.147 (2022-03-15)
 
 #### :boom: Breaking Change
