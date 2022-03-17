@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.150 (2022-03-17)
+
+#### :rocket: New Feature
+
+- [#2215](https://github.com/meepshop/meep-lerna/pull/2215) 內部開單 - 加入分潤 cache 更新機制 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#2190](https://github.com/meepshop/meep-lerna/pull/2190) 【BUG】電子報：信件與後台顯示內容不一致（未顯示空白格） ([@happycat6323](https://github.com/happycat6323))
+- [#2216](https://github.com/meepshop/meep-lerna/pull/2216) (@admin/affiliate-\*) Add types ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.149 (2022-03-16)
 
 #### :house: Internal
