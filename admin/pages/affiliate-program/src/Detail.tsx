@@ -21,7 +21,7 @@ import ProductsSelector from '@admin/products-selector';
 
 import PromoCodeExample from './PromoCodeExample';
 import styles from './styles/detail.less';
-import useDeleteProgram from './hooks/useDeleteProgram';
+import useDeleteAffiliateProgram from './hooks/useDeleteAffiliateProgram';
 
 // graphql typescript
 import {
@@ -32,6 +32,7 @@ import {
 // graphql import
 import { getProgramDetail } from './gqls/detail';
 import { promoCodeExampleFragment } from './gqls/promoCodeExample';
+import { useDeleteAffiliateProgramFragment } from './gqls/useDeleteAffiliateProgram';
 
 // typescript definition
 export interface PropsType {
@@ -49,9 +50,13 @@ export default React.memo(({ affiliateProgramId }: PropsType) => {
       id: affiliateProgramId,
     },
   });
-  const affiliateProgram = data?.viewer?.affiliateProgram || null;
+  const viewer = data?.viewer || null;
+  const affiliateProgram = viewer?.affiliateProgram || null;
   const [copied, copyToClipboard] = useCopyToClipboard();
-  const deleteProgram = useDeleteProgram(affiliateProgramId);
+  const deleteProgram = useDeleteAffiliateProgram(
+    affiliateProgramId,
+    filter(useDeleteAffiliateProgramFragment, viewer),
+  );
   const [visible, setVisible] = useState(false);
   const productsAmount = (affiliateProgram?.products || []).length;
 

@@ -5,12 +5,14 @@ import { gql } from '@apollo/client';
 import { useProductsColumnsFragment } from '@admin/products-selector/gqls';
 
 import { promoCodeExampleFragment } from './promoCodeExample';
+import { useDeleteAffiliateProgramFragment } from './useDeleteAffiliateProgram';
 
 // definition
 export const getProgramDetail = gql`
   query getProgramDetail($id: ID!) {
     viewer {
       id
+      ...useDeleteAffiliateProgramFragment
       affiliateProgram(id: $id) {
         id
         title
@@ -38,4 +40,5 @@ export const getProgramDetail = gql`
 
   ${useProductsColumnsFragment}
   ${promoCodeExampleFragment}
+  ${useDeleteAffiliateProgramFragment}
 `;

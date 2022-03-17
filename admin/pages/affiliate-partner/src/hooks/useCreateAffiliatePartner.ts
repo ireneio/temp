@@ -13,13 +13,19 @@ import { useRouter } from '@meepshop/link';
 import {
   createAffiliatePartner as createAffiliatePartnerType,
   createAffiliatePartnerVariables as createAffiliatePartnerVariablesType,
+  useCreateAffiliatePartnerFragment as useCreateAffiliatePartnerFragmentType,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { createAffiliatePartner } from '../gqls/useCreateAffiliatePartner';
+import {
+  createAffiliatePartner,
+  useCreateAffiliatePartnerFragment,
+} from '../gqls/useCreateAffiliatePartner';
 
 // definition
-export default (): ((values: valuesType) => Promise<void>) => {
+export default (
+  viewer: useCreateAffiliatePartnerFragmentType | null,
+): ((values: valuesType) => Promise<void>) => {
   const { t } = useTranslation('affiliate-partner');
   const router = useRouter();
   const [mutation] = useMutation<
@@ -33,17 +39,41 @@ export default (): ((values: valuesType) => Promise<void>) => {
         variables: {
           input: values,
         },
-        update: (_, { data }) => {
+        update: (cache, { data }) => {
           if (data?.createAffiliatePartner?.__typename !== 'AffiliatePartner') {
             message.error(t('create.fail'));
             return;
           }
 
-          // TODO: should update cache
+          if (viewer?.id)
+            cache.writeFragment<useCreateAffiliatePartnerFragmentType>({
+              id: viewer.id,
+              fragment: useCreateAffiliatePartnerFragment,
+              data: {
+                ...viewer,
+                affiliatePartners: !viewer.affiliatePartners
+                  ? null
+                  : {
+                      ...viewer.affiliatePartners,
+                      edges: [
+                        {
+                          __typename: 'AffiliatePartnerEdge',
+                          node: {
+                            __typename: 'AffiliatePartner',
+                            id: data.createAffiliatePartner.id,
+                          },
+                        },
+                        ...viewer.affiliatePartners.edges,
+                      ],
+                      total: viewer.affiliatePartners.total + 1,
+                    },
+              },
+            });
+
           router.push('/affiliate/partners');
         },
       });
     },
-    [t, router, mutation],
+    [viewer, t, router, mutation],
   );
 };

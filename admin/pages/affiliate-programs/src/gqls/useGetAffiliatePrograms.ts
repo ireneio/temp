@@ -11,7 +11,8 @@ export const getAffiliatePrograms = gql`
   ) {
     viewer {
       id
-      affiliatePrograms(first: 10, after: $after, filter: $filter) {
+      affiliatePrograms(first: 10, after: $after, filter: $filter)
+        @connection(key: "affiliate-programs") {
         edges {
           ...useProgramsColumnsFragment
         }

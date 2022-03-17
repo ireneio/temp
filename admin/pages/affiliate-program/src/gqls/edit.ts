@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 
 // graphql import
 import { useProgramInitialValuesFragment } from './useProgramInitialValues';
+import { useCreateAffiliateProgramFragment } from './useCreateAffiliateProgram';
 import { useUpdateAffiliateProgramFragment } from './useUpdateAffiliateProgram';
 import { promoCodeExampleFragment } from './promoCodeExample';
 
@@ -11,6 +12,7 @@ export const getProgram = gql`
   query getProgram($id: ID!, $isAdd: Boolean!) {
     viewer {
       id
+      ...useCreateAffiliateProgramFragment
       affiliateProgram(id: $id) @skip(if: $isAdd) {
         id
         ...useProgramInitialValuesFragment
@@ -24,6 +26,7 @@ export const getProgram = gql`
   }
 
   ${useProgramInitialValuesFragment}
+  ${useCreateAffiliateProgramFragment}
   ${useUpdateAffiliateProgramFragment}
   ${promoCodeExampleFragment}
 `;

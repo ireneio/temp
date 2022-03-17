@@ -31,6 +31,7 @@ import {
 // graphql import
 import { getPartner } from './gqls';
 import { usePartnerInitialValuesFragment } from './gqls/usePartnerInitialValues';
+import { useCreateAffiliatePartnerFragment } from './gqls/useCreateAffiliatePartner';
 import { useUpdateAffiliatePartnerFragment } from './gqls/useUpdateAffiliatePartner';
 
 // typescript definition
@@ -54,12 +55,15 @@ const AffiliatePartner: NextPage<PropsType> = React.memo(
         skip: affiliatePartnerId === 'add',
       },
     );
-    const affiliatePartner = data?.viewer?.affiliatePartner || null;
+    const viewer = data?.viewer || null;
+    const affiliatePartner = viewer?.affiliatePartner || null;
     const partnerInitialValues = usePartnerInitialValues(
       form,
       filter(usePartnerInitialValuesFragment, affiliatePartner),
     );
-    const createAffiliatePartner = useCreateAffiliatePartner();
+    const createAffiliatePartner = useCreateAffiliatePartner(
+      filter(useCreateAffiliatePartnerFragment, viewer),
+    );
     const updateAffiliatePartner = useUpdateAffiliatePartner(
       filter(useUpdateAffiliatePartnerFragment, affiliatePartner),
     );

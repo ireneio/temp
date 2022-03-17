@@ -1,6 +1,3 @@
-// typescript import
-import { DataProxy } from '@apollo/client';
-
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/client';
@@ -14,23 +11,47 @@ import message from '@admin/message';
 import {
   deleteAffiliateProgram as deleteAffiliateProgramType,
   deleteAffiliateProgramVariables as deleteAffiliateProgramVariablesType,
+  useDeleteAffiliateProgramFragment as useDeleteAffiliateProgramFragmentType,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { deleteAffiliateProgram } from '../gqls/useDeleteProgram';
+import {
+  deleteAffiliateProgram,
+  useDeleteAffiliateProgramFragment,
+} from '../gqls/useDeleteAffiliateProgram';
 
 // definition
-export default (affiliateProgramId: string): (() => void) => {
+export default (
+  affiliateProgramId: string,
+  viewer: useDeleteAffiliateProgramFragmentType | null,
+): (() => void) => {
   const { t } = useTranslation('affiliate-program');
   const router = useRouter();
   const [mutation] = useMutation<
     deleteAffiliateProgramType,
     deleteAffiliateProgramVariablesType
   >(deleteAffiliateProgram, {
-    update: (_: DataProxy, { data }) => {
+    update: (cache, { data }) => {
       if (data?.deleteAffiliateProgram.__typename !== 'OkResponse') return;
 
-      // TODO: should remove program in cache
+      if (viewer?.id)
+        cache.writeFragment<useDeleteAffiliateProgramFragmentType>({
+          id: viewer.id,
+          fragment: useDeleteAffiliateProgramFragment,
+          data: {
+            ...viewer,
+            affiliatePrograms: !viewer.affiliatePrograms
+              ? null
+              : {
+                  ...viewer.affiliatePrograms,
+                  edges: viewer.affiliatePrograms.edges.filter(
+                    ({ node }) => node.id !== affiliateProgramId,
+                  ),
+                  total: viewer.affiliatePrograms.total - 1,
+                },
+          },
+        });
+
       message.success(t('delete.success'));
       router.replace('/affiliate/programs');
     },

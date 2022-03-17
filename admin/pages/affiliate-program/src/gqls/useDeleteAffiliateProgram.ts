@@ -11,3 +11,17 @@ export const deleteAffiliateProgram = gql`
     }
   }
 `;
+
+export const useDeleteAffiliateProgramFragment = gql`
+  fragment useDeleteAffiliateProgramFragment on User {
+    id
+    affiliatePrograms(first: 10) @connection(key: "affiliate-programs") {
+      edges {
+        node {
+          id
+        }
+      }
+      total
+    }
+  }
+`;

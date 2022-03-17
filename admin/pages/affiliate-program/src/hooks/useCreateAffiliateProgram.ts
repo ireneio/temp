@@ -13,13 +13,19 @@ import { useRouter } from '@meepshop/link';
 import {
   createAffiliateProgram as createAffiliateProgramType,
   createAffiliateProgramVariables as createAffiliateProgramVariablesType,
+  useCreateAffiliateProgramFragment as useCreateAffiliateProgramFragmentType,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { createAffiliateProgram } from '../gqls/useCreateAffiliateProgram';
+import {
+  createAffiliateProgram,
+  useCreateAffiliateProgramFragment,
+} from '../gqls/useCreateAffiliateProgram';
 
 // definition
-export default (): ((values: ValuesType) => Promise<void>) => {
+export default (
+  viewer: useCreateAffiliateProgramFragmentType | null,
+): ((values: ValuesType) => Promise<void>) => {
   const { t } = useTranslation('affiliate-program');
   const router = useRouter();
   const [mutation] = useMutation<
@@ -49,17 +55,43 @@ export default (): ((values: ValuesType) => Promise<void>) => {
                 : (products.map(({ id }) => id).filter(Boolean) as string[]),
           },
         },
-        update: (_, { data }) => {
+        update: (cache, { data }) => {
           if (data?.createAffiliateProgram.__typename !== 'AffiliateProgram') {
             message.error(t('create.fail'));
             return;
           }
 
-          // TODO: should update cache
-          router.push(`/affiliate/programs/${data.createAffiliateProgram.id}`);
+          const { id } = data.createAffiliateProgram;
+
+          if (viewer?.id)
+            cache.writeFragment<useCreateAffiliateProgramFragmentType>({
+              id: viewer.id,
+              fragment: useCreateAffiliateProgramFragment,
+              data: {
+                ...viewer,
+                affiliatePrograms: !viewer.affiliatePrograms
+                  ? null
+                  : {
+                      ...viewer.affiliatePrograms,
+                      edges: [
+                        {
+                          __typename: 'AffiliateProgramEdge',
+                          node: {
+                            __typename: 'AffiliateProgram',
+                            id,
+                          },
+                        },
+                        ...viewer.affiliatePrograms.edges,
+                      ],
+                      total: viewer.affiliatePrograms.total + 1,
+                    },
+              },
+            });
+
+          router.push(`/affiliate/programs/${id}`);
         },
       });
     },
-    [t, router, mutation],
+    [viewer, t, router, mutation],
   );
 };

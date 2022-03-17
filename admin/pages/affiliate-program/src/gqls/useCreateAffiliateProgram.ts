@@ -11,3 +11,17 @@ export const createAffiliateProgram = gql`
     }
   }
 `;
+
+export const useCreateAffiliateProgramFragment = gql`
+  fragment useCreateAffiliateProgramFragment on User {
+    id
+    affiliatePrograms(first: 10) @connection(key: "affiliate-programs") {
+      edges {
+        node {
+          id
+        }
+      }
+      total
+    }
+  }
+`;

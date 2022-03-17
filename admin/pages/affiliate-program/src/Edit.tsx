@@ -38,6 +38,7 @@ import {
 // graphql import
 import { getProgram } from './gqls/edit';
 import { useProgramInitialValuesFragment } from './gqls/useProgramInitialValues';
+import { useCreateAffiliateProgramFragment } from './gqls/useCreateAffiliateProgram';
 import { useUpdateAffiliateProgramFragment } from './gqls/useUpdateAffiliateProgram';
 import { promoCodeExampleFragment } from './gqls/promoCodeExample';
 
@@ -65,12 +66,15 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
       },
     },
   );
-  const affiliateProgram = data?.viewer?.affiliateProgram || null;
+  const viewer = data?.viewer || null;
+  const affiliateProgram = viewer?.affiliateProgram || null;
   const programInitialValues = useProgramInitialValues(
     form,
     filter(useProgramInitialValuesFragment, affiliateProgram),
   );
-  const createAffiliateProgram = useCreateAffiliateProgram();
+  const createAffiliateProgram = useCreateAffiliateProgram(
+    filter(useCreateAffiliateProgramFragment, viewer),
+  );
   const updateAffiliateProgram = useUpdateAffiliateProgram(
     filter(useUpdateAffiliateProgramFragment, affiliateProgram),
   );
