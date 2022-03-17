@@ -15,6 +15,7 @@ export const useProgramInitialValuesFragment = gql`
       id
     }
     commissionRate
+    allProducts
     products {
       id
       ...useProductsColumnsFragment

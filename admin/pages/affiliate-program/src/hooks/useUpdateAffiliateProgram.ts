@@ -79,8 +79,14 @@ export default (
             fragmentName: 'useUpdateAffiliateProgramFragment',
             data: merge<
               useUpdateAffiliateProgramFragmentType,
-              Omit<ValuesType, 'endAtDisabled' | 'productsType'>
-            >(affiliateProgram, { ...newProgram, affiliatePartner, products }),
+              Omit<ValuesType, 'endAtDisabled' | 'productsType'> & {
+                allProducts: boolean;
+              }
+            >(affiliateProgram, {
+              ...newProgram,
+              affiliatePartner,
+              products,
+            }),
           });
           message.success(t('update.success'));
         },
