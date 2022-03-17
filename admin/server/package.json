@@ -4,7 +4,7 @@
   "description": "admin server",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.151",
+  "version": "0.80.152",
   "main": "./next.config.js",
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect=localhost:9229' next dev ./src -p 14405",
@@ -30,7 +30,7 @@
     "@admin/page-manager": "^0.80.148",
     "@admin/payment-setting": "^0.80.148",
     "@admin/plan-setting": "^0.80.148",
-    "@admin/refactor-newsletter": "^0.80.151",
+    "@admin/refactor-newsletter": "^0.80.152",
     "@admin/refactor-order-history-records": "^0.80.148",
     "@admin/refactor-order-qa": "^0.80.148",
     "@admin/refactor-text-editor": "^0.80.148",
