@@ -35,6 +35,9 @@ export default (
       groupId:
         data.toUsers?.filter?.and?.find(filter => filter?.field === 'groupId')
           ?.query || 'all-total-member',
-      template: createEditorState(data.template || null),
+      template: createEditorState(
+        data.template?.replace(/<img style="max-width: 100%" /g, '<img') ||
+          null,
+      ),
     };
   }, [data]);

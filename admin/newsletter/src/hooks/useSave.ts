@@ -53,10 +53,9 @@ export default (
       async values => {
         const value = {
           subject: values.subject,
-          template: (values.template?.toHTML() || '').replace(
-            /<p[\s\w=\-:;"]*><\/p>/g,
-            '<p style="height:22px"></p>',
-          ),
+          template: (values.template?.toHTML() || '')
+            .replace(/<p[\s\w=\-:;"]*><\/p>/g, '<p style="height:22px"></p>')
+            .replace(/<img/g, '<img style="max-width: 100%" '),
           toUsers: {
             filter: {
               and:
