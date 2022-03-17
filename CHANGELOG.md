@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.152 (2022-03-17)
+
+#### :bug: Bug Fix
+
+- [#2176](https://github.com/meepshop/meep-lerna/pull/2176) 【BUG】電子報新版編輯器：字級異常 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 1
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.151 (2022-03-17)
 
 #### :rocket: New Feature
