@@ -79,7 +79,9 @@ export default React.memo(({ id, onClose }: PropsType) => {
   const status = data?.viewer?.store?.edm?.status || 0;
   const memberGroups = [
     { id: 'all-total-member', name: t('all-members') },
-    ...(data?.viewer?.store?.memberGroups || []).filter(group => group.id),
+    ...(data?.viewer?.store?.memberGroups || []).filter(
+      group => group.id && group.status !== -1,
+    ),
   ];
   const title = status === 0 ? t('draft') : t('sent-newsletter');
   const disabled = !isNew && status > 0;
