@@ -46,7 +46,9 @@ export default (): ColumnProps<useProgramsColumnsFragmentType>[] => {
         onCell: ({ node: { id } }) => ({
           onClick: () => router.push(`/affiliate/programs/${id}`),
         }),
-        render: value => `${value}%`,
+        render: (
+          value: useProgramsColumnsFragmentType['node']['commissionRate'],
+        ) => `${value}%`,
       },
       {
         dataIndex: ['node', 'startAt'],
@@ -55,7 +57,10 @@ export default (): ColumnProps<useProgramsColumnsFragmentType>[] => {
         onCell: ({ node: { id } }) => ({
           onClick: () => router.push(`/affiliate/programs/${id}`),
         }),
-        render: (value, { node }) => (
+        render: (
+          value: useProgramsColumnsFragmentType['node']['startAt'],
+          { node },
+        ) => (
           <>
             {format(new Date(value), 'yyyy/MM/dd HH:mm')} ~{' '}
             {!node.endAt

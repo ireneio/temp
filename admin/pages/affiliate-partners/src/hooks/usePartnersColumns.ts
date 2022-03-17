@@ -29,7 +29,8 @@ export default (): ColumnProps<usePartnersColumnsFragmentType>[] => {
       {
         dataIndex: ['node', 'createdAt'],
         title: t('createdAt'),
-        render: value => format(new Date(value), 'yyyy/MM/dd HH:mm'),
+        render: (value: usePartnersColumnsFragmentType['node']['createdAt']) =>
+          format(new Date(value), 'yyyy/MM/dd HH:mm'),
       },
     ],
     [t],

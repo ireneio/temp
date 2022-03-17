@@ -24,7 +24,10 @@ export default (): ColumnProps<useProgramStatisticsColumnsFragmentType>[] => {
         dataIndex: ['node', 'orderNo'],
         title: t('order.orderNo'),
         width: 144,
-        render: (value, { node: { id } }) => (
+        render: (
+          value: useProgramStatisticsColumnsFragmentType['node']['orderNo'],
+          { node: { id } },
+        ) => (
           <Link href={`/orders/${id}`}>
             <a href={`/orders/${id}`}>{value}</a>
           </Link>
@@ -35,35 +38,45 @@ export default (): ColumnProps<useProgramStatisticsColumnsFragmentType>[] => {
         title: t('order.createdAt'),
         width: 192,
         align: 'center',
-        render: value => format(new Date(value), 'yyyy/MM/dd HH:mm:ss'),
+        render: (
+          value: useProgramStatisticsColumnsFragmentType['node']['createdAt'],
+        ) => format(new Date(value), 'yyyy/MM/dd HH:mm:ss'),
       },
       {
         dataIndex: ['node', 'paymentStatus'],
         title: t('order.paymentStatus'),
         width: '10%',
         align: 'center',
-        render: value => t(`paymentStatus.${value}`),
+        render: (
+          value: useProgramStatisticsColumnsFragmentType['node']['paymentStatus'],
+        ) => t(`paymentStatus.${value}`),
       },
       {
         dataIndex: ['node', 'orderStatus'],
         title: t('order.orderStatus'),
         width: '10%',
         align: 'center',
-        render: value => t(`orderStatus.${value}`),
+        render: (
+          value: useProgramStatisticsColumnsFragmentType['node']['orderStatus'],
+        ) => t(`orderStatus.${value}`),
       },
       {
         dataIndex: ['node', 'total'],
         title: t('order.total'),
         width: 160,
         align: 'right',
-        render: value => c(value, true),
+        render: (
+          value: useProgramStatisticsColumnsFragmentType['node']['total'],
+        ) => c(value, true),
       },
       {
         dataIndex: ['node', 'freight'],
         title: t('order.freight'),
         width: 160,
         align: 'right',
-        render: value => c(value, true),
+        render: (
+          value: useProgramStatisticsColumnsFragmentType['node']['freight'],
+        ) => c(value, true),
       },
       {
         dataIndex: ['node', 'totalExcludeFreight'],
@@ -76,7 +89,9 @@ export default (): ColumnProps<useProgramStatisticsColumnsFragmentType>[] => {
         ),
         width: 160,
         align: 'right',
-        render: value => c(value, true),
+        render: (
+          value: useProgramStatisticsColumnsFragmentType['node']['totalExcludeFreight'],
+        ) => c(value, true),
       },
       {
         dataIndex: ['node', 'commission'],
@@ -89,7 +104,9 @@ export default (): ColumnProps<useProgramStatisticsColumnsFragmentType>[] => {
         ),
         width: 160,
         align: 'right',
-        render: value => c(value, true),
+        render: (
+          value: useProgramStatisticsColumnsFragmentType['node']['commission'],
+        ) => c(value, true),
       },
     ],
     [t, c],
