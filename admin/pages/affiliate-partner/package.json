@@ -4,7 +4,7 @@
   "description": "Affiliate partner page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.148",
+  "version": "0.80.150",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
