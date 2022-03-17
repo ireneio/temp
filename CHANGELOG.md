@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.151 (2022-03-17)
+
+#### :rocket: New Feature
+
+- [#2200](https://github.com/meepshop/meep-lerna/pull/2200) 內部開單 - 活動詳細頁加入 allProducts 參數 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- [#2175](https://github.com/meepshop/meep-lerna/pull/2175) 【個別店家】電子報收件人 - 群組顯示異常 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.150 (2022-03-17)
 
 #### :rocket: New Feature
