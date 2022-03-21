@@ -26,6 +26,33 @@ module.exports = {
     '@meepshop/icons/babel',
     '@meepshop/locales/babel',
     '@babel/transform-runtime',
+    [
+      'inline-react-svg',
+      {
+        svgo: {
+          plugins: [
+            'preset-default',
+            'removeXMLNS',
+            {
+              name: 'removeAttrs',
+              params: {
+                attrs: '(fill|stroke|stroke-width|mask|filter)',
+              },
+            },
+            {
+              name: 'addAttributesToSVGElement',
+              params: {
+                attributes: [
+                  {
+                    viewBox: '64 64 896 896',
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    ],
     // TODO: remove, typescript not support
     [
       '@babel/proposal-decorators',
