@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.80.154 (2022-03-21)
+
+#### :rocket: New Feature
+
+- `store`
+  - [#2096](https://github.com/meepshop/meep-lerna/pull/2096) 內部開單 - 移除 window.storePreviousPageUrl, window.storePreviousOffset ([@Lexiwu](https://github.com/Lexiwu))
+- Other
+  - [#2076](https://github.com/meepshop/meep-lerna/pull/2076) 內部開單 - 商品/下載大量更新商品 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `store`
+  - [#2096](https://github.com/meepshop/meep-lerna/pull/2096) 內部開單 - 移除 window.storePreviousPageUrl, window.storePreviousOffset ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.153 (2022-03-21)
 
 #### :bug: Bug Fix
