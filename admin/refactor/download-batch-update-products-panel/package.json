@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@admin/refactor-download-batch-update-products-panel",
+  "description": "refactor download batch update products panel",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/download-batch-update-products-panel": "^0.1.0",
+    "@admin/hooks": "^0.80.125"
+  },
+  "keywords": ["admin", "batch update", "download", "refactor"]
+}
