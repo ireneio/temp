@@ -22,7 +22,6 @@ import AdTrackProvider from '@store/ad-track';
 import { log } from '@meepshop/logger/lib/gqls/log';
 
 import { CloseView } from 'components';
-import Router from 'next/router';
 import * as Utils from 'utils';
 import getClientSideProps from 'utils/getClientSideProps';
 import getServerSideProps from 'utils/getServerSideProps';
@@ -31,20 +30,6 @@ import usePage from 'hooks/usePage';
 import useExpiringPoints from 'hooks/useExpiringPoints';
 
 notification.config({ placement: 'topRight', duration: 1.5 });
-
-Router.onRouteChangeStart = url => {
-  if (url !== Router.router.asPath)
-    window.storePreviousPageUrl = Router.router.asPath;
-
-  window.storePreviousOffset = window.pageYOffset;
-};
-
-Router.onRouteChangeComplete = () => {
-  if (window.storeCurrentOffset !== undefined) {
-    window.scrollTo(0, window.storeCurrentOffset);
-    window.storeCurrentOffset = undefined;
-  }
-};
 
 class App extends NextApp {
   static async getInitialProps({ Component, ctx, router }) {
@@ -96,10 +81,6 @@ class App extends NextApp {
       });
     });
 
-    Router.beforePopState(() => {
-      window.storeCurrentOffset = window.storePreviousOffset;
-      return true;
-    });
     this.checkSession();
   }
 

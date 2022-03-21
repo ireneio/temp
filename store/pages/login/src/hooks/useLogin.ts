@@ -19,7 +19,7 @@ import { login } from '../gqls/useLogin';
 // definition
 export default (): ((input: LoginInputType) => void) => {
   const { t } = useTranslation('login');
-  const router = useRouter();
+  const { replace, previousUrl } = useRouter();
   const [mutation] = useMutation<loginType, loginVariablesType>(login, {
     onCompleted: data => {
       if (data.login.status !== 'OK') {
@@ -31,7 +31,7 @@ export default (): ((input: LoginInputType) => void) => {
       }
 
       notification.success({ message: t('login-success') });
-      router.replace(window.storePreviousPageUrl || '/');
+      replace(previousUrl);
     },
   });
 

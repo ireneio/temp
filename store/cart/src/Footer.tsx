@@ -24,7 +24,7 @@ export default React.memo(({ scrollToError }: PropsType) => {
   const { t } = useTranslation('cart');
   const colors = useContext(ColorsContext);
   const { isMobile } = useContext(SensorContext);
-  const { push } = useRouter();
+  const { push, previousUrl } = useRouter();
   const [display, setDisplay] = useState<boolean>(false);
 
   return (
@@ -52,9 +52,7 @@ export default React.memo(({ scrollToError }: PropsType) => {
         <div className={styles.root}>
           <div
             onClick={() => {
-              // FIXME: T10267
-              const url = window.storePreviousPageUrl || '/';
-              push(!url.startsWith('/checkout') ? url : '/');
+              push(!previousUrl.startsWith('/checkout') ? previousUrl : '/');
             }}
           >
             <LeftOutlined />

@@ -11,6 +11,7 @@ import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext, Fb as FbContext } from '@meepshop/context';
 import { useValidateEmail } from '@meepshop/validator';
 import { FbLoginIcon } from '@meepshop/icons';
+import { useRouter } from '@meepshop/link';
 
 import useLogin from './hooks/useLogin';
 import { SIGNUP, FORGET_PSW } from './constants';
@@ -36,6 +37,7 @@ export default React.memo(({ setOptions, lineLoginSetting }: PropsType) => {
   const { t } = useTranslation('login');
   const colors = useContext(ColorsContext);
   const { fb, isLoginEnabled: fbLoginEnable } = useContext(FbContext);
+  const { previousUrl } = useRouter();
   const validateEmail = useValidateEmail();
   const login = useLogin();
   const [fbLoginLoading, setFbLoginLoading] = useState<boolean>(false);
@@ -104,7 +106,7 @@ export default React.memo(({ setOptions, lineLoginSetting }: PropsType) => {
                   if (!fb || fbLoginLoading) return;
 
                   setFbLoginLoading(true);
-                  await fb.login(window.storePreviousPageUrl || '/');
+                  await fb.login(previousUrl);
                   setFbLoginLoading(false);
                 }}
                 size="large"
@@ -116,12 +118,7 @@ export default React.memo(({ setOptions, lineLoginSetting }: PropsType) => {
             <Line
               className={styles.lineLoginButton}
               size="large"
-              redirectUrl={
-                // FIXME: T10267
-                typeof window === 'undefined'
-                  ? '/'
-                  : window.storePreviousPageUrl || '/'
-              }
+              redirectUrl={previousUrl}
               lineLoginSetting={filter(lineFragment, lineLoginSetting)}
             />
           </div>

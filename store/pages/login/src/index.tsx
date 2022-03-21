@@ -43,7 +43,7 @@ export default React.memo(() => {
 
   useEffect(() => {
     if (roleRef.current === SHOPPER) {
-      router.push(window.storePreviousPageUrl || '/');
+      router.back();
       roleRef.current = null;
     }
   }, [router]);

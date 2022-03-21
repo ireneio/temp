@@ -12,7 +12,7 @@ import styles from './styles/empty.less';
 // definition
 export default React.memo(() => {
   const colors = useContext(ColorsContext);
-  const { push } = useRouter();
+  const { back, previousUrl } = useRouter();
   const { t } = useTranslation('cart');
 
   return (
@@ -23,8 +23,7 @@ export default React.memo(() => {
         <div
           className={styles.button}
           onClick={() => {
-            const url = window.storePreviousPageUrl || '/';
-            push(!url.startsWith('/checkout') ? url : '/');
+            back(!previousUrl.startsWith('/checkout') ? previousUrl : '/');
           }}
         >
           {t('go-back-to-store')}

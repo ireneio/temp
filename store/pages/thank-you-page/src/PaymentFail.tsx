@@ -16,7 +16,7 @@ export default React.memo(() => {
   const { t } = useTranslation('thank-you-page');
   const { query } = useRouter();
 
-  // FIXME: should use client.resetStore and window.storePreviousPageUrl
+  // FIXME: should use client.resetStore
   const goToCheckout = useCallback(() => {
     window.location.href = '/checkout';
   }, []);
