@@ -71,6 +71,7 @@ export default React.memo(({ scrollToError }: PropsType) => {
         dangerouslySetInnerHTML={{
           __html: `
             .${styles.display} {
+              background-color: ${colors[0]};
               border-top: 1px solid ${colors[5]};
             }
 
