@@ -1,9 +1,16 @@
 // import
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
 import { useQuery } from '@apollo/client';
 import { filter } from 'graphql-anywhere';
-import { Form } from 'antd';
+import { Form, Collapse } from 'antd';
+import { UpCircleOutlined, DownCircleOutlined } from '@ant-design/icons';
+import transformColor from 'color';
 
+import { useTranslation } from '@meepshop/locales';
+import {
+  Currency as CurrencyContext,
+  Colors as ColorsContext,
+} from '@meepshop/context';
 import Link from '@meepshop/link';
 import CheckoutSteps from '@store/checkout-steps';
 
@@ -18,8 +25,8 @@ import Products from './Products';
 import Total from './Total';
 import useInitialValues from './hooks/useInitialValues';
 import useValuesChange from './hooks/useValuesChange';
-import useCarts from './hooks/useCarts';
 import useComputeOrderList from './hooks/useComputeOrderList';
+import useCarts from './hooks/useCarts';
 import styles from './styles/checkout.less';
 
 // graphql import
@@ -39,7 +46,12 @@ import { productsFragment } from './gqls/products';
 import { totalOrderFragment } from './gqls/total';
 
 // definition
+const { Panel } = Collapse;
+
 export default React.memo(() => {
+  const { t } = useTranslation('checkout');
+  const { c } = useContext(CurrencyContext);
+  const colors = useContext(ColorsContext);
   const [form] = Form.useForm();
   const { data } = useQuery(getViewerData);
   const initialValues = useInitialValues(
@@ -49,8 +61,12 @@ export default React.memo(() => {
       [data],
     ),
   );
-  const { computeOrderListData, computeOrderList } = useComputeOrderList(form);
-  const isEmptyCart = useCarts(
+  const {
+    computeOrderListLoading,
+    computeOrderListData,
+    computeOrderList,
+  } = useComputeOrderList(form);
+  const { cartLoading, isEmptyCart } = useCarts(
     filter(useCartFragment, data?.viewer || null),
     computeOrderList,
   );
@@ -59,19 +75,55 @@ export default React.memo(() => {
   const isLogin = data?.viewer?.role === 'SHOPPER';
 
   return (
-    <Form
-      className={styles.root}
-      form={form}
-      initialValues={initialValues}
-      onValuesChange={valuesChange}
-      scrollToFirstError
-    >
-      <div>
+    <>
+      <Form
+        className={styles.root}
+        form={form}
+        initialValues={initialValues}
+        onValuesChange={valuesChange}
+        scrollToFirstError
+      >
         <CheckoutSteps step="checkout" />
 
         {isLogin ? null : (
           <Login store={filter(loginFragment, data?.viewer?.store || null)} />
         )}
+
+        <div className={styles.products}>
+          <Collapse
+            expandIcon={({ isActive }) =>
+              isActive ? <UpCircleOutlined /> : <DownCircleOutlined />
+            }
+            bordered={false}
+            defaultActiveKey="products"
+          >
+            <Panel
+              key="products"
+              header={
+                <>
+                  <p>{c(computeOrderListData?.priceInfo?.total || 0)}</p>
+                  <div>{t('total-payment-amount')}</div>
+                </>
+              }
+            >
+              <Products
+                loading={cartLoading || computeOrderListLoading}
+                isEmptyCart={isEmptyCart}
+                computeOrderList={filter(
+                  productsFragment,
+                  computeOrderListData || null,
+                )}
+              />
+
+              <Total
+                computeOrderList={filter(
+                  totalOrderFragment,
+                  computeOrderListData || null,
+                )}
+              />
+            </Panel>
+          </Collapse>
+        </div>
 
         <Payment
           computeOrderList={filter(
@@ -101,8 +153,8 @@ export default React.memo(() => {
         />
 
         <Buttons
-          // loading={isChecking || isSubmitting}
-          loading={false}
+          // loading={isSubmitting}
+          loading={computeOrderListLoading}
         />
 
         {data?.viewer?.store?.hiddingMeepshopMaxInFooterEnabled ? null : (
@@ -110,26 +162,40 @@ export default React.memo(() => {
             <div className={styles.footer}>meepShop MAX 極速開店</div>
           </Link>
         )}
-      </div>
+      </Form>
 
-      <div>
-        <Products
-          // loading={cartLoading || (carts.length !== 0 && products.length === 0)}
-          loading={false}
-          isEmptyCart={isEmptyCart}
-          computeOrderList={filter(
-            productsFragment,
-            computeOrderListData || null,
-          )}
-        />
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            @media (max-width: ${styles.screenSmMax}) {
+              .${styles.products} {
+                box-shadow: 0px 0px 6px -2px ${transformColor(colors[3]).alpha(
+                  0.15,
+                )};
+              }
 
-        <Total
-          computeOrderList={filter(
-            totalOrderFragment,
-            computeOrderListData || null,
-          )}
-        />
-      </div>
-    </Form>
+              .${
+                styles.products
+              } > .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+                color: ${colors[3]};
+                background-color: ${transformColor(colors[3]).alpha(0.05)};
+              }
+
+              .${
+                styles.products
+              } > .ant-collapse > .ant-collapse-item > .ant-collapse-header .anticon {
+                color: ${transformColor(colors[3]).alpha(0.55)};
+              }
+
+              .${
+                styles.products
+              } > .ant-collapse > .ant-collapse-item > .ant-collapse-content-active {
+                border-top: 1px solid ${transformColor(colors[5]).alpha(0.5)};
+              }
+            }
+          `,
+        }}
+      />
+    </>
   );
 });

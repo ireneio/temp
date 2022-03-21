@@ -24,7 +24,7 @@ import { computeOrderList, getVariables } from 'utils/getComputeOrderQuery';
 
 import PaymentDefaultFormItem from 'paymentDefaultFormItem';
 
-import { computedCartInCheckout } from './gqls';
+import { computedCartInCheckout } from '@store/checkout/lib/gqls/useCheckout';
 import { PRESERVED_FIELDS, DEFERRED_FIELDS } from '../constants';
 
 import DiscountMonitor from './DiscountMonitor';

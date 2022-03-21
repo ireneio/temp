@@ -134,6 +134,10 @@ export default React.memo(
                 }
 
                 @media (max-width: ${styles.screenSmMax}) {
+                  .${styles.root} {
+                    background: ${transformColor(colors[3]).alpha(0.05)};
+                  }
+
                   .${styles.table} {
                     border-bottom: 1px solid ${transformColor(colors[5]).alpha(
                       0.5,

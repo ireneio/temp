@@ -20,6 +20,7 @@ import { computeOrderList } from '../gqls/useComputeOrderList';
 
 // typescript definition
 export type ReturnType = {
+  computeOrderListLoading: boolean;
   computeOrderListData: computeOrderListComputeOrderListType | null;
   computeOrderList: ({
     products,
@@ -43,7 +44,7 @@ export type ReturnType = {
 export default ({ getFieldValue }: FormInstance): ReturnType => {
   const adTrack = useContext(AdTrackContext);
   const [isAdTracked, setIsAdTracked] = useState<boolean>(false);
-  const [mutation, { data }] = useMutation<
+  const [mutation, { loading, data }] = useMutation<
     computeOrderListType,
     computeOrderListVariablesType
   >(computeOrderList);
@@ -82,6 +83,7 @@ export default ({ getFieldValue }: FormInstance): ReturnType => {
   }, [computeOrderListData, adTrack, isAdTracked]);
 
   return {
+    computeOrderListLoading: loading,
     computeOrderListData,
     computeOrderList: useCallback(
       value => {

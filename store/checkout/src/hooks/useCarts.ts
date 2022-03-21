@@ -24,7 +24,10 @@ export default (
   computeOrderList: (value: {
     [key: string]: computedCartInCheckoutComputedCartComputedCartComputedLineItemsType[];
   }) => void,
-): boolean => {
+): {
+  cartLoading: boolean;
+  isEmptyCart: boolean;
+} => {
   const { t } = useTranslation('checkout');
   const { push } = useRouter();
   const [isEmptyCart, setIsEmptyCart] = useState<boolean>(false);
@@ -59,8 +62,7 @@ export default (
   }, [prevCarts, carts, computeOrderList]);
 
   useEffect(() => {
-    if (cartLoading || isEmptyCart) return;
-    // if (isSubmitting || isChecking) return;
+    if (isEmptyCart || cartLoading) return;
 
     if (carts.length === 0) {
       setIsEmptyCart(true);
@@ -85,5 +87,8 @@ export default (
     }
   }, [isEmptyCart, cartLoading, carts, t, push]);
 
-  return isEmptyCart;
+  return {
+    cartLoading,
+    isEmptyCart,
+  };
 };

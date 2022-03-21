@@ -1,49 +1,91 @@
 @import '~@store/utils/styles/variables.less';
+@value screenSmMax from '@meepshop/utils/styles/variables.less';
 
 .root {
-  display: flex;
-  margin: 0px auto;
+  width: 60%;
+  display: inline-block;
 
-  & > div:first-child {
+  & > div:not(.products) {
     width: 60%;
-
-    & > div {
-      width: 60%;
-      margin-right: auto;
-      margin-left: auto;
-    }
+    margin-right: auto;
+    margin-left: auto;
   }
 
-  & > div:last-child {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    width: 40%;
+  @media (max-width: @screen-sm-max) {
+    width: 100%;
+
+    & > div:not(.products) {
+      width: auto;
+      margin-right: 16px;
+      margin-left: 16px;
+    }
+  }
+}
+
+.products {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 40%;
+  height: 100%;
+
+  > :global(.ant-collapse) {
     height: 100%;
+    background-color: initial;
+
+    > :global(.ant-collapse-item) {
+      height: 100%;
+      border: none;
+
+      > :global(.ant-collapse-header) {
+        display: none;
+      }
+
+      > :global(.ant-collapse-content) {
+        height: 100%;
+        border-radius: unset;
+
+        > :global(.ant-collapse-content-box) {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          padding: 0px;
+        }
+      }
+    }
   }
 
   @media (max-width: @screen-sm-max) {
     display: block;
-    margin: 0px;
+    position: static;
+    width: 100%;
+    margin-bottom: 26px;
 
-    & > div:first-child {
-      width: 100%;
+    > :global(.ant-collapse)
+      > :global(.ant-collapse-item)
+      > :global(.ant-collapse-header) {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+      padding: 0px;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
 
-      & > div {
-        width: 100%;
-        margin-right: 0px;
-        margin-left: 0px;
-        padding-right: 16px;
-        padding-left: 16px;
+      p {
+        font-size: 20px;
+        line-height: 26px;
+        margin: 0px 0px 0px 8px;
       }
-    }
 
-    & > div:last-child {
-      display: block;
-      position: static;
-      width: 100%;
+      :global(.anticon) {
+        display: block;
+        position: initial;
+        font-size: 17.5px;
+        padding: 0px 5px 0px 6px;
+      }
     }
   }
 }

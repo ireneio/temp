@@ -1,12 +1,14 @@
+@import '~@store/utils/styles/variables.less';
+
 .root {
   flex-shrink: 0;
-  font-size: 14px;
-  line-height: 24px;
   width: 100%;
   overflow: hidden;
   padding: 8px 40px 32px;
 
   :global(.ant-collapse) {
+    font-size: 14px;
+    line-height: 24px;
     background-color: initial;
   }
 
@@ -16,17 +18,12 @@
     border: none;
   }
 
-  :global(.ant-collapse-content-active) {
-    border-radius: unset;
-    padding-bottom: 4px;
-  }
-
   :global(.ant-collapse-header) {
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
     align-items: center;
-    padding: 8px 0px;
+    padding: 8px 0px 6px;
     font-size: 12px;
     line-height: 17px;
 
@@ -35,6 +32,11 @@
       position: initial;
       padding: 0px 4px;
     }
+  }
+
+  :global(.ant-collapse-content-active) {
+    border-radius: unset;
+    padding-bottom: 4px;
   }
 
   :global(.ant-collapse-content-box) {
@@ -53,6 +55,37 @@
       }
     }
   }
+
+  @media (max-width: @screen-sm-max) {
+    padding: 16px 18px 24px;
+    box-shadow: none;
+
+    :global(.ant-collapse) {
+      line-height: 22px;
+    }
+
+    :global(.ant-collapse-header) {
+      display: none;
+    }
+
+    :global(.ant-collapse-content-active) {
+      padding-bottom: 0px;
+      border-bottom: none;
+    }
+
+    :global(.ant-collapse-content-box) {
+      padding: 0px;
+
+      > div {
+        padding: 0px 0px 4px;
+
+        > div:last-child {
+          font-size: 14px;
+          font-weight: normal;
+        }
+      }
+    }
+  }
 }
 
 .total {
@@ -67,5 +100,16 @@
     line-height: 34px;
     white-space: nowrap;
     margin-left: 8px;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    font-size: 16px;
+    line-height: 25px;
+    margin-top: 6px;
+
+    > div:last-child {
+      font-size: 16px;
+      line-height: 25px;
+    }
   }
 }
