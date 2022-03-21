@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.153 (2022-03-21)
+
+#### :bug: Bug Fix
+
+- [#2212](https://github.com/meepshop/meep-lerna/pull/2212) 內部開單 - 修改 購物車統計 、footer 滾動顯示 - UI Bug ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.152 (2022-03-17)
 
 #### :bug: Bug Fix
