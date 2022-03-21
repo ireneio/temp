@@ -4,11 +4,11 @@
   "description": "Filter buttons for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.147",
+  "version": "0.80.154",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/icons": "^0.80.147"
+    "@meepshop/icons": "^0.80.154"
   },
   "keywords": ["admin", "filter buttons"]
 }

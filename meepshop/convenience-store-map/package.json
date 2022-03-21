@@ -4,13 +4,13 @@
   "description": "Convenience store map for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.148",
+  "version": "0.80.154",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/images": "^0.80.147",
-    "@meepshop/locales": "^0.80.148",
-    "@meepshop/utils": "^0.80.147"
+    "@meepshop/images": "^0.80.154",
+    "@meepshop/locales": "^0.80.154",
+    "@meepshop/utils": "^0.80.154"
   },
   "keywords": ["convenience store map", "meepshop"]
 }
