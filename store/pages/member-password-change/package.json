@@ -4,13 +4,13 @@
   "description": "Member password change for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.154",
+  "version": "0.80.155",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.154",
-    "@meepshop/locales": "^0.80.154",
-    "@store/utils": "^0.80.154"
+    "@meepshop/context": "^0.80.155",
+    "@meepshop/locales": "^0.80.155",
+    "@store/utils": "^0.80.155"
   },
   "keywords": ["member", "password change", "store"]
 }
