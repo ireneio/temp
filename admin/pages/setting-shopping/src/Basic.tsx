@@ -34,6 +34,7 @@ export default React.memo(
           {
             name: ['setting', 'locale'],
             title: t('basic.0.title'),
+            tip: t('basic.0.tip'),
             options: languages.map(lan => ({
               value: lan,
               label: t(`locales.${lan}`),
