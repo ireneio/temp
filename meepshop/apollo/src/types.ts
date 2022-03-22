@@ -14,6 +14,7 @@ export interface CustomCtxType<Req = {}, Res = {}> extends AppContext {
       cookies: {
         'x-meepshop-authorization-token': string;
         identity: string;
+        promoCode: string;
       };
     };
     res: Res;

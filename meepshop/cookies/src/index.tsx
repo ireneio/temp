@@ -91,11 +91,12 @@ export const withCookies = (getCookies: getCookiesType): ReturnType => ({
     return Component;
   },
   getServerSideCookiesContextProps: async ctx => {
-    const { client, res, req, pathname } = ctx;
+    const { client, res, req, pathname, query } = ctx;
 
     return {
       initialCookies: await getCookies({
         pathname,
+        query,
         client,
         i18n: req.i18n,
         language: req.language,
@@ -110,11 +111,12 @@ export const withCookies = (getCookies: getCookiesType): ReturnType => ({
     };
   },
   getClientSideCookiesContextProps: async ctx => {
-    const { client, pathname } = ctx;
+    const { client, pathname, query } = ctx;
 
     return {
       initialCookies: await getCookies({
         pathname,
+        query,
         client,
         i18n: i18n as I18nPropsType['i18n'],
         language: i18n.language as languageType,

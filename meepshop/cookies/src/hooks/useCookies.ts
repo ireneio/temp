@@ -18,6 +18,7 @@ import { useRouter } from '@meepshop/link';
 // typescript definition
 export type getCookiesType = (ctx: {
   pathname: string;
+  query: { [key: string]: string | string[] };
   client: ApolloClient<object>;
   i18n: I18nPropsType['i18n'];
   language: languageType;
@@ -49,6 +50,7 @@ export default (
       setCookies(
         await getCookies({
           pathname: router.pathname,
+          query: router.query,
           client,
           i18n: i18n as I18nPropsType['i18n'],
           language: i18n.language as languageType,

@@ -20,6 +20,7 @@ export default (url, callback) => async (req, res) => {
       'x-meepshop-domain': req.headers.host,
       'x-meepshop-authorization-token':
         req.cookies['x-meepshop-authorization-token'] || null,
+      'x-meepshop-promo-code': req.cookies.promoCode || null,
       'accept-language':
         (req.cookies['next-i18next'] || '').replace('_', '-') || null,
     },

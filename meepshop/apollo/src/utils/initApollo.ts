@@ -134,6 +134,7 @@ const create = (
                 'x-meepshop-domain': ctx.ctx.req.headers.host,
                 'x-meepshop-authorization-token':
                   ctx.ctx.req.cookies?.['x-meepshop-authorization-token'] || '',
+                'x-meepshop-promo-code': ctx.ctx.req.cookies?.promoCode,
               }),
           'x-meepshop-unique-id': loggerInfo?.identity || '',
         },
