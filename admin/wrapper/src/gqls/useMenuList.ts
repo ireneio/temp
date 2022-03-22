@@ -7,6 +7,11 @@ export const useMenuListFragment = gql`
     id
     store {
       id
+      featureSubscription {
+        affiliateFeatureSubscription {
+          status
+        }
+      }
       upsellingEnabled: checkUnleashToggle(
         name: "T6749_storeCnameWhiteListForUpsellingSetting"
       )

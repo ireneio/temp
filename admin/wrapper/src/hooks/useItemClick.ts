@@ -11,6 +11,7 @@ import { MENU_LIST, URLS } from './useMenuList';
 // definition
 const ADDITIONAL_URLS: { [key: string]: RegExp[] } = {
   dashboard: [/^\/$/],
+  affiliate: [/^\/affiliate\//],
 };
 
 const findOpenKeys = (

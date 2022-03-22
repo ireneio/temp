@@ -54,7 +54,7 @@ const AffiliatePrograms: NextPage<PropsType> = React.memo(() => {
         url: '',
       }}
       buttons={
-        <Link href="/affiliate/programs">
+        <Link href="/affiliate/partners">
           <Button className={styles.partners}>{t('manage-partners')}</Button>
         </Link>
       }
