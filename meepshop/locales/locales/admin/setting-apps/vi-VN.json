@@ -1,12 +1,76 @@
 {
   "title": "Mở rộng chức năng.",
-  "subTitle": "Bạn có thể sử dụng các tính năng miễn phí theo cách riêng của mình. Nếu bạn điều chỉnh phương thức sạc trước, bạn không phải lo lắng về việc bị buộc tội trong các điều kiện không đồng ý.",
   "free": "miễn phí",
   "per": "Hoàn hảo",
   "active": "Cho phép",
   "disable": "Hủy kích hoạt.",
   "error": "sai lầm, điều sai, ngộ nhận",
   "detail": "Chi tiết",
+  "subscription": {
+    "title": "Theo dõi các dịch vụ chức năng",
+    "subTitle": "Bạn có thể đăng ký vào cửa hàng hoạt động cần đăng ký đăng ký và chi phí sẽ được hợp nhất trong hóa đơn định kỳ."
+  },
+  "basic": {
+    "title": "chức năng cơ bản",
+    "subTitle": "Một số chức năng sẽ phù hợp với việc sử dụng hệ thống, nếu phí sẽ được điều chỉnh trước, bạn không phải lo lắng về việc bị buộc tội trong các điều kiện không đồng ý."
+  },
+  "affiliate": {
+    "title": "Tóm tắt quản lý khuyến mãi",
+    "desc": "Bạn có thể thiết lập các hoạt động quảng cáo cho các đối tác khác nhau, và theo dõi nhiều hoạt động và điều kiện bán sản phẩm, giảm đáng kể chi phí quản lý và giải quyết hoạt động, giúp khuyến mãi sản phẩm dễ dàng hơn.",
+    "instruction": "Chi tiết",
+    "expiration-date": "Sẽ dừng đăng ký dịch vụ trong {{expreddate}}",
+    "button": {
+      "NOT_SUBSCRIBED": "bắt đầu sử dụng",
+      "SUBSCRIBE_CONTINUING": "Hủy bỏ gia hạn.",
+      "SUBSCRIBE_CANCELLING": "Tiếp tục đăng ký"
+    },
+    "status": {
+      "SUBSCRIBE_CONTINUING": "Đăng ký",
+      "SUBSCRIBE_CANCELLING": "Tiếp theo"
+    },
+    "start": {
+      "title": "Chức năng đăng ký",
+      "subTitle": "Tóm tắt quản lý khuyến mãi",
+      "content": "Nó được tự động theo dõi thông qua quản lý khuyến mãi chung và kết quả chính xác hơn, đưa ra quyết định tiếp thị chính xác hơn.",
+      "price": "Lệ phí sẽ được hợp nhất trong hóa đơn tiếp theo",
+      "feature": {
+        "0": "Quản lý chương trình khuyến mãi và đối tác của Hội nghị thượng đỉnh",
+        "1": "Kết quả theo dõi sự kiện ngay lập tức",
+        "2": "Tính toán tự động các đơn đặt hàng lò xo",
+        "title": "Đăng ký, bạn có thể thưởng thức một dịch vụ trợ cấp tài trợ"
+      },
+      "warn": "Bạn có thể hủy đổi đổi mới bất cứ lúc nào",
+      "ok": "Xác nhận đăng ký",
+      "cancel": "Hủy bỏ",
+      "success": {
+        "title": "Đăng ký thành công các hoạt động khuyến mãi và kẹo cao su",
+        "content": "Tuyệt vời!",
+        "start": "bắt đầu sử dụng",
+        "go-back": "Tiếp tục duyệt"
+      }
+    },
+    "stop": {
+      "title": "Xác định có nên hủy bỏ các hoạt động khuyến mãi đăng ký và ẩm không?",
+      "content": {
+        "0": "Hủy sẽ ngăn chặn dịch vụ chức năng và tính phí trong {date}}",
+        "1": "Sau khi hủy chính thức, {{Highline}} sẽ không tiếp tục sử dụng chúng tôi giữ thông tin liên quan cho đến khi bạn đăng ký lại.",
+        "2": "Sau khi bị hủy dịch vụ,",
+        "3": "Thúc đẩy hợp tác và các trang liên quan",
+        "4": "Sẽ không tiếp tục sử dụng thông tin chúng tôi sẽ giữ thông tin liên quan cho đến khi bạn đăng ký lại"
+      },
+      "warn": "Hủy bỏ có thể được đăng ký lại để",
+      "ok": "Tiếp tục sử dụng",
+      "cancel": "hủy đăng ký",
+      "success": {
+        "title": "Bạn đã hủy đăng ký thành công",
+        "content": {
+          "0": "Bạn vẫn có thể sử dụng chức năng để",
+          "1": "Và xin vui lòng gia hạn"
+        },
+        "go-back": "Quay lại chức năng mở rộng"
+      }
+    }
+  },
   "analytics": {
     "title": "Phân tích thống kê",
     "desc": "Cung cấp các chỉ số thống kê như đơn hàng cửa hàng, bán hàng hóa, giá khách hàng trung bình ⋯."

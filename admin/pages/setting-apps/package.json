@@ -10,9 +10,11 @@
   "dependencies": {
     "@admin/header": "^0.80.154",
     "@meepshop/context": "^0.80.154",
+    "@meepshop/icons": "^0.80.154",
     "@meepshop/images": "^0.80.154",
     "@meepshop/link": "^0.80.154",
-    "@meepshop/locales": "^0.80.154"
+    "@meepshop/locales": "^0.80.154",
+    "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "apps", "setting"]
 }

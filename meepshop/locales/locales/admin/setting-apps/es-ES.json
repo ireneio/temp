@@ -1,12 +1,76 @@
 {
   "title": "Expandir la función",
-  "subTitle": "Puede usar características gratuitas a su manera. Si ajusta el método de carga con anticipación, no tiene que preocuparse por ser acusado de condiciones desconocidas.",
   "free": "gratis",
   "per": "Perfecto",
   "active": "Habilitar",
   "disable": "Desactivar",
   "error": "error",
   "detail": "Detalle",
+  "subscription": {
+    "title": "Suscríbete a servicios funcionales.",
+    "subTitle": "Puede suscribirse a la tienda que opera necesita suscribirse a la suscripción, y el costo se fusionará en la factura periódica."
+  },
+  "basic": {
+    "title": "funciones básicas",
+    "subTitle": "Algunas funciones estarán de acuerdo con el uso del sistema, si la tarifa se ajustará con anticipación, no tiene que preocuparse por ser acusado de condiciones desconocidas."
+  },
+  "affiliate": {
+    "title": "Gestión de promociones de resumen",
+    "desc": "Puede establecer actividades promocionales para diferentes socios, y realizar un seguimiento de las múltiples actividades y las condiciones de ventas de productos, reducir enormemente la gestión de actividades y los costos de liquidación, lo que facilita la promoción del producto.",
+    "instruction": "Detalle",
+    "expiration-date": "Dejará de suscribirse al servicio en {{cadigneddate}}",
+    "button": {
+      "NOT_SUBSCRIBED": "Empieza a usar",
+      "SUBSCRIBE_CONTINUING": "Cancelar la renovación",
+      "SUBSCRIBE_CANCELLING": "Continuar suscripción"
+    },
+    "status": {
+      "SUBSCRIBE_CONTINUING": "Suscripción",
+      "SUBSCRIBE_CANCELLING": "Subsecuente"
+    },
+    "start": {
+      "title": "Función de suscripción",
+      "subTitle": "Gestión de promociones de resumen",
+      "content": "Se rastrea automáticamente a través de la administración de la promoción conjunta, y los resultados son más precisos, lo que hace que las decisiones de marketing sean más precisas.",
+      "price": "Las tarifas se fusionarán en la próxima factura.",
+      "feature": {
+        "0": "Administrar promociones y socios de la cumbre",
+        "1": "Resultados de seguimiento instantáneo de eventos",
+        "2": "Cálculo automático de las órdenes de resortes.",
+        "title": "Suscríbete, puedes disfrutar de un servicio de función de subvención."
+      },
+      "warn": "Puedes cancelar la renovación en cualquier momento.",
+      "ok": "Confirmar suscripción",
+      "cancel": "Cancelar",
+      "success": {
+        "title": "Actividades y goma de promoción exitosas de suscripción",
+        "content": "¡maravilloso!",
+        "start": "Empieza a usar",
+        "go-back": "Continuar navegando"
+      }
+    },
+    "stop": {
+      "title": "¿Determina si desea cancelar las actividades de promoción de suscripción y húmedo?",
+      "content": {
+        "0": "La cancelación detendrá el servicio funcional y los cargos en {Fecha}}",
+        "1": "Después de la cancelación oficial, {{Highline}} no continuará usando, mantenemos información relacionada hasta que se suscriba nuevamente.",
+        "2": "Después de un servicio cancelado oficialmente,",
+        "3": "Promover la cooperación y las páginas relacionadas.",
+        "4": "No continuará utilizando la información, mantendremos información relevante hasta que se suscriba nuevamente"
+      },
+      "warn": "La cancelación puede ser re-suscrita a",
+      "ok": "Continuar usando",
+      "cancel": "darse de baja",
+      "success": {
+        "title": "Has cancelado con éxito las suscripciones",
+        "content": {
+          "0": "Todavía puedes usar la funcionalidad para",
+          "1": "Y por favor, siéntase libre de renovar"
+        },
+        "go-back": "Volver a la función de expansión"
+      }
+    }
+  },
   "analytics": {
     "title": "Análisis estadístico",
     "desc": "Proporcionar indicadores estadísticos, como pedidos de la tienda, ventas de productos básicos, precio promedio del cliente ⋯."

@@ -1,12 +1,76 @@
 {
   "title": "Développer la fonction",
-  "subTitle": "Vous pouvez utiliser des fonctionnalités gratuites à votre manière. Si vous ajustez à l'avance la méthode de charge à l'avance, vous n'avez pas à vous soucier d'être accusés dans des conditions inconnues.",
   "free": "libre",
   "per": "Parfait",
   "active": "Permettre",
   "disable": "Désactiver",
   "error": "erreur",
   "detail": "Détail",
+  "subscription": {
+    "title": "Abonnez-vous aux services fonctionnels",
+    "subTitle": "Vous pouvez vous abonner aux besoins opérationnels du magasin pour vous abonner à l'abonnement et le coût sera fusionné dans la facture périodique."
+  },
+  "basic": {
+    "title": "les fonctions de base",
+    "subTitle": "Certaines fonctions seront conformes à l'utilisation du système, si les frais seront ajustés à l'avance, vous n'avez pas à vous soucier d'être accusés dans des conditions inconnues."
+  },
+  "affiliate": {
+    "title": "Gestion de la promotion Résumé",
+    "desc": "Vous pouvez établir des activités promotionnelles pour différents partenaires et suivre plusieurs activités et conditions de vente de produits, réduire considérablement la gestion des activités et les coûts de règlement, ce qui facilite la promotion des produits.",
+    "instruction": "Détail",
+    "expiration-date": "Arrêtera l'abonnement service en {{expirationdate}}",
+    "button": {
+      "NOT_SUBSCRIBED": "commencer à utiliser",
+      "SUBSCRIBE_CONTINUING": "Annuler le renouvellement",
+      "SUBSCRIBE_CANCELLING": "Continuer l'abonnement"
+    },
+    "status": {
+      "SUBSCRIBE_CONTINUING": "Abonnement",
+      "SUBSCRIBE_CANCELLING": "Subséquent"
+    },
+    "start": {
+      "title": "Fonction d'abonnement",
+      "subTitle": "Gestion de la promotion Résumé",
+      "content": "Il est automatiquement suivi par la gestion commune de la promotion et les résultats sont plus précis, ce qui rend les décisions de marketing plus précises.",
+      "price": "Les frais seront fusionnés dans la prochaine facture",
+      "feature": {
+        "0": "Gérer les promotions et les partenaires du Sommet",
+        "1": "Résultats de suivi instantané de l'événement",
+        "2": "Calcul automatique des commandes de ressorts",
+        "title": "Abonnez-vous, vous pouvez profiter d'un service de fonction de subvention"
+      },
+      "warn": "Vous pouvez annuler le renouvellement à tout moment",
+      "ok": "Confirmer l'abonnement",
+      "cancel": "Annuler",
+      "success": {
+        "title": "Activités de promotion de l'abonnement réussies et gomme",
+        "content": "merveilleux!",
+        "start": "commencer à utiliser",
+        "go-back": "Continuez à parcourir"
+      }
+    },
+    "stop": {
+      "title": "Déterminez s'il faut annuler les activités de promotion de l'abonnement et humide?",
+      "content": {
+        "0": "L'annulation arrêtera le service fonctionnel et les charges de {date}}",
+        "1": "Après une annulation officielle, {{highline}} ne continuera pas à utiliser que nous gardons des informations connexes tant que vous vous abonnez à nouveau.",
+        "2": "Après le service annulé officiellement,",
+        "3": "Promouvoir la coopération et les pages connexes",
+        "4": "Ne continuera pas à utiliser les informations que nous conserverons des informations pertinentes jusqu'à ce que vous vous abonnez à nouveau."
+      },
+      "warn": "L'annulation peut être ré-souscrite à",
+      "ok": "Continuer à utiliser",
+      "cancel": "Se désabonner",
+      "success": {
+        "title": "Vous avez des abonnements annulés avec succès",
+        "content": {
+          "0": "Vous pouvez toujours utiliser la fonctionnalité pour",
+          "1": "Et s'il vous plaît n'hésitez pas à renouveler"
+        },
+        "go-back": "Retour à la fonction d'expansion"
+      }
+    }
+  },
   "analytics": {
     "title": "Analyses statistiques",
     "desc": "Fournir des indicateurs statistiques tels que les commandes de magasins, les ventes de produits de base, le prix moyen des clients ⋯."

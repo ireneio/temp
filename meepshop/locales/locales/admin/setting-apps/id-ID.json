@@ -1,12 +1,76 @@
 {
   "title": "Perluas Fungsi",
-  "subTitle": "Anda dapat menggunakan fitur gratis dengan cara Anda sendiri. Jika Anda menyesuaikan metode pengisian di muka, Anda tidak perlu khawatir akan dikenakan biaya dalam kondisi yang tidak diketahui.",
   "free": "Gratis",
   "per": "Sempurna",
   "active": "Memungkinkan",
   "disable": "Menonaktifkan",
   "error": "kesalahan",
   "detail": "Detail.",
+  "subscription": {
+    "title": "Berlangganan layanan fungsional",
+    "subTitle": "Anda dapat berlangganan kebutuhan operasi toko untuk berlangganan langganan, dan biayanya akan digabungkan dalam tagihan periodik."
+  },
+  "basic": {
+    "title": "fungsi dasar",
+    "subTitle": "Beberapa fungsi akan sesuai dengan penggunaan sistem, jika biaya akan disesuaikan terlebih dahulu, Anda tidak perlu khawatir dibebankan dalam kondisi yang tidak diketahui."
+  },
+  "affiliate": {
+    "title": "Ringkasan Manajemen Promosi",
+    "desc": "Anda dapat menetapkan kegiatan promosi untuk berbagai mitra, dan melacak berbagai kegiatan dan kondisi penjualan produk, sangat mengurangi manajemen aktivitas dan biaya penyelesaian, membuat promosi produk lebih mudah.",
+    "instruction": "Detail.",
+    "expiration-date": "Akan menghentikan layanan berlangganan di {{expirationdate}}",
+    "button": {
+      "NOT_SUBSCRIBED": "mulai menggunakan",
+      "SUBSCRIBE_CONTINUING": "Batalkan pembaruan",
+      "SUBSCRIBE_CANCELLING": "Lanjutkan berlangganan"
+    },
+    "status": {
+      "SUBSCRIBE_CONTINUING": "Berlangganan",
+      "SUBSCRIBE_CANCELLING": "Setelah"
+    },
+    "start": {
+      "title": "Fungsi berlangganan",
+      "subTitle": "Ringkasan Manajemen Promosi",
+      "content": "Ini secara otomatis dilacak melalui manajemen promosi bersama, dan hasilnya lebih akurat, membuat keputusan pemasaran lebih akurat.",
+      "price": "Biaya akan digabung dalam tagihan berikutnya",
+      "feature": {
+        "0": "Kelola promosi dan mitra Summit",
+        "1": "Hasil Pelacakan Instan Acara",
+        "2": "Perhitungan otomatis pesanan pegas",
+        "title": "Berlangganan, Anda dapat menikmati layanan Grant Function"
+      },
+      "warn": "Anda dapat membatalkan pembaruan kapan saja",
+      "ok": "Konfirmasikan berlangganan",
+      "cancel": "Membatalkan",
+      "success": {
+        "title": "Kegiatan promosi berlangganan yang sukses dan gusi",
+        "content": "menakjubkan!",
+        "start": "mulai menggunakan",
+        "go-back": "Lanjutkan untuk menelusuri"
+      }
+    },
+    "stop": {
+      "title": "Tentukan apakah akan membatalkan kegiatan promosi berlangganan dan lembab?",
+      "content": {
+        "0": "Pembatalan akan menghentikan layanan fungsional dan biaya di {date}}",
+        "1": "Setelah pembatalan resmi, {{Highline}} tidak akan terus menggunakan kami menyimpan informasi terkait sampai Anda berlangganan kembali.",
+        "2": "Setelah layanan yang dibatalkan secara resmi,",
+        "3": "Mempromosikan kerja sama dan halaman terkait",
+        "4": "Tidak akan terus menggunakan informasi kami akan menyimpan informasi yang relevan sampai Anda berlangganan lagi"
+      },
+      "warn": "Pembatalan dapat berlangganan ulang",
+      "ok": "Terus gunakan",
+      "cancel": "Berhenti berlangganan",
+      "success": {
+        "title": "Anda telah berhasil membatalkan langganan",
+        "content": {
+          "0": "Anda masih dapat menggunakan fungsionalitas",
+          "1": "Dan jangan ragu untuk memperbarui"
+        },
+        "go-back": "Kembali ke fungsi ekspansi"
+      }
+    }
+  },
   "analytics": {
     "title": "Analisis statistik",
     "desc": "Memberikan indikator statistik seperti pesanan toko, penjualan komoditas, harga pelanggan rata-rata ⋯."

@@ -25,7 +25,7 @@ export default React.memo(
             <span
               className={title !== 'newsletters' ? styles.freeTag : styles.tag}
             >
-              {title !== 'newsletters' ? t('free') : `US$ 0.0008 / ${t('per')}`}
+              {title !== 'newsletters' ? t('free') : `USD 0.0008 / ${t('per')}`}
             </span>
           </h2>
           <p>
