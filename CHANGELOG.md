@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.80.155 (2022-03-22)
+
+#### :rocket: New Feature
+
+- Other
+  - [#2183](https://github.com/meepshop/meep-lerna/pull/2183) 【功能】分潤系統 - 訂閱功能 - 後台 ([@HsuTing](https://github.com/HsuTing))
+  - [#2181](https://github.com/meepshop/meep-lerna/pull/2181) 【功能】分潤系統 - menu - 後台 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#2194](https://github.com/meepshop/meep-lerna/pull/2194) 【功能】分潤系統 - 儲存推廣參數 - 前台 ([@HsuTing](https://github.com/HsuTing))
+- `meep-ui`
+  - [#2214](https://github.com/meepshop/meep-lerna/pull/2214) 內部開單 - 修正手機版樣式 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#2219](https://github.com/meepshop/meep-lerna/pull/2219) 【BUG】後台 - 購物設定 - 基本設定 - 語言設定 tooltip 消失 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#2218](https://github.com/meepshop/meep-lerna/pull/2218) 內部開單 - 新增 babel-plugin-inline-react-svg ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.154 (2022-03-21)
 
 #### :rocket: New Feature
