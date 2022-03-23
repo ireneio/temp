@@ -15,3 +15,10 @@ spec:
             requests:
               cpu: 10m
               memory: 336Mi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 14401
+            initialDelaySeconds: 15
+            periodSeconds: 3
+            timeoutSeconds: 10
