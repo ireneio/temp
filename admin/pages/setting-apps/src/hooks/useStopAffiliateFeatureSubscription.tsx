@@ -4,7 +4,6 @@ import { useMutation } from '@apollo/client';
 
 import { useTranslation } from '@meepshop/locales';
 
-import styles from '../styles/useStopAffiliateFeatureSubscription.less';
 import useStopSubscription from './useStopSubscription';
 
 // graphql typescript
@@ -52,30 +51,8 @@ export default (storeId: string | null): (() => void) => {
   );
 
   return useStopSubscription({
-    title: t('affiliate.stop.title'),
-    content: expirationDate => (
-      <>
-        <div>
-          {t('affiliate.stop.content.0')}
-
-          <span className={styles.expirationDate}> {expirationDate} </span>
-
-          {t('affiliate.stop.content.1')}
-        </div>
-
-        <div>
-          {t('affiliate.stop.content.2')}
-
-          <span className={styles.hightline}>
-            {t('affiliate.stop.content.3')}
-          </span>
-
-          {t('affiliate.stop.content.4')}
-        </div>
-
-        <div className={styles.warn}>{t('affiliate.stop.warn')}</div>
-      </>
-    ),
+    key: 'affiliate',
+    content: <div>{t('affiliate.stop.content')}</div>,
     submit: async () => {
       const { data } = await mutation();
 

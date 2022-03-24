@@ -1,7 +1,7 @@
 // import
 import React, { useCallback } from 'react';
 import { Modal, Button } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, CheckOutlined } from '@ant-design/icons';
 
 import { useTranslation } from '@meepshop/locales';
 import { adminSettingAppsGeniusCongratulations_w120_h120 as adminSettingAppsGeniusCongratulations } from '@meepshop/images';
@@ -12,7 +12,10 @@ import styles from '../styles/useStartSubscription.less';
 
 // typescript definition
 interface OptionsType {
-  content: React.ReactNode;
+  key: string;
+  img: string;
+  price: React.ReactNode;
+  featureAmount: number;
   submit: () => Promise<boolean>;
   successTitle: string;
   successLink?: string;
@@ -55,7 +58,7 @@ export default ({
   });
 
   return useCallback(() => {
-    const { content, submit } = options;
+    const { key, img, price, featureAmount, submit } = options;
 
     Modal.confirm({
       width: '100%',
@@ -64,7 +67,31 @@ export default ({
       icon: null,
       content: (
         <>
-          {content}
+          <div className={styles.content}>
+            <img src={img} alt={key} />
+
+            <div>
+              <div className={styles.title}>{t(`${key}.start.title`)}</div>
+
+              {t(`${key}.start.content`)}
+            </div>
+
+            <div>{price}</div>
+          </div>
+
+          <div className={styles.featureTitle}>
+            {t(`${key}.start.feature.title`)}
+          </div>
+
+          {[].constructor
+            .apply({}, new Array(featureAmount))
+            .map((_: unknown, index: number) => (
+              <div key={key} className={styles.feature}>
+                <CheckOutlined />
+
+                {t(`${key}.start.feature.${index}`)}
+              </div>
+            ))}
 
           <div className={styles.warn}>
             <InfoCircleOutlined />

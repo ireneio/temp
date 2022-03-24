@@ -31,6 +31,13 @@
     }
   },
   "stop": {
+    "content": {
+      "0": "Sau khi hủy bỏ việc gia hạn",
+      "1": "Dịch vụ chức năng dừng và phí",
+      "2": "Sau khi bị hủy dịch vụ,",
+      "3": "Sẽ không tiếp tục sử dụng"
+    },
+    "warn": "Hủy bỏ có thể được đăng ký lại để",
     "ok": "Tiếp tục sử dụng",
     "cancel": "hủy đăng ký",
     "success": {
@@ -66,14 +73,8 @@
     },
     "stop": {
       "title": "Xác định có nên hủy bỏ các hoạt động khuyến mãi đăng ký và ẩm không?",
-      "content": {
-        "0": "Hủy sẽ ngăn chặn dịch vụ chức năng và tính phí trong {date}}",
-        "1": "Sau khi hủy chính thức, {{Highline}} sẽ không tiếp tục sử dụng chúng tôi giữ thông tin liên quan cho đến khi bạn đăng ký lại.",
-        "2": "Sau khi bị hủy dịch vụ,",
-        "3": "Thúc đẩy hợp tác và các trang liên quan",
-        "4": "Sẽ không tiếp tục sử dụng thông tin chúng tôi sẽ giữ thông tin liên quan cho đến khi bạn đăng ký lại"
-      },
-      "warn": "Hủy bỏ có thể được đăng ký lại để"
+      "name": "Thúc đẩy hợp tác và các trang liên quan",
+      "content": "Chúng tôi sẽ giữ thông tin liên quan cho đến khi bạn đăng ký lại."
     }
   },
   "analytics": {

@@ -31,6 +31,13 @@
     }
   },
   "stop": {
+    "content": {
+      "0": "Setelah membatalkan pembaruan",
+      "1": "Layanan berhenti fungsi dan biaya",
+      "2": "Setelah layanan yang dibatalkan secara resmi,",
+      "3": "Tidak akan terus digunakan"
+    },
+    "warn": "Pembatalan dapat berlangganan ulang",
     "ok": "Terus gunakan",
     "cancel": "Berhenti berlangganan",
     "success": {
@@ -66,14 +73,8 @@
     },
     "stop": {
       "title": "Tentukan apakah akan membatalkan kegiatan promosi berlangganan dan lembab?",
-      "content": {
-        "0": "Pembatalan akan menghentikan layanan fungsional dan biaya di {date}}",
-        "1": "Setelah pembatalan resmi, {{Highline}} tidak akan terus menggunakan kami menyimpan informasi terkait sampai Anda berlangganan kembali.",
-        "2": "Setelah layanan yang dibatalkan secara resmi,",
-        "3": "Mempromosikan kerja sama dan halaman terkait",
-        "4": "Tidak akan terus menggunakan informasi kami akan menyimpan informasi yang relevan sampai Anda berlangganan lagi"
-      },
-      "warn": "Pembatalan dapat berlangganan ulang"
+      "name": "Mempromosikan kerja sama dan halaman terkait",
+      "content": "Kami akan menyimpan informasi yang relevan sampai Anda berlangganan kembali."
     }
   },
   "analytics": {

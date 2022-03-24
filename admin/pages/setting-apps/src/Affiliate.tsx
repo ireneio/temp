@@ -39,7 +39,6 @@ export default React.memo(({ store }: PropsType) => {
   return (
     <Subscription
       img={adminSettingAppsAffiliate}
-      link="#test"
       status={status}
       price={
         status !== 'NOT_SUBSCRIBED' ? (
@@ -51,6 +50,7 @@ export default React.memo(({ store }: PropsType) => {
           </>
         )
       }
+      link="https://supportmeepshop.com/knowledgebase/%e5%88%86%e6%bd%a4%e5%8a%9f%e8%83%bd/"
       name="affiliate"
     >
       <Button

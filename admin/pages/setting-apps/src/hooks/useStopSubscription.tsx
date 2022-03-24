@@ -12,8 +12,8 @@ import styles from '../styles/useStopSubscription.less';
 
 // typescript definition
 interface OptionsType {
-  title: string;
-  content: (expirationDate: string) => React.ReactNode;
+  key: string;
+  content: React.ReactNode;
   submit: () => Promise<boolean>;
 }
 
@@ -31,7 +31,7 @@ export default (options: OptionsType): (() => void) => {
       <>
         {t('stop.success.content.0')}
 
-        <span> {expirationDate} </span>
+        <span className={styles.highline}> {expirationDate} </span>
 
         {t('stop.success.content.1')}
       </>
@@ -44,7 +44,7 @@ export default (options: OptionsType): (() => void) => {
   });
 
   return useCallback(() => {
-    const { title, content, submit } = options;
+    const { key, content, submit } = options;
 
     Modal.confirm({
       width: '100%',
@@ -53,11 +53,33 @@ export default (options: OptionsType): (() => void) => {
         <>
           <WarningFlatIcon />
 
-          <div>{title}</div>
+          <div>{t(`${key}.stop.title`)}</div>
         </>
       ),
       icon: null,
-      content: content(expirationDate),
+      content: (
+        <>
+          <div>
+            {t('stop.content.0')}
+
+            <span className={styles.expirationDate}> {expirationDate} </span>
+
+            {t('stop.content.1')}
+          </div>
+
+          <div>
+            {t('stop.content.2')}
+
+            <span className={styles.highline}>{t(`${key}.stop.name`)}</span>
+
+            {t('stop.content.3')}
+
+            {content}
+          </div>
+
+          <div className={styles.warn}>{t('stop.warn')}</div>
+        </>
+      ),
       okButtonProps: {
         type: 'default',
       },

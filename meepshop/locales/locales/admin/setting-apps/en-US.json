@@ -31,6 +31,13 @@
     }
   },
   "stop": {
+    "content": {
+      "0": "After canceling the renewal",
+      "1": "Stop function service and charge",
+      "2": "After officially canceled service,",
+      "3": "Will not continue to use"
+    },
+    "warn": "Cancellation can be re-subscribed to",
     "ok": "continue to use",
     "cancel": "unsubscribe",
     "success": {
@@ -66,14 +73,8 @@
     },
     "stop": {
       "title": "Determine whether to cancel the subscription promotion activities and humid?",
-      "content": {
-        "0": "Cancellation will stop functional service and charges in {Date}}",
-        "1": "After official cancellation, {{highline}} will not continue to use We keep related information until you subscribe again.",
-        "2": "After officially canceled service,",
-        "3": "Promote cooperation and related pages",
-        "4": "Will not continue to use the information we will keep relevant information until you subscribe again"
-      },
-      "warn": "Cancellation can be re-subscribed to"
+      "name": "Promote cooperation and related pages",
+      "content": "We will keep relevant information until you subscribe again."
     }
   },
   "analytics": {

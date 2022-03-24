@@ -31,6 +31,13 @@
     }
   },
   "stop": {
+    "content": {
+      "0": "Después de cancelar la renovación.",
+      "1": "Detener el servicio de la función y la carga.",
+      "2": "Después de un servicio cancelado oficialmente,",
+      "3": "No continuará usando"
+    },
+    "warn": "La cancelación puede ser re-suscrita a",
     "ok": "Continuar usando",
     "cancel": "darse de baja",
     "success": {
@@ -66,14 +73,8 @@
     },
     "stop": {
       "title": "¿Determina si desea cancelar las actividades de promoción de suscripción y húmedo?",
-      "content": {
-        "0": "La cancelación detendrá el servicio funcional y los cargos en {Fecha}}",
-        "1": "Después de la cancelación oficial, {{Highline}} no continuará usando, mantenemos información relacionada hasta que se suscriba nuevamente.",
-        "2": "Después de un servicio cancelado oficialmente,",
-        "3": "Promover la cooperación y las páginas relacionadas.",
-        "4": "No continuará utilizando la información, mantendremos información relevante hasta que se suscriba nuevamente"
-      },
-      "warn": "La cancelación puede ser re-suscrita a"
+      "name": "Promover la cooperación y las páginas relacionadas.",
+      "content": "Mantendremos información relevante hasta que se suscriba nuevamente."
     }
   },
   "analytics": {

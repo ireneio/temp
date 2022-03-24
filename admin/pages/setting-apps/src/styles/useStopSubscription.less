@@ -42,8 +42,30 @@
   }
 }
 
+.highline,
+.expirationDate {
+  font-weight: 600;
+}
+
+.expirationDate {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.warn {
+  margin: 24px 0px 0px !important;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
 .success {
   :global(.ant-btn) {
     color: @primary-color;
+  }
+
+  .highline {
+    font-size: 14px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.85);
   }
 }

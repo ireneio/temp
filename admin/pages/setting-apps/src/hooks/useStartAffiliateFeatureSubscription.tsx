@@ -1,7 +1,6 @@
 // import
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import { CheckOutlined } from '@ant-design/icons';
 
 import { useTranslation } from '@meepshop/locales';
 import { adminSettingAppsAffiliate_w64_h64 as adminSettingAppsAffiliate } from '@meepshop/images';
@@ -56,42 +55,21 @@ export default (storeId: string | null, isRenew: boolean): (() => void) => {
   });
 
   return useStartSubscription({
-    content: (
+    key: 'affiliate',
+    img: adminSettingAppsAffiliate,
+    price: (
       <>
-        <div className={styles.root}>
-          <img src={adminSettingAppsAffiliate} alt="affiliate" />
+        <div className={styles.originalPrice}>USD 16.9</div>
 
-          <div>
-            <div className={styles.title}>{t('affiliate.start.title')}</div>
-
-            {t('affiliate.start.content')}
-          </div>
-
-          <div>
-            <div className={styles.originalPrice}>USD 16.9</div>
-
-            <div className={styles.price}>
-              USD 9.9
-              <span>/月</span>
-            </div>
-
-            {t('affiliate.start.price')}
-          </div>
+        <div className={styles.price}>
+          USD 9.9
+          <span>/月</span>
         </div>
 
-        <div className={styles.featureTitle}>
-          {t('affiliate.start.feature.title')}
-        </div>
-
-        {[0, 1, 2].map(key => (
-          <div key={key} className={styles.feature}>
-            <CheckOutlined />
-
-            {t(`affiliate.start.feature.${key}`)}
-          </div>
-        ))}
+        {t('affiliate.start.price')}
       </>
     ),
+    featureAmount: 3,
     submit: async () => {
       const { data } = await mutation({
         variables: {

@@ -31,6 +31,13 @@
     }
   },
   "stop": {
+    "content": {
+      "0": "Après avoir annulé le renouvellement",
+      "1": "Arrêtez le service de fonction et la charge",
+      "2": "Après le service annulé officiellement,",
+      "3": "Ne continuera pas à utiliser"
+    },
+    "warn": "L'annulation peut être ré-souscrite à",
     "ok": "Continuer à utiliser",
     "cancel": "Se désabonner",
     "success": {
@@ -66,14 +73,8 @@
     },
     "stop": {
       "title": "Déterminez s'il faut annuler les activités de promotion de l'abonnement et humide?",
-      "content": {
-        "0": "L'annulation arrêtera le service fonctionnel et les charges de {date}}",
-        "1": "Après une annulation officielle, {{highline}} ne continuera pas à utiliser que nous gardons des informations connexes tant que vous vous abonnez à nouveau.",
-        "2": "Après le service annulé officiellement,",
-        "3": "Promouvoir la coopération et les pages connexes",
-        "4": "Ne continuera pas à utiliser les informations que nous conserverons des informations pertinentes jusqu'à ce que vous vous abonnez à nouveau."
-      },
-      "warn": "L'annulation peut être ré-souscrite à"
+      "name": "Promouvoir la coopération et les pages connexes",
+      "content": "Nous garderons des informations pertinentes jusqu'à ce que vous vous abonnez à nouveau."
     }
   },
   "analytics": {
