@@ -14,19 +14,18 @@
     "title": "chức năng cơ bản",
     "subTitle": "Một số chức năng sẽ phù hợp với việc sử dụng hệ thống, nếu phí sẽ được điều chỉnh trước, bạn không phải lo lắng về việc bị buộc tội trong các điều kiện không đồng ý."
   },
+  "status": {
+    "SUBSCRIBE_CONTINUING": "Đăng ký",
+    "SUBSCRIBE_CANCELLING": "Tiếp theo"
+  },
+  "expiration-date": "Sẽ dừng đăng ký dịch vụ trong {{expreddate}}",
   "affiliate": {
     "title": "Tóm tắt quản lý khuyến mãi",
     "desc": "Bạn có thể thiết lập các hoạt động quảng cáo cho các đối tác khác nhau, và theo dõi nhiều hoạt động và điều kiện bán sản phẩm, giảm đáng kể chi phí quản lý và giải quyết hoạt động, giúp khuyến mãi sản phẩm dễ dàng hơn.",
-    "instruction": "Chi tiết",
-    "expiration-date": "Sẽ dừng đăng ký dịch vụ trong {{expreddate}}",
     "button": {
       "NOT_SUBSCRIBED": "bắt đầu sử dụng",
       "SUBSCRIBE_CONTINUING": "Hủy bỏ gia hạn.",
       "SUBSCRIBE_CANCELLING": "Tiếp tục đăng ký"
-    },
-    "status": {
-      "SUBSCRIBE_CONTINUING": "Đăng ký",
-      "SUBSCRIBE_CANCELLING": "Tiếp theo"
     },
     "start": {
       "title": "Chức năng đăng ký",

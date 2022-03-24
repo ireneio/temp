@@ -14,19 +14,18 @@
     "title": "基本機能",
     "subTitle": "手数料が事前に調整される場合は、システムの使用に応じていくつかの機能がありますが、未知の条件下で課金されることを心配する必要はありません。"
   },
+  "status": {
+    "SUBSCRIBE_CONTINUING": "サブスクリプション",
+    "SUBSCRIBE_CANCELLING": "後続"
+  },
+  "expiration-date": "{{expirationDate}}で登録サービスを停止します",
   "affiliate": {
     "title": "サマリープロモーション管理",
     "desc": "パートナーのプロモーション活動を確立し、複数の活動や製品の販売条件を満たすことができ、活動管理と和解費を大幅に削減し、製品の推進を容易にします。",
-    "instruction": "詳細",
-    "expiration-date": "{{expirationDate}}で登録サービスを停止します",
     "button": {
       "NOT_SUBSCRIBED": "使い始める",
       "SUBSCRIBE_CONTINUING": "更新をキャンセルします",
       "SUBSCRIBE_CANCELLING": "サブスクリプションを続ける"
-    },
-    "status": {
-      "SUBSCRIBE_CONTINUING": "サブスクリプション",
-      "SUBSCRIBE_CANCELLING": "後続"
     },
     "start": {
       "title": "購読機能",

@@ -14,19 +14,18 @@
     "title": "funciones básicas",
     "subTitle": "Algunas funciones estarán de acuerdo con el uso del sistema, si la tarifa se ajustará con anticipación, no tiene que preocuparse por ser acusado de condiciones desconocidas."
   },
+  "status": {
+    "SUBSCRIBE_CONTINUING": "Suscripción",
+    "SUBSCRIBE_CANCELLING": "Subsecuente"
+  },
+  "expiration-date": "Dejará de suscribirse al servicio en {{cadigneddate}}",
   "affiliate": {
     "title": "Gestión de promociones de resumen",
     "desc": "Puede establecer actividades promocionales para diferentes socios, y realizar un seguimiento de las múltiples actividades y las condiciones de ventas de productos, reducir enormemente la gestión de actividades y los costos de liquidación, lo que facilita la promoción del producto.",
-    "instruction": "Detalle",
-    "expiration-date": "Dejará de suscribirse al servicio en {{cadigneddate}}",
     "button": {
       "NOT_SUBSCRIBED": "Empieza a usar",
       "SUBSCRIBE_CONTINUING": "Cancelar la renovación",
       "SUBSCRIBE_CANCELLING": "Continuar suscripción"
-    },
-    "status": {
-      "SUBSCRIBE_CONTINUING": "Suscripción",
-      "SUBSCRIBE_CANCELLING": "Subsecuente"
     },
     "start": {
       "title": "Función de suscripción",

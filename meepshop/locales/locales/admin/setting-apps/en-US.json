@@ -14,19 +14,18 @@
     "title": "basic functions",
     "subTitle": "Some functions will be in accordance with the use of the system, if the fee will be adjusted in advance, you don't have to worry about being charged under unknowing conditions."
   },
+  "status": {
+    "SUBSCRIBE_CONTINUING": "Subscription",
+    "SUBSCRIBE_CANCELLING": "Subsequent"
+  },
+  "expiration-date": "Will stop subscribe service in {{expirationdate}}",
   "affiliate": {
     "title": "Summary promotion management",
     "desc": "You can establish promotional activities for different partners, and track multiple activities and product sales conditions, greatly reduce activity management and settlement costs, making product promotion easier.",
-    "instruction": "Detail",
-    "expiration-date": "Will stop subscribe service in {{expirationdate}}",
     "button": {
       "NOT_SUBSCRIBED": "start using",
       "SUBSCRIBE_CONTINUING": "Cancel the renewal",
       "SUBSCRIBE_CANCELLING": "Continue subscription"
-    },
-    "status": {
-      "SUBSCRIBE_CONTINUING": "Subscription",
-      "SUBSCRIBE_CANCELLING": "Subsequent"
     },
     "start": {
       "title": "Subscription function",

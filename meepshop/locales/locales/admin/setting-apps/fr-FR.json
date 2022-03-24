@@ -14,19 +14,18 @@
     "title": "les fonctions de base",
     "subTitle": "Certaines fonctions seront conformes à l'utilisation du système, si les frais seront ajustés à l'avance, vous n'avez pas à vous soucier d'être accusés dans des conditions inconnues."
   },
+  "status": {
+    "SUBSCRIBE_CONTINUING": "Abonnement",
+    "SUBSCRIBE_CANCELLING": "Subséquent"
+  },
+  "expiration-date": "Arrêtera l'abonnement service en {{expirationdate}}",
   "affiliate": {
     "title": "Gestion de la promotion Résumé",
     "desc": "Vous pouvez établir des activités promotionnelles pour différents partenaires et suivre plusieurs activités et conditions de vente de produits, réduire considérablement la gestion des activités et les coûts de règlement, ce qui facilite la promotion des produits.",
-    "instruction": "Détail",
-    "expiration-date": "Arrêtera l'abonnement service en {{expirationdate}}",
     "button": {
       "NOT_SUBSCRIBED": "commencer à utiliser",
       "SUBSCRIBE_CONTINUING": "Annuler le renouvellement",
       "SUBSCRIBE_CANCELLING": "Continuer l'abonnement"
-    },
-    "status": {
-      "SUBSCRIBE_CONTINUING": "Abonnement",
-      "SUBSCRIBE_CANCELLING": "Subséquent"
     },
     "start": {
       "title": "Fonction d'abonnement",

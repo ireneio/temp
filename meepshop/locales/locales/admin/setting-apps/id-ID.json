@@ -14,19 +14,18 @@
     "title": "fungsi dasar",
     "subTitle": "Beberapa fungsi akan sesuai dengan penggunaan sistem, jika biaya akan disesuaikan terlebih dahulu, Anda tidak perlu khawatir dibebankan dalam kondisi yang tidak diketahui."
   },
+  "status": {
+    "SUBSCRIBE_CONTINUING": "Berlangganan",
+    "SUBSCRIBE_CANCELLING": "Setelah"
+  },
+  "expiration-date": "Akan menghentikan layanan berlangganan di {{expirationdate}}",
   "affiliate": {
     "title": "Ringkasan Manajemen Promosi",
     "desc": "Anda dapat menetapkan kegiatan promosi untuk berbagai mitra, dan melacak berbagai kegiatan dan kondisi penjualan produk, sangat mengurangi manajemen aktivitas dan biaya penyelesaian, membuat promosi produk lebih mudah.",
-    "instruction": "Detail.",
-    "expiration-date": "Akan menghentikan layanan berlangganan di {{expirationdate}}",
     "button": {
       "NOT_SUBSCRIBED": "mulai menggunakan",
       "SUBSCRIBE_CONTINUING": "Batalkan pembaruan",
       "SUBSCRIBE_CANCELLING": "Lanjutkan berlangganan"
-    },
-    "status": {
-      "SUBSCRIBE_CONTINUING": "Berlangganan",
-      "SUBSCRIBE_CANCELLING": "Setelah"
     },
     "start": {
       "title": "Fungsi berlangganan",
