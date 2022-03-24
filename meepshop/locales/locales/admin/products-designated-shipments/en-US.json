@@ -14,6 +14,7 @@
   "cancel": "Cancel",
   "filter-shipment": "Enter logistics name search",
   "filter-tag": "Enter the label name Search",
+  "reset": "Empty",
   "DESIGNATED": {
     "title": "Specify applicable logistics",
     "description": "Manually select the product to be used"

@@ -82,6 +82,7 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
   const [selectedShipments, setSelectedShipments] = useState<
     getStoreShipmentsViewerStoreStoreShipmentsType[]
   >([]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const columns = useColumns(setOpenModal, setSelectedProducts);
 
   return (
@@ -96,6 +97,7 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
     >
       <Table<useColumnsProductFragmentType>
         rowKey="id"
+        className={styles.table}
         rowClassName={() => styles.row}
         locale={{ emptyText: t('empty') }}
         loading={loading}
@@ -132,6 +134,10 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
               <Search
                 className={styles.search}
                 placeholder={t('search')}
+                value={searchTerm}
+                onChange={({ target: { value: newSearchTerm } }) =>
+                  setSearchTerm(newSearchTerm)
+                }
                 onSearch={newSearchTerm =>
                   refetch({
                     filter: {
@@ -196,6 +202,19 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
                   },
                 ]}
               />
+
+              <div
+                className={styles.reset}
+                onClick={() => {
+                  setSearchTerm('');
+                  setSelectedShipments([]);
+                  setSelectedProductTags([]);
+
+                  refetch({ filter: null });
+                }}
+              >
+                {t('reset')}
+              </div>
             </div>
 
             {selectedProducts.length === 0 ? null : (
@@ -205,65 +224,67 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
             )}
           </div>
 
-          {selectedProductTags.map(tag => (
-            <Tag
-              key={tag}
-              icon={<TagFilled />}
-              className={`${styles.tag} ${styles.productTag}`}
-              closable
-              onClose={() => {
-                const selectedTags = [
-                  ...selectedProductTags.filter(selected => selected !== tag),
-                ];
+          <div className={styles.tagsWrap}>
+            {selectedProductTags.map(tag => (
+              <Tag
+                key={tag}
+                icon={<TagFilled />}
+                className={`${styles.tag} ${styles.productTag}`}
+                closable
+                onClose={() => {
+                  const selectedTags = [
+                    ...selectedProductTags.filter(selected => selected !== tag),
+                  ];
 
-                setSelectedProductTags(selectedTags);
+                  setSelectedProductTags(selectedTags);
 
-                refetch({
-                  filter: {
-                    ...variables?.filter,
-                    tags: selectedTags,
-                  },
-                });
-              }}
-            >
-              {tag}
-            </Tag>
-          ))}
+                  refetch({
+                    filter: {
+                      ...variables?.filter,
+                      tags: selectedTags,
+                    },
+                  });
+                }}
+              >
+                {tag}
+              </Tag>
+            ))}
 
-          {selectedShipments.map(shipment => (
-            <Tag
-              key={shipment.id}
-              icon={<ShippingTruckFilledIcon className={styles.truck} />}
-              className={`${styles.tag} ${styles.shipmentTag}`}
-              closable
-              onClose={() => {
-                const newSelectedShipments = [
-                  ...selectedShipments.filter(
-                    selected => selected.id !== shipment.id,
-                  ),
-                ];
-                setSelectedShipments(newSelectedShipments);
-
-                refetch({
-                  filter: {
-                    ...variables?.filter,
-                    applicableShipments: newSelectedShipments
-                      .filter(
-                        selected =>
-                          selected.id &&
-                          selected.id !== 'noApplicableShipments',
-                      )
-                      .map(selected => selected.id) as string[],
-                    noApplicableShipments: newSelectedShipments.some(
-                      select => select.id === 'noApplicableShipments',
+            {selectedShipments.map(shipment => (
+              <Tag
+                key={shipment.id}
+                icon={<ShippingTruckFilledIcon className={styles.truck} />}
+                className={`${styles.tag} ${styles.shipmentTag}`}
+                closable
+                onClose={() => {
+                  const newSelectedShipments = [
+                    ...selectedShipments.filter(
+                      selected => selected.id !== shipment.id,
                     ),
-                  },
-                });
-              }}
-            >
-              {getLanguage(shipment.title)}
-            </Tag>
-          ))}
+                  ];
+                  setSelectedShipments(newSelectedShipments);
+
+                  refetch({
+                    filter: {
+                      ...variables?.filter,
+                      applicableShipments: newSelectedShipments
+                        .filter(
+                          selected =>
+                            selected.id &&
+                            selected.id !== 'noApplicableShipments',
+                        )
+                        .map(selected => selected.id) as string[],
+                      noApplicableShipments: newSelectedShipments.some(
+                        select => select.id === 'noApplicableShipments',
+                      ),
+                    },
+                  });
+                }}
+              >
+                {getLanguage(shipment.title)}
+              </Tag>
+            ))}
+          </div>
         </>
       </Table>
 

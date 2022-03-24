@@ -20,6 +20,10 @@
 
   :global(.ant-table-cell) {
     padding: 12px;
+
+    &:nth-child(3) {
+      padding-left: 4px;
+    }
   }
 }
 
@@ -52,6 +56,10 @@
   > span:nth-child(2) {
     margin-left: 4px;
   }
+
+  :global(.anticon-close) {
+    margin-left: 5px;
+  }
 }
 
 .productTag {
@@ -77,4 +85,20 @@
 .truck {
   font-size: 16px;
   color: rgba(81, 183, 190, 0.6);
+}
+
+.table {
+  margin-bottom: -8px;
+}
+
+.tagsWrap {
+  margin-bottom: 6px;
+}
+
+.reset {
+  color: #5161c5;
+  margin-left: 16px;
+  font-size: 14px;
+  display: inline-block;
+  cursor: pointer;
 }

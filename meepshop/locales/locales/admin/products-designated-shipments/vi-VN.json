@@ -14,6 +14,7 @@
   "cancel": "Hủy bỏ",
   "filter-shipment": "Nhập tên hậu cần Tìm kiếm",
   "filter-tag": "Nhập tìm kiếm tên nhãn",
+  "reset": "Trống rỗng",
   "DESIGNATED": {
     "title": "Chỉ định hậu cần áp dụng",
     "description": "Chọn thủ công sản phẩm sẽ được sử dụng"

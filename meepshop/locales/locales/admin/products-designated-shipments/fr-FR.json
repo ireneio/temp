@@ -14,6 +14,7 @@
   "cancel": "Annuler",
   "filter-shipment": "Entrez la recherche sur le nom de la logistique",
   "filter-tag": "Entrez la recherche de nom d'étiquette",
+  "reset": "Vide",
   "DESIGNATED": {
     "title": "Spécifier la logistique applicable",
     "description": "Sélectionner manuellement le produit à utiliser"

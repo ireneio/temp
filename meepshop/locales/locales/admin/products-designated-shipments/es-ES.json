@@ -14,6 +14,7 @@
   "cancel": "Cancelar",
   "filter-shipment": "Ingrese la búsqueda de nombres de logística",
   "filter-tag": "Ingrese la búsqueda Nombre de la etiqueta",
+  "reset": "Vacío",
   "DESIGNATED": {
     "title": "Especifique la logística aplicable.",
     "description": "Seleccione manualmente el producto a utilizar."

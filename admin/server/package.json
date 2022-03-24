@@ -30,6 +30,7 @@
     "@admin/page-manager": "^0.80.155",
     "@admin/payment-setting": "^0.80.155",
     "@admin/plan-setting": "^0.80.155",
+    "@admin/products-designated-shipments": "^0.80.155",
     "@admin/refactor-download-batch-update-products-panel": "^0.80.155",
     "@admin/refactor-newsletter": "^0.80.155",
     "@admin/refactor-order-history-records": "^0.80.155",

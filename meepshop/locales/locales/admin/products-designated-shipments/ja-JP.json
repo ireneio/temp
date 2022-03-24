@@ -14,6 +14,7 @@
   "cancel": "キャンセル",
   "filter-shipment": "ロジスティクス名検索を入力してください",
   "filter-tag": "ラベル名検索を入力してください",
+  "reset": "空",
   "DESIGNATED": {
     "title": "該当する物流を指定します",
     "description": "使用する製品を手動で選択してください"

@@ -14,6 +14,7 @@
   "cancel": "取消",
   "filter-shipment":"輸入物流名稱搜尋",
   "filter-tag":"輸入標籤名稱搜尋",
+  "reset":"清空搜尋",
   "DESIGNATED": {
     "title": "指定適用物流",
     "description": "手動選擇商品適用的運送方式"
