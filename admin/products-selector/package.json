@@ -4,14 +4,14 @@
   "description": "modal to select products",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.155",
+  "version": "0.80.156",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/thumbnail": "^0.80.155",
     "@meepshop/icons": "^0.80.155",
     "@meepshop/images": "^0.80.155",
-    "@meepshop/locales": "^0.80.155",
+    "@meepshop/locales": "^0.80.156",
     "@meepshop/utils": "^0.80.155",
     "ramda": "^0.26.1",
     "react-sortable-hoc": "^2.0.0"
