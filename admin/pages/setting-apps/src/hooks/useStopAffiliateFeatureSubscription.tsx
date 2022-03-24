@@ -1,18 +1,11 @@
-// typescript import
-import { DataProxy } from '@apollo/client';
-
 // import
-import React, { useMemo, useCallback } from 'react';
+import React from 'react';
 import { useMutation } from '@apollo/client';
-import { Modal } from 'antd';
-import { endOfMonth, addDays, format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
-import { adminSettingAppsGeniusBye_w120_h120 as adminSettingAppsGeniusBye } from '@meepshop/images';
-import { WarningFlatIcon } from '@meepshop/icons';
 
 import styles from '../styles/useStopAffiliateFeatureSubscription.less';
-import useSuccess from './useSuccess';
+import useStopSubscription from './useStopSubscription';
 
 // graphql typescript
 import {
@@ -28,15 +21,10 @@ import { useStopAffiliateFeatureSubscriptionFragment } from '../gqls/useStopAffi
 // definition
 export default (storeId: string | null): (() => void) => {
   const { t } = useTranslation('setting-apps');
-  const expirationDate = useMemo(
-    () => format(addDays(endOfMonth(new Date()), 1), 'yyyy/MM/dd'),
-    [],
-  );
-  const success = useSuccess();
   const [mutation] = useMutation<stopAffiliateFeatureSubscriptionType>(
     stopAffiliateFeatureSubscription,
     {
-      update: (cache: DataProxy, { data }) => {
+      update: (cache, { data }) => {
         if (
           !storeId ||
           data?.stopAffiliateFeatureSubscription.__typename !== 'OkResponse'
@@ -59,72 +47,39 @@ export default (storeId: string | null): (() => void) => {
             },
           },
         });
-        success({
-          image: adminSettingAppsGeniusBye,
-          title: t('affiliate.stop.success.title'),
-          content: (
-            <>
-              {t('affiliate.stop.success.content.0')}
-
-              <span> {expirationDate} </span>
-
-              {t('affiliate.stop.success.content.1')}
-            </>
-          ),
-          className: styles.success,
-          okButtonProps: {
-            type: 'text',
-          },
-          okText: t('affiliate.stop.success.go-back'),
-        });
       },
     },
   );
 
-  return useCallback(() => {
-    Modal.confirm({
-      width: '100%',
-      className: styles.root,
-      title: (
-        <>
-          <WarningFlatIcon />
+  return useStopSubscription({
+    title: t('affiliate.stop.title'),
+    content: expirationDate => (
+      <>
+        <div>
+          {t('affiliate.stop.content.0')}
 
-          <div>{t('affiliate.stop.title')}</div>
-        </>
-      ),
-      icon: null,
-      content: (
-        <>
-          <div>
-            {t('affiliate.stop.content.0')}
+          <span className={styles.expirationDate}> {expirationDate} </span>
 
-            <span className={styles.expirationDate}> {expirationDate} </span>
+          {t('affiliate.stop.content.1')}
+        </div>
 
-            {t('affiliate.stop.content.1')}
-          </div>
+        <div>
+          {t('affiliate.stop.content.2')}
 
-          <div>
-            {t('affiliate.stop.content.2')}
+          <span className={styles.hightline}>
+            {t('affiliate.stop.content.3')}
+          </span>
 
-            <span className={styles.hightline}>
-              {t('affiliate.stop.content.3')}
-            </span>
+          {t('affiliate.stop.content.4')}
+        </div>
 
-            {t('affiliate.stop.content.4')}
-          </div>
+        <div className={styles.warn}>{t('affiliate.stop.warn')}</div>
+      </>
+    ),
+    submit: async () => {
+      const { data } = await mutation();
 
-          <div className={styles.warn}>{t('affiliate.stop.warn')}</div>
-        </>
-      ),
-      okButtonProps: {
-        type: 'default',
-      },
-      okText: t('affiliate.stop.ok'),
-      cancelButtonProps: {
-        type: 'text',
-      },
-      cancelText: t('affiliate.stop.cancel'),
-      onCancel: mutation,
-    });
-  }, [t, expirationDate, mutation]);
+      return data?.stopAffiliateFeatureSubscription.__typename === 'OkResponse';
+    },
+  });
 };

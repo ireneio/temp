@@ -1,0 +1,44 @@
+.root {
+  max-width: 576px;
+
+  :global(.ant-modal-body) {
+    padding: 24px 24px 16px;
+  }
+
+  :global(.ant-modal-confirm-title) {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    color: rgba(0, 0, 0, 0.85);
+  }
+
+  :global(.ant-modal-confirm-content) {
+    margin: 16px 0px 0px;
+  }
+
+  :global(.ant-modal-confirm-btns) {
+    margin: 32px 0px 0px;
+  }
+}
+
+.warn {
+  position: absolute;
+  bottom: 22px;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.25);
+
+  :global(.anticon) {
+    margin: 0px 4px 0px 0px;
+  }
+}
+
+.success {
+  :global(.ant-modal-confirm-btns) {
+    margin: 8px 0px 0px;
+  }
+
+  :global(.ant-btn.ant-btn-primary) {
+    margin: 24px 0px 0px;
+  }
+}

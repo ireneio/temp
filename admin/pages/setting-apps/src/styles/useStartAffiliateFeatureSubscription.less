@@ -1,27 +1,4 @@
 .root {
-  max-width: 576px;
-
-  :global(.ant-modal-body) {
-    padding: 24px 24px 16px;
-  }
-
-  :global(.ant-modal-confirm-title) {
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 28px;
-    color: rgba(0, 0, 0, 0.85);
-  }
-
-  :global(.ant-modal-confirm-content) {
-    margin: 16px 0px 0px;
-  }
-
-  :global(.ant-modal-confirm-btns) {
-    margin: 32px 0px 0px;
-  }
-}
-
-.content {
   display: flex;
   align-items: center;
   margin: 0px 0px 24px;
@@ -34,6 +11,8 @@
 
   img {
     margin: 0px 8px 0px 0px;
+    width: 64px;
+    height: 64px;
   }
 
   & > div:last-child {
@@ -53,15 +32,22 @@
 }
 
 .title {
+  margin: 0px 0px 4px;
   font-size: 16px;
   line-height: 24px;
-  color: rgba(0, 0, 0, 0.85);
+  color: rgba(0, 0, 0, 0.65);
 }
 
-.price {
+.originalPrice {
   font-size: 10px;
   line-height: 12px;
   text-decoration: line-through;
+}
+
+.price {
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.85);
 }
 
 .featureTitle {
@@ -80,27 +66,5 @@
   :global(.anticon) {
     margin: 0px 8px 0px 16px;
     color: #0080a9;
-  }
-}
-
-.warn {
-  position: absolute;
-  bottom: 16px;
-  font-size: 12px;
-  line-height: 32px;
-  color: rgba(0, 0, 0, 0.25);
-
-  :global(.anticon) {
-    margin: 0px 4px 0px 0px;
-  }
-}
-
-.success {
-  :global(.ant-modal-confirm-btns) {
-    margin: 8px 0px 0px;
-  }
-
-  :global(.ant-btn.ant-btn-primary) {
-    margin: 24px 0px 0px;
   }
 }

@@ -19,6 +19,29 @@
     "SUBSCRIBE_CANCELLING": "Subséquent"
   },
   "expiration-date": "Arrêtera l'abonnement service en {{expirationdate}}",
+  "start": {
+    "title": "Fonction d'abonnement",
+    "warn": "Vous pouvez annuler le renouvellement à tout moment",
+    "ok": "Confirmer l'abonnement",
+    "cancel": "Annuler",
+    "success": {
+      "content": "merveilleux!",
+      "start": "commencer à utiliser",
+      "go-back": "Continuez à parcourir"
+    }
+  },
+  "stop": {
+    "ok": "Continuer à utiliser",
+    "cancel": "Se désabonner",
+    "success": {
+      "title": "Vous avez des abonnements annulés avec succès",
+      "content": {
+        "0": "Vous pouvez toujours utiliser la fonctionnalité pour",
+        "1": "Et s'il vous plaît n'hésitez pas à renouveler"
+      },
+      "go-back": "Retour à la fonction d'expansion"
+    }
+  },
   "affiliate": {
     "title": "Gestion de la promotion Résumé",
     "desc": "Vous pouvez établir des activités promotionnelles pour différents partenaires et suivre plusieurs activités et conditions de vente de produits, réduire considérablement la gestion des activités et les coûts de règlement, ce qui facilite la promotion des produits.",
@@ -28,8 +51,7 @@
       "SUBSCRIBE_CANCELLING": "Continuer l'abonnement"
     },
     "start": {
-      "title": "Fonction d'abonnement",
-      "subTitle": "Gestion de la promotion Résumé",
+      "title": "Gestion de la promotion Résumé",
       "content": "Il est automatiquement suivi par la gestion commune de la promotion et les résultats sont plus précis, ce qui rend les décisions de marketing plus précises.",
       "price": "Les frais seront fusionnés dans la prochaine facture",
       "feature": {
@@ -38,14 +60,8 @@
         "2": "Calcul automatique des commandes de ressorts",
         "title": "Abonnez-vous, vous pouvez profiter d'un service de fonction de subvention"
       },
-      "warn": "Vous pouvez annuler le renouvellement à tout moment",
-      "ok": "Confirmer l'abonnement",
-      "cancel": "Annuler",
       "success": {
-        "title": "Activités de promotion de l'abonnement réussies et gomme",
-        "content": "merveilleux!",
-        "start": "commencer à utiliser",
-        "go-back": "Continuez à parcourir"
+        "title": "Activités de promotion de l'abonnement réussies et gomme"
       }
     },
     "stop": {
@@ -57,17 +73,7 @@
         "3": "Promouvoir la coopération et les pages connexes",
         "4": "Ne continuera pas à utiliser les informations que nous conserverons des informations pertinentes jusqu'à ce que vous vous abonnez à nouveau."
       },
-      "warn": "L'annulation peut être ré-souscrite à",
-      "ok": "Continuer à utiliser",
-      "cancel": "Se désabonner",
-      "success": {
-        "title": "Vous avez des abonnements annulés avec succès",
-        "content": {
-          "0": "Vous pouvez toujours utiliser la fonctionnalité pour",
-          "1": "Et s'il vous plaît n'hésitez pas à renouveler"
-        },
-        "go-back": "Retour à la fonction d'expansion"
-      }
+      "warn": "L'annulation peut être ré-souscrite à"
     }
   },
   "analytics": {

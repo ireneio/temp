@@ -19,6 +19,29 @@
     "SUBSCRIBE_CANCELLING": "Subsequent"
   },
   "expiration-date": "Will stop subscribe service in {{expirationdate}}",
+  "start": {
+    "title": "Subscription function",
+    "warn": "You can cancel the renewal at any time",
+    "ok": "Confirm subscription",
+    "cancel": "Cancel",
+    "success": {
+      "content": "marvelous!",
+      "start": "start using",
+      "go-back": "Continue to browse"
+    }
+  },
+  "stop": {
+    "ok": "continue to use",
+    "cancel": "unsubscribe",
+    "success": {
+      "title": "You have successfully canceled subscriptions",
+      "content": {
+        "0": "You can still use functionality to",
+        "1": "And please feel free to renew"
+      },
+      "go-back": "Back to the expansion function"
+    }
+  },
   "affiliate": {
     "title": "Summary promotion management",
     "desc": "You can establish promotional activities for different partners, and track multiple activities and product sales conditions, greatly reduce activity management and settlement costs, making product promotion easier.",
@@ -28,8 +51,7 @@
       "SUBSCRIBE_CANCELLING": "Continue subscription"
     },
     "start": {
-      "title": "Subscription function",
-      "subTitle": "Summary promotion management",
+      "title": "Summary promotion management",
       "content": "It is automatically tracked through the joint promotion management, and the results are more accurate, making marketing decisions more accurate.",
       "price": "Fees will be merged in the next bill",
       "feature": {
@@ -38,14 +60,8 @@
         "2": "Automatic calculation of springs orders",
         "title": "Subscribe, you can enjoy a grant function service"
       },
-      "warn": "You can cancel the renewal at any time",
-      "ok": "Confirm subscription",
-      "cancel": "Cancel",
       "success": {
-        "title": "Successful subscription promotion activities and gum",
-        "content": "marvelous!",
-        "start": "start using",
-        "go-back": "Continue to browse"
+        "title": "Successful subscription promotion activities and gum"
       }
     },
     "stop": {
@@ -57,17 +73,7 @@
         "3": "Promote cooperation and related pages",
         "4": "Will not continue to use the information we will keep relevant information until you subscribe again"
       },
-      "warn": "Cancellation can be re-subscribed to",
-      "ok": "continue to use",
-      "cancel": "unsubscribe",
-      "success": {
-        "title": "You have successfully canceled subscriptions",
-        "content": {
-          "0": "You can still use functionality to",
-          "1": "And please feel free to renew"
-        },
-        "go-back": "Back to the expansion function"
-      }
+      "warn": "Cancellation can be re-subscribed to"
     }
   },
   "analytics": {

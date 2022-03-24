@@ -1,21 +1,13 @@
-// typescript import
-import { DataProxy } from '@apollo/client';
-
 // import
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useMutation } from '@apollo/client';
-import { Modal, Button } from 'antd';
-import { CheckOutlined, InfoCircleOutlined } from '@ant-design/icons';
+import { CheckOutlined } from '@ant-design/icons';
 
 import { useTranslation } from '@meepshop/locales';
-import {
-  adminSettingAppsAffiliate_w64_h64 as adminSettingAppsAffiliate,
-  adminSettingAppsGeniusCongratulations_w120_h120 as adminSettingAppsGeniusCongratulations,
-} from '@meepshop/images';
-import Link from '@meepshop/link';
+import { adminSettingAppsAffiliate_w64_h64 as adminSettingAppsAffiliate } from '@meepshop/images';
 
 import styles from '../styles/useStartAffiliateFeatureSubscription.less';
-import useSuccess from './useSuccess';
+import useStartSubscription from './useStartSubscription';
 
 // graphql typescript
 import {
@@ -32,16 +24,15 @@ import { useStartAffiliateFeatureSubscriptionFragment } from '../gqls/useStartAf
 // definition
 export default (storeId: string | null, isRenew: boolean): (() => void) => {
   const { t } = useTranslation('setting-apps');
-  const success = useSuccess();
   const [mutation] = useMutation<
     startAffiliateFeatureSubscriptionType,
     startAffiliateFeatureSubscriptionVariablesType
   >(startAffiliateFeatureSubscription, {
-    update: (cache: DataProxy, { data }) => {
+    update: (cache, { data }) => {
       if (
         !storeId ||
-        (data?.startAffiliateFeatureSubscription.__typename !== 'OkResponse' &&
-          data?.renewAffiliateFeatureSubscription.__typename !== 'OkResponse')
+        (data?.startAffiliateFeatureSubscription?.__typename !== 'OkResponse' &&
+          data?.renewAffiliateFeatureSubscription?.__typename !== 'OkResponse')
       )
         return;
 
@@ -61,87 +52,59 @@ export default (storeId: string | null, isRenew: boolean): (() => void) => {
           },
         },
       });
-      success({
-        image: adminSettingAppsGeniusCongratulations,
-        title: t('affiliate.start.success.title'),
-        content: (
-          <>
-            {t('affiliate.start.success.content')}
-
-            <Link href="/affiliate/programs">
-              <Button type="primary">
-                {t('affiliate.start.success.start')}
-              </Button>
-            </Link>
-          </>
-        ),
-        className: styles.success,
-        okButtonProps: {
-          type: 'text',
-        },
-        okText: t('affiliate.start.success.go-back'),
-      });
     },
   });
 
-  return useCallback(() => {
-    Modal.confirm({
-      width: '100%',
-      className: styles.root,
-      title: t('affiliate.start.title'),
-      icon: null,
-      content: (
-        <>
-          <div className={styles.content}>
-            <img src={adminSettingAppsAffiliate} alt="affiliate" />
+  return useStartSubscription({
+    content: (
+      <>
+        <div className={styles.root}>
+          <img src={adminSettingAppsAffiliate} alt="affiliate" />
 
-            <div>
-              <div className={styles.title}>
-                {t('affiliate.start.subTitle')}
-              </div>
+          <div>
+            <div className={styles.title}>{t('affiliate.start.title')}</div>
 
-              {t('affiliate.start.content')}
-            </div>
-
-            <div>
-              <div className={styles.price}>USD 16.9</div>
-
-              <div className={styles.title}>
-                USD 9.9
-                <span>/月</span>
-              </div>
-
-              {t('affiliate.start.price')}
-            </div>
+            {t('affiliate.start.content')}
           </div>
 
-          <div className={styles.featureTitle}>
-            {t('affiliate.start.feature.title')}
-          </div>
+          <div>
+            <div className={styles.originalPrice}>USD 16.9</div>
 
-          {[0, 1, 2].map(key => (
-            <div key={key} className={styles.feature}>
-              <CheckOutlined />
-
-              {t(`affiliate.start.feature.${key}`)}
+            <div className={styles.price}>
+              USD 9.9
+              <span>/月</span>
             </div>
-          ))}
 
-          <div className={styles.warn}>
-            <InfoCircleOutlined />
-
-            {t('affiliate.start.warn')}
+            {t('affiliate.start.price')}
           </div>
-        </>
-      ),
-      okText: t('affiliate.start.ok'),
-      onOk: () =>
-        mutation({
-          variables: {
-            isRenew,
-          },
-        }),
-      cancelText: t('affiliate.start.cancel'),
-    });
-  }, [isRenew, t, mutation]);
+        </div>
+
+        <div className={styles.featureTitle}>
+          {t('affiliate.start.feature.title')}
+        </div>
+
+        {[0, 1, 2].map(key => (
+          <div key={key} className={styles.feature}>
+            <CheckOutlined />
+
+            {t(`affiliate.start.feature.${key}`)}
+          </div>
+        ))}
+      </>
+    ),
+    submit: async () => {
+      const { data } = await mutation({
+        variables: {
+          isRenew,
+        },
+      });
+
+      return (
+        data?.startAffiliateFeatureSubscription?.__typename === 'OkResponse' ||
+        data?.renewAffiliateFeatureSubscription?.__typename === 'OkResponse'
+      );
+    },
+    successTitle: t('affiliate.start.success.title'),
+    successLink: '/affiliate/programs',
+  });
 };

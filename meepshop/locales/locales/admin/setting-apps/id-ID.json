@@ -19,6 +19,29 @@
     "SUBSCRIBE_CANCELLING": "Setelah"
   },
   "expiration-date": "Akan menghentikan layanan berlangganan di {{expirationdate}}",
+  "start": {
+    "title": "Fungsi berlangganan",
+    "warn": "Anda dapat membatalkan pembaruan kapan saja",
+    "ok": "Konfirmasikan berlangganan",
+    "cancel": "Membatalkan",
+    "success": {
+      "content": "menakjubkan!",
+      "start": "mulai menggunakan",
+      "go-back": "Lanjutkan untuk menelusuri"
+    }
+  },
+  "stop": {
+    "ok": "Terus gunakan",
+    "cancel": "Berhenti berlangganan",
+    "success": {
+      "title": "Anda telah berhasil membatalkan langganan",
+      "content": {
+        "0": "Anda masih dapat menggunakan fungsionalitas",
+        "1": "Dan jangan ragu untuk memperbarui"
+      },
+      "go-back": "Kembali ke fungsi ekspansi"
+    }
+  },
   "affiliate": {
     "title": "Ringkasan Manajemen Promosi",
     "desc": "Anda dapat menetapkan kegiatan promosi untuk berbagai mitra, dan melacak berbagai kegiatan dan kondisi penjualan produk, sangat mengurangi manajemen aktivitas dan biaya penyelesaian, membuat promosi produk lebih mudah.",
@@ -28,8 +51,7 @@
       "SUBSCRIBE_CANCELLING": "Lanjutkan berlangganan"
     },
     "start": {
-      "title": "Fungsi berlangganan",
-      "subTitle": "Ringkasan Manajemen Promosi",
+      "title": "Ringkasan Manajemen Promosi",
       "content": "Ini secara otomatis dilacak melalui manajemen promosi bersama, dan hasilnya lebih akurat, membuat keputusan pemasaran lebih akurat.",
       "price": "Biaya akan digabung dalam tagihan berikutnya",
       "feature": {
@@ -38,14 +60,8 @@
         "2": "Perhitungan otomatis pesanan pegas",
         "title": "Berlangganan, Anda dapat menikmati layanan Grant Function"
       },
-      "warn": "Anda dapat membatalkan pembaruan kapan saja",
-      "ok": "Konfirmasikan berlangganan",
-      "cancel": "Membatalkan",
       "success": {
-        "title": "Kegiatan promosi berlangganan yang sukses dan gusi",
-        "content": "menakjubkan!",
-        "start": "mulai menggunakan",
-        "go-back": "Lanjutkan untuk menelusuri"
+        "title": "Kegiatan promosi berlangganan yang sukses dan gusi"
       }
     },
     "stop": {
@@ -57,17 +73,7 @@
         "3": "Mempromosikan kerja sama dan halaman terkait",
         "4": "Tidak akan terus menggunakan informasi kami akan menyimpan informasi yang relevan sampai Anda berlangganan lagi"
       },
-      "warn": "Pembatalan dapat berlangganan ulang",
-      "ok": "Terus gunakan",
-      "cancel": "Berhenti berlangganan",
-      "success": {
-        "title": "Anda telah berhasil membatalkan langganan",
-        "content": {
-          "0": "Anda masih dapat menggunakan fungsionalitas",
-          "1": "Dan jangan ragu untuk memperbarui"
-        },
-        "go-back": "Kembali ke fungsi ekspansi"
-      }
+      "warn": "Pembatalan dapat berlangganan ulang"
     }
   },
   "analytics": {
