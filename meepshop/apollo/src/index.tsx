@@ -13,8 +13,8 @@ import { apolloErrorType } from './utils/errorLink';
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { getDataFromTree } from '@apollo/client/react/ssr';
-import uuid from 'uuid/v4';
-import { serialize } from 'cookie';
+
+import { getServerSideLoggerInfo } from '@meepshop/logger';
 
 import ApolloNetworkStatus from './ApolloNetworkStatus';
 import PageError from './PageError';
@@ -68,7 +68,7 @@ export const buildWithApollo = (
     const {
       Component,
       router,
-      ctx: { res, req },
+      ctx: { req },
     } = ctx;
 
     // FIXME: T10566, remove after next >= 12
@@ -78,27 +78,7 @@ export const buildWithApollo = (
     const loggerInfo =
       typeof window !== 'undefined'
         ? undefined
-        : {
-            id: uuid(),
-            host: req.headers.host as string,
-            userAgent: req.headers['user-agent'] as string,
-            url: req.url as string,
-            identity:
-              req.cookies.identity ||
-              (() => {
-                const identity = uuid();
-
-                req.cookies.identity = identity;
-                res.setHeader(
-                  'Set-Cookie',
-                  serialize('identity', identity, {
-                    expires: new Date((2 ** 31 - 1) * 1000),
-                  }),
-                );
-
-                return identity;
-              })(),
-          };
+        : getServerSideLoggerInfo(ctx.ctx);
     const client = initApollo({ ...config, loggerInfo }, undefined, ctx);
     const ssrProps = await SSR.getInitialProps(ctx);
     let appProps: Omit<PropsType, 'Component' | 'router'> = {

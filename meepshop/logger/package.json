@@ -8,6 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
+    "cookie": "^0.4.1",
     "pino": "^6.11.0"
   },
   "keywords": ["debug", "logger", "meepshop"]

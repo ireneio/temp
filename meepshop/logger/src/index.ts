@@ -1,4 +1,10 @@
+// typescript import
+import { GetServerSidePropsContext } from 'next';
+
 // import
+import uuid from 'uuid/v4';
+import { serialize } from 'cookie';
+
 import browser from './browser';
 import server from './server';
 import { LOG_TYPES } from './constants';
@@ -26,6 +32,30 @@ const BROWSER_INIT_INFO = {
   url: 'can`t be used',
   identity: 'can`t be used',
 };
+
+export const getServerSideLoggerInfo = (
+  ctx: GetServerSidePropsContext,
+): LoggerInfoType => ({
+  id: uuid(),
+  host: ctx.req.headers.host as string,
+  userAgent: ctx.req.headers['user-agent'] as string,
+  url: ctx.req.url as string,
+  identity:
+    ctx.req.cookies.identity ||
+    (() => {
+      const identity = uuid();
+
+      ctx.req.cookies.identity = identity;
+      ctx.res.setHeader(
+        'Set-Cookie',
+        serialize('identity', identity, {
+          expires: new Date((2 ** 31 - 1) * 1000),
+        }),
+      );
+
+      return identity;
+    })(),
+});
 
 export default ({
   id,
