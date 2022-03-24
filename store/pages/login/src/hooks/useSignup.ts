@@ -36,60 +36,69 @@ interface SignupType {
   street?: string;
 }
 
+interface ReturnType {
+  loading: boolean;
+  save: (value: SignupType) => void;
+}
+
 // definition
-export default (
-  setOptions: (option: OptionsType) => void,
-): ((value: SignupType) => void) => {
+export default (setOptions: (option: OptionsType) => void): ReturnType => {
   const { t } = useTranslation('login');
   const adTrack = useContext(AdTrackContext);
-  const [mutation] = useMutation<signupType, signupVariablesType>(signup, {
-    onCompleted: data => {
-      if ((data?.createUserList || []).length === 0) {
-        notification.error({
-          message: t('signup-failure-message'),
-        });
-        return;
-      }
+  const [mutation, { loading }] = useMutation<signupType, signupVariablesType>(
+    signup,
+    {
+      onCompleted: data => {
+        if ((data?.createUserList || []).length === 0) {
+          notification.error({
+            message: t('signup-failure-message'),
+          });
+          return;
+        }
 
-      notification.success({ message: t('signup-success') });
-      setOptions(LOGIN);
-      adTrack.completeRegistration();
+        notification.success({ message: t('signup-success') });
+        setOptions(LOGIN);
+        adTrack.completeRegistration();
+      },
     },
-  });
-
-  return useCallback(
-    ({
-      email,
-      password,
-      registeredCode,
-      mobile,
-      addressAndZipCode,
-      street,
-    }) => {
-      mutation({
-        variables: {
-          search: [
-            {
-              type: 'SHOPPER' as UserTypeEnumType,
-              email,
-              password,
-              registeredCode,
-              mobile,
-              additionalInfo: {
-                mobile,
-              },
-              address: {
-                countryId: addressAndZipCode?.address[0],
-                cityId: addressAndZipCode?.address[1],
-                areaId: addressAndZipCode?.address[2],
-                zipCode: addressAndZipCode?.zipCode,
-                street,
-              },
-            },
-          ],
-        },
-      });
-    },
-    [mutation],
   );
+
+  return {
+    loading,
+    save: useCallback(
+      ({
+        email,
+        password,
+        registeredCode,
+        mobile,
+        addressAndZipCode,
+        street,
+      }) => {
+        mutation({
+          variables: {
+            search: [
+              {
+                type: 'SHOPPER' as UserTypeEnumType,
+                email,
+                password,
+                registeredCode,
+                mobile,
+                additionalInfo: {
+                  mobile,
+                },
+                address: {
+                  countryId: addressAndZipCode?.address[0],
+                  cityId: addressAndZipCode?.address[1],
+                  areaId: addressAndZipCode?.address[2],
+                  zipCode: addressAndZipCode?.zipCode,
+                  street,
+                },
+              },
+            ],
+          },
+        });
+      },
+      [mutation],
+    ),
+  };
 };

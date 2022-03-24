@@ -13,7 +13,7 @@ import {
 import { useValidateEmail } from '@meepshop/validator';
 import AddressCascader from '@meepshop/form-address-cascader';
 
-import useSiginup from './hooks/useSignup';
+import useSignup from './hooks/useSignup';
 import useValidateConfirmPassword from './hooks/useValidateConfirmPassword';
 import styles from './styles/signupFrom.less';
 
@@ -36,14 +36,14 @@ export default React.memo(
     const colors = useContext(ColorsContext);
     const app = useContext(AppsContext);
     const validateEmail = useValidateEmail(false, true);
-    const siginup = useSiginup(setOptions);
+    const { save, loading } = useSignup(setOptions);
     const validateConfirmPassword = useValidateConfirmPassword();
     const hasMemberGroupCode = (
       store?.memberGroupPromoRules.filter(Boolean) || []
     ).length;
 
     return (
-      <Form className={styles.root} onFinish={siginup}>
+      <Form className={styles.root} onFinish={save}>
         <FormItem
           name={['email']}
           rules={[
@@ -116,6 +116,7 @@ export default React.memo(
               backgroundColor: colors[4],
               color: colors[2],
             }}
+            loading={loading}
             htmlType="submit"
             size="large"
           >
