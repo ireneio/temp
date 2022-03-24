@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## 0.80.156 (2022-03-24)
+
+#### :rocket: New Feature
+
+- [#2133](https://github.com/meepshop/meep-lerna/pull/2133) 內部開單 - 阻擋重複觸發註冊會員 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#2191](https://github.com/meepshop/meep-lerna/pull/2191) 【BUG】後台/選單目錄金額設定：新增篩選條件 - 檢查商品規格是否開啟 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#2229](https://github.com/meepshop/meep-lerna/pull/2229) (@admin/setting-apps) 修改共用部分以及修正 style ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- Other
+  - [#2162](https://github.com/meepshop/meep-lerna/pull/2162) 內部開單 - 修改 @meepshop/thumbnail ([@Lexiwu](https://github.com/Lexiwu))
+  - [#2174](https://github.com/meepshop/meep-lerna/pull/2174) 內部開單 - 修改 meep-nginx 加入商品指定物流設定頁 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#2217](https://github.com/meepshop/meep-lerna/pull/2217) 內部開單 - 移除 express 後整理 @meepshop/logger ([@HsuTing](https://github.com/HsuTing))
+  - [#2228](https://github.com/meepshop/meep-lerna/pull/2228) 內部開單 - 訂閱功能的共用 style 以及 hooks - part2 ([@HsuTing](https://github.com/HsuTing))
+  - [#2227](https://github.com/meepshop/meep-lerna/pull/2227) 內部開單 - 訂閱功能的共用 style 以及 hooks - part1 ([@HsuTing](https://github.com/HsuTing))
+- `store`
+  - [#2225](https://github.com/meepshop/meep-lerna/pull/2225) 【優化】next-store kustomize 調整 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 4
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.155 (2022-03-22)
 
 #### :rocket: New Feature
