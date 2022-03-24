@@ -39,7 +39,13 @@ export default (
         dataIndex: 'coverImage',
         render: (
           value: useColumnsProductsObjectTypeMemberOrderApplyFragmentType['coverImage'],
-        ) => <Thumbnail image={filter(thumbnailFragment, value)} />,
+        ) => (
+          <Thumbnail
+            size={80}
+            mobileSize={64}
+            image={filter(thumbnailFragment, value)}
+          />
+        ),
       },
       {
         title: t('product.title'),

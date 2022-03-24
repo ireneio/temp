@@ -41,14 +41,22 @@ export default (
           { productId, isAvailableForSale }: useColumnsWishlistProductFragment,
         ) =>
           !isAvailableForSale ? (
-            <Thumbnail image={filter(thumbnailFragment, value || null)} />
+            <Thumbnail
+              size={80}
+              mobileSize={64}
+              image={filter(thumbnailFragment, value || null)}
+            />
           ) : (
             <a
               href={`/product/${productId}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Thumbnail image={filter(thumbnailFragment, value || null)} />
+              <Thumbnail
+                size={80}
+                mobileSize={64}
+                image={filter(thumbnailFragment, value || null)}
+              />
             </a>
           ),
       },

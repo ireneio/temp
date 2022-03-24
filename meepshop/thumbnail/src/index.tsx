@@ -14,10 +14,16 @@ import {
 } from '@meepshop/types/gqls/meepshop';
 
 // typescript definition
+type SizeType = 56 | 64 | 72 | 80 | 84 | 90 | 100 | 136 | 168;
+
 interface PropsType {
   image: thumbnailFragmentType | null;
+  size: SizeType;
+  mobileSize: SizeType;
   className?: string;
   source?: keyof thumbnailFragmentScaledSrcType;
+  disableShadow?: boolean;
+  disableRound?: boolean;
   onClick?: () => void;
 }
 
@@ -26,6 +32,10 @@ export default ({
   image,
   className,
   source,
+  mobileSize,
+  size,
+  disableRound,
+  disableShadow,
   onClick,
 }: PropsType): React.ReactElement => {
   const colors = useContext(ColorsContext);
@@ -46,10 +56,30 @@ export default ({
         dangerouslySetInnerHTML={{
           __html: `
               .${styles.wrapper} {
-                border: 1px solid ${transformColor(colors[3]).alpha(0.1)};
-                box-shadow: 0px 1px 3px ${transformColor(colors[3]).alpha(
-                  0.08,
-                )};
+                width: ${size}px;
+                height: ${size}px;
+                border-radius: ${disableRound ? 0 : 5}px;
+                outline: ${
+                  disableShadow
+                    ? 'none'
+                    : `1px solid ${transformColor(colors[3])
+                        .alpha(0.1)
+                        .toString()}`
+                };
+                box-shadow: ${
+                  disableShadow
+                    ? 'none'
+                    : `0px 1px 3px ${transformColor(colors[3])
+                        .alpha(0.08)
+                        .toString()}`
+                }
+              }
+
+              @media (max-width: ${styles.screenSmMax}) {
+                .${styles.wrapper} {
+                  width: ${mobileSize}px;
+                  height: ${mobileSize}px;
+                }
               }
             `,
         }}

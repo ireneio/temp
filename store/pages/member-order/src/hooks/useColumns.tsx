@@ -37,6 +37,8 @@ export default (): ColumnProps<useColumnsMemberOrderFragmentType>[] => {
         dataIndex: 'coverImage',
         render: (value: useColumnsMemberOrderFragmentType['coverImage']) => (
           <Thumbnail
+            size={80}
+            mobileSize={64}
             image={filter<thumbnailFragmentType>(thumbnailFragment, value)}
           />
         ),

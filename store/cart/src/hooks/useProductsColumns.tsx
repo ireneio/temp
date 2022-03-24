@@ -86,6 +86,8 @@ export default (
               >
                 <Thumbnail
                   image={image}
+                  size={100}
+                  mobileSize={90}
                   className={`${styles.img} ${
                     status !== 'NOT_AVAILABLE' ? '' : styles.offline
                   }`}
@@ -336,10 +338,12 @@ export default (
       ],
       styles: `
         .${styles.img} {
-          border: 1px solid ${transformColor(colors[3]).alpha(0.1)};
           box-shadow: 0 1px 3px 0 ${transformColor(colors[3]).alpha(
             0.08,
           )} !important;
+          outline: 1px solid ${transformColor(colors[3])
+            .alpha(0.1)
+            .toString()} !important;
         }
         .${styles.upselling} {
           color: ${colors[0]};

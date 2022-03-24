@@ -67,6 +67,10 @@ export default React.memo(
             <Thumbnail
               image={product.coverImage}
               className={styles.image}
+              size={168}
+              mobileSize={136}
+              disableRound
+              disableShadow
               source="w240"
               onClick={() => setVisible(true)}
             />

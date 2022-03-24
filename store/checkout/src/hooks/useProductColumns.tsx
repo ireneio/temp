@@ -33,6 +33,8 @@ export default (): ColumnProps<useProductColumnsFragmentType>[] => {
         render: (value, { productId }) => (
           <Link href={`/product/${productId}`} target="_blank">
             <Thumbnail
+              size={72}
+              mobileSize={56}
               className={styles.thumbnail}
               image={filter(thumbnailFragment, value)}
             />

@@ -44,7 +44,13 @@ export default (
         align: 'center',
         render: (
           value: useColumnsMemberOrderApplicationsFragmentApplicationsExtraProductType['coverImage'],
-        ) => <Thumbnail image={filter(thumbnailFragment, value || null)} />,
+        ) => (
+          <Thumbnail
+            size={80}
+            mobileSize={64}
+            image={filter(thumbnailFragment, value || null)}
+          />
+        ),
       },
       {
         title: t('product.title'),

@@ -24,7 +24,12 @@ export default React.memo(({ product, variant }: PropsType) => {
 
   return (
     <div className={styles.root}>
-      <Thumbnail image={product.coverImage} className={styles.thumbnail} />
+      <Thumbnail
+        size={100}
+        mobileSize={100}
+        image={product.coverImage}
+        className={styles.thumbnail}
+      />
 
       <div className={styles.description}>
         <div className={styles.title}>{product.title?.zh_TW || ''}</div>
