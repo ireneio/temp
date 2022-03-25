@@ -3,7 +3,7 @@ import { NormalizedCacheObject, Resolvers, ApolloLink } from '@apollo/client';
 
 import { LoggerInfoType } from '@meepshop/logger';
 
-import { CustomCtxType } from '../types';
+import { CustomCtxType } from '../constants';
 import { errorFilterType } from './errorLink';
 
 // import

@@ -1,5 +1,5 @@
 // typescript import
-import { ValuesType } from '../types';
+import { ValuesType } from '../constants';
 
 // import
 import { useCallback } from 'react';

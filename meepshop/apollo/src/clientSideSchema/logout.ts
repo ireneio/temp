@@ -1,5 +1,5 @@
 // typescript import
-import { ContextType } from '../types';
+import { ContextType } from '../constants';
 
 // definition
 export const resolvers = {

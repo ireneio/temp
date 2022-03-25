@@ -5,7 +5,7 @@ import { NormalizedCacheObject } from '@apollo/client';
 import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
 import { LoggerInfoType } from '@meepshop/logger';
 
-import { ContextType, CustomCtxType } from './types';
+import { ContextType, CustomCtxType } from './constants';
 import { ConfigType as initApolloConfigType } from './utils/initApollo';
 import { apolloErrorType } from './utils/errorLink';
 

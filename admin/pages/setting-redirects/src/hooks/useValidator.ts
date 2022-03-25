@@ -1,7 +1,7 @@
 // typescript import
 import { FormItemProps } from 'antd/lib/form';
 
-import { ValuesType } from '../types';
+import { ValuesType } from '../constants';
 
 // import
 import { useCallback } from 'react';

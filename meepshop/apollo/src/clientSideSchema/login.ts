@@ -1,5 +1,5 @@
 // typescript import
-import { ContextType } from '../types';
+import { ContextType } from '../constants';
 
 // graphql typescript
 import { LoginInput } from '@meepshop/types/gqls/meepshop';
