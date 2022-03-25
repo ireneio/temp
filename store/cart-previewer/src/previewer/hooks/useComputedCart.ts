@@ -40,7 +40,9 @@ export default (
   >(computedCartInPreviewer, {
     fetchPolicy: 'cache-and-network',
     variables: {
-      cartItems: cartItemsInput,
+      input: {
+        cartItems: cartItemsInput,
+      },
     },
     skip: loading,
   });

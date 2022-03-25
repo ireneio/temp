@@ -88,7 +88,9 @@ const { Item: FormItem } = Form;
   const { data, refetch } = useQuery(computedCartInCheckout, {
     fetchPolicy: 'cache-and-network',
     variables: {
-      cartItems: carts.map(({ __typename: _, ...cartItem }) => cartItem),
+      input: {
+        cartItems: carts.map(({ __typename: _, ...cartItem }) => cartItem),
+      },
     },
     skip: cartLoading,
   });

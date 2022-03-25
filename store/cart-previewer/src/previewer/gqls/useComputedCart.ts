@@ -18,8 +18,8 @@ export const useComputedCartInPreviewerFragment = gql`
 `;
 
 export const computedCartInPreviewer = gql`
-  query computedCartInPreviewer($cartItems: [CartItemInput!]!) {
-    computedCart(cartItems: $cartItems) {
+  query computedCartInPreviewer($input: computedCartInput!) {
+    computedCart(input: $input) {
       ... on ComputedCart {
         computedLineItems {
           id

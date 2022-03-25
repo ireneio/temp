@@ -32,7 +32,9 @@ export default (
     {
       fetchPolicy: 'cache-and-network',
       variables: {
-        cartItems: cartItemsInput,
+        input: {
+          cartItems: cartItemsInput,
+        },
       },
       skip: loading,
     },

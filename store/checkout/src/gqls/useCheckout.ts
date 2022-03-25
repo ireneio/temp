@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 
 // definition
 export const computedCartInCheckout = gql`
-  query computedCartInCheckout($cartItems: [CartItemInput!]!) {
+  query computedCartInCheckout($input: computedCartInput!) {
     viewer {
       id
       store {
@@ -14,7 +14,7 @@ export const computedCartInCheckout = gql`
         }
       }
     }
-    computedCart(cartItems: $cartItems) {
+    computedCart(input: $input) {
       ... on ComputedCart {
         computedLineItems {
           type

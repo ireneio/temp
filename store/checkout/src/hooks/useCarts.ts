@@ -36,7 +36,9 @@ export default (
   const { data } = useQuery(computedCartInCheckout, {
     fetchPolicy: 'cache-and-network',
     variables: {
-      cartItems: cartItems.map(({ __typename: _, ...cartItem }) => cartItem),
+      input: {
+        cartItems: cartItems.map(({ __typename: _, ...cartItem }) => cartItem),
+      },
     },
     skip: loading,
   });
