@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "@meepshop/page-error",
+  "description": "page error",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@meepshop/apollo": "^0.80.156",
+    "@meepshop/images": "^0.80.155",
+    "@meepshop/link": "^0.80.155",
+    "@meepshop/locales": "^0.80.155",
+    "@meepshop/logger": "^0.80.154",
+    "@meepshop/utils": "^0.80.155"
+  },
+  "keywords": ["error", "meepshop", "page"]
+}

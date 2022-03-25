@@ -4,6 +4,7 @@ import { NormalizedCacheObject } from '@apollo/client';
 
 import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
 import { LoggerInfoType } from '@meepshop/logger';
+import PageError from '@meepshop/page-error';
 
 import { ContextType, CustomCtxType } from './constants';
 import { ConfigType as initApolloConfigType } from './utils/initApollo';
@@ -17,7 +18,6 @@ import { getDataFromTree } from '@apollo/client/react/ssr';
 import { getServerSideLoggerInfo } from '@meepshop/logger';
 
 import ApolloNetworkStatus from './ApolloNetworkStatus';
-import PageError from './PageError';
 import SSR from './SSR';
 import initApollo, { useApolloNetworkStatus } from './utils/initApollo';
 

@@ -1,5 +1,5 @@
 // typescript import
-import { apolloErrorType } from './utils/errorLink';
+import { apolloErrorType } from '@meepshop/apollo/lib/utils/errorLink';
 
 // import
 import React from 'react';
