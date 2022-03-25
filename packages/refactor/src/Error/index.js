@@ -3,7 +3,7 @@ import React from 'react';
 import { useApolloClient } from '@apollo/client';
 
 import { log } from '@meepshop/logger/lib/gqls/log';
-import PageError from '@meepshop/apollo/lib/PageError';
+import PageError from '@meepshop/page-error';
 
 import ErrorPageNotFound from './ErrorPageNotFound';
 

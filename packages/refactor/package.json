@@ -11,7 +11,8 @@
     "@meepshop/images": "^0.80.158",
     "@meepshop/link": "^0.80.158",
     "@meepshop/locales": "^0.80.158",
-    "@meepshop/logger": "^0.80.158"
+    "@meepshop/logger": "^0.80.158",
+    "@meepshop/page-error": "^0.80.158"
   },
   "keywords": ["refactor", "store"]
 }
