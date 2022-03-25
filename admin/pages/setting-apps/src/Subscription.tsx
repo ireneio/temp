@@ -48,7 +48,7 @@ export default React.memo(
           {price}
 
           {status === 'NOT_SUBSCRIBED' ? null : (
-            <span>{t(`status.${status}`)}</span>
+            <span className={styles.tag}>{t(`status.${status}`)}</span>
           )}
         </div>
       </div>

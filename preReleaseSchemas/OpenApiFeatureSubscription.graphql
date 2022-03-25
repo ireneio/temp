@@ -1,0 +1,29 @@
+extend type Mutation {
+  startOpenApiFeatureSubscription: StartOpenApiFeatureSubscriptionResponse!
+  stopOpenApiFeatureSubscription: StopOpenApiFeatureSubscriptionResponse!
+  renewOpenApiFeatureSubscription: RenewOpenApiFeatureSubscriptionResponse!
+}
+
+union StartOpenApiFeatureSubscriptionResponse =
+    OpenApiFeatureSubscription
+  | UnauthorizedError
+  | UnhandledError
+
+union StopOpenApiFeatureSubscriptionResponse =
+    OkResponse
+  | UnauthorizedError
+  | UnhandledError
+
+union RenewOpenApiFeatureSubscriptionResponse =
+    OpenApiFeatureSubscription
+  | UnauthorizedError
+  | UnhandledError
+
+extend type StoreFeatureSubscription {
+  openApiFeatureSubscription: OpenApiFeatureSubscription!
+}
+
+type OpenApiFeatureSubscription {
+  status: FeatureSubscriptionStatusEnum!
+  apiKey: String
+}

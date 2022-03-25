@@ -18,6 +18,11 @@
     "SUBSCRIBE_CONTINUING": "Subscription",
     "SUBSCRIBE_CANCELLING": "Subsequent"
   },
+  "button": {
+    "NOT_SUBSCRIBED": "start using",
+    "SUBSCRIBE_CONTINUING": "Cancel the renewal",
+    "SUBSCRIBE_CANCELLING": "Continue subscription"
+  },
   "expiration-date": "Will stop subscribe service in {{expirationdate}}",
   "start": {
     "title": "Subscription function",
@@ -52,11 +57,6 @@
   "affiliate": {
     "title": "Summary promotion management",
     "desc": "You can establish promotional activities for different partners, and track multiple activities and product sales conditions, greatly reduce activity management and settlement costs, making product promotion easier.",
-    "button": {
-      "NOT_SUBSCRIBED": "start using",
-      "SUBSCRIBE_CONTINUING": "Cancel the renewal",
-      "SUBSCRIBE_CANCELLING": "Continue subscription"
-    },
     "start": {
       "title": "Summary promotion management",
       "content": "It is automatically tracked through the joint promotion management, and the results are more accurate, making marketing decisions more accurate.",
@@ -75,6 +75,40 @@
       "title": "Determine whether to cancel the subscription promotion activities and humid?",
       "name": "Promote cooperation and related pages",
       "content": "We will keep relevant information until you subscribe again."
+    }
+  },
+  "open-api": {
+    "title": "Open API",
+    "desc": "Provide goods, members, orders API technology and resources, assist store automation and data integration to help store operations.",
+    "price": "Limited time",
+    "price-tooltip": "During the functional time, the future will be notified in advance if adjustment",
+    "instruction": "Central instructions",
+    "apiKey": {
+      "title": "API gold key",
+      "copied": "Replicated \"{{apikey}}\"",
+      "tooltip": "Copy API key",
+      "helper-warn": {
+        "text": "Only shop primary accounts can browse API golden keys",
+        "tooltip": "Only shop primary accounts can operate"
+      }
+    },
+    "start": {
+      "title": "Open API",
+      "content": "Provide goods, members, orders API technology and resources, assist store automation and data integration to help store operations.",
+      "feature": {
+        "0": "Obtain product information",
+        "1": "Synchronize goods inventory and specifications",
+        "2": "Get order information",
+        "3": "Get a list of customers",
+        "title": "You can use the store related information after you subscribe"
+      },
+      "success": {
+        "title": "Successfully subscribed to open API"
+      }
+    },
+    "stop": {
+      "title": "Be sure to cancel the subscription Open API?",
+      "name": "Open API related functions"
     }
   },
   "analytics": {

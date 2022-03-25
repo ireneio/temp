@@ -18,6 +18,11 @@
     "SUBSCRIBE_CONTINUING": "Abonnement",
     "SUBSCRIBE_CANCELLING": "Subséquent"
   },
+  "button": {
+    "NOT_SUBSCRIBED": "commencer à utiliser",
+    "SUBSCRIBE_CONTINUING": "Annuler le renouvellement",
+    "SUBSCRIBE_CANCELLING": "Continuer l'abonnement"
+  },
   "expiration-date": "Arrêtera l'abonnement service en {{expirationdate}}",
   "start": {
     "title": "Fonction d'abonnement",
@@ -52,11 +57,6 @@
   "affiliate": {
     "title": "Gestion de la promotion Résumé",
     "desc": "Vous pouvez établir des activités promotionnelles pour différents partenaires et suivre plusieurs activités et conditions de vente de produits, réduire considérablement la gestion des activités et les coûts de règlement, ce qui facilite la promotion des produits.",
-    "button": {
-      "NOT_SUBSCRIBED": "commencer à utiliser",
-      "SUBSCRIBE_CONTINUING": "Annuler le renouvellement",
-      "SUBSCRIBE_CANCELLING": "Continuer l'abonnement"
-    },
     "start": {
       "title": "Gestion de la promotion Résumé",
       "content": "Il est automatiquement suivi par la gestion commune de la promotion et les résultats sont plus précis, ce qui rend les décisions de marketing plus précises.",
@@ -75,6 +75,40 @@
       "title": "Déterminez s'il faut annuler les activités de promotion de l'abonnement et humide?",
       "name": "Promouvoir la coopération et les pages connexes",
       "content": "Nous garderons des informations pertinentes jusqu'à ce que vous vous abonnez à nouveau."
+    }
+  },
+  "open-api": {
+    "title": "API ouvert",
+    "desc": "Fournir des biens, des membres, des commandes de la technologie et des ressources de l'API, d'assister l'automatisation des magasins et de l'intégration des données pour aider à stocker les opérations.",
+    "price": "Temps limité",
+    "price-tooltip": "Pendant le temps fonctionnel, l'avenir sera averti à l'avance si un ajustement",
+    "instruction": "Instructions centrales",
+    "apiKey": {
+      "title": "API Gold Key",
+      "copied": "Répliqué \"{{apkéy}}\"",
+      "tooltip": "Copier la clé API",
+      "helper-warn": {
+        "text": "Seuls les comptes primaires peuvent parcourir les clés Golden API",
+        "tooltip": "Seuls les comptes principaux peuvent fonctionner"
+      }
+    },
+    "start": {
+      "title": "API ouvert",
+      "content": "Fournir des biens, des membres, des commandes de la technologie et des ressources de l'API, d'assister l'automatisation des magasins et de l'intégration des données pour aider à stocker les opérations.",
+      "feature": {
+        "0": "Obtenir des informations sur le produit",
+        "1": "Synchroniser l'inventaire des marchandises et les spécifications",
+        "2": "Obtenir des informations de commande",
+        "3": "Obtenez une liste de clients",
+        "title": "Vous pouvez utiliser les informations relatives au magasin après votre abonnement"
+      },
+      "success": {
+        "title": "Souscrit avec succès à Ouvrir API"
+      }
+    },
+    "stop": {
+      "title": "Assurez-vous d'annuler l'abonnement Ouvrir API?",
+      "name": "Ouvrir les fonctions liées à l'API"
     }
   },
   "analytics": {

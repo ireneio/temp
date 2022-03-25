@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 
 // graphql import
 import { affiliateFragment } from './affiliate';
+import { openApiFragment } from './openApi';
 
 // definition
 export const getFeatureSubscriptions = gql`
@@ -13,9 +14,12 @@ export const getFeatureSubscriptions = gql`
         id
         isAffilaiteEnabled: checkUnleashToggle(name: "T2394_affiliate")
         ...affiliateFragment
+        isOpenApiEnabled: checkUnleashToggle(name: "T10564_openApi")
       }
+      ...openApiFragment
     }
   }
 
   ${affiliateFragment}
+  ${openApiFragment}
 `;

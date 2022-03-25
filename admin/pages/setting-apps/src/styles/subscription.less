@@ -1,8 +1,13 @@
 .root {
   display: flex;
+  width: 100%;
   background: #ffffff;
   box-shadow: 0px 0px 10px -8px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
+
+  &:not(:first-child) {
+    margin: 32px 0px 0px;
+  }
 
   img {
     margin: 0px 22px 0px 32px;
@@ -19,6 +24,7 @@
 }
 
 .content {
+  width: 100%;
   padding: 32px 0px;
 }
 
@@ -41,7 +47,7 @@
 }
 
 .price {
-  flex: 1 0 auto;
+  flex: 0 0 158px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,7 +70,7 @@
     font-size: 12px;
     line-height: 20px;
 
-    span {
+    .tag {
       color: #41a716;
       background: #d9f7be;
       border: 1px solid rgba(82, 196, 26, 0.3);
@@ -75,14 +81,14 @@
     font-size: 12px;
     line-height: 20px;
 
-    span {
+    .tag {
       color: #d48806;
       background: rgba(255, 214, 102, 0.5);
       border: 1px solid rgba(212, 136, 6, 0.3);
     }
   }
 
-  span {
+  .tag {
     margin: 6px 0px 0px;
     padding: 2px 10px;
     border-radius: 34px;

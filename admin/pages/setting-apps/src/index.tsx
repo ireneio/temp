@@ -10,6 +10,7 @@ import { useTranslation } from '@meepshop/locales';
 import Header from '@admin/header';
 
 import Affiliate from './Affiliate';
+import OpenApi from './OpenApi';
 import Item from './Item';
 import useAppList from './hooks/useAppList';
 import styles from './styles/index.less';
@@ -20,6 +21,7 @@ import { getFeatureSubscriptions as getFeatureSubscriptionsType } from '@meepsho
 // graphql import
 import { getFeatureSubscriptions } from './gqls';
 import { affiliateFragment } from './gqls/affiliate';
+import { openApiFragment } from './gqls/openApi';
 
 // typescript definition
 interface PropsType {
@@ -33,7 +35,8 @@ const SettingApps: NextPage<PropsType> = React.memo(() => {
     getFeatureSubscriptions,
   );
   const appsList = useAppList();
-  const store = data?.viewer?.store || null;
+  const viewer = data?.viewer || null;
+  const store = viewer?.store || null;
 
   return (
     <Header
@@ -42,13 +45,19 @@ const SettingApps: NextPage<PropsType> = React.memo(() => {
       backTo="/setting"
       disableAffix
     >
-      {!store?.isAffilaiteEnabled ? null : (
+      {!store?.isAffilaiteEnabled && !store?.isOpenApiEnabled ? null : (
         <div className={styles.root}>
           <div className={styles.title}>{t('subscription.title')}</div>
 
           <div className={styles.subTitle}>{t('subscription.subTitle')}</div>
 
-          <Affiliate store={filter(affiliateFragment, store)} />
+          {!store.isAffilaiteEnabled ? null : (
+            <Affiliate store={filter(affiliateFragment, store)} />
+          )}
+
+          {!store.isOpenApiEnabled ? null : (
+            <OpenApi viewer={filter(openApiFragment, viewer)} />
+          )}
         </div>
       )}
 

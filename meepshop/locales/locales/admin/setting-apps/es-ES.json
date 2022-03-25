@@ -18,6 +18,11 @@
     "SUBSCRIBE_CONTINUING": "Suscripción",
     "SUBSCRIBE_CANCELLING": "Subsecuente"
   },
+  "button": {
+    "NOT_SUBSCRIBED": "Empieza a usar",
+    "SUBSCRIBE_CONTINUING": "Cancelar la renovación",
+    "SUBSCRIBE_CANCELLING": "Continuar suscripción"
+  },
   "expiration-date": "Dejará de suscribirse al servicio en {{cadigneddate}}",
   "start": {
     "title": "Función de suscripción",
@@ -52,11 +57,6 @@
   "affiliate": {
     "title": "Gestión de promociones de resumen",
     "desc": "Puede establecer actividades promocionales para diferentes socios, y realizar un seguimiento de las múltiples actividades y las condiciones de ventas de productos, reducir enormemente la gestión de actividades y los costos de liquidación, lo que facilita la promoción del producto.",
-    "button": {
-      "NOT_SUBSCRIBED": "Empieza a usar",
-      "SUBSCRIBE_CONTINUING": "Cancelar la renovación",
-      "SUBSCRIBE_CANCELLING": "Continuar suscripción"
-    },
     "start": {
       "title": "Gestión de promociones de resumen",
       "content": "Se rastrea automáticamente a través de la administración de la promoción conjunta, y los resultados son más precisos, lo que hace que las decisiones de marketing sean más precisas.",
@@ -75,6 +75,40 @@
       "title": "¿Determina si desea cancelar las actividades de promoción de suscripción y húmedo?",
       "name": "Promover la cooperación y las páginas relacionadas.",
       "content": "Mantendremos información relevante hasta que se suscriba nuevamente."
+    }
+  },
+  "open-api": {
+    "title": "API abierta",
+    "desc": "Proporcionar bienes, miembros, ordenar la tecnología y los recursos de la API, ayudar a la automatización de la tienda y la integración de datos para ayudar a las operaciones de almacenamiento.",
+    "price": "Tiempo limitado",
+    "price-tooltip": "Durante el tiempo funcional, el futuro será notificado por adelantado si se ajusta.",
+    "instruction": "Instrucciones centrales",
+    "apiKey": {
+      "title": "Llave de oro de la API",
+      "copied": "Replicado \"{{apikey}}\"",
+      "tooltip": "Copie la tecla API",
+      "helper-warn": {
+        "text": "Solo las cuentas primarias de la tienda pueden navegar por las llaves de oro de la API",
+        "tooltip": "Solo las cuentas primarias de la tienda pueden operar"
+      }
+    },
+    "start": {
+      "title": "API abierta",
+      "content": "Proporcionar bienes, miembros, ordenar la tecnología y los recursos de la API, ayudar a la automatización de la tienda y la integración de datos para ayudar a las operaciones de almacenamiento.",
+      "feature": {
+        "0": "Obtener información del producto",
+        "1": "Sincronizar el inventario de bienes y las especificaciones.",
+        "2": "Obtener información de pedido",
+        "3": "Obtener una lista de clientes",
+        "title": "Puede usar la información relacionada con la tienda después de suscribirse"
+      },
+      "success": {
+        "title": "Suscrito con éxito a API API"
+      }
+    },
+    "stop": {
+      "title": "Asegúrese de cancelar la API abierta de suscripción?",
+      "name": "APIA API FUNCIONES RELACIONADAS"
     }
   },
   "analytics": {

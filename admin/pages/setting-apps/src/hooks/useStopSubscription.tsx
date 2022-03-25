@@ -13,7 +13,7 @@ import styles from '../styles/useStopSubscription.less';
 // typescript definition
 interface OptionsType {
   key: string;
-  content: React.ReactNode;
+  content?: React.ReactNode;
   submit: () => Promise<boolean>;
 }
 

@@ -9,6 +9,8 @@ export * from '../lib/defaultTypes';
 export const adminAppleTouchIcon_w180_h180 = mockData;
 export const adminSettingAppsAffiliate_w90_h90 = mockData;
 export const adminSettingAppsAffiliate_w64_h64 = mockData;
+export const adminSettingAppsOpenAPI_w90_h90 = mockData;
+export const adminSettingAppsOpenAPI_w64_h64 = mockData;
 export const adminSettingAppsGeniusBye_w120_h120 = mockData;
 export const adminSettingAppsGeniusCongratulations_w120_h120 = mockData;
 export const adminSettingStoreStoreLogo_h39 = mockData;

@@ -18,6 +18,11 @@
     "SUBSCRIBE_CONTINUING": "Đăng ký",
     "SUBSCRIBE_CANCELLING": "Tiếp theo"
   },
+  "button": {
+    "NOT_SUBSCRIBED": "bắt đầu sử dụng",
+    "SUBSCRIBE_CONTINUING": "Hủy bỏ gia hạn.",
+    "SUBSCRIBE_CANCELLING": "Tiếp tục đăng ký"
+  },
   "expiration-date": "Sẽ dừng đăng ký dịch vụ trong {{expreddate}}",
   "start": {
     "title": "Chức năng đăng ký",
@@ -52,11 +57,6 @@
   "affiliate": {
     "title": "Tóm tắt quản lý khuyến mãi",
     "desc": "Bạn có thể thiết lập các hoạt động quảng cáo cho các đối tác khác nhau, và theo dõi nhiều hoạt động và điều kiện bán sản phẩm, giảm đáng kể chi phí quản lý và giải quyết hoạt động, giúp khuyến mãi sản phẩm dễ dàng hơn.",
-    "button": {
-      "NOT_SUBSCRIBED": "bắt đầu sử dụng",
-      "SUBSCRIBE_CONTINUING": "Hủy bỏ gia hạn.",
-      "SUBSCRIBE_CANCELLING": "Tiếp tục đăng ký"
-    },
     "start": {
       "title": "Tóm tắt quản lý khuyến mãi",
       "content": "Nó được tự động theo dõi thông qua quản lý khuyến mãi chung và kết quả chính xác hơn, đưa ra quyết định tiếp thị chính xác hơn.",
@@ -75,6 +75,40 @@
       "title": "Xác định có nên hủy bỏ các hoạt động khuyến mãi đăng ký và ẩm không?",
       "name": "Thúc đẩy hợp tác và các trang liên quan",
       "content": "Chúng tôi sẽ giữ thông tin liên quan cho đến khi bạn đăng ký lại."
+    }
+  },
+  "open-api": {
+    "title": "Mở API.",
+    "desc": "Cung cấp hàng hóa, thành viên, công nghệ API và tài nguyên, hỗ trợ tự động hóa cửa hàng và tích hợp dữ liệu để giúp các hoạt động lưu trữ.",
+    "price": "Thời gian giới hạn",
+    "price-tooltip": "Trong thời gian chức năng, tương lai sẽ được thông báo trước nếu điều chỉnh",
+    "instruction": "Hướng dẫn trung tâm.",
+    "apiKey": {
+      "title": "API Gold Key.",
+      "copied": "Nhân rộng \"{{apikey}}\"",
+      "tooltip": "Sao chép khóa API.",
+      "helper-warn": {
+        "text": "Chỉ cửa hàng tài khoản chính có thể duyệt các phím vàng API",
+        "tooltip": "Chỉ một cửa hàng tài khoản chính có thể hoạt động"
+      }
+    },
+    "start": {
+      "title": "Mở API.",
+      "content": "Cung cấp hàng hóa, thành viên, công nghệ API và tài nguyên, hỗ trợ tự động hóa cửa hàng và tích hợp dữ liệu để giúp các hoạt động lưu trữ.",
+      "feature": {
+        "0": "Có được thông tin sản phẩm",
+        "1": "Đồng bộ hóa hàng tồn kho và thông số kỹ thuật",
+        "2": "Nhận thông tin đặt hàng",
+        "3": "Lấy danh sách khách hàng",
+        "title": "Bạn có thể sử dụng các thông tin liên quan đến cửa hàng sau khi đăng ký"
+      },
+      "success": {
+        "title": "Đăng ký thành công để mở API"
+      }
+    },
+    "stop": {
+      "title": "Hãy chắc chắn để hủy api mở đăng ký?",
+      "name": "Mở các chức năng liên quan đến API"
     }
   },
   "analytics": {

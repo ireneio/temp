@@ -18,6 +18,11 @@
     "SUBSCRIBE_CONTINUING": "Berlangganan",
     "SUBSCRIBE_CANCELLING": "Setelah"
   },
+  "button": {
+    "NOT_SUBSCRIBED": "mulai menggunakan",
+    "SUBSCRIBE_CONTINUING": "Batalkan pembaruan",
+    "SUBSCRIBE_CANCELLING": "Lanjutkan berlangganan"
+  },
   "expiration-date": "Akan menghentikan layanan berlangganan di {{expirationdate}}",
   "start": {
     "title": "Fungsi berlangganan",
@@ -52,11 +57,6 @@
   "affiliate": {
     "title": "Ringkasan Manajemen Promosi",
     "desc": "Anda dapat menetapkan kegiatan promosi untuk berbagai mitra, dan melacak berbagai kegiatan dan kondisi penjualan produk, sangat mengurangi manajemen aktivitas dan biaya penyelesaian, membuat promosi produk lebih mudah.",
-    "button": {
-      "NOT_SUBSCRIBED": "mulai menggunakan",
-      "SUBSCRIBE_CONTINUING": "Batalkan pembaruan",
-      "SUBSCRIBE_CANCELLING": "Lanjutkan berlangganan"
-    },
     "start": {
       "title": "Ringkasan Manajemen Promosi",
       "content": "Ini secara otomatis dilacak melalui manajemen promosi bersama, dan hasilnya lebih akurat, membuat keputusan pemasaran lebih akurat.",
@@ -75,6 +75,40 @@
       "title": "Tentukan apakah akan membatalkan kegiatan promosi berlangganan dan lembab?",
       "name": "Mempromosikan kerja sama dan halaman terkait",
       "content": "Kami akan menyimpan informasi yang relevan sampai Anda berlangganan kembali."
+    }
+  },
+  "open-api": {
+    "title": "Buka API.",
+    "desc": "Memberikan barang, anggota, memesan teknologi API dan sumber daya, membantu otomatisasi dan integrasi data untuk membantu menyimpan operasi.",
+    "price": "Waktu terbatas",
+    "price-tooltip": "Selama waktu fungsional, masa depan akan diberitahukan sebelumnya jika penyesuaian",
+    "instruction": "Instruksi pusat",
+    "apiKey": {
+      "title": "API Gold Key.",
+      "copied": "Direplikasi \"{{apikey}}\"",
+      "tooltip": "Copy API Key.",
+      "helper-warn": {
+        "text": "Hanya Akun Utama Toko Dapat Menelusuri Tombol Emas API",
+        "tooltip": "Satu-satunya akun utama toko yang dapat beroperasi"
+      }
+    },
+    "start": {
+      "title": "Buka API.",
+      "content": "Memberikan barang, anggota, memesan teknologi API dan sumber daya, membantu otomatisasi dan integrasi data untuk membantu menyimpan operasi.",
+      "feature": {
+        "0": "Dapatkan informasi produk",
+        "1": "Sinkronisasi persediaan dan spesifikasi barang",
+        "2": "Dapatkan informasi pesanan",
+        "3": "Dapatkan daftar pelanggan",
+        "title": "Anda dapat menggunakan informasi terkait toko setelah Anda berlangganan"
+      },
+      "success": {
+        "title": "Berhasil berlangganan membuka API"
+      }
+    },
+    "stop": {
+      "title": "Pastikan untuk membatalkan langganan Buka API?",
+      "name": "Buka fungsi terkait API"
     }
   },
   "analytics": {

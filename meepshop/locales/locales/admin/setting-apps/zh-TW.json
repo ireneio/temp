@@ -18,6 +18,11 @@
     "SUBSCRIBE_CONTINUING": "訂閱中",
     "SUBSCRIBE_CANCELLING": "已取消續訂"
   },
+  "button": {
+    "NOT_SUBSCRIBED": "開始使用",
+    "SUBSCRIBE_CONTINUING": "取消續訂",
+    "SUBSCRIBE_CANCELLING": "繼續訂閱"
+  },
   "expiration-date": "將於 {{expirationDate}} 停止訂閱服務",
   "start": {
     "title": "訂閱功能",
@@ -52,11 +57,6 @@
   "affiliate": {
     "title": "分潤推廣管理",
     "desc": "您可以分別為不同合作夥伴建立推廣活動來促銷商品，並同時追蹤多項活動成效與商品銷售狀況，大幅縮短活動管理與結算成本，讓商品推廣更輕鬆。",
-    "button": {
-      "NOT_SUBSCRIBED": "開始使用",
-      "SUBSCRIBE_CONTINUING": "取消續訂",
-      "SUBSCRIBE_CANCELLING": "繼續訂閱"
-    },
     "start": {
       "title": "分潤推廣管理",
       "content": "透過分潤推廣管理自動追蹤、計算成效，讓行銷決策更精準。",
@@ -75,6 +75,40 @@
       "title": "確定要取消訂閱推廣活動與分潤嗎？",
       "name": "推廣合作分潤功能及相關頁面",
       "content": "我們會保留相關資料直到您再次訂閱功能"
+    }
+  },
+  "open-api": {
+    "title": "開放 API",
+    "desc": "提供商品、會員、訂單 API 技術及資源，協助商店自動化與資料整合，幫助商店營運。",
+    "price": "限時免費",
+    "price-tooltip": "功能限時免費中，未來若調整收費將提前通知",
+    "instruction": "串接說明文字",
+    "apiKey": {
+      "title": "API 金鑰",
+      "copied": "已複製 “{{ apiKey }}”",
+      "tooltip": "複製 API 金鑰",
+      "helper-warn": {
+        "text": "僅商店主帳號可以瀏覽 API 金鑰",
+        "tooltip": "僅商店主帳號可操作"
+      }
+    },
+    "start": {
+      "title": "開放 API",
+      "content": "提供商品、會員、訂單 API 技術及資源，協助商店自動化與資料整合，幫助商店營運。",
+      "feature": {
+        "title": "訂閱後可以取用商店相關資料",
+        "0": "取得商品資訊",
+        "1": "同步商品庫存與規格",
+        "2": "取得訂單資訊",
+        "3": "取得顧客名單"
+      },
+      "success": {
+        "title": "成功訂閱開放 API"
+      }
+    },
+    "stop": {
+      "title": "確定要取消訂閱開放 API 嗎？",
+      "name": "開放 API 相關功能"
     }
   },
   "analytics": {

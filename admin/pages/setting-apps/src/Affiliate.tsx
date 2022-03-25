@@ -61,7 +61,7 @@ export default React.memo(({ store }: PropsType) => {
             : stopAffiliateFeatureSubscription
         }
       >
-        {t(`affiliate.button.${status}`)}
+        {t(`button.${status}`)}
       </Button>
 
       {status !== 'SUBSCRIBE_CANCELLING' ? null : <ExpirationDate />}
