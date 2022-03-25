@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.80.158 (2022-03-25)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#2234](https://github.com/meepshop/meep-lerna/pull/2234) 【個別店家】 置頂選單 - 前台無顯示正確品項 ([@happycat6323](https://github.com/happycat6323))
+
+#### :house: Internal
+
+- [#2223](https://github.com/meepshop/meep-lerna/pull/2223) 內部開單 - @meepshop/apollo 的 PageError 拆出來 ([@Lexiwu](https://github.com/Lexiwu))
+- [#2220](https://github.com/meepshop/meep-lerna/pull/2220) 內部開單 - 統一 constants 寫法 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.157 (2022-03-25)
 
 #### :rocket: New Feature
