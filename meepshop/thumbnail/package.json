@@ -4,13 +4,13 @@
   "description": "Thumbnail for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.156",
+  "version": "0.80.157",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.155",
-    "@meepshop/images": "^0.80.155",
-    "@meepshop/utils": "^0.80.155",
+    "@meepshop/context": "^0.80.157",
+    "@meepshop/images": "^0.80.157",
+    "@meepshop/utils": "^0.80.157",
     "color": "^3.0.0"
   },
   "keywords": ["meepshop", "thumbnail"]
