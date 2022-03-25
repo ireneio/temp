@@ -45,7 +45,6 @@ export default ({
             },
           ],
           or: [],
-          not: [],
         },
         sort: [
           {
@@ -110,13 +109,6 @@ export default ({
         field: 'retailPrice',
         ...(!gte ? {} : { gte: parseFloat(gte) }),
         ...(!lte ? {} : { lte: parseFloat(lte) }),
-      });
-
-      output.search.filter.not.push({
-        type: 'exact',
-        child: 'variant',
-        field: 'status',
-        query: '0',
       });
     }
 
