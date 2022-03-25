@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.80.157 (2022-03-25)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#2233](https://github.com/meepshop/meep-lerna/pull/2233) 新增 computedCart input - 前端 ([@happycat6323](https://github.com/happycat6323))
+- Other
+  - [#2231](https://github.com/meepshop/meep-lerna/pull/2231) 內部開單 - 加入 open api 訂閱功能 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.156 (2022-03-24)
 
 #### :rocket: New Feature
