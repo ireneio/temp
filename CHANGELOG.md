@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.160 (2022-03-28)
+
+#### :house: Internal
+
+- [#2238](https://github.com/meepshop/meep-lerna/pull/2238) 移除後台加購區設定 toggle ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.159 (2022-03-28)
 
 #### :bug: Bug Fix
