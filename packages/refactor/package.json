@@ -4,7 +4,7 @@
   "description": "Temporary package for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.158",
+  "version": "0.80.159",
   "dependencies": {
     "@meepshop/apollo": "^0.80.158",
     "@meepshop/context": "^0.80.158",
