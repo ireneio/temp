@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.80.159 (2022-03-28)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#2232](https://github.com/meepshop/meep-lerna/pull/2232) 【BUG】已被刪除的商品 or 加購品，前台商品明細頁應顯示 404 ([@piovischioh](https://github.com/piovischioh))
+- `refactor`
+  - [#2235](https://github.com/meepshop/meep-lerna/pull/2235) 內部開單 - fix PageError path ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :house: Internal
+
+- `refactor`
+  - [#2235](https://github.com/meepshop/meep-lerna/pull/2235) 內部開單 - fix PageError path ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.158 (2022-03-25)
 
 #### :bug: Bug Fix
