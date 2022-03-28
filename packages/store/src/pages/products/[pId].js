@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { isEmpty } from 'fbjs';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 
-import { Container } from 'components';
+import { Container, ErrorPageNotFound } from 'components';
 import ProductDiscontinued from 'components/ProductDiscontinued';
 
 export default class Product extends React.Component {
@@ -30,13 +29,11 @@ export default class Product extends React.Component {
   render() {
     const { loading, product, page } = this.props;
 
-    if (loading || isEmpty(product))
-      return <Spin indicator={<LoadingOutlined spin />} />;
+    if (loading) return <Spin indicator={<LoadingOutlined spin />} />;
+
+    if (!page || !product) return <ErrorPageNotFound />;
 
     const { status, coverImage, title } = product;
-
-    if (!page) return null;
-
     const productImage = coverImage?.scaledSrc?.w480 || '';
     const productDescription = (() => {
       try {
