@@ -12,9 +12,6 @@ export const useMenuListFragment = gql`
           status
         }
       }
-      upsellingEnabled: checkUnleashToggle(
-        name: "T6749_storeCnameWhiteListForUpsellingSetting"
-      )
     }
     permission @client {
       orders: order {

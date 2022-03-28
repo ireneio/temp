@@ -128,7 +128,6 @@ export default (
       design: Boolean(isMerchant || permission?.design?.isEnabled),
       newsletter: Boolean(apps.newsletters.isInstalled),
       'web-track': Boolean(apps.webTrack.isInstalled),
-      upselling: Boolean(user?.store?.upsellingEnabled),
       affiliate:
         (user?.store?.featureSubscription.affiliateFeatureSubscription.status ||
           'NOT_SUBSCRIBED') !== 'NOT_SUBSCRIBED',
