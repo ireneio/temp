@@ -8,11 +8,11 @@ import { useUpdateAffiliatePartnerFragment } from './useUpdateAffiliatePartner';
 
 // definition
 export const getPartner = gql`
-  query getPartner($id: ID!) {
+  query getPartner($id: ID!, $isAdd: Boolean!) {
     viewer {
       id
       ...useCreateAffiliatePartnerFragment
-      affiliatePartner(id: $id) {
+      affiliatePartner(id: $id) @skip(if: $isAdd) {
         id
         ...usePartnerInitialValuesFragment
         ...useUpdateAffiliatePartnerFragment

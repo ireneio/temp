@@ -14,10 +14,14 @@ export const createAffiliateProgram = gql`
 
 export const useCreateAffiliateProgramFragment = gql`
   fragment useCreateAffiliateProgramFragment on User {
+    __typename
     id
     affiliatePrograms(first: 10) @connection(key: "affiliate-programs") {
+      __typename
       edges {
+        __typename
         node {
+          __typename
           id
         }
       }

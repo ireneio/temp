@@ -51,8 +51,10 @@ const AffiliatePartner: NextPage<PropsType> = React.memo(
     const { data } = useQuery<getPartnerType, getPartnerVariablesType>(
       getPartner,
       {
-        variables: { id: affiliatePartnerId },
-        skip: affiliatePartnerId === 'add',
+        variables: {
+          id: affiliatePartnerId,
+          isAdd: affiliatePartnerId === 'add',
+        },
       },
     );
     const viewer = data?.viewer || null;
@@ -85,6 +87,7 @@ const AffiliatePartner: NextPage<PropsType> = React.memo(
           {...(affiliatePartnerId === 'add'
             ? {
                 title: t('title.add'),
+                disableAffix: true,
               }
             : {
                 title: t('title.info'),
@@ -168,14 +171,18 @@ const AffiliatePartner: NextPage<PropsType> = React.memo(
               <Input placeholder={t('lineId.placeholder')} />
             </FormItem>
 
-            {['facebookUrl', 'instagramUrl'].map(key => (
+            {(['facebookUrl', 'instagramUrl'] as const).map(key => (
               <React.Fragment key={key}>
                 <div className={styles.title}>
                   {t(`${key}.title`)}
 
                   <FormItem dependencies={[key]} noStyle>
                     {({ getFieldError, getFieldValue }) => {
-                      const link = getFieldValue([key]);
+                      const url = getFieldValue([key]);
+                      const link =
+                        !url || /(https?:)?\/\//.test(url)
+                          ? url
+                          : `https://${url}`;
 
                       return getFieldError([key]).length !== 0 ||
                         !link ? null : (
@@ -191,7 +198,24 @@ const AffiliatePartner: NextPage<PropsType> = React.memo(
                   </FormItem>
                 </div>
 
-                <FormUrl name={[key]} placeholder={t(`${key}.placeholder`)} />
+                <FormUrl
+                  name={[key]}
+                  placeholder={t(`${key}.placeholder`)}
+                  options={
+                    /* eslint-disable @typescript-eslint/camelcase */
+                    {
+                      facebookUrl: {
+                        require_host: true,
+                        host_whitelist: ['facebook.com', 'www.facebook.com'],
+                      },
+                      instagramUrl: {
+                        require_host: true,
+                        host_whitelist: ['instagram.com', 'www.instagram.com'],
+                      },
+                    }[key]
+                    /* eslint-enable @typescript-eslint/camelcase */
+                  }
+                />
               </React.Fragment>
             ))}
 
