@@ -10,7 +10,6 @@ import ProductAmountSelector from '@meepshop/product-amount-selector';
 
 // graphql typescript
 import {
-  useVariantLineItemFragment as useVariantLineItemFragmentType,
   quantityVariantFragment as quantityVariantFragmentType,
   quantityProductInfoModuleFragment as quantityProductInfoModuleFragmentType,
 } from '@meepshop/types/gqls/meepshop';
@@ -24,7 +23,6 @@ export interface PropsType
     Pick<ProductAmountSelectorPropsType, 'value' | 'onChange'> {
   variant: quantityVariantFragmentType | null;
   quantityInCart: number;
-  cart: useVariantLineItemFragmentType[] | null;
 }
 
 // definition

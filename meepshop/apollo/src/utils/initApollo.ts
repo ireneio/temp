@@ -26,7 +26,6 @@ import initialLogger from '@meepshop/logger';
 import cacheConfig from '../../cacheConfig';
 
 import * as ComputedCart from '../clientSideSchema/ComputedCart';
-import * as LineItem from '../clientSideSchema/LineItem';
 import * as getDraftText from '../clientSideSchema/getDraftText';
 import * as guestCart from '../clientSideSchema/guestCart';
 import * as landingPageAccessToken from '../clientSideSchema/landingPageAccessToken';
@@ -104,7 +103,6 @@ const create = (
       getDraftText.resolvers(logger),
       guestCart.resolvers,
       ComputedCart.resolvers,
-      LineItem.resolvers,
     ].reduce(mergeResolvers, {}),
     link: from([
       new RetryLink({

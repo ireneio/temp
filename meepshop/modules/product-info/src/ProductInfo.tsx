@@ -85,7 +85,6 @@ export default React.memo((props: PropsType) => {
           quantityProductInfoModuleFragmentType,
           productInfoFragmentType
         >(quantityProductInfoModuleFragment, props)}
-        cart={filter(useVariantLineItemFragment, cart)}
         variant={filter(quantityVariantFragment, variant)}
         value={quantity}
         onChange={setQuantity}
