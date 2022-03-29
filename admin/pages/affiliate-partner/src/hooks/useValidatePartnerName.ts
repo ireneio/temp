@@ -17,13 +17,15 @@ import {
 import { validatePartnerName } from '../gqls/useValidatePartnerName';
 
 // definition
-export default (): NonNullable<FormListProps['rules']>[number]['validator'] => {
+export default (
+  initialName: string | null,
+): NonNullable<FormListProps['rules']>[number]['validator'] => {
   const { t } = useTranslation('affiliate-partner');
   const client = useApolloClient();
 
   return useCallback(
     async (_, value) => {
-      if (!value) return;
+      if (!value || initialName === value) return;
 
       const { data } = await client.query<
         validatePartnerNameType,
@@ -39,6 +41,6 @@ export default (): NonNullable<FormListProps['rules']>[number]['validator'] => {
       if (data?.isAffiliatePartnerNameValid?.__typename !== 'OkResponse')
         throw new Error(t('validate.same-partner-name'));
     },
-    [t, client],
+    [initialName, t, client],
   );
 };

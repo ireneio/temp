@@ -48,12 +48,13 @@ const AffiliatePartner: NextPage<PropsType> = React.memo(
   ({ affiliatePartnerId }) => {
     const { t } = useTranslation('affiliate-partner');
     const [form] = Form.useForm();
+    const isAdd = affiliatePartnerId === 'add';
     const { data } = useQuery<getPartnerType, getPartnerVariablesType>(
       getPartner,
       {
         variables: {
           id: affiliatePartnerId,
-          isAdd: affiliatePartnerId === 'add',
+          isAdd,
         },
       },
     );
@@ -70,7 +71,9 @@ const AffiliatePartner: NextPage<PropsType> = React.memo(
       filter(useUpdateAffiliatePartnerFragment, affiliatePartner),
     );
     const validateEmail = useValidateEmail(true);
-    const validatePartnerName = useValidatePartnerName();
+    const validatePartnerName = useValidatePartnerName(
+      isAdd ? null : affiliatePartner?.name || null,
+    );
 
     return (
       <Form
