@@ -22,7 +22,7 @@ interface PropsType {
   backTo?: string;
   disableAffix?: boolean;
   buttons?: React.ReactNode;
-  maxWidth?: number;
+  maxWidth?: string;
   children?: React.ReactNode;
 }
 
@@ -36,7 +36,7 @@ export default React.memo(
     backTo,
     buttons,
     disableAffix,
-    maxWidth = 992,
+    maxWidth = '992px',
     children: content,
   }: PropsType) => {
     const collapsed = useContext(CollapsedContext);
@@ -62,7 +62,7 @@ export default React.memo(
             </Affix>
           )}
         >
-          <div className={styles.header} style={{ maxWidth: `${maxWidth}px` }}>
+          <div className={styles.header} style={{ maxWidth }}>
             <h1>
               {!backTo ? null : (
                 <Link href={backTo}>
@@ -103,7 +103,7 @@ export default React.memo(
           className={`${styles.content} ${
             disableAffix ? styles.disableAffix : ''
           }`}
-          style={{ maxWidth: `${maxWidth}px` }}
+          style={{ maxWidth }}
         >
           {content}
         </div>

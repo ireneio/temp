@@ -7,12 +7,14 @@ import { ordersAffiliateProgramOrdersConnectionFragment } from './orders';
 // definition
 export const getAffiliateProgramStatistics = gql`
   query getAffiliateProgramStatistics(
-    $input: AffiliateProgramStatisticsInput!
+    $affiliateProgramId: ID!
     $first: PositiveInt!
   ) {
     viewer {
       id
-      affiliateProgramStatistics(input: $input) {
+      affiliateProgramStatistics(
+        input: { affiliateProgramId: $affiliateProgramId }
+      ) {
         ... on AffiliateProgramStatistics {
           affiliateProgram {
             id
@@ -24,7 +26,10 @@ export const getAffiliateProgramStatistics = gql`
           totalCommission
         }
       }
-      affiliateProgramOrders(first: $first) {
+      affiliateProgramOrders(
+        first: $first
+        filter: { affiliateProgramId: $affiliateProgramId }
+      ) {
         ...ordersAffiliateProgramOrdersConnectionFragment
       }
     }

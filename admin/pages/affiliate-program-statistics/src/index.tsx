@@ -49,7 +49,12 @@ const AffiliateProgramStatistics: NextPage<PropsType> = React.memo(
       affiliateProgramStatistics?.affiliateProgram.status || 'NOT_STARTED';
 
     return (
-      <Header prevTitle={t('back')} backTo="/affiliate/programs" disableAffix>
+      <Header
+        prevTitle={t('back')}
+        backTo="/affiliate/programs"
+        maxWidth="initial"
+        disableAffix
+      >
         <div className={styles.root}>
           <div className={styles.title}>
             <h1>{affiliateProgramStatistics?.affiliateProgram.title} </h1>

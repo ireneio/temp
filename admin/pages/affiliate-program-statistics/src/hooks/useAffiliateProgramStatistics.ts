@@ -36,7 +36,7 @@ export default (affiliateProgramId: string): AffiliateProgramStatisticsType => {
     getAffiliateProgramStatisticsVariablesType
   >(getAffiliateProgramStatistics, {
     variables: {
-      input: { affiliateProgramId },
+      affiliateProgramId,
       first: 10,
     },
   });
