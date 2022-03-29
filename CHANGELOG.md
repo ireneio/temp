@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.80.161 (2022-03-29)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#1908](https://github.com/meepshop/meep-lerna/pull/1908) 【功能】統一數網大宗寄件物流 - Design/前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### :bug: Bug Fix
+
+- [#2242](https://github.com/meepshop/meep-lerna/pull/2242) 【BUG】後台 - 無法編輯合作夥伴的資訊 ([@HsuTing](https://github.com/HsuTing))
+- [#2239](https://github.com/meepshop/meep-lerna/pull/2239) 【BUG】分潤系統驗收測試：@BasicFlow3.1, @BasicFlow3.5, @BasicFlow3.7 ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.160 (2022-03-28)
 
 #### :house: Internal
