@@ -4,11 +4,11 @@
   "description": "Affiliate program statistics page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.160",
+  "version": "0.80.161",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/header": "^0.80.160",
+    "@admin/header": "^0.80.161",
     "@admin/table": "^0.80.158",
     "@admin/tooltip": "^0.80.158",
     "@meepshop/context": "^0.80.158",
