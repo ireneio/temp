@@ -108,7 +108,7 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
           )}
         </FormItem>
 
-        {['allpay', 'ezship'].includes(chooseShipmentTemplate) ? (
+        {['allpay', 'ezship', 'presco'].includes(chooseShipmentTemplate) ? (
           <FormItem className={className} style={style}>
             <FormItem dependencies={['shipmentId']} noStyle>
               {form => (

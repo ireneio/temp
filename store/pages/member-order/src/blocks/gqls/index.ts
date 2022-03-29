@@ -23,6 +23,10 @@ export const blocksFragment = gql`
       fullAddress
     }
 
+    presco {
+      shipmentNumber
+    }
+
     shipmentInfo {
       status
 

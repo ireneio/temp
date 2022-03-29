@@ -10,13 +10,15 @@ import { shipmentInfoFragment as shipmentInfoFragmentType } from '@meepshop/type
 interface PropsType {
   shipmentInfo: shipmentInfoFragmentType;
   cvsShipmentNo?: string | null;
+  prescoShipmentNumber?: string | null;
 }
 
 // definition
 export default React.memo(
   ({
-    shipmentInfo: { number, recipient, description },
+    shipmentInfo: { template, number, recipient, description },
     cvsShipmentNo,
+    prescoShipmentNumber,
   }: PropsType) => {
     const { t } = useTranslation('member-order');
     const receiverStoreName = recipient?.receiverStoreName;
@@ -24,11 +26,13 @@ export default React.memo(
     return (
       <>
         <div>
-          {!(number || cvsShipmentNo) ? null : (
+          {!(number || cvsShipmentNo || prescoShipmentNumber) ? null : (
             <div>
               {t('blocks.shipment.number')}
 
-              {number || cvsShipmentNo}
+              {template === 'presco'
+                ? prescoShipmentNumber
+                : number || cvsShipmentNo}
             </div>
           )}
 

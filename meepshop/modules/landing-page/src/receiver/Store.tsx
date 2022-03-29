@@ -92,20 +92,38 @@ export default React.memo(
         {!isMapOpen ? null : (
           <ConvenienceStoreMap
             shipmentType={
-              (shipment?.template === 'allpay'
-                ? ECPAY_SHIPMENT_TYPE_ENUM(
-                    shipment.storeShipmentDetails?.accountInfo?.allpay
-                      ?.logisticsSubType || '',
-                  )
-                : 'EZSHIP') as ConvenienceStoreShipmentTypeEnum
+              (() => {
+                switch (shipment?.template) {
+                  case 'allpay':
+                    return ECPAY_SHIPMENT_TYPE_ENUM(
+                      shipment.storeShipmentDetails?.accountInfo?.allpay
+                        ?.logisticsSubType || '',
+                    );
+                  case 'ezship':
+                    return 'EZSHIP';
+                  case 'presco':
+                    return 'ECPAY_B2C';
+                  default:
+                    return 'ECPAY';
+                }
+              })() as ConvenienceStoreShipmentTypeEnum
             }
             storeTypes={
-              (shipment?.template === 'allpay'
-                ? ECPAY_CONVENIENCE_STORE_TYPE_ENUM(
-                    shipment.storeShipmentDetails?.accountInfo?.allpay
-                      ?.logisticsSubType || '',
-                  )
-                : EZSHIP_CONVENIENCE_STORE_TYPE_ENUM) as ConvenienceStoreTypeEnum[]
+              (() => {
+                switch (shipment?.template) {
+                  case 'allpay':
+                    return ECPAY_CONVENIENCE_STORE_TYPE_ENUM(
+                      shipment.storeShipmentDetails?.accountInfo?.allpay
+                        ?.logisticsSubType || '',
+                    );
+                  case 'ezship':
+                    return EZSHIP_CONVENIENCE_STORE_TYPE_ENUM;
+                  case 'presco':
+                    return ['UNIMART'];
+                  default:
+                    return ['UNIMART'];
+                }
+              })() as ConvenienceStoreTypeEnum[]
             }
             close={() => setIsMapOpen(false)}
             confirmStore={store => {

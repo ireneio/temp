@@ -230,16 +230,32 @@ export default class ChooseShipmentStore extends React.PureComponent {
 
         {!openConvenienceStoreMap ? null : (
           <ConvenienceStoreMap
-            shipmentType={
-              shipmentTemplate === 'allpay'
-                ? ECPAY_SHIPMENT_TYPE_ENUM(allpay.logisticsSubType)
-                : 'EZSHIP'
-            }
-            storeTypes={
-              shipmentTemplate === 'allpay'
-                ? ECPAY_CONVENIENCE_STORE_TYPE_ENUM(allpay.logisticsSubType)
-                : EZSHIP_CONVENIENCE_STORE_TYPE_ENUM
-            }
+            shipmentType={(() => {
+              switch (shipmentTemplate) {
+                case 'allpay':
+                  return ECPAY_SHIPMENT_TYPE_ENUM(allpay.logisticsSubType);
+                case 'ezship':
+                  return 'EZSHIP';
+                case 'presco':
+                  return 'ECPAY_B2C';
+                default:
+                  return 'ECPAY';
+              }
+            })()}
+            storeTypes={(() => {
+              switch (shipmentTemplate) {
+                case 'allpay':
+                  return ECPAY_CONVENIENCE_STORE_TYPE_ENUM(
+                    allpay.logisticsSubType,
+                  );
+                case 'ezship':
+                  return EZSHIP_CONVENIENCE_STORE_TYPE_ENUM;
+                case 'presco':
+                  return ['UNIMART'];
+                default:
+                  return ['UNIMART'];
+              }
+            })()}
             close={this.closeConvenienceStoreMap}
             confirmStore={this.confirmStore}
           />

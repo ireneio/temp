@@ -209,7 +209,7 @@ export default React.memo(
           )}
         </Item>
 
-        {['allpay', 'ezship'].includes(shipment?.template || '') ? (
+        {['allpay', 'ezship', 'presco'].includes(shipment?.template || '') ? (
           <Item className={styles.formItem}>
             <Store form={form} shipment={shipment} />
           </Item>

@@ -31,6 +31,7 @@ export default React.memo(
   ({
     order: {
       userInfo,
+      presco,
       shipmentInfo,
       paymentInfo,
       status,
@@ -127,6 +128,7 @@ export default React.memo(
               <ShipmentInfo
                 shipmentInfo={filter(shipmentInfoFragment, shipmentObj)}
                 cvsShipmentNo={latestLogisticTracking?.cvsShipmentNo}
+                prescoShipmentNumber={presco?.shipmentNumber}
               />
 
               {shipmentObj.number || !latestLogisticTracking ? null : (

@@ -158,6 +158,7 @@ export const SHIPMENT_TEMPLATE_TYPE = PropTypes.oneOf([
   'ezship',
   'gmo',
   'allpay',
+  'presco',
   'blackcat',
   'others',
 ]);
