@@ -72,6 +72,13 @@
     "copied": "Reproducido \"?ref={{promoCode}}\"",
     "tooltip": "Copiar parámetros"
   },
+  "create": {
+    "fail": "Establecer un fracaso"
+  },
+  "update": {
+    "success": "actualización completada",
+    "fail": "Actualización fallida"
+  },
   "delete": {
     "title": "¿Seguro que quieres borrarlo?",
     "content": "No se puede recuperar después de promover la eliminación",

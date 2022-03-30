@@ -72,6 +72,13 @@
     "copied": "Tái sản xuất \"?ref={{promoCode}}\"",
     "tooltip": "Sao chép thông số"
   },
+  "create": {
+    "fail": "Thiết lập một thất bại"
+  },
+  "update": {
+    "success": "hoàn thành cập nhật",
+    "fail": "Cập nhật thất bại"
+  },
   "delete": {
     "title": "Bạn có chắc chắn muốn xóa nó?",
     "content": "Không thể phục hồi sau khi thúc đẩy việc xóa",

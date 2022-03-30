@@ -72,6 +72,13 @@
     "copied": "\"?ref={{promoCode}}\"",
     "tooltip": "パラメータをコピーする"
   },
+  "create": {
+    "fail": "失敗を確立する"
+  },
+  "update": {
+    "success": "更新完了",
+    "fail": "更新に失敗しました"
+  },
   "delete": {
     "title": "削除してもよろしいですか？",
     "content": "削除を促進した後も回復できません",

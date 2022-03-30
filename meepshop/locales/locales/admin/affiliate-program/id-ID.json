@@ -72,6 +72,13 @@
     "copied": "Direproduksi \"?ref={{promoCode}}\"",
     "tooltip": "Salin Parameter"
   },
+  "create": {
+    "fail": "Menetapkan kegagalan"
+  },
+  "update": {
+    "success": "Pembaruan selesai",
+    "fail": "Pembaharuan gagal"
+  },
   "delete": {
     "title": "Anda yakin ingin menghapusnya?",
     "content": "Tidak dapat pulih setelah mempromosikan penghapusan",

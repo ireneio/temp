@@ -170,8 +170,7 @@ export default React.memo(({ affiliateProgramId }: PropsType) => {
             <CopyOutlined
               className={styles.copy}
               onClick={() => {
-                if (affiliateProgram?.promoCode)
-                  copyToClipboard(affiliateProgram.promoCode);
+                copyToClipboard(`?ref=${affiliateProgram?.promoCode}`);
               }}
             />
           </Tooltip>

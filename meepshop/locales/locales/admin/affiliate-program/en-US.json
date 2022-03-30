@@ -72,6 +72,13 @@
     "copied": "Reproduced \"?ref={{promoCode}}\"",
     "tooltip": "Copy parameters"
   },
+  "create": {
+    "fail": "Establish a failure"
+  },
+  "update": {
+    "success": "update completed",
+    "fail": "Update failed"
+  },
   "delete": {
     "title": "You sure you want to delete it?",
     "content": "Cannot recover after promoting the deletion",

@@ -16,10 +16,12 @@ import { useProgramInitialValuesFragment as useProgramInitialValuesFragmentType 
 export interface ValuesType
   extends Omit<
     useProgramInitialValuesFragmentType,
-    '__typename' | 'id' | 'allProducts'
+    '__typename' | 'id' | 'allProducts' | 'startAt' | 'endAt'
   > {
   endAtDisabled: boolean;
   productsType: 'specify' | 'all';
+  startAt: Date;
+  endAt: Date | null;
 }
 
 type initialValuesType = initializeValuesType<
@@ -34,11 +36,21 @@ export default (
 ): initialValuesType | Pick<initialValuesType, 'productsType'> => {
   const initialValues = useMemo(
     () => ({
-      ...omit(affiliateProgram, ['__typename', 'id', 'allProducts']),
+      ...omit(affiliateProgram, [
+        '__typename',
+        'id',
+        'allProducts',
+        'startAt',
+        'endAt',
+      ]),
       endAtDisabled: !affiliateProgram?.endAt,
       productsType: affiliateProgram?.allProducts
         ? ('all' as const)
         : ('specify' as const),
+      startAt: !affiliateProgram?.startAt
+        ? null
+        : new Date(affiliateProgram.startAt),
+      endAt: !affiliateProgram?.endAt ? null : new Date(affiliateProgram.endAt),
     }),
     [affiliateProgram],
   );

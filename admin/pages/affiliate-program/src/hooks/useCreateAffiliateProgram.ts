@@ -4,6 +4,7 @@ import { ValuesType } from './useProgramInitialValues';
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/client';
+import { formatISO } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import message from '@admin/message';
@@ -35,10 +36,10 @@ export default (
 
   return useCallback(
     async ({
-      endAtDisabled,
       productsType,
       affiliatePartner,
       products,
+      startAt,
       endAt,
       ...values
     }) => {
@@ -46,7 +47,8 @@ export default (
         variables: {
           input: {
             ...values,
-            endAt: endAtDisabled ? null : endAt,
+            startAt: formatISO(startAt),
+            endAt: !endAt ? null : formatISO(endAt),
             allProducts: productsType === 'all',
             affiliatePartnerId: affiliatePartner.id,
             productIds:

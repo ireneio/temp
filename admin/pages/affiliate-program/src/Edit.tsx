@@ -7,17 +7,19 @@ import {
   Button,
   Input,
   InputNumber,
-  DatePicker,
   Select,
   Checkbox,
   Empty,
 } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
+import { isBefore, subDays, isSameDay, isSameHour } from 'date-fns';
+import range from 'lodash.range';
 
 import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
 import Header from '@admin/header';
 import Tooltip from '@admin/tooltip';
+import DatePicker from '@meepshop/date-picker';
 
 import Products from './Products';
 import PromoCodeInput from './PromoCodeInput';
@@ -78,8 +80,12 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
   const updateAffiliateProgram = useUpdateAffiliateProgram(
     filter(useUpdateAffiliateProgramFragment, affiliateProgram),
   );
-  const { partners, searchPartners } = useSearchPartners();
-  const validatePromoCode = useValidatePromoCode();
+  const { partners, searchPartners } = useSearchPartners(
+    isAdd ? null : affiliateProgram?.affiliatePartner.id || null,
+  );
+  const validatePromoCode = useValidatePromoCode(
+    isAdd ? null : affiliateProgram?.promoCode || null,
+  );
 
   return (
     <Form
@@ -137,24 +143,70 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
                 <Tooltip title={t('startAt.tooltip')} />
               </div>
 
-              <FormItem
-                name={['startAt']}
-                rules={[
-                  {
-                    required: true,
-                    message: t('validate.required'),
-                  },
-                ]}
-              >
-                <DatePicker
-                  placeholder={t('startAt.placeholder')}
-                  showNow={false}
-                  disabled={!isAdd}
-                  showTime={{
-                    format: 'HH:mm',
-                  }}
-                  format="YYYY/MM/DD HH:mm"
-                />
+              <FormItem dependencies={['endAt']} noStyle>
+                {({ getFieldValue }) => (
+                  <FormItem
+                    name={['startAt']}
+                    rules={[
+                      {
+                        required: true,
+                        message: t('validate.required'),
+                      },
+                    ]}
+                  >
+                    <DatePicker
+                      placeholder={t('startAt.placeholder')}
+                      disabledDate={currentDate =>
+                        isBefore(currentDate, subDays(new Date(), 1)) ||
+                        isBefore(
+                          getFieldValue(['endAt']),
+                          subDays(currentDate, 1),
+                        )
+                      }
+                      disabledTime={date => {
+                        const now = new Date();
+                        const endAt = getFieldValue(['endAt']);
+                        const isSameDayToNow = !date
+                          ? false
+                          : isSameDay(date, now);
+                        const isSameDayToEndAt = !date
+                          ? false
+                          : isSameDay(date, endAt);
+
+                        return !isSameDayToNow && !isSameDayToEndAt
+                          ? {}
+                          : {
+                              disabledHours: () => [
+                                ...(!isSameDayToNow
+                                  ? []
+                                  : range(0, now.getHours())),
+                                ...(!isSameDayToEndAt
+                                  ? []
+                                  : range(endAt.getHours() + 1, 24)),
+                              ],
+                              disabledMinutes: () => [
+                                ...(!isSameDayToNow ||
+                                !date ||
+                                !isSameHour(date, now)
+                                  ? []
+                                  : range(0, now.getMinutes())),
+                                ...(!isSameDayToEndAt ||
+                                !date ||
+                                !isSameHour(date, endAt)
+                                  ? []
+                                  : range(endAt.getMinutes(), 60)),
+                              ],
+                            };
+                      }}
+                      showNow={false}
+                      disabled={!isAdd}
+                      showTime={{
+                        format: 'HH:mm',
+                      }}
+                      format="YYYY/MM/DD HH:mm"
+                    />
+                  </FormItem>
+                )}
               </FormItem>
             </div>
 
@@ -166,16 +218,29 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
                   <Tooltip title={t('endAt.tooltip')} />
                 </div>
 
-                <FormItem
-                  name={['endAtDisabled']}
-                  valuePropName="checked"
-                  noStyle
-                >
-                  <Checkbox>{t('endAt.disabled')}</Checkbox>
+                <FormItem dependencies={['endAt']} noStyle>
+                  {({ setFieldsValue }) => (
+                    <FormItem
+                      name={['endAtDisabled']}
+                      valuePropName="checked"
+                      noStyle
+                    >
+                      <Checkbox
+                        onChange={({ target: { checked } }) => {
+                          if (checked)
+                            setFieldsValue({
+                              endAt: null,
+                            });
+                        }}
+                      >
+                        {t('endAt.disabled')}
+                      </Checkbox>
+                    </FormItem>
+                  )}
                 </FormItem>
               </div>
 
-              <FormItem dependencies={['endAtDisabled']} noStyle>
+              <FormItem dependencies={[['startAt'], ['endAtDisabled']]} noStyle>
                 {({ getFieldValue }) => (
                   <FormItem
                     name={['endAt']}
@@ -192,6 +257,22 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
                   >
                     <DatePicker
                       placeholder={t('endAt.placeholder')}
+                      disabledDate={currentDate =>
+                        isBefore(currentDate, getFieldValue(['startAt']))
+                      }
+                      disabledTime={date => {
+                        const startAt = getFieldValue(['startAt']);
+
+                        return !date || !isSameDay(date, startAt)
+                          ? {}
+                          : {
+                              disabledHours: () => range(0, startAt.getHours()),
+                              disabledMinutes: () =>
+                                !isSameHour(date, startAt)
+                                  ? []
+                                  : range(0, startAt.getMinutes()),
+                            };
+                      }}
                       showNow={false}
                       showTime={{
                         format: 'HH:mm',
@@ -226,6 +307,8 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
                   description={t('partner.empty')}
                 />
               }
+              defaultActiveFirstOption={false}
+              filterOption={false}
               disabled={!isAdd}
               showSearch
             >
@@ -255,7 +338,7 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
             <InputNumber
               className={styles.commissionRate}
               formatter={value => `${value}%`}
-              parser={value => value?.replace('%', '') || ''}
+              parser={value => value?.replace('%', '').replace('.', '') || ''}
               disabled={!isAdd}
             />
           </FormItem>

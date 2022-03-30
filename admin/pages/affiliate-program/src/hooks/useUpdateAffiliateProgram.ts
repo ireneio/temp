@@ -4,6 +4,8 @@ import { ValuesType } from './useProgramInitialValues';
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/client';
+import omit from 'lodash.omit';
+import { formatISO } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import message from '@admin/message';
@@ -34,10 +36,10 @@ export default (
 
   return useCallback(
     async ({
-      endAtDisabled,
       productsType,
       affiliatePartner,
       products,
+      startAt,
       endAt,
       ...values
     }) => {
@@ -50,14 +52,15 @@ export default (
       const newProgram = {
         ...values,
         id,
-        endAt: endAtDisabled ? null : endAt,
+        startAt: formatISO(startAt),
+        endAt: !endAt ? null : formatISO(endAt),
         allProducts: productsType === 'all',
       };
 
       await mutation({
         variables: {
           input: {
-            ...newProgram,
+            ...omit(newProgram, ['endAtDisabled']),
             affiliatePartnerId: affiliatePartner.id,
             productIds:
               productsType === 'all'
@@ -79,13 +82,51 @@ export default (
             fragmentName: 'useUpdateAffiliateProgramFragment',
             data: merge<
               useUpdateAffiliateProgramFragmentType,
-              Omit<ValuesType, 'endAtDisabled' | 'productsType'> & {
+              Omit<
+                ValuesType,
+                'startAt' | 'endAt' | 'endAtDisabled' | 'productsType'
+              > & {
+                startAt: string;
+                endAt: string | null;
                 allProducts: boolean;
               }
             >(affiliateProgram, {
               ...newProgram,
               affiliatePartner,
-              products,
+              products: products.map(
+                ({ title, coverImage, variants, ...product }) => ({
+                  ...product,
+                  __typename: 'Product',
+                  title: !title
+                    ? null
+                    : {
+                        ...title,
+                        __typename: 'Locale',
+                      },
+                  coverImage: !coverImage
+                    ? null
+                    : {
+                        ...coverImage,
+                        __typename: 'Image',
+                        scaledSrc: !coverImage.scaledSrc
+                          ? null
+                          : {
+                              ...coverImage.scaledSrc,
+                              __typename: 'ScaledURLs',
+                            },
+                      },
+                  variants: !variants
+                    ? null
+                    : variants.map(variant =>
+                        !variant
+                          ? null
+                          : {
+                              ...variant,
+                              __typename: 'Variant',
+                            },
+                      ),
+                }),
+              ),
             }),
           });
           message.success(t('update.success'));

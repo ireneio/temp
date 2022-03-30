@@ -72,6 +72,13 @@
     "copied": "已複製 “?ref={{promoCode}}”",
     "tooltip": "複製參數"
   },
+  "create": {
+    "fail": "建立失敗"
+  },
+  "update": {
+    "success": "更新成功",
+    "fail": "更新失敗"
+  },
   "delete": {
     "title": "確定要刪除嗎？",
     "content": "推廣活動刪除後無法復原",

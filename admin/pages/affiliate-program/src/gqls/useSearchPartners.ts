@@ -17,3 +17,15 @@ export const searchPartners = gql`
     }
   }
 `;
+
+export const searchPartner = gql`
+  query searchPartner($affiliatePartnerId: ID!) {
+    viewer {
+      id
+      affiliatePartner(id: $affiliatePartnerId) {
+        id
+        name
+      }
+    }
+  }
+`;

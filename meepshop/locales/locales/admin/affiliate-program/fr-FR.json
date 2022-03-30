@@ -72,6 +72,13 @@
     "copied": "Reproduit \"?ref={{promoCode}}\"",
     "tooltip": "Paramètres de copie"
   },
+  "create": {
+    "fail": "Établir un échec"
+  },
+  "update": {
+    "success": "Mise à jour terminée",
+    "fail": "Mise à jour a échoué"
+  },
   "delete": {
     "title": "Vous êtes sûr de vouloir le supprimer?",
     "content": "Ne peut pas récupérer après la promotion de la suppression",

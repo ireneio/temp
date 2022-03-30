@@ -1,6 +1,6 @@
 // import
-import { useRef, useState, useCallback } from 'react';
-import { useApolloClient } from '@apollo/client';
+import { useRef, useState, useCallback, useEffect } from 'react';
+import { useApolloClient, useQuery } from '@apollo/client';
 import { emptyFunction } from 'fbjs';
 
 // graphql typescript
@@ -8,10 +8,12 @@ import {
   searchPartners as searchPartnersType,
   searchPartnersVariables as searchPartnersVariablesType,
   searchPartners_viewer_affiliatePartners_edges_node as searchPartnersViewerAffiliatePartnersEdgesNodeType,
+  searchPartner as searchPartnerType,
+  searchPartnerVariables as searchPartnerVariablesType,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { searchPartners } from '../gqls/useSearchPartners';
+import { searchPartners, searchPartner } from '../gqls/useSearchPartners';
 
 // typescript definition
 interface PartnersType {
@@ -20,12 +22,27 @@ interface PartnersType {
 }
 
 // definition
-export default (): PartnersType => {
+export default (initialAffiliatePartnerId: string | null): PartnersType => {
   const client = useApolloClient();
+  const { data } = useQuery<searchPartnerType, searchPartnerVariablesType>(
+    searchPartner,
+    {
+      variables: {
+        affiliatePartnerId: initialAffiliatePartnerId || 'null-id',
+      },
+      skip: !initialAffiliatePartnerId,
+    },
+  );
   const [partners, setPartners] = useState<PartnersType['partners']>([]);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(
     setTimeout(emptyFunction, 0),
   );
+
+  useEffect(() => {
+    const affiliatePartner = data?.viewer?.affiliatePartner;
+
+    if (affiliatePartner) setPartners([affiliatePartner]);
+  }, [initialAffiliatePartnerId, data, setPartners]);
 
   return {
     partners,
@@ -35,7 +52,7 @@ export default (): PartnersType => {
 
         clearTimeout(timeoutRef.current);
         timeoutRef.current = setTimeout(async () => {
-          const { data } = await client.query<
+          const { data: partnersData } = await client.query<
             searchPartnersType,
             searchPartnersVariablesType
           >({
@@ -48,11 +65,11 @@ export default (): PartnersType => {
           });
 
           setPartners(
-            (data?.viewer?.affiliatePartners?.edges || []).map(
+            (partnersData?.viewer?.affiliatePartners?.edges || []).map(
               ({ node }) => node,
             ),
           );
-        }, 100);
+        }, 500);
       },
       [client, setPartners],
     ),
