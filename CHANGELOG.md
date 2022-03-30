@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.163 (2022-03-30)
+
+#### :rocket: New Feature
+
+- [#2158](https://github.com/meepshop/meep-lerna/pull/2158) 【功能】 KooData 直播購物車 - 啟用設定 - Design/前端 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 1
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.162 (2022-03-30)
 
 #### :rocket: New Feature
