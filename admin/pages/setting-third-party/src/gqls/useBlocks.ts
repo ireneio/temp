@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 
 // graphql import
 import { facebookFragment } from './facebook';
+import { kooLiveFragment } from './kooLive';
 import { ecfitFragment } from './ecfit';
 import { gaViewIdFragment } from './gaViewId';
 import { lineLineLoginSettingFragment } from './line';
@@ -13,6 +14,10 @@ export const useBlocksFragment = gql`
     ecfitEnabled: checkUnleashToggle(
       name: "T2235_storeCnameWhitelistForECFIT_Enabled"
     )
+
+    kooLiveEnabled: checkUnleashToggle(name: "KooDataT7535")
+
+    ...kooLiveFragment
 
     facebookSetting {
       ...facebookFragment
@@ -33,6 +38,7 @@ export const useBlocksFragment = gql`
   }
 
   ${facebookFragment}
+  ${kooLiveFragment}
   ${ecfitFragment}
   ${gaViewIdFragment}
   ${lineLineLoginSettingFragment}

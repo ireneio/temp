@@ -25,7 +25,16 @@
       "placeholder": "Facebook App Secret"
     }
   },
-  "line":{
+  "koodata": {
+    "title": "koo.live 直播銷售小幫手",
+    "description": "專業 Facebook 直播拍賣收單工具，幫助您更輕鬆地進行直播互動和收取訂單",
+    "items": {
+      "title": "koo.live 帳號連接",
+      "description": "登入並連接帳號，將您的商品資料傳送至 koo.live，koo.live 將在直播中協助商品併單，並傳送購物車連結供消費者進行結帳。",
+      "login": "登入並連接"
+    }
+  },
+  "line": {
     "title": "LINE 整合功能",
     "description": "配合您的 LINE developer 帳號設定後，串接 LINE 註冊及登入功能",
     "tooltip": "如何啟用 Line 註冊與登入",
@@ -33,11 +42,11 @@
       "title": "Line 註冊與登入",
       "description": "啟用後提供顧客使用 LINE 帳號一鍵註冊、登入您的網店成為會員，不需經過繁複的註冊程序，提供便利的購物體驗"
     },
-    "channelId":{
+    "channelId": {
       "title": "Channel ID",
       "placeholder": "請輸入 Channel ID"
     },
-    "channelSecret":{
+    "channelSecret": {
       "title": "Channel Secret",
       "placeholder": "請輸入 Channel secret"
     }

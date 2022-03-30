@@ -25,6 +25,15 @@
       "placeholder": "Secret d'application Facebook"
     }
   },
+  "koodata": {
+    "title": "Koo.live vente en direct petite assistante",
+    "description": "Outils de vente aux enchères professionnels Facebook pour vous aider à faire des interactions et des commandes de collecte en direct plus facilement",
+    "items": {
+      "title": "Connexion de compte koo.live",
+      "description": "Connectez-vous et connectez-vous au compte, transférez vos informations sur le produit à Koo.Live, Koo.Live aidera l'article dans Live in Live et transférer le lien de panier pour les consommateurs.",
+      "login": "Connectez-vous et connectez-vous"
+    }
+  },
   "line": {
     "title": "Fonction d'intégration de ligne",
     "description": "Après avoir configuré avec votre compte de développeur de ligne, votre inscription de la ligne série et votre fonction de connexion",

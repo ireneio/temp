@@ -25,6 +25,15 @@
       "placeholder": "Rahasia Aplikasi Facebook"
     }
   },
+  "koodata": {
+    "title": "Penjualan Langsung Koo.Live Helper Kecil",
+    "description": "Alat lelang langsung Facebook profesional untuk membantu Anda membuat interaksi langsung dan pengumpulan lebih mudah",
+    "items": {
+      "title": "Koneksi akun koo.live.",
+      "description": "Masuk dan terhubung ke akun, transfer informasi produk Anda ke KOO.LIVE, KOO.LIVE AKAN MEMBANTU ITEM DI LANGSUNG DALAM LANGSUNG DAN Pindahkan hubungan keranjang belanja untuk konsumen.",
+      "login": "Login dan Connect."
+    }
+  },
   "line": {
     "title": "Fungsi integrasi garis",
     "description": "Setelah mengatur dengan akun pengembang LINE Anda, pendaftaran baris serial dan fungsi login",

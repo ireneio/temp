@@ -25,6 +25,15 @@
       "placeholder": "Facebook App Secret"
     }
   },
+  "koodata": {
+    "title": "Koo.live live sale small helper",
+    "description": "Professional Facebook live auction tools to help you make live interaction and collection orders more easily",
+    "items": {
+      "title": "Koo.live account connection",
+      "description": "Log in and connect to the account, transfer your product information to Koo.Live, Koo.Live will assist the item in live in live and transfer the shopping cart linkage for consumers.",
+      "login": "Login and connect"
+    }
+  },
   "line": {
     "title": "LINE integration function",
     "description": "After setting up with your Line Developer account, serial LINE registration and login function",

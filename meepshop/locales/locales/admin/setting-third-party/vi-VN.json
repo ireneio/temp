@@ -25,6 +25,15 @@
       "placeholder": "Bí mật ứng dụng Facebook"
     }
   },
+  "koodata": {
+    "title": "Koo.live trực tiếp bán người trợ giúp nhỏ",
+    "description": "Công cụ đấu giá Facebook trực tiếp chuyên nghiệp để giúp bạn thực hiện các lệnh tương tác trực tiếp và bộ sưu tập dễ dàng hơn",
+    "items": {
+      "title": "Kết nối tài khoản koo.live.",
+      "description": "Đăng nhập và kết nối với tài khoản, chuyển thông tin sản phẩm của bạn sang Koo.Live, Koo.Live sẽ hỗ trợ vật phẩm trực tiếp và chuyển giao liên kết giỏ hàng cho người tiêu dùng.",
+      "login": "Đăng nhập và kết nối"
+    }
+  },
   "line": {
     "title": "Chức năng tích hợp dòng",
     "description": "Sau khi thiết lập với tài khoản nhà phát triển dòng của bạn, đăng ký dòng nối tiếp và chức năng đăng nhập",

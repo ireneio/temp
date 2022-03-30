@@ -25,6 +25,15 @@
       "placeholder": "Secreto de la aplicación de Facebook"
     }
   },
+  "koodata": {
+    "title": "Koo.live venta en vivo pequeño ayudante",
+    "description": "Herramientas profesionales de la subasta en vivo de Facebook para ayudarlo a hacer una interacción en vivo y las órdenes de recolección más fácilmente",
+    "items": {
+      "title": "Conexión de cuenta koo.Live",
+      "description": "Inicie sesión y conecte a la cuenta, transfiera la información de su producto a koo.live, koo.live ayudará al artículo en vivo en vivo y transferirá el enlace del carrito de la compra para los consumidores.",
+      "login": "Iniciar sesión y conectar"
+    }
+  },
   "line": {
     "title": "Función de integración de línea",
     "description": "Después de configurar con su cuenta de desarrollador de línea, registro de línea serie y función de inicio de sesión",

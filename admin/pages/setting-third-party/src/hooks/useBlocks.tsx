@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import { filter } from 'graphql-anywhere';
 
 import {
+  adminSettingThirdPartyKoolive,
   adminSettingThirdPartyEcfit,
   adminSettingThirdPartyFacebook,
   adminSettingThirdPartyLine,
@@ -13,6 +14,7 @@ import FaceBook from '../Facebook';
 import Line from '../Line';
 import Ecfit from '../Ecfit';
 import GoogleAnalytics from '../GaViewId';
+import KooLive from '../KooLive';
 
 // graphql typescript
 import { useBlocksFragment as useBlocksFragmentType } from '@meepshop/types/gqls/admin';
@@ -33,7 +35,6 @@ interface BlockType {
 }
 
 // definition
-
 export default (store: useBlocksFragmentType | null): BlockType[] =>
   useMemo(
     () =>
@@ -50,6 +51,14 @@ export default (store: useBlocksFragmentType | null): BlockType[] =>
             />
           ),
         },
+        !store?.kooLiveEnabled
+          ? null
+          : {
+              key: 'koodata',
+              src: adminSettingThirdPartyKoolive,
+              useToggle: false,
+              component: <KooLive cname={store.cname} />,
+            },
         {
           key: 'line',
           src: adminSettingThirdPartyLine,
