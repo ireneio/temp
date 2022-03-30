@@ -4,17 +4,17 @@
   "description": "Affiliate program statistics page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.162",
+  "version": "0.80.163",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/header": "^0.80.162",
-    "@admin/table": "^0.80.162",
+    "@admin/header": "^0.80.163",
+    "@admin/table": "^0.80.163",
     "@admin/tooltip": "^0.80.158",
-    "@meepshop/context": "^0.80.158",
+    "@meepshop/context": "^0.80.163",
     "@meepshop/icons": "^0.80.158",
-    "@meepshop/link": "^0.80.158",
-    "@meepshop/locales": "^0.80.162",
+    "@meepshop/link": "^0.80.163",
+    "@meepshop/locales": "^0.80.163",
     "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "affiliate program statistics"]

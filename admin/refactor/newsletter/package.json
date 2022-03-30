@@ -4,12 +4,12 @@
   "description": "Admin refactor newsletter",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.162",
+  "version": "0.80.163",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/hooks": "^0.80.158",
-    "@admin/newsletter": "^0.80.162"
+    "@admin/newsletter": "^0.80.163"
   },
   "keywords": ["admin", "newsletter", "refactor"]
 }
