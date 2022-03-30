@@ -4,12 +4,12 @@
   "description": "Admin plan setting page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.158",
+  "version": "0.80.162",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/plan": "^0.80.158",
-    "@meepshop/locales": "^0.80.158"
+    "@admin/plan": "^0.80.162",
+    "@meepshop/locales": "^0.80.162"
   },
   "keywords": ["admin", "plan", "setting"]
 }

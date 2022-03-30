@@ -4,16 +4,16 @@
   "description": "setting for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.161",
+  "version": "0.80.162",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/apollo": "^0.80.158",
-    "@admin/header": "^0.80.161",
+    "@admin/apollo": "^0.80.162",
+    "@admin/header": "^0.80.162",
     "@admin/hooks": "^0.80.158",
     "@meepshop/icons": "^0.80.158",
     "@meepshop/link": "^0.80.158",
-    "@meepshop/locales": "^0.80.158"
+    "@meepshop/locales": "^0.80.162"
   },
   "keywords": ["admin", "setting"]
 }
