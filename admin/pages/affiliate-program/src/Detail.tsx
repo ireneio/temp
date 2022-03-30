@@ -152,6 +152,9 @@ export default React.memo(({ affiliateProgramId }: PropsType) => {
                 visible={visible}
                 products={affiliateProgram?.products}
                 onCancel={() => setVisible(false)}
+                limit={200}
+                sortDisabled
+                searchDisabled
               />
             </>
           )}

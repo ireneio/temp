@@ -13,7 +13,7 @@ export interface ComponentProps
     QueryResult<getProductsType, getProductsVariablesType>,
     'variables' | 'refetch' | 'fetchMore'
   > {
-  step: 'search' | 'sort';
+  step: 'search' | 'sort' | 'overview';
 }
 
 // definition

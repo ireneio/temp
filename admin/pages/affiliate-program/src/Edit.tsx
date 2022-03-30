@@ -290,7 +290,7 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
                   rules={[
                     {
                       required: true,
-                      message: t('valdiate.products-empty'),
+                      message: t('validate.products-empty'),
                     },
                   ]}
                   validateTrigger="onChange"

@@ -44,6 +44,9 @@ import { useProductsColumnsFragment } from './gqls/useProductsColumns';
 export interface PropsType {
   visible: boolean;
   products?: useProductsColumnsFragmentType[];
+  limit?: number;
+  sortDisabled?: boolean;
+  searchDisabled?: boolean;
   onCancel?: () => void;
   onChange?: (products: useProductsColumnsFragmentType[]) => void;
 }
@@ -53,6 +56,9 @@ export default React.memo(
   ({
     visible,
     products,
+    limit = 10,
+    sortDisabled = false,
+    searchDisabled = false,
     onChange = emptyFunction,
     onCancel = emptyFunction,
   }: PropsType) => {
@@ -82,7 +88,12 @@ export default React.memo(
       ssr: false,
       notifyOnNetworkStatusChange: true,
     });
-    const columns = useProductsColumns({ step, selected, setSelected });
+    const columns = useProductsColumns({
+      step,
+      selected,
+      setSelected,
+      searchDisabled,
+    });
     const changeProductsPage = useChangeProductsPage({
       products: filter(
         useChangeProductsPageFragment,
@@ -96,8 +107,9 @@ export default React.memo(
     const current = adminProducts?.pageInfo.currentInfo.current || 0;
 
     useEffect(() => {
-      setStep(!products?.length ? 'search' : 'sort');
-    }, [visible, products]);
+      if (!products?.length && !searchDisabled) setStep('search');
+      else setStep(sortDisabled ? 'overview' : 'sort');
+    }, [visible, products, sortDisabled, searchDisabled]);
 
     return (
       <Modal
@@ -135,7 +147,7 @@ export default React.memo(
           loading={loading}
           columns={columns}
           pagination={false}
-          rowSelection={step === 'sort' ? undefined : rowSelection}
+          rowSelection={step !== 'search' ? undefined : rowSelection}
           components={
             step !== 'sort'
               ? undefined
@@ -174,6 +186,9 @@ export default React.memo(
 
         <Footer
           selectedLength={selected.length}
+          limit={limit}
+          sortDisabled={sortDisabled}
+          searchDisabled={searchDisabled}
           current={current}
           total={adminProducts?.total || 0}
           changeProductsPage={changeProductsPage}

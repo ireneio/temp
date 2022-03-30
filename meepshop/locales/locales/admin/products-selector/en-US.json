@@ -1,11 +1,13 @@
 {
   "empty": {
     "search": "Check no goods",
-    "sort": "Free goods"
+    "sort": "Free goods",
+    "overview": "Free goods"
   },
   "title": {
     "search": "Select goods",
-    "sort": "Selected item"
+    "sort": "Selected item",
+    "overview": "Selected item"
   },
   "search-placeholder": "Enter the product name or number",
   "select-placeholder": "Enter or choose labels",
@@ -13,7 +15,7 @@
   "tag-condition": "Search condition",
   "strict": "Compliance with all labels",
   "non-strict": "Meet any label",
-  "limit-tip": "Add goods to choose the upper limit of 10, please adjust the quantity",
+  "limit-tip": "Add goods to choose the upper limit of {{ limit }}, please adjust the quantity",
   "go-to-search": "Change item",
   "chosen": "Item has been selected",
   "clear": "Clear",

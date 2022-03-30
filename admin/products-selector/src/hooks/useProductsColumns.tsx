@@ -16,7 +16,10 @@ import styles from '../styles/useProductsColumns.less';
 import { format } from '../utils';
 
 // graphql typescript
-import { useProductsColumnsFragment as useProductsColumnsFragmentType } from '@meepshop/types/gqls/admin';
+import {
+  useProductsColumnsFragment as useProductsColumnsFragmentType,
+  useProductsColumnsFragment_variants as useProductsColumnsFragmentVariantsType,
+} from '@meepshop/types/gqls/admin';
 
 // definition
 const DragHandle = SortableHandle(() => <DragIcon />);
@@ -25,10 +28,12 @@ export default ({
   step,
   selected,
   setSelected,
+  searchDisabled,
 }: {
   step: ComponentProps['step'];
   selected: useProductsColumnsFragmentType[];
   setSelected: (products: useProductsColumnsFragmentType[]) => void;
+  searchDisabled: boolean;
 }): ColumnProps<useProductsColumnsFragmentType>[] => {
   const { t } = useTranslation('products-selector');
   const remove = useCallback(
@@ -37,17 +42,21 @@ export default ({
   );
 
   return useMemo(() => {
-    if (step === 'sort')
+    if (step !== 'search')
       return [
-        {
-          dataIndex: ['drag'],
-          width: 36,
-          className: styles.drag,
-          render: () => <DragHandle />,
-        },
+        ...(step === 'overview'
+          ? []
+          : [
+              {
+                dataIndex: ['drag'],
+                width: 36,
+                className: styles.drag,
+                render: () => <DragHandle />,
+              },
+            ]),
         {
           dataIndex: ['index'],
-          title: t('index'),
+          title: step === 'overview' ? null : t('index'),
           width: 36,
           align: 'center',
           className: styles.index,
@@ -94,14 +103,20 @@ export default ({
             },
           }),
         },
-        {
-          dataIndex: ['variants', '0', 'stock'],
-          title: t('stock'),
-          width: 54,
-          align: 'center',
-          className: styles.number,
-          render: value => (!value ? t('no-stock') : format(value)),
-        },
+        ...(step === 'overview'
+          ? []
+          : [
+              {
+                dataIndex: ['variants', '0', 'stock'],
+                title: t('stock'),
+                width: 54,
+                align: 'center' as const,
+                className: styles.number,
+                render: (
+                  value: useProductsColumnsFragmentVariantsType['stock'],
+                ) => (!value ? t('no-stock') : format(value)),
+              },
+            ]),
         {
           dataIndex: ['variants', '0', 'retailPrice'],
           title: t('price'),
@@ -110,12 +125,18 @@ export default ({
           className: styles.number,
           render: value => `$${format(value)}`,
         },
-        {
-          dataIndex: ['id'],
-          width: 43,
-          className: styles.remove,
-          render: id => <CloseOutlined onClick={() => remove(id)} />,
-        },
+        ...(searchDisabled
+          ? []
+          : [
+              {
+                dataIndex: ['id'],
+                width: 43,
+                className: styles.remove,
+                render: (id: useProductsColumnsFragmentType['id']) => (
+                  <CloseOutlined onClick={() => remove(id)} />
+                ),
+              },
+            ]),
       ];
 
     return [
@@ -159,5 +180,5 @@ export default ({
         }),
       },
     ];
-  }, [remove, step, t]);
+  }, [remove, step, searchDisabled, t]);
 };

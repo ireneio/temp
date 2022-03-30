@@ -31,11 +31,9 @@ export default React.memo(
       <div className={styles.root}>
         <div>{t(`title.${step}`)}</div>
 
-        <div
-          className={`${styles.filter} ${step === 'sort' ? styles.sort : ''}`}
-        >
+        <div className={`${styles.filter} ${styles[step]}`}>
           <Search
-            className={styles.search}
+            className={styles.searchInput}
             onChange={({ target: { value } }) => {
               if (timeoutRef.current) clearTimeout(timeoutRef.current);
 

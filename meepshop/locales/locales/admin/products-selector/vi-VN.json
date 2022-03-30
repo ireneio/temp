@@ -1,11 +1,13 @@
 {
   "empty": {
     "search": "Kiểm tra không có hàng hóa",
-    "sort": "Hàng miễn phí"
+    "sort": "Hàng miễn phí",
+    "overview": "Hàng miễn phí"
   },
   "title": {
     "search": "Chọn hàng",
-    "sort": "Chọn mục"
+    "sort": "Chọn mục",
+    "overview": "Chọn mục"
   },
   "search-placeholder": "Nhập tên sản phẩm hoặc số",
   "select-placeholder": "Nhập hoặc chọn nhãn",
@@ -13,7 +15,7 @@
   "tag-condition": "Điều kiện tìm kiếm",
   "strict": "Tuân thủ tất cả các nhãn",
   "non-strict": "Gặp bất kỳ nhãn nào",
-  "limit-tip": "Thêm hàng hóa để chọn giới hạn trên của 10, vui lòng điều chỉnh số lượng",
+  "limit-tip": "Thêm hàng hóa để chọn giới hạn trên của {{ limit }}, vui lòng điều chỉnh số lượng",
   "go-to-search": "Thay đổi hạng mục",
   "chosen": "Mục đã được chọn",
   "clear": "Sạch",

@@ -17,6 +17,9 @@ import styles from './styles/footer.less';
 // typescript definition
 interface PropsType extends Pick<ComponentProps, 'step'> {
   selectedLength: number;
+  limit: number;
+  sortDisabled: boolean;
+  searchDisabled: boolean;
   current: number;
   total: number;
   changeProductsPage: (current: number) => void;
@@ -29,6 +32,9 @@ interface PropsType extends Pick<ComponentProps, 'step'> {
 export default React.memo(
   ({
     selectedLength,
+    limit,
+    sortDisabled,
+    searchDisabled,
     current,
     total,
     changeProductsPage,
@@ -57,24 +63,24 @@ export default React.memo(
           <div>
             <ExclamationCircleOutlined />
 
-            {t('limit-tip')}
+            {t('limit-tip', { limit })}
           </div>
         </div>
 
-        {step !== 'sort' ? null : (
-          <Button onClick={() => setStep('search')}>
+        {step === 'search' ? null : (
+          <Button onClick={() => setStep('search')} disabled={searchDisabled}>
             <LeftOutlined />
             {t('go-to-search')}
           </Button>
         )}
 
         <div className={styles.selected}>
-          <span className={selectedLength > 10 ? styles.highlight : ''}>
+          <span className={selectedLength > limit ? styles.highlight : ''}>
             {selectedLength}
           </span>
-          <span>/10</span>
+          <span>/{limit}</span>
           <span>{t('chosen')}</span>
-          {!selectedLength || step === 'sort' ? null : (
+          {!selectedLength || step !== 'search' ? null : (
             <span className={styles.clear} onClick={clear}>
               {t('clear')}
             </span>
@@ -107,14 +113,17 @@ export default React.memo(
           <Button
             type="primary"
             onClick={() => {
-              if (selectedLength > 10) setShowTip(true);
+              if (selectedLength > limit) setShowTip(true);
               else confirm();
             }}
           >
             {t('confirm')}
           </Button>
         ) : (
-          <Button type="primary" onClick={() => setStep('sort')}>
+          <Button
+            type="primary"
+            onClick={() => setStep(sortDisabled ? 'overview' : 'sort')}
+          >
             {t('check')}
             <RightOutlined />
           </Button>

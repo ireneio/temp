@@ -31,6 +31,8 @@ export default React.memo(({ value, ...props }: PropsType) => {
         visible={visible}
         products={value}
         onCancel={() => setVisible(false)}
+        limit={200}
+        sortDisabled
       />
     </>
   );
