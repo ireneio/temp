@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 0.80.162 (2022-03-30)
+
+#### :rocket: New Feature
+
+- [#2244](https://github.com/meepshop/meep-lerna/pull/2244) 【BUG】後台 - 無法選取 200 項商品 ([@HsuTing](https://github.com/HsuTing))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#2230](https://github.com/meepshop/meep-lerna/pull/2230) 【BUG】前台 - 切換商品列表頁數，無滑至商品列表頁頭 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#2243](https://github.com/meepshop/meep-lerna/pull/2243) 【BUG】後台 - 績效報表切版問題 & 標題與 UI 不相符 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `store`
+  - [#2207](https://github.com/meepshop/meep-lerna/pull/2207) 內部開單 - 修正 getExpiringPoints 行為 ([@Lexiwu](https://github.com/Lexiwu))
+- Other
+  - [#2240](https://github.com/meepshop/meep-lerna/pull/2240) 內部開單 - 移除不必要的 code ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.161 (2022-03-29)
 
 #### :rocket: New Feature
