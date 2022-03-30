@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.164 (2022-03-30)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#2245](https://github.com/meepshop/meep-lerna/pull/2245) (@meepshop/meep-ui): fix product search ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.163 (2022-03-30)
 
 #### :rocket: New Feature
