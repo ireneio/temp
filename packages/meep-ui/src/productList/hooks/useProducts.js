@@ -118,24 +118,22 @@ export default ({
   const { data, loading } = useQuery(getProducts, { variables });
 
   useEffect(() => {
-    if (
-      prevVariables &&
-      data?.computeProductList?.data &&
-      !areEqual(prevVariables, variables)
-    ) {
+    if (prevVariables && !areEqual(prevVariables, variables)) {
       const dom = document.getElementById(id);
 
       setTimeout(() => {
         if (dom) dom.scrollIntoView({ behavior: 'smooth' });
       }, 500);
-
-      if (search)
-        adTrack.search({
-          searchString: search,
-          products: data.computeProductList.data,
-        });
     }
-  }, [id, adTrack, variables, data, search, prevVariables]);
+  }, [id, prevVariables, variables]);
+
+  useEffect(() => {
+    if (search)
+      adTrack.search({
+        searchString: search,
+        products: data.computeProductList.data,
+      });
+  }, [adTrack, search, data]);
 
   return {
     data: useMemo(() => {
