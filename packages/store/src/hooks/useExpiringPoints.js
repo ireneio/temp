@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePrevious } from 'react-use';
 import { useQuery } from '@apollo/client';
 import { getUnixTime, addDays } from 'date-fns';
@@ -10,9 +10,11 @@ import { getExpiringPoints } from '../gqls/useExpiringPoints';
 
 export default () => {
   const { t } = useTranslation('common');
+  const expireByTimeRef = useRef(getUnixTime(addDays(new Date(), 30)));
   const { data } = useQuery(getExpiringPoints, {
+    ssr: false,
     variables: {
-      expireBy: getUnixTime(addDays(new Date(), 30)),
+      expireBy: expireByTimeRef.current,
     },
   });
   const role = data?.viewer?.role;
