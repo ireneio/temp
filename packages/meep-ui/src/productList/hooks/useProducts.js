@@ -115,7 +115,16 @@ export default ({
     return output;
   }, [sort, size, offset, ids, search, tags, price, includedAllTags]);
   const prevVariables = usePrevious(variables);
-  const { data, loading } = useQuery(getProducts, { variables });
+  const { data, loading } = useQuery(getProducts, {
+    variables,
+    onCompleted: newData => {
+      if (search && newData?.computeProductList?.data)
+        adTrack.search({
+          searchString: search,
+          products: newData.computeProductList.data,
+        });
+    },
+  });
 
   useEffect(() => {
     if (prevVariables && !areEqual(prevVariables, variables)) {
@@ -126,14 +135,6 @@ export default ({
       }, 500);
     }
   }, [id, prevVariables, variables]);
-
-  useEffect(() => {
-    if (search)
-      adTrack.search({
-        searchString: search,
-        products: data.computeProductList.data,
-      });
-  }, [adTrack, search, data]);
 
   return {
     data: useMemo(() => {
