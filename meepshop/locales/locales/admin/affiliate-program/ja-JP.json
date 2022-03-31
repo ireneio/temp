@@ -69,7 +69,7 @@
       "home": "ホームプロモーションの例",
       "products": "製品ページPromationの例"
     },
-    "copied": "\"?ref={{promoCode}}\"",
+    "copied": "\"{{promoCode}}\"",
     "tooltip": "パラメータをコピーする"
   },
   "create": {

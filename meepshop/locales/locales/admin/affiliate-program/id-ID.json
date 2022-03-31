@@ -69,7 +69,7 @@
       "home": "Home Promotion Contoh.",
       "products": "Contoh Halaman Produk Promosi"
     },
-    "copied": "Direproduksi \"?ref={{promoCode}}\"",
+    "copied": "Direproduksi \"{{promoCode}}\"",
     "tooltip": "Salin Parameter"
   },
   "create": {

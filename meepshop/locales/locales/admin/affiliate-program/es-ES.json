@@ -69,7 +69,7 @@
       "home": "Ejemplo de promoción del hogar",
       "products": "Página del producto Ejemplo de promoción"
     },
-    "copied": "Reproducido \"?ref={{promoCode}}\"",
+    "copied": "Reproducido \"{{promoCode}}\"",
     "tooltip": "Copiar parámetros"
   },
   "create": {

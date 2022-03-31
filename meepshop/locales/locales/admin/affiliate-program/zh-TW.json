@@ -69,7 +69,7 @@
       "home": "首頁推廣範例",
       "products": "商品頁推廣範例"
     },
-    "copied": "已複製 “?ref={{promoCode}}”",
+    "copied": "已複製 “{{promoCode}}”",
     "tooltip": "複製參數"
   },
   "create": {

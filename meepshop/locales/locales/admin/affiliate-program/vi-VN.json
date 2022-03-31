@@ -69,7 +69,7 @@
       "home": "Trang chủ Khuyến mãi Ví dụ.",
       "products": "Trang sản phẩm Ví dụ khuyến mãi"
     },
-    "copied": "Tái sản xuất \"?ref={{promoCode}}\"",
+    "copied": "Tái sản xuất \"{{promoCode}}\"",
     "tooltip": "Sao chép thông số"
   },
   "create": {

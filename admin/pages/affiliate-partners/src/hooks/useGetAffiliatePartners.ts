@@ -2,7 +2,7 @@
 import { QueryResult } from '@apollo/client';
 
 // import
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 
 // graphql typescript
@@ -40,6 +40,65 @@ export default (): Pick<
   >(setAffiliatePartnersCurrent);
   const affiliatePartners = data?.viewer?.affiliatePartners || null;
   const current = affiliatePartners?.pageInfo.currentInfo.current || 0;
+  const onChange = useCallback(
+    (newCurrent: number) => {
+      if (loading || !affiliatePartners) return;
+
+      if (
+        newCurrent < current ||
+        Math.ceil(affiliatePartners.edges.length / 10) - 1 > current
+      ) {
+        setCurrent({
+          variables: {
+            input: { pageId: 'affiliate-partners', current: newCurrent },
+          },
+        });
+        return;
+      }
+
+      fetchMore({
+        variables: {
+          after: affiliatePartners?.pageInfo.endCursor,
+        },
+        updateQuery: (previousResult, { fetchMoreResult }) =>
+          !fetchMoreResult?.viewer?.affiliatePartners
+            ? previousResult
+            : {
+                ...previousResult,
+                viewer: {
+                  ...previousResult.viewer,
+                  affiliatePartners: {
+                    ...previousResult.viewer?.affiliatePartners,
+                    edges: [
+                      ...(previousResult.viewer?.affiliatePartners?.edges ||
+                        []),
+                      ...fetchMoreResult.viewer.affiliatePartners.edges,
+                    ],
+                    pageInfo: {
+                      ...fetchMoreResult.viewer.affiliatePartners.pageInfo,
+                      currentInfo: {
+                        ...fetchMoreResult.viewer.affiliatePartners.pageInfo
+                          .currentInfo,
+                        __typename: 'CurrentInfo',
+                        current: newCurrent,
+                      },
+                    },
+                    total: fetchMoreResult.viewer.affiliatePartners.total,
+                  },
+                },
+              },
+      });
+    },
+    [affiliatePartners, current, fetchMore, loading, setCurrent],
+  );
+
+  useEffect(() => {
+    if (
+      affiliatePartners &&
+      Math.ceil(affiliatePartners.edges.length / 10) - 1 < current
+    )
+      onChange(current);
+  }, [affiliatePartners, current, onChange]);
 
   return {
     loading,
@@ -51,56 +110,6 @@ export default (): Pick<
         affiliatePartners.total === 0,
     ),
     current,
-    onChange: useCallback(
-      (newCurrent: number) => {
-        if (loading || newCurrent === current || !affiliatePartners) return;
-
-        if (
-          newCurrent < current ||
-          Math.ceil(affiliatePartners.edges.length / 10) - 1 > current
-        ) {
-          setCurrent({
-            variables: {
-              input: { pageId: 'affiliate-partners', current: newCurrent },
-            },
-          });
-          return;
-        }
-
-        fetchMore({
-          variables: {
-            after: affiliatePartners?.pageInfo.endCursor,
-          },
-          updateQuery: (previousResult, { fetchMoreResult }) =>
-            !fetchMoreResult?.viewer?.affiliatePartners
-              ? previousResult
-              : {
-                  ...previousResult,
-                  viewer: {
-                    ...previousResult.viewer,
-                    affiliatePartners: {
-                      ...previousResult.viewer?.affiliatePartners,
-                      edges: [
-                        ...(previousResult.viewer?.affiliatePartners?.edges ||
-                          []),
-                        ...fetchMoreResult.viewer.affiliatePartners.edges,
-                      ],
-                      pageInfo: {
-                        ...fetchMoreResult.viewer.affiliatePartners.pageInfo,
-                        currentInfo: {
-                          ...fetchMoreResult.viewer.affiliatePartners.pageInfo
-                            .currentInfo,
-                          __typename: 'CurrentInfo',
-                          current: newCurrent,
-                        },
-                      },
-                      total: fetchMoreResult.viewer.affiliatePartners.total,
-                    },
-                  },
-                },
-        });
-      },
-      [affiliatePartners, current, fetchMore, loading, setCurrent],
-    ),
+    onChange,
   };
 };
