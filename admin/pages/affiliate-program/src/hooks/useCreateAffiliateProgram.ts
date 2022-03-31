@@ -5,6 +5,7 @@ import { ValuesType } from './useProgramInitialValues';
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/client';
 import { formatISO } from 'date-fns';
+import omit from 'lodash.omit';
 
 import { useTranslation } from '@meepshop/locales';
 import message from '@admin/message';
@@ -46,7 +47,7 @@ export default (
       await mutation({
         variables: {
           input: {
-            ...values,
+            ...omit(values, ['endAtDisabled']),
             startAt: formatISO(startAt),
             endAt: !endAt ? null : formatISO(endAt),
             allProducts: productsType === 'all',

@@ -37,41 +37,43 @@ export default (initialAffiliatePartnerId: string | null): PartnersType => {
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(
     setTimeout(emptyFunction, 0),
   );
+  const search = useCallback(
+    (value?: string) => {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(async () => {
+        const { data: partnersData } = await client.query<
+          searchPartnersType,
+          searchPartnersVariablesType
+        >({
+          query: searchPartners,
+          variables: {
+            filter: !value
+              ? null
+              : {
+                  searchTerm: value,
+                },
+          },
+        });
+
+        setPartners(
+          (partnersData?.viewer?.affiliatePartners?.edges || []).map(
+            ({ node }) => node,
+          ),
+        );
+      }, 500);
+    },
+    [client, setPartners],
+  );
 
   useEffect(() => {
     const affiliatePartner = data?.viewer?.affiliatePartner;
 
     if (affiliatePartner) setPartners([affiliatePartner]);
-  }, [initialAffiliatePartnerId, data, setPartners]);
+    else search();
+  }, [initialAffiliatePartnerId, data, setPartners, search]);
 
   return {
     partners,
-    searchPartners: useCallback(
-      value => {
-        if (!value) return;
-
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = setTimeout(async () => {
-          const { data: partnersData } = await client.query<
-            searchPartnersType,
-            searchPartnersVariablesType
-          >({
-            query: searchPartners,
-            variables: {
-              filter: {
-                searchTerm: value,
-              },
-            },
-          });
-
-          setPartners(
-            (partnersData?.viewer?.affiliatePartners?.edges || []).map(
-              ({ node }) => node,
-            ),
-          );
-        }, 500);
-      },
-      [client, setPartners],
-    ),
+    searchPartners: search,
   };
 };

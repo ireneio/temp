@@ -335,11 +335,13 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
               },
             ]}
           >
-            <InputNumber
+            <InputNumber<string>
               className={styles.commissionRate}
               formatter={value => `${value}%`}
               parser={value => value?.replace('%', '').replace('.', '') || ''}
               disabled={!isAdd}
+              max="100"
+              min="1"
             />
           </FormItem>
 
