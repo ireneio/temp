@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.80.165 (2022-04-01)
+
+#### :bug: Bug Fix
+
+- [#2250](https://github.com/meepshop/meep-lerna/pull/2250) 【BUG】前台分潤訂單未更新進入後台的績效報表 ([@HsuTing](https://github.com/HsuTing))
+- [#2246](https://github.com/meepshop/meep-lerna/pull/2246) 【BUG】分潤測試 - 推廣活動與分潤 /affiliate/programs - UI ([@HsuTing](https://github.com/HsuTing))
+- [#2248](https://github.com/meepshop/meep-lerna/pull/2248) (@admin/affiliate-\*) Fix load pages ([@HsuTing](https://github.com/HsuTing))
+- [#2247](https://github.com/meepshop/meep-lerna/pull/2247) (@admin/affiliate-program) Fix search and create ([@HsuTing](https://github.com/HsuTing))
+- [#2241](https://github.com/meepshop/meep-lerna/pull/2241) 【BUG】分潤系統驗收測試：@BasicFlow6.3 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- `meep-ui`, `store`
+  - [#2236](https://github.com/meepshop/meep-lerna/pull/2236) 內部開單 - wrap filter with memoizee ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.164 (2022-03-30)
 
 #### :bug: Bug Fix
