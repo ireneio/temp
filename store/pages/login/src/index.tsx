@@ -6,7 +6,6 @@ import React, { useEffect, useState, useContext, useRef } from 'react';
 import { useQuery } from '@apollo/client';
 import { Radio, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 
 import { useTranslation } from '@meepshop/locales';
@@ -16,6 +15,7 @@ import {
   Role as RoleContext,
 } from '@meepshop/context';
 import DraftText from '@meepshop/draft-text';
+import filter from '@meepshop/utils/lib/filter';
 
 import Form from './Form';
 import { SIGNUP, LOGIN, SHOPPER } from './constants';

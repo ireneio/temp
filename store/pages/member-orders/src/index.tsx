@@ -1,7 +1,6 @@
 // import
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import {
   LeftOutlined,
   LoadingOutlined,
@@ -12,6 +11,7 @@ import { emptyFunction } from 'fbjs';
 import transformColor from 'color';
 
 import { Colors as ColorsContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import { getMobileStyles } from './MobileColumn';
 import styles from './styles/index.less';

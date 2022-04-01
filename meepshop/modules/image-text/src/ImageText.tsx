@@ -1,9 +1,9 @@
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 
 import Image from '@meepshop/image';
+import filter from '@meepshop/utils/lib/filter';
 
 import styles from './styles/index.less';
 

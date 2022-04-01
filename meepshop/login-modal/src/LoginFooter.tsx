@@ -2,7 +2,6 @@
 import React, { useState, useContext } from 'react';
 import { useQuery } from '@apollo/client';
 import { Button, Divider } from 'antd';
-import { filter } from 'graphql-anywhere';
 
 import { Colors as ColorsContext, Fb as FbContext } from '@meepshop/context';
 import DraftText from '@meepshop/draft-text';
@@ -10,6 +9,7 @@ import { FbLoginIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
 import Line from '@meepshop/line';
+import filter from '@meepshop/utils/lib/filter';
 
 import styles from './styles/loginFooter.less';
 

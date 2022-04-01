@@ -32,6 +32,15 @@ export default React.memo(({ children }) => {
     };
   }, [data]);
   const { onLoad, fb } = useFb(appId, version);
+  const value = useMemo(
+    () => ({
+      fb,
+      appId,
+      version,
+      isLoginEnabled,
+    }),
+    [appId, fb, isLoginEnabled],
+  );
 
   if (!data) return <Spin indicator={<LoadingOutlined spin />} />;
 
@@ -45,16 +54,7 @@ export default React.memo(({ children }) => {
           onLoad={onLoad}
         />
       )}
-      <FbContext.Provider
-        value={{
-          fb,
-          appId,
-          version,
-          isLoginEnabled,
-        }}
-      >
-        {children}
-      </FbContext.Provider>
+      <FbContext.Provider value={value}>{children}</FbContext.Provider>
     </>
   );
 });

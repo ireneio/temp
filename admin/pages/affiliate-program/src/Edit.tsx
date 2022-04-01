@@ -1,7 +1,6 @@
 // import
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import {
   Form,
   Button,
@@ -17,6 +16,7 @@ import range from 'lodash.range';
 
 import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
+import filter from '@meepshop/utils/lib/filter';
 import Header from '@admin/header';
 import Tooltip from '@admin/tooltip';
 import DatePicker from '@meepshop/date-picker';

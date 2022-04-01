@@ -1,10 +1,10 @@
 // import
 import React, { useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import Credit from './Credit';
 

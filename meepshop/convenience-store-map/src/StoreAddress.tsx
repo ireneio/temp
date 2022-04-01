@@ -4,7 +4,8 @@ import { ConvenienceStoresInputType } from './StoreList';
 
 // import
 import React, { useState } from 'react';
-import { filter } from 'graphql-anywhere';
+
+import filter from '@meepshop/utils/lib/filter';
 
 import AddressSelect from './AddressSelect';
 import StoreList from './StoreList';

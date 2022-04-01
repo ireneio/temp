@@ -1,10 +1,10 @@
 // import
 import React, { useState } from 'react';
-import { filter } from 'graphql-anywhere';
 import { DoubleLeftOutlined } from '@ant-design/icons';
 import { List } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import Record from './Record';
 import styles from './styles/index.less';

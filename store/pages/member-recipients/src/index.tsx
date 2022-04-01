@@ -1,9 +1,10 @@
 // import
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Table } from 'antd';
+
+import filter from '@meepshop/utils/lib/filter';
 
 import Form from './Form';
 import useColumns from './hooks/useColumns';

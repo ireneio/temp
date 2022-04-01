@@ -4,9 +4,9 @@ import { NextPage } from 'next';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 import Header from '@admin/header';
 
 import Affiliate from './Affiliate';

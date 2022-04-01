@@ -5,11 +5,11 @@ import { languageType } from '@meepshop/locales';
 
 // import
 import React, { useMemo, useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
 import Thumbnail from '@meepshop/thumbnail';
 import { Colors as ColorsContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import styles from '../styles/useColumns.less';
 

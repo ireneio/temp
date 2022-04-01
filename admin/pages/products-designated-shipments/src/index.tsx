@@ -4,7 +4,6 @@ import { NextPage } from 'next';
 // import
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { Input, Button, Tag, Popover } from 'antd';
 import { TagFilled } from '@ant-design/icons';
 
@@ -13,6 +12,7 @@ import Header from '@admin/header';
 import Table from '@admin/table';
 import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import { ShippingTruckFilledIcon } from '@meepshop/icons';
+import filter from '@meepshop/utils/lib/filter';
 
 import ApplicableShipmentsModal from './ApplicableShipmentsModal';
 import FilterProductTag from './FilterProductTag';

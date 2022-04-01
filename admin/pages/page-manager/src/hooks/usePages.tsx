@@ -3,9 +3,9 @@ import { QueryResult } from '@apollo/client';
 
 // import
 import React, { useMemo } from 'react';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 // graphql typescript
 import {

@@ -4,7 +4,6 @@ import { OptionsType } from './constants';
 // import
 import React, { useState, useContext } from 'react';
 import { Form, Button, Input, Divider } from 'antd';
-import { filter } from 'graphql-anywhere';
 
 import Line from '@meepshop/line';
 import { useTranslation } from '@meepshop/locales';
@@ -12,6 +11,7 @@ import { Colors as ColorsContext, Fb as FbContext } from '@meepshop/context';
 import { useValidateEmail } from '@meepshop/validator';
 import { FbLoginIcon } from '@meepshop/icons';
 import { useRouter } from '@meepshop/link';
+import filter from '@meepshop/utils/lib/filter';
 
 import useLogin from './hooks/useLogin';
 import { SIGNUP, FORGET_PSW } from './constants';

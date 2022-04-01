@@ -1,12 +1,12 @@
 // import
 import React, { useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import { Table, Skeleton } from 'antd';
 import transformColor from 'color';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 import { emptyCart_react as EmptyCart } from '@meepshop/images';
+import filter from '@meepshop/utils/lib/filter';
 
 import useProductColumns from './hooks/useProductColumns';
 import styles from './styles/products.less';

@@ -4,11 +4,11 @@ import { NextPage } from 'next';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { Radio, Badge } from 'antd';
 
 import Orders from '@admin/orders';
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import useEcfitColumns from './hooks/useEcfitColumns';
 import useInitVariables, { initVariables } from './hooks/useInitVariables';

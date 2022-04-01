@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { UpOutlined, DownOutlined } from '@ant-design/icons';
 import transformColor from 'color';
-import { filter } from 'graphql-anywhere';
 
 import { Colors as ColorsContext, Fb as FbContext } from '@meepshop/context';
 import Line from '@meepshop/line';
@@ -11,6 +10,7 @@ import DraftText from '@meepshop/draft-text';
 import { FbLoginIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/locales';
 import LoginModal from '@meepshop/login-modal';
+import filter from '@meepshop/utils/lib/filter';
 
 import styles from './styles/login.less';
 

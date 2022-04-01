@@ -1,6 +1,5 @@
 // import
 import React, { useContext, useRef, useEffect } from 'react';
-import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 import { Button } from 'antd';
 import { format } from 'date-fns';
@@ -9,6 +8,7 @@ import { useRouter } from '@meepshop/link';
 import { useAutoLinker } from '@meepshop/hooks';
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import useAddNewMessage from './hooks/useAddNewMessage';
 import styles from './styles/qa.less';

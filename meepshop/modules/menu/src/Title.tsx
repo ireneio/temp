@@ -1,10 +1,10 @@
 // import
 import React, { useState, useMemo } from 'react';
-import { filter } from 'graphql-anywhere';
 
 import Link from '@meepshop/link';
 import Switch from '@meepshop/switch';
 import { menuIconsPerson_scaledSrc as menuIconsPerson } from '@meepshop/images';
+import filter from '@meepshop/utils/lib/filter';
 
 import SearchBar from './SearchBar';
 import useTitle from './hooks/useTitle';

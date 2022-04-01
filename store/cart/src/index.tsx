@@ -5,9 +5,9 @@ import { NextPage } from 'next';
 import React, { useContext, useMemo } from 'react';
 import { Form } from 'antd';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 
 import { Role as RoleContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 import CheckoutSteps from '@store/checkout-steps';
 
 // Use to copy mixin.less

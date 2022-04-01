@@ -4,9 +4,9 @@ import { PropsType as AddButtonPropsType } from './AddButton';
 // import
 import React, { useContext } from 'react';
 import { Drawer } from 'antd';
-import { filter } from 'graphql-anywhere';
 
 import { Colors as ColorsContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import Title from './Title';
 import AddButton from './AddButton';

@@ -1,6 +1,5 @@
 // import
 import React, { useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import { Modal } from 'antd';
 import transformColor from 'color';
 
@@ -15,6 +14,7 @@ import ProductCollections from '@meepshop/product-collections';
 import ProductDraftText from '@meepshop/product-draft-text';
 import ProductSpecSelector from '@meepshop/product-spec-selector';
 import ProductVideo from '@meepshop/product-video';
+import filter from '@meepshop/utils/lib/filter';
 
 import useAddUpselling from './hooks/useAddUpselling';
 import useVariant from './hooks/useVariant';

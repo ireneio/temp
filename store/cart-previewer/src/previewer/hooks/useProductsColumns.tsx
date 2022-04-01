@@ -3,7 +3,6 @@ import { ColumnProps } from 'antd/lib/table';
 
 // import
 import React, { useMemo, useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import {
   TagOutlined,
   CloseOutlined,
@@ -20,6 +19,7 @@ import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Link from '@meepshop/link';
 import Switch from '@meepshop/switch';
 import Thumbnail from '@meepshop/thumbnail';
+import filter from '@meepshop/utils/lib/filter';
 
 import styles from '../styles/useProductsColumns.less';
 

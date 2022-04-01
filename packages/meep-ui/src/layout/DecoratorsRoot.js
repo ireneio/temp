@@ -1,7 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 
 import {
   Apps as AppsContext,
@@ -11,6 +10,7 @@ import {
 } from '@meepshop/context';
 import { useCart } from '@meepshop/hooks';
 import { useRouter } from '@meepshop/link';
+import filter from '@meepshop/utils/lib/filter';
 import withContext from '@store/utils/lib/withContext';
 
 import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';

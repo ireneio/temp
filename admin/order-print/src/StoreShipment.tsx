@@ -1,10 +1,10 @@
 // imoprt
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 import { Button } from 'antd';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import StoreShipmentDetail from './StoreShipmentDetail';
 import styles from './styles/storeShipment.less';

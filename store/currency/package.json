@@ -10,6 +10,7 @@
   "dependencies": {
     "@meepshop/context": "^0.80.163",
     "@meepshop/cookies": "^0.80.163",
+    "@meepshop/utils": "^0.80.163",
     "money": "^0.2.0"
   },
   "keywords": ["context", "currency", "store"]

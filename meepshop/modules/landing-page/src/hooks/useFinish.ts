@@ -7,7 +7,6 @@ import { UseComputeOrderType } from './useComputeOrder';
 import { useCallback, useContext } from 'react';
 import uuid from 'uuid/v4';
 import { notification } from 'antd';
-import { filter } from 'graphql-anywhere';
 
 import FormDataContext from '@meepshop/form-data';
 import useLink from '@meepshop/hooks/lib/useLink';
@@ -15,6 +14,7 @@ import { useRouter } from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { formatGmo } from '@meepshop/gmo-credit-card-form';
+import filter from '@meepshop/utils/lib/filter';
 
 import useCreateOrder from './useCreateOrder';
 

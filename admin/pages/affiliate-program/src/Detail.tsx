@@ -1,7 +1,6 @@
 // import
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { Button } from 'antd';
 import {
   DeleteOutlined,
@@ -14,6 +13,7 @@ import { format } from 'date-fns';
 import { useTranslation } from '@meepshop/locales';
 import { ChartIcon } from '@meepshop/icons';
 import Link from '@meepshop/link';
+import filter from '@meepshop/utils/lib/filter';
 import Header from '@admin/header';
 import Tooltip from '@admin/tooltip';
 import message from '@admin/message';

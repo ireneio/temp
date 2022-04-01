@@ -1,7 +1,6 @@
 // import
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { LoadingOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import { Spin, Button } from 'antd';
 import transformColor from 'color';
@@ -9,6 +8,7 @@ import transformColor from 'color';
 import { Colors as ColorsContext } from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
 import Link, { useRouter } from '@meepshop/link';
+import filter from '@meepshop/utils/lib/filter';
 import CheckoutSteps from '@store/checkout-steps';
 
 import OrderNotFound from './OrderNotFound';

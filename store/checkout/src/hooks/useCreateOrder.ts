@@ -4,9 +4,9 @@ import { MutationFunction, MutationFunctionOptions } from '@apollo/client';
 // import
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 
 import { useCart } from '@meepshop/hooks';
+import filter from '@meepshop/utils/lib/filter';
 
 // graphql typescript
 import {

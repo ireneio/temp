@@ -11,6 +11,7 @@
     "@meepshop/context": "^0.80.163",
     "@meepshop/locales": "^0.80.163",
     "@meepshop/thumbnail": "^0.80.163",
+    "@meepshop/utils": "^0.80.163",
     "@store/utils": "^0.80.163",
     "date-fns": "^2.15.0"
   },

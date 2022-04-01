@@ -8,6 +8,7 @@
   "dependencies": {
     "@meepshop/images": "^0.80.163",
     "lodash.mergewith": "^4.6.2",
+    "memoizee": "^0.4.15",
     "validator": "^13.5.2"
   },
   "keywords": ["meepshop", "utils"]

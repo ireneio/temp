@@ -1,12 +1,12 @@
 // import
 import React, { useContext, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Form, Input, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import useSubmitOrderRemittanceAdvice from './hooks/useSubmitOrderRemittanceAdvice';
 import useValidateSameMessage from './hooks/useValidateSameMessage';

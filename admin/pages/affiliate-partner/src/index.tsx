@@ -4,13 +4,13 @@ import { NextPage } from 'next';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { Form, Input, Button } from 'antd';
 import { areEqual } from 'fbjs';
 
 import { OpenUrlIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/locales';
 import { useValidateEmail } from '@meepshop/validator';
+import filter from '@meepshop/utils/lib/filter';
 import Link from '@meepshop/link';
 import Header from '@admin/header';
 import Tooltip from '@admin/tooltip';

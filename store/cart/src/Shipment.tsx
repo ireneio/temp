@@ -1,9 +1,9 @@
 // import
 import React from 'react';
 import { Form } from 'antd';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 import Radio from '@store/radio';
 import Alert from '@store/alert';
 

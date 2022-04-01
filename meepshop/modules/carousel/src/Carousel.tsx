@@ -4,11 +4,11 @@ import { CarouselProps, CarouselRef } from 'antd/lib/carousel';
 
 // import
 import React, { useEffect, useState } from 'react';
-import { filter } from 'graphql-anywhere';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { Carousel } from 'antd';
 
 import Image from '@meepshop/image';
+import filter from '@meepshop/utils/lib/filter';
 
 import { DEFAULT_IMAGES } from './constants';
 import styles from './styles/index.less';

@@ -4,11 +4,11 @@ import { NextPage } from 'next';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Form, Spin, Button, Switch } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 import Header from '@admin/header';
 import Block from '@admin/block';
 

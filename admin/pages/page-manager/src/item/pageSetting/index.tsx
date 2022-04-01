@@ -5,11 +5,11 @@ import useSelectedPageType from '../../hooks/useSelectedPage';
 
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 import { SettingOutlined } from '@ant-design/icons';
 import { Popover, Tooltip } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import Edit from './Edit';
 import usePageSettingItems from './hooks/usePageSettingItems';

@@ -1,11 +1,11 @@
 // import
 import React, { useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import { DownOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import transformColor from 'color';
 
 import { Colors as ColorsContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import Logo from './Logo';
 import MenuItem from './MenuItem';

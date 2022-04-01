@@ -5,9 +5,9 @@ import { ColumnProps } from 'antd/lib/table';
 import React, { useMemo } from 'react';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 import Tooltip from '@admin/tooltip';
 
 import Modal from '../Modal';

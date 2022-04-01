@@ -1,6 +1,7 @@
 // import
 import { useMemo, useCallback } from 'react';
-import { filter } from 'graphql-anywhere';
+
+import filter from '@meepshop/utils/lib/filter';
 
 import useMergeCart from './useMergeCart';
 import useUpsertCart from './useUpsertCart';
@@ -45,10 +46,12 @@ export default (viewer: useCartFragmentType | null): CartType => {
         : filter(useMergeCartFragment, guestCart).reduce(mergeCart, cart),
     [guestCart, cart, isShopper, mergeCart],
   );
-  const upsertCart = useUpsertCart(filter(useUpsertCartUserFragment, viewer));
+  const { loading, upsertCart } = useUpsertCart(
+    filter(useUpsertCartUserFragment, viewer),
+  );
 
   return {
-    loading: viewer?.guestCart?.__typename !== 'GuestCart',
+    loading: viewer?.guestCart?.__typename !== 'GuestCart' || loading,
     cartItems,
     upsertCart: useCallback(
       cartItem =>

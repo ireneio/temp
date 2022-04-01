@@ -9,12 +9,12 @@ import { ComponentProps } from './constants';
 // import
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { Modal, Table, Empty } from 'antd';
 import { emptyFunction } from 'fbjs';
 
 import { productsEmpty } from '@meepshop/images';
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import Header from './Header';
 import Footer from './Footer';

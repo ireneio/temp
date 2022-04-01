@@ -1,11 +1,11 @@
 import { useMemo, useEffect, useState, useRef } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 
 import { useApolloNetworkStatus } from '@meepshop/apollo';
 import { useTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
 import { useCart } from '@meepshop/hooks';
+import filter from '@meepshop/utils/lib/filter';
 
 import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
 

@@ -9,7 +9,8 @@
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/context": "^0.80.163",
-    "@meepshop/locales": "^0.80.163"
+    "@meepshop/locales": "^0.80.163",
+    "@meepshop/utils": "^0.80.163"
   },
   "keywords": ["member order pay notify page", "store"]
 }

@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import { Form, Modal, Button, Checkbox } from 'antd';
 import { CheckCircleFilled } from '@ant-design/icons';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import { productsDesignatedShipmentsDeliveryTruck } from '@meepshop/images';
+import filter from '@meepshop/utils/lib/filter';
 
 import useSetProductDesignatedShipment from './hooks/useSetProductDesignatedShipment';
 import styles from './styles/applicableShipmentsModal.less';

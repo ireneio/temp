@@ -1,9 +1,9 @@
 // import
 import { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 
 import { useCart } from '@meepshop/hooks';
+import filter from '@meepshop/utils/lib/filter';
 
 // graphql typescript
 import {

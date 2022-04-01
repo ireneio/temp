@@ -1,6 +1,7 @@
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
+
+import filter from '@meepshop/utils/lib/filter';
 
 import PackingListDetail from './PackingListDetail';
 import styles from './styles/packingList.less';

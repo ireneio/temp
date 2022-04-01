@@ -1,11 +1,11 @@
 // import
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import Head from './Head';
 import useFbq from './hooks/useFbq';
@@ -66,24 +66,36 @@ export default React.memo(({ children }: PropsType) => {
 
   useRetention(filter(useRetentionFragment, store), fbq);
 
+  const value = useMemo(
+    () => ({
+      custom,
+      addToCart,
+      viewProduct,
+      search,
+      addToWishList,
+      completeRegistration,
+      beginCheckout,
+      purchase,
+    }),
+    [
+      addToCart,
+      addToWishList,
+      beginCheckout,
+      completeRegistration,
+      custom,
+      purchase,
+      search,
+      viewProduct,
+    ],
+  );
+
   if (!adTracks) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return (
     <>
       <Head adTracks={filter(headFragment, adTracks)} fbq={fbq} />
 
-      <AdTrackContext.Provider
-        value={{
-          custom,
-          addToCart,
-          viewProduct,
-          search,
-          addToWishList,
-          completeRegistration,
-          beginCheckout,
-          purchase,
-        }}
-      >
+      <AdTrackContext.Provider value={value}>
         {children}
       </AdTrackContext.Provider>
     </>

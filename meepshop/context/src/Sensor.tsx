@@ -1,5 +1,5 @@
 // import
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 import styles from './styles/sensor.less';
 
@@ -15,6 +15,7 @@ const SensorContext = React.createContext<SensorType>({
 
 export const SensorProvider = React.memo(({ children }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const value = useMemo(() => ({ isMobile }), [isMobile]);
 
   useEffect(() => {
     const resize = (): void => {
@@ -32,9 +33,7 @@ export const SensorProvider = React.memo(({ children }) => {
   }, []);
 
   return (
-    <SensorContext.Provider value={{ isMobile }}>
-      {children}
-    </SensorContext.Provider>
+    <SensorContext.Provider value={value}>{children}</SensorContext.Provider>
   );
 });
 

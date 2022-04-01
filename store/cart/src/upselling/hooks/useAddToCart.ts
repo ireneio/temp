@@ -1,10 +1,10 @@
 // import
 import { useMemo, useCallback, useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 
 import { useCart } from '@meepshop/hooks';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 import { useGetLanguage } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 // graphql typescript
 import {

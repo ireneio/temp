@@ -4,7 +4,6 @@ import { ColumnProps } from 'antd/lib/table';
 // import
 import React, { useMemo, useContext, useCallback } from 'react';
 import { Form } from 'antd';
-import { filter } from 'graphql-anywhere';
 import {
   TagOutlined,
   CloseOutlined,
@@ -22,6 +21,7 @@ import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Link from '@meepshop/link';
 import Switch from '@meepshop/switch';
 import Thumbnail from '@meepshop/thumbnail';
+import filter from '@meepshop/utils/lib/filter';
 
 import ProductAmountSelector from '../ProductAmountSelector';
 import styles from '../styles/useProductsColumns.less';

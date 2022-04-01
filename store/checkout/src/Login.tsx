@@ -1,6 +1,5 @@
 // import
 import React, { useState, useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import { Form } from 'antd';
 import transformColor from 'color';
 
@@ -9,6 +8,7 @@ import { useTranslation } from '@meepshop/locales';
 import { FbLoginIcon } from '@meepshop/icons';
 import Line from '@meepshop/line';
 import LoginModal from '@meepshop/login-modal';
+import filter from '@meepshop/utils/lib/filter';
 
 import styles from './styles/login.less';
 

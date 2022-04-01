@@ -16,56 +16,66 @@ import {
 // graphql import
 import { upsertCart, useUpsertCartUserFragment } from './gqls/useUpsertCart';
 
+// typescript definition
+interface ReturnType {
+  loading: boolean;
+  upsertCart: (cartItems: useMergeCartFragmentType[]) => Promise<void>;
+}
+
 // definition
-export default (
-  viewer: useUpsertCartUserFragmentType | null,
-): ((cartItems: useMergeCartFragmentType[]) => Promise<void>) => {
+export default (viewer: useUpsertCartUserFragmentType | null): ReturnType => {
   const isShopper = viewer?.role === 'SHOPPER';
-  const [mutation] = useMutation<upsertCartType, upsertCartVariablesType>(
-    upsertCart,
-  );
+  const [mutation, { loading }] = useMutation<
+    upsertCartType,
+    upsertCartVariablesType
+  >(upsertCart);
 
-  return useCallback(
-    async cartItems => {
-      const input = cartItems.map(({ __typename: _, ...cartItem }) => cartItem);
+  return {
+    loading,
+    upsertCart: useCallback(
+      async cartItems => {
+        const input = cartItems.map(
+          ({ __typename: _, ...cartItem }) => cartItem,
+        );
 
-      await mutation({
-        variables: {
-          isShopper,
-          input,
-          guestInput: isShopper ? [] : input,
-        },
-        update: (cache: DataProxy, { data }) => {
-          if (
-            (data?.upsertCart || data?.upsertGuestCart)?.__typename !==
-              'OkResponse' ||
-            !viewer
-          )
-            return;
+        await mutation({
+          variables: {
+            isShopper,
+            input,
+            guestInput: isShopper ? [] : input,
+          },
+          update: (cache: DataProxy, { data }) => {
+            if (
+              (data?.upsertCart || data?.upsertGuestCart)?.__typename !==
+                'OkResponse' ||
+              !viewer
+            )
+              return;
 
-          cache.writeFragment<useUpsertCartUserFragmentType>({
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-ignore FIXME: should use cache.identify
-            id: viewer.id,
-            fragment: useUpsertCartUserFragment,
-            fragmentName: 'useUpsertCartUserFragment',
-            data: {
-              ...viewer,
-              cart: !isShopper
-                ? viewer.cart
-                : {
-                    __typename: 'Cart',
-                    cartItems,
-                  },
-              guestCart: {
-                __typename: 'GuestCart',
-                cartItems: isShopper ? [] : cartItems,
+            cache.writeFragment<useUpsertCartUserFragmentType>({
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // @ts-ignore FIXME: should use cache.identify
+              id: viewer.id,
+              fragment: useUpsertCartUserFragment,
+              fragmentName: 'useUpsertCartUserFragment',
+              data: {
+                ...viewer,
+                cart: !isShopper
+                  ? viewer.cart
+                  : {
+                      __typename: 'Cart',
+                      cartItems,
+                    },
+                guestCart: {
+                  __typename: 'GuestCart',
+                  cartItems: isShopper ? [] : cartItems,
+                },
               },
-            },
-          });
-        },
-      });
-    },
-    [isShopper, mutation, viewer],
-  );
+            });
+          },
+        });
+      },
+      [isShopper, mutation, viewer],
+    ),
+  };
 };

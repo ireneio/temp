@@ -4,11 +4,11 @@ import { FormItemProps } from 'antd/lib/form';
 // import
 import React, { useCallback } from 'react';
 import { Form } from 'antd';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
 import { useCart } from '@meepshop/hooks';
 import ProductAmountSelector from '@meepshop/product-amount-selector';
+import filter from '@meepshop/utils/lib/filter';
 
 import styles from './styles/productAmountSelector.less';
 

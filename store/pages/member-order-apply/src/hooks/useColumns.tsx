@@ -5,12 +5,12 @@ import { languageType } from '@meepshop/locales';
 
 // import
 import React, { useMemo, useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import { Form, Select } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
 import Thumbnail from '@meepshop/thumbnail';
+import filter from '@meepshop/utils/lib/filter';
 
 import Reason from '../Reason';
 

@@ -4,10 +4,10 @@ import { NextPage } from 'next';
 // import
 import React from 'react';
 import { Button } from 'antd';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
+import filter from '@meepshop/utils/lib/filter';
 import Header from '@admin/header';
 import Table from '@admin/table';
 

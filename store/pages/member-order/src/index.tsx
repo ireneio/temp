@@ -1,7 +1,6 @@
 // import
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Table } from 'antd';
 import { format } from 'date-fns';
@@ -9,6 +8,7 @@ import transformColor from 'color';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import NotFound from './NotFound';
 import TotalSheet from './TotalSheet';

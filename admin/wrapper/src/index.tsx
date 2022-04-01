@@ -1,7 +1,6 @@
 // import
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { Layout } from 'antd';
 
 import Link from '@meepshop/link';
@@ -10,6 +9,7 @@ import {
   adminWrapperTextLogo_react as AdminWrapperTextLogo,
   adminWrapperImgLogo_react as AdminWrapperImgLogo,
 } from '@meepshop/images';
+import filter from '@meepshop/utils/lib/filter';
 
 import Menu from './Menu';
 import TrialReminder from './TrialReminder';

@@ -1,8 +1,8 @@
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import NumberInfo from './NumberInfo';
 

@@ -1,9 +1,9 @@
 // import
 import React from 'react';
 import { Tabs } from 'antd';
-import { filter } from 'graphql-anywhere';
 
 import { ModulesIcon, SettingIcon } from '@meepshop/icons';
+import filter from '@meepshop/utils/lib/filter';
 
 import ModuleTab from './ModuleTab';
 import styles from './styles/index.less';

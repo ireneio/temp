@@ -1,11 +1,11 @@
 // import
 import React, { useContext, useState, useEffect } from 'react';
-import { filter } from 'graphql-anywhere';
 import { Form, Input, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 import ConvenienceStoreMap from '@meepshop/form-convenience-store-map';
+import filter from '@meepshop/utils/lib/filter';
 
 import useConvenienceStore from './hooks/useConvenienceStore';
 import { SHIPMENT_STORE_FIELDS, CONVENIENCE_STORE_FIELDS } from './constants';

@@ -1,6 +1,7 @@
 // import
 import React, { useState } from 'react';
-import { filter } from 'graphql-anywhere';
+
+import filter from '@meepshop/utils/lib/filter';
 
 import ModuleContext from './context/module';
 import Group from './Group';

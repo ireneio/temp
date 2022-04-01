@@ -4,7 +4,6 @@ import { NextPage } from 'next';
 // import
 import React, { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Form, Spin, Button, Radio, Input } from 'antd';
 import { areEqual } from 'fbjs';
@@ -13,6 +12,7 @@ import DatePicker from '@admin/date-picker';
 import Tooltip from '@admin/tooltip';
 import Link from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import Products from './Products';
 import useDatesValidator from './hooks/useDatesValidator';

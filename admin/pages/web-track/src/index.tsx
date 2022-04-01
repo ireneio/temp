@@ -4,12 +4,12 @@ import { NextPage } from 'next';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { LineChartOutlined, LoadingOutlined } from '@ant-design/icons';
 import { Spin, Card, Tabs } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { AnalyticsSettingIcon } from '@meepshop/icons';
+import filter from '@meepshop/utils/lib/filter';
 
 // Use to copy mixin.less
 import './styles/mixin.less';

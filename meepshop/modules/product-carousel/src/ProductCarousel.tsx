@@ -3,10 +3,10 @@ import { CarouselRef } from 'antd/lib/carousel';
 
 // import
 import React, { useRef } from 'react';
-import { filter } from 'graphql-anywhere';
 
 import Carousel from '@meepshop/carousel';
 import { useGetLanguage } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import useImages from './hooks/useImages';
 import useSlickActive from './hooks/useSlickActive';

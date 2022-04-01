@@ -1,6 +1,5 @@
 // import
 import React, { useContext, useState } from 'react';
-import { filter } from 'graphql-anywhere';
 import { format } from 'date-fns';
 import transformColor from 'color';
 import { Form, Input, Button } from 'antd';
@@ -10,6 +9,7 @@ import { ViewReplyIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 import { useValidateEmail } from '@meepshop/validator';
+import filter from '@meepshop/utils/lib/filter';
 
 import useCreateProductQA from './hooks/useCreateProductQA';
 import styles from './styles/index.less';

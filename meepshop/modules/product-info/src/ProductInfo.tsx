@@ -3,10 +3,10 @@ import { PropsType as QuantityPropsType } from './Quantity';
 
 // import
 import React, { useState } from 'react';
-import { filter } from 'graphql-anywhere';
 import { emptyFunction } from 'fbjs';
 
 import ProductSpecSelector from '@meepshop/product-spec-selector';
+import filter from '@meepshop/utils/lib/filter';
 
 import Description from './Description';
 import Quantity from './Quantity';

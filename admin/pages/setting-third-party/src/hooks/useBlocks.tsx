@@ -1,6 +1,5 @@
 // import
 import React, { useMemo } from 'react';
-import { filter } from 'graphql-anywhere';
 
 import {
   adminSettingThirdPartyKoolive,
@@ -9,6 +8,7 @@ import {
   adminSettingThirdPartyLine,
   webTrackGoogleAnalytics_w224 as webTrackGoogleAnalytics,
 } from '@meepshop/images';
+import filter from '@meepshop/utils/lib/filter';
 
 import FaceBook from '../Facebook';
 import Line from '../Line';

@@ -3,10 +3,10 @@ import { MenuItemProps } from 'antd/lib/menu/MenuItem';
 
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 import { Menu, Badge } from 'antd';
 
 import Switch from '@meepshop/switch';
+import filter from '@meepshop/utils/lib/filter';
 
 import Title from './Title';
 import usePagesWithAction from './hooks/usePagesWithAction';

@@ -4,13 +4,13 @@ import { NextPage } from 'next';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 
 import Page from '@meepshop/page';
+import filter from '@meepshop/utils/lib/filter';
 
 import Editor from './editor';
 import Sidebar from './sidebar';

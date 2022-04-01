@@ -10,6 +10,7 @@
   "dependencies": {
     "@meepshop/images": "^0.80.163",
     "@meepshop/locales": "^0.80.163",
+    "@meepshop/utils": "^0.80.163",
     "file-type": "^13.1.2",
     "is-svg": "^4.3.2"
   },

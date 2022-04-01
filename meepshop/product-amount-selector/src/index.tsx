@@ -3,11 +3,11 @@ import { SelectProps, RefSelectProps } from 'antd/lib/select';
 
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 import { Select } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import useOptions from './hooks/useOptions';
 import styles from './styles/index.less';

@@ -1,6 +1,5 @@
 // import
 import React, { useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import { Form, Input, Select, Checkbox, Cascader } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
@@ -9,6 +8,7 @@ import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/form-address-cascader';
 import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
+import filter from '@meepshop/utils/lib/filter';
 
 import Invoice from './Invoice';
 import useSynchronizeUserInfo from './hooks/useSynchronizeUserInfo';

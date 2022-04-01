@@ -5,11 +5,11 @@ import useSelectedPageType from '../hooks/useSelectedPage';
 
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 import { Tooltip } from 'antd';
 
 import { useGetLanguage } from '@meepshop/locales';
 import Switch from '@meepshop/switch';
+import filter from '@meepshop/utils/lib/filter';
 
 import PrefixIcon from './PrefixIcon';
 import PageSetting from './pageSetting';

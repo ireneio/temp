@@ -3,13 +3,13 @@ import { FormInstance } from 'antd/lib/form';
 
 // import
 import React, { useContext, useEffect } from 'react';
-import { filter } from 'graphql-anywhere';
 import { usePrevious } from 'react-use';
 import { Form, Input } from 'antd';
 import transformColor from 'color';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import useCouponValidator from './hooks/useCouponValidator';
 import useCouponInfo from './hooks/useCouponInfo';

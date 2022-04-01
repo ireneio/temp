@@ -5,7 +5,6 @@ import { UseComputeOrderType } from './hooks/useComputeOrder';
 
 // import
 import React, { useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import { Form } from '@ant-design/compatible';
 import { Select, Cascader, Collapse, Input } from 'antd';
 import transformColor from 'color';
@@ -17,6 +16,7 @@ import {
   Colors as ColorsContext,
 } from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import CouponStatus from './CouponStatus';
 import useVariantOptions from './hooks/useVariantOptions';

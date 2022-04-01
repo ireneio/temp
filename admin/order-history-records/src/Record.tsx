@@ -1,12 +1,12 @@
 // import
 import React, { useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import { List } from 'antd';
 import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
 import { HistoryDotIcon } from '@meepshop/icons';
+import filter from '@meepshop/utils/lib/filter';
 
 import Detail from './Detail';
 import styles from './styles/record.less';

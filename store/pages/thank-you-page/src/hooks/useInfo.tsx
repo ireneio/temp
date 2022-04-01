@@ -1,6 +1,7 @@
 // import
 import React, { useMemo } from 'react';
-import { filter } from 'graphql-anywhere';
+
+import filter from '@meepshop/utils/lib/filter';
 
 import CathayAtm from '../CathayAtm';
 import GmoAtm from '../GmoAtm';

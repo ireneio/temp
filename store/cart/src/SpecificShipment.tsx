@@ -2,12 +2,12 @@
 import React, { useContext, useEffect } from 'react';
 import transformColor from 'color';
 import { Form } from 'antd';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 import { AlertOutlineIcon } from '@meepshop/icons';
 import Select from '@meepshop/select';
+import filter from '@meepshop/utils/lib/filter';
 import Alert from '@store/alert';
 
 import useSpecificShipmentOption from './hooks/useSpecificShipmentOption';

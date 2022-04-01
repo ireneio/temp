@@ -1,10 +1,10 @@
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 import VisibilitySensor from 'react-visibility-sensor';
 
 import Link from '@meepshop/link';
 import useLink from '@meepshop/hooks/lib/useLink';
+import filter from '@meepshop/utils/lib/filter';
 
 import useImage from './hooks/useImage';
 import styles from './styles/index.less';

@@ -5,10 +5,10 @@ import { InitialValuesType } from './useShoppingInitialValues';
 import { useCallback, useContext } from 'react';
 import { message } from 'antd';
 import { areEqual } from 'fbjs';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
 import { Apps as AppsContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import useUpdateStoreList from './useUpdateStoreList';
 import useUpdateStoreAppList from './useUpdateStoreAppList';

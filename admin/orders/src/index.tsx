@@ -7,10 +7,10 @@ import { OrdersQueryResult } from './constants';
 import React, { useState, useEffect, useRef } from 'react';
 import { DownOutlined, LoadingOutlined } from '@ant-design/icons';
 import { Dropdown, Menu, Input, Spin, Button } from 'antd';
-import { filter } from 'graphql-anywhere';
 
 import { useRouter } from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 import DatePicker from '@admin/date-picker';
 import Table from '@admin/table';
 

@@ -3,10 +3,10 @@ import { NextPage } from 'next';
 
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 import { Row, Col } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 import Header from '@admin/header';
 
 import Info from './Info';

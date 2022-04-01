@@ -4,11 +4,11 @@ import { ColumnProps } from 'antd/lib/table';
 // import
 import React, { useMemo } from 'react';
 import { CloseOutlined } from '@ant-design/icons';
-import { filter } from 'graphql-anywhere';
 import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import Thumbnail from '@meepshop/thumbnail';
+import filter from '@meepshop/utils/lib/filter';
 
 import useRemove from './useRemove';
 import styles from '../styles/useColumns.less';

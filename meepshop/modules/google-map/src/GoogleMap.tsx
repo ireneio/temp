@@ -1,6 +1,7 @@
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
+
+import filter from '@meepshop/utils/lib/filter';
 
 import useHeight from './hooks/useHeight';
 import styles from './styles/index.less';

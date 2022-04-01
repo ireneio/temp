@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import radium from 'radium';
 import { Form, Input } from 'antd';
 import transformColor from 'color';
-import { filter } from 'graphql-anywhere';
 
 import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/form-address-cascader';
 import { Colors as ColorsContext, Fb as FbContext } from '@meepshop/context';
+import Line from '@meepshop/line';
 import { withTranslation } from '@meepshop/locales';
 import LoginModal from '@meepshop/login-modal';
 import { FbLoginIcon } from '@meepshop/icons';
 import { useValidateEmail } from '@meepshop/validator';
+import filter from '@meepshop/utils/lib/filter';
 import withHook from '@store/utils/lib/withHook';
 import withContext from '@store/utils/lib/withContext';
-import Line from '@meepshop/line';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ISLOGIN_TYPE } from 'constants/propTypes';

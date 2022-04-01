@@ -4,7 +4,6 @@ import IconType from '@ant-design/icons/lib/components/Icon';
 // import
 import React, { useContext } from 'react';
 import { Carousel } from 'antd';
-import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 
 import {
@@ -13,6 +12,7 @@ import {
 } from '@meepshop/context';
 import { RightArrowCircleIcon, LeftArrowCircleIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import Product from './Product';
 import useCheckLimit from './hooks/useCheckLimit';

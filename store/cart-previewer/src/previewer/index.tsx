@@ -1,6 +1,5 @@
 // import
 import React, { useContext, useRef, useEffect, useState, useMemo } from 'react';
-import { filter } from 'graphql-anywhere';
 import { LeftOutlined } from '@ant-design/icons';
 import transformColor from 'color';
 
@@ -10,6 +9,7 @@ import {
 } from '@meepshop/context';
 import Link from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import Empty from './Empty';
 import Products from './Products';

@@ -1,10 +1,10 @@
 // import
 import React, { useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import transformColor from 'color';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import PaymentInfo from './paymentInfo';
 import ShipmentInfo from './ShipmentInfo';

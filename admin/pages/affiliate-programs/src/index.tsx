@@ -4,12 +4,12 @@ import { RangePickerDateProps } from 'antd/lib/date-picker/generatePicker';
 
 // import
 import React, { useState } from 'react';
-import { filter } from 'graphql-anywhere';
 import { Button, Input } from 'antd';
 import { formatRFC3339 } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import Link from '@meepshop/link';
+import filter from '@meepshop/utils/lib/filter';
 import Header from '@admin/header';
 import DatePicker from '@admin/date-picker';
 import Table from '@admin/table';

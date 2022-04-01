@@ -1,6 +1,5 @@
 // import
 import React, { useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import { Form, Collapse } from 'antd';
 import { UpOutlined, DownOutlined } from '@ant-design/icons';
 import transformColor from 'color';
@@ -10,6 +9,7 @@ import {
   Currency as CurrencyContext,
   Colors as ColorsContext,
 } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import useActivities from './hooks/useActivities';
 import styles from './styles/total.less';

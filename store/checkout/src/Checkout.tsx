@@ -1,7 +1,6 @@
 // import
 import React, { useMemo, useContext } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { Form, Collapse } from 'antd';
 import { UpCircleOutlined, DownCircleOutlined } from '@ant-design/icons';
 import transformColor from 'color';
@@ -13,6 +12,7 @@ import {
 } from '@meepshop/context';
 import Link from '@meepshop/link';
 import CheckoutSteps from '@store/checkout-steps';
+import filter from '@meepshop/utils/lib/filter';
 
 import Login from './Login';
 import Payment from './Payment';

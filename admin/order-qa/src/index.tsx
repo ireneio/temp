@@ -4,10 +4,10 @@ import { Drawer, Button, Input } from 'antd';
 import { useQuery } from '@apollo/client';
 import { MailOutlined } from '@ant-design/icons';
 import { format } from 'date-fns';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
 import { useAutoLinker } from '@meepshop/hooks';
+import filter from '@meepshop/utils/lib/filter';
 
 import MessageRepliedStatus from './MessageRepliedStatus';
 import useAddNewMessage from './hooks/useAddNewMessage';

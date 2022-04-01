@@ -1,10 +1,10 @@
 // import
 import React, { useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
 import { Apps as AppsContext } from '@meepshop/context';
 import Link from '@meepshop/link';
+import filter from '@meepshop/utils/lib/filter';
 
 import styles from './styles/actions.less';
 import usePayOrderAgain from './hooks/usePayOrderAgain';

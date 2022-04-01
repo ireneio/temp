@@ -3,11 +3,11 @@ import { NextPage } from 'next';
 
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 import { Button, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import Link, { useRouter } from '@meepshop/link';
+import filter from '@meepshop/utils/lib/filter';
 import Header from '@admin/header';
 import Table from '@admin/table';
 

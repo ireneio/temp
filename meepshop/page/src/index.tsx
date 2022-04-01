@@ -1,8 +1,8 @@
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 
 import Menu from '@meepshop/menu';
+import filter from '@meepshop/utils/lib/filter';
 
 import styles from './styles/index.less';
 

@@ -4,7 +4,6 @@ import { applyType } from './hooks/useApplyForReturnOrExchange';
 // import
 import React, { useContext, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Form, Spin, Button, message } from 'antd';
 import { format } from 'date-fns';
@@ -13,6 +12,7 @@ import transformColor from 'color';
 import { useRouter } from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import Products from './Products';
 import Recipient from './Recipient';

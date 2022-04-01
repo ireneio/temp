@@ -4,7 +4,8 @@ import { ColumnProps } from 'antd/lib/table';
 // import
 import React, { useMemo } from 'react';
 import { format } from 'date-fns';
-import { filter } from 'graphql-anywhere';
+
+import filter from '@meepshop/utils/lib/filter';
 
 import Actions from '../Actions';
 import MobileColumn from '../MobileColumn';

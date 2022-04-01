@@ -1,7 +1,6 @@
 // import
 import React, { useContext, useState } from 'react';
 import transformColor from 'color';
-import { filter } from 'graphql-anywhere';
 
 import {
   Colors as ColorsContext,
@@ -9,6 +8,7 @@ import {
 } from '@meepshop/context';
 import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Thumbnail from '@meepshop/thumbnail';
+import filter from '@meepshop/utils/lib/filter';
 
 import Modal from './Modal';
 import useAddToCart from './hooks/useAddToCart';

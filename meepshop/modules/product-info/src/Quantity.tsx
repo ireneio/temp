@@ -3,10 +3,10 @@ import { PropsType as ProductAmountSelectorPropsType } from '@meepshop/product-a
 
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
 import ProductAmountSelector from '@meepshop/product-amount-selector';
+import filter from '@meepshop/utils/lib/filter';
 
 // graphql typescript
 import {

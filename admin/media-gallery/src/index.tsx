@@ -1,12 +1,12 @@
 // import
 import React, { useState, useRef } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { uploadPicture_w100 as uploadPicture } from '@meepshop/images';
+import filter from '@meepshop/utils/lib/filter';
 
 import Card from './Card';
 import ImageUpload from './ImageUpload';

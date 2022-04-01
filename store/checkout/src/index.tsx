@@ -3,7 +3,8 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
-import { filter } from 'graphql-anywhere';
+
+import filter from '@meepshop/utils/lib/filter';
 
 import useCreateOrder from './hooks/useCreateOrder';
 import useUpdateUser from './hooks/useUpdateUser';

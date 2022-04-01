@@ -3,7 +3,6 @@ import { NextPage } from 'next';
 
 // import
 import React, { useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
 import {
@@ -12,6 +11,7 @@ import {
   ValidOrderIcon,
 } from '@meepshop/icons';
 import { Currency as CurrencyContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 import Header from '@admin/header';
 import Tooltip from '@admin/tooltip';
 

@@ -1,7 +1,6 @@
 // import
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Table } from 'antd';
 
@@ -10,6 +9,7 @@ import {
   Colors as ColorsContext,
   Currency as CurrencyContext,
 } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import useColumns from './hooks/useColumns';
 import useRowClassName from './hooks/useRowClassName';

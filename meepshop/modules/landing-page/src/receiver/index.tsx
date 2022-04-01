@@ -5,7 +5,6 @@ import { UseComputeOrderType } from '../hooks/useComputeOrder';
 
 // import
 import React, { useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import { Form } from '@ant-design/compatible';
 import { Select, Cascader, Input } from 'antd';
 import { isAlpha } from 'validator';
@@ -18,6 +17,7 @@ import AddressCascader, {
 } from '@meepshop/form-address-cascader';
 import { Colors as ColorsContext } from '@meepshop/context';
 import { useValidateEmail } from '@meepshop/validator';
+import filter from '@meepshop/utils/lib/filter';
 
 import Invoice from './Invoice';
 import Store from './Store';

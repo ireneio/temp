@@ -15,6 +15,7 @@
     "@meepshop/icons": "^0.80.158",
     "@meepshop/link": "^0.80.163",
     "@meepshop/locales": "^0.80.163",
+    "@meepshop/utils": "^0.80.163",
     "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "affiliate program statistics"]

@@ -3,10 +3,10 @@ import { loadMoreType } from './hooks/useProgramStatisticsLoadMore';
 
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 import { Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 import Table from '@admin/table';
 
 import useProgramStatisticsColumns from './hooks/useProgramStatisticsColumns';

@@ -4,9 +4,9 @@ import { ConvenienceStoresInputType } from './StoreList';
 
 // import
 import React, { useState } from 'react';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import SearchInput from './SearchInput';
 import StoreList from './StoreList';

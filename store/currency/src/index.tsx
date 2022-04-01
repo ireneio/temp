@@ -1,13 +1,13 @@
 // import
-import React, { useState, useContext, useRef, useEffect } from 'react';
+import React, { useState, useContext, useRef, useEffect, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 
 import { Currency as CurrencyContext } from '@meepshop/context';
 import { defaultCurrency } from '@meepshop/context/lib/Currency';
 import CookiesContext from '@meepshop/cookies';
+import filter from '@meepshop/utils/lib/filter';
 
 import useInitFx from './hooks/useInitFx';
 import useFormat from './hooks/useFormat';
@@ -39,6 +39,17 @@ export default React.memo(({ children }: PropsType) => {
     currency,
     filter(useFormatFragment, data?.viewer?.store || null),
   );
+  const value = useMemo(
+    () => ({
+      c,
+      setCurrency: (newCurrency: string) => {
+        setCurrency(newCurrency);
+        setCookie('currency', newCurrency);
+      },
+      currency,
+    }),
+    [c, currency, setCookie],
+  );
 
   useInitFx(filter(useInitFxFragment, data?.exchangeRateService || null));
   useEffect(() => {
@@ -51,16 +62,7 @@ export default React.memo(({ children }: PropsType) => {
   if (loading || error) return <Spin indicator={<LoadingOutlined spin />} />;
 
   return (
-    <CurrencyContext.Provider
-      value={{
-        c,
-        setCurrency: newCurrency => {
-          setCurrency(newCurrency);
-          setCookie('currency', newCurrency);
-        },
-        currency,
-      }}
-    >
+    <CurrencyContext.Provider value={value}>
       {children}
     </CurrencyContext.Provider>
   );

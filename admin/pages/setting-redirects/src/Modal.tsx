@@ -4,9 +4,9 @@ import { BaseButtonProps } from 'antd/lib/button/button';
 // import
 import React, { useState } from 'react';
 import { Form, Button, Modal, notification } from 'antd';
-import { filter } from 'graphql-anywhere';
 
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 import Tooltip from '@admin/tooltip';
 
 import UrlInput from './UrlInput';

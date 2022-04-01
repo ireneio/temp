@@ -1,6 +1,5 @@
 // import
 import React, { useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import { Form, InputNumber } from 'antd';
 import transformColor from 'color';
 
@@ -9,6 +8,7 @@ import {
   Apps as AppsContext,
   Colors as ColorsContext,
 } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import Coupon from './Coupon';
 import styles from './styles/discount.less';

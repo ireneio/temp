@@ -5,7 +5,6 @@ import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
 import React, { useEffect, useContext, useState } from 'react';
 import { Form } from '@ant-design/compatible';
 import { Divider, Button } from 'antd';
-import { filter } from 'graphql-anywhere';
 
 import {
   AdTrack as AdTrackContext,
@@ -14,6 +13,7 @@ import {
 import { useTranslation } from '@meepshop/locales';
 import LoginModal from '@meepshop/login-modal';
 import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
+import filter from '@meepshop/utils/lib/filter';
 
 // Use to copy mixin.less
 import './styles/mixin.less';

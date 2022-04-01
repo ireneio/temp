@@ -1,10 +1,10 @@
 // import
 import React, { useContext } from 'react';
-import { filter } from 'graphql-anywhere';
 import { Table } from 'antd';
 import transformColor from 'color';
 
 import { Colors as ColorsContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import useProductsColumns from './hooks/useProductsColumns';
 import styles from './styles/products.less';

@@ -4,13 +4,13 @@ import { NextPage } from 'next';
 // import
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Input, Collapse, Button } from 'antd';
 import VisibilitySensor from 'react-visibility-sensor';
 
 import Tooltip from '@admin/tooltip';
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import AddNewPage from './addNewPage';
 import Item from './item';

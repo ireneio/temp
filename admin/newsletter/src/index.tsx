@@ -5,7 +5,6 @@ import { ImageNodeType } from '@admin/media-gallery';
 import React, { useState, useCallback, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import { Drawer, Form, Button, Input, Select } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 import { ContentUtils } from 'braft-utils';
@@ -14,6 +13,7 @@ import Gallery from '@admin/media-gallery';
 import TextEditor, { createEditorState } from '@admin/text-editor';
 import { usePortalTarget } from '@admin/hooks';
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import useInitialValues from './hooks/useInitialValues';
 import useSave from './hooks/useSave';

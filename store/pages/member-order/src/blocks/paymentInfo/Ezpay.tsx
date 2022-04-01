@@ -1,9 +1,9 @@
 // import
 import React from 'react';
-import { filter } from 'graphql-anywhere';
 import { format, fromUnixTime } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
+import filter from '@meepshop/utils/lib/filter';
 
 import Credit from './Credit';
 

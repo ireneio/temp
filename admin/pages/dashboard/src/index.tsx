@@ -4,7 +4,6 @@ import { NextPage } from 'next';
 // import
 import React, { useContext, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { filter } from 'graphql-anywhere';
 import {
   LoadingOutlined,
   WarningOutlined,
@@ -22,6 +21,7 @@ import {
   dashboardMember_w40 as dashboardMember,
 } from '@meepshop/images';
 import Link from '@meepshop/link';
+import filter from '@meepshop/utils/lib/filter';
 
 import Tutorial from './Tutorial';
 import styles from './styles/index.less';

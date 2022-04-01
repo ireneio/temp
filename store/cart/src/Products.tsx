@@ -3,11 +3,11 @@ import { FormInstance } from 'antd/lib/form';
 
 // import
 import React, { useContext, useMemo } from 'react';
-import { filter } from 'graphql-anywhere';
 import { Table, Skeleton } from 'antd';
 import transformColor from 'color';
 
 import { Colors as ColorsContext } from '@meepshop/context';
+import filter from '@meepshop/utils/lib/filter';
 
 import useProductsColumns from './hooks/useProductsColumns';
 import styles from './styles/products.less';
