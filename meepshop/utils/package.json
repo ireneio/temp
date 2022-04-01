@@ -4,7 +4,7 @@
   "description": "Utils tool for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.163",
+  "version": "0.80.165",
   "dependencies": {
     "@meepshop/images": "^0.80.163",
     "lodash.mergewith": "^4.6.2",

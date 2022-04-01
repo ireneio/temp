@@ -4,13 +4,13 @@
   "description": "currency context for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.163",
+  "version": "0.80.165",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.163",
-    "@meepshop/cookies": "^0.80.163",
-    "@meepshop/utils": "^0.80.163",
+    "@meepshop/context": "^0.80.165",
+    "@meepshop/cookies": "^0.80.165",
+    "@meepshop/utils": "^0.80.165",
     "money": "^0.2.0"
   },
   "keywords": ["context", "currency", "store"]

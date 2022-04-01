@@ -4,15 +4,15 @@
   "description": "Use to call gtag and fpq",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.163",
+  "version": "0.80.165",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.163",
-    "@meepshop/context": "^0.80.163",
-    "@meepshop/cookies": "^0.80.163",
-    "@meepshop/utils": "^0.80.163",
-    "@meepshop/link": "^0.80.163"
+    "@meepshop/apollo": "^0.80.165",
+    "@meepshop/context": "^0.80.165",
+    "@meepshop/cookies": "^0.80.165",
+    "@meepshop/link": "^0.80.165",
+    "@meepshop/utils": "^0.80.165"
   },
   "keywords": ["ad", "fbq", "gtag", "track"]
 }
