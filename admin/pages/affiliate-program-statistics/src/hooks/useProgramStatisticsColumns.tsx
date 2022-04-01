@@ -24,6 +24,7 @@ export default (): ColumnProps<useProgramStatisticsColumnsFragmentType>[] => {
         dataIndex: ['node', 'orderNo'],
         title: t('order.orderNo'),
         width: 144,
+        fixed: 'left',
         render: (
           value: useProgramStatisticsColumnsFragmentType['node']['orderNo'],
           { node: { id } },

@@ -65,6 +65,7 @@ export default React.memo(
         }}
         locale={{ emptyText: t('empty') }}
         rowKey={({ node: { id } }) => id}
+        scroll={{ x: 740 }}
       >
         <div className={styles.title}>
           {t('order.title')}

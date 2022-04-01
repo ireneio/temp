@@ -105,7 +105,7 @@ export default (): Pick<
     refetch,
     affiliatePartners,
     noAffiliatePartners: Boolean(
-      variables?.filter?.searchTerm &&
+      !variables?.filter?.searchTerm &&
         affiliatePartners &&
         affiliatePartners.total === 0,
     ),

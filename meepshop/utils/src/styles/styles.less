@@ -32,7 +32,9 @@ body,
   transition: transform 0.2s;
 }
 
-:global(.ant-select.ant-select-open) :global(.ant-select-arrow) {
+:global(.ant-select.ant-select-open)
+  :global(.ant-select-arrow)
+  :global(.anticon:not(.anticon-search)) {
   transform: rotate(180deg);
 }
 

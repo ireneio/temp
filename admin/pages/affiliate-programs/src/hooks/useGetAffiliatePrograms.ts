@@ -107,7 +107,7 @@ export default (): Pick<
     refetch,
     affiliatePrograms,
     affiliateProgramsStatus: useMemo(() => {
-      if (variables?.filter?.searchTerm) return 'HAS_PROGRAMS';
+      if (variables?.filter) return 'HAS_PROGRAMS';
 
       const affiliatePartners = data?.viewer?.affiliatePartners;
 

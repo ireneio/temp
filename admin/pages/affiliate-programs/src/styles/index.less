@@ -1,3 +1,5 @@
+@import '~@admin/utils/styles/variables.less';
+
 .root {
   display: flex;
   margin: 0px 0px 24px;
@@ -20,6 +22,14 @@
   }
 }
 
+.datePicker {
+  width: 256px;
+
+  :global(.ant-picker-range-separator) {
+    color: rgba(0, 0, 0, 0.25);
+  }
+}
+
 .space {
   flex: 1 0 auto;
 }
@@ -27,6 +37,10 @@
 .partners {
   color: rgba(0, 0, 0, 0.85);
   background: transparent;
+
+  &:hover {
+    color: @primary-color;
+  }
 }
 
 .rowClassName {
@@ -34,6 +48,7 @@
 }
 
 .affiliatePrograms {
+  margin: 0px 0px 16px;
   min-width: 788px;
 
   :global(.ant-table-container) table > thead > tr:first-child th,

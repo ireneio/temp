@@ -44,6 +44,7 @@ const AffiliatePrograms: NextPage<PropsType> = React.memo(() => {
     current,
     onChange,
   } = useGetAffiliatePrograms();
+  const [searchTerm, setSearchTerm] = useState<string | undefined>();
   const [date, setDate] = useState<RangePickerDateProps<Date>['value']>();
 
   return (
@@ -89,14 +90,18 @@ const AffiliatePrograms: NextPage<PropsType> = React.memo(() => {
         >
           <Search
             placeholder={t('search')}
-            onSearch={value =>
+            value={searchTerm}
+            onChange={({ target: { value } }) => setSearchTerm(value)}
+            onSearch={value => {
               refetch({
                 filter: { searchTerm: value },
-              })
-            }
+              });
+              setSearchTerm(value);
+            }}
           />
 
           <DatePicker
+            className={styles.datePicker}
             value={date}
             onChange={value => {
               const [startAt, endAt] = value || [];
@@ -111,15 +116,23 @@ const AffiliatePrograms: NextPage<PropsType> = React.memo(() => {
             }}
           />
 
-          <Button type="link" onClick={() => refetch({ filter: null })}>
+          <Button
+            type="link"
+            onClick={() => {
+              refetch({ filter: null });
+              setDate([null, null]);
+            }}
+          >
             {t('clear')}
           </Button>
 
           <div className={styles.space} />
 
-          <Link href="/affiliate/programs/add">
-            <Button type="primary">{t('add')}</Button>
-          </Link>
+          {affiliateProgramsStatus === 'NO_PARTNERS' ? null : (
+            <Link href="/affiliate/programs/add">
+              <Button type="primary">{t('add')}</Button>
+            </Link>
+          )}
         </div>
 
         {affiliateProgramsStatus === 'HAS_PROGRAMS' ? null : (
