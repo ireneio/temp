@@ -34,7 +34,7 @@ export default React.memo(({ value, ...props }: PropsType) => {
         {...props}
         value={value}
         placeholder={t('promoCode.placeholder')}
-        addonBefore="?ref="
+        addonBefore="?promoCode="
       />
 
       <Tooltip title={t('promoCode.tooltip')}>

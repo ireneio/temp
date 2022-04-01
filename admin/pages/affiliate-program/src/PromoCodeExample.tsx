@@ -27,12 +27,12 @@ export default React.memo(({ promoCode, store }: PropsType) => {
         <div className={styles.subTitle}>{t('promoCode.example.home')}</div>
 
         {domain}
-        <span>?ref={promoCode}</span>
+        <span>?promoCode={promoCode}</span>
       </div>
 
       <div className={styles.block}>
         <div className={styles.subTitle}>{t('promoCode.example.products')}</div>
-        {domain}/products<span>?ref={promoCode}</span>
+        {domain}/products<span>?promoCode={promoCode}</span>
       </div>
     </div>
   );

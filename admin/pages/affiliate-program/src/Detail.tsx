@@ -165,12 +165,12 @@ export default React.memo(({ affiliateProgramId }: PropsType) => {
         <div>{t('promoCode.title')}</div>
 
         <div>
-          ?ref={affiliateProgram?.promoCode}
+          ?promoCode={affiliateProgram?.promoCode}
           <Tooltip title={t('promoCode.tooltip')}>
             <CopyOutlined
               className={styles.copy}
               onClick={() => {
-                copyToClipboard(`?ref=${affiliateProgram?.promoCode}`);
+                copyToClipboard(`?promoCode=${affiliateProgram?.promoCode}`);
               }}
             />
           </Tooltip>
