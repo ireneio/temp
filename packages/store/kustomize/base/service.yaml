@@ -13,3 +13,19 @@ spec:
     targetPort: 14401
   selector:
     app: next-store
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: next-store-proxy
+  name: next-store-proxy
+  namespace: default
+spec:
+  ports:
+  - name: http-port
+    port: 14401
+    protocol: TCP
+    targetPort: 14401
+  selector:
+    app: next-store-proxy

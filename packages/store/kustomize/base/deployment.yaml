@@ -45,3 +45,51 @@ spec:
         ports:
         - containerPort: 14401
           name: http-port
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: next-store-proxy
+  labels:
+    app: next-store-proxy
+spec:
+  replicas: 3
+  revisionHistoryLimit: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: next-store-proxy
+  template:
+    metadata:
+      labels:
+        app: next-store-proxy
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: next-store-proxy
+        image: asia.gcr.io/instant-matter-785/next-store:tag
+        livenessProbe:
+          httpGet:
+            path: /api/healthz
+            port: 14401
+          initialDelaySeconds: 15
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /api/healthz
+            port: 14401
+          initialDelaySeconds: 15
+          periodSeconds: 3
+        env:
+        - name: ENV
+          valueFrom:
+            configMapKeyRef:
+              name: next-store
+              key: env
+        ports:
+        - containerPort: 14401
+          name: http-port

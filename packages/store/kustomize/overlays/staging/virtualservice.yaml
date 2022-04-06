@@ -33,6 +33,14 @@ spec:
         port:
           number: 14401
   - match:
+    - uri:
+        prefix: /api/graphql
+    route:
+    - destination:
+        host: next-store-proxy
+        port:
+          number: 14401
+  - match:
     - queryParams:
         resetCart:
           regex: "^(true|false)$"
