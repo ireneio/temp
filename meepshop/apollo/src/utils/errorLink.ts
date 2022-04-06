@@ -8,17 +8,6 @@ import { notification } from 'antd';
 // typescript definition
 export type errorFilterType = ({ message }: Error) => boolean;
 
-export type apolloErrorType = Error & {
-  networkError?: {
-    statusCode: number;
-  };
-  graphQLErrors?: {
-    message: string;
-    locations: string[];
-    path: string;
-  };
-};
-
 // definition
 export default (
   errorFilter: errorFilterType,

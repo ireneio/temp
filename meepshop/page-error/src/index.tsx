@@ -1,11 +1,9 @@
-// typescript import
-import { apolloErrorType } from '@meepshop/apollo/lib/utils/errorLink';
-
 // import
 import React from 'react';
 import { useApolloClient } from '@apollo/client';
 
 import { useTranslation } from '@meepshop/locales';
+import { apolloErrorType } from '@meepshop/types';
 
 import Error from './Error';
 import Redirect from './Redirect';

@@ -8,7 +8,6 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.165",
     "@meepshop/images": "^0.80.163",
     "@meepshop/link": "^0.80.165",
     "@meepshop/locales": "^0.80.165",

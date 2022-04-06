@@ -12,3 +12,14 @@ export type NextAppType = React.ComponentType<AppProps> & {
     ctx: AppContext,
   ) => Promise<NextAppGetInitialPropsType<AppProps>>;
 };
+
+export type apolloErrorType = Error & {
+  networkError?: {
+    statusCode: number;
+  };
+  graphQLErrors?: {
+    message: string;
+    locations: string[];
+    path: string;
+  };
+};

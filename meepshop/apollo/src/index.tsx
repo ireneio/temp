@@ -2,13 +2,16 @@
 import { AppProps } from 'next/app';
 import { NormalizedCacheObject } from '@apollo/client';
 
-import { NextAppType, NextAppGetInitialPropsType } from '@meepshop/types';
+import {
+  NextAppType,
+  NextAppGetInitialPropsType,
+  apolloErrorType,
+} from '@meepshop/types';
 import { LoggerInfoType } from '@meepshop/logger';
 import PageError from '@meepshop/page-error';
 
 import { ContextType, CustomCtxType } from './constants';
 import { ConfigType as initApolloConfigType } from './utils/initApollo';
-import { apolloErrorType } from './utils/errorLink';
 
 // import
 import React from 'react';
