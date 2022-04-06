@@ -199,7 +199,9 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
                             };
                       }}
                       showNow={false}
-                      disabled={!isAdd}
+                      disabled={
+                        !isAdd && affiliateProgram?.status !== 'NOT_STARTED'
+                      }
                       showTime={{
                         format: 'HH:mm',
                       }}
@@ -309,7 +311,8 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
               }
               defaultActiveFirstOption={false}
               filterOption={false}
-              disabled={!isAdd}
+              disabled={!isAdd && affiliateProgram?.status !== 'NOT_STARTED'}
+              listHeight={160}
               showSearch
             >
               {partners.map(({ id, name }) => (
@@ -339,7 +342,7 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
               className={styles.commissionRate}
               formatter={value => `${value}%`}
               parser={value => value?.replace('%', '').replace('.', '') || ''}
-              disabled={!isAdd}
+              disabled={!isAdd && affiliateProgram?.status !== 'NOT_STARTED'}
               max="100"
               min="1"
             />
@@ -356,7 +359,7 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
               className={styles.productsType}
               dropdownClassName={styles.productsTypeDropdown}
               menuItemSelectedIcon={<CheckOutlined />}
-              disabled={!isAdd}
+              disabled={!isAdd && affiliateProgram?.status !== 'NOT_STARTED'}
             >
               {['specify', 'all'].map(key => (
                 <Option key={key} value={key}>
@@ -403,7 +406,9 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
               },
             ]}
           >
-            <PromoCodeInput disabled={!isAdd} />
+            <PromoCodeInput
+              disabled={!isAdd && affiliateProgram?.status !== 'NOT_STARTED'}
+            />
           </FormItem>
 
           <FormItem dependencies={['promoCode']} noStyle>

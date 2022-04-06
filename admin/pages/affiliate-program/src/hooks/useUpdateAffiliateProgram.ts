@@ -93,7 +93,7 @@ export default (
             >(affiliateProgram, {
               ...newProgram,
               affiliatePartner,
-              products: products.map(
+              products: products?.map(
                 ({ title, coverImage, variants, ...product }) => ({
                   ...product,
                   __typename: 'Product',

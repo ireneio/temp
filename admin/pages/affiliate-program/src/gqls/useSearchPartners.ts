@@ -6,7 +6,7 @@ export const searchPartners = gql`
   query searchPartners($filter: AffiliatePartnersFilterInput) {
     viewer {
       id
-      affiliatePartners(first: 5, filter: $filter) {
+      affiliatePartners(first: 25, filter: $filter) {
         edges {
           node {
             id

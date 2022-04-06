@@ -148,14 +148,16 @@ export default React.memo(({ affiliateProgramId }: PropsType) => {
                 {t('products.check-products')}
               </Button>
 
-              <ProductsSelector
-                visible={visible}
-                products={affiliateProgram?.products}
-                onCancel={() => setVisible(false)}
-                limit={200}
-                sortDisabled
-                searchDisabled
-              />
+              {!visible ? null : (
+                <ProductsSelector
+                  products={affiliateProgram?.products}
+                  onCancel={() => setVisible(false)}
+                  limit={200}
+                  visible
+                  sortDisabled
+                  searchDisabled
+                />
+              )}
             </>
           )}
         </div>

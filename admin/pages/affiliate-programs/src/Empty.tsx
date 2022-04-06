@@ -22,7 +22,7 @@ export default React.memo(({ affiliateProgramsStatus }: PropsType) => {
 
   return (
     <>
-      <Divider />
+      <Divider className={styles.divider} />
 
       <div className={styles.root}>
         <div>

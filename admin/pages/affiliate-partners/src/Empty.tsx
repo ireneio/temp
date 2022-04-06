@@ -14,7 +14,7 @@ export default React.memo(() => {
 
   return (
     <>
-      <Divider />
+      <Divider className={styles.divider} />
 
       <div className={styles.root}>
         <div>

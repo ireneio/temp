@@ -15,6 +15,7 @@ export const getProgram = gql`
       ...useCreateAffiliateProgramFragment
       affiliateProgram(id: $id) @skip(if: $isAdd) {
         id
+        status
         ...useProgramInitialValuesFragment
         ...useUpdateAffiliateProgramFragment
       }
