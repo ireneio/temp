@@ -160,6 +160,9 @@ export default Form.create<PropsType>()(
                   payment.paymentId || 'null-id' /** SHOULD_NOT_BE_NULL */
                 }
                 isInstallment={payment.accountInfo.gmo.isInstallment || false}
+                rememberCardNumber={
+                  payment.accountInfo.gmo.rememberCardNumber || false
+                }
               />
             )}
           </div>

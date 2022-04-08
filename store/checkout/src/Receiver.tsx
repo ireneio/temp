@@ -271,6 +271,9 @@ export default React.memo(({ isLogin, store, user }: PropsType) => {
             <GmoCreditCardForm
               storePaymentId={payment?.paymentId}
               isInstallment={payment?.accountInfo.gmo.isInstallment || false}
+              rememberCardNumber={
+                payment?.accountInfo.gmo.rerememberCardNumber || false
+              }
             />
           );
         }}

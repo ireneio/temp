@@ -24,6 +24,7 @@ export const usePaymentsOrderFragment = gql`
           gmo {
             isInstallment
             paymentType
+            rememberCardNumber
           }
           allpay {
             ChoosePayment

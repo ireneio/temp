@@ -9,15 +9,5 @@ export const getGMOUser = gql`
       cardNumberFront
       cardNumberLater
     }
-
-    viewer {
-      id
-      store {
-        id
-        gmoRememberCardEnabled: checkUnleashToggle(
-          name: "T2653_storeCnameWhitelistForGmoRememberCardEnabled"
-        )
-      }
-    }
   }
 `;

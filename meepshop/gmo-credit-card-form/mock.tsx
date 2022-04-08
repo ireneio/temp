@@ -7,6 +7,10 @@ import GmoCreditCardForm from './src';
 // definition
 export default React.memo(() => (
   <Form>
-    <GmoCreditCardForm storePaymentId="storePaymentId" isInstallment />
+    <GmoCreditCardForm
+      storePaymentId="storePaymentId"
+      isInstallment
+      rememberCardNumber
+    />
   </Form>
 ));

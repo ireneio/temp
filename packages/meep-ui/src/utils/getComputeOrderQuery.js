@@ -45,6 +45,7 @@ export const computeOrderList = gql`
             gmo {
               isInstallment
               paymentType
+              rememberCardNumber
             }
             allpay {
               ChoosePayment
