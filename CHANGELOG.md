@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 0.80.166 (2022-04-08)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#2206](https://github.com/meepshop/meep-lerna/pull/2206) 【功能】GMO 信用卡 - 每次交易都要 3D 驗證（不記憶卡號）- 前端 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#2254](https://github.com/meepshop/meep-lerna/pull/2254) (@meepshop/next-store) 新增 next-store-proxy ([@HsuTing](https://github.com/HsuTing))
+- Other
+  - [#2253](https://github.com/meepshop/meep-lerna/pull/2253) (@admin/affiliate-\*) 修改錯誤 ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#2251](https://github.com/meepshop/meep-lerna/pull/2251) internal - (@meepshop/page-error): fix dependency loop ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.165 (2022-04-01)
 
 #### :bug: Bug Fix
