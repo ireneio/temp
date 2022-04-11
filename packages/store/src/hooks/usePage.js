@@ -1,25 +1,17 @@
-import { useMemo, useEffect, useState, useRef } from 'react';
+import { useMemo } from 'react';
+import { usePrevious } from 'react-use';
 import { useQuery } from '@apollo/client';
 
-import { useApolloNetworkStatus } from '@meepshop/apollo';
 import { useTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
-import { useCart } from '@meepshop/hooks';
-import filter from '@meepshop/utils/lib/filter';
-
-import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
 
 import { getPage } from 'gqls/usePage';
 import modifyWidgetDataInClient from 'utils/modifyWidgetDataInClient';
 import getJoinedModule from 'utils/getJoinedModule';
 
-import useInitializeGuestCart from './useInitializeGuestCart';
-
 export default () => {
-  const { numPendingQueries } = useApolloNetworkStatus();
   const { i18n } = useTranslation('common');
   const router = useRouter();
-  const [mergingCart, setMergingCart] = useState(false);
   const { data: originalData, loading, client } = useQuery(getPage, {
     variables: {
       path: router.query.path || '',
@@ -53,33 +45,10 @@ export default () => {
       isProductsPage: router.pathname === '/products',
     },
   });
-  const prevData = useRef(originalData);
-  const data = loading && prevData.current ? prevData.current : originalData;
-  const { cartItems, upsertCart } = useCart(
-    filter(useCartFragment, data?.viewer || null),
-  );
+  const prevData = usePrevious(originalData);
+  const data = loading && prevData ? prevData : originalData;
   const store = data?.viewer?.store || null;
   const product = data?.computeProductList?.data?.[0] || null;
-
-  if (originalData) prevData.current = originalData;
-
-  // FIXME: should simpify
-  useInitializeGuestCart(data?.viewer?.id || null);
-  useEffect(() => {
-    if (
-      !mergingCart &&
-      data?.viewer?.role === 'SHOPPER' &&
-      numPendingQueries === 0 &&
-      (data?.viewer.guestCart.cartItems || []).length !== 0
-    ) {
-      setMergingCart(true);
-
-      (async () => {
-        await upsertCart(cartItems);
-        setMergingCart(false);
-      })();
-    }
-  }, [data, cartItems, mergingCart, upsertCart, numPendingQueries]);
 
   return {
     i18n,

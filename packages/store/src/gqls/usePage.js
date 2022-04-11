@@ -1,7 +1,6 @@
 import { gql } from '@apollo/client';
 
 import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
-import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
 import { goToButtonFragment } from '@meepshop/action-button/lib/gqls/goToButton';
 import { handleModuleDataMenuFragment } from '@meepshop/meep-ui/lib/menu/gqls/handleModuleData';
 
@@ -263,7 +262,6 @@ export const getPage = gql`
     }
     viewer {
       id
-      role
       store {
         id
         description {
@@ -300,7 +298,6 @@ export const getPage = gql`
           backToTopButtonEnabled
         }
       }
-      ...useCartFragment
     }
   }
 
@@ -308,5 +305,4 @@ export const getPage = gql`
   ${usePagePageFragment}
   ${goToButtonFragment}
   ${usePageProductFragment}
-  ${useCartFragment}
 `;

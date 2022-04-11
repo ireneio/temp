@@ -26,6 +26,7 @@ import * as Utils from 'utils';
 import getClientSideProps from 'utils/getClientSideProps';
 import getServerSideProps from 'utils/getServerSideProps';
 import { appWithCookies } from 'utils/withCookies';
+import useInitialCart from 'hooks/useInitialCart';
 import usePage from 'hooks/usePage';
 import useExpiringPoints from 'hooks/useExpiringPoints';
 
@@ -240,7 +241,11 @@ class App extends NextApp {
 export default appWithTranslation(
   appWithDomain(
     withApollo(
-      appWithCookies(withHook(usePage)(withHook(useExpiringPoints)(App))),
+      appWithCookies(
+        withHook(useInitialCart)(
+          withHook(usePage)(withHook(useExpiringPoints)(App)),
+        ),
+      ),
     ),
   ),
 );
