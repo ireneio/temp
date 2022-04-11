@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.80.167 (2022-04-11)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#2252](https://github.com/meepshop/meep-lerna/pull/2252) 【BUG】前台/結帳頁：更換選取的金流時，物流出現亂碼 ([@Lexiwu](https://github.com/Lexiwu))
+- `store`
+  - [#2203](https://github.com/meepshop/meep-lerna/pull/2203) 【BUG】前台 - 商品加入購物車後，頁面會跳回上一頁 ([@piovischioh](https://github.com/piovischioh))
+- Other
+  - [#2257](https://github.com/meepshop/meep-lerna/pull/2257) 【個別店家】後台 - Google 網站管理員 - HTML 標記驗證碼無法編輯修改 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#2256](https://github.com/meepshop/meep-lerna/pull/2256) (@admin/affiliate-program-statistics) Fix detail ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.166 (2022-04-08)
 
 #### :rocket: New Feature
