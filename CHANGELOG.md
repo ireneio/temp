@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.80.168 (2022-04-11)
+
+#### :bug: Bug Fix
+
+- [#2258](https://github.com/meepshop/meep-lerna/pull/2258) 阻擋購物車髒資料 - 前端 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- [#2258](https://github.com/meepshop/meep-lerna/pull/2258) 阻擋購物車髒資料 - 前端 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.167 (2022-04-11)
 
 #### :bug: Bug Fix
