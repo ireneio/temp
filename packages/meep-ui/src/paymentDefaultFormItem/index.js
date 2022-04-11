@@ -107,14 +107,20 @@ export default class PayemntDefaultFormItem extends React.PureComponent {
           },
         ]);
 
-      if (shipmentId && !chooseShipment.shipmentId)
-        setFields([
-          {
-            name: ['shipmentId'],
-            value: undefined,
-            errors: [t('choose-shipment-error')],
-          },
-        ]);
+      if (shipmentId && !chooseShipment.shipmentId) {
+        // FIXME: 暫時先使用 settimeout
+        setTimeout(
+          () =>
+            setFields([
+              {
+                name: ['shipmentId'],
+                value: undefined,
+                errors: [t('choose-shipment-error')],
+              },
+            ]),
+          0.5,
+        );
+      }
 
       const nextState = {
         paymentIds,
