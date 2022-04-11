@@ -120,6 +120,7 @@ const AffiliatePrograms: NextPage<PropsType> = React.memo(() => {
             type="link"
             onClick={() => {
               refetch({ filter: null });
+              setSearchTerm(undefined);
               setDate([null, null]);
             }}
           >

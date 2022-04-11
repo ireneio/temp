@@ -27,10 +27,10 @@ export default (): ColumnProps<useProgramStatisticsColumnsFragmentType>[] => {
         fixed: 'left',
         render: (
           value: useProgramStatisticsColumnsFragmentType['node']['orderNo'],
-          { node: { id } },
+          { node: { orderId } },
         ) => (
-          <Link href={`/orders/${id}`}>
-            <a href={`/orders/${id}`}>{value}</a>
+          <Link href={`/orders/${orderId}`}>
+            <a href={`/orders/${orderId}`}>{value}</a>
           </Link>
         ),
       },

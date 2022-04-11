@@ -101,7 +101,7 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
             <FormItem shouldUpdate noStyle>
               {({ getFieldsError, submit }) => (
                 <div>
-                  <Link href="/affiliate/programs">
+                  <Link href={`/affiliate/programs/${affiliateProgramId}`}>
                     <Button>{t('buttons.cancel')}</Button>
                   </Link>
 

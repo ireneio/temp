@@ -41,6 +41,7 @@ export default (affiliateProgramId: string): (() => void) => {
             input: {
               ...form.getFieldsValue(),
               filter: 'AFFILIATE_ORDER',
+              type: 'AFFILIATE_ORDER',
               affiliateProgramId,
             },
           },

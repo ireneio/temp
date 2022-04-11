@@ -8,6 +8,7 @@ import omit from 'lodash.omit';
 import { formatISO } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
+import { useRouter } from '@meepshop/link';
 import message from '@admin/message';
 import merge from '@meepshop/utils/lib/merge';
 
@@ -29,6 +30,7 @@ export default (
   affiliateProgram: useUpdateAffiliateProgramFragmentType | null,
 ): ((values: ValuesType) => Promise<void>) => {
   const { t } = useTranslation('affiliate-program');
+  const router = useRouter();
   const [mutation] = useMutation<
     updateAffiliateProgramType,
     updateAffiliateProgramVariablesType
@@ -130,9 +132,10 @@ export default (
             }),
           });
           message.success(t('update.success'));
+          router.push(`/affiliate/programs/${id}`);
         },
       });
     },
-    [affiliateProgram, t, mutation],
+    [affiliateProgram, t, router, mutation],
   );
 };

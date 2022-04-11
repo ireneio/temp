@@ -2,7 +2,7 @@
 import { NextPage } from 'next';
 
 // import
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
@@ -42,6 +42,7 @@ const AffiliatePartners: NextPage<PropsType> = React.memo(() => {
     current,
     onChange,
   } = useGetAffiliatePartners();
+  const [searchTerm, setSearchTerm] = useState<string | undefined>();
 
   return (
     <Header
@@ -89,6 +90,8 @@ const AffiliatePartners: NextPage<PropsType> = React.memo(() => {
         >
           <Search
             placeholder={t('search')}
+            value={searchTerm}
+            onChange={({ target: { value } }) => setSearchTerm(value)}
             onSearch={value =>
               refetch({
                 filter: { searchTerm: value },
@@ -96,7 +99,13 @@ const AffiliatePartners: NextPage<PropsType> = React.memo(() => {
             }
           />
 
-          <Button type="link" onClick={() => refetch({ filter: null })}>
+          <Button
+            type="link"
+            onClick={() => {
+              refetch({ filter: null });
+              setSearchTerm(undefined);
+            }}
+          >
             {t('clear')}
           </Button>
 

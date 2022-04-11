@@ -11,6 +11,7 @@ import {
   ValidOrderIcon,
 } from '@meepshop/icons';
 import { Currency as CurrencyContext } from '@meepshop/context';
+import { useRouter } from '@meepshop/link';
 import filter from '@meepshop/utils/lib/filter';
 import Header from '@admin/header';
 import Tooltip from '@admin/tooltip';
@@ -45,13 +46,18 @@ const AffiliateProgramStatistics: NextPage<PropsType> = React.memo(
       affiliateProgramStatistics,
       affiliateProgramOrders,
     } = useAffiliateProgramStatistics(affiliateProgramId);
+    const router = useRouter();
     const status =
       affiliateProgramStatistics?.affiliateProgram.status || 'NOT_STARTED';
 
     return (
       <Header
         prevTitle={t('back')}
-        backTo="/affiliate/programs"
+        backTo={
+          router.previousUrl !== '/'
+            ? router.previousUrl
+            : '/affiliate/programs'
+        }
         maxWidth="initial"
         disableAffix
       >

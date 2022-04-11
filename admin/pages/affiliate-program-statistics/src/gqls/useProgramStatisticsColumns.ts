@@ -7,6 +7,7 @@ export const useProgramStatisticsColumnsFragment = gql`
     node {
       id
       orderNo
+      orderId
       createdAt
       paymentStatus
       orderStatus

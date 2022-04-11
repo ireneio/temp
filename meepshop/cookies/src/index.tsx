@@ -92,6 +92,9 @@ export const withCookies = (getCookies: getCookiesType): ReturnType => ({
   },
   getServerSideCookiesContextProps: async ctx => {
     const { client, res, req, pathname, query } = ctx;
+    const cache: {
+      [key: string]: [string, CookieAttributesType | undefined];
+    } = {};
 
     return {
       initialCookies: await getCookies({
@@ -103,8 +106,14 @@ export const withCookies = (getCookies: getCookiesType): ReturnType => ({
         cookie: {
           get: (key: string) => req.cookies[key],
           set: (key: string, value: string, options?: CookieAttributesType) => {
+            cache[key] = [value, options];
             req.cookies[key] = value;
-            res.setHeader('Set-Cookie', serialize(key, value, options));
+            res.setHeader(
+              'Set-Cookie',
+              Object.keys(cache).map(cacheKey =>
+                serialize(cacheKey, ...cache[cacheKey]),
+              ),
+            );
           },
         },
       }),
