@@ -4,11 +4,11 @@
   "description": "qa panel for admin order",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.166",
+  "version": "0.80.168",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/hooks": "^0.80.166",
+    "@meepshop/hooks": "^0.80.168",
     "@meepshop/locales": "^0.80.165",
     "@meepshop/utils": "^0.80.165",
     "date-fns": "^2.15.0"

@@ -4,11 +4,11 @@
   "description": "Bill payment page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.167",
+  "version": "0.80.168",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/header": "^0.80.167",
+    "@admin/header": "^0.80.168",
     "@admin/table": "^0.80.165",
     "@meepshop/context": "^0.80.165",
     "@meepshop/link": "^0.80.165",
