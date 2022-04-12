@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.80.169 (2022-04-12)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#2187](https://github.com/meepshop/meep-lerna/pull/2187) 內部開單 - computeOrderList 移除 cartId ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#2259](https://github.com/meepshop/meep-lerna/pull/2259) (@admin/affiliate-program) Fix loading ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.168 (2022-04-11)
 
 #### :bug: Bug Fix
