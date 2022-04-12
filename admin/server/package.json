@@ -4,7 +4,7 @@
   "description": "admin server",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.168",
+  "version": "0.80.169",
   "main": "./next.config.js",
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect=localhost:9229' next dev ./src -p 14405",
@@ -16,7 +16,7 @@
     "@admin/ad-track": "^0.80.158",
     "@admin/affiliate-partner": "^0.80.168",
     "@admin/affiliate-partners": "^0.80.168",
-    "@admin/affiliate-program": "^0.80.168",
+    "@admin/affiliate-program": "^0.80.169",
     "@admin/affiliate-program-statistics": "^0.80.168",
     "@admin/affiliate-programs": "^0.80.168",
     "@admin/apollo": "^0.80.168",
