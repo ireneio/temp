@@ -62,7 +62,6 @@ export const computeOrderList = gql`
         products {
           sku
           type
-          cartId
           title {
             zh_TW
             en_US
@@ -132,9 +131,8 @@ export const getVariables = ({
       computeType: 'cart',
       ...(!coupon ? {} : { coupon }),
       ...(!points ? {} : { points }),
-      products: products.map(({ cartId, productId, variantId, quantity }) => ({
+      products: products.map(({ productId, variantId, quantity }) => ({
         productId,
-        ...(!cartId ? {} : { cartId }),
         ...(!variantId ? {} : { variantId }),
         ...(!quantity ? {} : { quantity }),
       })),

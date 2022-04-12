@@ -101,9 +101,8 @@ export default ({ getFieldValue }: FormInstance): ReturnType => {
               {
                 computeType: 'cart',
                 products: products.map(
-                  ({ productId, cartId, variantId, quantity }) => ({
+                  ({ productId, variantId, quantity }) => ({
                     productId,
-                    ...(!cartId ? {} : { cartId }),
                     ...(!variantId ? {} : { variantId }),
                     ...(!quantity ? {} : { quantity }),
                   }),
