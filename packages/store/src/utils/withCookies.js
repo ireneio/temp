@@ -54,6 +54,7 @@ export const {
 
     if (query.promoCode)
       cookie.set('promoCode', query.promoCode, {
+        path: '/',
         maxAge: (60 * 60 * 24 * 365 * 10).toString(),
       });
 
@@ -80,6 +81,7 @@ export const {
 
       if (currency)
         cookie.set('currency', currency, {
+          path: '/',
           maxAge: (30 * 24 * 60 * 60 * 1000).toString(),
         });
     }
