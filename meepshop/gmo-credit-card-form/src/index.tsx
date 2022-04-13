@@ -83,10 +83,12 @@ export default React.memo(
           <FormItem
             name={['isRememberCard']}
             initialValue={
-              !rememberCardNumber ||
-              /** FIXME: should not need to check pathname after landingPage is rewritten by the new spec */
-              router.pathname !== '/checkout' ||
-              Boolean(exist && !isModified)
+              !rememberCardNumber
+                ? false
+                : !rememberCardNumber ||
+                  /** FIXME: should not need to check pathname after landingPage is rewritten by the new spec */
+                  router.pathname !== '/checkout' ||
+                  Boolean(exist && !isModified)
             }
             valuePropName="checked"
           >

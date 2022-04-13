@@ -185,6 +185,9 @@ export default class LandingPage extends React.PureComponent {
             <GmoCreditCardForm
               storePaymentId={choosePayment.paymentId}
               isInstallment={choosePayment.accountInfo.gmo.isInstallment}
+              rememberCardNumber={
+                choosePayment.accountInfo.gmo.rememberCardNumber
+              }
             />
           )}
         </StyleRoot>
