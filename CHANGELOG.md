@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.170 (2022-04-13)
+
+#### :rocket: New Feature
+
+- [#2208](https://github.com/meepshop/meep-lerna/pull/2208) 【功能】電子報防呆機制 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#2261](https://github.com/meepshop/meep-lerna/pull/2261) 【BUG】前台 - GMO 建立訂單後，不應記憶卡號（特店代號：12044460） ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 1
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.169 (2022-04-12)
 
 #### :rocket: New Feature
