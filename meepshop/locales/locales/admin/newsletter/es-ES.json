@@ -10,5 +10,10 @@
   "subject": "Título del periódico electrónico",
   "recipient": "recipiente",
   "all-members": "Todos los miembros",
-  "required": "Ser requerido"
+  "required": "Ser requerido",
+  "modal": {
+    "confirm": "¿Confirmar que quieres enviar un periódico electrónico?",
+    "cancel": "Cancelar",
+    "ok": "enviar"
+  }
 }

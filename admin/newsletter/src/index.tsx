@@ -5,8 +5,8 @@ import { ImageNodeType } from '@admin/media-gallery';
 import React, { useState, useCallback, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { useQuery } from '@apollo/client';
-import { Drawer, Form, Button, Input, Select } from 'antd';
-import { PictureOutlined } from '@ant-design/icons';
+import { Drawer, Form, Button, Input, Select, Modal } from 'antd';
+import { PictureOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { ContentUtils } from 'braft-utils';
 
 import Gallery from '@admin/media-gallery';
@@ -113,8 +113,18 @@ export default React.memo(({ id, onClose }: PropsType) => {
                       <Button
                         loading={loading}
                         onClick={() => {
-                          setFieldsValue({ sendNow: true });
-                          submit();
+                          Modal.confirm({
+                            className: styles.modal,
+                            centered: true,
+                            icon: <InfoCircleOutlined />,
+                            title: t('modal.confirm'),
+                            cancelText: t('modal.cancel'),
+                            okText: t('modal.ok'),
+                            onOk: () => {
+                              setFieldsValue({ sendNow: true });
+                              submit();
+                            },
+                          });
                         }}
                         type="primary"
                       >

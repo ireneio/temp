@@ -10,5 +10,10 @@
   "subject": "電子新聞のタイトル",
   "recipient": "受信者",
   "all-members": "全員",
-  "required": "必要とされます"
+  "required": "必要とされます",
+  "modal": {
+    "confirm": "電子新聞を送りたいことを確認してください。",
+    "cancel": "キャンセル",
+    "ok": "送信"
+  }
 }

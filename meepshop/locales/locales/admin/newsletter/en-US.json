@@ -10,5 +10,10 @@
   "subject": "Electronic newspaper title",
   "recipient": "recipient",
   "all-members": "All members",
-  "required": "Be required"
+  "required": "Be required",
+  "modal": {
+    "confirm": "Confirm that you want to send an electronic newspaper?",
+    "cancel": "Cancel",
+    "ok": "send"
+  }
 }

@@ -10,5 +10,10 @@
   "subject": "Tiêu đề báo điện tử",
   "recipient": "người nhận",
   "all-members": "Tất cả thành viên",
-  "required": "Được yêu cầu"
+  "required": "Được yêu cầu",
+  "modal": {
+    "confirm": "Xác nhận rằng bạn muốn gửi một tờ báo điện tử?",
+    "cancel": "Hủy bỏ",
+    "ok": "gửi"
+  }
 }

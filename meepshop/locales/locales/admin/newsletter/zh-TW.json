@@ -10,5 +10,10 @@
   "subject": "電子報標題",
   "recipient": "收件人",
   "all-members": "所有會員",
-  "required": "必填"
+  "required": "必填",
+  "modal":{
+    "confirm": "確認要寄出電子報嗎？",
+    "cancel": "取消",
+    "ok": "寄送"
+  }
 }

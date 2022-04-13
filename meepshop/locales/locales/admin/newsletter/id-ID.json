@@ -10,5 +10,10 @@
   "subject": "Judul surat kabar elektronik",
   "recipient": "penerima",
   "all-members": "Semua anggota",
-  "required": "Diperlukan"
+  "required": "Diperlukan",
+  "modal": {
+    "confirm": "Konfirmasikan bahwa Anda ingin mengirim surat kabar elektronik?",
+    "cancel": "Membatalkan",
+    "ok": "mengirim"
+  }
 }

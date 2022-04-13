@@ -10,5 +10,10 @@
   "subject": "Titre de journal électronique",
   "recipient": "destinataire",
   "all-members": "Tous les membres",
-  "required": "Être requis"
+  "required": "Être requis",
+  "modal": {
+    "confirm": "Confirmez que vous souhaitez envoyer un journal électronique?",
+    "cancel": "Annuler",
+    "ok": "envoyer"
+  }
 }
