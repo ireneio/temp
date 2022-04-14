@@ -48,7 +48,11 @@ export default React.memo(
                 : () => onChange(current - 1, pageSize)
             }
           />
-          {current + 1} / {endPage}
+
+          {current + 1}
+          <span className={styles.slash}>/</span>
+          {endPage}
+
           <RightOutlined
             className={current === endPage - 1 ? styles.disabled : ''}
             onClick={
