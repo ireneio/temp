@@ -30,7 +30,6 @@ export type ReturnType = {
   }: {
     products?: {
       productId?: string;
-      cartId?: string;
       variantId?: string;
       quantity?: number | null;
     }[];

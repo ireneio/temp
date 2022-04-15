@@ -8,7 +8,6 @@ import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 export const useProductColumnsFragment = gql`
   fragment useProductColumnsFragment on productsObjectType {
     id
-    cartId
     productId
     variantId
     type

@@ -18,7 +18,6 @@ export const computedCartInCheckout = gql`
       ... on ComputedCart {
         computedLineItems {
           type
-          cartId: id
           productId
           quantity
           variantId
