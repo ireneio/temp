@@ -3,6 +3,7 @@ import { NextPage } from 'next';
 
 // import
 import React, { useContext } from 'react';
+import { isUUID } from 'validator';
 
 import { useTranslation } from '@meepshop/locales';
 import {
@@ -117,8 +118,8 @@ AffiliateProgramStatistics.getInitialProps = async ({
   query: { affiliateProgramId },
 }) => {
   // FIXME: should use get getServerSideProps return notFound
-  if (typeof affiliateProgramId !== 'string')
-    throw new Error('[FIXME] affiliateProgramId is undefined');
+  if (typeof affiliateProgramId !== 'string' || !isUUID(affiliateProgramId))
+    throw new Error('[FIXME] affiliateProgramId is invalid');
 
   return {
     namespacesRequired: ['@meepshop/locales/namespacesRequired'],

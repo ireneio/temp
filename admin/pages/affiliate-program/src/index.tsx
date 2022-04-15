@@ -6,6 +6,7 @@ import { PropsType as EditPropsType } from './Edit';
 
 // import
 import React from 'react';
+import { isUUID } from 'validator';
 
 // Use to copy mixin.less
 import './styles/mixin.less';
@@ -33,8 +34,11 @@ AffiliateProgram.getInitialProps = async ({
   query: { affiliateProgramId, type },
 }) => {
   // FIXME: should use get getServerSideProps return notFound
-  if (typeof affiliateProgramId !== 'string')
-    throw new Error('[FIXME] affiliateProgramId is undefined');
+  if (
+    typeof affiliateProgramId !== 'string' ||
+    (!isUUID(affiliateProgramId) && affiliateProgramId !== 'add')
+  )
+    throw new Error('[FIXME] affiliateProgramId is invalid');
 
   // FIXME: should use get getServerSideProps return notFound
   if (type && type !== 'edit') throw new Error('[FIXME] type is not right');

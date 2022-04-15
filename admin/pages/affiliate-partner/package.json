@@ -18,7 +18,8 @@
     "@meepshop/locales": "^0.80.170",
     "@meepshop/utils": "^0.80.165",
     "@meepshop/validator": "^0.80.170",
-    "lodash.omit": "^4.5.0"
+    "lodash.omit": "^4.5.0",
+    "validator": "^13.5.2"
   },
   "keywords": ["admin", "affiliate partner"]
 }

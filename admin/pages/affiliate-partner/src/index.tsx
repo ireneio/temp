@@ -6,6 +6,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Form, Input, Button } from 'antd';
 import { areEqual } from 'fbjs';
+import { isUUID } from 'validator';
 
 import { OpenUrlIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/locales';
@@ -269,8 +270,11 @@ AffiliatePartner.getInitialProps = async ({
   query: { affiliatePartnerId },
 }) => {
   // FIXME: should use get getServerSideProps return notFound
-  if (typeof affiliatePartnerId !== 'string')
-    throw new Error('[FIXME] affiliatePartnerId is undefined');
+  if (
+    typeof affiliatePartnerId !== 'string' ||
+    (!isUUID(affiliatePartnerId) && affiliatePartnerId !== 'add')
+  )
+    throw new Error('[FIXME] affiliatePartnerId is invalid');
 
   return {
     namespacesRequired: ['@meepshop/locales/namespacesRequired'],
