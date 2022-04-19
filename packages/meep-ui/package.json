@@ -4,7 +4,7 @@
   "description": "meep-ui for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.170",
+  "version": "0.80.171",
   "dependencies": {
     "@meepshop/apollo": "^0.80.170",
     "@meepshop/context": "^0.80.165",
@@ -48,7 +48,7 @@
     "@meepshop/view-tracking": "^0.80.165",
     "@store/alert": "^0.80.165",
     "@store/cart-previewer": "^0.80.170",
-    "@store/checkout": "^0.80.170",
+    "@store/checkout": "^0.80.171",
     "@store/checkout-steps": "^0.80.170",
     "@store/utils": "^0.80.165",
     "color": "^3.0.0",
