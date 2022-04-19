@@ -54,7 +54,10 @@ export default (
         const value = {
           subject: values.subject,
           template: (values.template?.toHTML() || '')
-            .replace(/<p[\s\w=\-:;"]*><\/p>/g, '<p style="height:22px"></p>')
+            .replace(
+              /<p[\s\w=\-:;"]*><\/p>/g,
+              '<p style="height:22px;margin:0;"></p>',
+            )
             .replace(/<img/g, '<img style="max-width: 100%" '),
           toUsers: {
             filter: {
