@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.80.171 (2022-04-19)
+
+#### :bug: Bug Fix
+
+- [#2266](https://github.com/meepshop/meep-lerna/pull/2266) 【BUG】前台 - 購物車頁面 - 「加購品無法單獨購買」提示訊息消失 ([@piovischioh](https://github.com/piovischioh))
+- [#2262](https://github.com/meepshop/meep-lerna/pull/2262) 【BUG】電子報 - 圖片空白格問題 ([@Lexiwu](https://github.com/Lexiwu))
+- [#2264](https://github.com/meepshop/meep-lerna/pull/2264) (@admin/affiliate-\*) Add uuid checking ([@HsuTing](https://github.com/HsuTing))
+- [#2263](https://github.com/meepshop/meep-lerna/pull/2263) (@admin/affiliate-\*) Fix style ([@HsuTing](https://github.com/HsuTing))
+
+#### :house: Internal
+
+- [#2265](https://github.com/meepshop/meep-lerna/pull/2265) 移除多餘 cartId ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 3
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.170 (2022-04-13)
 
 #### :rocket: New Feature
