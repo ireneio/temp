@@ -1,8 +1,5 @@
-// typescript import
-import { FormInstance } from 'antd/lib/form';
-
 // import
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { Table, Skeleton } from 'antd';
 import transformColor from 'color';
 
@@ -26,21 +23,18 @@ import {
 } from './gqls/useProductsColumns';
 
 // typescript definition
-interface PropsType extends Pick<FormInstance, 'getFieldsError'> {
+interface PropsType {
   viewer: productsUserFragmentType | null;
   products: productsLineItemFragmentType[];
+  hasErrors: boolean;
 }
 
 // definition
-export default React.memo(({ viewer, products, getFieldsError }: PropsType) => {
+export default React.memo(({ viewer, products, hasErrors }: PropsType) => {
   const colors = useContext(ColorsContext);
   const { columns, styles: columnStyles } = useProductsColumns(
     filter(useProductsColumnsUserFragment, viewer),
   );
-  const error = getFieldsError();
-  const hasErrors = useMemo(() => error.some(({ errors }) => errors.length), [
-    error,
-  ]);
 
   return (
     <>

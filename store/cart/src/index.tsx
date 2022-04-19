@@ -85,8 +85,10 @@ const Cart: NextPage = React.memo(() => {
                     alertFragment,
                     viewer?.store?.activeUpsellingArea || null,
                   )}
-                  getFieldValue={getFieldValue}
-                  getFieldsError={getFieldsError}
+                  products={getFieldValue(['products'])}
+                  hasErrors={getFieldsError().some(
+                    ({ errors }) => errors.length,
+                  )}
                 />
               )}
             </FormItem>
@@ -99,7 +101,9 @@ const Cart: NextPage = React.memo(() => {
                     productsLineItemFragment,
                     computedCart?.computedLineItems || [],
                   )}
-                  getFieldsError={getFieldsError}
+                  hasErrors={getFieldsError().some(
+                    ({ errors }) => errors.length,
+                  )}
                 />
               )}
             </FormItem>

@@ -1,6 +1,4 @@
 // typescript import
-import { FormInstance } from 'antd/lib/form';
-
 import { ValuesType } from './hooks/useInitialValue';
 
 // import
@@ -16,30 +14,29 @@ import styles from './styles/alert.less';
 import { alertFragment } from '@meepshop/types/gqls/store';
 
 // typescript definition
-interface PropsType
-  extends Pick<FormInstance, 'getFieldValue' | 'getFieldsError'> {
+interface PropsType {
   activeUpsellingArea: alertFragment | null;
+  products: ValuesType['products'];
+  hasErrors: boolean;
 }
 
 // definition
 const { Item: FormItem } = Form;
 
 export default React.memo(
-  ({ activeUpsellingArea, getFieldValue, getFieldsError }: PropsType) => {
+  ({ activeUpsellingArea, products, hasErrors }: PropsType) => {
     const { t } = useTranslation('cart');
-    const products: ValuesType['products'] = getFieldValue(['products']);
-    const error = getFieldsError();
-    const { isUpsellingOverLimit, isOnlyUpselling, hasErrors } = useMemo(() => {
-      return {
+    const { isUpsellingOverLimit, isOnlyUpselling } = useMemo(
+      () => ({
         isUpsellingOverLimit: products.some(
           item => item?.status === 'EXCEED_LIMIT_PER_ORDER',
         ),
         isOnlyUpselling:
           products.length > 0 &&
           !products.some(item => item?.type === 'PRODUCT'),
-        hasErrors: error.some(({ errors }) => errors.length),
-      };
-    }, [products, error]);
+      }),
+      [products],
+    );
     const validator = useCallback(
       async (_, lineItems: ValuesType['products']) => {
         if (
