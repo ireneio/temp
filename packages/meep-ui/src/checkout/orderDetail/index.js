@@ -177,9 +177,9 @@ export default class OrderDetail extends React.PureComponent {
   }
 
   componentDidMount() {
-    const { logMutation } = this.props;
+    const { logMutation, carts } = this.props;
 
-    this.computeOrderList();
+    this.computeOrderList({ products: carts });
     try {
       this.restoreInfo();
     } catch ({ message, stack }) {
@@ -300,10 +300,12 @@ export default class OrderDetail extends React.PureComponent {
       mutation,
       isSubmitting,
     } = this.props;
+    const { products, isChecking } = this.state;
 
-    if (isSubmitting) return;
+    if (isSubmitting || isChecking) return;
 
-    const { products } = this.state;
+    this.setState({ isChecking: true });
+
     const [paymentId, shipmentId, coupon, points] = [
       'paymentId',
       'shipmentId',
@@ -312,8 +314,6 @@ export default class OrderDetail extends React.PureComponent {
     ].map(key =>
       fieldsValue[key] !== undefined ? fieldsValue[key] : getFieldValue(key),
     );
-
-    this.setState({ isChecking: true });
 
     const { data } = await mutation(
       getVariables({
