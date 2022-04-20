@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.172 (2022-04-20)
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#2270](https://github.com/meepshop/meep-lerna/pull/2270) 【BUG】 手機版－進入訂單結帳頁，訂單金額未正常顯示 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.171 (2022-04-19)
 
 #### :bug: Bug Fix
