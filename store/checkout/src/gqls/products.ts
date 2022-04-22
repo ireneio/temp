@@ -10,6 +10,7 @@ export const productsFragment = gql`
     categories {
       id
       products {
+        error: _error
         ...useProductColumnsFragment
       }
     }

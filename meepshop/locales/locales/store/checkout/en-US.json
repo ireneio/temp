@@ -1,6 +1,8 @@
 {
   "reward-points": "Reward Points",
   "pay-fail": "Failed",
+  "sign-up-failure-message": "Registration: Errors",
+  "invalid-email-or-password": "Mailbox or password error",
   "receiver-info": "Recipient Info",
   "notes": "Order Notes",
   "confirm": "Place Order",
@@ -22,14 +24,14 @@
   "total-payment-amount": "Total amount of payment",
   "total-price": "Total",
   "cart": "shopping cart",
-  "cart-has-error": {
-    "0": "Please adjust first",
-    "1": "Unable to buy goods"
-  },
   "products": "Commodity details",
+  "products-error": "Shopping carts with unable to buy goods",
+  "choose-products": "Please adjust the item first, continue to check out",
   "upselling-product": "Purchase goods",
   "gift": "Give a gift",
   "shipment": "Transportation",
+  "shipment-empty": "Unable to check up",
+  "choose-shipment": "Please select the transportation method to continue checkout",
   "change": "change",
   "choose-store": "Select pick-up door market",
   "rechoose-store": "Renovate",
@@ -37,6 +39,7 @@
     "CVSAddress": "Store address",
     "CVSStoreID": "State city code"
   },
+  "not-choose-store": "Haven't chosen the store",
   "user-info": "Member Info",
   "go-to-login": "Go to login",
   "email": "Sign up with your email address",
@@ -62,6 +65,9 @@
   "payment": "payment method",
   "payment-description": "Payment method",
   "choose-payment-error": "The selected payment method is not applicable, please re-select",
+  "payment-list-empty": "Nothing to use payment method",
+  "payment-list-empty-error": "There is currently no payment method that can be used, please contact us to handle",
+  "payment-exclude": "(Do not support the selected delivery method)",
   "discount": "Fold",
   "coupon": {
     "placeholder": "Please enter a coupon code",

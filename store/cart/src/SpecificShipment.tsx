@@ -45,7 +45,7 @@ export default React.memo(({ storeShipment }: PropsType) => {
 
   return (
     <div className={styles.root}>
-      <p className={styles.blockTitle}>{t('specific-shipment.title')}</p>
+      <p className={styles.title}>{t('specific-shipment.title')}</p>
 
       <FormItem
         name={['shipment']}

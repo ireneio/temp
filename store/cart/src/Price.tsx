@@ -1,7 +1,8 @@
 // import
 import React, { useContext, useMemo } from 'react';
-import { Skeleton } from 'antd';
+import { Skeleton, Form } from 'antd';
 import transformColor from 'color';
+import VisibilitySensor from 'react-visibility-sensor';
 
 import {
   Currency as CurrencyContext,
@@ -24,108 +25,159 @@ interface PropsType {
         computedLineItems: priceComputedCartFragmentComputedLineItemsType[];
       })
     | null;
+  showFooter: boolean;
+  setShowFooter: (value: boolean) => void;
 }
 
 // definition
-export default React.memo(({ computedCart }: PropsType) => {
-  const colors = useContext(ColorsContext);
-  const { c } = useContext(CurrencyContext);
-  const { t } = useTranslation('cart');
-  const getLanguage = useGetLanguage();
-  const productTotal = useMemo(
-    () =>
-      (computedCart?.computedLineItems || []).reduce(
-        (total, { quantity, unitPrice }) =>
-          total + (quantity || 0) * (unitPrice || 0),
-        0,
-      ),
-    [computedCart],
-  );
-  const discountTotal = useMemo(
-    () =>
-      (computedCart?.productsDiscount || []).reduce(
-        (total, activity) => total + (activity?.discountPrice || 0),
-        0,
-      ),
-    [computedCart],
-  );
+const { Item: FormItem } = Form;
 
-  return (
-    <>
-      <div className={styles.root}>
-        {!computedCart ? (
-          <Skeleton
-            title={false}
-            paragraph={{ rows: 4, width: '100%' }}
-            active
-          />
-        ) : (
-          <>
-            <h1>{t('cart-total')}</h1>
+export default React.memo(
+  ({ computedCart, showFooter, setShowFooter }: PropsType) => {
+    const colors = useContext(ColorsContext);
+    const { c } = useContext(CurrencyContext);
+    const { t } = useTranslation('cart');
+    const getLanguage = useGetLanguage();
+    const productTotal = useMemo(
+      () =>
+        (computedCart?.computedLineItems || []).reduce(
+          (total, { quantity, unitPrice }) =>
+            total + (quantity || 0) * (unitPrice || 0),
+          0,
+        ),
+      [computedCart],
+    );
+    const discountTotal = useMemo(
+      () =>
+        (computedCart?.productsDiscount || []).reduce(
+          (total, activity) => total + (activity?.discountPrice || 0),
+          0,
+        ),
+      [computedCart],
+    );
+    const shipmentFee = useMemo(
+      () =>
+        computedCart?.orderDiscount.discountAllocations?.find(
+          activity => activity?.plugin === 'freeShipping',
+        )
+          ? 0
+          : computedCart?.shippingFee || 0,
+      [computedCart],
+    );
 
-            <div>
-              <div>{t('product-total')}</div>
-              <div>{c(productTotal)}</div>
-            </div>
+    return (
+      <>
+        <div className={styles.root}>
+          {!computedCart ? (
+            <Skeleton
+              title={false}
+              paragraph={{ rows: 4, width: '100%' }}
+              active
+            />
+          ) : (
+            <>
+              <h1>{t('cart-total')}</h1>
 
-            {[
-              ...computedCart.productsDiscount,
-              ...computedCart.orderDiscount.discountAllocations,
-            ].map(activity => {
-              if (!activity) return null;
-
-              const { title } = activity;
-              const id = 'id' in activity ? activity.id : activity.activityId;
-              const discountPrice = activity.discountPrice || 0;
-
-              if (discountPrice <= 0) return null;
-
-              return (
-                <div key={id}>
-                  <div>{getLanguage(title)}</div>
-                  <div>- {c(discountPrice)}</div>
-                </div>
-              );
-            })}
-
-            <div className={styles.subtotal}>
-              <div>{t('subtotal')}</div>
               <div>
-                {c(
-                  productTotal -
-                    discountTotal -
-                    computedCart.orderDiscount.totalDiscount,
-                )}
+                <div>{t('product-total')}</div>
+                <div>{c(productTotal)}</div>
               </div>
-            </div>
-          </>
-        )}
-      </div>
 
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            .${styles.root} {
-              color: ${colors[3]};
-              background-color: ${transformColor(colors[3]).alpha(0.03)};
-            }
+              {[
+                ...computedCart.productsDiscount,
+                ...computedCart.orderDiscount.discountAllocations,
+              ].map(activity => {
+                if (!activity) return null;
 
-            .${styles.subtotal} {
-              border-color: ${transformColor(colors[3]).alpha(0.1)};
-            }
+                const { title } = activity;
+                const id = 'id' in activity ? activity.id : activity.activityId;
+                const discountPrice = activity.discountPrice || 0;
 
-            @media (max-width: ${styles.screenSmMax}) {
-              .${styles.root} h1 {
-                border-color: ${colors[3]};
+                if (discountPrice <= 0 || activity?.plugin === 'freeShipping')
+                  return null;
+
+                return (
+                  <div key={id}>
+                    <div>{getLanguage(title)}</div>
+                    <div>- {c(discountPrice)}</div>
+                  </div>
+                );
+              })}
+
+              <FormItem dependencies={['shipmentId']} noStyle>
+                {({ getFieldValue }) => (
+                  <div className={styles.shipment}>
+                    <div>{t('shipment-fee')}</div>
+                    <div>
+                      {(() => {
+                        if (
+                          computedCart.orderDiscount.discountAllocations?.find(
+                            activity => activity?.plugin === 'freeShipping',
+                          )
+                        )
+                          return t('free-shipment');
+
+                        if (getFieldValue(['shipmentId']))
+                          return c(computedCart.shippingFee);
+
+                        return t('not-selected');
+                      })()}
+                    </div>
+                  </div>
+                )}
+              </FormItem>
+
+              <VisibilitySensor
+                active={!showFooter}
+                onChange={isVisible => {
+                  if (isVisible) setShowFooter(true);
+                }}
+                partialVisibility
+              >
+                <div className={styles.subtotal}>
+                  <div>{t('subtotal')}</div>
+                  <div>
+                    {c(
+                      productTotal -
+                        discountTotal -
+                        computedCart.orderDiscount.totalDiscount +
+                        shipmentFee,
+                    )}
+                  </div>
+                </div>
+              </VisibilitySensor>
+            </>
+          )}
+        </div>
+
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              .${styles.root} {
+                color: ${colors[3]};
+                background-color: ${transformColor(colors[3]).alpha(0.03)};
               }
 
-              .${styles.subtotal} {
-                border-color: ${transformColor(colors[3]).alpha(0.3)};
+              .${styles.shipment} {
+                border-top: 1px solid ${transformColor(colors[3]).alpha(0.1)};
+                border-bottom: 1px solid ${transformColor(colors[3]).alpha(
+                  0.1,
+                )};
               }
-            }
-          `,
-        }}
-      />
-    </>
-  );
-});
+
+              @media (max-width: ${styles.screenSmMax}) {
+                .${styles.root} h1 {
+                  border-color: ${colors[3]};
+                }
+
+                .${styles.shipment} {
+                  border-color: ${transformColor(colors[3]).alpha(0.3)};
+                }
+              }
+            `,
+          }}
+        />
+      </>
+    );
+  },
+);

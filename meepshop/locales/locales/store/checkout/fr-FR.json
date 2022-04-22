@@ -1,6 +1,8 @@
 {
   "reward-points": "Points de récompense",
   "pay-fail": "Échoué",
+  "sign-up-failure-message": "Inscription: Erreurs",
+  "invalid-email-or-password": "Erreur de boîtes aux lettres ou de mot de passe",
   "receiver-info": "Informations sur le destinataire",
   "notes": "Notes d'ordre",
   "confirm": "Passer la commande",
@@ -22,14 +24,14 @@
   "total-payment-amount": "Montant total du paiement",
   "total-price": "Totale",
   "cart": "Panier",
-  "cart-has-error": {
-    "0": "S'il vous plaît ajuster d'abord",
-    "1": "Impossible d'acheter des biens"
-  },
   "products": "Détails des produits de base",
+  "products-error": "Paniers avec incapacité d'acheter des biens",
+  "choose-products": "Veuillez ajuster l'article en premier, continuez à vérifier",
   "upselling-product": "Biens achetés",
   "gift": "Donner un cadeau",
   "shipment": "Transport",
+  "shipment-empty": "Impossible de vérifier",
+  "choose-shipment": "Veuillez sélectionner la méthode de transport pour continuer la commande.",
   "change": "monnaie",
   "choose-store": "Sélectionnez le marché de la porte de ramassage",
   "rechoose-store": "Rénover",
@@ -37,6 +39,7 @@
     "CVSAddress": "Adresse du magasin",
     "CVSStoreID": "Code de la ville d'état"
   },
+  "not-choose-store": "N'a pas choisi le magasin",
   "user-info": "Infos membres",
   "go-to-login": "Aller à la connexion",
   "email": "Inscrivez vous avec votre adresse email",
@@ -62,6 +65,9 @@
   "payment": "mode de paiement",
   "payment-description": "Mode de paiement",
   "choose-payment-error": "Le mode de paiement sélectionné n'est pas applicable, veuillez ré-sélectionner",
+  "payment-list-empty": "Rien à utiliser la méthode de paiement",
+  "payment-list-empty-error": "Il n'existe actuellement aucun mode de paiement qui puisse être utilisé, s'il vous plaît contactez-nous pour gérer",
+  "payment-exclude": "(Ne prenez pas en charge la méthode de livraison sélectionnée)",
   "discount": "Plier",
   "coupon": {
     "placeholder": "S'il vous plaît entrer le code de coupon",

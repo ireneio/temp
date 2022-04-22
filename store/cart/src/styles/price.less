@@ -7,7 +7,8 @@
   font-size: 14px;
   line-height: 22px;
   width: 432px;
-  margin: 40px 0px 56px auto;
+  min-width: 432px;
+  height: fit-content;
   padding: 24px 24px 32px;
   border-radius: 1px;
 
@@ -33,9 +34,13 @@
     }
   }
 
-  .subtotal {
-    border-top: 1px solid;
+  .shipment {
     margin-top: 6px;
+    padding: 16px 8px 16px;
+    line-height: 24px;
+  }
+
+  .subtotal {
     padding: 16px 8px 0px;
     font-size: 18px;
     line-height: 30px;
@@ -54,7 +59,7 @@
 
   @media (max-width: @screen-sm-max) {
     width: 100%;
-    margin: 40px 0px 64px;
+    min-width: 100%;
     padding: 0px;
     border-radius: unset;
     background: none;
@@ -67,6 +72,15 @@
 
     > div {
       padding: 0px 0px 12px;
+    }
+
+    .shipment {
+      line-height: 22px;
+      margin-top: 4px;
+
+      > div:last-child {
+        min-height: 22px;
+      }
     }
 
     .subtotal {

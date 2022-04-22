@@ -1,6 +1,8 @@
 {
   "reward-points": "Tiền mua hàng",
   "pay-fail": "Chi trả không đúng",
+  "sign-up-failure-message": "Đăng ký: Lỗi",
+  "invalid-email-or-password": "Hộp thư hoặc lỗi mật khẩu",
   "receiver-info": "Thông tin người nhận",
   "notes": "Ghi chú đặt hàng",
   "confirm": "Xác nhận xuất hàng",
@@ -22,14 +24,14 @@
   "total-payment-amount": "Tổng số tiền thanh toán",
   "total-price": "Tổng số đơn hàng",
   "cart": "Giỏ hàng",
-  "cart-has-error": {
-    "0": "Vui lòng điều chỉnh trước",
-    "1": "Không thể mua hàng"
-  },
   "products": "Chi tiết hàng hóa",
+  "products-error": "Giỏ hàng không có khả năng mua hàng",
+  "choose-products": "Vui lòng điều chỉnh mục trước, tiếp tục kiểm tra",
   "upselling-product": "Thánh toán đồ gia dụng",
   "gift": "Cho một món quà",
   "shipment": "Vận tải",
+  "shipment-empty": "Không thể kiểm tra",
+  "choose-shipment": "Vui lòng chọn phương thức vận chuyển để tiếp tục thanh toán",
   "change": "biến đổi",
   "choose-store": "Chọn thị trường cửa đón",
   "rechoose-store": "Đổi mới.",
@@ -37,6 +39,7 @@
     "CVSAddress": "Địa chỉ cửa hàng",
     "CVSStoreID": "Mã thành phố nhà nước"
   },
+  "not-choose-store": "Không chọn cửa hàng",
   "user-info": "thông tin hội viên",
   "go-to-login": "Đi đến Đăng nhập.",
   "email": "Xin nhập hộp thư đăng ký",
@@ -62,6 +65,9 @@
   "payment": "Phương thức thanh toán",
   "payment-description": "Phương thức thanh toán",
   "choose-payment-error": "Phương thức thanh toán đã chọn không được áp dụng, vui lòng chọn lại",
+  "payment-list-empty": "Không có gì để sử dụng phương thức thanh toán",
+  "payment-list-empty-error": "Hiện tại không có phương thức thanh toán có thể được sử dụng, vui lòng liên hệ với chúng tôi để xử lý",
+  "payment-exclude": "(Không hỗ trợ phương thức giao hàng đã chọn)",
   "discount": "Nếp gấp",
   "coupon": {
     "placeholder": "Vui lòng nhập mã phiếu giảm giá",

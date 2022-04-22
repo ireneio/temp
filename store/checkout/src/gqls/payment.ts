@@ -18,8 +18,10 @@ export const paymentOrderFragment = gql`
           gmo {
             isInstallment
             paymentType
+            rememberCardNumber
           }
         }
+        excludeShipping
       }
     }
   }

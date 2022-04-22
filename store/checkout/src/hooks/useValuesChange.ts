@@ -1,3 +1,6 @@
+// typescript import
+import { ComputeOrderList } from './useComputeOrderList';
+
 // import
 import { useCallback } from 'react';
 
@@ -6,7 +9,7 @@ import { PRESERVED_FIELDS, COMPUTE_FIELDS } from '../constants';
 
 // definition
 export default (
-  computeOrderList: (value: { [key: string]: string }) => void,
+  computeOrderList: ComputeOrderList,
 ): ((changedValues: { [key: string]: string }) => void) => {
   const resetTimer = useResetTimer();
 

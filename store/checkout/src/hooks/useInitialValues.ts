@@ -10,10 +10,14 @@ import useResetTimer from './useResetTimer';
 import { PRESERVED_FIELDS } from '../constants';
 
 // graphql typescript
-import { useInitialValuesInCheckoutFragment as useInitialValuesInCheckoutFragmentType } from '@meepshop/types/gqls/store';
+import {
+  useInitialValuesInCheckoutFragment as useInitialValuesInCheckoutFragmentType,
+  computedCartInCheckout_computedCart_ComputedCart_computedLineItems as computedCartInCheckoutComputedCartComputedCartComputedLineItemsType,
+} from '@meepshop/types/gqls/store';
 
 // typescript definition
-export interface ValuesType {
+interface ValuesType {
+  products: computedCartInCheckoutComputedCartComputedCartComputedLineItemsType[];
   userName?: string | null;
   userMobile?: string | null;
   userAddressAndZipCode?: {
@@ -27,6 +31,7 @@ export interface ValuesType {
 export default (
   { resetFields }: FormInstance,
   user: useInitialValuesInCheckoutFragmentType | null,
+  computedCartItems: computedCartInCheckoutComputedCartComputedCartComputedLineItemsType[],
 ): ValuesType | undefined => {
   const resetTimer = useResetTimer();
 
@@ -41,7 +46,12 @@ export default (
 
       if (!value) return values;
 
-      if (field === 'addressAndZipCode') value = JSON.parse(value);
+      if (
+        field === 'addressAndZipCode' ||
+        field === 'shipment' ||
+        field === 'products'
+      )
+        value = JSON.parse(value);
 
       return {
         ...values,
@@ -50,6 +60,7 @@ export default (
     }, {});
 
     return {
+      products: computedCartItems,
       userName: user?.name,
       userMobile: user?.mobile,
       userAddressAndZipCode: !user?.address
@@ -65,7 +76,7 @@ export default (
       userStreet: user?.address?.street,
       ...preservedInfo,
     };
-  }, [user, resetTimer]);
+  }, [resetTimer, computedCartItems, user]);
 
   const prevInitialValues = usePrevious(initialValues);
 

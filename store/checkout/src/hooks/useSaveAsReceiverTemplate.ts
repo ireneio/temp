@@ -8,7 +8,7 @@ import { useRef, useCallback } from 'react';
 import { useSaveAsReceiverTemplateFragment as useSaveAsReceiverTemplateFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
-export interface PropsType {
+interface PropsType {
   isLogin: boolean;
   user: useSaveAsReceiverTemplateFragmentType | null;
 }

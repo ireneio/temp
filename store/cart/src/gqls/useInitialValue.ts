@@ -8,5 +8,7 @@ export const useInitialValueFragment = gql`
     quantity
     status
     type
+    productId
+    variantId
   }
 `;

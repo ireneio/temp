@@ -1,3 +1,5 @@
+@import '~@store/utils/styles/variables.less';
+
 .root {
   display: flex;
   flex-direction: column;
@@ -18,20 +20,34 @@
       font-weight: 500;
     }
   }
+
+  @media (max-width: @screen-sm-max) {
+    > div:not(:last-child) {
+      margin-bottom: 12px;
+    }
+
+    :global(.ant-radio-wrapper) {
+      line-height: 32px;
+    }
+  }
 }
 
 .description {
-  margin: 12px 0px 4px;
+  margin: 12px 0px 0px;
   padding: 16px 24px;
   font-size: 14px;
   line-height: 22px;
-  transition: all 0.3s linear;
+  transition: all 0.3s ease;
   height: auto;
 
   &.hide {
     height: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    margin: 0px;
+    padding: 0px 24px;
     overflow: hidden;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    margin: 4px 0px 0px;
   }
 }

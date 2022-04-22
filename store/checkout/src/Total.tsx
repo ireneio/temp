@@ -91,7 +91,7 @@ export default React.memo(({ computeOrderList }: PropsType) => {
                     )
                       return t('free-shipment');
 
-                    if (getFieldValue(['shipment'])?.shipmentId)
+                    if (getFieldValue(['shipment'])?.id)
                       return c(shipmentFee || 0);
 
                     return t('not-choose-shipment');
@@ -114,7 +114,21 @@ export default React.memo(({ computeOrderList }: PropsType) => {
             .${styles.root} {
               color: ${colors[3]};
               background-color: ${transformColor(colors[3]).alpha(0.05)};
-              box-shadow: 0px 0px 15px ${transformColor(colors[3]).alpha(0.15)};
+              box-shadow: 0px -15px 15px -15px ${transformColor(
+                colors[3],
+              ).alpha(0.15)};
+            }
+
+            .${
+              styles.root
+            } > .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+              color: ${colors[3]};
+            }
+
+            .${
+              styles.root
+            } > .ant-collapse > .ant-collapse-item > .ant-collapse-content {
+              color: ${colors[3]};
             }
 
             .${styles.root} .ant-collapse-content-active {

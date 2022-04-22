@@ -8,7 +8,7 @@ import { useCallback } from 'react';
 import { useSynchronizeUserInfoFragment as useSynchronizeUserInfoFragmentType } from '@meepshop/types/gqls/store';
 
 // typescript definition
-export interface PropsType {
+interface PropsType {
   allHidden: boolean;
   user: useSynchronizeUserInfoFragmentType | null;
 }

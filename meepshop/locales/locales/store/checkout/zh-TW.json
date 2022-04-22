@@ -1,6 +1,8 @@
 {
   "reward-points": "購物金",
   "pay-fail": "結帳失敗",
+  "sign-up-failure-message": "註冊：發生錯誤",
+  "invalid-email-or-password": "信箱或密碼錯誤",
   "receiver-info": "收件人資料",
   "notes": "訂單備註",
   "confirm": "確認送出",
@@ -22,14 +24,14 @@
   "total-payment-amount": "付款總金額",
   "total-price": "訂單總金額",
   "cart": "購物車",
-  "cart-has-error": {
-    "0": "請先調整",
-    "1": "內無法購買的商品"
-  },
   "products": "商品明細",
+  "products-error": "購物車內含有無法購買的商品",
+  "choose-products": "請先調整商品後再繼續結帳",
   "upselling-product": "加購品",
   "gift": "贈品",
   "shipment": "運送方式",
+  "shipment-empty": "無可結帳的運送方式",
+  "choose-shipment": "請先選擇運送方式再繼續結帳",
   "change": "變更",
   "choose-store": "選擇取貨門市",
   "rechoose-store": "重選門市",
@@ -37,6 +39,7 @@
     "CVSAddress": "門市地址",
     "CVSStoreID": "門市代號"
   },
+  "not-choose-store": "尚未選擇門市",
   "user-info": "會員資料",
   "go-to-login": "前往登入",
   "email": "請輸入註冊信箱",
@@ -62,6 +65,9 @@
   "payment": "付款方式",
   "payment-description": "付款方式說明",
   "choose-payment-error": "已選的付款方式不適用，請重新選取",
+  "payment-list-empty": "無可使用付款方式",
+  "payment-list-empty-error": "目前沒有可以使用的付款方式，請聯繫我們處理",
+  "payment-exclude": "(不支援所選運送方式)",
   "discount": "折抵",
   "coupon": {
     "placeholder": "請輸入優惠碼",

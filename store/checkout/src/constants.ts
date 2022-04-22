@@ -1,4 +1,5 @@
 export const PRESERVED_FIELDS = [
+  'shipment',
   'userEmail',
   'userName',
   'userMobile',
@@ -18,6 +19,8 @@ export const PRESERVED_FIELDS = [
 export const COMPUTE_FIELDS = ['paymentId', 'coupon', 'points'];
 
 export const FILTER_ECPAY_PLAYFORM = ['Android', 'Windows Phone', 'iOS'];
+
+export const CONVENIENCE_STORE_SHIPMENT = ['allpay', 'ezship', 'presco'];
 
 export const SHIPMENT_STORE_FIELDS = [
   'CVSStoreName',

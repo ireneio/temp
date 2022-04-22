@@ -33,13 +33,13 @@ export default React.memo(({ value, options, ...props }: PropsType) => {
           <div>
             <Radio {...optionProps}>{label}</Radio>
 
-            <div
+            <pre
               className={`${styles.description} ${
                 !description || value !== optionProps.value ? styles.hide : ''
               }`}
             >
               {description}
-            </div>
+            </pre>
           </div>
         ))}
       </Group>

@@ -8,14 +8,25 @@ import { useRouter } from '@meepshop/link';
 
 import alertStyles from '../styles/alert.less';
 import productsStyles from '../styles/products.less';
+import shipmentStyles from '../styles/shipment.less';
 
 // definition
-export default ({ validateFields }: FormInstance): (() => void) => {
+export default (
+  { validateFields, getFieldValue }: FormInstance,
+  loading: boolean,
+): (() => void) => {
   const { push } = useRouter();
 
   return useCallback(() => {
+    if (loading) return;
+
     validateFields()
       .then(() => {
+        window.sessionStorage.setItem(
+          'shipment',
+          JSON.stringify(getFieldValue(['shipment'])),
+        );
+
         push('/checkout');
       })
       .catch(() => {
@@ -26,7 +37,13 @@ export default ({ validateFields }: FormInstance): (() => void) => {
         }
 
         const productsDom = document.querySelector(`.${productsStyles.error}`);
-        if (productsDom) productsDom.scrollIntoView({ behavior: 'smooth' });
+        if (productsDom) {
+          productsDom.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+
+        const shipmentDom = document.querySelector(`.${shipmentStyles.error}`);
+        if (shipmentDom) shipmentDom.scrollIntoView({ behavior: 'smooth' });
       });
-  }, [push, validateFields]);
+  }, [push, validateFields, getFieldValue, loading]);
 };

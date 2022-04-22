@@ -28,8 +28,8 @@ export default (
     getEcpayShipmentInfoType,
     getEcpayShipmentInfoVariablesType
   >(getEcpayShipmentInfo, {
-    skip: !shipment?.shipmentId,
-    variables: { storeShipmentId: shipment?.shipmentId || '' },
+    skip: !shipment?.id,
+    variables: { storeShipmentId: shipment?.id || '' },
   });
 
   const ecpayLogisticsSubType =
@@ -38,25 +38,36 @@ export default (
 
   return {
     shipmentType: useMemo(() => {
-      if (shipment?.template) {
-        if (/C2C/.test(ecpayLogisticsSubType))
-          return 'ECPAY_C2C' as ConvenienceStoreShipmentTypeEnumType;
-        return 'ECPAY_B2C' as ConvenienceStoreShipmentTypeEnumType;
+      switch (shipment?.template) {
+        case 'allpay':
+          if (/C2C/.test(ecpayLogisticsSubType))
+            return 'ECPAY_C2C' as ConvenienceStoreShipmentTypeEnumType;
+          return 'ECPAY_B2C' as ConvenienceStoreShipmentTypeEnumType;
+        case 'ezship':
+          return 'EZSHIP' as ConvenienceStoreShipmentTypeEnumType;
+        case 'presco':
+          return 'ECPAY_B2C' as ConvenienceStoreShipmentTypeEnumType;
+        default:
+          return 'ECPAY' as ConvenienceStoreShipmentTypeEnumType;
       }
-
-      return 'EZSHIP' as ConvenienceStoreShipmentTypeEnumType;
     }, [shipment, ecpayLogisticsSubType]),
     storeTypes: useMemo(() => {
-      if (shipment?.template) {
-        if (/UNIMART/.test(ecpayLogisticsSubType))
+      switch (shipment?.template) {
+        case 'allpay':
+          if (/UNIMART/.test(ecpayLogisticsSubType))
+            return ['UNIMART'] as ConvenienceStoreTypeEnumType[];
+          if (/FAMI/.test(ecpayLogisticsSubType))
+            return ['FAMI'] as ConvenienceStoreTypeEnumType[];
+          if (/HILIFE/.test(ecpayLogisticsSubType))
+            return ['HILIFE'] as ConvenienceStoreTypeEnumType[];
+          return [];
+        case 'ezship':
+          return ['FAMI', 'HILIFE', 'OK'] as ConvenienceStoreTypeEnumType[];
+        case 'presco':
           return ['UNIMART'] as ConvenienceStoreTypeEnumType[];
-        if (/FAMI/.test(ecpayLogisticsSubType))
-          return ['FAMI'] as ConvenienceStoreTypeEnumType[];
-        if (/HILIFE/.test(ecpayLogisticsSubType))
-          return ['HILIFE'] as ConvenienceStoreTypeEnumType[];
+        default:
+          return ['UNIMART'] as ConvenienceStoreTypeEnumType[];
       }
-
-      return ['FAMI', 'HILIFE', 'OK'] as ConvenienceStoreTypeEnumType[];
     }, [shipment, ecpayLogisticsSubType]),
   };
 };

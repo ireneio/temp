@@ -26,7 +26,7 @@ const { Password } = Input;
 
 export default React.memo(({ isLogin, store }: PropsType) => {
   const { t } = useTranslation('checkout');
-  const validateEmail = useValidateEmail();
+  const validateEmail = useValidateEmail(false, true, t('please-login'));
   const { validateMobile } = useValidateMobile();
 
   const name = store?.setting?.checkoutFields.name || '';

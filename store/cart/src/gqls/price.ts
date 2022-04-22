@@ -16,6 +16,7 @@ export const priceComputedCartFragment = gql`
     }
     productsDiscount @client {
       activityId: id
+      plugin
       discountPrice
       title {
         ...localeFragment
@@ -25,12 +26,14 @@ export const priceComputedCartFragment = gql`
       totalDiscount
       discountAllocations {
         id
+        plugin
         discountPrice
         title {
           ...localeFragment
         }
       }
     }
+    shippingFee
   }
 
   ${localeFragment}

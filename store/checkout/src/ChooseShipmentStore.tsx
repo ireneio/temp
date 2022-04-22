@@ -50,7 +50,7 @@ export default React.memo(({ shipment }: PropsType) => {
 
   return (
     <>
-      <FormItem shouldUpdate noStyle>
+      <FormItem dependencies={SHIPMENT_STORE_FIELDS}>
         {({ getFieldsValue, getFieldValue, setFieldsValue }) => {
           const isStoreSelected = Object.values(
             getFieldsValue(SHIPMENT_STORE_FIELDS),
@@ -90,6 +90,22 @@ export default React.memo(({ shipment }: PropsType) => {
 
               {CONVENIENCE_STORE_FIELDS.map(fieldName => (
                 <FormItem key={fieldName} name={[fieldName]} noStyle>
+                  <Input type="hidden" />
+                </FormItem>
+              ))}
+
+              {SHIPMENT_STORE_FIELDS.map((fieldName, index) => (
+                <FormItem
+                  key={fieldName}
+                  name={[fieldName]}
+                  noStyle
+                  rules={[
+                    {
+                      required: true,
+                      message: index !== 0 ? ' ' : t('not-choose-store'),
+                    },
+                  ]}
+                >
                   <Input type="hidden" />
                 </FormItem>
               ))}

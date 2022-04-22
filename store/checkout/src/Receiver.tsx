@@ -7,7 +7,6 @@ import { Colors as ColorsContext } from '@meepshop/context';
 import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/form-address-cascader';
-import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
 import filter from '@meepshop/utils/lib/filter';
 
 import Invoice from './Invoice';
@@ -16,6 +15,7 @@ import useSaveAsReceiverTemplate from './hooks/useSaveAsReceiverTemplate';
 import useValidateName from './hooks/useValidateName';
 import useValidateMobile from './hooks/useValidateMobile';
 import useInvoiceOptions from './hooks/useInvoiceOptions';
+import { CONVENIENCE_STORE_SHIPMENT } from './constants';
 import styles from './styles/receiver.less';
 
 // graphql typescript
@@ -79,7 +79,7 @@ export default React.memo(({ isLogin, store, user }: PropsType) => {
         {t('receiver-info')}
 
         {!isLogin && allHidden ? null : (
-          <FormItem noStyle>
+          <FormItem shouldUpdate noStyle>
             {({ getFieldsValue, setFieldsValue, validateFields }) => (
               <Checkbox
                 onChange={({ target: { checked } }) =>
@@ -177,7 +177,7 @@ export default React.memo(({ isLogin, store, user }: PropsType) => {
 
       <FormItem dependencies={['shipment']} noStyle>
         {({ getFieldValue }) =>
-          ['allpay', 'ezship'].includes(
+          CONVENIENCE_STORE_SHIPMENT.includes(
             getFieldValue(['shipment'])?.template || '',
           ) ? null : (
             <>
@@ -259,24 +259,6 @@ export default React.memo(({ isLogin, store, user }: PropsType) => {
             </div>
           )
         }
-      </FormItem>
-
-      <FormItem dependencies={['payment']} noStyle>
-        {({ getFieldValue }) => {
-          const payment = getFieldValue(['payment']);
-
-          return !payment?.paymentId ||
-            payment?.template !== 'gmo' ||
-            payment?.accountInfo?.gmo?.paymentType !== 'Credit' ? null : (
-            <GmoCreditCardForm
-              storePaymentId={payment?.paymentId}
-              isInstallment={payment?.accountInfo.gmo.isInstallment || false}
-              rememberCardNumber={
-                payment?.accountInfo.gmo.rerememberCardNumber || false
-              }
-            />
-          );
-        }}
       </FormItem>
 
       <style

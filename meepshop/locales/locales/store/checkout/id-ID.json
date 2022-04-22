@@ -1,6 +1,8 @@
 {
   "reward-points": "Poin Hadiah",
   "pay-fail": "Gagal",
+  "sign-up-failure-message": "Pendaftaran: Kesalahan",
+  "invalid-email-or-password": "Kotak surat atau kesalahan kata sandi",
   "receiver-info": "Info Penerima",
   "notes": "Catatan Pemesanan",
   "confirm": "Tempatkan Order",
@@ -22,14 +24,14 @@
   "total-payment-amount": "Jumlah total pembayaran",
   "total-price": "Total",
   "cart": "kereta Belanja",
-  "cart-has-error": {
-    "0": "Silakan sesuaikan dulu",
-    "1": "Tidak dapat membeli barang"
-  },
   "products": "Detail komoditas",
+  "products-error": "Keranjang belanja dengan tidak dapat membeli barang",
+  "choose-products": "Harap sesuaikan item terlebih dahulu, lanjutkan untuk check out",
   "upselling-product": "Beli barang",
   "gift": "Berikan hadiah",
   "shipment": "Angkutan",
+  "shipment-empty": "Tidak dapat memeriksa",
+  "choose-shipment": "Silakan pilih metode transportasi untuk melanjutkan checkout",
   "change": "mengubah",
   "choose-store": "Pilih Pasar Pintu Pick-Up",
   "rechoose-store": "Merenovasi",
@@ -37,6 +39,7 @@
     "CVSAddress": "Alamat toko",
     "CVSStoreID": "Kode Kota Negara"
   },
+  "not-choose-store": "Belum memilih toko",
   "user-info": "Info Anggota",
   "go-to-login": "Pergi ke login",
   "email": "Daftar dengan alamat emailmu",
@@ -62,6 +65,9 @@
   "payment": "Cara Pembayaran",
   "payment-description": "Cara Pembayaran",
   "choose-payment-error": "Metode pembayaran yang dipilih tidak berlaku, silakan pilih kembali",
+  "payment-list-empty": "Tidak ada yang menggunakan metode pembayaran",
+  "payment-list-empty-error": "Saat ini tidak ada metode pembayaran yang dapat digunakan, silakan hubungi kami untuk menangani",
+  "payment-exclude": "(Jangan mendukung metode pengiriman yang dipilih)",
   "discount": "Melipat",
   "coupon": {
     "placeholder": "Silakan masukkan kode kupon",

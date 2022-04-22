@@ -1,6 +1,8 @@
 {
   "reward-points": "Puntos de recompensa",
   "pay-fail": "Ha fallado",
+  "sign-up-failure-message": "Inscripción: Errores",
+  "invalid-email-or-password": "Error de buzón o contraseña",
   "receiver-info": "Información del destinatario",
   "notes": "pedidos",
   "confirm": "Realizar pedido",
@@ -22,14 +24,14 @@
   "total-payment-amount": "Cantidad total de pago",
   "total-price": "Total",
   "cart": "carrito de compras",
-  "cart-has-error": {
-    "0": "Por favor, ajuste primero",
-    "1": "Incapaz de comprar bienes"
-  },
   "products": "Detalles de la mercancía",
+  "products-error": "Carritos de la compra con incapaces de comprar bienes",
+  "choose-products": "Por favor, ajuste el artículo primero, continúe revisando",
   "upselling-product": "Comprar bienes",
   "gift": "Dar un regalo",
   "shipment": "Transporte",
+  "shipment-empty": "No se puede revisar",
+  "choose-shipment": "Seleccione el método de transporte para continuar el pago.",
   "change": "cambio",
   "choose-store": "Seleccione el mercado de la puerta de recogida",
   "rechoose-store": "Renovar",
@@ -37,6 +39,7 @@
     "CVSAddress": "Dirección de la tienda",
     "CVSStoreID": "Código de ciudad estatal"
   },
+  "not-choose-store": "No he elegido la tienda",
   "user-info": "Información del miembro",
   "go-to-login": "Ir a iniciar sesión",
   "email": "Regístrese con su dirección de correo electrónico",
@@ -62,6 +65,9 @@
   "payment": "método de pago",
   "payment-description": "Método de pago",
   "choose-payment-error": "El método de pago seleccionado no es aplicable, por favor vuelva a seleccionar",
+  "payment-list-empty": "Nada que usar el método de pago",
+  "payment-list-empty-error": "Actualmente no hay un método de pago que pueda usarse, contáctenos para manejar",
+  "payment-exclude": "(No admita el método de entrega seleccionado)",
   "discount": "Pliegue",
   "coupon": {
     "placeholder": "Por favor ingrese el código de cupón",

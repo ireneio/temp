@@ -2,7 +2,7 @@
 import { NextPage } from 'next';
 
 // import
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form } from 'antd';
 import { useQuery } from '@apollo/client';
 
@@ -16,12 +16,15 @@ import Empty from './Empty';
 import Login from './Login';
 import Alert from './Alert';
 import Products from './Products';
+import Shipment from './Shipment';
 import Price from './Price';
 import Footer from './Footer';
 import Upselling from './upselling';
 import useComputedCart from './hooks/useComputedCart';
-import useScrollToError from './hooks/useScrollToError';
+import useGoToCheckout from './hooks/useGoToCheckout';
 import useInitialValue from './hooks/useInitialValue';
+import useValuesChange from './hooks/useValuesChange';
+import useShipments from './hooks/useShipments';
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -41,32 +44,40 @@ import {
 } from './upselling/gqls';
 import { useComputedCartFragment } from './gqls/useComputedCart';
 import { useInitialValueFragment } from './gqls/useInitialValue';
+import { useShipmentsFragment } from './gqls/useShipments';
 
 // definition
 const { Item: FormItem } = Form;
 
 const Cart: NextPage = React.memo(() => {
   const role = useContext(RoleContext);
+  const [form] = Form.useForm();
+  const [showFooter, setShowFooter] = useState<boolean>(false);
   const { data } = useQuery<getCartType>(getCart, {
     fetchPolicy: 'cache-and-network',
   });
   const viewer = data?.viewer || null;
-  const computedCart = useComputedCart(filter(useComputedCartFragment, viewer));
-  const initialLineItems = useMemo(
-    () =>
-      filter(useInitialValueFragment, computedCart?.computedLineItems || []),
-    [computedCart],
+  const { computedCart, refetch, variables, loading } = useComputedCart(
+    filter(useComputedCartFragment, viewer),
   );
-  const [form] = Form.useForm();
-  const scrollToError = useScrollToError(form);
-  const initialValue = useInitialValue(form, initialLineItems);
-  const isEmpty = computedCart && !computedCart.computedLineItems.length;
+  const computedLineItems = computedCart?.computedLineItems || [];
+  const shipments = useShipments(
+    filter(useShipmentsFragment, computedLineItems),
+  );
+  const goToCheckout = useGoToCheckout(form, loading);
+  const initialValue = useInitialValue(
+    form,
+    filter(useInitialValueFragment, computedLineItems),
+  );
+  const valuesChange = useValuesChange({ refetch, variables });
+  const isEmpty = computedCart && !computedLineItems.length;
 
   return (
     <Form
       className={styles.root}
       form={form}
       initialValues={initialValue}
+      onValuesChange={valuesChange}
       scrollToFirstError
     >
       <div className={styles.wrapper}>
@@ -97,10 +108,7 @@ const Cart: NextPage = React.memo(() => {
               {({ getFieldsError }) => (
                 <Products
                   viewer={filter(productsUserFragment, viewer)}
-                  products={filter(
-                    productsLineItemFragment,
-                    computedCart?.computedLineItems || [],
-                  )}
+                  products={filter(productsLineItemFragment, computedLineItems)}
                   hasErrors={getFieldsError().some(
                     ({ errors }) => errors.length,
                   )}
@@ -115,21 +123,28 @@ const Cart: NextPage = React.memo(() => {
       !viewer.store.activeUpsellingArea.products.length ? null : (
         <Upselling
           viewer={filter(upsellingUserFragment, viewer)}
-          cartItems={filter(
-            upsellingLineItemFragment,
-            computedCart?.computedLineItems || [],
-          )}
+          cartItems={filter(upsellingLineItemFragment, computedLineItems)}
         />
       )}
 
       {isEmpty ? null : (
-        <div className={styles.wrapper}>
-          <Price
-            computedCart={filter(priceComputedCartFragment, computedCart)}
-          />
+        <>
+          <div className={styles.shipment} id="shipment">
+            <Shipment loading={loading} shipments={shipments} />
 
-          <Footer scrollToError={scrollToError} />
-        </div>
+            <Price
+              computedCart={filter(priceComputedCartFragment, computedCart)}
+              showFooter={showFooter}
+              setShowFooter={setShowFooter}
+            />
+          </div>
+
+          <Footer
+            loading={loading}
+            showFooter={showFooter}
+            goToCheckout={goToCheckout}
+          />
+        </>
       )}
     </Form>
   );

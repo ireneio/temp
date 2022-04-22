@@ -1,58 +1,90 @@
 // import
-import React from 'react';
-import { Form } from 'antd';
+import React, { useMemo } from 'react';
+import { Form, Skeleton } from 'antd';
 
-import { useTranslation } from '@meepshop/locales';
-import filter from '@meepshop/utils/lib/filter';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Radio from '@store/radio';
 import Alert from '@store/alert';
 
-import useShipmentOptions from './hooks/useShipmentOptions';
 import styles from './styles/shipment.less';
 
 // graphql typescript
-import { useShipmentOptionsFragment as useShipmentOptionsFragmentType } from '@meepshop/types/gqls/store';
-
-// graphql import
-import { useShipmentOptionsFragment } from './gqls/useShipmentOptions';
+import { useShipmentsFragment_applicableShipments as useShipmentsFragmentApplicableShipmentsType } from '@meepshop/types/gqls/store';
 
 // typscript definition
 interface PropsType {
-  storeShipments: useShipmentOptionsFragmentType[];
+  loading: boolean;
+  shipments: useShipmentsFragmentApplicableShipmentsType[];
 }
 
 // definition
 const { Item: FormItem } = Form;
 
-export default React.memo(({ storeShipments }: PropsType) => {
+export default React.memo(({ loading, shipments }: PropsType) => {
   const { t } = useTranslation('cart');
-  const options = useShipmentOptions(
-    filter(useShipmentOptionsFragment, storeShipments),
+  const getLanguage = useGetLanguage();
+  const options = useMemo(
+    () =>
+      shipments.map(({ id, title, description }) => ({
+        value: id || 'null-id' /* SHOULD_NOT_BE_NULL */,
+        label: getLanguage(title),
+        description: getLanguage(description),
+      })),
+    [getLanguage, shipments],
   );
 
   return (
     <div className={styles.root}>
-      <div className={styles.blockTitle}>{t('shipment.title')}</div>
+      <div className={styles.title}>{t('shipment.title')}</div>
 
-      <FormItem noStyle dependencies={['shipment']}>
-        {({ getFieldError }) =>
-          !getFieldError(['shipment']).length ? null : (
-            <Alert type="error" message={getFieldError(['shipment'])} />
-          )
+      {loading ? (
+        <Skeleton
+          className={styles.empty}
+          title={false}
+          paragraph={{ rows: 4, width: '100%' }}
+          active
+        />
+      ) : (
+        <>
+          <FormItem shouldUpdate noStyle>
+            {({ getFieldError }) =>
+              !getFieldError(['shipmentId']).length ? null : (
+                <Alert
+                  className={styles.error}
+                  type="error"
+                  message={getFieldError(['shipmentId'])}
+                />
+              )
+            }
+          </FormItem>
+
+          {!options.length ? (
+            <Alert
+              className={styles.empty}
+              type="error"
+              message={t('shipment.alert-tip-2')}
+            />
+          ) : (
+            <FormItem
+              className={styles.shipment}
+              name={['shipmentId']}
+              rules={[{ required: true, message: t('shipment.alert-tip-1') }]}
+            >
+              <Radio options={options} />
+            </FormItem>
+          )}
+        </>
+      )}
+
+      <FormItem dependencies={['shipmentId']} noStyle>
+        {({ getFieldValue, setFieldsValue }) =>
+          setFieldsValue({
+            shipment: shipments.find(
+              shipment => shipment?.id === getFieldValue(['shipmentId']),
+            ),
+          })
         }
       </FormItem>
-
-      {!options.length ? (
-        <Alert type="error" message={t('shipment.alert-tip-2')} />
-      ) : (
-        <FormItem
-          className={styles.group}
-          name={['shipment']}
-          rules={[{ required: true, message: t('shipment.alert-tip-1') }]}
-        >
-          <Radio options={options} />
-        </FormItem>
-      )}
     </div>
   );
 });

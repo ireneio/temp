@@ -1,3 +1,6 @@
+// typescript import
+import { QueryResult } from '@apollo/client';
+
 // import
 import { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
@@ -18,31 +21,44 @@ import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
 
 import { computedCart } from '../gqls/useComputedCart';
 
+// typescript definition
+export interface ReturnType
+  extends Pick<
+    QueryResult<computedCartType, computedCartVariablesType>,
+    'refetch' | 'variables'
+  > {
+  loading: boolean;
+  computedCart: computedCartComputedCartComputedCartType | null;
+}
+
 // definition
-export default (
-  viewer: useComputedCartFragmentType | null,
-): computedCartComputedCartComputedCartType | null => {
+export default (viewer: useComputedCartFragmentType | null): ReturnType => {
   const { loading, cartItems } = useCart(filter(useCartFragment, viewer));
   const cartItemsInput = useMemo(
     () => cartItems.map(({ __typename: _, ...cartItem }) => cartItem),
     [cartItems],
   );
-  const { data } = useQuery<computedCartType, computedCartVariablesType>(
-    computedCart,
-    {
-      fetchPolicy: 'cache-and-network',
-      variables: {
-        input: {
-          cartItems: cartItemsInput,
-        },
+  const { data, refetch, variables, loading: computedCartLoading } = useQuery<
+    computedCartType,
+    computedCartVariablesType
+  >(computedCart, {
+    fetchPolicy: 'cache-and-network',
+    variables: {
+      input: {
+        cartItems: cartItemsInput,
       },
-      skip: loading,
     },
-  );
+    skip: loading,
+  });
 
-  return useMemo(() => {
-    if (data?.computedCart.__typename !== 'ComputedCart') return null;
+  return {
+    loading: computedCartLoading || loading,
+    computedCart: useMemo(() => {
+      if (data?.computedCart.__typename !== 'ComputedCart') return null;
 
-    return data.computedCart;
-  }, [data]);
+      return data.computedCart;
+    }, [data]),
+    refetch,
+    variables,
+  };
 };

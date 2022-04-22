@@ -32,15 +32,19 @@ export default React.memo(({ loading }: PropsType) => {
 
       <div>
         <FormItem shouldUpdate noStyle>
-          {({ getFieldValue, getFieldsError, submit }) =>
+          {({ getFieldValue, getFieldsError, setFieldsValue, submit }) =>
             !getFieldValue(['payment'])?.paymentLater ? null : (
               <Button
                 className={styles.paymentLater}
+                htmlType="submit"
                 loading={loading}
                 disabled={getFieldsError().some(
                   ({ errors }) => errors.length !== 0,
                 )}
-                onClick={submit}
+                onClick={() => {
+                  setFieldsValue({ isPayment: false });
+                  submit();
+                }}
               >
                 {t('confirm')}: {t('pay-later')}
               </Button>
@@ -49,17 +53,15 @@ export default React.memo(({ loading }: PropsType) => {
         </FormItem>
 
         <FormItem shouldUpdate noStyle>
-          {({ getFieldValue, getFieldsError, setFieldsValue, submit }) => (
+          {({ getFieldValue, getFieldsError, submit }) => (
             <Button
               className={styles.confirm}
+              htmlType="submit"
               loading={loading}
               disabled={getFieldsError().some(
                 ({ errors }) => errors.length !== 0,
               )}
-              onClick={() => {
-                setFieldsValue({ isPaymentNow: true });
-                submit();
-              }}
+              onClick={submit}
             >
               {getFieldValue(['payment'])?.paymentLater
                 ? `${t('confirm')}: ${t('pay-now')}`
@@ -68,7 +70,7 @@ export default React.memo(({ loading }: PropsType) => {
           )}
         </FormItem>
 
-        <FormItem name={['isPaymentNow']} noStyle>
+        <FormItem<boolean> name={['isPayment']} noStyle initialValue>
           <Input type="hidden" />
         </FormItem>
       </div>
@@ -80,13 +82,23 @@ export default React.memo(({ loading }: PropsType) => {
                 color: ${colors[3]};
               }
 
-              .${styles.paymentLater}, .${styles.paymentLater}:hover, .${styles.paymentLater}:focus {
+              .${styles.paymentLater},
+              .${styles.paymentLater}:hover,
+              .${styles.paymentLater}:focus,
+              .${styles.paymentLater}[disabled],
+              .${styles.paymentLater}:hover[disabled],
+              .${styles.paymentLater}:focus[disabled] {
                 color: ${colors[2]};
                 background-color: ${colors[1]};
                 border-color: ${colors[1]};
               }
 
-              .${styles.confirm}, .${styles.confirm}:hover, .${styles.confirm}:focus {
+              .${styles.confirm},
+              .${styles.confirm}:hover,
+              .${styles.confirm}:focus,
+              .${styles.confirm}[disabled],
+              .${styles.confirm}:hover[disabled],
+              .${styles.confirm}:focus[disabled] {
                 color: ${colors[2]};
                 background-color: ${colors[4]};
                 border-color: ${colors[4]};

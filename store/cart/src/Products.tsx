@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { Table, Skeleton } from 'antd';
 import transformColor from 'color';
 
+import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
 import filter from '@meepshop/utils/lib/filter';
 
@@ -31,6 +32,7 @@ interface PropsType {
 
 // definition
 export default React.memo(({ viewer, products, hasErrors }: PropsType) => {
+  const { t } = useTranslation('cart');
   const colors = useContext(ColorsContext);
   const { columns, styles: columnStyles } = useProductsColumns(
     filter(useProductsColumnsUserFragment, viewer),
@@ -38,6 +40,8 @@ export default React.memo(({ viewer, products, hasErrors }: PropsType) => {
 
   return (
     <>
+      <div className={styles.title}>{t('products')}</div>
+
       <Table<useProductsColumnsLineItemFragmentType>
         className={styles.root}
         columns={columns}

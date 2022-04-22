@@ -1,14 +1,35 @@
+@import '~@store/utils/styles/variables.less';
 @import './mixin.less';
 
 .root {
   width: 100%;
+  margin: 0px 128px 0px 0px;
+
+  @media (max-width: @screen-sm-max) {
+    margin: 0px 0px 40px;
+  }
 }
 
-.blockTitle {
+.title {
   @blockTitle();
 }
 
-.group {
-  padding-top: 24px;
-  padding-left: 16px;
+.shipment {
+  margin: 24px 0px 0px 16px;
+
+  :global(.ant-form-item-explain) {
+    display: none;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    margin: 24px 0px 0px;
+  }
+}
+
+.error {
+  margin-top: 16px;
+}
+
+.empty {
+  margin-top: 24px;
 }

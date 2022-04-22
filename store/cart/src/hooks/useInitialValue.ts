@@ -20,18 +20,23 @@ export interface ValuesType {
 
 // definition
 export default (
-  { resetFields }: FormInstance,
+  { getFieldValue, resetFields }: FormInstance,
   lineItems: useInitialValueFragmentType[],
 ): ValuesType => {
   const initialValues = useMemo(() => {
     return {
-      products: lineItems.map(({ quantity, status, type }) => ({
-        type,
-        status,
-        quantity: quantity || 0,
-      })),
+      products: lineItems.map(
+        ({ quantity, status, type, productId, variantId }) => ({
+          type,
+          status,
+          quantity: quantity || 0,
+          productId,
+          variantId,
+        }),
+      ),
+      shipmentId: getFieldValue(['shipmentId']),
     };
-  }, [lineItems]);
+  }, [lineItems, getFieldValue]);
   const prevInitialValues = usePrevious(initialValues);
 
   useEffect(() => {

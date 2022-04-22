@@ -1,6 +1,6 @@
 // import
 import React, { useContext } from 'react';
-import { Table, Skeleton } from 'antd';
+import { Table, Skeleton, Form, Input } from 'antd';
 import transformColor from 'color';
 
 import { useTranslation } from '@meepshop/locales';
@@ -28,6 +28,8 @@ interface PropsType {
 }
 
 // definition
+const { Item: FormItem } = Form;
+
 export default React.memo(
   ({ loading, isEmptyCart, computeOrderList }: PropsType) => {
     const { t } = useTranslation('checkout');
@@ -91,6 +93,10 @@ export default React.memo(
     return (
       <div className={styles.root}>
         <div className={styles.title}>{t('products')}</div>
+
+        <FormItem name={['products']} noStyle>
+          <Input type="hidden" />
+        </FormItem>
 
         <Table
           rowKey="id"

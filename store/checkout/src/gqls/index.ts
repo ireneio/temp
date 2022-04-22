@@ -2,55 +2,43 @@
 import { gql } from '@apollo/client';
 
 // graphql import
-import { lineFragment } from '@meepshop/line/gqls';
 import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
 
-import { useUpdateUserFragment } from './useUpdateUser';
-import { useCreateOrderFragment } from './useCreateOrder';
+import { useInitialValuesInCheckoutFragment } from './useInitialValues';
+import { loginFragment } from './login';
+import { userFragment } from './user';
+import {
+  receiverStoreFragment,
+  receiverInCheckoutUserFragment,
+} from './receiver';
+import { useSaveUserFragment } from './useSave';
 
 // definition
-export const getCheckoutInfo = gql`
-  query getCheckoutInfo($first: PositiveInt!) {
+export const getViewerData = gql`
+  query getViewerData($first: PositiveInt!) {
     viewer {
       id
-      name
-      additionalInfo {
-        mobile
-      }
-      address {
-        country {
-          id
-        }
-        city {
-          id
-        }
-        area {
-          id
-        }
-        street
-        zipCode
-      }
+      role
       store {
-        id
-        setting {
-          checkoutFields {
-            name
-            mobile
-            address
-          }
-        }
-        lineLoginSetting {
-          ...lineFragment
-        }
+        hiddingMeepshopMaxInFooterEnabled: checkUnleashToggle(
+          name: "storeCnameIsolationlistForHiddingMeepshopMaxInFooter_Enabled"
+        )
+        ...loginFragment
+        ...userFragment
+        ...receiverStoreFragment
       }
-      ...useUpdateUserFragment
-      ...useCreateOrderFragment
+      ...useInitialValuesInCheckoutFragment
+      ...receiverInCheckoutUserFragment
       ...useCartFragment
+      ...useSaveUserFragment
     }
   }
 
-  ${lineFragment}
-  ${useUpdateUserFragment}
-  ${useCreateOrderFragment}
+  ${useInitialValuesInCheckoutFragment}
+  ${loginFragment}
+  ${userFragment}
+  ${receiverStoreFragment}
+  ${receiverInCheckoutUserFragment}
   ${useCartFragment}
+  ${useSaveUserFragment}
 `;

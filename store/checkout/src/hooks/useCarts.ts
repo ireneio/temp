@@ -1,3 +1,6 @@
+// typescript import
+import { ComputeOrderList } from './useComputeOrderList';
+
 // import
 import { useState, useMemo, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
@@ -12,28 +15,33 @@ import { useCart } from '@meepshop/hooks';
 // graphql typescript
 import {
   useCartFragment as useCartFragmentType,
+  computedCartInCheckout as computedCartInCheckoutType,
+  computedCartInCheckoutVariables as computedCartInCheckoutVariablesType,
   computedCartInCheckout_computedCart_ComputedCart_computedLineItems as computedCartInCheckoutComputedCartComputedCartComputedLineItemsType,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { computedCartInCheckout } from '../gqls/useCheckout';
+import { computedCartInCheckout } from '../gqls/useCarts';
 
 // definition
 export default (
+  createOrderLoading: boolean,
   viewer: useCartFragmentType | null,
-  computeOrderList: (value: {
-    [key: string]: computedCartInCheckoutComputedCartComputedCartComputedLineItemsType[];
-  }) => void,
+  computeOrderList: ComputeOrderList,
 ): {
   cartLoading: boolean;
   isEmptyCart: boolean;
+  computedCartItems: computedCartInCheckoutComputedCartComputedCartComputedLineItemsType[];
 } => {
   const { t } = useTranslation('checkout');
   const { push } = useRouter();
   const [isEmptyCart, setIsEmptyCart] = useState<boolean>(false);
+  const [isShipmentCart, setIsShipmentCart] = useState<boolean>(false);
   const { loading, cartItems } = useCart(viewer);
-
-  const { data } = useQuery(computedCartInCheckout, {
+  const { data } = useQuery<
+    computedCartInCheckoutType,
+    computedCartInCheckoutVariablesType
+  >(computedCartInCheckout, {
     fetchPolicy: 'cache-and-network',
     variables: {
       input: {
@@ -42,31 +50,29 @@ export default (
     },
     skip: loading,
   });
-
   const cartLoading = useMemo(() => loading || !data?.computedCart, [
     loading,
     data,
   ]);
+  const computedCartItems = useMemo(() => {
+    if (data?.computedCart.__typename !== 'ComputedCart') return [];
 
-  const carts = (data?.computedCart?.computedLineItems.filter(
-    (
-      computedLineItem: computedCartInCheckoutComputedCartComputedCartComputedLineItemsType,
-    ) => computedLineItem.type !== 'GIFT',
-  ) ||
-    []) as computedCartInCheckoutComputedCartComputedCartComputedLineItemsType[];
-
-  const prevCarts = usePrevious(carts);
+    return data.computedCart.computedLineItems.filter(
+      item => item.type !== 'GIFT',
+    );
+  }, [data]);
+  const prevComputedCartItems = usePrevious(computedCartItems);
 
   useEffect(() => {
-    if (!areEqual(prevCarts, carts)) {
-      computeOrderList({ products: carts });
+    if (!areEqual(prevComputedCartItems, computedCartItems)) {
+      computeOrderList({ products: computedCartItems });
     }
-  }, [prevCarts, carts, computeOrderList]);
+  }, [prevComputedCartItems, computedCartItems, computeOrderList]);
 
   useEffect(() => {
-    if (isEmptyCart || cartLoading) return;
+    if (isEmptyCart || cartLoading || createOrderLoading) return;
 
-    if (carts.length === 0) {
+    if (computedCartItems.length === 0) {
       setIsEmptyCart(true);
 
       Modal.warning({
@@ -78,7 +84,7 @@ export default (
       return;
     }
 
-    if (!carts.some(item => item.type === 'PRODUCT')) {
+    if (!computedCartItems.some(item => item.type === 'PRODUCT')) {
       setIsEmptyCart(true);
 
       Modal.warning({
@@ -87,10 +93,41 @@ export default (
         onOk: () => push('/'),
       });
     }
-  }, [isEmptyCart, cartLoading, carts, t, push]);
+  }, [
+    isEmptyCart,
+    cartLoading,
+    createOrderLoading,
+    computedCartItems,
+    t,
+    push,
+  ]);
+
+  useEffect(() => {
+    if (isEmptyCart || cartLoading || createOrderLoading || isShipmentCart)
+      return;
+
+    if (
+      !window.sessionStorage.getItem('shipment') &&
+      computedCartItems.length !== 0 &&
+      computedCartItems.some(item => item.type === 'PRODUCT')
+    ) {
+      setIsShipmentCart(true);
+
+      setTimeout(() => {
+        Modal.warning({
+          title: t('shipment-empty'),
+          content: t('choose-shipment'),
+          okText: t('go-back-to-cart'),
+          onOk: () => push('/cart'),
+        });
+      }, 1000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isEmptyCart, cartLoading, createOrderLoading, t, push, isShipmentCart]);
 
   return {
     cartLoading,
     isEmptyCart,
+    computedCartItems,
   };
 };

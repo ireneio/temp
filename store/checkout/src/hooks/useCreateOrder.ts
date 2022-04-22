@@ -5,32 +5,25 @@ import { MutationFunction, MutationFunctionOptions } from '@apollo/client';
 import { useCallback } from 'react';
 import { useMutation } from '@apollo/client';
 
-import { useCart } from '@meepshop/hooks';
-import filter from '@meepshop/utils/lib/filter';
-
 // graphql typescript
 import {
   createOrder as createOrderType,
   createOrderVariables as createOrderVariablesType,
   useCreateOrderFragment as useCreateOrderFragmentType,
   updateOrders as updateOrdersType,
-  useCartFragment as useCartFragmentType,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
 
 import { createOrder, updateOrders } from '../gqls/useCreateOrder';
 
 // definition
 export default (
   viewer: useCreateOrderFragmentType | null,
-  user: useCartFragmentType | null,
 ): MutationFunction<createOrderType, createOrderVariablesType> => {
   const [mutation] = useMutation<createOrderType, createOrderVariablesType>(
     createOrder,
   );
-  const { upsertCart } = useCart(filter(useCartFragment, user));
 
   return useCallback(
     // FIXME: should not use MutationFunctionOptions
@@ -49,8 +42,6 @@ export default (
             !variables
           )
             return;
-
-          upsertCart([]);
 
           const countryId = variables.input?.address?.countryId;
           const cityId = variables.input?.address?.cityId;
@@ -129,6 +120,6 @@ export default (
 
       return result;
     },
-    [mutation, upsertCart, viewer],
+    [mutation, viewer],
   );
 };
