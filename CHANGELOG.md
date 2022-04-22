@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.174 (2022-04-22)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `store`
+  - [#2222](https://github.com/meepshop/meep-lerna/pull/2222) 內部開單 - 套用 選擇運送方式 (非指定物流) ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.173 (2022-04-21)
 
 #### :bug: Bug Fix
