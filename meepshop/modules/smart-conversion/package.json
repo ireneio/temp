@@ -4,11 +4,11 @@
   "description": "Meepshop smart-conversion module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.170",
+  "version": "0.80.174",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/image": "^0.80.170",
+    "@meepshop/image": "^0.80.174",
     "@meepshop/view-tracking": "^0.80.165"
   },
   "keywords": ["meepshop", "smart-conversion"]

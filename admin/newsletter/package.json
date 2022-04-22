@@ -4,14 +4,14 @@
   "description": "Admin newsletter",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.171",
+  "version": "0.80.174",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/hooks": "^0.80.158",
-    "@admin/media-gallery": "^0.80.170",
-    "@admin/text-editor": "^0.80.170",
-    "@meepshop/locales": "^0.80.170",
+    "@admin/media-gallery": "^0.80.174",
+    "@admin/text-editor": "^0.80.174",
+    "@meepshop/locales": "^0.80.174",
     "@meepshop/utils": "^0.80.165",
     "braft-editor": "^2.3.9",
     "braft-utils": "^3.0.12"
