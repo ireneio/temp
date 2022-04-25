@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.176 (2022-04-25)
+
+#### :bug: Bug Fix
+
+- [#2271](https://github.com/meepshop/meep-lerna/pull/2271) 【BUG】文字元件 - 下底線功能無法變更顏色 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 1
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.175 (2022-04-25)
 
 #### :bug: Bug Fix
