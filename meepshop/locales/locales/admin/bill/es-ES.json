@@ -69,6 +69,10 @@
     "name": "Expandir la función",
     "free": "Libre"
   },
+  "affiliate-tem": {
+    "name": "Gestión de promociones de resumen",
+    "used": "Durante el uso"
+  },
   "edm-item": {
     "name": "Boletin informativo",
     "count": "Enviar cantidad",

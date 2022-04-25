@@ -69,6 +69,10 @@
     "name": "Perluas Fungsi",
     "free": "Gratis"
   },
+  "affiliate-tem": {
+    "name": "Ringkasan Manajemen Promosi",
+    "used": "Selama digunakan"
+  },
   "edm-item": {
     "name": "Newsletter",
     "count": "Kirim kuantitas",

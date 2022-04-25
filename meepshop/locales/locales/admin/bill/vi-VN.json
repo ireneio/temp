@@ -69,6 +69,10 @@
     "name": "Mở rộng chức năng.",
     "free": "Miễn phí"
   },
+  "affiliate-tem": {
+    "name": "Tóm tắt quản lý khuyến mãi",
+    "used": "Trong quá trình sử dụng"
+  },
   "edm-item": {
     "name": "Bản tin",
     "count": "Gửi số lượng.",

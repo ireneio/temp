@@ -36,6 +36,12 @@ export const useItemsStoreBillFragment = gql`
       month
       fee
     }
+    affiliateItem {
+      billingStartDate
+      billingEndDate
+      month
+      fee
+    }
     edmItem {
       count
       feeRatePerCount

@@ -69,6 +69,10 @@
     "name": "Expand function",
     "free": "Free"
   },
+  "affiliate-tem": {
+    "name": "Summary promotion management",
+    "used": "During use"
+  },
   "edm-item": {
     "name": "Newsletter",
     "count": "Send quantity",

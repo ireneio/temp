@@ -14,6 +14,7 @@ export const getBill = gql`
       id
       store {
         id
+        timezone
         bill(billId: $billId) {
           id
           ...infoFragment

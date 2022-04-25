@@ -69,6 +69,10 @@
     "name": "擴充功能",
     "free": "免費期間"
   },
+  "affiliate-tem": {
+    "name": "分潤推廣管理",
+    "used": "使用期間"
+  },
   "edm-item": {
     "name": "電子報",
     "count": "寄送數量",

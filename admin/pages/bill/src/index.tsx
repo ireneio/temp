@@ -32,8 +32,8 @@ interface PropsType {
 // definition
 const Bill: NextPage<PropsType> = React.memo(() => {
   const { t } = useTranslation('bill');
-  const { bill, billing } = useGetBill();
-  const items = useItems(filter(useItemsStoreBillFragment, bill));
+  const { timezone, bill, billing } = useGetBill();
+  const items = useItems(filter(useItemsStoreBillFragment, bill), timezone);
 
   if (!bill?.id) return null;
 

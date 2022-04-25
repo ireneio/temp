@@ -69,6 +69,10 @@
     "name": "Développer la fonction",
     "free": "Libre"
   },
+  "affiliate-tem": {
+    "name": "Gestion de la promotion Résumé",
+    "used": "En cours d'utilisation"
+  },
   "edm-item": {
     "name": "Bulletin",
     "count": "Envoi de la quantité",

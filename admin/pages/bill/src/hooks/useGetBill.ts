@@ -16,6 +16,7 @@ import { getBill } from '../gqls';
 
 // definition
 export default (): {
+  timezone: number;
   bill: getBillViewerStoreBill | null;
   billing: paymentStoreBillingSettingFragmentType | null;
 } => {
@@ -25,6 +26,7 @@ export default (): {
   });
 
   return {
+    timezone: parseInt(data?.viewer?.store?.timezone || '+8', 10),
     bill: data?.viewer?.store?.bill || null,
     billing: data?.viewer?.store?.setting?.billing || null,
   };

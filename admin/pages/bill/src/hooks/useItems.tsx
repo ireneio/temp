@@ -2,9 +2,11 @@
 import React, { useMemo } from 'react';
 import { Row, Col } from 'antd';
 import { DownloadOutlined } from '@ant-design/icons';
+import { format } from 'date-fns';
 
 import Link from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
+import setTimezone from '@admin/utils/lib/setTimezone';
 
 import { formatMonth, formatMoney } from '../utils/format';
 import styles from '../styles/useItems.less';
@@ -15,6 +17,7 @@ import { useItemsStoreBillFragment } from '@meepshop/types/gqls/admin';
 // definition
 export default (
   bill: useItemsStoreBillFragment | null,
+  timezone: number,
 ): {
   name: string;
   description: string | React.ReactNode;
@@ -127,6 +130,28 @@ export default (
         month: formatMonth(bill?.extensionItem?.month),
         fee: formatMoney(bill?.extensionItem?.fee),
       },
+      ...(!bill?.affiliateItem
+        ? []
+        : [
+            {
+              name: t('affiliate-tem.name'),
+              description: `${t('affiliate-tem.used')} ${format(
+                setTimezone(
+                  bill?.affiliateItem?.billingStartDate || new Date(),
+                  timezone,
+                ),
+                'yyyy.MM.dd',
+              )} ~ ${format(
+                setTimezone(
+                  bill?.affiliateItem?.billingEndDate || new Date(),
+                  timezone,
+                ),
+                'yyyy.MM.dd',
+              )}`,
+              month: formatMonth(bill?.affiliateItem?.month),
+              fee: formatMoney(bill?.affiliateItem?.fee),
+            },
+          ]),
       {
         name: t('edm-item.name'),
         description: (
@@ -174,6 +199,6 @@ export default (
         fee: formatMoney(item?.fee),
       })),
     ],
-    [bill, t],
+    [bill, t, timezone],
   );
 };
