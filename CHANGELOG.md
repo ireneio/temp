@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.177 (2022-04-25)
+
+#### :rocket: New Feature
+
+- [#2180](https://github.com/meepshop/meep-lerna/pull/2180) 【功能】分潤系統 - 收費機制 - 前端 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.176 (2022-04-25)
 
 #### :bug: Bug Fix
