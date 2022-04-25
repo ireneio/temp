@@ -11,7 +11,6 @@ import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
 import {
   Currency as CurrencyContext,
   Colors as ColorsContext,
-  Sensor as SensorContext,
 } from '@meepshop/context';
 import Link from '@meepshop/link';
 import CheckoutSteps from '@store/checkout-steps';
@@ -63,7 +62,6 @@ export default React.memo(() => {
   const { t } = useTranslation('checkout');
   const { c } = useContext(CurrencyContext);
   const colors = useContext(ColorsContext);
-  const { isMobile } = useContext(SensorContext);
   const [form] = Form.useForm();
   const { data } = useQuery<getViewerDataType, getViewerDataVariablesType>(
     getViewerData,
@@ -121,7 +119,7 @@ export default React.memo(() => {
               isActive ? <UpCircleOutlined /> : <DownCircleOutlined />
             }
             bordered={false}
-            defaultActiveKey={isMobile ? '' : 'products'}
+            defaultActiveKey="products"
           >
             <Panel
               key="products"
