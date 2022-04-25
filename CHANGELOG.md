@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.175 (2022-04-25)
+
+#### :bug: Bug Fix
+
+- [#2274](https://github.com/meepshop/meep-lerna/pull/2274) 【BUG】 手機下單會一直轉圈 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.174 (2022-04-22)
 
 #### :rocket: New Feature
