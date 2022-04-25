@@ -4,7 +4,7 @@
   "description": "page editor for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.174",
+  "version": "0.80.176",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -13,7 +13,7 @@
     "@meepshop/icons": "^0.80.158",
     "@meepshop/images": "^0.80.163",
     "@meepshop/locales": "^0.80.174",
-    "@meepshop/modules": "^0.80.174",
+    "@meepshop/modules": "^0.80.176",
     "@meepshop/page": "^0.80.174",
     "@meepshop/switch": "^0.80.158",
     "@meepshop/utils": "^0.80.165",
