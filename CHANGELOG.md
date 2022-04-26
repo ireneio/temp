@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.178 (2022-04-26)
+
+#### :rocket: New Feature
+
+- [#2273](https://github.com/meepshop/meep-lerna/pull/2273) 內部開單 - 移除白名單 toggle ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- [#2277](https://github.com/meepshop/meep-lerna/pull/2277) (@admin/affiliate-partners) Fix hover button style ([@HsuTing](https://github.com/HsuTing))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- Ting-Hsiang Hsu ([@HsuTing](https://github.com/HsuTing))
+
 ## 0.80.177 (2022-04-25)
 
 #### :rocket: New Feature
