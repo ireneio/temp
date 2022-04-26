@@ -45,21 +45,17 @@ const SettingApps: NextPage<PropsType> = React.memo(() => {
       backTo="/setting"
       disableAffix
     >
-      {!store?.isAffilaiteEnabled && !store?.isOpenApiEnabled ? null : (
-        <div className={styles.root}>
-          <div className={styles.title}>{t('subscription.title')}</div>
+      <div className={styles.root}>
+        <div className={styles.title}>{t('subscription.title')}</div>
 
-          <div className={styles.subTitle}>{t('subscription.subTitle')}</div>
+        <div className={styles.subTitle}>{t('subscription.subTitle')}</div>
 
-          {!store.isAffilaiteEnabled ? null : (
-            <Affiliate store={filter(affiliateFragment, store)} />
-          )}
+        <Affiliate store={filter(affiliateFragment, store)} />
 
-          {!store.isOpenApiEnabled ? null : (
-            <OpenApi viewer={filter(openApiFragment, viewer)} />
-          )}
-        </div>
-      )}
+        {!store?.isOpenApiEnabled ? null : (
+          <OpenApi viewer={filter(openApiFragment, viewer)} />
+        )}
+      </div>
 
       <div className={styles.root}>
         <div className={styles.title}>{t('basic.title')}</div>
