@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.179 (2022-04-27)
+
+#### :bug: Bug Fix
+
+- [#2275](https://github.com/meepshop/meep-lerna/pull/2275) 【BUG】 購物車頁面 - 更改商品數量，運費金額會顯示 0 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.178 (2022-04-26)
 
 #### :rocket: New Feature
