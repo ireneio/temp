@@ -58,6 +58,7 @@ const Cart: NextPage = React.memo(() => {
   });
   const viewer = data?.viewer || null;
   const { computedCart, refetch, variables, loading } = useComputedCart(
+    form,
     filter(useComputedCartFragment, viewer),
   );
   const computedLineItems = computedCart?.computedLineItems || [];

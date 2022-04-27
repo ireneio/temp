@@ -1,5 +1,6 @@
 // typescript import
 import { QueryResult } from '@apollo/client';
+import { FormInstance } from 'antd/lib/form';
 
 // import
 import { useMemo } from 'react';
@@ -32,7 +33,10 @@ export interface ReturnType
 }
 
 // definition
-export default (viewer: useComputedCartFragmentType | null): ReturnType => {
+export default (
+  { getFieldValue }: FormInstance,
+  viewer: useComputedCartFragmentType | null,
+): ReturnType => {
   const { loading, cartItems } = useCart(filter(useCartFragment, viewer));
   const cartItemsInput = useMemo(
     () => cartItems.map(({ __typename: _, ...cartItem }) => cartItem),
@@ -46,6 +50,7 @@ export default (viewer: useComputedCartFragmentType | null): ReturnType => {
     variables: {
       input: {
         cartItems: cartItemsInput,
+        shipmentId: getFieldValue('shipmentId') || null,
       },
     },
     skip: loading,
