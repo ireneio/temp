@@ -1,5 +1,5 @@
 // import
-import React, { useMemo, useContext, useEffect } from 'react';
+import React, { useMemo, useContext, useEffect, useState } from 'react';
 import { notification } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
@@ -14,6 +14,7 @@ export default React.memo(() => {
   const router = useRouter();
   const fbLogin = useFbLogin();
   const role = useContext(RoleContext);
+  const [loading, setLoading] = useState<boolean>(false);
   const { access_token: accessToken, state } = useMemo(
     () =>
       decodeURIComponent(router.hash || '')
@@ -28,6 +29,8 @@ export default React.memo(() => {
 
   useEffect(() => {
     (async () => {
+      if (loading) return;
+
       if (role === 'SHOPPER') {
         router.replace(state);
         return;
@@ -36,10 +39,16 @@ export default React.memo(() => {
       if (!accessToken) {
         notification.error({ message: t('login-fail') });
         router.replace(state || '/login');
-      } else if (!(await fbLogin(accessToken, state)))
-        router.replace(state || '/login');
+      } else {
+        setLoading(true);
+
+        if (!(await fbLogin(accessToken, state)))
+          router.replace(state || '/login');
+        else setLoading(false);
+      }
     })();
-  }, [router, fbLogin, role, accessToken, state, t]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading]);
 
   return null;
 });
