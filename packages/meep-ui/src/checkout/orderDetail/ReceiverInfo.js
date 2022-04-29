@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { Form, Input, Select, Checkbox } from 'antd';
+import { Form, Input, Checkbox } from 'antd';
 import { isAlpha, isLength } from 'validator';
 
 import { withTranslation } from '@meepshop/locales';
+import Select, { Option } from '@meepshop/select';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import ReceiverDefaultFormItem from 'receiverDefaultFormItem';
@@ -19,7 +20,6 @@ import styles from './styles/receiverInfo.less';
 
 const { Item: FormItem } = Form;
 const { TextArea } = Input;
-const { Option } = Select;
 
 @withTranslation('checkout')
 @enhancer

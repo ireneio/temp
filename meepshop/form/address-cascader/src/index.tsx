@@ -1,8 +1,9 @@
 // import
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { Cascader, Select, Input } from 'antd';
+import { Cascader, Input } from 'antd';
 
+import Select from '@meepshop/select';
 import { useTranslation } from '@meepshop/locales';
 import filter from '@meepshop/utils/lib/filter';
 

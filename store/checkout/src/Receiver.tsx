@@ -1,6 +1,6 @@
 // import
 import React, { useContext } from 'react';
-import { Form, Input, Select, Checkbox, Cascader } from 'antd';
+import { Form, Input, Checkbox, Cascader } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
@@ -8,6 +8,7 @@ import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/form-address-cascader';
 import filter from '@meepshop/utils/lib/filter';
+import Select, { Option } from '@meepshop/select';
 
 import Invoice from './Invoice';
 import useSynchronizeUserInfo from './hooks/useSynchronizeUserInfo';
@@ -40,7 +41,6 @@ type CheckoutFieldsKeyType = '__typename' | 'name' | 'mobile' | 'address';
 
 // definition
 const { Item: FormItem } = Form;
-const { Option } = Select;
 const { TextArea } = Input;
 
 export default React.memo(({ isLogin, store, user }: PropsType) => {

@@ -4,9 +4,10 @@ import { RefSelectProps } from 'antd/lib/select';
 // import
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { Cascader, Select } from 'antd';
+import { Cascader } from 'antd';
 
 import { useTranslation, useGetLanguage } from '@meepshop/locales';
+import Select, { Option } from '@meepshop/select';
 
 import useOptions from './hooks/useOptions';
 import styles from './styles/installmentFormItem.less';
@@ -30,7 +31,6 @@ interface PropsType {
 }
 
 // definition
-const { Option } = Select;
 const InstallmentForm = React.memo(
   ({
     cardNumber,

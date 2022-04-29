@@ -37,7 +37,6 @@ export default class QuantityButton extends React.Component {
       orderable,
       quantity,
       onChangeQuantity,
-      name,
       container,
       unfoldedVariants,
     } = this.props;
@@ -48,7 +47,6 @@ export default class QuantityButton extends React.Component {
           <ProductAmountSelector
             style={styles.amountSelect(unfoldedVariants)}
             variant={variant}
-            dropdownClassName={name}
             value={quantity}
             onChange={onChangeQuantity}
             getPopupContainer={() => container.current || document.body}

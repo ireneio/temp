@@ -3,11 +3,11 @@ import { SelectProps, RefSelectProps } from 'antd/lib/select';
 
 // import
 import React from 'react';
-import { Select } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-import { useTranslation } from '@meepshop/locales';
 import filter from '@meepshop/utils/lib/filter';
+import { useTranslation } from '@meepshop/locales';
+import Select, { Option } from '@meepshop/select';
 
 import useOptions from './hooks/useOptions';
 import styles from './styles/index.less';
@@ -33,8 +33,6 @@ export interface PropsType
 }
 
 // definition
-const { Option } = Select;
-
 const ProductAmountSelector = React.memo(
   ({ forwardedRef, variant, onChange, className, ...props }: PropsType) => {
     const { t } = useTranslation('product-amount-selector');

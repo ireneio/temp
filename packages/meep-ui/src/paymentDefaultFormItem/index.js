@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { areEqual, UserAgent } from 'fbjs';
 import radium from 'radium';
-import { Form, Select, Collapse } from 'antd';
+import { Form, Collapse } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
+import Select, { Option } from '@meepshop/select';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ID_TYPE, COLOR_TYPE } from 'constants/propTypes';
@@ -14,7 +15,6 @@ import { FILTER_ALLPAY_PLAYFORM } from './constants';
 import * as styles from './styles';
 
 const { Item: FormItem } = Form;
-const { Option } = Select;
 const { Panel } = Collapse;
 
 @withTranslation('payment-default-form-item')

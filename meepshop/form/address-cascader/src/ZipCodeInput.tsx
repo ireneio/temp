@@ -1,9 +1,10 @@
 // import
 import React, { useEffect, useContext } from 'react';
-import { Input, Select } from 'antd';
+import { Input } from 'antd';
 import transformColor from 'color';
 
 import { Colors as ColorsContext } from '@meepshop/context';
+import Select, { Option } from '@meepshop/select';
 
 import styles from './styles/zipCodeInput.less';
 
@@ -18,8 +19,6 @@ interface PropsType {
 }
 
 // definition
-const { Option } = Select;
-
 export default React.memo(
   ({
     size,

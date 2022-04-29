@@ -1,11 +1,12 @@
 // import
 import React, { useContext, useMemo, useRef } from 'react';
-import { Form, Select, Collapse, Input } from 'antd';
+import { Form, Collapse, Input } from 'antd';
 import transformColor from 'color';
 import { UserAgent } from 'fbjs';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
+import Select, { Option } from '@meepshop/select';
 
 import { FILTER_ECPAY_PLAYFORM } from './constants';
 import styles from './styles/payment.less';
@@ -24,7 +25,6 @@ interface PropsType {
 
 // definition
 const { Item: FormItem } = Form;
-const { Option } = Select;
 const { Panel } = Collapse;
 
 export default React.memo(({ loading, computeOrderList }: PropsType) => {
@@ -74,7 +74,6 @@ export default React.memo(({ loading, computeOrderList }: PropsType) => {
             validateTrigger="onBlur"
           >
             <Select
-              dropdownClassName={styles.selectDropdown}
               placeholder={
                 paymentList.length === 0
                   ? t('payment-list-empty')
@@ -148,18 +147,6 @@ export default React.memo(({ loading, computeOrderList }: PropsType) => {
       <style
         dangerouslySetInnerHTML={{
           __html: `
-            .${
-              styles.root
-            } .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector {
-              background: ${transformColor(colors[3]).alpha(0.03)};
-              border-color: ${colors[5]};
-              color: ${transformColor(colors[3]).alpha(0.25)};
-            }
-
-            .${styles.selectDropdown} .ant-select-item-option-disabled {
-              color: ${transformColor(colors[3]).alpha(0.3)};
-            }
-
             .${styles.panel} {
               background: ${transformColor(colors[5]).alpha(0.15)};
               color: ${colors[3]};

@@ -10,9 +10,10 @@ import {
   LoadingOutlined,
   SearchOutlined,
 } from '@ant-design/icons';
-import { Spin, Cascader, Select } from 'antd';
+import { Spin, Cascader } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
+import Select, { Option } from '@meepshop/select';
 
 import useGetAreas from './hooks/useGetAreas';
 import useGetStreets from './hooks/useGetStreets';
@@ -34,8 +35,6 @@ interface PropsType extends Omit<ConvenienceStorePropsType, 'confirmStore'> {
 }
 
 // definition
-const { Option } = Select;
-
 export default React.memo(
   ({ shipmentType, storeTypes, variables, setVariables }: PropsType) => {
     const { t } = useTranslation('convenience-store-map');
@@ -84,7 +83,7 @@ export default React.memo(
           onChange={getStreets}
           changeOnSelect
         />
-        <Select<string>
+        <Select
           showSearch
           suffixIcon={<SearchOutlined />}
           placeholder={t('pleaseSelectStreet')}

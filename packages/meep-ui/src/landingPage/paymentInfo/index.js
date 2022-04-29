@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Select, InputNumber, Cascader } from 'antd';
+import { Form, InputNumber, Cascader } from 'antd';
 import { getElementPosition } from 'fbjs';
 import uuid from 'uuid';
 import { useMutation } from '@apollo/client';
 
 import { withTranslation, useGetLanguage } from '@meepshop/locales';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
+import Select, { Option } from '@meepshop/select';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
 
@@ -28,7 +29,6 @@ import getVariantOptions from './utils/getVariantOptions';
 import mockPaymentInfoRef from './utils/mockPaymentInfoRef';
 
 const { Item: FormItem } = Form;
-const { Option } = Select;
 
 @withTranslation('landing-page')
 @withContext(AdTrackContext, adTrack => ({ adTrack }))

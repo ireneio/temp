@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import radium from 'radium';
-import { Form, Input, Select } from 'antd';
+import { Form, Input } from 'antd';
 import { isAlpha, isLength } from 'validator';
 
 import DatePicker from '@meepshop/date-picker';
 import { withTranslation } from '@meepshop/locales';
 import LoginModal from '@meepshop/login-modal';
+import Select, { Option } from '@meepshop/select';
 import { useValidateEmail } from '@meepshop/validator';
 import withHook from '@store/utils/lib/withHook';
 
@@ -29,7 +30,6 @@ import {
 } from './styles';
 
 const { Item: FormItem } = Form;
-const { Option } = Select;
 const { TextArea } = Input;
 
 @withTranslation('landing-page')

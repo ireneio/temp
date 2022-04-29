@@ -2,11 +2,12 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
 import { LoadingOutlined } from '@ant-design/icons';
-import { Form, Spin, Input, Select, Checkbox, Button } from 'antd';
+import { Form, Spin, Input, Checkbox, Button } from 'antd';
 import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
+import Select, { Option } from '@meepshop/select';
 import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/form-address-cascader';
@@ -25,7 +26,6 @@ import { getUserInfo } from './gqls';
 
 // definition
 const { Item: FormItem } = Form;
-const { Option } = Select;
 
 // TODO: should use getInitialProps
 export const namespacesRequired = ['@meepshop/locales/namespacesRequired'];

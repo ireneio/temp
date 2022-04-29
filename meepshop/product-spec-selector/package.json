@@ -10,6 +10,7 @@
   "dependencies": {
     "@meepshop/context": "^0.80.165",
     "@meepshop/hooks": "^0.80.177",
+    "@meepshop/select": "^0.80.165",
     "@meepshop/utils": "^0.80.165",
     "d3-hierarchy": "^1.1.6"
   },

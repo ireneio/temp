@@ -86,8 +86,6 @@ export const ColorsProvider = React.memo(({ children }) => {
             .ant-input-number:focus,
             .ant-input-number-input,
             .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover,
-            .ant-select:not(.ant-select-customize-input) .ant-select-selector,
-            .ant-select:not(.ant-select-customize-input):hover .ant-select-selector,
             .ant-picker,
             .ant-picker.ant-picker-disabled,
             .ant-cascader-picker,
@@ -95,7 +93,6 @@ export const ColorsProvider = React.memo(({ children }) => {
             .ant-form-item-has-error .ant-input-affix-wrapper,
             .ant-form-item-has-error .ant-input:hover,
             .ant-form-item-has-error .ant-input-affix-wrapper:hover,
-            .ant-form-item-has-error .ant-select:not(.ant-select-disabled):not(.ant-select-customize-input) .ant-select-selector,
             .ant-form-item-has-error .ant-input-number,
             .ant-form-item-has-error .ant-picker,
             .ant-form-item-has-error .ant-input-number:not([disabled]):hover,
@@ -116,8 +113,7 @@ export const ColorsProvider = React.memo(({ children }) => {
 
             .ant-cascader-picker .ant-input:focus,
             .ant-cascader-picker:focus .ant-cascader-input,
-            .ant-cascader-picker-label:hover + .ant-cascader-input:not(.ant-cascader-picker-disabled .ant-cascader-picker-label:hover + .ant-cascader-input),
-            .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+            .ant-cascader-picker-label:hover + .ant-cascader-input:not(.ant-cascader-picker-disabled .ant-cascader-picker-label:hover + .ant-cascader-input) {
               box-shadow: 0 0 0 2px ${transformColor(colors[5]).alpha(0.2)};
               border-color: ${colors[5]};
             }
@@ -125,29 +121,22 @@ export const ColorsProvider = React.memo(({ children }) => {
             .ant-cascader-picker .ant-cascader-picker-label,
             .ant-cascader-picker .ant-cascader-picker-clear,
             .ant-cascader-picker .ant-cascader-picker-arrow,
-            .ant-select:not(.ant-select-customize-input) .ant-select-selection-item,
-            .ant-select:not(.ant-select-customize-input) .ant-select-arrow,
-            .ant-select:not(.ant-select-customize-input) .ant-select-clear,
-            .ant-cascader-menus .ant-cascader-menu-item,
-            .ant-select-item {
+            .ant-cascader-menus .ant-cascader-menu-item {
               color: ${colors[3]};
             }
 
-            .ant-select-clear, .ant-cascader-picker-clear {
+            .ant-cascader-picker-clear {
               background-color: ${colors[0]};
             }
 
-            .ant-cascader-menus,
-            .ant-select-dropdown {
+            .ant-cascader-menus {
               background-color: ${colors[0]};
               box-shadow: 0 2px 8px ${transformColor(colors[3]).alpha(0.15)};
             }
 
             .ant-cascader-menus .ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled),
             .ant-cascader-menus .ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled):hover,
-            .ant-cascader-menus .ant-cascader-menu-item:hover,
-            .ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled),
-            .ant-select-dropdown .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+            .ant-cascader-menus .ant-cascader-menu-item:hover {
               background-color: ${colors[4]};
               color: ${colors[2]};
             }

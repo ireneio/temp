@@ -36,6 +36,7 @@
     "@meepshop/product-qa": "^0.80.177",
     "@meepshop/product-spec-selector": "^0.80.177",
     "@meepshop/product-video": "^0.80.177",
+    "@meepshop/select": "^0.80.165",
     "@meepshop/smart-conversion": "^0.80.177",
     "@meepshop/social-media": "^0.80.165",
     "@meepshop/social-thumbs": "^0.80.177",

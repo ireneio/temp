@@ -6,7 +6,7 @@ import { UseComputeOrderType } from './hooks/useComputeOrder';
 // import
 import React, { useContext } from 'react';
 import { Form } from '@ant-design/compatible';
-import { Select, Cascader, Collapse, Input } from 'antd';
+import { Cascader, Collapse, Input } from 'antd';
 import transformColor from 'color';
 
 import ProductAmountSelector from '@meepshop/product-amount-selector';
@@ -17,6 +17,7 @@ import {
 } from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
 import filter from '@meepshop/utils/lib/filter';
+import Select, { Option } from '@meepshop/select';
 
 import CouponStatus from './CouponStatus';
 import useVariantOptions from './hooks/useVariantOptions';
@@ -45,7 +46,6 @@ interface PropsType
 
 // definition
 const { Item } = Form;
-const { Option } = Select;
 const { Panel } = Collapse;
 
 export default React.memo(

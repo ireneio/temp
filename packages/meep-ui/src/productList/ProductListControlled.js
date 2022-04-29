@@ -4,11 +4,12 @@ import radium, { StyleRoot, Style } from 'radium';
 import { areEqual, emptyFunction } from 'fbjs';
 import queryString from 'query-string';
 import { ProfileOutlined, AppstoreOutlined } from '@ant-design/icons';
-import { Pagination, Select } from 'antd';
+import { Pagination } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
 import { Sensor as SensorContext } from '@meepshop/context';
+import Select, { Option } from '@meepshop/select';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
 
@@ -294,7 +295,6 @@ export default class ProductList extends React.PureComponent {
               {showSort && (
                 <Select
                   dropdownMatchSelectWidth={false}
-                  dropdownClassName={this.name}
                   value={
                     sortOptions.some(option => option.value === sort)
                       ? sort
@@ -307,7 +307,7 @@ export default class ProductList extends React.PureComponent {
                   }}
                 >
                   {sortOptions.map(option => (
-                    <Select.Option key={option.value} value={option.value}>
+                    <Option key={option.value} value={option.value}>
                       {sort === option.value ? (
                         t(option.text)
                       ) : (
@@ -321,7 +321,7 @@ export default class ProductList extends React.PureComponent {
                           <span>{t(option.text)}</span>
                         </Link>
                       )}
-                    </Select.Option>
+                    </Option>
                   ))}
                 </Select>
               )}

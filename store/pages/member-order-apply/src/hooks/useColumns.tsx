@@ -5,10 +5,11 @@ import { languageType } from '@meepshop/locales';
 
 // import
 import React, { useMemo, useContext } from 'react';
-import { Form, Select } from 'antd';
+import { Form } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
+import Select, { Option } from '@meepshop/select';
 import Thumbnail from '@meepshop/thumbnail';
 import filter from '@meepshop/utils/lib/filter';
 
@@ -21,7 +22,6 @@ import { useColumnsProductsObjectTypeMemberOrderApplyFragment as useColumnsProdu
 import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 
 // definition
-const { Option } = Select;
 const { Item: FormItem } = Form;
 
 export default (

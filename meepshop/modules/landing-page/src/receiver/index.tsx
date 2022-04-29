@@ -6,12 +6,13 @@ import { UseComputeOrderType } from '../hooks/useComputeOrder';
 // import
 import React, { useContext } from 'react';
 import { Form } from '@ant-design/compatible';
-import { Select, Cascader, Input } from 'antd';
+import { Cascader, Input } from 'antd';
 import { isAlpha } from 'validator';
 
 import DatePicker from '@meepshop/date-picker';
 import validateMobile from '@meepshop/utils/lib/validate/mobile';
 import { useTranslation } from '@meepshop/locales';
+import Select, { Option } from '@meepshop/select';
 import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/form-address-cascader';
@@ -44,7 +45,6 @@ interface PropsType {
 // definition
 const { TextArea } = Input;
 const { Item } = Form;
-const { Option } = Select;
 
 export default React.memo(
   ({

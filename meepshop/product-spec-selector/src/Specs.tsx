@@ -5,9 +5,9 @@ import { Leaf, CoordinatesReturnType } from './hooks/useCoordinates';
 
 // import
 import React, { useContext } from 'react';
-import { Select } from 'antd';
 
 import { Colors as ColorsContext } from '@meepshop/context';
+import Select, { Option } from '@meepshop/select';
 
 import styles from './styles/specs.less';
 
@@ -63,7 +63,6 @@ const Specs = React.memo(
               <Select
                 size="large"
                 value={coordinate}
-                dropdownClassName={styles.select}
                 dropdownMatchSelectWidth={false}
                 onChange={(value: number) => {
                   if (value === coordinate) return;
@@ -75,13 +74,13 @@ const Specs = React.memo(
                 }}
               >
                 {nodes?.map((node, index) => (
-                  <Select.Option
+                  <Option
                     key={node.id}
                     value={index}
                     title={node.data.title?.zh_TW || ''}
                   >
                     {node.data.title?.zh_TW}
-                  </Select.Option>
+                  </Option>
                 ))}
               </Select>
             )}

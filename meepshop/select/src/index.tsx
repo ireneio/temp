@@ -1,5 +1,5 @@
 // typescript import
-import { SelectProps } from 'antd/lib/select';
+import { SelectProps, LabeledValue, RefSelectProps } from 'antd/lib/select';
 
 // import
 import React, { useContext } from 'react';
@@ -10,13 +10,25 @@ import { Colors as ColorsContext } from '@meepshop/context';
 
 import styles from './styles/index.less';
 
+// typescript definition
+interface PropsType
+  extends SelectProps<
+    string | string[] | number | number[] | LabeledValue | LabeledValue[]
+  > {
+  ref?: React.Ref<RefSelectProps> | undefined;
+}
+
 // definition
-export default React.memo(({ ...props }: SelectProps<string | number>) => {
+export const { Option, OptGroup } = Select;
+
+export default React.memo(({ children, ...props }: PropsType) => {
   const colors = useContext(ColorsContext);
 
   return (
     <div className={styles.root}>
-      <Select dropdownClassName={styles.dropDown} {...props} />
+      <Select dropdownClassName={styles.dropdown} {...props}>
+        {children}
+      </Select>
 
       <style
         dangerouslySetInnerHTML={{
@@ -85,6 +97,11 @@ export default React.memo(({ ...props }: SelectProps<string | number>) => {
 
             .${styles.dropdown} .ant-select-item {
               color: ${colors[3]};
+            }
+            .${
+              styles.dropdown
+            } .ant-select-item.ant-select-item-option-disabled{
+              color: ${transformColor(colors[3]).alpha(0.3)};
             }
 
             .${
