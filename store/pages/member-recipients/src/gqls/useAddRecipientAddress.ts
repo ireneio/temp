@@ -32,14 +32,3 @@ export const useAddRecipientAddressFragment = gql`
     }
   }
 `;
-
-export const useAddRecipientAddressGetCache = gql`
-  query useAddRecipientAddressGetCache {
-    viewer {
-      id
-      ...useAddRecipientAddressFragment
-    }
-  }
-
-  ${useAddRecipientAddressFragment}
-`;

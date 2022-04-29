@@ -10,17 +10,6 @@ export const deleteRecipientAddress = gql`
   }
 `;
 
-export const useDeleteRecipientAddressGetCache = gql`
-  query useDeleteRecipientAddressGetCache {
-    viewer {
-      id
-      shippableRecipientAddresses {
-        id
-      }
-    }
-  }
-`;
-
 export const useDeleteRecipientAddressFragment = gql`
   fragment useDeleteRecipientAddressFragment on User {
     id

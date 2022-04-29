@@ -2,26 +2,19 @@
 import { gql } from '@apollo/client';
 
 // graphql import
-import { formRecipientAddressFragment, formStoreFragment } from './form';
-import { useColumnsRecipientAddressFragment } from './useColumns';
+import { formUserFragment } from './form';
+import { useRecipientColumnsUserFragment } from './useRecipientColumns';
 
 // definition
 export const getUserRecipients = gql`
   query getUserRecipients {
     viewer {
       id
-      shippableRecipientAddresses {
-        ...formRecipientAddressFragment
-        ...useColumnsRecipientAddressFragment
-      }
-
-      store {
-        ...formStoreFragment
-      }
+      ...formUserFragment
+      ...useRecipientColumnsUserFragment
     }
   }
 
-  ${formRecipientAddressFragment}
-  ${useColumnsRecipientAddressFragment}
-  ${formStoreFragment}
+  ${formUserFragment}
+  ${useRecipientColumnsUserFragment}
 `;

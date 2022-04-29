@@ -12,19 +12,19 @@ import { useTranslation } from '@meepshop/locales';
 import {
   deleteRecipientAddress as deleteRecipientAddressType,
   deleteRecipientAddressVariables as deleteRecipientAddressVariablesType,
-  useDeleteRecipientAddressGetCache as useDeleteRecipientAddressGetCacheType,
   useDeleteRecipientAddressFragment as useDeleteRecipientAddressFragmentType,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
 import {
   deleteRecipientAddress,
-  useDeleteRecipientAddressGetCache,
   useDeleteRecipientAddressFragment,
 } from '../gqls/useDeleteRecipientAddress';
 
 // definition
-export default (): ((id: string) => void) => {
+export default (
+  viewer: useDeleteRecipientAddressFragmentType | null,
+): ((id: string) => void) => {
   const { t } = useTranslation('member-recipients');
   const [mutation] = useMutation<
     deleteRecipientAddressType,
@@ -46,13 +46,7 @@ export default (): ((id: string) => void) => {
             return;
           }
 
-          const useDeleteRecipientAddressCache = cache.readQuery<
-            useDeleteRecipientAddressGetCacheType
-          >({
-            query: useDeleteRecipientAddressGetCache,
-          });
-          const { id: viewerId, shippableRecipientAddresses } =
-            useDeleteRecipientAddressCache?.viewer || {};
+          const { id: viewerId, shippableRecipientAddresses } = viewer || {};
 
           if (!id || !viewerId || !shippableRecipientAddresses) return;
 
@@ -73,6 +67,6 @@ export default (): ((id: string) => void) => {
         },
       });
     },
-    [t, mutation],
+    [mutation, viewer, t],
   );
 };

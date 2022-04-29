@@ -1,6 +1,7 @@
 // import
 import React, { useContext, useCallback, useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
+import { filter } from 'graphql-anywhere';
 
 import AddressCascader, {
   validateAddressCascader,
@@ -14,21 +15,24 @@ import styles from './styles/form.less';
 
 // graphql typescript
 import {
+  formUserFragment as formUserFragmentType,
   formRecipientAddressFragment as formRecipientAddressFragmentType,
-  formStoreFragment as formStoreFragmentType,
 } from '@meepshop/types/gqls/store';
+
+// graphql import
+import { useSaveFragment } from './gqls/useSave';
 
 // typescript definition
 interface PropsType {
+  viewer: formUserFragmentType;
   recipientAddress: formRecipientAddressFragmentType | null;
-  store: formStoreFragmentType | null;
   cancel: () => void;
 }
 
 // definition
 const { Item: FormItem } = Form;
 
-export default React.memo(({ recipientAddress, store, cancel }: PropsType) => {
+export default React.memo(({ viewer, recipientAddress, cancel }: PropsType) => {
   const colors = useContext(ColorsContext);
   const { t } = useTranslation('member-recipients');
   const [form] = Form.useForm();
@@ -36,7 +40,11 @@ export default React.memo(({ recipientAddress, store, cancel }: PropsType) => {
     cancel();
     form.resetFields();
   }, [cancel, form]);
-  const save = useSave(recipientAddress?.id, reset);
+  const save = useSave({
+    viewer: filter(useSaveFragment, viewer),
+    id: recipientAddress?.id,
+    reset,
+  });
 
   useEffect(() => {
     form.resetFields();
@@ -118,7 +126,7 @@ export default React.memo(({ recipientAddress, store, cancel }: PropsType) => {
           className={styles.addressCascader}
           size="large"
           placeholder={[t('address'), t('zip-code')]}
-          shippableCountries={store?.shippableCountries || []}
+          shippableCountries={viewer.store?.shippableCountries || []}
         />
       </FormItem>
 

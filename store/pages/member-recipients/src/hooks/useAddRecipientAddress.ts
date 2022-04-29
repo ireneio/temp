@@ -12,7 +12,6 @@ import { useTranslation } from '@meepshop/locales';
 import {
   addRecipientAddress as addRecipientAddressType,
   addRecipientAddressVariables as addRecipientAddressVariablesType,
-  useAddRecipientAddressGetCache as useAddRecipientAddressGetCacheType,
   useAddRecipientAddressFragment as useAddRecipientAddressFragmentType,
   useAddRecipientAddressFragment_shippableRecipientAddresses as useAddRecipientAddressFragmentShippableRecipientAddresses,
 } from '@meepshop/types/gqls/store';
@@ -20,14 +19,13 @@ import {
 // graphql import
 import {
   addRecipientAddress,
-  useAddRecipientAddressGetCache,
   useAddRecipientAddressFragment,
 } from '../gqls/useAddRecipientAddress';
 
 // definition
-export default (): ((
-  input: addRecipientAddressVariablesType['input'],
-) => Promise<void>) => {
+export default (
+  viewer: useAddRecipientAddressFragmentType,
+): ((input: addRecipientAddressVariablesType['input']) => Promise<void>) => {
   const { t } = useTranslation('member-recipients');
   const [mutation] = useMutation<
     addRecipientAddressType,
@@ -50,14 +48,8 @@ export default (): ((
           }
 
           const { recipientAddressId } = data.addRecipientAddress;
-          const useAddRecipientAddressCache = cache.readQuery<
-            useAddRecipientAddressGetCacheType
-          >({
-            query: useAddRecipientAddressGetCache,
-          });
 
-          const { id, shippableRecipientAddresses } =
-            useAddRecipientAddressCache?.viewer || {};
+          const { id, shippableRecipientAddresses } = viewer;
 
           if (!id || !shippableRecipientAddresses) return;
 
@@ -104,6 +96,6 @@ export default (): ((
         },
       });
     },
-    [t, mutation],
+    [mutation, viewer, t],
   );
 };

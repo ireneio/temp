@@ -4,6 +4,7 @@ import { ColumnProps } from 'antd/lib/table';
 // import
 import React, { useMemo } from 'react';
 import { Divider } from 'antd';
+import { filter } from 'graphql-anywhere';
 
 import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Link from '@meepshop/link';
@@ -12,15 +13,24 @@ import useDeleteRecipientAddress from './useDeleteRecipientAddress';
 import styles from '../styles/useColumns.less';
 
 // graphql typescript
-import { useColumnsRecipientAddressFragment as useColumnsRecipientAddressFragmentType } from '@meepshop/types/gqls/store';
+import {
+  useRecipientColumnsUserFragment as useRecipientColumnsUserFragmentType,
+  useRecipientColumnsRecipientAddressFragment as useRecipientColumnsRecipientAddressFragmentType,
+} from '@meepshop/types/gqls/store';
+
+// graphql import
+import { useDeleteRecipientAddressFragment } from '../gqls/useDeleteRecipientAddress';
 
 // definition
 export default (
+  viewer: useRecipientColumnsUserFragmentType | null,
   setSelectedId: (id: string | null) => void,
-): ColumnProps<useColumnsRecipientAddressFragmentType>[] => {
+): ColumnProps<useRecipientColumnsRecipientAddressFragmentType>[] => {
   const { t } = useTranslation('member-recipients');
   const getLanguage = useGetLanguage();
-  const deleteRecipientAddress = useDeleteRecipientAddress();
+  const deleteRecipientAddress = useDeleteRecipientAddress(
+    filter(useDeleteRecipientAddressFragment, viewer),
+  );
 
   return useMemo(
     () => [
@@ -39,7 +49,7 @@ export default (
             area,
             zipCode,
             street,
-          }: useColumnsRecipientAddressFragmentType,
+          }: useRecipientColumnsRecipientAddressFragmentType,
         ) =>
           [
             zipCode,
@@ -57,7 +67,9 @@ export default (
       {
         key: 'action',
         dataIndex: 'id',
-        render: (value: useColumnsRecipientAddressFragmentType['id']) => (
+        render: (
+          value: useRecipientColumnsRecipientAddressFragmentType['id'],
+        ) => (
           <>
             <Link href="#recipient">
               <span
@@ -83,7 +95,7 @@ export default (
         key: 'mobileStyle',
         dataIndex: 'id',
         render: (
-          value: useColumnsRecipientAddressFragmentType['id'],
+          value: useRecipientColumnsRecipientAddressFragmentType['id'],
           {
             name,
             mobile,
@@ -92,7 +104,7 @@ export default (
             city,
             area,
             street,
-          }: useColumnsRecipientAddressFragmentType,
+          }: useRecipientColumnsRecipientAddressFragmentType,
         ) => (
           <div className={styles.mobile}>
             <span>{t('name')}</span>

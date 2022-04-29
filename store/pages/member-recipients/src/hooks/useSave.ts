@@ -1,8 +1,15 @@
 // import
 import { useCallback } from 'react';
+import { filter } from 'graphql-anywhere';
 
 import useAddRecipientAddress from './useAddRecipientAddress';
 import useUpdateRecipientAddress from './useUpdateRecipientAddress';
+
+// graphql typescript
+import { useSaveFragment as useSaveFragmentType } from '@meepshop/types/gqls/store';
+
+// graphql import
+import { useAddRecipientAddressFragment } from '../gqls/useAddRecipientAddress';
 
 // typescript definition
 interface ValuesType {
@@ -15,12 +22,20 @@ interface ValuesType {
   street?: string;
 }
 
+interface PropsType {
+  viewer: useSaveFragmentType;
+  id: string | undefined;
+  reset: () => void;
+}
 // definition
-export default (
-  id: string | undefined,
-  reset: () => void,
-): ((values: ValuesType) => void) => {
-  const addRecipientAddress = useAddRecipientAddress();
+export default ({
+  viewer,
+  id,
+  reset,
+}: PropsType): ((values: ValuesType) => void) => {
+  const addRecipientAddress = useAddRecipientAddress(
+    filter(useAddRecipientAddressFragment, viewer),
+  );
   const updateRecipientAddress = useUpdateRecipientAddress();
 
   return useCallback(

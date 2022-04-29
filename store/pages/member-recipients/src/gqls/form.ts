@@ -1,6 +1,9 @@
 // import
 import { gql } from '@apollo/client';
 
+// graphql import
+import { useSaveFragment } from './useSave';
+
 // definition
 export const formRecipientAddressFragment = gql`
   fragment formRecipientAddressFragment on RecipientAddress {
@@ -21,11 +24,22 @@ export const formRecipientAddressFragment = gql`
   }
 `;
 
-export const formStoreFragment = gql`
-  fragment formStoreFragment on Store {
+export const formUserFragment = gql`
+  fragment formUserFragment on User {
     id
-    shippableCountries {
+    store {
       id
+      shippableCountries {
+        id
+      }
     }
+    shippableRecipientAddresses {
+      id
+      ...formRecipientAddressFragment
+    }
+    ...useSaveFragment
   }
+
+  ${formRecipientAddressFragment}
+  ${useSaveFragment}
 `;
