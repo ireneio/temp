@@ -70,6 +70,7 @@ export default class SearchBar extends React.PureComponent {
                 this.setState({ value: changeValue })
               }
               onPressEnter={this.search}
+              enterkeyhint="search"
             />
           </div>
         )}
