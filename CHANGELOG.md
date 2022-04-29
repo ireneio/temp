@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 0.80.180 (2022-04-29)
+
+#### :bug: Bug Fix
+
+- Other
+  - [#2134](https://github.com/meepshop/meep-lerna/pull/2134) 內部開單 - /fb-login 多次觸發登入失敗 ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`
+  - [#2276](https://github.com/meepshop/meep-lerna/pull/2276) 【BUG】手機版 - 搜尋商品時，鍵盤上所顯示的「搜尋」文字 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :house: Internal
+
+- Other
+  - [#2150](https://github.com/meepshop/meep-lerna/pull/2150) 內部開單 - 移除 @store/member-recipients readQuery ([@piovischioh](https://github.com/piovischioh))
+- `meep-ui`
+  - [#2139](https://github.com/meepshop/meep-lerna/pull/2139) 內部開單 - 將所有前台 select 改用 @meepshop/select ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 3
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.179 (2022-04-27)
 
 #### :bug: Bug Fix
