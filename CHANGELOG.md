@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.80.181 (2022-05-03)
+
+#### :bug: Bug Fix
+
+- [#2281](https://github.com/meepshop/meep-lerna/pull/2281) 【BUG】前台 - 結帳頁 - 付款方式說明文字未吃到「色彩配置 #4 - 網頁文字色」 ([@piovischioh](https://github.com/piovischioh))
+- [#2269](https://github.com/meepshop/meep-lerna/pull/2269) 【BUG】前台 - 綠界 2.0 金流 - 結帳確認頁面部分文字內容吃到色彩配置 #4 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.180 (2022-04-29)
 
 #### :bug: Bug Fix
