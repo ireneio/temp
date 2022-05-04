@@ -12,10 +12,13 @@ import { useInitialValueFragment as useInitialValueFragmentType } from '@meepsho
 // typescript definition
 export interface ValuesType {
   products: {
-    quantity: number;
-    status: string;
     type: string;
+    status: string;
+    quantity: number;
+    productId: string;
+    variantId: string;
   }[];
+  shipmentId: string;
 }
 
 // definition
@@ -24,6 +27,12 @@ export default (
   lineItems: useInitialValueFragmentType[],
 ): ValuesType => {
   const initialValues = useMemo(() => {
+    const shipment =
+      typeof window !== 'undefined'
+        ? window.sessionStorage.getItem('shipment')
+        : null;
+    const shipmentId = shipment ? JSON.parse(shipment).id : null;
+
     return {
       products: lineItems.map(
         ({ quantity, status, type, productId, variantId }) => ({
@@ -34,7 +43,7 @@ export default (
           variantId,
         }),
       ),
-      shipmentId: getFieldValue(['shipmentId']),
+      shipmentId: getFieldValue(['shipmentId']) || shipmentId,
     };
   }, [lineItems, getFieldValue]);
   const prevInitialValues = usePrevious(initialValues);

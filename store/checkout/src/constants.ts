@@ -1,4 +1,5 @@
 export const PRESERVED_FIELDS = [
+  'products',
   'shipment',
   'userEmail',
   'userName',

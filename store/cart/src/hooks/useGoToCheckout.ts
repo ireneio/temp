@@ -1,6 +1,8 @@
 // typescript import
 import { FormInstance } from 'antd/lib/form';
 
+import { ValuesType } from './useInitialValue';
+
 // import
 import { useCallback } from 'react';
 
@@ -22,10 +24,23 @@ export default (
 
     validateFields()
       .then(() => {
-        window.sessionStorage.setItem(
-          'shipment',
-          JSON.stringify(getFieldValue(['shipment'])),
-        );
+        const shipment = getFieldValue(['shipment']);
+        if (shipment)
+          window.sessionStorage.setItem(
+            'shipment',
+            JSON.stringify(getFieldValue(['shipment'])),
+          );
+
+        const products = (getFieldValue([
+          'products',
+        ]) as ValuesType['products']).reduce((value, product) => {
+          if (product.type === 'GIFT') return value;
+
+          const { productId, variantId, quantity } = product;
+
+          return [...value, { productId, variantId, quantity }];
+        }, []);
+        window.sessionStorage.setItem('products', JSON.stringify(products));
 
         push('/checkout');
       })

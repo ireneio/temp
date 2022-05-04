@@ -1,12 +1,15 @@
 // typescript import
 import { FormInstance } from 'antd/lib/form';
+import { ModalFunc } from 'antd/lib/modal/confirm';
+
+import { ValuesType } from './useInitialValues';
 
 // import
-import { useCallback, useState, useEffect, useContext } from 'react';
+import { useCallback, useState, useEffect, useContext, useRef } from 'react';
 import { useMutation } from '@apollo/client';
 import { Modal } from 'antd';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
 import { AdTrack as AdTrackContext } from '@meepshop/context';
 
@@ -15,70 +18,125 @@ import {
   computeOrderList as computeOrderListType,
   computeOrderListVariables as computeOrderListVariablesType,
   computeOrderList_computeOrderList as computeOrderListComputeOrderListType,
-  productChangeObjectType,
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { computeOrderList } from '../gqls/useComputeOrderList';
+import { computeOrderList as computeOrderListQuery } from '../gqls/useComputeOrderList';
 
 // typescript definition
-export type ComputeOrderList = ({
-  products,
-  paymentId,
-  coupon,
-  points,
-}: {
-  products?: {
-    productId?: string;
-    variantId?: string;
-    quantity?: number | null;
-  }[];
+export type ComputeOrderList = (value?: {
   paymentId?: string;
   coupon?: string;
   points?: number;
 }) => void;
 
-interface ReturnType {
+// definition
+export default (
+  { getFieldValue }: FormInstance,
+  initialValues: ValuesType,
+): {
   computeOrderListLoading: boolean;
   computeOrderListData: computeOrderListComputeOrderListType | null;
   computeOrderList: ComputeOrderList;
-}
-
-// definition
-export default ({ getFieldValue }: FormInstance): ReturnType => {
-  const { t } = useTranslation('checkout');
+} => {
+  const { t, ready } = useTranslation('checkout');
+  const getLanguage = useGetLanguage();
   const { push } = useRouter();
   const adTrack = useContext(AdTrackContext);
   const [isAdTracked, setIsAdTracked] = useState(false);
-  const [showError, setShowError] = useState(false);
+  const modalRef = useRef<ReturnType<ModalFunc>>();
   const [mutation, { loading, data }] = useMutation<
     computeOrderListType,
     computeOrderListVariablesType
-  >(computeOrderList);
+  >(computeOrderListQuery);
+  const { products, shipment } = initialValues;
+  const computeOrderList: ComputeOrderList = useCallback(
+    value => {
+      if (!shipment?.id || !products) return;
 
+      const paymentId = value?.paymentId || getFieldValue(['paymentId']);
+      const coupon = value?.coupon || getFieldValue(['coupon']);
+      const points = value?.points || getFieldValue(['points']);
+
+      mutation({
+        variables: {
+          computeOrderList: [
+            {
+              computeType: 'cart',
+              products,
+              shipments: [{ shipmentId: shipment.id }],
+              ...(!paymentId ? {} : { payments: [{ paymentId }] }),
+              ...(!coupon ? {} : { coupon }),
+              ...(!points ? {} : { points }),
+            },
+          ],
+        },
+      });
+    },
+    [shipment, products, getFieldValue, mutation],
+  );
   const computeOrderListData = data?.computeOrderList?.[0] || null;
+  const computedProducts = computeOrderListData?.categories?.[0]?.products;
 
   useEffect(() => {
-    if (isAdTracked) return;
+    computeOrderList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (modalRef.current || !ready) return;
+
+    if (!products?.length) {
+      modalRef.current = Modal.warning({
+        title: t('cart-is-empty'),
+        okText: t('confirm-go-to'),
+        onOk: () => push('/'),
+      });
+      return;
+    }
+
+    if (!shipment) {
+      modalRef.current = Modal.warning({
+        title: t('shipment-empty'),
+        content: t('choose-shipment'),
+        okText: t('go-back-to-cart'),
+        onOk: () => push('/cart'),
+      });
+    }
+  }, [products, push, shipment, t, ready]);
+
+  useEffect(() => {
+    if (!computedProducts) return;
 
     if (
-      computeOrderListData?.priceInfo?.total &&
-      computeOrderListData?.categories?.[0]?.products
+      !modalRef.current &&
+      computedProducts.some(
+        product => product?.type !== 'gift' && product?.error,
+      )
     ) {
+      modalRef.current = Modal.warning({
+        title: t('products-error'),
+        content: t('choose-products'),
+        okText: t('go-back-to-cart'),
+        onOk: () => push('/cart'),
+      });
+    }
+
+    if (!isAdTracked && computeOrderListData?.priceInfo?.total) {
       setIsAdTracked(true);
 
       adTrack.beginCheckout({
-        products: computeOrderListData.categories[0].products.map(product => ({
+        products: computedProducts.map(product => ({
           id: product?.productId || '',
           type: product?.type || '',
           title: {
             // eslint-disable-next-line @typescript-eslint/camelcase
-            zh_TW: product?.title?.zh_TW || '',
+            zh_TW: getLanguage(product?.title),
           },
           specs: (product?.specs || []).map(spec => ({
             title: {
               // eslint-disable-next-line @typescript-eslint/camelcase
-              zh_TW: spec?.title?.zh_TW || '',
+              zh_TW: getLanguage(spec?.title),
             },
           })),
           totalPrice: product?.retailPrice || 0,
@@ -87,65 +145,19 @@ export default ({ getFieldValue }: FormInstance): ReturnType => {
         total: computeOrderListData.priceInfo.total,
       });
     }
-  }, [computeOrderListData, adTrack, isAdTracked]);
-
-  useEffect(() => {
-    if (showError) return;
-
-    if (
-      computeOrderListData?.categories?.[0]?.products?.some(
-        product => product?.type !== 'gift' && product?.error,
-      )
-    ) {
-      setShowError(true);
-
-      Modal.warning({
-        title: t('products-error'),
-        content: t('choose-products'),
-        okText: t('go-back-to-cart'),
-        onOk: () => push('/cart'),
-      });
-    }
-  }, [computeOrderListData, t, push, showError]);
+  }, [
+    computedProducts,
+    t,
+    push,
+    isAdTracked,
+    computeOrderListData,
+    adTrack,
+    getLanguage,
+  ]);
 
   return {
     computeOrderListLoading: loading,
     computeOrderListData,
-    computeOrderList: useCallback(
-      value => {
-        if (!getFieldValue(['shipment'])?.id) return;
-
-        const products = (value.products ||
-          (computeOrderListData?.categories?.[0]?.products || []).filter(
-            product => product?.type !== 'gift',
-          )) as productChangeObjectType[];
-        const shipmentId = getFieldValue(['shipment']).id;
-        const paymentId = value.paymentId || getFieldValue(['paymentId']);
-        const coupon = value.coupon || getFieldValue(['coupon']);
-        const points = value.points || getFieldValue(['points']);
-
-        mutation({
-          variables: {
-            computeOrderList: [
-              {
-                computeType: 'cart',
-                products: products.map(
-                  ({ productId, variantId, quantity }) => ({
-                    productId,
-                    ...(!variantId ? {} : { variantId }),
-                    ...(!quantity ? {} : { quantity }),
-                  }),
-                ),
-                ...(!shipmentId ? {} : { shipments: [{ shipmentId }] }),
-                ...(!paymentId ? {} : { payments: [{ paymentId }] }),
-                ...(!coupon ? {} : { coupon }),
-                ...(!points ? {} : { points }),
-              },
-            ],
-          },
-        });
-      },
-      [mutation, computeOrderListData, getFieldValue],
-    ),
+    computeOrderList,
   };
 };

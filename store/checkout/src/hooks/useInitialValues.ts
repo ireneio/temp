@@ -12,12 +12,11 @@ import { PRESERVED_FIELDS } from '../constants';
 // graphql typescript
 import {
   useInitialValuesInCheckoutFragment as useInitialValuesInCheckoutFragmentType,
-  computedCartInCheckout_computedCart_ComputedCart_computedLineItems as computedCartInCheckoutComputedCartComputedCartComputedLineItemsType,
+  computedCart_computedCart_ComputedCart_computedLineItems_applicableShipments as ShipmentType,
 } from '@meepshop/types/gqls/store';
 
 // typescript definition
-interface ValuesType {
-  products: computedCartInCheckoutComputedCartComputedCartComputedLineItemsType[];
+export interface ValuesType {
   userName?: string | null;
   userMobile?: string | null;
   userAddressAndZipCode?: {
@@ -25,14 +24,19 @@ interface ValuesType {
     zipCode: string | null;
   };
   userStreet?: string | null;
+  shipment?: ShipmentType;
+  products?: {
+    productId: string;
+    variantId: string;
+    quantity: number;
+  }[];
 }
 
 // definition
 export default (
   { resetFields }: FormInstance,
   user: useInitialValuesInCheckoutFragmentType | null,
-  computedCartItems: computedCartInCheckoutComputedCartComputedCartComputedLineItemsType[],
-): ValuesType | undefined => {
+): ValuesType => {
   const resetTimer = useResetTimer();
 
   const initialValues = useMemo(() => {
@@ -60,7 +64,6 @@ export default (
     }, {});
 
     return {
-      products: computedCartItems,
       userName: user?.name,
       userMobile: user?.mobile,
       userAddressAndZipCode: !user?.address
@@ -76,7 +79,7 @@ export default (
       userStreet: user?.address?.street,
       ...preservedInfo,
     };
-  }, [resetTimer, computedCartItems, user]);
+  }, [resetTimer, user]);
 
   const prevInitialValues = usePrevious(initialValues);
 

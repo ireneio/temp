@@ -1,5 +1,5 @@
 // import
-import React, { useMemo, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
 import { Form, Collapse } from 'antd';
 import { UpCircleOutlined, DownCircleOutlined } from '@ant-design/icons';
@@ -28,7 +28,6 @@ import useInitialValues from './hooks/useInitialValues';
 import useValuesChange from './hooks/useValuesChange';
 import useSave from './hooks/useSave';
 import useComputeOrderList from './hooks/useComputeOrderList';
-import useCarts from './hooks/useCarts';
 import styles from './styles/index.less';
 
 // graphql typescript
@@ -38,8 +37,6 @@ import {
 } from '@meepshop/types/gqls/store';
 
 // graphql import
-import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
-
 import { getViewerData } from './gqls';
 import { useInitialValuesInCheckoutFragment } from './gqls/useInitialValues';
 import { loginFragment } from './gqls/login';
@@ -72,30 +69,21 @@ export default React.memo(() => {
     },
   );
   const isLogin = data?.viewer?.role === 'SHOPPER';
+  const initialValues = useInitialValues(
+    form,
+    filter(useInitialValuesInCheckoutFragment, data?.viewer || null),
+  );
   const {
     computeOrderListLoading,
     computeOrderListData,
     computeOrderList,
-  } = useComputeOrderList(form);
+  } = useComputeOrderList(form, initialValues);
   const { loading, save } = useSave({
     isLogin,
     computeOrderListLoading,
     viewer: filter(useSaveUserFragment, data?.viewer || null),
   });
-  const { cartLoading, isEmptyCart, computedCartItems } = useCarts(
-    loading,
-    filter(useCartFragment, data?.viewer || null),
-    computeOrderList,
-  );
   const valuesChange = useValuesChange(computeOrderList);
-  const initialValues = useInitialValues(
-    form,
-    useMemo(
-      () => filter(useInitialValuesInCheckoutFragment, data?.viewer || null),
-      [data],
-    ),
-    computedCartItems,
-  );
 
   return (
     <>
@@ -131,8 +119,8 @@ export default React.memo(() => {
               }
             >
               <Products
-                loading={cartLoading || computeOrderListLoading || loading}
-                isEmptyCart={isEmptyCart}
+                loading={computeOrderListLoading}
+                isEmptyCart={!initialValues.products?.length}
                 computeOrderList={filter(
                   productsFragment,
                   computeOrderListData || null,

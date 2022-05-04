@@ -17,8 +17,8 @@ export default React.memo(() => {
   const { query } = useRouter();
 
   // FIXME: should use client.resetStore
-  const goToCheckout = useCallback(() => {
-    window.location.href = '/checkout';
+  const goToCart = useCallback(() => {
+    window.location.href = '/cart';
   }, []);
 
   const goToHome = useCallback(() => {
@@ -56,14 +56,12 @@ export default React.memo(() => {
 
         <div className={styles.button}>
           {query.redirectUrl ? (
-            <Button onClick={() => goToRedirectUrl()}>{t('back')}</Button>
+            <Button onClick={goToRedirectUrl}>{t('back')}</Button>
           ) : (
             <>
-              <Button onClick={() => goToCheckout()}>
-                {t('back-to-cart')}
-              </Button>
+              <Button onClick={goToCart}>{t('back-to-cart')}</Button>
 
-              <Button onClick={() => goToHome()}>{t('return')}</Button>
+              <Button onClick={goToHome}>{t('return')}</Button>
             </>
           )}
         </div>

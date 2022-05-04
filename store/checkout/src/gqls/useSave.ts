@@ -15,16 +15,6 @@ export const useSaveUserFragment = gql`
       mobile
     }
     email
-    store {
-      id
-      setting {
-        checkoutFields {
-          name
-          mobile
-          address
-        }
-      }
-    }
     ...useCreateOrderFragment
     ...useUpdateUserFragment
   }

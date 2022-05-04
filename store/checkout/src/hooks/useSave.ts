@@ -16,7 +16,6 @@ import useUpdateUser from './useUpdateUser';
 // graphql typescript
 import {
   useSaveUserFragment as useSaveUserFragmentType,
-  useSaveUserFragment_store_setting_checkoutFields as useSaveUserFragmentStoreSettingCheckoutFieldsType,
   ConvenienceStoreTypeEnum as ConvenienceStoreTypeEnumType,
   InvoiceMethodEnum as InvoiceMethodEnumType,
   InvoiceTypeEnum as InvoiceTypeEnumType,
@@ -34,7 +33,7 @@ interface PropsType {
   viewer: useSaveUserFragmentType | null;
 }
 
-interface ValuesType {
+export interface ValuesType {
   userEmail: string;
   userPassword: string;
   isPayment: boolean;
@@ -113,6 +112,9 @@ export default ({
   const updateUser = useUpdateUser(filter(useUpdateUserFragment, viewer));
   const idempotentKeyRef = useRef(uuid());
   const [loading, setLoading] = useState<boolean>(false);
+  const clearSession = useCallback(() => {
+    if (typeof window !== 'undefined') window.sessionStorage.clear();
+  }, []);
 
   return {
     loading,
@@ -161,8 +163,6 @@ export default ({
           userStreet,
         } = values;
 
-        const checkoutFields = viewer?.store?.setting?.checkoutFields;
-
         if (!isLogin && userEmail && userPassword) {
           const firstPurchaseSuccess = await firstPurchase({
             userEmail,
@@ -180,23 +180,7 @@ export default ({
                 domain,
               },
               isPayment,
-              products: products
-                .filter(({ type }: { type: string }) => type !== 'GIFT')
-                .map(
-                  ({
-                    productId,
-                    variantId,
-                    quantity = 1,
-                  }: {
-                    productId: string;
-                    variantId: string;
-                    quantity: number;
-                  }) => ({
-                    productId,
-                    variantId,
-                    quantity,
-                  }),
-                ),
+              products,
               coupon,
               points,
               ...(!addressAndZipCode
@@ -244,21 +228,11 @@ export default ({
               },
               cvsType,
               cvsCode,
-              userInfo: Object.keys(checkoutFields || {}).every(
-                (
-                  key: keyof useSaveUserFragmentStoreSettingCheckoutFieldsType,
-                ) => key === '__typename' || checkoutFields?.[key] === 'HIDDEN',
-              )
-                ? {
-                    name: viewer?.name,
-                    email: viewer?.email,
-                    mobile: viewer?.additionalInfo?.mobile,
-                  }
-                : {
-                    name: userName,
-                    email: userEmail,
-                    mobile: userMobile,
-                  },
+              userInfo: {
+                name: userName || viewer?.name,
+                email: userEmail || viewer?.email,
+                mobile: userMobile || viewer?.additionalInfo?.mobile,
+              },
               ...(!invoice
                 ? {}
                 : {
@@ -337,61 +311,17 @@ export default ({
           return;
         }
 
-        if (typeof window !== 'undefined') window.sessionStorage.clear();
-
-        const updateUserInput = ['name', 'mobile', 'address'].reduce(
-          (
-            result,
-            fieldName: keyof useSaveUserFragmentStoreSettingCheckoutFieldsType,
-          ) => {
-            if (checkoutFields?.[fieldName] === 'HIDDEN') return result;
-
-            switch (fieldName) {
-              case 'name':
-                return {
-                  ...result,
-                  name: userName,
-                };
-
-              case 'mobile':
-                return {
-                  ...result,
-                  mobile: userMobile,
-                  additionalInfo: {
-                    mobile: userMobile,
-                  },
-                };
-
-              case 'address':
-                return {
-                  ...result,
-                  address: !userAddressAndZipCode
-                    ? null
-                    : {
-                        countryId: userAddressAndZipCode.address[0],
-                        cityId: userAddressAndZipCode.address[1],
-                        areaId: userAddressAndZipCode.address[2],
-                        zipCode: userAddressAndZipCode.zipCode,
-                        street: userStreet,
-                      },
-                };
-
-              default:
-                return result;
-            }
-          },
-          {},
-        );
-
         await updateUser({
-          variables: {
-            input: updateUserInput,
-          },
+          userName,
+          userMobile,
+          userAddressAndZipCode,
+          userStreet,
         });
 
         if (formData?.url) {
           if (!formData.url?.startsWith('line')) {
             setFormData(formData);
+            clearSession();
             return;
           }
 
@@ -401,11 +331,13 @@ export default ({
 
         // ecpay 2.0
         if (paymentServiceTradeToken) {
-          push(`/ecpay/${paymentServiceTradeToken}/${id}`);
+          await push(`/ecpay/${paymentServiceTradeToken}/${id}`);
+          clearSession();
           return;
         }
 
-        push(`/checkout/thank-you-page/${id}`);
+        await push(`/checkout/thank-you-page/${id}`);
+        clearSession();
       },
       [
         t,
@@ -419,6 +351,7 @@ export default ({
         computeOrderListLoading,
         loading,
         setFormData,
+        clearSession,
       ],
     ),
   };

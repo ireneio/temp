@@ -4,7 +4,7 @@ import radium, { StyleRoot, Style } from 'radium';
 import { LeftOutlined } from '@ant-design/icons';
 import { Spin, Form, Button, Modal, notification } from 'antd';
 import uuid from 'uuid';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { areEqual } from 'fbjs';
 
 import { AdTrack as AdTrackContext } from '@meepshop/context';
@@ -24,7 +24,6 @@ import { computeOrderList, getVariables } from 'utils/getComputeOrderQuery';
 
 import PaymentDefaultFormItem from 'paymentDefaultFormItem';
 
-import { computedCartInCheckout } from '@store/checkout/lib/gqls/useCarts';
 import { PRESERVED_FIELDS, DEFERRED_FIELDS } from '../constants';
 
 import DiscountMonitor from './DiscountMonitor';
@@ -84,28 +83,6 @@ const { Item: FormItem } = Form;
   }, [user, orderInfo, errors]),
 }))
 @enhancer
-@withHook(({ carts, cartLoading }) => {
-  const { data, refetch } = useQuery(computedCartInCheckout, {
-    fetchPolicy: 'cache-and-network',
-    variables: {
-      input: {
-        cartItems: carts.map(({ __typename: _, ...cartItem }) => cartItem),
-      },
-    },
-    skip: cartLoading,
-  });
-
-  return {
-    cartLoading: cartLoading || !data?.computedCart,
-    carts:
-      data?.computedCart?.computedLineItems.filter(
-        ({ type }) => type !== 'GIFT',
-      ) || [],
-    upsellingLimitPerOrder:
-      data?.viewer?.store?.activeUpsellingArea?.limitPerOrder || 0,
-    refetch,
-  };
-})
 @radium
 export default class OrderDetail extends React.PureComponent {
   isEmptyCart = false;

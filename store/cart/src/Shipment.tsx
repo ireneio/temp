@@ -77,13 +77,19 @@ export default React.memo(({ loading, shipments }: PropsType) => {
       )}
 
       <FormItem dependencies={['shipmentId']} noStyle>
-        {({ getFieldValue, setFieldsValue }) =>
-          setFieldsValue({
-            shipment: shipments.find(
-              shipment => shipment?.id === getFieldValue(['shipmentId']),
-            ),
-          })
-        }
+        {({ getFieldValue, setFieldsValue }) => {
+          const shipment = shipments.find(
+            item => item?.id === getFieldValue(['shipmentId']),
+          );
+
+          setFieldsValue(
+            !shipment && !loading
+              ? {
+                  shipmentId: undefined,
+                }
+              : { shipment },
+          );
+        }}
       </FormItem>
     </div>
   );

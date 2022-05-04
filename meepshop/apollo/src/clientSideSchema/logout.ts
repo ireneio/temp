@@ -18,6 +18,8 @@ export const resolvers = {
 
       await client.resetStore();
 
+      if (typeof window !== 'undefined') window.sessionStorage.clear();
+
       return {
         __typename: 'LogoutResponse',
         status: 'OK',

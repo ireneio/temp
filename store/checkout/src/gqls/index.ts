@@ -2,8 +2,6 @@
 import { gql } from '@apollo/client';
 
 // graphql import
-import { useCartFragment } from '@meepshop/hooks/lib/gqls/useCart';
-
 import { useInitialValuesInCheckoutFragment } from './useInitialValues';
 import { loginFragment } from './login';
 import { userFragment } from './user';
@@ -29,7 +27,6 @@ export const getViewerData = gql`
       }
       ...useInitialValuesInCheckoutFragment
       ...receiverInCheckoutUserFragment
-      ...useCartFragment
       ...useSaveUserFragment
     }
   }
@@ -39,6 +36,5 @@ export const getViewerData = gql`
   ${userFragment}
   ${receiverStoreFragment}
   ${receiverInCheckoutUserFragment}
-  ${useCartFragment}
   ${useSaveUserFragment}
 `;

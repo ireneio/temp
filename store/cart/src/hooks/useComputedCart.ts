@@ -42,6 +42,12 @@ export default (
     () => cartItems.map(({ __typename: _, ...cartItem }) => cartItem),
     [cartItems],
   );
+  const shipment =
+    typeof window !== 'undefined'
+      ? window.sessionStorage.getItem('shipment')
+      : null;
+  const shipmentId =
+    getFieldValue('shipmentId') || (shipment ? JSON.parse(shipment).id : null);
   const { data, refetch, variables, loading: computedCartLoading } = useQuery<
     computedCartType,
     computedCartVariablesType
@@ -50,7 +56,7 @@ export default (
     variables: {
       input: {
         cartItems: cartItemsInput,
-        shipmentId: getFieldValue('shipmentId') || null,
+        shipmentId,
       },
     },
     skip: loading,
