@@ -4,13 +4,13 @@
   "description": "ecpay orders",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.177",
+  "version": "0.80.182",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/orders": "^0.80.177",
+    "@admin/orders": "^0.80.182",
     "@admin/tooltip": "^0.80.158",
-    "@meepshop/locales": "^0.80.177",
+    "@meepshop/locales": "^0.80.182",
     "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "ecfit", "orders"]
