@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.182 (2022-05-04)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#2280](https://github.com/meepshop/meep-lerna/pull/2280) 內部開單 - 另外儲存結帳頁商品 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.181 (2022-05-03)
 
 #### :bug: Bug Fix
