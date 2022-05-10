@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.183 (2022-05-10)
+
+#### :bug: Bug Fix
+
+- [#2285](https://github.com/meepshop/meep-lerna/pull/2285) 【BUG】後台 - 分潤 - 已進行中的推廣活動，不可以編輯商品 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :house: Internal
+
+- [#2135](https://github.com/meepshop/meep-lerna/pull/2135) 內部開單 - useClipboard 改用 react-use 的 useCopyToClipboard ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.182 (2022-05-04)
 
 #### :rocket: New Feature
