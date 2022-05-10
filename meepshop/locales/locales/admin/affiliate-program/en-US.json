@@ -55,7 +55,7 @@
     "specify": "Specify goods",
     "all": "Applicable to all store products",
     "select": "Select goods",
-    "selected-products": "Edit Selected {{amount}} items",
+    "selected-products": "View selected {amount}} item products",
     "all-products": "Applicable to all store products",
     "specify-products": "Item designated goods",
     "check-products": "View goods",

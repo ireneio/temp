@@ -9,7 +9,8 @@ import { useTranslation } from '@meepshop/locales';
 import ProductsSelector from '@admin/products-selector';
 
 // typescript definition
-interface PropsType extends Pick<ProductsSelectorPropsType, 'onChange'> {
+interface PropsType
+  extends Pick<ProductsSelectorPropsType, 'onChange' | 'searchDisabled'> {
   value?: ProductsSelectorPropsType['products'];
 }
 

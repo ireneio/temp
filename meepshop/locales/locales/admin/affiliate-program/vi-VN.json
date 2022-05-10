@@ -55,7 +55,7 @@
     "specify": "Chỉ định hàng hóa",
     "all": "Áp dụng cho tất cả các sản phẩm cửa hàng",
     "select": "Chọn hàng",
-    "selected-products": "Chỉnh sửa các mục {{amount}} đã chọn",
+    "selected-products": "Xem các sản phẩm {số lượng}} được chọn",
     "all-products": "Áp dụng cho tất cả các sản phẩm cửa hàng",
     "specify-products": "Mục được chỉ định hàng hóa",
     "check-products": "Xem hàng hóa",

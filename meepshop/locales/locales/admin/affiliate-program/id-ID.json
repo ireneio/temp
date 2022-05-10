@@ -55,7 +55,7 @@
     "specify": "Tentukan barang",
     "all": "Berlaku untuk semua produk toko",
     "select": "Pilih barang",
-    "selected-products": "Edit item yang dipilih {{amount}}",
+    "selected-products": "Lihat Produk Item yang Dipilih {Jumlah}}",
     "all-products": "Berlaku untuk semua produk toko",
     "specify-products": "Barang barang yang ditunjuk",
     "check-products": "Lihat Barang",

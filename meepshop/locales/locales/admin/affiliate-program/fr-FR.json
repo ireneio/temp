@@ -55,7 +55,7 @@
     "specify": "Spécifier les biens",
     "all": "Applicable à tous les magasins",
     "select": "Sélectionner des marchandises",
-    "selected-products": "Modifier sélectionné {{amount}} éléments",
+    "selected-products": "Afficher les produits d'élément sélectionnés {montant}}",
     "all-products": "Applicable à tous les magasins",
     "specify-products": "Article des marchandises désignées",
     "check-products": "Vue des biens",

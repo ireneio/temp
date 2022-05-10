@@ -55,7 +55,7 @@
     "specify": "指定商品",
     "all": "適用全店商品",
     "select": "選擇商品",
-    "selected-products": "編輯已選 {{amount}} 項商品",
+    "selected-products": "查看已選 {{amount}} 項商品",
     "all-products": "適用全店商品",
     "specify-products": "項指定商品",
     "check-products": "查看商品",

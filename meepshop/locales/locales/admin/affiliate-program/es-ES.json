@@ -55,7 +55,7 @@
     "specify": "Especificar bienes",
     "all": "Aplicable a todos los productos de la tienda.",
     "select": "Seleccione Bienes",
-    "selected-products": "Editar seleccionado {{amount}} artículos",
+    "selected-products": "Ver productos seleccionados {cantidad}} de elementos",
     "all-products": "Aplicable a todos los productos de la tienda.",
     "specify-products": "Artículo designado mercancías",
     "check-products": "Ver bienes",

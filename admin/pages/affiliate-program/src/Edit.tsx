@@ -70,6 +70,7 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
   );
   const viewer = data?.viewer || null;
   const affiliateProgram = viewer?.affiliateProgram || null;
+  const status = viewer?.affiliateProgram?.status;
   const programInitialValues = useProgramInitialValues(
     form,
     filter(useProgramInitialValuesFragment, affiliateProgram),
@@ -383,7 +384,7 @@ export default React.memo(({ affiliateProgramId, type }: PropsType) => {
                   ]}
                   validateTrigger="onChange"
                 >
-                  <Products />
+                  <Products searchDisabled={status === 'IN_PROGRESS'} />
                 </FormItem>
               )
             }

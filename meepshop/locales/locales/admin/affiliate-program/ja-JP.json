@@ -55,7 +55,7 @@
     "specify": "商品を指定してください",
     "all": "すべての店舗製品に適用されます",
     "select": "商品を選択してください",
-    "selected-products": "選択した{{amount}}項目を編集します",
+    "selected-products": "選択された{量}}アイテム製品を表示します",
     "all-products": "すべての店舗製品に適用されます",
     "specify-products": "商品指定商品",
     "check-products": "商品を見る",
