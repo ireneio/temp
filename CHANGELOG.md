@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.184 (2022-05-10)
+
+#### :bug: Bug Fix
+
+- [#2286](https://github.com/meepshop/meep-lerna/pull/2286) 【優化】阻擋重複觸發 ecPay2CreatePayment ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 1
+
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.183 (2022-05-10)
 
 #### :bug: Bug Fix
