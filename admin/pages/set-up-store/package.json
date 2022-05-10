@@ -4,7 +4,7 @@
   "description": "Admin set up store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.182",
+  "version": "0.80.183",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -13,7 +13,7 @@
     "@admin/tooltip": "^0.80.158",
     "@meepshop/images": "^0.80.163",
     "@meepshop/link": "^0.80.165",
-    "@meepshop/locales": "^0.80.182"
+    "@meepshop/locales": "^0.80.183"
   },
   "keywords": ["admin", "set up store"]
 }

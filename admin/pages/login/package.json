@@ -4,7 +4,7 @@
   "description": "Admin login page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.182",
+  "version": "0.80.183",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
@@ -12,8 +12,8 @@
     "@meepshop/context": "^0.80.180",
     "@meepshop/images": "^0.80.163",
     "@meepshop/link": "^0.80.165",
-    "@meepshop/locales": "^0.80.182",
-    "@meepshop/validator": "^0.80.182"
+    "@meepshop/locales": "^0.80.183",
+    "@meepshop/validator": "^0.80.183"
   },
   "keywords": ["admin", "login"]
 }
