@@ -1,11 +1,11 @@
 // import
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Button, message } from 'antd';
 import transformColor from 'color';
+import { useCopyToClipboard } from 'react-use';
 
 import { Colors as ColorsContext } from '@meepshop/context';
-import { useClipboard } from '@meepshop/hooks';
 import { useTranslation } from '@meepshop/locales';
 import Link, { useRouter } from '@meepshop/link';
 
@@ -16,14 +16,13 @@ export default React.memo(() => {
   const colors = useContext(ColorsContext);
   const { t } = useTranslation('thank-you-page');
   const { domain, asPath } = useRouter();
+  const [{ value: copyValue }, copyToClipboard] = useCopyToClipboard();
+  const [copyTimes, setCopyTimes] = useState<number>(0);
 
-  useClipboard({
-    target: 'button[role="copy"]',
-    text: () => `${t('data-error')}https://${domain}${asPath}`,
-    success: () => {
-      message.success(t('copied'));
-    },
-  });
+  useEffect(() => {
+    if (copyValue) message.success(t('copied'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [copyValue, copyTimes]);
 
   return (
     <>
@@ -44,7 +43,16 @@ export default React.memo(() => {
           </Link>
 
           {/* eslint-disable-next-line jsx-a11y/aria-role */}
-          <Button role="copy">{t('copy')}</Button>
+          <Button
+            onClick={() => {
+              copyToClipboard(
+                `${t('data-error')}https://${domain}${asPath}` || '',
+              );
+              setCopyTimes(copyTimes + 1);
+            }}
+          >
+            {t('copy')}
+          </Button>
         </div>
       </div>
 

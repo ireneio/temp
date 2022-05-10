@@ -1,8 +1,8 @@
 // import
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, message } from 'antd';
+import { useCopyToClipboard } from 'react-use';
 
-import { useClipboard } from '@meepshop/hooks';
 import { useTranslation } from '@meepshop/locales';
 import {
   ecpayConvenienceStore3,
@@ -31,14 +31,13 @@ interface PropsType
 export default React.memo(
   ({ viewer, payCode, paymentURL, expireDate }: PropsType) => {
     const { t } = useTranslation('ecpay');
+    const [{ value: copyValue }, copyToClipboard] = useCopyToClipboard();
+    const [copyTimes, setCopyTimes] = useState<number>(0);
 
-    useClipboard({
-      target: 'button[role="copy"]',
-      text: () => paymentURL || '',
-      success: () => {
-        message.success(t('cvs.copy-success'));
-      },
-    });
+    useEffect(() => {
+      if (copyValue) message.success(t('cvs.copy-success'));
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [copyValue, copyTimes]);
 
     return (
       <PaymentInfo viewer={viewer} type="cvs" expireDate={expireDate}>
@@ -79,7 +78,14 @@ export default React.memo(
           )}
 
           {/* eslint-disable-next-line jsx-a11y/aria-role */}
-          <Button role="copy">{t('cvs.copy')}</Button>
+          <Button
+            onClick={() => {
+              copyToClipboard(paymentURL || '');
+              setCopyTimes(copyTimes + 1);
+            }}
+          >
+            {t('cvs.copy')}
+          </Button>
         </div>
       </PaymentInfo>
     );

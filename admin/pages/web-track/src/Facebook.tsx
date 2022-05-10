@@ -2,12 +2,12 @@
 import { FormInstance } from 'antd/lib/form';
 
 // import
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Input, message } from 'antd';
 import { CheckCircleOutlined } from '@ant-design/icons';
+import { useCopyToClipboard } from 'react-use';
 
 import Tooltip from '@admin/tooltip';
-import { useClipboard } from '@meepshop/hooks';
 import { useTranslation } from '@meepshop/locales';
 import { webTrackFacebook_w130 as webTrackFacebook } from '@meepshop/images';
 import Link from '@meepshop/link';
@@ -34,23 +34,23 @@ export default React.memo(({ store }: PropsType) => {
   } = store;
   const fbDPALink = store.setting?.fbDPALink || null;
   const { t } = useTranslation('web-track');
+  const [{ value: copyValue }, copyToClipboard] = useCopyToClipboard();
+  const [copyTimes, setCopyTimes] = useState<number>(0);
   const [editMode, setEditMode] = useState(false);
   const setFacebookAdTracks = useSetFacebookAdTracks(
     id || 'null-id' /* SHOULD_NOT_BE_NULL */,
     setEditMode,
   );
 
-  useClipboard({
-    target: '#fbDPALink',
-    text: () => fbDPALink || '',
-    success: () => {
+  useEffect(() => {
+    if (copyValue)
       message.success({
         content: t('facebook.dpa.copied'),
         duration: 2,
         icon: <CheckCircleOutlined />,
       });
-    },
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [copyValue, copyTimes]);
 
   return (
     <Form onFinish={setFacebookAdTracks}>
@@ -186,7 +186,13 @@ export default React.memo(({ store }: PropsType) => {
           </>
         }
       >
-        <Button disabled={!facebookPixelId || !fbDPALink} id="fbDPALink">
+        <Button
+          disabled={!facebookPixelId || !fbDPALink}
+          onClick={() => {
+            copyToClipboard(fbDPALink || '');
+            setCopyTimes(copyTimes + 1);
+          }}
+        >
           {facebookPixelId
             ? t('facebook.dpa.copy-link')
             : t('facebook.dpa.set-pixel-id-first')}

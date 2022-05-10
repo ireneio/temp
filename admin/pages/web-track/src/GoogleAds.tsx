@@ -1,13 +1,13 @@
 // import
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ExclamationCircleOutlined,
   CheckCircleOutlined,
 } from '@ant-design/icons';
 import { Form, Button, Input, message } from 'antd';
+import { useCopyToClipboard } from 'react-use';
 
 import Tooltip from '@admin/tooltip';
-import { useClipboard } from '@meepshop/hooks';
 import { useTranslation } from '@meepshop/locales';
 import { webTrackGoogleAds_w172 as webTrackGoogleAds } from '@meepshop/images';
 import Link from '@meepshop/link';
@@ -45,18 +45,19 @@ export default React.memo(({ store }: PropsType) => {
   const updateGoogleAds = useUpdateGoogleAds(id, setEditMode);
   const validateGoogleAdsCode = useValidateGoogleAdsCode();
   const validateGoogleAdwordsConfig = useValidateGoogleAdwordsConfig();
+  const [{ value: copyValue }, copyToClipboard] = useCopyToClipboard();
+  const [copyTimes, setCopyTimes] = useState<number>(0);
 
-  useClipboard({
-    target: '#googleFeedsLink',
-    text: () => googleFeedsLink || '',
-    success: () => {
+  useEffect(() => {
+    if (copyValue) {
       message.success({
         content: t('google-ads.copied'),
         duration: 2,
         icon: <CheckCircleOutlined />,
       });
-    },
-  });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [copyValue, copyTimes]);
 
   return (
     <div>
@@ -264,7 +265,13 @@ export default React.memo(({ store }: PropsType) => {
         </div>
       </div>
 
-      <Button disabled={!googleFeedsLink} id="googleFeedsLink">
+      <Button
+        disabled={!googleFeedsLink}
+        onClick={() => {
+          copyToClipboard(googleFeedsLink || '');
+          setCopyTimes(copyTimes + 1);
+        }}
+      >
         {t('google-ads.copy-dpa-link')}
       </Button>
     </div>
