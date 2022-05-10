@@ -4,7 +4,7 @@
   "description": "ecpay 2.0 page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.183",
+  "version": "0.80.184",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
