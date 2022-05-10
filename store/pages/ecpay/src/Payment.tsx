@@ -77,6 +77,8 @@ export default React.memo(({ token, viewer, setPaymentInfo }: PropsType) => {
         className={styles.modal}
         visible={openModal}
         onOk={() => {
+          if (loading || isRedirecting) return;
+
           ecPay2CreatePayment();
           setOpenModal(false);
         }}
@@ -103,9 +105,16 @@ export default React.memo(({ token, viewer, setPaymentInfo }: PropsType) => {
         <div className={styles.button}>
           <Button
             className={isAffixed ? styles.affixed : ''}
-            onClick={() =>
-              isCreditPayment ? setOpenModal(true) : ecPay2CreatePayment()
-            }
+            onClick={() => {
+              if (loading || isRedirecting) return;
+
+              if (isCreditPayment) {
+                setOpenModal(true);
+                return;
+              }
+
+              ecPay2CreatePayment();
+            }}
             loading={loading}
             disabled={ecpayLoading}
           >
