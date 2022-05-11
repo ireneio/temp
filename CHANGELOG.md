@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.185 (2022-05-11)
+
+#### :house: Internal
+
+- `store`
+  - [#2155](https://github.com/meepshop/meep-lerna/pull/2155) 內部開單 - 修正網址加入購物車部分 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 1
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.184 (2022-05-10)
 
 #### :bug: Bug Fix
