@@ -29,6 +29,7 @@ import { appWithCookies } from 'utils/withCookies';
 import useInitialCart from 'hooks/useInitialCart';
 import usePage from 'hooks/usePage';
 import useExpiringPoints from 'hooks/useExpiringPoints';
+import useQueryString from 'hooks/useQueryString';
 
 notification.config({ placement: 'topRight', duration: 1.5 });
 
@@ -242,8 +243,10 @@ export default appWithTranslation(
   appWithDomain(
     withApollo(
       appWithCookies(
-        withHook(useInitialCart)(
-          withHook(usePage)(withHook(useExpiringPoints)(App)),
+        withHook(useQueryString)(
+          withHook(useInitialCart)(
+            withHook(usePage)(withHook(useExpiringPoints)(App)),
+          ),
         ),
       ),
     ),

@@ -20,6 +20,10 @@ import { useUpsertCartUserFragment } from './gqls/useUpsertCart';
 export interface CartType {
   loading: boolean;
   cartItems: useMergeCartFragmentType[];
+  mergeCart: (
+    cartItems: useMergeCartFragmentType[],
+    newCartItem: useMergeCartFragmentType,
+  ) => useMergeCartFragmentType[];
   upsertCart: (
     cartItem: useMergeCartFragmentType | useMergeCartFragmentType[],
   ) => Promise<void>;
@@ -53,6 +57,7 @@ export default (viewer: useCartFragmentType | null): CartType => {
   return {
     loading: viewer?.guestCart?.__typename !== 'GuestCart' || loading,
     cartItems,
+    mergeCart,
     upsertCart: useCallback(
       cartItem =>
         upsertCart(

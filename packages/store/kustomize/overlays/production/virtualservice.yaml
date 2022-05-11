@@ -25,15 +25,6 @@ spec:
         host: next-store-proxy
         port:
           number: 14401
-  - match:
-    - queryParams:
-        resetCart:
-          regex: "^(true|false)$"
-    route:
-    - destination:
-        host: cart-generator
-        port:
-          number: 14401
   - route:
     - destination:
         host: storefront-reverse-proxy
