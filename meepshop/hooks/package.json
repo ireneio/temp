@@ -4,7 +4,7 @@
   "description": "Use to manage react hooks",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.183",
+  "version": "0.80.185",
   "main": "./index.js",
   "types": "./src/types.ts",
   "dependencies": {
