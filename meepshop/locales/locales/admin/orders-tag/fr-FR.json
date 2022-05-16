@@ -1,0 +1,14 @@
+{
+  "title": "Étiquette",
+  "back": "retourner",
+  "save": "le magasin",
+  "tag": "Étiqueter",
+  "fail": "Échouer",
+  "save-success": "Stockage réussi",
+  "placeholder": "Entrez l'achèvement, s'il vous plaît appuyez sur Entrée",
+  "empty-tag-error": "Échec du stockage, nom de balise vierge",
+  "tag-too-long": "Tag Texte pour entrer 40 mots",
+  "tag-too-long-error": "Le stockage a échoué, le nom de l'étiquette est trop long",
+  "tag-exist-error": "Ajouter une étiquette répétée",
+  "tag-no-blank": "Aucune étiquette vierge"
+}

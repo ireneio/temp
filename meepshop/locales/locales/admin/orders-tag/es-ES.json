@@ -1,0 +1,14 @@
+{
+  "title": "Etiqueta determinada",
+  "back": "regreso",
+  "save": "Tienda",
+  "tag": "Etiqueta",
+  "fail": "Fallar",
+  "save-success": "Almacenamiento exitoso",
+  "placeholder": "Ingrese la finalización, por favor presione ENTER",
+  "empty-tag-error": "Almacenamiento falló, nombre de etiqueta en blanco",
+  "tag-too-long": "Tag texto para ingresar 40 palabras",
+  "tag-too-long-error": "Almacenamiento falló, el nombre de la etiqueta es demasiado largo",
+  "tag-exist-error": "Añadir etiqueta repetida",
+  "tag-no-blank": "No hay etiqueta en blanco"
+}

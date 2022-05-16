@@ -1,0 +1,14 @@
+{
+  "title": "設定標籤",
+  "back": "返回",
+  "save": "儲存",
+  "tag": "標籤",
+  "fail": "失敗",
+  "save-success": "儲存成功",
+  "placeholder": "輸入完成請按下ENTER",
+  "empty-tag-error": "儲存失敗，空白標籤名稱",
+  "tag-too-long": "標籤文字至多輸入 40 字",
+  "tag-too-long-error": "儲存失敗，標籤名稱過長",
+  "tag-exist-error": "添加重複標籤",
+  "tag-no-blank":"不可輸入空白標籤"
+}

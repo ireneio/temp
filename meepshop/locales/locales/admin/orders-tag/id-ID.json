@@ -1,0 +1,14 @@
+{
+  "title": "Atur tag",
+  "back": "kembali",
+  "save": "toko",
+  "tag": "Label",
+  "fail": "Gagal",
+  "save-success": "Penyimpanan yang berhasil",
+  "placeholder": "Masukkan Penyelesaian, Silakan tekan ENTER",
+  "empty-tag-error": "Gagal penyimpanan, nama tag kosong",
+  "tag-too-long": "Tag teks untuk memasukkan 40 kata",
+  "tag-too-long-error": "Penyimpanan gagal, nama label terlalu panjang",
+  "tag-exist-error": "Tambahkan label berulang",
+  "tag-no-blank": "Tidak ada label kosong"
+}

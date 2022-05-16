@@ -1,0 +1,14 @@
+{
+  "title": "Đặt Tag.",
+  "back": "trở lại",
+  "save": "cửa hàng",
+  "tag": "Nhãn mác",
+  "fail": "Thất bại",
+  "save-success": "Lưu trữ thành công",
+  "placeholder": "Nhập hoàn thành, vui lòng nhấn ENTER",
+  "empty-tag-error": "Lưu trữ không thành công, tên thẻ trống",
+  "tag-too-long": "Tag văn bản để nhập 40 từ",
+  "tag-too-long-error": "Lưu trữ không thành công, tên nhãn quá dài",
+  "tag-exist-error": "Thêm nhãn lặp lại",
+  "tag-no-blank": "Không có nhãn trống"
+}

@@ -35,6 +35,7 @@
     "@admin/refactor-newsletter": "^0.80.183",
     "@admin/refactor-order-history-records": "^0.80.183",
     "@admin/refactor-order-qa": "^0.80.185",
+    "@admin/refactor-orders-tag": "^0.1.0",
     "@admin/refactor-text-editor": "^0.80.183",
     "@admin/reset-password": "^0.80.183",
     "@admin/set-up-store": "^0.80.183",

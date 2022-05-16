@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@admin/refactor-orders-tag",
+  "description": "Admin refacotr set orders tag",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/hooks": "^0.80.158",
+    "@admin/orders-tag": "^0.1.0"
+  },
+  "keywords": ["admin", "orders", "refactor", "tag"]
+}

@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@admin/orders-tag",
+  "description": "set orders tag",
+  "license": "ISC",
+  "author": "meepshop <admin@meepshop.com>",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "types": "./src/index.tsx",
+  "dependencies": {
+    "@admin/message": "^0.80.158",
+    "@meepshop/locales": "^0.80.183"
+  },
+  "keywords": ["orders", "tags"]
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Set tag",
+  "back": "return",
+  "save": "store",
+  "tag": "Label",
+  "fail": "Fail",
+  "save-success": "Successful storage",
+  "placeholder": "Enter completion, please press Enter",
+  "empty-tag-error": "Storage failed, blank tag name",
+  "tag-too-long": "Tag text to enter 40 words",
+  "tag-too-long-error": "Storage failed, the label name is too long",
+  "tag-exist-error": "Add repeated label",
+  "tag-no-blank": "No blank label"
+}

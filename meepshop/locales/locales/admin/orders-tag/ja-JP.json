@@ -1,0 +1,14 @@
+{
+  "title": "タグを設定します",
+  "back": "戻る",
+  "save": "お店",
+  "tag": "ラベル",
+  "fail": "失敗",
+  "save-success": "成功した記憶域",
+  "placeholder": "完了を入力して、Enterを押してください",
+  "empty-tag-error": "ストレージに失敗しました、空白のタグ名",
+  "tag-too-long": "40ワードを入力するためのタグテキスト",
+  "tag-too-long-error": "ストレージに失敗しました、ラベル名は長すぎます",
+  "tag-exist-error": "繰り返しラベルを追加してください",
+  "tag-no-blank": "空白のラベルはありません"
+}
