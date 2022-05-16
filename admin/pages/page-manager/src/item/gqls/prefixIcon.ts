@@ -17,7 +17,7 @@ export const prefixIconStoreFragment = gql`
 export const prefixIconPageFragment = gql`
   fragment prefixIconPageFragment on Page {
     id
-    isDefaultHomePage @client
-    isDefaultProductTemplatePage @client
+    isDefaultHomePage
+    isDefaultProductTemplatePage
   }
 `;

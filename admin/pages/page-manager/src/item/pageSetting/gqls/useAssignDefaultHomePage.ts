@@ -36,13 +36,13 @@ export const useAssignDefaultHomePageFragment = gql`
 export const useAssignDefaultHomePageUpdateNewPageFragment = gql`
   fragment useAssignDefaultHomePageUpdateNewPageFragment on Page {
     id
-    isDefaultHomePage @client
+    isDefaultHomePage
   }
 `;
 
 export const useAssignDefaultHomePageUpdatePrevPageFragment = gql`
   fragment useAssignDefaultHomePageUpdatePrevPageFragment on Page {
     id
-    isDefaultHomePage @client
+    isDefaultHomePage
   }
 `;

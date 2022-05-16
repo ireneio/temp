@@ -13,8 +13,8 @@ const useDuplicatePageFragment = gql`
       title {
         ...localeFragment
       }
-      isDefaultHomePage @client
-      isDefaultProductTemplatePage @client
+      isDefaultHomePage
+      isDefaultProductTemplatePage
       path
       tabTitle
       seo {

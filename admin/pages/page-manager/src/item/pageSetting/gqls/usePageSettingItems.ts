@@ -18,7 +18,7 @@ export const usePageSettingItemsPageFragment = gql`
   fragment usePageSettingItemsPageFragment on Page {
     id
     pageType
-    isDefaultHomePage @client
-    isDefaultProductTemplatePage @client
+    isDefaultHomePage
+    isDefaultProductTemplatePage
   }
 `;

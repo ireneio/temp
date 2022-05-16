@@ -38,13 +38,13 @@ export const useAssignDefaultProductTemplatePageFragment = gql`
 export const useAssignDefaultProductTemplatePageUpdateNewPageFragment = gql`
   fragment useAssignDefaultProductTemplatePageUpdateNewPageFragment on Page {
     id
-    isDefaultProductTemplatePage @client
+    isDefaultProductTemplatePage
   }
 `;
 
 export const useAssignDefaultProductTemplatePageUpdatePrevPageFragment = gql`
   fragment useAssignDefaultProductTemplatePageUpdatePrevPageFragment on Page {
     id
-    isDefaultProductTemplatePage @client
+    isDefaultProductTemplatePage
   }
 `;

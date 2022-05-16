@@ -6,7 +6,6 @@ import { createUploadLink } from 'apollo-upload-client';
 import { buildWithApollo } from '@meepshop/apollo';
 
 import * as OrderConnection from './OrderConnection';
-import * as Page from './Page';
 import * as User from './User';
 import getTestOperation from './utils/getTestOperation';
 
@@ -46,11 +45,7 @@ const shouldIgnoreErrorMessages = [
   'FAIL_03_ORDER_STATUS_WRONG_OR_NOT_ALLOWED',
 ];
 
-export const resolvers = [
-  OrderConnection.resolvers,
-  Page.resolvers,
-  User.resolvers,
-];
+export const resolvers = [OrderConnection.resolvers, User.resolvers];
 
 export default buildWithApollo({
   name: 'admin',
