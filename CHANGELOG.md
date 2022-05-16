@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.187 (2022-05-16)
+
+#### :rocket: New Feature
+
+- [#2008](https://github.com/meepshop/meep-lerna/pull/2008) 【重構】訂單/設定標籤 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 1
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.186 (2022-05-16)
 
 #### :house: Internal
