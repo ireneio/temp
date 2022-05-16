@@ -4,7 +4,7 @@
   "description": "Apollo client for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.183",
+  "version": "0.80.186",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
