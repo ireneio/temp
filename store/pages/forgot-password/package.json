@@ -4,13 +4,13 @@
   "description": "forgot password page for store",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.183",
+  "version": "0.80.187",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.180",
-    "@meepshop/link": "^0.80.165",
-    "@meepshop/locales": "^0.80.183"
+    "@meepshop/context": "^0.80.187",
+    "@meepshop/link": "^0.80.187",
+    "@meepshop/locales": "^0.80.187"
   },
   "keywords": ["forgot", "password", "store"]
 }

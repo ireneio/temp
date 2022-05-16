@@ -4,19 +4,19 @@
   "description": "store setting for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.186",
+  "version": "0.80.187",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/block": "^0.80.186",
-    "@admin/header": "^0.80.186",
-    "@admin/hooks": "^0.80.158",
-    "@admin/media-gallery": "^0.80.183",
-    "@admin/message": "^0.80.158",
-    "@admin/tooltip": "^0.80.158",
-    "@meepshop/images": "^0.80.163",
-    "@meepshop/locales": "^0.80.183",
-    "@meepshop/utils": "^0.80.165"
+    "@admin/block": "^0.80.187",
+    "@admin/header": "^0.80.187",
+    "@admin/hooks": "^0.80.187",
+    "@admin/media-gallery": "^0.80.187",
+    "@admin/message": "^0.80.187",
+    "@admin/tooltip": "^0.80.187",
+    "@meepshop/images": "^0.80.187",
+    "@meepshop/locales": "^0.80.187",
+    "@meepshop/utils": "^0.80.187"
   },
   "keywords": ["admin", "setting", "store"]
 }

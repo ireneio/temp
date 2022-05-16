@@ -4,16 +4,16 @@
   "description": "Affiliate partners page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.186",
+  "version": "0.80.187",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/header": "^0.80.186",
-    "@admin/table": "^0.80.183",
-    "@meepshop/images": "^0.80.163",
-    "@meepshop/link": "^0.80.165",
-    "@meepshop/locales": "^0.80.183",
-    "@meepshop/utils": "^0.80.165",
+    "@admin/header": "^0.80.187",
+    "@admin/table": "^0.80.187",
+    "@meepshop/images": "^0.80.187",
+    "@meepshop/link": "^0.80.187",
+    "@meepshop/locales": "^0.80.187",
+    "@meepshop/utils": "^0.80.187",
     "date-fns": "^2.15.0"
   },
   "keywords": ["admin", "affiliate partners"]
