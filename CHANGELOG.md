@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.186 (2022-05-16)
+
+#### :house: Internal
+
+- [#2136](https://github.com/meepshop/meep-lerna/pull/2136) 內部開單 - 修改 頁面編輯 page 判斷方式 ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 1
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+
 ## 0.80.185 (2022-05-11)
 
 #### :house: Internal
