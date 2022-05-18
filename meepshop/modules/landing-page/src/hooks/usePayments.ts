@@ -1,5 +1,5 @@
 // typescript import
-import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
+import { FormInstance } from 'antd';
 
 // import
 import { useMemo } from 'react';
@@ -15,7 +15,7 @@ import {
 export default (
   paymentTemplates: usePaymentsOrderFragmentCategories['paymentList'],
   storePayments: usePaymentsLandingPageModuleFragmentStorePayments[],
-  form: FormComponentProps['form'],
+  form: FormInstance,
 ): [PaymentType | null, PaymentType[]] => {
   const { getFieldValue } = form;
 

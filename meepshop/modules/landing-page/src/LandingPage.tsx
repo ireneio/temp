@@ -1,9 +1,7 @@
-// typescript import
-import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
-
 // import
 import React, { useEffect, useContext, useState } from 'react';
-import { Form } from '@ant-design/compatible';
+import { Form, FormInstance } from 'antd';
+
 import { Divider, Button } from 'antd';
 
 import {
@@ -51,153 +49,151 @@ import {
 // typescript definition
 interface PropsType
   extends landingPageLandingPageModuleFragment,
-    FormComponentProps {}
+    FormInstance {}
 
 // definition
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore FIXME: remove after use antd v4 form hook
-export default Form.create<PropsType>()(
-  React.memo((props: PropsType) => {
-    const {
-      id,
-      width,
-      form,
-      product,
-      quantity,
-      storePayments,
-      storeShipments,
-      agreedMatters,
-      viewer,
-    } = props;
+export default React.memo((props: PropsType) => {
+  const {
+    id,
+    width,
+    product,
+    quantity,
+    storePayments,
+    storeShipments,
+    agreedMatters,
+    viewer,
+  } = props;
 
-    const [showLogin, setShowLogin] = useState(false);
-    const { t } = useTranslation('landing-page');
-    const adTrack = useContext(AdTrackContext);
-    const colors = useContext(ColorsContext);
-    const {
-      computeOrder,
-      order,
-      payment,
-      payments,
-      shipment,
-      shipments,
-    } = useComputeOrder(
-      form,
-      storePayments,
-      storeShipments,
-      product?.id,
-      Boolean(quantity?.required),
-    );
-    const { loading, onSubmit } = useSubmit({
-      landingPageModule: filter<
-        useSubmitLandingPageModuleFragmentType,
-        PropsType
-      >(useSubmitLandingPageModuleFragment, props),
-      order: filter(useSubmitOrderFragment, order),
-      payment,
-      form,
-    });
+  const [form] = Form.useForm();
 
-    const { getFieldValue, getFieldsError, validateFieldsAndScroll } = form;
+  const [showLogin, setShowLogin] = useState(false);
+  const { t } = useTranslation('landing-page');
+  const adTrack = useContext(AdTrackContext);
+  const colors = useContext(ColorsContext);
+  const {
+    computeOrder,
+    order,
+    payment,
+    payments,
+    shipment,
+    shipments,
+  } = useComputeOrder(
+    form,
+    storePayments,
+    storeShipments,
+    product?.id,
+    Boolean(quantity?.required),
+  );
+  const { loading, onSubmit } = useSubmit({
+    landingPageModule: filter<
+      useSubmitLandingPageModuleFragmentType,
+      PropsType
+    >(useSubmitLandingPageModuleFragment, props),
+    order: filter(useSubmitOrderFragment, order),
+    payment,
+    form,
+  });
 
-    useEffect(() => {
-      setTimeout(() => {
-        if (!product) return;
+  const { getFieldValue, getFieldsError, scrollToField } = form;
 
-        // SHOULD_NOT_BE_NULL
-        adTrack.viewProduct({
-          id: product.id || 'null-id',
-          title: {
-            // eslint-disable-next-line @typescript-eslint/camelcase
-            zh_TW: product.title?.zh_TW || 'null-title',
-          },
-          price: product.variants?.[0]?.totalPrice?.toString() || 'null',
-        });
-      }, 5000);
-    }, [product, adTrack]);
+  useEffect(() => {
+    setTimeout(() => {
+      if (!product) return;
 
-    if (!product) return null;
+      // SHOULD_NOT_BE_NULL
+      adTrack.viewProduct({
+        id: product.id || 'null-id',
+        title: {
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          zh_TW: product.title?.zh_TW || 'null-title',
+        },
+        price: product.variants?.[0]?.totalPrice?.toString() || 'null',
+      });
+    }, 5000);
+  }, [product, adTrack]);
 
-    return (
-      <>
-        <Form
-          id={`landing-page-${id}`}
-          className={styles.root}
-          onSubmit={onSubmit}
-        >
-          <div>
-            <Shopping
-              {...filter<shoppingLandingPageModuleFragmentType, PropsType>(
-                shoppingLandingPageModuleFragment,
-                props,
-              )}
-              product={product}
-              form={form}
-              order={filter(shoppingOrderFragment, order)}
-              payment={payment}
-              payments={payments}
-              shipment={shipment}
-              shipments={shipments}
-              computeOrder={computeOrder}
-            />
+  if (!product) return null;
 
-            <Price order={filter(priceFragment, order)} />
-
-            <Receiver
-              form={form}
-              receiver={filter<
-                receiverLandingPageModuleFragmentType,
-                PropsType
-              >(receiverLandingPageModuleFragment, props)}
-              viewer={filter(receiverUserFragment, viewer)}
-              shipment={shipment}
-            />
-
-            {payment?.template !== 'gmo' ||
-            payment?.accountInfo?.gmo?.paymentType !== 'Credit' ? null : (
-              <GmoCreditCardForm
-                storePaymentId={
-                  payment.paymentId || 'null-id' /** SHOULD_NOT_BE_NULL */
-                }
-                isInstallment={payment.accountInfo.gmo.isInstallment || false}
-                rememberCardNumber={
-                  payment.accountInfo.gmo.rememberCardNumber || false
-                }
-              />
+  return (
+    <>
+      <Form
+        id={`landing-page-${id}`}
+        className={styles.root}
+        onFinish={onSubmit}
+        onFinishFailed={({ errorFields }) => {
+          scrollToField(errorFields[0].name);
+        }}
+      >
+        <div>
+          <Shopping
+            {...filter<shoppingLandingPageModuleFragmentType, PropsType>(
+              shoppingLandingPageModuleFragment,
+              props,
             )}
-          </div>
-
-          <Divider className={styles.divider}>{t('agreement')}</Divider>
-
-          <div>
-            <pre className={styles.agreement}>{agreedMatters}</pre>
-
-            <Button
-              className={styles.submit}
-              type="primary"
-              htmlType="submit"
-              disabled={(fieldsError =>
-                Object.keys(fieldsError).some(field => fieldsError[field]))(
-                getFieldsError(),
-              )}
-              onClick={() => validateFieldsAndScroll()}
-              loading={loading}
-            >
-              {t('agree-submit')}
-            </Button>
-          </div>
-        </Form>
-
-        {viewer?.role === 'SHOPPER' || !showLogin ? null : (
-          <LoginModal
-            initialEmail={getFieldValue('userEmail')}
-            onClose={() => setShowLogin(false)}
+            product={product}
+            form={form}
+            order={filter(shoppingOrderFragment, order)}
+            payment={payment}
+            payments={payments}
+            shipment={shipment}
+            shipments={shipments}
+            computeOrder={computeOrder}
           />
-        )}
+          <Price order={filter(priceFragment, order)} />
+          <Receiver
+            form={form}
+            receiver={filter<receiverLandingPageModuleFragmentType, PropsType>(
+              receiverLandingPageModuleFragment,
+              props,
+            )}
+            viewer={filter(receiverUserFragment, viewer)}
+            shipment={shipment}
+          />
+          {payment?.template !== 'gmo' ||
+          payment?.accountInfo?.gmo?.paymentType !== 'Credit' ? null : (
+            <GmoCreditCardForm
+              storePaymentId={
+                payment.paymentId || 'null-id' /** SHOULD_NOT_BE_NULL */
+              }
+              isInstallment={payment.accountInfo.gmo.isInstallment || false}
+              rememberCardNumber={
+                payment.accountInfo.gmo.rememberCardNumber || false
+              }
+            />
+          )}
+        </div>
 
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
+        <Divider className={styles.divider}>{t('agreement')}</Divider>
+
+        <div>
+          <pre className={styles.agreement}>{agreedMatters}</pre>
+
+          <Button
+            className={styles.submit}
+            type="primary"
+            htmlType="submit"
+            disabled={(fieldsError =>
+              Object.keys(fieldsError).some(
+                field => fieldsError[field as keyof typeof fieldsError],
+              ))(getFieldsError())}
+            loading={loading}
+          >
+            {t('agree-submit')}
+          </Button>
+        </div>
+      </Form>
+
+      {viewer?.role === 'SHOPPER' || !showLogin ? null : (
+        <LoginModal
+          initialEmail={getFieldValue('userEmail')}
+          onClose={() => setShowLogin(false)}
+        />
+      )}
+
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
               #landing-page-${id} > div {
                 width: ${width}%;
               }
@@ -230,9 +226,8 @@ export default Form.create<PropsType>()(
                 background: ${colors[4]};
               }
             `,
-          }}
-        />
-      </>
-    );
-  }),
-);
+        }}
+      />
+    </>
+  );
+});

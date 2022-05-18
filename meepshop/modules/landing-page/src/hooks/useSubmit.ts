@@ -1,12 +1,11 @@
 // typescript import
-import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
 
 import { UseComputeOrderType } from './useComputeOrder';
 
 // import
 import React, { useCallback, useContext } from 'react';
 import uuid from 'uuid/v4';
-import { notification } from 'antd';
+import { notification, FormInstance } from 'antd';
 
 import FormDataContext from '@meepshop/form-data';
 import useLink from '@meepshop/hooks/lib/useLink';
@@ -36,7 +35,7 @@ interface SubmitArguType {
   landingPageModule: useSubmitLandingPageModuleFragment;
   order: useSubmitOrderFragment | null;
   payment: UseComputeOrderType['payment'];
-  form: FormComponentProps['form'];
+  form: FormInstance;
 }
 
 interface SubmitReturnType {
@@ -67,52 +66,49 @@ export default ({
         const { validateFields, resetFields } = form;
 
         e.preventDefault();
-        validateFields(
-          async (
-            err,
-            {
-              quantity = 1,
-              variant,
+        validateFields().then(
+          async ({
+            quantity = 1,
+            variant,
 
-              paymentId,
-              shipmentId,
-              coupon,
+            paymentId,
+            shipmentId,
+            coupon,
 
-              userEmail,
-              userName,
-              userMobile,
+            userEmail,
+            userName,
+            userMobile,
 
-              name,
-              mobile,
-              notes,
+            name,
+            mobile,
+            notes,
 
-              // convenience-store or address
-              addressAndZipCode,
-              street,
-              CVSStoreID,
-              CVSStoreName,
-              CVSAddress,
-              cvsType,
-              cvsCode,
+            // convenience-store or address
+            addressAndZipCode,
+            street,
+            CVSStoreID,
+            CVSStoreName,
+            CVSAddress,
+            cvsType,
+            cvsCode,
 
-              // invoice
-              invoice,
-              invoiceTitle,
-              invoiceVAT,
-              invoiceAddress,
-              invoiceEInvoiceNumber,
-              invoiceDonate,
+            // invoice
+            invoice,
+            invoiceTitle,
+            invoiceVAT,
+            invoiceAddress,
+            invoiceEInvoiceNumber,
+            invoiceDonate,
 
-              // gmo payment
-              isRememberCard,
-              cardHolderName,
-              cardNumber,
-              securityCode,
-              expire,
-              installmentCode,
-            },
-          ) => {
-            if (err || loading) return;
+            // gmo payment
+            isRememberCard,
+            cardHolderName,
+            cardNumber,
+            securityCode,
+            expire,
+            installmentCode,
+          }) => {
+            if (loading) return;
 
             const { domain, asPath, push } = router;
             const [variantId] = variant.slice(-1);
