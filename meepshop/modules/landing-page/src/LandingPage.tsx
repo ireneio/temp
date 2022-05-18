@@ -1,6 +1,9 @@
+// typescript import
+import { FormInstance } from 'antd';
+
 // import
 import React, { useEffect, useContext, useState } from 'react';
-import { Form, FormInstance } from 'antd';
+import { Form } from 'antd';
 
 import { Divider, Button } from 'antd';
 
@@ -21,14 +24,14 @@ import Shopping from './Shopping';
 import Receiver from './receiver';
 import styles from './styles/index.less';
 import useComputeOrder from './hooks/useComputeOrder';
-import useSubmit from './hooks/useSubmit';
+import useFinish from './hooks/useFinish';
 
 // graphql typescript
 import {
   landingPageLandingPageModuleFragment,
   receiverLandingPageModuleFragment as receiverLandingPageModuleFragmentType,
   shoppingLandingPageModuleFragment as shoppingLandingPageModuleFragmentType,
-  useSubmitLandingPageModuleFragment as useSubmitLandingPageModuleFragmentType,
+  useFinishLandingPageModuleFragment as useFinishLandingPageModuleFragmentType,
 } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
@@ -42,9 +45,9 @@ import {
 } from './gqls/shopping';
 import { priceFragment } from './gqls/price';
 import {
-  useSubmitLandingPageModuleFragment,
-  useSubmitOrderFragment,
-} from './gqls/useSubmit';
+  useFinishLandingPageModuleFragment,
+  useFinishOrderFragment,
+} from './gqls/useFinish';
 
 // typescript definition
 interface PropsType
@@ -52,7 +55,6 @@ interface PropsType
     FormInstance {}
 
 // definition
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 export default React.memo((props: PropsType) => {
   const {
     id,
@@ -85,12 +87,13 @@ export default React.memo((props: PropsType) => {
     product?.id,
     Boolean(quantity?.required),
   );
-  const { loading, onSubmit } = useSubmit({
-    landingPageModule: filter<
-      useSubmitLandingPageModuleFragmentType,
-      PropsType
-    >(useSubmitLandingPageModuleFragment, props),
-    order: filter(useSubmitOrderFragment, order),
+
+  const { loading, onFinish } = useFinish({
+    landingPageModule: filter<useFinishLandingPageModuleFragmentType>(
+      useFinishLandingPageModuleFragment,
+      props,
+    ),
+    order: filter(useFinishOrderFragment, order),
     payment,
     form,
   });
@@ -120,7 +123,7 @@ export default React.memo((props: PropsType) => {
       <Form
         id={`landing-page-${id}`}
         className={styles.root}
-        onFinish={onSubmit}
+        onFinish={onFinish}
         onFinishFailed={({ errorFields }) => {
           scrollToField(errorFields[0].name);
         }}

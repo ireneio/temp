@@ -1,10 +1,10 @@
 // typescript import
-
+import { FormInstance } from 'antd';
 import { UseComputeOrderType } from '../hooks/useComputeOrder';
 
 // import
 import React, { useContext } from 'react';
-import { Cascader, Form, FormInstance, Input } from 'antd';
+import { Cascader, Form, Input } from 'antd';
 import { isAlpha } from 'validator';
 
 import DatePicker from '@meepshop/date-picker';
@@ -70,7 +70,7 @@ export default React.memo(
         <div className={styles.nameRoot}>
           <Item
             className={styles.formItem}
-            name="name"
+            name={['name']}
             validateFirst
             rules={[
               {
@@ -119,7 +119,7 @@ export default React.memo(
           {!gender ? null : (
             <Item
               className={`${styles.formItem} ${styles.gender}`}
-              name="gender"
+              name={['gender']}
               rules={[
                 {
                   required: gender.required,
@@ -141,7 +141,7 @@ export default React.memo(
         {!birthday ? null : (
           <Item
             className={styles.formItem}
-            name="birthday"
+            name={['birthday']}
             rules={[
               {
                 required: birthday.required,
@@ -159,7 +159,7 @@ export default React.memo(
         {isLogin ? null : (
           <Item
             className={styles.formItem}
-            name="userEmail"
+            name={['userEmail']}
             normalize={validateEmail.normalize}
             rules={[
               {
@@ -181,7 +181,7 @@ export default React.memo(
             getFieldValue('mobile'),
             t('validate-mobile:taiwan-mobile-ten-digits'),
           )}
-          name="mobile"
+          name={['mobile']}
           validateTrigger="onBlur"
           rules={[
             {
@@ -215,7 +215,7 @@ export default React.memo(
           <>
             <Item
               className={styles.formItem}
-              name="addressAndZipCode"
+              name={['addressAndZipCode']}
               rules={[
                 {
                   validator: validateAddressCascader(t('is-required')),
@@ -230,7 +230,7 @@ export default React.memo(
 
             <Item
               className={styles.formItem}
-              name="street"
+              name={['street']}
               validateTrigger="onBlur"
               rules={[
                 {
@@ -248,7 +248,7 @@ export default React.memo(
           <>
             <Item
               className={styles.formItem}
-              name="invoice"
+              name={['invoice']}
               rules={[
                 {
                   required: true,
@@ -270,7 +270,7 @@ export default React.memo(
         {!note ? null : (
           <Item
             className={styles.formItem}
-            name="notes"
+            name={['notes']}
             rules={[
               {
                 required: note.required,

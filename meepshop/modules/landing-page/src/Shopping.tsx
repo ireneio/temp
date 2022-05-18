@@ -1,10 +1,10 @@
 // typescript import
-
+import { FormInstance } from 'antd';
 import { UseComputeOrderType } from './hooks/useComputeOrder';
 
 // import
 import React, { useContext } from 'react';
-import { Cascader, Collapse, Form, FormInstance, Input } from 'antd';
+import { Cascader, Collapse, Form, Input } from 'antd';
 import transformColor from 'color';
 
 import ProductAmountSelector from '@meepshop/product-amount-selector';
@@ -76,7 +76,7 @@ export default React.memo(
         <h3 className={styles.title}>{t('select-product-payment')}</h3>
         <Item
           className={styles.formItem}
-          name="variantId"
+          name={['variantId']}
           rules={[
             {
               type: 'array',
@@ -122,7 +122,7 @@ export default React.memo(
         {!quantity?.required ? null : (
           <Item
             className={styles.formItem}
-            name="quantity"
+            name={['quantity']}
             rules={[
               {
                 required: true,
@@ -155,7 +155,7 @@ export default React.memo(
 
         <Item
           className={styles.formItem}
-          name="paymentId"
+          name={['paymentId']}
           validateTrigger="onBlur"
           rules={[
             {
@@ -190,7 +190,7 @@ export default React.memo(
 
         <Item
           className={styles.formItem}
-          name="shipmentId"
+          name={['shipmentId']}
           validateTrigger="onBlur"
           rules={[
             {
@@ -228,7 +228,7 @@ export default React.memo(
             className={styles.formItem}
             help={<CouponStatus order={filter(couponStatusFragment, order)} />}
             validateStatus={order?.errorObj ? 'success' : ''}
-            name="coupon"
+            name={['coupon']}
           >
             <Input
               placeholder={t('coupon.placeholder')}

@@ -1,6 +1,9 @@
+// typescript import
+import { FormInstance } from 'antd';
+
 // import
 import React from 'react';
-import { Button, Input, Form, FormInstance } from 'antd';
+import { Button, Input, Form } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 

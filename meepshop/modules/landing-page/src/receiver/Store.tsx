@@ -1,5 +1,5 @@
 // typescript import
-
+import { FormInstance } from 'antd';
 import { UseComputeOrderType } from '../hooks/useComputeOrder';
 
 // graphql typescript
@@ -10,7 +10,7 @@ import {
 
 // import
 import React, { useState, useContext } from 'react';
-import { Button, Input, Form, FormInstance } from 'antd';
+import { Button, Input, Form } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
@@ -71,7 +71,7 @@ export default React.memo(
           <Item
             className={styles.hideFormItem}
             key={fieldName}
-            name={fieldName}
+            name={[fieldName]}
             validateTrigger="onBlur"
             rules={[
               {
@@ -88,7 +88,7 @@ export default React.memo(
           <Item
             key={fieldName}
             className={styles.hideFormItem}
-            name={fieldName}
+            name={[fieldName]}
           >
             <Input type="hidden" />
           </Item>

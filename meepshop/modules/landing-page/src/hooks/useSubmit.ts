@@ -1,11 +1,11 @@
 // typescript import
-
+import { FormInstance } from 'antd';
 import { UseComputeOrderType } from './useComputeOrder';
 
 // import
 import React, { useCallback, useContext } from 'react';
 import uuid from 'uuid/v4';
-import { notification, FormInstance } from 'antd';
+import { notification } from 'antd';
 
 import FormDataContext from '@meepshop/form-data';
 import useLink from '@meepshop/hooks/lib/useLink';
