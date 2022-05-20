@@ -89,7 +89,7 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
     <Header
       title={t('title')}
       prevTitle={t('common:products')}
-      backTo="/orders"
+      backTo="/products"
       link={{
         text: t('instruction'),
         url: '',
