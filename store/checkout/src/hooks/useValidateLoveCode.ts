@@ -3,7 +3,7 @@ import { FormListProps } from 'antd/lib/form';
 
 // import
 import { useCallback } from 'react';
-import { useLazyQuery } from '@apollo/client';
+import { useApolloClient } from '@apollo/client';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -19,18 +19,23 @@ import { isEInvoiceLoveCodeValid } from '../gqls/useValidateLoveCode';
 // definition
 export default (): NonNullable<FormListProps['rules']>[number]['validator'] => {
   const { t } = useTranslation('checkout');
-  const [validate, { data }] = useLazyQuery<
-    isEInvoiceLoveCodeValidType,
-    isEInvoiceLoveCodeValidVariablesType
-  >(isEInvoiceLoveCodeValid);
+  const client = useApolloClient();
 
   return useCallback(
     async (_, value) => {
-      validate({ variables: { loveCode: value } });
+      const { data } = await client.query<
+        isEInvoiceLoveCodeValidType,
+        isEInvoiceLoveCodeValidVariablesType
+      >({
+        query: isEInvoiceLoveCodeValid,
+        variables: {
+          loveCode: value,
+        },
+      });
 
       if (!data?.isEInvoiceLoveCodeValid)
         throw new Error(t('wrong-donate-code'));
     },
-    [t, validate, data],
+    [client, t],
   );
 };

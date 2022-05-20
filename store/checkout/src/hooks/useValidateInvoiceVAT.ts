@@ -3,7 +3,7 @@ import { FormListProps } from 'antd/lib/form';
 
 // import
 import { useCallback } from 'react';
-import { useLazyQuery } from '@apollo/client';
+import { useApolloClient } from '@apollo/client';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -19,17 +19,22 @@ import { isBANValid } from '../gqls/useValidateInvoiceVAT';
 // definition
 export default (): NonNullable<FormListProps['rules']>[number]['validator'] => {
   const { t } = useTranslation('checkout');
-  const [validate, { data }] = useLazyQuery<
-    isBANValidType,
-    isBANValidVariablesType
-  >(isBANValid);
+  const client = useApolloClient();
 
   return useCallback(
     async (_, value) => {
-      validate({ variables: { ban: value } });
+      const { data } = await client.query<
+        isBANValidType,
+        isBANValidVariablesType
+      >({
+        query: isBANValid,
+        variables: {
+          ban: value,
+        },
+      });
 
       if (!data?.isBANValid) throw new Error(t('wrong-invoice-number'));
     },
-    [t, validate, data],
+    [client, t],
   );
 };
