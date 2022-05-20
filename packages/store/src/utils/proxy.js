@@ -17,6 +17,7 @@ export default (url, callback) => async (req, res) => {
           {},
         ),
       'Content-Type': 'application/json',
+      'User-Agent': req.headers['user-agent'],
       'x-meepshop-domain': req.headers.host,
       'x-meepshop-authorization-token':
         req.cookies['x-meepshop-authorization-token'] || null,
