@@ -34,8 +34,8 @@ interface PropsType {
 }
 
 export interface ValuesType {
-  userEmail: string;
-  userPassword: string;
+  viewerEmail: string;
+  viewerPassword: string;
   isPayment: boolean;
   products: {
     type: string;
@@ -77,8 +77,8 @@ export interface ValuesType {
   CVSAddress: string;
   cvsType: ConvenienceStoreTypeEnumType;
   cvsCode: string;
-  userName: string;
-  userMobile: string;
+  viewerName: string;
+  viewerMobile: string;
   invoice: [
     InvoiceTypeEnumType,
     EInvoiceCarrierTypeEnumType | InvoiceMethodEnumType,
@@ -88,11 +88,11 @@ export interface ValuesType {
   invoiceTitle: string;
   invoiceVAT: string;
   invoiceDonate: string;
-  userAddressAndZipCode: {
+  viewerAddressAndZipCode: {
     zipCode: string;
     address: string[];
   };
-  userStreet: string;
+  viewerStreet: string;
 }
 
 // definition
@@ -125,8 +125,8 @@ export default ({
         setLoading(true);
 
         const {
-          userEmail,
-          userPassword,
+          viewerEmail,
+          viewerPassword,
           isPayment,
           products,
           coupon,
@@ -151,22 +151,22 @@ export default ({
           CVSAddress,
           cvsType,
           cvsCode,
-          userName,
-          userMobile,
+          viewerName,
+          viewerMobile,
           invoice,
           invoiceEInvoiceNumber,
           invoiceAddress,
           invoiceTitle,
           invoiceVAT,
           invoiceDonate,
-          userAddressAndZipCode,
-          userStreet,
+          viewerAddressAndZipCode,
+          viewerStreet,
         } = values;
 
-        if (!isLogin && userEmail && userPassword) {
+        if (!isLogin && viewerEmail && viewerPassword) {
           const firstPurchaseSuccess = await firstPurchase({
-            userEmail,
-            userPassword,
+            viewerEmail,
+            viewerPassword,
           });
 
           if (!firstPurchaseSuccess) return;
@@ -218,7 +218,7 @@ export default ({
                 recipient: {
                   saveRecipient: isSaveAsReceiverTemplate,
                   name,
-                  email: userEmail || viewer?.email,
+                  email: viewerEmail || viewer?.email,
                   mobile,
                   comment: notes,
                   receiverStoreID: CVSStoreID,
@@ -229,9 +229,9 @@ export default ({
               cvsType,
               cvsCode,
               userInfo: {
-                name: userName || viewer?.name,
-                email: userEmail || viewer?.email,
-                mobile: userMobile || viewer?.additionalInfo?.mobile,
+                name: viewerName || viewer?.name,
+                email: viewerEmail || viewer?.email,
+                mobile: viewerMobile || viewer?.additionalInfo?.mobile,
               },
               ...(!invoice
                 ? {}
@@ -312,10 +312,10 @@ export default ({
         }
 
         await updateUser({
-          userName,
-          userMobile,
-          userAddressAndZipCode,
-          userStreet,
+          viewerName,
+          viewerMobile,
+          viewerAddressAndZipCode,
+          viewerStreet,
         });
 
         if (formData?.url) {

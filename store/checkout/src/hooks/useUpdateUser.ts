@@ -29,7 +29,7 @@ export default (
 ): ((
   userInput: Pick<
     ValuesType,
-    'userName' | 'userMobile' | 'userAddressAndZipCode' | 'userStreet'
+    'viewerName' | 'viewerMobile' | 'viewerAddressAndZipCode' | 'viewerStreet'
   >,
 ) => Promise<void>) => {
   const [mutation] = useMutation<
@@ -38,7 +38,12 @@ export default (
   >(updateUserAfterCreatingOrder);
 
   return useCallback(
-    async ({ userName, userMobile, userAddressAndZipCode, userStreet }) => {
+    async ({
+      viewerName,
+      viewerMobile,
+      viewerAddressAndZipCode,
+      viewerStreet,
+    }) => {
       const checkoutFields = viewer?.store?.setting?.checkoutFields;
       const input: updateUserAfterCreatingOrderVariables['input'] = [
         'name',
@@ -53,41 +58,42 @@ export default (
 
           switch (fieldName) {
             case 'name': {
-              if (!userName || userName === viewer?.name) return result;
+              if (!viewerName || viewerName === viewer?.name) return result;
 
               return {
                 ...result,
-                name: userName,
+                name: viewerName,
               };
             }
 
             case 'mobile': {
-              if (!userMobile || userMobile === viewer?.mobile) return result;
+              if (!viewerMobile || viewerMobile === viewer?.mobile)
+                return result;
 
               return {
                 ...result,
-                mobile: userMobile,
+                mobile: viewerMobile,
                 additionalInfo: {
-                  mobile: userMobile,
+                  mobile: viewerMobile,
                 },
               };
             }
 
             case 'address': {
-              if (!userAddressAndZipCode) return result;
+              if (!viewerAddressAndZipCode) return result;
 
               const newAddress = {
                 country: {
-                  id: userAddressAndZipCode.address[0],
+                  id: viewerAddressAndZipCode.address[0],
                 },
                 city: {
-                  id: userAddressAndZipCode.address[1],
+                  id: viewerAddressAndZipCode.address[1],
                 },
                 area: {
-                  id: userAddressAndZipCode.address[2],
+                  id: viewerAddressAndZipCode.address[2],
                 },
-                zipCode: userAddressAndZipCode.zipCode,
-                street: userStreet,
+                zipCode: viewerAddressAndZipCode.zipCode,
+                street: viewerStreet,
               };
 
               if (areEqual(newAddress, viewer?.address)) return result;

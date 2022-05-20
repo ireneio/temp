@@ -23,11 +23,11 @@ import {
 
 // definition
 export default (): (({
-  userEmail,
-  userPassword,
+  viewerEmail,
+  viewerPassword,
 }: {
-  userEmail: string;
-  userPassword: string;
+  viewerEmail: string;
+  viewerPassword: string;
 }) => Promise<boolean>) => {
   const { t } = useTranslation('checkout');
   const adTrack = useContext(AdTrackContext);
@@ -41,14 +41,14 @@ export default (): (({
   >(firstPurchaseLogin);
 
   return useCallback(
-    async ({ userEmail, userPassword }) => {
+    async ({ viewerEmail, viewerPassword }) => {
       const { data: createUserData } = await signUpMutation({
         variables: {
           createUserList: [
             {
               type: 'SHOPPER' as UserTypeEnumType,
-              email: userEmail,
-              password: userPassword,
+              email: viewerEmail,
+              password: viewerPassword,
             },
           ],
         },
@@ -67,7 +67,7 @@ export default (): (({
 
       const { data: loginData } = await loginMutation({
         variables: {
-          input: { email: userEmail, password: userPassword },
+          input: { email: viewerEmail, password: viewerPassword },
         },
       });
 

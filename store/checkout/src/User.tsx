@@ -51,7 +51,7 @@ export default React.memo(({ isLogin, store }: PropsType) => {
       {isLogin ? null : (
         <>
           <FormItem
-            name={['userEmail']}
+            name={['viewerEmail']}
             rules={[
               {
                 required: true,
@@ -69,7 +69,7 @@ export default React.memo(({ isLogin, store }: PropsType) => {
           </FormItem>
 
           <FormItem
-            name={['userPassword']}
+            name={['viewerPassword']}
             rules={[
               {
                 required: true,
@@ -88,7 +88,7 @@ export default React.memo(({ isLogin, store }: PropsType) => {
           {({ getFieldValue }) => (
             <FormItem
               className={styles.formItem}
-              name={['userName']}
+              name={['viewerName']}
               rules={[
                 ...(getFieldValue(['payment'])?.template !== 'ecpay2'
                   ? []
@@ -119,7 +119,7 @@ export default React.memo(({ isLogin, store }: PropsType) => {
         <FormItem dependencies={['shipment']} noStyle>
           {({ getFieldValue }) => (
             <FormItem
-              name={['userMobile']}
+              name={['viewerMobile']}
               rules={[
                 ...(mobile === 'OPTIONAL'
                   ? []
@@ -148,7 +148,7 @@ export default React.memo(({ isLogin, store }: PropsType) => {
       {address === 'HIDDEN' ? null : (
         <>
           <FormItem
-            name={['userAddressAndZipCode']}
+            name={['viewerAddressAndZipCode']}
             rules={
               address === 'OPTIONAL'
                 ? []
@@ -168,7 +168,7 @@ export default React.memo(({ isLogin, store }: PropsType) => {
           </FormItem>
 
           <FormItem
-            name={['userStreet']}
+            name={['viewerStreet']}
             rules={
               address === 'OPTIONAL'
                 ? []

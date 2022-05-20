@@ -17,13 +17,13 @@ import {
 
 // typescript definition
 export interface ValuesType {
-  userName?: string | null;
-  userMobile?: string | null;
-  userAddressAndZipCode?: {
+  viewerName?: string | null;
+  viewerMobile?: string | null;
+  viewerAddressAndZipCode?: {
     address: (string | undefined)[] | null;
     zipCode: string | null;
   };
-  userStreet?: string | null;
+  viewerStreet?: string | null;
   shipment?: ShipmentType;
   products?: {
     productId: string;
@@ -64,9 +64,9 @@ export default (
     }, {});
 
     return {
-      userName: user?.name,
-      userMobile: user?.mobile,
-      userAddressAndZipCode: !user?.address
+      viewerName: user?.name,
+      viewerMobile: user?.mobile,
+      viewerAddressAndZipCode: !user?.address
         ? undefined
         : {
             address: [
@@ -76,7 +76,7 @@ export default (
             ].filter(Boolean),
             zipCode: user.address.zipCode,
           },
-      userStreet: user?.address?.street,
+      viewerStreet: user?.address?.street,
       ...preservedInfo,
     };
   }, [resetTimer, user]);

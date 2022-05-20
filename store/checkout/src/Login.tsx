@@ -64,10 +64,10 @@ export default React.memo(({ store }: PropsType) => {
       </div>
 
       {!openLoginModal ? null : (
-        <FormItem dependencies={[['userEmail']]} noStyle>
+        <FormItem dependencies={[['viewerEmail']]} noStyle>
           {({ getFieldValue }) => (
             <LoginModal
-              initialEmail={getFieldValue(['userEmail'])}
+              initialEmail={getFieldValue(['viewerEmail'])}
               onClose={() => setOpenLoginModal(false)}
               disableThirdPartyLogin
             />

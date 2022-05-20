@@ -35,15 +35,15 @@ export default ({
     ({ checked, getFieldsValue, setFieldsValue, validateFields }) => {
       if (checked) {
         const {
-          userName,
-          userMobile,
-          userAddressAndZipCode,
-          userStreet,
+          viewerName,
+          viewerMobile,
+          viewerAddressAndZipCode,
+          viewerStreet,
         } = getFieldsValue([
-          'userName',
-          'userMobile',
-          'userAddressAndZipCode',
-          'userStreet',
+          'viewerName',
+          'viewerMobile',
+          'viewerAddressAndZipCode',
+          'viewerStreet',
         ]);
 
         setFieldsValue(
@@ -62,18 +62,18 @@ export default ({
                 street: user?.address?.street,
               }
             : {
-                name: userName,
-                mobile: userMobile,
-                addressAndZipCode: userAddressAndZipCode,
-                street: userStreet,
+                name: viewerName,
+                mobile: viewerMobile,
+                addressAndZipCode: viewerAddressAndZipCode,
+                street: viewerStreet,
               },
         );
 
         validateFields([
-          'userName',
-          'userMobile',
-          'userAddressAndZipCode',
-          'userStreet',
+          'viewerName',
+          'viewerMobile',
+          'viewerAddressAndZipCode',
+          'viewerStreet',
           'name',
           'mobile',
           'addressAndZipCode',
