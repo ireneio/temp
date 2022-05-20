@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.188 (2022-05-20)
+
+#### :bug: Bug Fix
+
+- Other
+  - [#2293](https://github.com/meepshop/meep-lerna/pull/2293) 【BUG】結帳頁 - 輸入統編後，出現統一編號錯誤訊息 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#2290](https://github.com/meepshop/meep-lerna/pull/2290) 【個別店家】會員名稱，自動被更改為 e-mail ([@Lexiwu](https://github.com/Lexiwu))
+  - [#2299](https://github.com/meepshop/meep-lerna/pull/2299) 【BUG】指定商品物流 - 頁面左上角「< 商品」，卻回到 /orders 頁面 ([@danielyeh-meepshop](https://github.com/danielyeh-meepshop))
+- `store`
+  - [#2300](https://github.com/meepshop/meep-lerna/pull/2300) 【BUG】訂單/裝置來源與瀏覽器：顯示錯誤資料 ([@danielyeh-meepshop](https://github.com/danielyeh-meepshop))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@danielyeh-meepshop](https://github.com/danielyeh-meepshop)
+
 ## 0.80.187 (2022-05-16)
 
 #### :rocket: New Feature
