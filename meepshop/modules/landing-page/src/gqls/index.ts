@@ -12,7 +12,7 @@ import {
 import { usePaymentsLandingPageModuleFragment } from './usePayments';
 import { useShipmentsLandingPageModuleFragment } from './useShipments';
 import { useSubmitLandingPageModuleFragment } from './useSubmit';
-
+import { useFinishLandingUserFragment } from './useFinish';
 // definition
 export const landingPageLandingPageModuleFragment = gql`
   fragment landingPageLandingPageModuleFragment on LandingPageModule {
@@ -33,6 +33,7 @@ export const landingPageLandingPageModuleFragment = gql`
     viewer {
       id
       ...receiverUserFragment
+      ...useFinishLandingUserFragment
     }
 
     ...shoppingLandingPageModuleFragment
@@ -42,6 +43,7 @@ export const landingPageLandingPageModuleFragment = gql`
     ...useSubmitLandingPageModuleFragment
   }
 
+  ${useFinishLandingUserFragment}
   ${localeFragment}
   ${shoppingLandingPageModuleFragment}
   ${receiverUserFragment}

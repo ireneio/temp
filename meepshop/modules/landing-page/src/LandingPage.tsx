@@ -66,9 +66,8 @@ export default React.memo((props: PropsType) => {
     agreedMatters,
     viewer,
   } = props;
-
+  const { Item: FormItem } = Form;
   const [form] = Form.useForm();
-
   const [showLogin, setShowLogin] = useState(false);
   const { t } = useTranslation('landing-page');
   const adTrack = useContext(AdTrackContext);
@@ -89,10 +88,10 @@ export default React.memo((props: PropsType) => {
   );
 
   const { loading, onFinish } = useFinish({
-    landingPageModule: filter<useFinishLandingPageModuleFragmentType>(
-      useFinishLandingPageModuleFragment,
-      props,
-    ),
+    landingPageModule: filter<
+      useFinishLandingPageModuleFragmentType,
+      PropsType
+    >(useFinishLandingPageModuleFragment, props),
     order: filter(useFinishOrderFragment, order),
     payment,
     form,
@@ -123,6 +122,7 @@ export default React.memo((props: PropsType) => {
       <Form
         id={`landing-page-${id}`}
         className={styles.root}
+        form={form}
         onFinish={onFinish}
         onFinishFailed={({ errorFields }) => {
           scrollToField(errorFields[0].name);
@@ -171,19 +171,19 @@ export default React.memo((props: PropsType) => {
 
         <div>
           <pre className={styles.agreement}>{agreedMatters}</pre>
-
-          <Button
-            className={styles.submit}
-            type="primary"
-            htmlType="submit"
-            disabled={(fieldsError =>
-              Object.keys(fieldsError).some(
-                field => fieldsError[field as keyof typeof fieldsError],
-              ))(getFieldsError())}
-            loading={loading}
-          >
-            {t('agree-submit')}
-          </Button>
+          <FormItem shouldUpdate noStyle>
+            <Button
+              className={styles.submit}
+              type="primary"
+              htmlType="submit"
+              disabled={getFieldsError().some(
+                ({ errors }) => errors.length !== 0,
+              )}
+              loading={loading}
+            >
+              {t('agree-submit')}
+            </Button>
+          </FormItem>
         </div>
       </Form>
 
