@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.189 (2022-05-23)
+
+#### :bug: Bug Fix
+
+- [#2301](https://github.com/meepshop/meep-lerna/pull/2301) 【BUG】結帳頁 - 加購品無顯示金額 ([@danielyeh-meepshop](https://github.com/danielyeh-meepshop))
+
+#### Committers: 1
+
+- [@danielyeh-meepshop](https://github.com/danielyeh-meepshop)
+
 ## 0.80.188 (2022-05-20)
 
 #### :bug: Bug Fix
