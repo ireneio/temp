@@ -75,14 +75,14 @@ export default (): ColumnProps<useProductColumnsFragmentType>[] => {
         dataIndex: ['retailPrice'],
         render: (value, { type, quantity }) => (
           <div className={styles.retailPrice}>
-            {type !== 'product' ? null : (
+            {type === 'gift' ? (
+              t('gift')
+            ) : (
               <>
                 <span>{`${quantity}X`}</span>
                 {c(value || 0)}
               </>
             )}
-
-            {type !== 'gift' ? null : t('gift')}
           </div>
         ),
       },
