@@ -13,7 +13,6 @@ export const getFeatureSubscriptions = gql`
       store {
         id
         ...affiliateFragment
-        isOpenApiEnabled: checkUnleashToggle(name: "T10564_openApi")
       }
       ...openApiFragment
     }

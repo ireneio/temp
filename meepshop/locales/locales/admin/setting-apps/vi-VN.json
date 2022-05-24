@@ -81,8 +81,8 @@
     "title": "Mở API.",
     "desc": "Cung cấp hàng hóa, thành viên, công nghệ API và tài nguyên, hỗ trợ tự động hóa cửa hàng và tích hợp dữ liệu để giúp các hoạt động lưu trữ.",
     "price": "Thời gian giới hạn",
-    "price-tooltip": "Trong thời gian chức năng, tương lai sẽ được thông báo trước nếu điều chỉnh",
-    "instruction": "Hướng dẫn trung tâm.",
+    "price-tooltip": "Trong số thời gian giới hạn chức năng là miễn phí, trong tương lai, nó sẽ được điều chỉnh thành [phí cố định hàng tháng+mô hình tính phí giao dịch bổ sung] và thông báo sẽ được thông báo trước khi điều chỉnh tính phí",
+    "instruction": "Hướng dẫn ứng viên",
     "apiKey": {
       "title": "API Gold Key.",
       "copied": "Nhân rộng \"{{apikey}}\"",

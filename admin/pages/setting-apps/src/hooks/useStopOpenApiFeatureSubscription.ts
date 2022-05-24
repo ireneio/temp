@@ -5,40 +5,43 @@ import useStopSubscription from './useStopSubscription';
 
 // graphql typescript
 import {
-  stopOpenApiFeatureSubscription as stopOpenApiFeatureSubscriptionType,
-  useStopOpenApiFeatureSubscriptionFragment as useStopOpenApiFeatureSubscriptionFragmentType,
+  stopOpenAPIFeatureSubscription as stopOpenAPIFeatureSubscriptionType,
+  useStopOpenAPIFeatureSubscriptionFragment as useStopOpenAPIFeatureSubscriptionFragmentType,
   FeatureSubscriptionStatusEnum as FeatureSubscriptionStatusEnumType,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { stopOpenApiFeatureSubscription } from '../gqls/useStopOpenApiFeatureSubscription';
-import { useStopOpenApiFeatureSubscriptionFragment } from '../gqls/useStopOpenApiFeatureSubscription';
+import { stopOpenAPIFeatureSubscription } from '../gqls/useStopOpenApiFeatureSubscription';
+import { useStopOpenAPIFeatureSubscriptionFragment } from '../gqls/useStopOpenApiFeatureSubscription';
 
 // definition
-export default (storeId: string | null): (() => void) => {
-  const [mutation] = useMutation<stopOpenApiFeatureSubscriptionType>(
-    stopOpenApiFeatureSubscription,
+export default (
+  storeId: string | null,
+  apiKey: string | undefined | null,
+): (() => void) => {
+  const [mutation] = useMutation<stopOpenAPIFeatureSubscriptionType>(
+    stopOpenAPIFeatureSubscription,
     {
       update: (cache, { data }) => {
         if (
           !storeId ||
-          data?.stopOpenApiFeatureSubscription.__typename !== 'OkResponse'
+          data?.stopOpenAPIFeatureSubscription.__typename !== 'OkResponse'
         )
           return;
 
-        cache.writeFragment<useStopOpenApiFeatureSubscriptionFragmentType>({
+        cache.writeFragment<useStopOpenAPIFeatureSubscriptionFragmentType>({
           id: storeId,
-          fragment: useStopOpenApiFeatureSubscriptionFragment,
-          fragmentName: 'useStopOpenApiFeatureSubscriptionFragment',
+          fragment: useStopOpenAPIFeatureSubscriptionFragment,
+          fragmentName: 'useStopOpenAPIFeatureSubscriptionFragment',
           data: {
             __typename: 'Store',
             id: storeId,
             featureSubscription: {
               __typename: 'StoreFeatureSubscription',
-              openApiFeatureSubscription: {
-                __typename: 'OpenApiFeatureSubscription',
+              openAPIFeatureSubscription: {
+                __typename: 'OpenAPIFeatureSubscription',
                 status: 'SUBSCRIBE_CANCELLING' as FeatureSubscriptionStatusEnumType,
-                apiKey: null,
+                apiKey: apiKey || null,
               },
             },
           },
@@ -52,7 +55,7 @@ export default (storeId: string | null): (() => void) => {
     submit: async () => {
       const { data } = await mutation();
 
-      return data?.stopOpenApiFeatureSubscription.__typename === 'OkResponse';
+      return data?.stopOpenAPIFeatureSubscription.__typename === 'OkResponse';
     },
   });
 };

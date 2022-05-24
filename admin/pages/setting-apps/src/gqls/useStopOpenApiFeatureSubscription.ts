@@ -2,9 +2,9 @@
 import { gql } from '@apollo/client';
 
 // definition
-export const stopOpenApiFeatureSubscription = gql`
-  mutation stopOpenApiFeatureSubscription {
-    stopOpenApiFeatureSubscription {
+export const stopOpenAPIFeatureSubscription = gql`
+  mutation stopOpenAPIFeatureSubscription {
+    stopOpenAPIFeatureSubscription {
       ... on OkResponse {
         message
       }
@@ -12,11 +12,11 @@ export const stopOpenApiFeatureSubscription = gql`
   }
 `;
 
-export const useStopOpenApiFeatureSubscriptionFragment = gql`
-  fragment useStopOpenApiFeatureSubscriptionFragment on Store {
+export const useStopOpenAPIFeatureSubscriptionFragment = gql`
+  fragment useStopOpenAPIFeatureSubscriptionFragment on Store {
     id
     featureSubscription {
-      openApiFeatureSubscription {
+      openAPIFeatureSubscription {
         status
         apiKey
       }

@@ -9,8 +9,7 @@ export const openApiFragment = gql`
     store {
       id
       featureSubscription {
-        # FIXME: remove client side schema after api is ready
-        openApiFeatureSubscription @client {
+        openAPIFeatureSubscription {
           status
           apiKey
         }

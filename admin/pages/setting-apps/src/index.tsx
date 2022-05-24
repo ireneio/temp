@@ -52,9 +52,7 @@ const SettingApps: NextPage<PropsType> = React.memo(() => {
 
         <Affiliate store={filter(affiliateFragment, store)} />
 
-        {!store?.isOpenApiEnabled ? null : (
-          <OpenApi viewer={filter(openApiFragment, viewer)} />
-        )}
+        <OpenApi viewer={filter(openApiFragment, viewer)} />
       </div>
 
       <div className={styles.root}>

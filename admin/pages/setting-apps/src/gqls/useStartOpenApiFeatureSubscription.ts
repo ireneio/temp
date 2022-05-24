@@ -2,16 +2,16 @@
 import { gql } from '@apollo/client';
 
 // definition
-export const startOpenApiFeatureSubscription = gql`
-  mutation startOpenApiFeatureSubscription($isRenew: Boolean!) {
-    startOpenApiFeatureSubscription @skip(if: $isRenew) {
-      ... on OpenApiFeatureSubscription {
+export const startOpenAPIFeatureSubscription = gql`
+  mutation startOpenAPIFeatureSubscription($isRenew: Boolean!) {
+    startOpenAPIFeatureSubscription @skip(if: $isRenew) {
+      ... on OpenAPIFeatureSubscription {
         apiKey
       }
     }
 
-    renewOpenApiFeatureSubscription @include(if: $isRenew) {
-      ... on OpenApiFeatureSubscription {
+    renewOpenAPIFeatureSubscription @include(if: $isRenew) {
+      ... on OpenAPIFeatureSubscription {
         apiKey
       }
     }
@@ -22,7 +22,7 @@ export const useStartOpenApiFeatureSubscriptionFragment = gql`
   fragment useStartOpenApiFeatureSubscriptionFragment on Store {
     id
     featureSubscription {
-      openApiFeatureSubscription {
+      openAPIFeatureSubscription {
         status
         apiKey
       }

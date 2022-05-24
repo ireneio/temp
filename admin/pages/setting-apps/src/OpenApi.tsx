@@ -1,11 +1,7 @@
 // import
 import React, { useEffect } from 'react';
 import { Button } from 'antd';
-import {
-  QuestionCircleOutlined,
-  CopyOutlined,
-  InfoCircleOutlined,
-} from '@ant-design/icons';
+import { CopyOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { useCopyToClipboard } from 'react-use';
 
 import { useTranslation } from '@meepshop/locales';
@@ -38,15 +34,16 @@ export default React.memo(({ viewer }: PropsType) => {
   const role = viewer?.role || 'HELPER';
   const store = viewer?.store;
   const status =
-    store?.featureSubscription.openApiFeatureSubscription.status ||
+    store?.featureSubscription.openAPIFeatureSubscription.status ||
     ('NOT_SUBSCRIBED' as FeatureSubscriptionStatusEnumType);
-  const apiKey = store?.featureSubscription.openApiFeatureSubscription.apiKey;
+  const apiKey = store?.featureSubscription.openAPIFeatureSubscription.apiKey;
   const startOpenApiFeatureSubscription = useStartOpenApiFeatureSubscription(
     store?.id || null,
     status !== 'NOT_SUBSCRIBED',
   );
   const stopOpenApiFeatureSubscription = useStopOpenApiFeatureSubscription(
     store?.id || null,
+    apiKey,
   );
 
   useEffect(() => {
@@ -59,13 +56,16 @@ export default React.memo(({ viewer }: PropsType) => {
       img={adminSettingAppsOpenAPI}
       status={status}
       price={
-        <Tooltip title={t('open-api.price-tooltip')}>
+        <Tooltip
+          overlayClassName={styles.priceTooltip}
+          title={t('open-api.price-tooltip')}
+        >
           {t('open-api.price')}
 
-          <QuestionCircleOutlined className={styles.icon} />
+          <InfoCircleOutlined className={styles.icon} />
         </Tooltip>
       }
-      link="#test"
+      link="https://supportmeepshop.com/knowledgebase/open-api/"
       name="open-api"
     >
       <Switch
@@ -80,6 +80,7 @@ export default React.memo(({ viewer }: PropsType) => {
         )}
       >
         <Button
+          className={styles.button}
           type={status === 'SUBSCRIBE_CONTINUING' ? 'default' : 'primary'}
           onClick={
             status !== 'SUBSCRIBE_CONTINUING'
@@ -92,7 +93,12 @@ export default React.memo(({ viewer }: PropsType) => {
         </Button>
       </Switch>
 
-      <Button className={styles.instruction} href="#test">
+      <Button
+        className={styles.instruction}
+        href="https://studio.apollographql.com/public/open-api?variant=production"
+        target="__blank"
+        rel="noopener noreferrer"
+      >
         {t('open-api.instruction')}
       </Button>
 

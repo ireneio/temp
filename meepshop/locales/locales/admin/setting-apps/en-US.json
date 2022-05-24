@@ -81,8 +81,8 @@
     "title": "Open API",
     "desc": "Provide goods, members, orders API technology and resources, assist store automation and data integration to help store operations.",
     "price": "Limited time",
-    "price-tooltip": "During the functional time, the future will be notified in advance if adjustment",
-    "instruction": "Central instructions",
+    "price-tooltip": "Among the functional limited time is free, in the future, it will be adjusted to [fixed monthly fee+additional transaction fee] charging model, and the notice will be notified before the charging adjustment",
+    "instruction": "Candidate instructions",
     "apiKey": {
       "title": "API gold key",
       "copied": "Replicated \"{{apikey}}\"",

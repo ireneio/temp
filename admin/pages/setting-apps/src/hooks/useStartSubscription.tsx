@@ -86,7 +86,8 @@ export default ({
           {[].constructor
             .apply({}, new Array(featureAmount))
             .map((_: unknown, index: number) => (
-              <div key={key} className={styles.feature}>
+              // eslint-disable-next-line react/no-array-index-key
+              <div key={`${key}_${index}`} className={styles.feature}>
                 <CheckOutlined />
 
                 {t(`${key}.start.feature.${index}`)}

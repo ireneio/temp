@@ -10,14 +10,14 @@ import useStartSubscription from './useStartSubscription';
 
 // graphql typescript
 import {
-  startOpenApiFeatureSubscription as startOpenApiFeatureSubscriptionType,
-  startOpenApiFeatureSubscriptionVariables as startOpenApiFeatureSubscriptionVariablesType,
+  startOpenAPIFeatureSubscription as startOpenApiFeatureSubscriptionType,
+  startOpenAPIFeatureSubscriptionVariables as startOpenApiFeatureSubscriptionVariablesType,
   useStartOpenApiFeatureSubscriptionFragment as useStartOpenApiFeatureSubscriptionFragmentType,
   FeatureSubscriptionStatusEnum as FeatureSubscriptionStatusEnumType,
 } from '@meepshop/types/gqls/admin';
 
 // graphql import
-import { startOpenApiFeatureSubscription } from '../gqls/useStartOpenApiFeatureSubscription';
+import { startOpenAPIFeatureSubscription } from '../gqls/useStartOpenApiFeatureSubscription';
 import { useStartOpenApiFeatureSubscriptionFragment } from '../gqls/useStartOpenApiFeatureSubscription';
 
 // definition
@@ -26,13 +26,13 @@ export default (storeId: string | null, isRenew: boolean): (() => void) => {
   const [mutation] = useMutation<
     startOpenApiFeatureSubscriptionType,
     startOpenApiFeatureSubscriptionVariablesType
-  >(startOpenApiFeatureSubscription, {
+  >(startOpenAPIFeatureSubscription, {
     update: (cache, { data }) => {
       const result =
-        data?.startOpenApiFeatureSubscription ||
-        data?.renewOpenApiFeatureSubscription;
+        data?.startOpenAPIFeatureSubscription ||
+        data?.renewOpenAPIFeatureSubscription;
 
-      if (!storeId || result?.__typename !== 'OpenApiFeatureSubscription')
+      if (!storeId || result?.__typename !== 'OpenAPIFeatureSubscription')
         return;
 
       cache.writeFragment<useStartOpenApiFeatureSubscriptionFragmentType>({
@@ -44,8 +44,8 @@ export default (storeId: string | null, isRenew: boolean): (() => void) => {
           id: storeId,
           featureSubscription: {
             __typename: 'StoreFeatureSubscription',
-            openApiFeatureSubscription: {
-              __typename: 'OpenApiFeatureSubscription',
+            openAPIFeatureSubscription: {
+              __typename: 'OpenAPIFeatureSubscription',
               status: 'SUBSCRIBE_CONTINUING' as FeatureSubscriptionStatusEnumType,
               apiKey: result.apiKey,
             },
@@ -68,10 +68,10 @@ export default (storeId: string | null, isRenew: boolean): (() => void) => {
       });
 
       return (
-        data?.startOpenApiFeatureSubscription?.__typename ===
-          'OpenApiFeatureSubscription' ||
-        data?.renewOpenApiFeatureSubscription?.__typename ===
-          'OpenApiFeatureSubscription'
+        data?.startOpenAPIFeatureSubscription?.__typename ===
+          'OpenAPIFeatureSubscription' ||
+        data?.renewOpenAPIFeatureSubscription?.__typename ===
+          'OpenAPIFeatureSubscription'
       );
     },
     successTitle: t('open-api.start.success.title'),

@@ -81,8 +81,8 @@
     "title": "API ouvert",
     "desc": "Fournir des biens, des membres, des commandes de la technologie et des ressources de l'API, d'assister l'automatisation des magasins et de l'intégration des données pour aider à stocker les opérations.",
     "price": "Temps limité",
-    "price-tooltip": "Pendant le temps fonctionnel, l'avenir sera averti à l'avance si un ajustement",
-    "instruction": "Instructions centrales",
+    "price-tooltip": "Parmi le temps limité fonctionnel est gratuit, à l'avenir, il sera ajusté au modèle de charge [Frais mensuels fixes et frais de transaction supplémentaires] et l'avis sera informé avant l'ajustement de facturation",
+    "instruction": "Instructions candidates",
     "apiKey": {
       "title": "API Gold Key",
       "copied": "Répliqué \"{{apkéy}}\"",

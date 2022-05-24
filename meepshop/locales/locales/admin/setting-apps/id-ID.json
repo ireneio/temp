@@ -81,8 +81,8 @@
     "title": "Buka API.",
     "desc": "Memberikan barang, anggota, memesan teknologi API dan sumber daya, membantu otomatisasi dan integrasi data untuk membantu menyimpan operasi.",
     "price": "Waktu terbatas",
-    "price-tooltip": "Selama waktu fungsional, masa depan akan diberitahukan sebelumnya jika penyesuaian",
-    "instruction": "Instruksi pusat",
+    "price-tooltip": "Di antara waktu terbatas fungsional gratis, di masa mendatang, itu akan disesuaikan dengan [biaya biaya bulanan tetap+biaya transaksi tambahan] model pengisian daya, dan pemberitahuan akan diberitahukan sebelum penyesuaian pengisian",
+    "instruction": "Instruksi kandidat",
     "apiKey": {
       "title": "API Gold Key.",
       "copied": "Direplikasi \"{{apikey}}\"",

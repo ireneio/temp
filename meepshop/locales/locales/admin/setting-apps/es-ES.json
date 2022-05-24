@@ -81,8 +81,8 @@
     "title": "API abierta",
     "desc": "Proporcionar bienes, miembros, ordenar la tecnología y los recursos de la API, ayudar a la automatización de la tienda y la integración de datos para ayudar a las operaciones de almacenamiento.",
     "price": "Tiempo limitado",
-    "price-tooltip": "Durante el tiempo funcional, el futuro será notificado por adelantado si se ajusta.",
-    "instruction": "Instrucciones centrales",
+    "price-tooltip": "Entre el tiempo limitado funcional es gratuito, en el futuro, se ajustará al modelo de carga [tarifa mensual mensual+tarifa de transacción adicional], y el aviso se notificará antes del ajuste de carga",
+    "instruction": "Instrucciones de candidato",
     "apiKey": {
       "title": "Llave de oro de la API",
       "copied": "Replicado \"{{apikey}}\"",

@@ -81,8 +81,8 @@
     "title": "開放 API",
     "desc": "提供商品、會員、訂單 API 技術及資源，協助商店自動化與資料整合，幫助商店營運。",
     "price": "限時免費",
-    "price-tooltip": "功能限時免費中，未來若調整收費將提前通知",
-    "instruction": "串接說明文字",
+    "price-tooltip": "功能限時免費中，未來將調整為【固定月費+額外交易費】的收費模式，收費調整前將通知",
+    "instruction": "串接說明文件",
     "apiKey": {
       "title": "API 金鑰",
       "copied": "已複製 “{{ apiKey }}”",
