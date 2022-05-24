@@ -4,13 +4,13 @@
   "description": "Use to call gtag and fpq",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.187",
+  "version": "0.80.190",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/apollo": "^0.80.187",
+    "@meepshop/apollo": "^0.80.190",
     "@meepshop/context": "^0.80.187",
-    "@meepshop/cookies": "^0.80.187",
+    "@meepshop/cookies": "^0.80.190",
     "@meepshop/link": "^0.80.187",
     "@meepshop/utils": "^0.80.187"
   },

@@ -4,12 +4,12 @@
   "description": "Admin refacotr set orders tag",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.187",
+  "version": "0.80.190",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@admin/hooks": "^0.80.187",
-    "@admin/orders-tag": "^0.80.187"
+    "@admin/orders-tag": "^0.80.190"
   },
   "keywords": ["admin", "orders", "refactor", "tag"]
 }
