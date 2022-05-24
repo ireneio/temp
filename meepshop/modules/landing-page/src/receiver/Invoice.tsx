@@ -37,7 +37,7 @@ export default React.memo(({ form }: PropsType) => {
           <div className={styles.itemRoot}>
             <Item
               className={styles.formItem}
-              name="invoiceTitle"
+              name={['invoiceTitle']}
               validateTrigger="onBlur"
               rules={[
                 {
@@ -51,7 +51,7 @@ export default React.memo(({ form }: PropsType) => {
 
             <Item
               className={styles.formItem}
-              name="invoiceVAT"
+              name={['invoiceVAT']}
               validateTrigger="onBlur"
               rules={[
                 {
@@ -69,7 +69,7 @@ export default React.memo(({ form }: PropsType) => {
 
           <Item
             className={styles.formItem}
-            name="invoiceAddress"
+            name={['invoiceAddress']}
             initialValue={[
               ...(getFieldValue('address') || []),
               ...(!getFieldValue('addressDetail')
@@ -94,7 +94,7 @@ export default React.memo(({ form }: PropsType) => {
         <div className={styles.donate}>
           <Item
             className={styles.formItem}
-            name="invoiceDonate"
+            name={['invoiceDonate']}
             rules={[
               {
                 required: true,
@@ -133,7 +133,7 @@ export default React.memo(({ form }: PropsType) => {
       return (
         <Item
           className={styles.formItem}
-          name="invoiceEInvoiceNumber"
+          name={['invoiceEInvoiceNumber']}
           validateFirst
           validateTrigger="onBlur"
           rules={[
@@ -162,7 +162,7 @@ export default React.memo(({ form }: PropsType) => {
       return (
         <Item
           className={styles.formItem}
-          name="invoiceEInvoiceNumber"
+          name={['invoiceEInvoiceNumber']}
           rules={[
             {
               required: true,

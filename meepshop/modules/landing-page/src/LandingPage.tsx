@@ -1,5 +1,4 @@
 // typescript import
-import { FormInstance } from 'antd';
 
 // import
 import React, { useEffect, useContext, useState } from 'react';
@@ -28,7 +27,7 @@ import useFinish from './hooks/useFinish';
 
 // graphql typescript
 import {
-  landingPageLandingPageModuleFragment,
+  landingPageLandingPageModuleFragment as landingPageLandingPageModuleFragmentType,
   receiverLandingPageModuleFragment as receiverLandingPageModuleFragmentType,
   shoppingLandingPageModuleFragment as shoppingLandingPageModuleFragmentType,
   useFinishLandingPageModuleFragment as useFinishLandingPageModuleFragmentType,
@@ -50,11 +49,11 @@ import {
 } from './gqls/useFinish';
 
 // typescript definition
-interface PropsType
-  extends landingPageLandingPageModuleFragment,
-    FormInstance {}
+type PropsType = landingPageLandingPageModuleFragmentType;
 
 // definition
+const { Item: FormItem } = Form;
+
 export default React.memo((props: PropsType) => {
   const {
     id,
@@ -66,7 +65,6 @@ export default React.memo((props: PropsType) => {
     agreedMatters,
     viewer,
   } = props;
-  const { Item: FormItem } = Form;
   const [form] = Form.useForm();
   const [showLogin, setShowLogin] = useState(false);
   const { t } = useTranslation('landing-page');
