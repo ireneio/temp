@@ -2,7 +2,7 @@
 import { QueryResult } from '@apollo/client';
 
 // import
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useMutation } from '@apollo/client';
 
 // graphql typescript
@@ -28,7 +28,8 @@ export type loadMoreType = Pick<
 
 interface LoadMoreInfoType {
   current: number;
-  onChange: (current: number) => void;
+  pageSize: number;
+  onChange: (current: number, newPageSize: number) => void;
 }
 
 // definition
@@ -40,14 +41,19 @@ export default (
     setAffiliateProgramStatisticsCurrentType,
     setAffiliateProgramStatisticsCurrentVariablesType
   >(setAffiliateProgramStatisticsCurrent);
+  const [pageSize, setPageSize] = useState<number>(10);
   const current = affiliateProgramOrders?.pageInfo.currentInfo.current || 0;
 
   return {
     current,
+    pageSize,
     onChange: useCallback(
-      (newCurrent: number) => {
-        if (loading || newCurrent === current || !affiliateProgramOrders)
-          return;
+      (newCurrent: number, newPageSize: number) => {
+        if (loading || !affiliateProgramOrders) return;
+
+        if (newPageSize !== pageSize) {
+          setPageSize(newPageSize);
+        }
 
         if (
           newCurrent < current ||
@@ -66,6 +72,7 @@ export default (
 
         fetchMore({
           variables: {
+            first: newPageSize,
             after: affiliateProgramOrders.pageInfo.endCursor,
           },
           updateQuery: (
@@ -104,7 +111,14 @@ export default (
                 },
         });
       },
-      [affiliateProgramOrders, fetchMore, loading, setCurrent, current],
+      [
+        loading,
+        affiliateProgramOrders,
+        pageSize,
+        current,
+        fetchMore,
+        setCurrent,
+      ],
     ),
   };
 };

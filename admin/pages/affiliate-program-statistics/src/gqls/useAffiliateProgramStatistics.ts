@@ -8,6 +8,7 @@ import { ordersAffiliateProgramOrdersConnectionFragment } from './orders';
 export const getAffiliateProgramStatistics = gql`
   query getAffiliateProgramStatistics(
     $affiliateProgramId: ID!
+    $after: String
     $first: PositiveInt!
   ) {
     viewer {
@@ -28,6 +29,7 @@ export const getAffiliateProgramStatistics = gql`
       }
       affiliateProgramOrders(
         first: $first
+        after: $after
         filter: { affiliateProgramId: $affiliateProgramId }
       ) {
         ...ordersAffiliateProgramOrdersConnectionFragment

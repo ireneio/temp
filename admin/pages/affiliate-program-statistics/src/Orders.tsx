@@ -40,7 +40,7 @@ export default React.memo(
   }: PropsType) => {
     const { t } = useTranslation('affiliate-program-statistics');
     const columns = useProgramStatisticsColumns();
-    const { current, onChange } = useProgramStatisticsLoadMore(
+    const { current, pageSize, onChange } = useProgramStatisticsLoadMore(
       filter(useProgramStatisticsLoadMoreFragment, affiliateProgramOrders),
       { loading, fetchMore },
     );
@@ -53,13 +53,14 @@ export default React.memo(
         dataSource={filter(
           useProgramStatisticsColumnsFragment,
           (affiliateProgramOrders?.edges || []).slice(
-            current * 10,
-            (current + 1) * 10,
+            current * pageSize,
+            (current + 1) * pageSize,
           ),
         )}
         columns={columns}
         pagination={{
           total: affiliateProgramOrders?.total || 0,
+          pageSize,
           current,
           onChange,
         }}
