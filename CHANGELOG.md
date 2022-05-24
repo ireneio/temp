@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.80.190 (2022-05-24)
+
+#### :rocket: New Feature
+
+- [#2282](https://github.com/meepshop/meep-lerna/pull/2282) remove openAPI client side schema ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- [#2302](https://github.com/meepshop/meep-lerna/pull/2302) 【BUG】分潤系統/查看訂單：切換頁數沒反應 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :house: Internal
+
+- `store`
+  - [#2295](https://github.com/meepshop/meep-lerna/pull/2295) 【BUG】使用綠界信用卡付款，會重複抓取 FB 像素購買事件 ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.189 (2022-05-23)
 
 #### :bug: Bug Fix
