@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 0.80.191 (2022-05-25)
+
+#### :rocket: New Feature
+
+- [#2297](https://github.com/meepshop/meep-lerna/pull/2297) 【功能】新公司成立，帳單交易費串接 - 前端 ([@Lexiwu](https://github.com/Lexiwu))
+- [#2298](https://github.com/meepshop/meep-lerna/pull/2298) 內部開單 - 移除白名單 toggle ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :bug: Bug Fix
+
+- `meep-ui`
+  - [#2304](https://github.com/meepshop/meep-lerna/pull/2304) 【個別店家】部分商品未觸發 viewProduct event ([@danielyeh-meepshop](https://github.com/danielyeh-meepshop))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@danielyeh-meepshop](https://github.com/danielyeh-meepshop)
+
 ## 0.80.190 (2022-05-24)
 
 #### :rocket: New Feature
