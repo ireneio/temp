@@ -39,6 +39,8 @@ import { PRODUCT_TYPE, LIMITED, ORDERABLE, OUT_OF_STOCK } from './constants';
 export default class ProductInfo extends React.PureComponent {
   name = 'product-info';
 
+  needToTrackViewProduct = true;
+
   static propTypes = {
     adTrack: PropTypes.shape({}).isRequired,
     t: PropTypes.func.isRequired,
@@ -109,15 +111,17 @@ export default class ProductInfo extends React.PureComponent {
     };
   });
 
-  componentDidMount() {
+  componentDidUpdate() {
     const { adTrack, productData, variant } = this.props;
 
-    if (productData && variant)
+    if (productData && variant && this.needToTrackViewProduct) {
       adTrack.viewProduct({
         id: productData.id,
         title: productData.title,
         price: variant.totalPrice,
       });
+      this.needToTrackViewProduct = false;
+    }
   }
 
   onChangeQuantity = value => {
