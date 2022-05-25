@@ -7,11 +7,15 @@ import AtmCheck from '../AtmCheck';
 import Atm from '../Atm';
 
 // graphql typescript
-import { paymentStoreBillingSettingFragment_payment_creditCard as paymentStoreBillingSettingFragmentPaymentCreditCard } from '@meepshop/types/gqls/admin';
+import {
+  StoreBillPayeeEnum,
+  paymentStoreBillingSettingFragment_payment_creditCard as paymentStoreBillingSettingFragmentPaymentCreditCard,
+} from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType {
   billId: string | null;
+  payee: StoreBillPayeeEnum | null;
   creditCard: paymentStoreBillingSettingFragmentPaymentCreditCard | null;
 }
 
@@ -20,6 +24,7 @@ type paymentTypeType = 'ALL' | 'ATM' | 'CREDIT_CARD' | 'ATM_CHECK' | null;
 // definition
 export default ({
   billId,
+  payee,
   creditCard,
 }: PropsType): {
   modal: React.ReactNode | null;
@@ -36,6 +41,7 @@ export default ({
           return (
             <CreditCardAndAtm
               billId={billId}
+              payee={payee}
               creditCard={creditCard}
               setPaymentType={setPaymentType}
             />
@@ -45,6 +51,7 @@ export default ({
           return (
             <CreditCard
               billId={billId}
+              payee={payee}
               creditCard={creditCard}
               setPaymentType={setPaymentType}
             />
@@ -59,7 +66,7 @@ export default ({
         default:
           return null;
       }
-    }, [billId, creditCard, paymentType]),
+    }, [billId, creditCard, payee, paymentType]),
     setPaymentType,
   };
 };

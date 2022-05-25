@@ -25,6 +25,7 @@ export default React.memo(({ bill, billing }: PropsType) => {
   const { t } = useTranslation('bill');
   const { modal, setPaymentType } = usePayment({
     billId: bill?.id || null,
+    payee: bill.payment?.payee || null,
     creditCard: billing?.payment?.creditCard || null,
   });
 

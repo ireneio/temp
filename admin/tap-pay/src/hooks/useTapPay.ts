@@ -5,6 +5,9 @@ import getConfig from 'next/config';
 
 import { useTranslation } from '@meepshop/locales';
 
+// graphql typescript
+import { StoreBillPayeeEnum } from '@meepshop/types/gqls/admin';
+
 // typescript definition
 type StatusType = 'number' | 'expiry' | 'ccv';
 
@@ -18,6 +21,7 @@ const {
 export default (
   setPrime: (prime: string | null) => void,
   hasErrors: boolean,
+  payee: StoreBillPayeeEnum | null,
 ): {
   onLoad: () => void;
   errors: string[];
@@ -28,6 +32,17 @@ export default (
   );
   const [cardType, setCardType] = useState<string>();
   const [errors, setErrors] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (tapPay)
+      tapPay.setupSDK(
+        payee === 'MEEPSHOP_HK' ? '13026' : '123437',
+        payee === 'MEEPSHOP_HK'
+          ? 'app_cmuVL2x5q6AGvmxP1i7sVtPAoKdqd3UpkEupUf5MRJZIJNR8B92cqq52Yv1B'
+          : 'app_tq2W255xnTcXNo3zbd987Tle26ZiOMdvg5KM1OJL8uO4BjsfSt5IFFQKYzOJ',
+        ENV === 'production' ? 'production' : 'sandbox',
+      );
+  }, [payee, tapPay]);
 
   useEffect(() => {
     if (hasErrors && cardType === 'unknown')
@@ -95,12 +110,6 @@ export default (
       initialTapPay = tapPayFunc;
 
       setTapPay(tapPayFunc);
-
-      tapPayFunc.setupSDK(
-        '13026',
-        'app_cmuVL2x5q6AGvmxP1i7sVtPAoKdqd3UpkEupUf5MRJZIJNR8B92cqq52Yv1B',
-        ENV === 'production' ? 'production' : 'sandbox',
-      );
     }, []),
     errors: useMemo(() => (hasErrors ? ['number', 'expiry', 'ccv'] : errors), [
       hasErrors,

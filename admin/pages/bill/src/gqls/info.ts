@@ -12,6 +12,7 @@ export const infoFragment = gql`
       atmBankCode
       atmBankAccount
       isAtmBankCodeExpired
+      payee
     }
     month
     currency
