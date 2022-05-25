@@ -50,7 +50,7 @@ export default {
     id: uuid(),
     title: {
       __typename: 'Locale' as const,
-      zh_TW: 'Product',
+      zh_TW: '方頭亮面牛津鞋',
       en_US: '',
       ja_JP: '',
       vi_VN: '',
@@ -62,18 +62,28 @@ export default {
     variants: [
       {
         __typename: 'Variant' as const,
-        id: '8f953308-134e-4c48-97c4-dfeb1f101f39',
+        id: '03799620-2b53-11e8-b4bf-353b0f043f15',
         currentMinPurchasableQty: 1,
         currentMaxPurchasableQty: 99,
         totalPrice: 0,
         specs: [
           {
             __typename: 'SpecValue' as const,
-            id: '59a55563-5322-4016-9d91-4abf1270fe80',
-            specId: '9d41dedd-6d5e-430b-a30e-cac82217dd9c',
+            id: '03e02020-2b53-11e8-b4bf-353b0f043f15',
+            specId: '6e8ce560-e563-11e7-b76e-19976f83b1aa',
             title: {
               __typename: 'Locale' as const,
-              zh_TW: '男生',
+              zh_TW: '23',
+              en_US: '',
+            },
+          },
+          {
+            __typename: 'SpecValue' as const,
+            id: '03e02021-2b53-11e8-b4bf-353b0f043f15',
+            specId: '0379962a-2b53-11e8-b4bf-353b0f043f15',
+            title: {
+              __typename: 'Locale' as const,
+              zh_TW: 'b',
               en_US: '',
             },
           },
@@ -81,18 +91,28 @@ export default {
       },
       {
         __typename: 'Variant' as const,
-        id: '65650ba2-99b9-4e72-b39c-b5e232ef8102',
+        id: '03799622-2b53-11e8-b4bf-353b0f043f15',
         currentMinPurchasableQty: 1,
         currentMaxPurchasableQty: 99,
         totalPrice: 0,
         specs: [
           {
             __typename: 'SpecValue' as const,
-            id: 'd76da520-60cd-4c62-a392-08cec33d5aaa',
-            specId: '9d41dedd-6d5e-430b-a30e-cac82217dd9c',
+            id: '03e04732-2b53-11e8-b4bf-353b0f043f15',
+            specId: '6e8ce560-e563-11e7-b76e-19976f83b1aa',
             title: {
               __typename: 'Locale' as const,
-              zh_TW: '女生',
+              zh_TW: '23.5',
+              en_US: '',
+            },
+          },
+          {
+            __typename: 'SpecValue' as const,
+            id: '03e04733-2b53-11e8-b4bf-353b0f043f15',
+            specId: '0379962a-2b53-11e8-b4bf-353b0f043f15',
+            title: {
+              __typename: 'Locale' as const,
+              zh_TW: 'b',
               en_US: '',
             },
           },
@@ -102,10 +122,19 @@ export default {
     specs: [
       {
         __typename: 'SpecDefinition' as const,
-        id: '9d41dedd-6d5e-430b-a30e-cac82217dd9c',
+        id: '6e8ce560-e563-11e7-b76e-19976f83b1aa',
         title: {
           __typename: 'Locale' as const,
           zh_TW: '尺寸',
+          en_US: '',
+        },
+      },
+      {
+        __typename: 'SpecDefinition' as const,
+        id: '0379962a-2b53-11e8-b4bf-353b0f043f15',
+        title: {
+          __typename: 'Locale' as const,
+          zh_TW: '顏色',
           en_US: '',
         },
       },

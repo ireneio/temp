@@ -1,10 +1,9 @@
 // typescript import
-import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
+import { FormInstance } from 'antd';
 
 // import
 import React from 'react';
-import { Form } from '@ant-design/compatible';
-import { Button, Input } from 'antd';
+import { Button, Input, Form } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 
@@ -14,16 +13,20 @@ import useValidateLoveCode from './hooks/useValidateLoveCode';
 import styles from './styles/invoice.less';
 import { INVOICE_SEARCH_LINK } from './constants';
 
+interface PropsType {
+  form: FormInstance;
+}
+
 // definition
 const { Item } = Form;
 
-export default React.memo(({ form }: FormComponentProps) => {
+export default React.memo(({ form }: PropsType) => {
   const { t } = useTranslation('landing-page');
   const validateBarCode = useValidateBarCode();
   const validateInvoiceVAT = useValidateInvoiceVAT();
   const validateLoveCode = useValidateLoveCode();
 
-  const { getFieldDecorator, getFieldValue } = form;
+  const { getFieldValue } = form;
   const value = getFieldValue('invoice');
   const isECPAY = value?.[0] === 'ECPAY_ELECTRONIC';
 
@@ -32,50 +35,56 @@ export default React.memo(({ form }: FormComponentProps) => {
       return (
         <>
           <div className={styles.itemRoot}>
-            <Item className={styles.formItem}>
-              {getFieldDecorator('invoiceTitle', {
-                rules: [
-                  {
-                    required: true,
-                    message: t('is-required'),
-                  },
-                ],
-                validateTrigger: 'onBlur',
-              })(<Input placeholder={t('invoice-title')} />)}
-            </Item>
-
-            <Item className={styles.formItem}>
-              {getFieldDecorator('invoiceVAT', {
-                rules: [
-                  {
-                    required: true,
-                    message: t('is-required'),
-                  },
-                  {
-                    validator: validateInvoiceVAT,
-                  },
-                ],
-                validateTrigger: 'onBlur',
-              })(<Input placeholder={t('invoice-number')} />)}
-            </Item>
-          </div>
-
-          <Item className={styles.formItem}>
-            {getFieldDecorator('invoiceAddress', {
-              initialValue: [
-                ...(getFieldValue('address') || []),
-                ...(!getFieldValue('addressDetail')
-                  ? []
-                  : [getFieldValue('addressDetail')]),
-              ].join(' / '),
-              rules: [
+            <Item
+              className={styles.formItem}
+              name={['invoiceTitle']}
+              validateTrigger="onBlur"
+              rules={[
                 {
                   required: true,
                   message: t('is-required'),
                 },
-              ],
-              validateTrigger: 'onBlur',
-            })(<Input placeholder={t('invoice-address')} />)}
+              ]}
+            >
+              <Input placeholder={t('invoice-title')} />
+            </Item>
+
+            <Item
+              className={styles.formItem}
+              name={['invoiceVAT']}
+              validateTrigger="onBlur"
+              rules={[
+                {
+                  required: true,
+                  message: t('is-required'),
+                },
+                {
+                  validator: validateInvoiceVAT,
+                },
+              ]}
+            >
+              <Input placeholder={t('invoice-number')} />
+            </Item>
+          </div>
+
+          <Item
+            className={styles.formItem}
+            name={['invoiceAddress']}
+            initialValue={[
+              ...(getFieldValue('address') || []),
+              ...(!getFieldValue('addressDetail')
+                ? []
+                : [getFieldValue('addressDetail')]),
+            ].join(' / ')}
+            validateTrigger="onBlur"
+            rules={[
+              {
+                required: true,
+                message: t('is-required'),
+              },
+            ]}
+          >
+            <Input placeholder={t('invoice-address')} />
           </Item>
         </>
       );
@@ -83,38 +92,38 @@ export default React.memo(({ form }: FormComponentProps) => {
     case 'DONATION':
       return (
         <div className={styles.donate}>
-          <Item className={styles.formItem}>
-            {getFieldDecorator('invoiceDonate', {
-              rules: [
-                {
-                  required: true,
-                  message: t('is-required'),
+          <Item
+            className={styles.formItem}
+            name={['invoiceDonate']}
+            rules={[
+              {
+                required: true,
+                message: t('is-required'),
+              },
+              {
+                validator: (_rule, donateCode, callback) => {
+                  if (!/^\d{3,7}$/.test(donateCode))
+                    callback(t('wrong-donate-code'));
+                  else callback();
                 },
-                {
-                  validator: (_rule, donateCode, callback) => {
-                    if (!/^\d{3,7}$/.test(donateCode))
-                      callback(t('wrong-donate-code'));
-                    else callback();
-                  },
-                },
-                ...(!isECPAY
-                  ? []
-                  : [
-                      {
-                        validator: validateLoveCode,
-                      },
-                    ]),
-              ],
-              validateFirst: true,
-              validateTrigger: 'onBlur',
-            })(
-              <div className={styles.donateInput}>
-                <Input placeholder={t('invoice-donate')} />
-                <Button href={INVOICE_SEARCH_LINK} target="_blank">
-                  {t('invoice-search')}
-                </Button>
-              </div>,
-            )}
+              },
+              ...(!isECPAY
+                ? []
+                : [
+                    {
+                      validator: validateLoveCode,
+                    },
+                  ]),
+            ]}
+            validateTrigger="onBlur"
+            validateFirst
+          >
+            <div className={styles.donateInput}>
+              <Input placeholder={t('invoice-donate')} />
+              <Button href={INVOICE_SEARCH_LINK} target="_blank">
+                {t('invoice-search')}
+              </Button>
+            </div>
           </Item>
           <div>{t('invoice-donate-description')}</div>
         </div>
@@ -122,56 +131,56 @@ export default React.memo(({ form }: FormComponentProps) => {
 
     case 'MOBILE_BARCODE':
       return (
-        <Item className={styles.formItem}>
-          {getFieldDecorator('invoiceEInvoiceNumber', {
-            rules: [
-              {
-                required: true,
-                message: t('is-required'),
-              },
-              {
-                pattern: /^\/{1}[0-9.+\-A-Z]{7}$/,
-                message: t('wrong-barcode'),
-              },
-              ...(!isECPAY
-                ? [{}]
-                : [
-                    {
-                      validator: validateBarCode,
-                    },
-                  ]),
-            ],
-            validateFirst: true,
-            validateTrigger: 'onBlur',
-          })(
-            <Input placeholder={t('invoice-e-invoice-number.moile-barcode')} />,
-          )}
+        <Item
+          className={styles.formItem}
+          name={['invoiceEInvoiceNumber']}
+          validateFirst
+          validateTrigger="onBlur"
+          rules={[
+            {
+              required: true,
+              message: t('is-required'),
+            },
+            {
+              pattern: /^\/{1}[0-9.+\-A-Z]{7}$/,
+              message: t('wrong-barcode'),
+            },
+            ...(!isECPAY
+              ? [{}]
+              : [
+                  {
+                    validator: validateBarCode,
+                  },
+                ]),
+          ]}
+        >
+          <Input placeholder={t('invoice-e-invoice-number.moile-barcode')} />,
         </Item>
       );
 
     case 'CITIZEN_DIGITAL_CERTIFICATE':
       return (
-        <Item className={styles.formItem}>
-          {getFieldDecorator('invoiceEInvoiceNumber', {
-            rules: [
-              {
-                required: true,
-                message: t('is-required'),
-              },
-              {
-                pattern: /^[A-Z]{2}[0-9]{14}$/,
-                message: t('wrong-certificate'),
-              },
-            ],
-            validateFirst: true,
-            validateTrigger: 'onBlur',
-          })(
-            <Input
-              placeholder={t(
-                'invoice-e-invoice-number.citizen-digital-certificate',
-              )}
-            />,
-          )}
+        <Item
+          className={styles.formItem}
+          name={['invoiceEInvoiceNumber']}
+          rules={[
+            {
+              required: true,
+              message: t('is-required'),
+            },
+            {
+              pattern: /^[A-Z]{2}[0-9]{14}$/,
+              message: t('wrong-certificate'),
+            },
+          ]}
+          validateFirst
+          validateTrigger="onBlur"
+        >
+          <Input
+            placeholder={t(
+              'invoice-e-invoice-number.citizen-digital-certificate',
+            )}
+          />
         </Item>
       );
 

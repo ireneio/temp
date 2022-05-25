@@ -1,6 +1,5 @@
 // typescript import
-import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
-
+import { FormInstance } from 'antd';
 import { UseComputeOrderType } from '../hooks/useComputeOrder';
 
 // graphql typescript
@@ -11,8 +10,7 @@ import {
 
 // import
 import React, { useState, useContext } from 'react';
-import { Form } from '@ant-design/compatible';
-import { Button, Input } from 'antd';
+import { Button, Input, Form } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
@@ -35,14 +33,14 @@ export default React.memo(
     form,
     shipment,
   }: {
-    form: FormComponentProps['form'];
+    form: FormInstance;
     shipment: UseComputeOrderType['shipment'];
   }) => {
     const [isMapOpen, setIsMapOpen] = useState(false);
     const { t } = useTranslation('landing-page');
     const colors = useContext(ColorsContext);
 
-    const { getFieldDecorator, getFieldValue, setFieldsValue } = form;
+    const { getFieldValue, setFieldsValue } = form;
 
     return (
       <>
@@ -70,22 +68,29 @@ export default React.memo(
         )}
 
         {SHIPMENT_STORE_FIELDS.map((fieldName, index) => (
-          <Item key={fieldName} className={styles.hideFormItem}>
-            {getFieldDecorator(fieldName, {
-              validateTrigger: 'onBlur',
-              rules: [
-                {
-                  required: true,
-                  message: index !== 0 ? ' ' : t('not-choose-store'),
-                },
-              ],
-            })(<Input type="hidden" />)}
+          <Item
+            className={styles.hideFormItem}
+            key={fieldName}
+            name={[fieldName]}
+            validateTrigger="onBlur"
+            rules={[
+              {
+                required: true,
+                message: index !== 0 ? ' ' : t('not-choose-store'),
+              },
+            ]}
+          >
+            <Input type="hidden" />
           </Item>
         ))}
 
         {CONVENIENCE_STORE_FIELDS.map(fieldName => (
-          <Item key={fieldName} className={styles.hideFormItem}>
-            {getFieldDecorator(fieldName)(<Input type="hidden" />)}
+          <Item
+            key={fieldName}
+            className={styles.hideFormItem}
+            name={[fieldName]}
+          >
+            <Input type="hidden" />
           </Item>
         ))}
 

@@ -6,9 +6,8 @@
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.80.190",
   "main": "./index.js",
-  "types": "./src/index.tsx",
+  "types": "./src/index.ts",
   "dependencies": {
-    "@ant-design/compatible": "^1.0.8",
     "@meepshop/context": "^0.80.187",
     "@meepshop/date-picker": "^0.80.190",
     "@meepshop/form-address-cascader": "^0.80.190",

@@ -1,12 +1,10 @@
 // typescript import
-import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
-
+import { FormInstance } from 'antd';
 import { UseComputeOrderType } from '../hooks/useComputeOrder';
 
 // import
 import React, { useContext } from 'react';
-import { Form } from '@ant-design/compatible';
-import { Cascader, Input } from 'antd';
+import { Cascader, Form, Input } from 'antd';
 import { isAlpha } from 'validator';
 
 import DatePicker from '@meepshop/date-picker';
@@ -36,7 +34,7 @@ import { useInvoiceOptionsFragment } from './gqls/useInvoiceOptions';
 
 // typescript definition
 interface PropsType {
-  form: FormComponentProps['form'];
+  form: FormInstance;
   receiver: receiverLandingPageModuleFragment;
   viewer: receiverUserFragment | null;
   shipment: UseComputeOrderType['shipment'];
@@ -61,7 +59,7 @@ export default React.memo(
     const validateEmail = useValidateEmail(false, true);
 
     const isLogin = viewer?.role === 'SHOPPER';
-    const { getFieldDecorator, getFieldValue } = form;
+    const { getFieldValue } = form;
 
     return (
       <div className={styles.root}>
@@ -70,106 +68,110 @@ export default React.memo(
         </h3>
 
         <div className={styles.nameRoot}>
-          <Item className={styles.formItem}>
-            {getFieldDecorator('name', {
-              validateFirst: true,
-              rules: [
-                {
-                  required: true,
-                  message: t('is-required'),
+          <Item
+            className={styles.formItem}
+            name={['name']}
+            validateFirst
+            rules={[
+              {
+                required: true,
+                message: t('is-required'),
+              },
+              {
+                validator: (_rule, value, callback) => {
+                  if (!value) callback();
+
+                  switch (shipment?.template) {
+                    case 'ezship':
+                      return callback(
+                        value.length > 60
+                          ? t('name-too-long', { amount: 60 })
+                          : undefined,
+                      );
+
+                    case 'gmo':
+                      return callback(
+                        value.length > 10
+                          ? t('name-too-long', { amount: 10 })
+                          : undefined,
+                      );
+
+                    case 'allpay':
+                      return callback(
+                        /[\^'`!@#%&*+$~\-(){}\\"<>|_[\] ,，\d]/.test(value) ||
+                          (isAlpha(value)
+                            ? value.length > 10 || value.length < 4
+                            : value.length > 5 || value.length < 2)
+                          ? t('allpay-name-too-long')
+                          : undefined,
+                      );
+
+                    default:
+                      return callback();
+                  }
                 },
-                {
-                  validator: (_rule, value, callback) => {
-                    if (!value) callback();
-
-                    switch (shipment?.template) {
-                      case 'ezship':
-                        return callback(
-                          value.length > 60
-                            ? t('name-too-long', { amount: 60 })
-                            : undefined,
-                        );
-
-                      case 'gmo':
-                        return callback(
-                          value.length > 10
-                            ? t('name-too-long', { amount: 10 })
-                            : undefined,
-                        );
-
-                      case 'allpay':
-                        return callback(
-                          /[\^'`!@#%&*+$~\-(){}\\"<>|_[\] ,，\d]/.test(value) ||
-                            (isAlpha(value)
-                              ? value.length > 10 || value.length < 4
-                              : value.length > 5 || value.length < 2)
-                            ? t('allpay-name-too-long')
-                            : undefined,
-                        );
-
-                      default:
-                        return callback();
-                    }
-                  },
-                },
-              ],
-            })(<Input placeholder={t('receiver')} />)}
+              },
+            ]}
+          >
+            <Input placeholder={t('receiver')} />
           </Item>
 
           {!gender ? null : (
-            <Item className={`${styles.formItem} ${styles.gender}`}>
-              {getFieldDecorator('gender', {
-                rules: [
-                  {
-                    required: gender.required,
-                    message: t('is-required'),
-                  },
-                ],
-              })(
-                <Select placeholder={t('gender')}>
-                  {['male', 'female'].map((name, index) => (
-                    <Option key={name} value={index}>
-                      {t(name)}
-                    </Option>
-                  ))}
-                </Select>,
-              )}
+            <Item
+              className={`${styles.formItem} ${styles.gender}`}
+              name={['gender']}
+              rules={[
+                {
+                  required: gender.required,
+                  message: t('is-required'),
+                },
+              ]}
+            >
+              <Select placeholder={t('gender')}>
+                {['male', 'female'].map((name, index) => (
+                  <Option key={name} value={index}>
+                    {t(name)}
+                  </Option>
+                ))}
+              </Select>
             </Item>
           )}
         </div>
 
         {!birthday ? null : (
-          <Item className={styles.formItem}>
-            {getFieldDecorator('birthday', {
-              rules: [
-                {
-                  required: birthday.required,
-                  message: t('is-required'),
-                },
-              ],
-            })(
-              <DatePicker
-                className={styles.birthday}
-                placeholder={t('birthday')}
-              />,
-            )}
+          <Item
+            className={styles.formItem}
+            name={['birthday']}
+            rules={[
+              {
+                required: birthday.required,
+                message: t('is-required'),
+              },
+            ]}
+          >
+            <DatePicker
+              className={styles.birthday}
+              placeholder={t('birthday')}
+            />
           </Item>
         )}
 
         {isLogin ? null : (
-          <Item className={styles.formItem}>
-            {getFieldDecorator('userEmail', {
-              rules: [
-                {
-                  required: true,
-                  message: t('is-required'),
-                },
-                {
-                  validator: validateEmail.validator,
-                },
-              ],
-              normalize: validateEmail.normalize,
-            })(<Input placeholder={t('email')} />)}
+          <Item
+            className={styles.formItem}
+            name={['userEmail']}
+            normalize={validateEmail.normalize}
+            rules={[
+              {
+                required: true,
+                message: t('is-required'),
+              },
+              {
+                validator: validateEmail.validator,
+              },
+            ]}
+          >
+            <Input placeholder={t('email')} />
           </Item>
         )}
 
@@ -179,34 +181,30 @@ export default React.memo(
             getFieldValue('mobile'),
             t('validate-mobile:taiwan-mobile-ten-digits'),
           )}
+          name={['mobile']}
+          validateTrigger="onBlur"
+          rules={[
+            {
+              required: true,
+              message: t('is-required'),
+            },
+            {
+              validator: validateMobile.rule(
+                {
+                  notMobile: t('validate-mobile:not-phone'),
+                  notNumber: t('validate-mobile:not-number'),
+                },
+                shipment?.template,
+              ),
+            },
+          ]}
         >
-          {getFieldDecorator('mobile', {
-            validateTrigger: 'onBlur',
-            rules: [
-              {
-                required: true,
-                message: t('is-required'),
-              },
-              {
-                validator: validateMobile.rule(
-                  {
-                    notMobile: t('validate-mobile:not-phone'),
-                    notNumber: t('validate-mobile:not-number'),
-                  },
-                  shipment?.template,
-                ),
-              },
-            ],
-          })(
-            <Input
-              placeholder={t('mobile')}
-              maxLength={
-                ['allpay', 'ezship'].includes(shipment?.template || '')
-                  ? 10
-                  : 20
-              }
-            />,
-          )}
+          <Input
+            placeholder={t('mobile')}
+            maxLength={
+              ['allpay', 'ezship'].includes(shipment?.template || '') ? 10 : 20
+            }
+          />
         </Item>
 
         {['allpay', 'ezship', 'presco'].includes(shipment?.template || '') ? (
@@ -215,52 +213,54 @@ export default React.memo(
           </Item>
         ) : (
           <>
-            <Item className={styles.formItem}>
-              {getFieldDecorator('addressAndZipCode', {
-                rules: [
-                  {
-                    validator: validateAddressCascader(t('is-required')),
-                  },
-                ],
-              })(
-                <AddressCascader
-                  placeholder={[t('area'), t('postal-code')]}
-                  shippableCountries={shippableCountries}
-                />,
-              )}
+            <Item
+              className={styles.formItem}
+              name={['addressAndZipCode']}
+              rules={[
+                {
+                  validator: validateAddressCascader(t('is-required')),
+                },
+              ]}
+            >
+              <AddressCascader
+                placeholder={[t('area'), t('postal-code')]}
+                shippableCountries={shippableCountries}
+              />
             </Item>
 
-            <Item className={styles.formItem}>
-              {getFieldDecorator('street', {
-                validateTrigger: 'onBlur',
-                rules: [
-                  {
-                    required: true,
-                    message: t('is-required'),
-                  },
-                ],
-              })(<Input placeholder={t('address')} />)}
+            <Item
+              className={styles.formItem}
+              name={['street']}
+              validateTrigger="onBlur"
+              rules={[
+                {
+                  required: true,
+                  message: t('is-required'),
+                },
+              ]}
+            >
+              <Input placeholder={t('address')} />
             </Item>
           </>
         )}
 
         {!invoice ? null : (
           <>
-            <Item className={styles.formItem}>
-              {getFieldDecorator('invoice', {
-                rules: [
-                  {
-                    required: true,
-                    message: t('is-required'),
-                  },
-                ],
-              })(
-                <Cascader
-                  placeholder={t('invoice')}
-                  options={invoiceOptions}
-                  allowClear={false}
-                />,
-              )}
+            <Item
+              className={styles.formItem}
+              name={['invoice']}
+              rules={[
+                {
+                  required: true,
+                  message: t('is-required'),
+                },
+              ]}
+            >
+              <Cascader
+                placeholder={t('invoice')}
+                options={invoiceOptions}
+                allowClear={false}
+              />
             </Item>
 
             <Invoice form={form} />
@@ -268,15 +268,17 @@ export default React.memo(
         )}
 
         {!note ? null : (
-          <Item className={styles.formItem}>
-            {getFieldDecorator('notes', {
-              rules: [
-                {
-                  required: note.required,
-                  message: t('is-required'),
-                },
-              ],
-            })(<TextArea placeholder={t('notes')} rows={4} />)}
+          <Item
+            className={styles.formItem}
+            name={['notes']}
+            rules={[
+              {
+                required: note.required,
+                message: t('is-required'),
+              },
+            ]}
+          >
+            <TextArea placeholder={t('notes')} rows={4} />
           </Item>
         )}
 

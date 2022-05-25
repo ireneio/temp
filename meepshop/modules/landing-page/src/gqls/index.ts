@@ -11,8 +11,10 @@ import {
 } from '../receiver/gqls';
 import { usePaymentsLandingPageModuleFragment } from './usePayments';
 import { useShipmentsLandingPageModuleFragment } from './useShipments';
-import { useSubmitLandingPageModuleFragment } from './useSubmit';
-
+import {
+  useFinishLandingUserFragment,
+  useFinishLandingPageModuleFragment,
+} from './useFinish';
 // definition
 export const landingPageLandingPageModuleFragment = gql`
   fragment landingPageLandingPageModuleFragment on LandingPageModule {
@@ -33,20 +35,22 @@ export const landingPageLandingPageModuleFragment = gql`
     viewer {
       id
       ...receiverUserFragment
+      ...useFinishLandingUserFragment
     }
 
     ...shoppingLandingPageModuleFragment
     ...receiverLandingPageModuleFragment
     ...usePaymentsLandingPageModuleFragment
     ...useShipmentsLandingPageModuleFragment
-    ...useSubmitLandingPageModuleFragment
+    ...useFinishLandingPageModuleFragment
   }
 
+  ${useFinishLandingUserFragment}
   ${localeFragment}
   ${shoppingLandingPageModuleFragment}
   ${receiverUserFragment}
   ${receiverLandingPageModuleFragment}
   ${usePaymentsLandingPageModuleFragment}
   ${useShipmentsLandingPageModuleFragment}
-  ${useSubmitLandingPageModuleFragment}
+  ${useFinishLandingPageModuleFragment}
 `;

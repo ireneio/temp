@@ -1,6 +1,6 @@
 // typescript import
 import { MutationFunction } from '@apollo/client';
-import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
+import { FormInstance } from 'antd';
 
 // import
 import { useCallback, useEffect } from 'react';
@@ -42,7 +42,7 @@ export interface UseComputeOrderType {
 
 // definition
 export default (
-  form: FormComponentProps['form'],
+  form: FormInstance,
   storePayments: usePaymentsLandingPageModuleFragmentStorePayments[],
   storeShipments: useShipmentsLandingPageModuleFragmentStoreShipments[],
   productId: string | null | undefined,
