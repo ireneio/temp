@@ -12,7 +12,7 @@
     "@meepshop/form-address-cascader": "^0.80.190",
     "@meepshop/form-convenience-store-map": "^0.80.190",
     "@meepshop/form-data": "^0.80.187",
-    "@meepshop/gmo-credit-card-form": "^0.80.190",
+    "@meepshop/form-gmo-credit-card": "^0.80.190",
     "@meepshop/hooks": "^0.80.190",
     "@meepshop/icons": "^0.80.187",
     "@meepshop/images": "^0.80.187",

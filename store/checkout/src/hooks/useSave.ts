@@ -5,7 +5,7 @@ import { notification, Modal } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
-import { formatGmo } from '@meepshop/gmo-credit-card-form';
+import { formatGmo } from '@meepshop/form-gmo-credit-card';
 import FormDataContext from '@meepshop/form-data';
 import filter from '@meepshop/utils/lib/filter';
 

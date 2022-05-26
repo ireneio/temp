@@ -10,7 +10,7 @@ import { useRouter } from '@meepshop/link';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
 import CheckoutWrapper from '@store/checkout';
-import { formatGmo } from '@meepshop/gmo-credit-card-form';
+import { formatGmo } from '@meepshop/form-gmo-credit-card';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import { ISLOGIN_TYPE } from 'constants/propTypes';
