@@ -12,7 +12,7 @@ import {
 } from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
 import LoginModal from '@meepshop/login-modal';
-import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
+import GmoCreditCardForm from '@meepshop/form-gmo-credit-card';
 import filter from '@meepshop/utils/lib/filter';
 
 // Use to copy mixin.less

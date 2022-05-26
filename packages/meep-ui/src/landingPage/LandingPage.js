@@ -8,7 +8,7 @@ import { AdTrack as AdTrackContext } from '@meepshop/context';
 import useFinish from '@meepshop/landing-page/lib/hooks/useFinish';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
-import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
+import GmoCreditCardForm from '@meepshop/form-gmo-credit-card';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {

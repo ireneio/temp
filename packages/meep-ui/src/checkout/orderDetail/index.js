@@ -12,7 +12,7 @@ import { withTranslation } from '@meepshop/locales';
 import { useRouter } from '@meepshop/link';
 import withContext from '@store/utils/lib/withContext';
 import withHook from '@store/utils/lib/withHook';
-import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
+import GmoCreditCardForm from '@meepshop/form-gmo-credit-card';
 import { ErrorMultiIcon } from '@meepshop/icons';
 import { log } from '@meepshop/logger/lib/gqls/log';
 import CheckoutSteps from '@store/checkout-steps';

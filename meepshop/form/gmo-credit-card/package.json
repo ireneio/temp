@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@meepshop/gmo-credit-card-form",
+  "name": "@meepshop/form-gmo-credit-card",
   "description": "GMO credit card form for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",

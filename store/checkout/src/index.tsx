@@ -7,7 +7,7 @@ import transformColor from 'color';
 
 import filter from '@meepshop/utils/lib/filter';
 import { useTranslation } from '@meepshop/locales';
-import GmoCreditCardForm from '@meepshop/gmo-credit-card-form';
+import GmoCreditCardForm from '@meepshop/form-gmo-credit-card';
 import {
   Currency as CurrencyContext,
   Colors as ColorsContext,
