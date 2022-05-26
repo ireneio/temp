@@ -138,9 +138,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "types codegen all && tsc && lint-staged",
-      "post-merge": "make babel-all",
-      "post-checkout": "make babel-all OPTION=\"--exclude-dependents --since master\""
+      "pre-commit": "types codegen all && tsc && lint-staged"
     }
   },
   "resolutions": {
