@@ -4,14 +4,14 @@
   "description": "Address cascader for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.190",
+  "version": "0.80.192",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.187",
-    "@meepshop/locales": "^0.80.190",
-    "@meepshop/select": "^0.80.187",
-    "@meepshop/utils": "^0.80.187",
+    "@meepshop/context": "^0.80.192",
+    "@meepshop/locales": "^0.80.192",
+    "@meepshop/select": "^0.80.192",
+    "@meepshop/utils": "^0.80.192",
     "color": "^3.0.0"
   },
   "keywords": ["address", "cascader", "form", "meepshop"]
