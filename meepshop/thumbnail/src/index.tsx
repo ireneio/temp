@@ -55,7 +55,7 @@ export default ({
       <style
         dangerouslySetInnerHTML={{
           __html: `
-              .${styles.wrapper} {
+              .${styles.wrapper}${className ? `.${className}` : ''} {
                 width: ${size}px;
                 height: ${size}px;
                 border-radius: ${disableRound ? 0 : 5}px;
@@ -76,7 +76,7 @@ export default ({
               }
 
               @media (max-width: ${styles.screenSmMax}) {
-                .${styles.wrapper} {
+                .${styles.wrapper}${className ? `.${className}` : ''} {
                   width: ${mobileSize}px;
                   height: ${mobileSize}px;
                 }

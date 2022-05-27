@@ -34,17 +34,32 @@ import {
 } from './gqls/useAddToCart';
 
 // typescript definition
+export type UpdateFormProductsType = (product: {
+  type: 'UPSELLING_PRODUCT';
+  productId: string;
+  variantId: string;
+  quantity: number;
+}) => void;
+
 interface PropsType {
   viewer: productUserFragmentType;
   product: productProductFragmentType;
   cartItems: (productLineItemFragmentType | null)[];
   isOverLimit: boolean;
   isWithProducts: boolean;
+  updateFormProducts: UpdateFormProductsType;
 }
 
 // definition
 export default React.memo(
-  ({ viewer, product, cartItems, isOverLimit, isWithProducts }: PropsType) => {
+  ({
+    viewer,
+    product,
+    cartItems,
+    isOverLimit,
+    isWithProducts,
+    updateFormProducts,
+  }: PropsType) => {
     const { t } = useTranslation('cart');
     const getLanguage = useGetLanguage();
     const colors = useContext(ColorsContext);
@@ -56,6 +71,7 @@ export default React.memo(
       cartItems: filter(useAddToCartLineItemFragment, cartItems),
       setVisible,
       isOverLimit,
+      updateFormProducts,
     });
     const variant = product.variants?.[0];
     const title = getLanguage(product.title);
@@ -116,6 +132,7 @@ export default React.memo(
             onCancel={() => setVisible(false)}
             isOverLimit={isOverLimit}
             isWithProducts={isWithProducts}
+            updateFormProducts={updateFormProducts}
           />
         )}
 

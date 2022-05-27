@@ -10,19 +10,37 @@ import {
 // definition
 export default (
   lineItems: useShipmentsFragmentType[],
-): useShipmentsFragmentApplicableShipmentsType[] =>
-  useMemo(
+): {
+  shipments: useShipmentsFragmentApplicableShipmentsType[];
+  requireDesignatedShipment: boolean;
+} => ({
+  shipments: useMemo(
     () =>
-      lineItems.reduce(
-        (result, item) =>
-          (item.applicableShipments || []).reduce(
+      lineItems
+        .reduce((result, { type, applicableShipments }) => {
+          if (type === 'GIFT') return result;
+
+          return (applicableShipments || []).reduce(
             (shipments, shipment) =>
               shipments.find(({ id }) => id === shipment.id)
                 ? shipments
                 : [...shipments, shipment],
             result,
-          ),
-        [],
+          );
+        }, [])
+        .sort(
+          (a, b) =>
+            new Date(b.createdAt || '').getTime() -
+            new Date(a.createdAt || '').getTime(),
+        ),
+    [lineItems],
+  ),
+  requireDesignatedShipment: useMemo(
+    () =>
+      lineItems.some(
+        ({ type, requireDesignatedShipment }) =>
+          type !== 'GIFT' && requireDesignatedShipment,
       ),
     [lineItems],
-  );
+  ),
+});

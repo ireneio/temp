@@ -18,12 +18,13 @@ interface OptionsType extends CheckboxOptionType {
 
 interface PropsType extends RadioProps {
   options: OptionsType[];
+  tip?: React.ReactElement | null;
 }
 
 // definition
 const { Group } = Radio;
 
-export default React.memo(({ value, options, ...props }: PropsType) => {
+export default React.memo(({ value, options, tip, ...props }: PropsType) => {
   const colors = useContext(ColorsContext);
 
   return (
@@ -40,6 +41,8 @@ export default React.memo(({ value, options, ...props }: PropsType) => {
             >
               {description}
             </pre>
+
+            {!tip || value !== optionProps.value ? null : tip}
           </div>
         ))}
       </Group>

@@ -12,6 +12,7 @@ export const priceComputedCartFragment = gql`
       id
       quantity
       unitPrice
+      variantId
       ...computedCartLineItemFragment
     }
     productsDiscount @client {

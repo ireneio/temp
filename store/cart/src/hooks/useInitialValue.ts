@@ -1,58 +1,27 @@
-// typescript import
-import { FormInstance } from 'antd/lib/form';
-
 // import
-import { useMemo, useEffect } from 'react';
-import { usePrevious } from 'react-use';
-import { areEqual } from 'fbjs';
+import { useMemo } from 'react';
 
 // graphql typescript
-import { useInitialValueFragment as useInitialValueFragmentType } from '@meepshop/types/gqls/store';
+import { computedCart_computedCart_ComputedCart_computedLineItems as ComputedLineItemsType } from '@meepshop/types/gqls/store';
 
 // typescript definition
 export interface ValuesType {
-  products: {
-    type: string;
-    status: string;
-    quantity: number;
-    productId: string;
-    variantId: string;
-  }[];
-  shipmentId: string;
+  products: ComputedLineItemsType[];
+  shipmentId: string | null;
 }
 
 // definition
-export default (
-  { getFieldValue, resetFields }: FormInstance,
-  lineItems: useInitialValueFragmentType[],
-): ValuesType => {
-  const initialValues = useMemo(() => {
-    const shipment =
-      typeof window !== 'undefined'
-        ? window.sessionStorage.getItem('shipment')
-        : null;
-    const shipmentId = shipment ? JSON.parse(shipment).id : null;
-
-    return {
-      products: lineItems.map(
-        ({ quantity, status, type, productId, variantId }) => ({
-          type,
-          status,
-          quantity: quantity || 0,
-          productId,
-          variantId,
-        }),
-      ),
-      shipmentId: getFieldValue(['shipmentId']) || shipmentId,
-    };
-  }, [lineItems, getFieldValue]);
-  const prevInitialValues = usePrevious(initialValues);
-
-  useEffect(() => {
-    if (!areEqual(prevInitialValues, initialValues)) {
-      resetFields();
-    }
-  }, [resetFields, initialValues, prevInitialValues]);
-
-  return initialValues;
-};
+export default (): ValuesType =>
+  useMemo(
+    () => ({
+      products:
+        typeof window !== 'undefined'
+          ? JSON.parse(window.sessionStorage.getItem('products') || '[]')
+          : [],
+      shipmentId:
+        typeof window !== 'undefined'
+          ? JSON.parse(window.sessionStorage.getItem('shipment') || '{}').id
+          : null,
+    }),
+    [],
+  );

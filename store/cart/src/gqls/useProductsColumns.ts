@@ -51,6 +51,12 @@ export const useProductsColumnsLineItemFragment = gql`
         ...localeFragment
       }
     }
+    applicableShipments {
+      id
+      title {
+        ...localeFragment
+      }
+    }
     ...productAmountSelectorLineItemFragment
   }
 

@@ -8,6 +8,8 @@ import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 export const useShipmentsFragment = gql`
   fragment useShipmentsFragment on LineItem {
     id
+    type
+    requireDesignatedShipment
     applicableShipments {
       id
       template
@@ -17,6 +19,7 @@ export const useShipmentsFragment = gql`
       description {
         ...localeFragment
       }
+      createdAt
     }
   }
 

@@ -17,6 +17,7 @@ import { alertFragment } from '@meepshop/types/gqls/store';
 interface PropsType {
   activeUpsellingArea: alertFragment | null;
   products: ValuesType['products'];
+  shipmentId: ValuesType['shipmentId'];
   hasErrors: boolean;
 }
 
@@ -24,29 +25,38 @@ interface PropsType {
 const { Item: FormItem } = Form;
 
 export default React.memo(
-  ({ activeUpsellingArea, products, hasErrors }: PropsType) => {
+  ({ activeUpsellingArea, products, shipmentId, hasErrors }: PropsType) => {
     const { t } = useTranslation('cart');
+    const availableItems = useMemo(
+      () =>
+        !shipmentId
+          ? products
+          : products.filter(
+              item =>
+                (item.applicableShipments || []).findIndex(
+                  shipment => shipment.id === shipmentId,
+                ) > -1,
+            ),
+      [products, shipmentId],
+    );
     const { isUpsellingOverLimit, isOnlyUpselling } = useMemo(
       () => ({
-        isUpsellingOverLimit: products.some(
+        isUpsellingOverLimit: availableItems.some(
           item => item?.status === 'EXCEED_LIMIT_PER_ORDER',
         ),
         isOnlyUpselling:
-          products.length > 0 &&
-          !products.some(item => item?.type === 'PRODUCT'),
+          availableItems.length > 0 &&
+          !availableItems.some(item => item?.type === 'PRODUCT'),
       }),
-      [products],
+      [availableItems],
     );
-    const validator = useCallback(
-      async (_, lineItems: ValuesType['products']) => {
-        if (
-          lineItems.length > 0 &&
-          !lineItems.some(item => item?.type === 'PRODUCT')
-        )
-          throw new Error('isOnlyUpselling');
-      },
-      [],
-    );
+    const validator = useCallback(async () => {
+      if (
+        availableItems.length > 0 &&
+        !availableItems.some(item => item?.type === 'PRODUCT')
+      )
+        throw new Error('isOnlyUpselling');
+    }, [availableItems]);
 
     if (!activeUpsellingArea) return null;
 

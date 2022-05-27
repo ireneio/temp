@@ -16,8 +16,28 @@
   }
 }
 
+.error {
+  color: #bd373c;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+
+  span:first-child {
+    font-size: 14px;
+    margin-right: 5px;
+  }
+
+  &.fix {
+    color: inherit;
+  }
+}
+
 .amountError {
   font-size: 14px;
   line-height: 22px;
   color: #bd373c;
+
+  &.fix {
+    color: inherit;
+  }
 }

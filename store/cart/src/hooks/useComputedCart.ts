@@ -2,8 +2,10 @@
 import { QueryResult } from '@apollo/client';
 import { FormInstance } from 'antd/lib/form';
 
+import { ValuesType } from './useInitialValue';
+
 // import
-import { useMemo } from 'react';
+import { useMemo, useEffect, useRef } from 'react';
 import { useQuery } from '@apollo/client';
 
 import { useCart } from '@meepshop/hooks';
@@ -32,22 +34,46 @@ export interface ReturnType
   computedCart: computedCartComputedCartComputedCartType | null;
 }
 
+interface PropsType {
+  form: FormInstance;
+  viewer: useComputedCartFragmentType | null;
+  initialValue: ValuesType;
+}
+
 // definition
-export default (
-  { getFieldValue }: FormInstance,
-  viewer: useComputedCartFragmentType | null,
-): ReturnType => {
+export default ({
+  form: { getFieldValue, setFieldsValue },
+  viewer,
+  initialValue,
+}: PropsType): ReturnType => {
+  const itialized = useRef(false);
+  const products: ValuesType['products'] = getFieldValue(['products']);
+  const shipmentId: ValuesType['shipmentId'] = getFieldValue(['shipmentId']);
   const { loading, cartItems } = useCart(filter(useCartFragment, viewer));
-  const cartItemsInput = useMemo(
-    () => cartItems.map(({ __typename: _, ...cartItem }) => cartItem),
-    [cartItems],
+  const computedCartItemInput = useMemo(
+    () =>
+      cartItems.map(({ __typename: _, ...cartItem }) =>
+        !itialized.current && !initialValue.products.length
+          ? { ...cartItem, isSelectedForCompute: true }
+          : {
+              ...cartItem,
+              isSelectedForCompute: products?.some(product => {
+                const isChecked = product.variantId === cartItem.variantId;
+
+                if (!shipmentId) return isChecked;
+
+                return (
+                  isChecked &&
+                  product?.applicableShipments?.find(
+                    shipment => shipment.id === shipmentId,
+                  )
+                );
+              }),
+            },
+      ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [cartItems, initialValue.products.length, products],
   );
-  const shipment =
-    typeof window !== 'undefined'
-      ? window.sessionStorage.getItem('shipment')
-      : null;
-  const shipmentId =
-    getFieldValue('shipmentId') || (shipment ? JSON.parse(shipment).id : null);
   const { data, refetch, variables, loading: computedCartLoading } = useQuery<
     computedCartType,
     computedCartVariablesType
@@ -55,12 +81,47 @@ export default (
     fetchPolicy: 'cache-and-network',
     variables: {
       input: {
-        cartItems: cartItemsInput,
+        cartItems: computedCartItemInput,
         shipmentId,
       },
     },
     skip: loading,
+    onCompleted: newData => {
+      if (newData.computedCart.__typename !== 'ComputedCart') return;
+
+      const { computedLineItems } = newData.computedCart;
+      const hasDesignatedShipment = computedLineItems.some(
+        ({ type, requireDesignatedShipment }) =>
+          type !== 'GIFT' && requireDesignatedShipment,
+      );
+
+      setFieldsValue({
+        products: hasDesignatedShipment
+          ? products.map(product => ({
+              ...product,
+              ...computedLineItems.find(
+                item => item.variantId === product.variantId,
+              ),
+            }))
+          : computedLineItems.filter(item => item.type !== 'GIFT'),
+      });
+    },
   });
+
+  useEffect(() => {
+    if (
+      !itialized.current &&
+      !initialValue.products.length &&
+      data?.computedCart.__typename === 'ComputedCart'
+    ) {
+      setFieldsValue({
+        products: data.computedCart.computedLineItems.filter(
+          item => item.type !== 'GIFT',
+        ),
+      });
+      itialized.current = true;
+    }
+  }, [data, initialValue, setFieldsValue]);
 
   return {
     loading: computedCartLoading || loading,

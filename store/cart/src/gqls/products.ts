@@ -20,6 +20,9 @@ export const productsUserFragment = gql`
 export const productsLineItemFragment = gql`
   fragment productsLineItemFragment on LineItem {
     id
+    applicableShipments {
+      id
+    }
     ...useProductsColumnsLineItemFragment
   }
 

@@ -1,3 +1,6 @@
+// typescript import
+import { UpdateFormProductsType } from '../Product';
+
 // import
 import { useMemo, useCallback, useContext } from 'react';
 
@@ -23,6 +26,7 @@ interface PropsType {
   cartItems: (useAddToCartLineItemFragmentType | null)[];
   setVisible: (visible: boolean) => void;
   isOverLimit: boolean;
+  updateFormProducts: UpdateFormProductsType;
 }
 
 interface ReturnType {
@@ -37,6 +41,7 @@ export default ({
   cartItems,
   setVisible,
   isOverLimit,
+  updateFormProducts,
 }: PropsType): ReturnType => {
   const { addToCart } = useContext(AdTrackContext);
   const { upsertCart } = useCart(filter(useCartFragment, viewer));
@@ -75,14 +80,20 @@ export default ({
         setVisible(true);
       } else {
         const variant = product.variants?.[0];
+
         // SHOULD_NOT_BE_NULL
+        updateFormProducts({
+          type: 'UPSELLING_PRODUCT',
+          productId: product.id || 'null-id',
+          variantId: variant?.id || 'null-id',
+          quantity: variant?.currentMinPurchasableQty || 0,
+        });
         upsertCart({
           __typename: 'CartItem' as const,
           productId: product.id || 'null-id',
           quantity: variant?.currentMinPurchasableQty || 0,
           variantId: variant?.id || 'null-id',
         });
-
         addToCart({
           eventName: 'upselling',
           id: product.id || 'null-id',
@@ -103,6 +114,7 @@ export default ({
       upsertCart,
       addToCart,
       getLanguage,
+      updateFormProducts,
     ]),
   };
 };

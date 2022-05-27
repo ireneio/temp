@@ -58,5 +58,13 @@
     "error-shipment-1": "Bạn có",
     "error-shipment-2": "Mục vật phẩm không thể được kiểm tra",
     "check": "Xem không thể vận chuyển sản phẩm"
-  }
+  },
+  "unvailable": "Các sản phẩm sau đây không hỗ trợ phương pháp vận chuyển hiện tại.",
+  "applicableShipments": "Phương pháp vận chuyển áp dụng:",
+  "applicableShipments-mobile": "Phương pháp vận chuyển áp dụng",
+  "expand": "Mở rộng",
+  "collapse": "Sụp đổ",
+  "you-have": "Bạn có",
+  "unvailable-tip": "Sản phẩm vật phẩm không thể được sử dụng để kiểm tra phương thức thanh toán",
+  "check-unvailable": "Kiểm tra sản phẩm không thể vận chuyển"
 }

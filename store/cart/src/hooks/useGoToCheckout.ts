@@ -26,20 +26,25 @@ export default (
       .then(() => {
         const shipment = getFieldValue(['shipment']);
         if (shipment)
-          window.sessionStorage.setItem(
-            'shipment',
-            JSON.stringify(getFieldValue(['shipment'])),
-          );
+          window.sessionStorage.setItem('shipment', JSON.stringify(shipment));
 
         const products = (getFieldValue([
           'products',
-        ]) as ValuesType['products']).reduce((value, product) => {
-          if (product.type === 'GIFT') return value;
+        ]) as ValuesType['products']).reduce(
+          (
+            value,
+            { type, quantity, productId, variantId, applicableShipments },
+          ) => {
+            if (
+              type === 'GIFT' ||
+              !applicableShipments?.find(({ id }) => id === shipment.id)
+            )
+              return value;
 
-          const { productId, variantId, quantity } = product;
-
-          return [...value, { productId, variantId, quantity }];
-        }, []);
+            return [...value, { quantity, productId, variantId }];
+          },
+          [],
+        );
         window.sessionStorage.setItem('products', JSON.stringify(products));
 
         push('/checkout');

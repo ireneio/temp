@@ -1,9 +1,11 @@
 // typescript import
 import IconType from '@ant-design/icons/lib/components/Icon';
 
+import { ValuesType } from '../hooks/useInitialValue';
+
 // import
 import React, { useContext } from 'react';
-import { Carousel } from 'antd';
+import { Carousel, Form } from 'antd';
 import transformColor from 'color';
 
 import {
@@ -43,6 +45,8 @@ interface PropsType {
 }
 
 // definition
+const { Item: FormItem } = Form;
+
 // FIXME: react-slick bug : unknown props `currentSlide`, `slideCount`
 // https://github.com/akiran/react-slick/pull/1453
 const CustomArrow = ({
@@ -78,41 +82,63 @@ export default React.memo(({ viewer, cartItems }: PropsType) => {
 
   return (
     <>
-      <div className={styles.root}>
-        <div className={styles.title}>
-          {activeUpsellingArea.title || t('upselling.title')}
-        </div>
+      <FormItem dependencies={['products']} noStyle>
+        {({ getFieldValue, setFieldsValue }) => (
+          <div className={styles.root}>
+            <div className={styles.title}>
+              {activeUpsellingArea.title || t('upselling.title')}
+            </div>
 
-        {isWithProducts ? null : (
-          <div className={styles.hint}>{t('upselling.hint')}</div>
+            {isWithProducts ? null : (
+              <div className={styles.hint}>{t('upselling.hint')}</div>
+            )}
+
+            <Carousel
+              className={styles.products}
+              slidesToShow={5}
+              slidesToScroll={5}
+              variableWidth
+              infinite={false}
+              dots={false}
+              arrows
+              nextArrow={<CustomArrow Icon={RightArrowCircleIcon} />}
+              prevArrow={<CustomArrow Icon={LeftArrowCircleIcon} />}
+              responsive={RESPONSIVE}
+            >
+              {products.map(product =>
+                !product ? null : (
+                  <Product
+                    key={product.id}
+                    viewer={filter(productUserFragment, viewer)}
+                    product={filter(productProductFragment, product)}
+                    cartItems={filter(productLineItemFragment, cartItems)}
+                    isOverLimit={isOverLimit}
+                    isWithProducts={isWithProducts}
+                    updateFormProducts={item => {
+                      const items: ValuesType['products'] = getFieldValue([
+                        'products',
+                      ]);
+
+                      if (
+                        items.find(
+                          ({ type, variantId }) =>
+                            `${type}-${variantId}` ===
+                            `${item.type}-${item.variantId}`,
+                        )
+                      )
+                        return;
+
+                      setFieldsValue({
+                        products: [...items, item],
+                      });
+                    }}
+                  />
+                ),
+              )}
+            </Carousel>
+          </div>
         )}
-
-        <Carousel
-          className={styles.products}
-          slidesToShow={5}
-          slidesToScroll={5}
-          variableWidth
-          infinite={false}
-          dots={false}
-          arrows
-          nextArrow={<CustomArrow Icon={RightArrowCircleIcon} />}
-          prevArrow={<CustomArrow Icon={LeftArrowCircleIcon} />}
-          responsive={RESPONSIVE}
-        >
-          {products.map(product =>
-            !product ? null : (
-              <Product
-                key={product.id}
-                viewer={filter(productUserFragment, viewer)}
-                product={filter(productProductFragment, product)}
-                cartItems={filter(productLineItemFragment, cartItems)}
-                isOverLimit={isOverLimit}
-                isWithProducts={isWithProducts}
-              />
-            ),
-          )}
-        </Carousel>
-      </div>
+      </FormItem>
 
       <style
         dangerouslySetInnerHTML={{

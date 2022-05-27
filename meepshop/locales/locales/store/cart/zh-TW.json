@@ -58,5 +58,13 @@
     "error-shipment-1":"您有",
     "error-shipment-2":"項商品無法使用此運送方式結帳",
     "check": "查看無法運送商品"
-  }
+  },
+  "unvailable": "以下商品不支援目前的運送方式，此次未結帳的商品將為您保留在購物車中",
+  "applicableShipments": "適用運送方式：",
+  "applicableShipments-mobile": "商品適用運送方式",
+  "expand": "展開",
+  "collapse": "收合",
+  "you-have": "您有",
+  "unvailable-tip": "項商品無法使用此運送方式結帳",
+  "check-unvailable": "查看無法運送商品"
 }

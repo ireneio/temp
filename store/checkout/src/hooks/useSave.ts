@@ -38,7 +38,6 @@ export interface ValuesType {
   viewerPassword: string;
   isPayment: boolean;
   products: {
-    type: string;
     productId: string;
     variantId: string;
     quantity: number;

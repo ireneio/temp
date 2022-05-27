@@ -43,7 +43,6 @@ import {
   upsellingLineItemFragment,
 } from './upselling/gqls';
 import { useComputedCartFragment } from './gqls/useComputedCart';
-import { useInitialValueFragment } from './gqls/useInitialValue';
 import { useShipmentsFragment } from './gqls/useShipments';
 
 // definition
@@ -57,19 +56,17 @@ const Cart: NextPage = React.memo(() => {
     fetchPolicy: 'cache-and-network',
   });
   const viewer = data?.viewer || null;
-  const { computedCart, refetch, variables, loading } = useComputedCart(
+  const initialValue = useInitialValue();
+  const { computedCart, refetch, variables, loading } = useComputedCart({
     form,
-    filter(useComputedCartFragment, viewer),
-  );
+    viewer: filter(useComputedCartFragment, viewer),
+    initialValue,
+  });
   const computedLineItems = computedCart?.computedLineItems || [];
-  const shipments = useShipments(
+  const { shipments, requireDesignatedShipment } = useShipments(
     filter(useShipmentsFragment, computedLineItems),
   );
   const goToCheckout = useGoToCheckout(form, loading);
-  const initialValue = useInitialValue(
-    form,
-    filter(useInitialValueFragment, computedLineItems),
-  );
   const valuesChange = useValuesChange({ refetch, variables });
   const isEmpty = computedCart && !computedLineItems.length;
 
@@ -98,6 +95,7 @@ const Cart: NextPage = React.memo(() => {
                     viewer?.store?.activeUpsellingArea || null,
                   )}
                   products={getFieldValue(['products'])}
+                  shipmentId={getFieldValue(['shipmentId'])}
                   hasErrors={getFieldsError().some(
                     ({ errors }) => errors.length,
                   )}
@@ -106,13 +104,22 @@ const Cart: NextPage = React.memo(() => {
             </FormItem>
 
             <FormItem shouldUpdate noStyle>
-              {({ getFieldsError }) => (
+              {({ getFieldsError, getFieldValue, setFieldsValue }) => (
                 <Products
                   viewer={filter(productsUserFragment, viewer)}
-                  products={filter(productsLineItemFragment, computedLineItems)}
+                  computedLineItems={filter(
+                    productsLineItemFragment,
+                    computedLineItems,
+                  )}
+                  products={getFieldValue(['products'])}
+                  shipmentId={getFieldValue(['shipmentId'])}
                   hasErrors={getFieldsError().some(
                     ({ errors }) => errors.length,
                   )}
+                  requireDesignatedShipment={requireDesignatedShipment}
+                  setFieldsValue={setFieldsValue}
+                  refetch={refetch}
+                  variables={variables}
                 />
               )}
             </FormItem>
@@ -131,12 +138,30 @@ const Cart: NextPage = React.memo(() => {
       {isEmpty ? null : (
         <>
           <div className={styles.shipment} id="shipment">
-            <Shipment loading={loading} shipments={shipments} />
+            <FormItem shouldUpdate noStyle>
+              {({ getFieldValue }) => (
+                <Shipment
+                  loading={loading}
+                  shipments={shipments}
+                  requireDesignatedShipment={requireDesignatedShipment}
+                  unvailableItemsLenth={
+                    computedLineItems.filter(
+                      item =>
+                        !item.applicableShipments?.find(
+                          shipment =>
+                            shipment.id === getFieldValue('shipmentId'),
+                        ),
+                    ).length
+                  }
+                />
+              )}
+            </FormItem>
 
             <Price
               computedCart={filter(priceComputedCartFragment, computedCart)}
               showFooter={showFooter}
               setShowFooter={setShowFooter}
+              variables={variables}
             />
           </div>
 

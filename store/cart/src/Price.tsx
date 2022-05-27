@@ -1,3 +1,6 @@
+// typescript import
+import { ReturnType } from './hooks/useComputedCart';
+
 // import
 import React, { useContext, useMemo } from 'react';
 import { Skeleton, Form } from 'antd';
@@ -19,7 +22,7 @@ import {
 } from '@meepshop/types/gqls/store';
 
 // typescript definition
-interface PropsType {
+interface PropsType extends Pick<ReturnType, 'variables'> {
   computedCart:
     | (Omit<priceComputedCartFragmentType, 'computedLineItems'> & {
         computedLineItems: priceComputedCartFragmentComputedLineItemsType[];
@@ -33,19 +36,27 @@ interface PropsType {
 const { Item: FormItem } = Form;
 
 export default React.memo(
-  ({ computedCart, showFooter, setShowFooter }: PropsType) => {
+  ({ computedCart, showFooter, setShowFooter, variables }: PropsType) => {
     const colors = useContext(ColorsContext);
     const { c } = useContext(CurrencyContext);
     const { t } = useTranslation('cart');
     const getLanguage = useGetLanguage();
     const productTotal = useMemo(
       () =>
-        (computedCart?.computedLineItems || []).reduce(
-          (total, { quantity, unitPrice }) =>
-            total + (quantity || 0) * (unitPrice || 0),
+        (
+          variables?.input.cartItems.filter(
+            cartItem => cartItem.isSelectedForCompute,
+          ) || []
+        ).reduce(
+          (total, { quantity, variantId }) =>
+            total +
+            (quantity || 0) *
+              (computedCart?.computedLineItems.find(
+                cartItem => cartItem.variantId === variantId,
+              )?.unitPrice || 0),
           0,
         ),
-      [computedCart],
+      [variables, computedCart],
     );
     const discountTotal = useMemo(
       () =>

@@ -1,3 +1,6 @@
+// typescript import
+import { UpdateFormProductsType } from '../Product';
+
 // import
 import { useMemo, useCallback, useContext } from 'react';
 
@@ -26,6 +29,7 @@ interface PropsType {
   onCancel: () => void;
   isOverLimit: boolean;
   isWithProducts: boolean;
+  updateFormProducts: UpdateFormProductsType;
 }
 
 interface ReturnType {
@@ -42,6 +46,7 @@ export default ({
   onCancel,
   isOverLimit,
   isWithProducts,
+  updateFormProducts,
 }: PropsType): ReturnType => {
   const { addToCart } = useContext(AdTrackContext);
   const { upsertCart } = useCart(filter(useCartFragment, viewer || null));
@@ -68,14 +73,20 @@ export default ({
     status,
     addToCart: useCallback(async () => {
       if (status !== 'AVAILABLE') return;
+
       // SHOULD_NOT_BE_NULL
+      updateFormProducts({
+        type: 'UPSELLING_PRODUCT',
+        productId: product.id || 'null-id',
+        quantity: variant?.currentMinPurchasableQty || 0,
+        variantId: variant?.id || 'null-id',
+      });
       await upsertCart({
         __typename: 'CartItem' as const,
         productId: product.id || 'null-id',
         quantity: variant?.currentMinPurchasableQty || 0,
         variantId: variant?.id || 'null-id',
       });
-
       addToCart({
         eventName: 'upselling',
         id: product.id || 'null-id',
@@ -96,6 +107,7 @@ export default ({
       status,
       upsertCart,
       variant,
+      updateFormProducts,
     ]),
   };
 };

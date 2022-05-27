@@ -58,5 +58,13 @@
     "error-shipment-1": "あなたが持っている",
     "error-shipment-2": "項目項目は確認できません",
     "check": "製品を出荷できないビュー"
-  }
+  },
+  "unvailable": "次の製品は、現在の輸送方法をサポートしていません。",
+  "applicableShipments": "適用可能な輸送方法：",
+  "applicableShipments-mobile": "適用可能な輸送方法",
+  "expand": "拡大",
+  "collapse": "崩壊",
+  "you-have": "あなたが持っている",
+  "unvailable-tip": "アイテム製品を使用してチェックアウト方法を確認することはできません",
+  "check-unvailable": "輸送できない製品を確認してください"
 }

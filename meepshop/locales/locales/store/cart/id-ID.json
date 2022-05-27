@@ -58,5 +58,13 @@
     "error-shipment-1": "Kamu punya",
     "error-shipment-2": "Item item tidak dapat diperiksa",
     "check": "Lihat Tidak Dapat Mengirim Produk"
-  }
+  },
+  "unvailable": "Produk -produk berikut tidak mendukung metode transportasi saat ini.",
+  "applicableShipments": "Metode transportasi yang berlaku:",
+  "applicableShipments-mobile": "Metode transportasi yang berlaku",
+  "expand": "Mengembangkan",
+  "collapse": "Jatuh",
+  "you-have": "Kamu punya",
+  "unvailable-tip": "Produk item tidak dapat digunakan untuk memeriksa metode checkout",
+  "check-unvailable": "Periksa produk yang tidak dapat diangkut"
 }

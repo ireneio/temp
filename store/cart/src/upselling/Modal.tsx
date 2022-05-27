@@ -1,3 +1,6 @@
+// typescript import
+import { UpdateFormProductsType } from './Product';
+
 // import
 import React, { useContext } from 'react';
 import { Modal } from 'antd';
@@ -54,6 +57,7 @@ interface PropsType {
   onCancel: () => void;
   isOverLimit: boolean;
   isWithProducts: boolean;
+  updateFormProducts: UpdateFormProductsType;
 }
 
 // definition
@@ -65,6 +69,7 @@ export default React.memo(
     onCancel,
     isOverLimit,
     isWithProducts,
+    updateFormProducts,
   }: PropsType) => {
     const { t } = useTranslation('cart');
     const getLanguage = useGetLanguage();
@@ -81,6 +86,7 @@ export default React.memo(
       onCancel,
       isOverLimit,
       isWithProducts,
+      updateFormProducts,
     });
     const { draftText, galleries, videoLink } = product;
     const hasCollections =

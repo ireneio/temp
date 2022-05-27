@@ -58,5 +58,13 @@
     "error-shipment-1": "Vous avez",
     "error-shipment-2": "Les articles d'article ne peuvent pas être vérifiés",
     "check": "Afficher Impossible d'expédier des produits"
-  }
+  },
+  "unvailable": "Les produits suivants ne soutiennent pas la méthode de transport actuelle.",
+  "applicableShipments": "Méthode de transport applicable:",
+  "applicableShipments-mobile": "Méthode de transport applicable",
+  "expand": "Étendre",
+  "collapse": "S'effondrer",
+  "you-have": "Vous avez",
+  "unvailable-tip": "Le produit d'article ne peut pas être utilisé pour vérifier la méthode de paiement",
+  "check-unvailable": "Vérifiez le produit qui ne peut pas être transporté"
 }

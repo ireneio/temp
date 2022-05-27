@@ -26,6 +26,9 @@ export const productAmountSelectorLineItemFragment = gql`
       id
       ...productAmountSelectorFragment
     }
+    applicableShipments {
+      id
+    }
   }
 
   ${productAmountSelectorFragment}
