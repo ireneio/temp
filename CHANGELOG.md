@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 0.80.192 (2022-05-27)
+
+#### :boom: Breaking Change
+
+- [#2291](https://github.com/meepshop/meep-lerna/pull/2291) 內部開單 - 套用 選擇運送方式 (指定物流) ([@piovischioh](https://github.com/piovischioh))
+
+#### :rocket: New Feature
+
+- [#2291](https://github.com/meepshop/meep-lerna/pull/2291) 內部開單 - 套用 選擇運送方式 (指定物流) ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- Other
+  - [#2309](https://github.com/meepshop/meep-lerna/pull/2309) 內部開單 - 移除 post-merge/post-checkout hooks ([@piovischioh](https://github.com/piovischioh))
+  - [#2294](https://github.com/meepshop/meep-lerna/pull/2294) 內部開單 - @meepshop/landing-page antd form 升級 ([@danielyeh-meepshop](https://github.com/danielyeh-meepshop))
+- `meep-ui`
+  - [#2307](https://github.com/meepshop/meep-lerna/pull/2307) 內部開單 - 將 @meepshop/gmo-credit-card-form 改為 @meepshop/form-gmo-credit-card & 移致 /form 底下 ([@danielyeh-meepshop](https://github.com/danielyeh-meepshop))
+
+#### Committers: 2
+
+- [@danielyeh-meepshop](https://github.com/danielyeh-meepshop)
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.191 (2022-05-25)
 
 #### :rocket: New Feature
