@@ -92,7 +92,7 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
       backTo="/products"
       link={{
         text: t('instruction'),
-        url: '',
+        url: 'https://supportmeepshop.com/knowledgebase/商品指定物流',
       }}
     >
       <Table<useColumnsProductFragmentType>
