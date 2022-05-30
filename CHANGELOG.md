@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.193 (2022-05-30)
+
+#### :bug: Bug Fix
+
+- [#2306](https://github.com/meepshop/meep-lerna/pull/2306) 【BUG】後台 - 商品指定物流，補上教學說明網址 ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- `meep-ui`
+  - [#2237](https://github.com/meepshop/meep-lerna/pull/2237) 內部開單 - 移除舊的 checkout ([@happycat6323](https://github.com/happycat6323))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.192 (2022-05-27)
 
 #### :boom: Breaking Change
