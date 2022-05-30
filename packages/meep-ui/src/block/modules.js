@@ -23,7 +23,6 @@ import imagetext from 'imageText';
 import productInfo from 'productInfo';
 import productList from 'productList';
 import activity from 'activity';
-import checkout from 'checkout';
 import menu, { handleModuleData } from 'menu';
 
 import handleProductQA from './utils/handleProductQA';
@@ -53,7 +52,6 @@ export default {
   'product-video': productVideo,
   'draft-text': draftText,
   activity,
-  checkout,
   menu: handleModuleData(menu),
   viewTracking,
   'smart-conversion': smartConversion,
