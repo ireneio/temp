@@ -10,8 +10,8 @@
   "dependencies": {
     "@meepshop/apollo": "^0.80.192",
     "@meepshop/context": "^0.80.192",
-    "@meepshop/date-picker": "^0.80.192",
     "@meepshop/form-address-cascader": "^0.80.192",
+    "@meepshop/form-date-picker": "^0.80.192",
     "@meepshop/locales": "^0.80.192",
     "@meepshop/select": "^0.80.192",
     "@store/utils": "^0.80.192",

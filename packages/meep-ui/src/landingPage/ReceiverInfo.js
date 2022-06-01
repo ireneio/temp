@@ -4,7 +4,7 @@ import radium from 'radium';
 import { Form, Input } from 'antd';
 import { isAlpha, isLength } from 'validator';
 
-import DatePicker from '@meepshop/date-picker';
+import DatePicker from '@meepshop/form-date-picker';
 import { withTranslation } from '@meepshop/locales';
 import LoginModal from '@meepshop/login-modal';
 import Select, { Option } from '@meepshop/select';

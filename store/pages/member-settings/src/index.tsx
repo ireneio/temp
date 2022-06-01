@@ -11,7 +11,7 @@ import Select, { Option } from '@meepshop/select';
 import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/form-address-cascader';
-import DatePicker from '@meepshop/date-picker';
+import DatePicker from '@meepshop/form-date-picker';
 
 import RemoveCreditCardInfo from './RemoveCreditCardInfo';
 import useValidator from './hooks/useValidator';

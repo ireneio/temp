@@ -7,7 +7,7 @@ import React, { useContext } from 'react';
 import { Cascader, Form, Input } from 'antd';
 import { isAlpha } from 'validator';
 
-import DatePicker from '@meepshop/date-picker';
+import DatePicker from '@meepshop/form-date-picker';
 import validateMobile from '@meepshop/utils/lib/validate/mobile';
 import { useTranslation } from '@meepshop/locales';
 import Select, { Option } from '@meepshop/select';

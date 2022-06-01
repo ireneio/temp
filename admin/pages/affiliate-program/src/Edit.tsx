@@ -19,7 +19,7 @@ import Link from '@meepshop/link';
 import filter from '@meepshop/utils/lib/filter';
 import Header from '@admin/header';
 import Tooltip from '@admin/tooltip';
-import DatePicker from '@meepshop/date-picker';
+import DatePicker from '@meepshop/form-date-picker';
 
 import Products from './Products';
 import PromoCodeInput from './PromoCodeInput';

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@meepshop/date-picker",
+  "name": "@meepshop/form-date-picker",
   "description": "Meepshop datepicker module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
