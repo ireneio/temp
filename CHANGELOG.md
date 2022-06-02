@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.194 (2022-06-02)
+
+#### :rocket: New Feature
+
+- [#2316](https://github.com/meepshop/meep-lerna/pull/2316) Revert 【功能】新公司成立，帳單交易費串接 - 前端 ([@meepshop-bot](https://github.com/meepshop-bot))
+
+#### :house: Internal
+
+- `meep-ui`
+  - [#2314](https://github.com/meepshop/meep-lerna/pull/2314) 內部開單 - @meepshop/date-picker 改為 @meepshop/form-date-picker ([@danielyeh-meepshop](https://github.com/danielyeh-meepshop))
+
+#### Committers: 2
+
+- [@danielyeh-meepshop](https://github.com/danielyeh-meepshop)
+- [@meepshop-bot](https://github.com/meepshop-bot)
+
 ## 0.80.193 (2022-05-30)
 
 #### :bug: Bug Fix
