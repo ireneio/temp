@@ -10,15 +10,11 @@ import useCreditCard from './hooks/useCreditCard';
 import styles from './styles/creditCard.less';
 
 // graphql typescript
-import {
-  StoreBillPayeeEnum,
-  paymentStoreBillingSettingFragment_payment_creditCard as paymentStoreBillingSettingFragmentPaymentCreditCard,
-} from '@meepshop/types/gqls/admin';
+import { paymentStoreBillingSettingFragment_payment_creditCard as paymentStoreBillingSettingFragmentPaymentCreditCard } from '@meepshop/types/gqls/admin';
 
 // typescript definition
 interface PropsType {
   billId: string;
-  payee: StoreBillPayeeEnum | null;
   creditCard: paymentStoreBillingSettingFragmentPaymentCreditCard | null;
   setPaymentType: (value?: 'ATM') => void;
 }
@@ -27,7 +23,7 @@ interface PropsType {
 const { Group } = Radio;
 
 export default React.memo(
-  ({ billId, creditCard, payee, setPaymentType }: PropsType) => {
+  ({ billId, creditCard, setPaymentType }: PropsType) => {
     const { t } = useTranslation('bill');
     const [paymentMethod, setPaymentMethod] = useState(
       !creditCard ? 'prime' : 'cardId',
@@ -84,7 +80,6 @@ export default React.memo(
             {paymentMethod !== 'prime' ? null : (
               <TapPay
                 setPrime={value => setPrime(value)}
-                payee={payee}
                 hasErrors={hasErrors}
                 loading={loading}
                 success={success}

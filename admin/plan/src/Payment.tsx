@@ -14,9 +14,6 @@ import useQuotation from './hooks/useQuotation';
 import usePayment from './hooks/usePayment';
 import styles from './styles/payment.less';
 
-// graphql typescript
-import { StoreBillPayeeEnum } from '@meepshop/types/gqls/admin';
-
 // typescript definition
 interface PropsType {
   plan: SelectedPlanType;
@@ -84,7 +81,6 @@ export default React.memo(({ plan, setPlan }: PropsType) => {
 
           <TapPay
             setPrime={value => setPrime(value)}
-            payee={'MEEPSHOP_TW' as StoreBillPayeeEnum}
             hasErrors={hasErrors}
             loading={loading}
             success={success}

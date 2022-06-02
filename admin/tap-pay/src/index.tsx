@@ -13,13 +13,9 @@ import useTapPay from './hooks/useTapPay';
 
 import styles from './styles/index.less';
 
-// graphql typescript
-import { StoreBillPayeeEnum } from '@meepshop/types/gqls/admin';
-
 // typescript definition
 interface PropsType {
   setPrime: (prime: string | null) => void;
-  payee: StoreBillPayeeEnum | null;
   hasErrors: boolean;
   loading: boolean;
   success: {
@@ -29,9 +25,9 @@ interface PropsType {
 
 // definition
 export default React.memo(
-  ({ setPrime, hasErrors, loading, success, payee }: PropsType) => {
+  ({ setPrime, hasErrors, loading, success }: PropsType) => {
     const { t } = useTranslation('tap-pay');
-    const { onLoad, errors } = useTapPay(setPrime, hasErrors, payee);
+    const { onLoad, errors } = useTapPay(setPrime, hasErrors);
 
     return (
       <>
@@ -41,7 +37,6 @@ export default React.memo(
             strategy="lazyOnload"
             src="https://js.tappaysdk.com/tpdirect/v5.1.0"
             onLoad={onLoad}
-            key={payee}
           />
 
           {['number', 'expiry', 'ccv'].map(key => (
