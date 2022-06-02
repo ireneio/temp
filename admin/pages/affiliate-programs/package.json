@@ -4,11 +4,11 @@
   "description": "Affiliate programs page for admin",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.192",
+  "version": "0.80.194",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/date-picker": "^0.80.192",
+    "@admin/date-picker": "^0.80.194",
     "@admin/header": "^0.80.192",
     "@admin/table": "^0.80.192",
     "@admin/tooltip": "^0.80.187",

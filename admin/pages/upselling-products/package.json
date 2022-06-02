@@ -4,11 +4,11 @@
   "description": "upselling products",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.192",
+  "version": "0.80.194",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/date-picker": "^0.80.192",
+    "@admin/date-picker": "^0.80.194",
     "@admin/message": "^0.80.187",
     "@admin/products-selector": "^0.80.192",
     "@admin/thumbnail": "^0.80.192",

@@ -4,11 +4,11 @@
   "description": "admin orders",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.192",
+  "version": "0.80.194",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/date-picker": "^0.80.192",
+    "@admin/date-picker": "^0.80.194",
     "@admin/orders-export": "^0.80.192",
     "@admin/table": "^0.80.192",
     "@admin/utils": "^0.80.192",
