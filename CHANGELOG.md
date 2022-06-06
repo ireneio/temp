@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.80.195 (2022-06-06)
+
+#### :rocket: New Feature
+
+- Other
+  - [#2303](https://github.com/meepshop/meep-lerna/pull/2303) 【優化】分潤/查看已選商品：顯示商品編號 ([@danielyeh-meepshop](https://github.com/danielyeh-meepshop))
+- `meep-ui`
+  - [#2311](https://github.com/meepshop/meep-lerna/pull/2311) 【優化】更改「meepShop MAX 極速開店」文字 ([@danielyeh-meepshop](https://github.com/danielyeh-meepshop))
+
+#### Committers: 1
+
+- [@danielyeh-meepshop](https://github.com/danielyeh-meepshop)
+
 ## 0.80.194 (2022-06-02)
 
 #### :rocket: New Feature
