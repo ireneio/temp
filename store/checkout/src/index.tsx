@@ -191,7 +191,7 @@ export default React.memo(() => {
 
         {data?.viewer?.store?.hiddingMeepshopMaxInFooterEnabled ? null : (
           <Link href="https://meepshop.cc/8h1kG" target="_blank">
-            <div className={styles.footer}>meepShop MAX 極速開店</div>
+            <div className={styles.footer}>meepShop 極速開店</div>
           </Link>
         )}
       </Form>

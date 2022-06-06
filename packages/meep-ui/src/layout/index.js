@@ -110,7 +110,7 @@ export default class Layout extends React.PureComponent {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    meepShop MAX 極速開店
+                    meepShop 極速開店
                   </a>
                 </footer>
               )}
