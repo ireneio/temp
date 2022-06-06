@@ -26,5 +26,6 @@
   "off": "Sin abrir",
   "stock": "en stock",
   "price": "Vender",
-  "no-stock": "Cero inventario"
+  "no-stock": "Cero inventario",
+  "sku": "Número de producto"
 }

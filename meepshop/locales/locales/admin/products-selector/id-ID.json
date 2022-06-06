@@ -26,5 +26,6 @@
   "off": "Belum dibuka",
   "stock": "persediaan",
   "price": "Menjual",
-  "no-stock": "nol inventaris"
+  "no-stock": "nol inventaris",
+  "sku": "Nomor produk"
 }

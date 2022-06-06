@@ -26,5 +26,6 @@
   "off": "Unopened",
   "stock": "in stock",
   "price": "Sell",
-  "no-stock": "zero inventory"
+  "no-stock": "zero inventory",
+  "sku": "Product Number"
 }

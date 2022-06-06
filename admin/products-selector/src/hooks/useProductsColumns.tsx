@@ -117,6 +117,20 @@ export default ({
                 ) => (!value ? t('no-stock') : format(value)),
               },
             ]),
+        ...(step === 'sort'
+          ? []
+          : [
+              {
+                dataIndex: ['variants', '0', 'sku'],
+                title: t('sku'),
+                minWidth: 54,
+                align: 'left' as const,
+                className: styles.productId,
+                render: (
+                  value: useProductsColumnsFragmentVariantsType['sku'],
+                ) => value || '',
+              },
+            ]),
         {
           dataIndex: ['variants', '0', 'retailPrice'],
           title: t('price'),
