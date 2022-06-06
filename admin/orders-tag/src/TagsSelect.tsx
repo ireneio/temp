@@ -4,10 +4,11 @@ import { AutoCompleteProps } from 'antd/lib/auto-complete';
 import { RefetchType } from './constants';
 
 // import
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AutoComplete, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
+import useDebouncedValue from './hooks/useDebouncedValue';
 
 import styles from './styles/tagsSelect.less';
 
@@ -23,18 +24,23 @@ export default React.memo(
   ({ orderIds, refetch, onSelect, ...props }: PropsType) => {
     const { t } = useTranslation('orders-tag');
 
+    const [searchValue, setSearchValue] = useState('');
+    const debouncedValue = useDebouncedValue<string>(searchValue, 166);
+
+    useEffect(() => {
+      refetch({
+        input: {
+          orderIds,
+          searchTerm: debouncedValue,
+        },
+      });
+    }, [debouncedValue, orderIds, refetch]);
+
     return (
       <AutoComplete
         {...props}
         className={styles.autoComplete}
-        onSearch={searchTerm =>
-          refetch({
-            input: {
-              orderIds,
-              searchTerm,
-            },
-          })
-        }
+        onSearch={searchTerm => setSearchValue(searchTerm)}
         onSelect={onSelect}
         placeholder={t('placeholder')}
       >

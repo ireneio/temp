@@ -2,10 +2,8 @@
 import { TagType, OptionType, RefetchType } from '../constants';
 
 // import
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { useQuery } from '@apollo/client';
-import { areEqual } from 'fbjs';
-import { usePrevious } from 'react-use';
 
 // graphql typescript
 import {
@@ -37,7 +35,7 @@ export default (
     },
   );
   const [tags, setTags] = useState<TagType[]>([]);
-  const previousTags = usePrevious(tags);
+  const isInitialDataLoaded = useRef(false);
 
   useEffect(() => {
     const mutualOrderTagsForOrders = (
@@ -47,11 +45,11 @@ export default (
         !tag ? results : [...results, { id: tag.id, value: tag.name }],
       [] as TagType[],
     );
-
-    if (!areEqual(previousTags, mutualOrderTagsForOrders)) {
+    if (data && !isInitialDataLoaded.current) {
       setTags(mutualOrderTagsForOrders);
+      isInitialDataLoaded.current = true;
     }
-  }, [data, previousTags]);
+  }, [data]);
 
   return {
     refetch,

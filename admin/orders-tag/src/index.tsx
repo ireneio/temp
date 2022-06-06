@@ -1,5 +1,5 @@
 // import
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Drawer, Button, Tag, Form } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
@@ -32,6 +32,15 @@ export default React.memo(({ orderIds, onClose }: PropsType) => {
     saveTags,
   } = useTagsHooks(orderIds, resetFields, onClose);
   const validator = useValidator(tags);
+
+  const handleSelect = useCallback(() => {
+    submit();
+    refetch({
+      input: {
+        orderIds,
+      },
+    });
+  }, [orderIds, refetch, submit]);
 
   return (
     <Drawer
@@ -70,7 +79,7 @@ export default React.memo(({ orderIds, onClose }: PropsType) => {
           <TagsSelect
             orderIds={orderIds}
             options={options}
-            onSelect={submit}
+            onSelect={handleSelect}
             refetch={refetch}
           />
         </FormItem>
