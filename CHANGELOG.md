@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.196 (2022-06-06)
+
+#### :bug: Bug Fix
+
+- [#2296](https://github.com/meepshop/meep-lerna/pull/2296) 【BUG】後台 - 選取訂單 - 設定＆移除多個標籤異常 ([@danielyeh-meepshop](https://github.com/danielyeh-meepshop))
+
+#### Committers: 1
+
+- [@danielyeh-meepshop](https://github.com/danielyeh-meepshop)
+
 ## 0.80.195 (2022-06-06)
 
 #### :rocket: New Feature
