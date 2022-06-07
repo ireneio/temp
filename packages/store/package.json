@@ -4,7 +4,7 @@
   "description": "store for meepshop",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.195",
+  "version": "0.80.197",
   "main": "./next.config.js",
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect=localhost:9230' next dev ./src -p 14401",
@@ -26,7 +26,7 @@
     "@meepshop/utils": "^0.80.192",
     "@store/ad-track": "^0.80.195",
     "@store/apollo": "^0.80.195",
-    "@store/cart": "^0.80.195",
+    "@store/cart": "^0.80.197",
     "@store/checkout": "^0.80.195",
     "@store/convenience-store-map": "^0.80.195",
     "@store/currency": "^0.80.195",
