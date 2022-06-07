@@ -8,6 +8,7 @@ spec:
   - admin-gateway
   hosts:
   - "*.new.meepshop.com"
+  - "*.meepshoper.com"
   http:
   - match:
     - uri:
