@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.80.197 (2022-06-07)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#2321](https://github.com/meepshop/meep-lerna/pull/2321) 內部開單 - 修正網址加入購物車部分 ([@Lexiwu](https://github.com/Lexiwu))
+- Other
+  - [#2312](https://github.com/meepshop/meep-lerna/pull/2312) 【BUG】加購區商品 - 加購品彈窗 -「定價」金額顯示錯誤 ([@danielyeh-meepshop](https://github.com/danielyeh-meepshop))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@danielyeh-meepshop](https://github.com/danielyeh-meepshop)
+
 ## 0.80.196 (2022-06-06)
 
 #### :bug: Bug Fix
