@@ -38,7 +38,7 @@ export const modalProductFragment = gql`
     variants {
       id
       sku
-      retailPrice
+      listPrice
       suggestedPrice
       totalPrice
     }

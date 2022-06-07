@@ -119,7 +119,7 @@ export default React.memo(
               <div className={styles.price}>
                 <div>{c(variant?.totalPrice || 0)}</div>
                 <div>{c(variant?.suggestedPrice || 0)}</div>
-                <div>{c(variant?.retailPrice || 0)}</div>
+                <div>{c(variant?.listPrice || 0)}</div>
               </div>
 
               <div className={styles.specs}>
