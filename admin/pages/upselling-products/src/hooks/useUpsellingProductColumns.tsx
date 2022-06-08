@@ -4,7 +4,7 @@ import { ColumnProps } from 'antd/lib/table';
 // import
 import React, { useMemo } from 'react';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Thumbnail from '@admin/thumbnail';
 
 import styles from '../styles/useUpsellingProductColumns.less';
@@ -15,6 +15,7 @@ import { useUpsellingProductColumnsFragment as useUpsellingProductColumnsFragmen
 // definition
 export default (): ColumnProps<useUpsellingProductColumnsFragmentType>[] => {
   const { t } = useTranslation('upselling-products');
+  const getLanguage = useGetLanguage();
 
   return useMemo(
     () => [
@@ -37,7 +38,7 @@ export default (): ColumnProps<useUpsellingProductColumnsFragmentType>[] => {
         },
       },
       {
-        dataIndex: ['title', 'zh_TW'],
+        dataIndex: ['title'],
         title: t('product-title'),
         width: '100%',
         className: styles.title,
@@ -47,7 +48,7 @@ export default (): ColumnProps<useUpsellingProductColumnsFragmentType>[] => {
               {!row.variants?.[0]?.sku ? null : (
                 <div className={styles.sku}>{row.variants[0].sku}</div>
               )}
-              <div>{title}</div>
+              <div>{getLanguage(title)}</div>
             </div>
             {row.status ? null : (
               <span className={styles.status}>{t('off')}</span>
@@ -72,6 +73,6 @@ export default (): ColumnProps<useUpsellingProductColumnsFragmentType>[] => {
         render: value => `$${value}`,
       },
     ],
-    [t],
+    [getLanguage, t],
   );
 };

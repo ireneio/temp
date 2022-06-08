@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 // typescript import
 import { DataProxy, QueryResult } from '@apollo/client';
 
@@ -113,8 +114,10 @@ export default (
                             edges:
                               pageType !== 'home'
                                 ? storeData.viewer.store.homePages.edges
-                                : storeData.viewer.store.homePages.edges.sort(
-                                    ({ node }) => (node.id === id ? -1 : 1),
+                                : [
+                                    ...storeData.viewer.store.homePages.edges,
+                                  ].sort(({ node }) =>
+                                    node.id === id ? -1 : 1,
                                   ),
                           },
                           customPages: {
@@ -122,8 +125,10 @@ export default (
                             edges:
                               pageType !== 'custom'
                                 ? storeData.viewer.store.customPages.edges
-                                : storeData.viewer.store.customPages.edges.sort(
-                                    ({ node }) => (node.id === id ? -1 : 1),
+                                : [
+                                    ...storeData.viewer.store.customPages.edges,
+                                  ].sort(({ node }) =>
+                                    node.id === id ? -1 : 1,
                                   ),
                           },
                           productTemplatePage: {
@@ -132,8 +137,11 @@ export default (
                               pageType !== 'template'
                                 ? storeData.viewer.store.productTemplatePage
                                     .edges
-                                : storeData.viewer.store.productTemplatePage.edges.sort(
-                                    ({ node }) => (node.id === id ? -1 : 1),
+                                : [
+                                    ...storeData.viewer.store
+                                      .productTemplatePage.edges,
+                                  ].sort(({ node }) =>
+                                    node.id === id ? -1 : 1,
                                   ),
                           },
                         },
@@ -144,13 +152,20 @@ export default (
           cache.writeFragment<useRenamePageWithSEOFragmentType>({
             id,
             fragment: useRenamePageWithSEOFragment,
+            fragmentName: 'useRenamePageWithSEOFragment',
             data: {
               __typename: 'Page',
               id,
               title: {
                 __typename: 'Locale',
-                // eslint-disable-next-line @typescript-eslint/camelcase
                 zh_TW: input.title || null,
+                en_US: null,
+                ja_JP: null,
+                vi_VN: null,
+                fr_FR: null,
+                es_ES: null,
+                th_TH: null,
+                id_ID: null,
               },
               path: input.path || null,
               tabTitle: input.tabTitle || null,
@@ -168,6 +183,6 @@ export default (
         },
       });
     },
-    [id, pageType, variables, t, mutation],
+    [mutation, id, pageType, variables, t],
   );
 };

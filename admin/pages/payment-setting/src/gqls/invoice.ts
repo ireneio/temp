@@ -1,6 +1,9 @@
 // import
 import { gql } from '@apollo/client';
 
+// graphql import
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+
 // definition
 export const invoiceFragment = gql`
   fragment invoiceFragment on StoreBillingInvoiceSetting {
@@ -13,23 +16,25 @@ export const invoiceFragment = gql`
       country {
         id
         name {
-          zh_TW
+          ...localeFragment
         }
       }
       city {
         id
         name {
-          zh_TW
+          ...localeFragment
         }
       }
       area {
         id
         name {
-          zh_TW
+          ...localeFragment
         }
       }
       street
       zipCode
     }
   }
+
+  ${localeFragment}
 `;

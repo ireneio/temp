@@ -1,8 +1,6 @@
 // typescript import
 import { NextPage } from 'next';
 
-import { languageType } from '@meepshop/locales';
-
 // import
 import React from 'react';
 import Head from 'next/head';
@@ -10,7 +8,7 @@ import dynamic from 'next/dynamic';
 import { HistoryOutlined } from '@ant-design/icons';
 
 import { meepshopLogo } from '@meepshop/images';
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 
 import NoData from './NoData';
 import Loading from './Loading';
@@ -31,10 +29,8 @@ const Chart = dynamic(() => import('./Chart'), { ssr: false });
 
 const SmartConversionAnalysis: NextPage<PropsType> = React.memo(
   ({ pageId }: PropsType) => {
-    const {
-      t,
-      i18n: { language },
-    } = useTranslation('smart-conversion-analysis');
+    const { t } = useTranslation('smart-conversion-analysis');
+    const getLanguage = useGetLanguage();
     const {
       loading,
       error,
@@ -63,8 +59,7 @@ const SmartConversionAnalysis: NextPage<PropsType> = React.memo(
     if (!lastGAUpdatedAt) return <NoData />;
 
     const isStatusEnd = status === 'END';
-    const pageTitle =
-      page.title?.[language as languageType] || page.title?.zh_TW;
+    const pageTitle = getLanguage(page.title);
 
     return (
       <>

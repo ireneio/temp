@@ -1,14 +1,16 @@
 // import
 import { gql } from '@apollo/client';
 
+// graphql import
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+
 // definition
 export const useItemsStoreBillFragment = gql`
   fragment useItemsStoreBillFragment on StoreBill {
     id
     planItem {
       name {
-        zh_TW
-        en_US
+        ...localeFragment
       }
       month
       fee
@@ -61,4 +63,6 @@ export const useItemsStoreBillFragment = gql`
       fee
     }
   }
+
+  ${localeFragment}
 `;

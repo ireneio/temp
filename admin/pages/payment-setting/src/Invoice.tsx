@@ -6,7 +6,7 @@ import Block from '@admin/block';
 import Tooltip from '@admin/tooltip';
 import country from '@admin/utils/lib/country';
 import AddressCascader from '@meepshop/form-address-cascader';
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 
 import styles from './styles/invoice.less';
 
@@ -28,6 +28,7 @@ const { Group: RadioGroup, Button: RadioButton } = Radio;
 
 export default React.memo(({ accountType, invoice }: PropsType) => {
   const { t } = useTranslation('payment-setting');
+  const getLanguage = useGetLanguage();
 
   return (
     <div className={styles.root}>
@@ -96,8 +97,9 @@ export default React.memo(({ accountType, invoice }: PropsType) => {
                   <Col span={22}>
                     {key === 'addressV2'
                       ? `${invoice?.[key]?.zipCode}
-                      ${invoice?.[key]?.city?.name.zh_TW || ''}${invoice?.[key]
-                          ?.area?.name.zh_TW || ''}${invoice?.[key]?.street}`
+                      ${getLanguage(invoice?.[key]?.city?.name)}
+                      ${getLanguage(invoice?.[key]?.area?.name)}
+                      ${invoice?.[key]?.street}`
                       : invoice?.[key]}
                   </Col>
                 )}

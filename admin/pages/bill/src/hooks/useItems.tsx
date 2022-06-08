@@ -5,7 +5,7 @@ import { DownloadOutlined } from '@ant-design/icons';
 import { format } from 'date-fns';
 
 import Link from '@meepshop/link';
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import setTimezone from '@admin/utils/lib/setTimezone';
 
 import { formatMonth, formatMoney } from '../utils/format';
@@ -25,6 +25,7 @@ export default (
   fee: string;
 }[] => {
   const { t } = useTranslation('bill');
+  const getLanguage = useGetLanguage();
 
   return useMemo(
     () => [
@@ -39,7 +40,7 @@ export default (
         : [
             {
               name: t('plan-item.name'),
-              description: bill.planItem.name?.zh_TW,
+              description: getLanguage(bill.planItem.name),
               month: formatMonth(bill.planItem.month),
               fee:
                 bill.planItem.feeType === 'MONTHLY'
@@ -199,6 +200,6 @@ export default (
         fee: formatMoney(item?.fee),
       })),
     ],
-    [bill, t, timezone],
+    [bill, t, timezone, getLanguage],
   );
 };

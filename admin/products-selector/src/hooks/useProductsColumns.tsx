@@ -9,7 +9,7 @@ import { SortableHandle } from 'react-sortable-hoc';
 import { CloseOutlined } from '@ant-design/icons';
 
 import { DragIcon } from '@meepshop/icons';
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Thumbnail from '@admin/thumbnail';
 
 import styles from '../styles/useProductsColumns.less';
@@ -36,6 +36,7 @@ export default ({
   searchDisabled: boolean;
 }): ColumnProps<useProductsColumnsFragmentType>[] => {
   const { t } = useTranslation('products-selector');
+  const getLanguage = useGetLanguage();
   const remove = useCallback(
     id => setSelected(selected.filter(product => product.id !== id)),
     [selected, setSelected],
@@ -79,11 +80,11 @@ export default ({
           },
         },
         {
-          dataIndex: ['title', 'zh_TW'],
+          dataIndex: ['title'],
           title: t('product-title'),
           width: '100%',
           render: (title, row) => ({
-            children: <div className={styles.title}>{title}</div>,
+            children: <div className={styles.title}>{getLanguage(title)}</div>,
             props: {
               colSpan: row.status ? 2 : 1,
               className: row.status
@@ -168,7 +169,7 @@ export default ({
         },
       },
       {
-        dataIndex: ['title', 'zh_TW'],
+        dataIndex: ['title'],
         width: '100%',
         render: (title, row) => ({
           children: (
@@ -176,7 +177,7 @@ export default ({
               {row.status ? null : (
                 <span className={styles.status}>{t('off')}</span>
               )}
-              <div className={styles.title}>{title}</div>
+              <div className={styles.title}>{getLanguage(title)}</div>
             </div>
           ),
           props: {
@@ -194,5 +195,5 @@ export default ({
         }),
       },
     ];
-  }, [remove, step, searchDisabled, t]);
+  }, [getLanguage, remove, step, searchDisabled, t]);
 };

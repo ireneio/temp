@@ -1,6 +1,9 @@
 // import
 import { gql } from '@apollo/client';
 
+// graphql import
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+
 // definition
 export const useRenamePageWithSEOCache = gql`
   query useRenamePageWithSEOCache(
@@ -67,7 +70,7 @@ export const useRenamePageWithSEOFragment = gql`
   fragment useRenamePageWithSEOFragment on Page {
     id
     title {
-      zh_TW
+      ...localeFragment
     }
     path
     tabTitle
@@ -77,4 +80,6 @@ export const useRenamePageWithSEOFragment = gql`
       image
     }
   }
+
+  ${localeFragment}
 `;
