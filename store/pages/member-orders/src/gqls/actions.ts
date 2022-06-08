@@ -6,9 +6,9 @@ export const actionsFragment = gql`
   fragment actionsFragment on Order {
     id
     status
-    isAvailableForPayLater @client
-    isAvailableForOrderApply @client
-    isOrderApplied @client
+    isAvailableForPayLater
+    isAvailableForOrderApply
+    isOrderApplied
     choosePayLaterWhenPlaced
     paymentInfo {
       status

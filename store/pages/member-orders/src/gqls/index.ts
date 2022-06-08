@@ -1,9 +1,6 @@
 // import
 import { gql } from '@apollo/client';
 
-// graphql import
-import { orderOrderApplyFragment } from '@store/apollo/lib/gqls/order';
-
 import { useColumnsOrdersFragment } from './useColumns';
 
 // definition
@@ -27,16 +24,7 @@ export const getOrders = gql`
         total
       }
     }
-
-    getOrderApplyList(
-      search: { sort: [{ field: "createdAt", order: "desc" }] }
-    ) {
-      data {
-        ...orderOrderApplyFragment
-      }
-    }
   }
 
   ${useColumnsOrdersFragment}
-  ${orderOrderApplyFragment}
 `;
