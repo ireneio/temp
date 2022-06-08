@@ -4,7 +4,7 @@
   "description": "smart-conversion result",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.195",
+  "version": "0.80.198",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
