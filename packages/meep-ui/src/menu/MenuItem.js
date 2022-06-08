@@ -159,12 +159,32 @@ export default class MenuItem extends React.PureComponent {
               ) {
                 updateShopperLanguagePreference(input: $input) {
                   status
-                  updateCache(input: $input) @client
                 }
               }
             `,
             variables: {
               input: { locale: id },
+            },
+            update: (cache, { data: { updateShopperLanguagePreference } }) => {
+              const { user } = this.props;
+
+              if (user?.id || updateShopperLanguagePreference.status !== 'OK')
+                return;
+
+              cache.writeFragment({
+                id: user.id,
+                fragment: gql`
+                  fragment viewerFragment on User {
+                    id
+                    locale
+                  }
+                `,
+                data: {
+                  __typename: 'User',
+                  id: user.id,
+                  locale: id,
+                },
+              });
             },
           });
 

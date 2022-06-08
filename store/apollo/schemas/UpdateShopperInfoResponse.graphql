@@ -1,3 +1,0 @@
-extend type UpdateShopperInfoResponse {
-  updateCache(input: UpdateShopperInfoInput!): Boolean!
-}

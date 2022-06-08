@@ -4,12 +4,18 @@ import { gql } from '@apollo/client';
 import { withCookies } from '@meepshop/cookies';
 
 // definition
+const viewerFragment = gql`
+  fragment viewerFragment on User {
+    id
+    locale
+  }
+`;
+
 const initStoreCookies = gql`
   query initStoreCookies {
     viewer {
       id
       role
-      locale
       store {
         id
         setting {
@@ -17,8 +23,12 @@ const initStoreCookies = gql`
           currency
         }
       }
+
+      ...viewerFragment
     }
   }
+
+  ${viewerFragment}
 `;
 
 const mutation = gql`
@@ -27,7 +37,6 @@ const mutation = gql`
   ) {
     updateShopperLanguagePreference(input: $input) {
       status
-      updateCache(input: $input) @client
     }
   }
 `;
@@ -63,12 +72,31 @@ export const {
 
       if (!isLoading && isLogin && language !== locale) {
         isLoading = true;
+
         await client.mutate({
           mutation,
           variables: {
             input: { locale: language },
           },
+          update: (cache, { data: { updateShopperLanguagePreference } }) => {
+            if (
+              !data?.viewer.id ||
+              updateShopperLanguagePreference.status !== 'OK'
+            )
+              return;
+
+            cache.writeFragment({
+              id: data.viewer.id,
+              fragment: viewerFragment,
+              data: {
+                __typename: 'User',
+                id: data.viewer.id,
+                locale: language,
+              },
+            });
+          },
         });
+
         isLoading = false;
       }
     }
