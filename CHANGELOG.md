@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.198 (2022-06-08)
+
+#### :house: Internal
+
+- [#2145](https://github.com/meepshop/meep-lerna/pull/2145) 內部開單 - @admin 用到 zh_TW 部分改用 localeFragment 以及 getLanguage ([@Lexiwu](https://github.com/Lexiwu))
+- [#2278](https://github.com/meepshop/meep-lerna/pull/2278) 內部開單 - 移除 order 相關 client side schema ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 1
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.197 (2022-06-07)
 
 #### :bug: Bug Fix
