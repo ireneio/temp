@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.80.199 (2022-06-08)
+
+#### :house: Internal
+
+- `meep-ui`, `store`
+  - [#2182](https://github.com/meepshop/meep-lerna/pull/2182) 內部開單 - 移除 UpdateShopperInfoResponse client side schema ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 1
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.198 (2022-06-08)
 
 #### :house: Internal
