@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 0.80.200 (2022-06-10)
+
+#### :rocket: New Feature
+
+- [#2325](https://github.com/meepshop/meep-lerna/pull/2325) 【優化】指定物流清空搜尋與選取商品提示優化（ @BasicFlow2.8 延伸） ([@wendy-meepshop](https://github.com/wendy-meepshop))
+
+#### :bug: Bug Fix
+
+- [#2325](https://github.com/meepshop/meep-lerna/pull/2325) 【優化】指定物流清空搜尋與選取商品提示優化（ @BasicFlow2.8 延伸） ([@wendy-meepshop](https://github.com/wendy-meepshop))
+
+#### :house: Internal
+
+- [#2186](https://github.com/meepshop/meep-lerna/pull/2186) 【重構】訂單/訂單列印：建立小白單 - 統一數網 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@wendy-meepshop](https://github.com/wendy-meepshop)
+
 ## 0.80.199 (2022-06-08)
 
 #### :house: Internal
