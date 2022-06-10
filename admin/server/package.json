@@ -33,6 +33,7 @@
     "@admin/products-designated-shipments": "^0.80.200",
     "@admin/refactor-download-batch-update-products-panel": "^0.80.200",
     "@admin/refactor-newsletter": "^0.80.200",
+    "@admin/refactor-order-export": "^0.1.0",
     "@admin/refactor-order-history-records": "^0.80.200",
     "@admin/refactor-order-qa": "^0.80.200",
     "@admin/refactor-orders-tag": "^0.80.200",

@@ -1,0 +1,22 @@
+{
+  "cancel": "Cancelar",
+  "ok": "Remitir",
+  "title": "Orden de cambio",
+  "selected-orders": "{{selectedorders}}} se ha seleccionado el pedido de la pluma",
+  "success": "Descargar éxito",
+  "export-format": {
+    "title": "Campo de intercambio",
+    "placeholder": "Por favor, seleccione el formato de información que desea intercambiar",
+    "ecpay-order-export-description": "Puede usar este formato para intercambiar información que cumpla con el orden de logística de tecnología verde",
+    "tcat-order-export-description": "Puede usar este formato para hacer que la información de acuerdo con las órdenes de envío de gatos negros"
+  },
+  "fileType": {
+    "title": "Formato de archivo",
+    "placeholder": "Por favor seleccione un formato de archivo",
+    "tcat-order-csv": "El sistema de gato negro solo admite la carga del formato de archivo CSV"
+  },
+  "fileName": {
+    "title": "Nombre de archivo",
+    "placeholder": "Alternativa para completar el nombramiento"
+  }
+}

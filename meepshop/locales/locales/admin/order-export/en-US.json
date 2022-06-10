@@ -1,0 +1,22 @@
+{
+  "cancel": "Cancel",
+  "ok": "Remit",
+  "title": "Exchange order",
+  "selected-orders": "{{selectedorders}}} pen order has been selected",
+  "success": "download successful",
+  "export-format": {
+    "title": "Exchange field",
+    "placeholder": "Please select the information format you want to exchange",
+    "ecpay-order-export-description": "You can use this format to exchange information that meets the Green Technology Logistics Order",
+    "tcat-order-export-description": "You can use this format to make information in accordance with black cat consignment orders"
+  },
+  "fileType": {
+    "title": "Archive format",
+    "placeholder": "Please select a file format",
+    "tcat-order-csv": "Black cat system only supports uploading CSV file format"
+  },
+  "fileName": {
+    "title": "Archive name",
+    "placeholder": "Alternative to fill in naming"
+  }
+}

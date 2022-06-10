@@ -1,0 +1,22 @@
+{
+  "cancel": "Hủy bỏ",
+  "ok": "Nhiệm vụ được giao",
+  "title": "Trao đổi thứ tự",
+  "selected-orders": "{{chọn}}} thứ tự bút đã được chọn",
+  "success": "Tải về thành công",
+  "export-format": {
+    "title": "Trường trao đổi",
+    "placeholder": "Vui lòng chọn định dạng thông tin bạn muốn trao đổi",
+    "ecpay-order-export-description": "Bạn có thể sử dụng định dạng này để trao đổi thông tin đáp ứng thứ tự hậu cần công nghệ xanh",
+    "tcat-order-export-description": "Bạn có thể sử dụng định dạng này để cung cấp thông tin theo đơn đặt hàng ký gửi mèo đen"
+  },
+  "fileType": {
+    "title": "Định dạng lưu trữ",
+    "placeholder": "Vui lòng chọn một định dạng tệp",
+    "tcat-order-csv": "Hệ thống mèo đen chỉ hỗ trợ tải lên định dạng tệp CSV"
+  },
+  "fileName": {
+    "title": "Tên lưu trữ.",
+    "placeholder": "Thay thế để điền vào việc đặt tên"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "cancel": "Membatalkan",
+  "ok": "Mengampuni",
+  "title": "Pertukaran Pertukaran",
+  "selected-orders": "{{terpilih}}} Pesanan PEN telah dipilih",
+  "success": "Unduh berhasil",
+  "export-format": {
+    "title": "Exchange Field.",
+    "placeholder": "Silakan pilih format informasi yang ingin Anda tukarkan",
+    "ecpay-order-export-description": "Anda dapat menggunakan format ini untuk bertukar informasi yang memenuhi pesanan logistik teknologi hijau",
+    "tcat-order-export-description": "Anda dapat menggunakan format ini untuk membuat informasi sesuai dengan pesanan konsinyasi kucing hitam"
+  },
+  "fileType": {
+    "title": "Format arsip.",
+    "placeholder": "Silakan pilih format file",
+    "tcat-order-csv": "Sistem Black Cat hanya mendukung mengunggah format file CSV"
+  },
+  "fileName": {
+    "title": "Nama arsip.",
+    "placeholder": "Alternatif untuk mengisi penamaan"
+  }
+}

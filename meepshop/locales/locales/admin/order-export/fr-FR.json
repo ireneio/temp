@@ -1,0 +1,22 @@
+{
+  "cancel": "Annuler",
+  "ok": "Remettre",
+  "title": "Commande d'échange",
+  "selected-orders": "{{sélectionnée}}} commande de stylo a été sélectionné",
+  "success": "Télécharger le succès",
+  "export-format": {
+    "title": "Champ d'échange",
+    "placeholder": "Veuillez sélectionner le format d'informations que vous souhaitez échanger",
+    "ecpay-order-export-description": "Vous pouvez utiliser ce format pour échanger des informations répondant à l'ordre de logistique de la technologie verte.",
+    "tcat-order-export-description": "Vous pouvez utiliser ce format pour effectuer des informations conformément aux ordres de consignation noire CAT"
+  },
+  "fileType": {
+    "title": "Format d'archive",
+    "placeholder": "Veuillez sélectionner un format de fichier",
+    "tcat-order-csv": "Black Cat System prend uniquement en charge le téléchargement du format de fichier CSV"
+  },
+  "fileName": {
+    "title": "Nom de l'archive",
+    "placeholder": "Alternative à remplir la nommage"
+  }
+}

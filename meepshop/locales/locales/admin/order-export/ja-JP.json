@@ -1,0 +1,22 @@
+{
+  "cancel": "キャンセル",
+  "ok": "rem rem",
+  "title": "交換順序",
+  "selected-orders": "ペンの注文が選択されました",
+  "success": "成功したダウンロード",
+  "export-format": {
+    "title": "交換場",
+    "placeholder": "交換したい情報形式を選択してください",
+    "ecpay-order-export-description": "このフォーマットを使用して、グリーンテクノロジロジスティクス順序を満たす情報を交換できます。",
+    "tcat-order-export-description": "このフォーマットを使用して、Black Catの委託販売契約に従って情報を作成できます。"
+  },
+  "fileType": {
+    "title": "アーカイブフォーマット",
+    "placeholder": "ファイル形式を選択してください",
+    "tcat-order-csv": "Black Cat SystemはCSVファイル形式のアップロードのみをサポートしています"
+  },
+  "fileName": {
+    "title": "アーカイブ名",
+    "placeholder": "命名を埋めるための代替手段"
+  }
+}
