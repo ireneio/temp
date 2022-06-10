@@ -1,0 +1,64 @@
+.root {
+  flex: none;
+  width: auto;
+  text-align: center;
+  align-self: flex-start;
+  color: #000;
+  font-weight: bold;
+
+  &:not(:nth-last-child(1)):not(:nth-last-child(2)) {
+    margin-bottom: 8px;
+  }
+}
+
+.orderNo {
+  margin-bottom: 1mm;
+  text-align: left;
+  font-size: 12pt;
+  line-height: normal;
+}
+
+.tip {
+  font-size: 9pt;
+  line-height: 9pt;
+  margin: 2mm 0;
+}
+
+.content {
+  width: 85mm;
+  height: 85mm;
+  border: 1px solid #000;
+  word-break: break-all;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.recipient {
+  font-size: 24pt;
+  margin-bottom: 1mm;
+  line-height: 24pt;
+}
+
+.shipmentNumber,
+.receiverStoreName {
+  font-size: 16pt;
+  line-height: 16pt;
+  margin-bottom: 1mm;
+}
+
+.barcode {
+  width: 65mm;
+  height: 10mm;
+}
+
+.code {
+  font-size: 10pt;
+  line-height: 10pt;
+  margin-bottom: 2mm;
+  margin-top: 1mm;
+}
+
+.info {
+  font-size: 12pt;
+  line-height: 15pt;
+}

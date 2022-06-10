@@ -104,5 +104,19 @@
                 "5": "包裹務必在當日交給文化物流司機點收。"
             }
         }
+    },
+    "presco":{
+        "tip": "每日 01:00~20:00整點更新統一數網物流單，若缺少部分物流單請等待下回整點更新。",
+        "isCollection-true": "＊商品已付款，請檢視證件＊",
+        "isCollection-false": "＊不用檢視證件＊",
+        "recipient": "提貨人",
+        "shipmentNumber": "配送編號",
+        "receiverStoreName": "門市",
+        "purchase-date": "門市進貨日",
+        "return-date": "門市退貨日",
+        "cname": "廠商名稱",
+        "orderNo": "廠商訂單編號",
+        "phoneNumber": "客服專線",
+        "domain": "網址"
     }
 }

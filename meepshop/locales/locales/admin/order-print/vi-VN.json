@@ -104,5 +104,19 @@
         "5": "Gói phải được bàn giao cho người lái xe Logistics văn hóa cùng ngày."
       }
     }
+  },
+  "presco": {
+    "tip": "Mỗi ngày, 01: 00 ~ 20: 00 Cập nhật số lượng đơn đặt hàng hậu cần thống nhất, nếu thiếu một số đơn đặt hàng hậu cần, vui lòng đợi toàn bộ điểm cập nhật.",
+    "isCollection-true": "* Thanh toán tốt, vui lòng xem lại chứng chỉ *",
+    "isCollection-false": "* Không có lượt xem *",
+    "recipient": "Đón",
+    "shipmentNumber": "Phân phối số",
+    "receiverStoreName": "Cửa hàng",
+    "purchase-date": "Ngày mua hàng",
+    "return-date": "Cửa hàng ngày trở lại",
+    "cname": "Tên thương mại",
+    "orderNo": "Đơn hàng của nhà sản xuất số",
+    "phoneNumber": "Đường dây nóng dịch vụ khách hàng",
+    "domain": "Trang mạng"
   }
 }

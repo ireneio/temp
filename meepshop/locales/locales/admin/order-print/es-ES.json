@@ -104,5 +104,19 @@
         "5": "El paquete debe ser entregado al conductor logístico cultural en el mismo día."
       }
     }
+  },
+  "presco": {
+    "tip": "Todos los días, 01: 00 ~ 20: 00 Actualice el número unificado de órdenes de logística, si la falta de algunas órdenes de logística, espere la actualización del punto.",
+    "isCollection-true": "* Buen pago, por favor revise el certificado *",
+    "isCollection-false": "* No hay vistas *",
+    "recipient": "Recoger",
+    "shipmentNumber": "Número de distribución",
+    "receiverStoreName": "Tienda",
+    "purchase-date": "Tienda Fecha de compra",
+    "return-date": "Tienda Fecha de retorno",
+    "cname": "Nombres comerciales",
+    "orderNo": "Número de orden del fabricante",
+    "phoneNumber": "Línea directa de servicio al cliente",
+    "domain": "Sitio web"
   }
 }

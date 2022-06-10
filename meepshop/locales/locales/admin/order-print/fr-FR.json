@@ -104,5 +104,19 @@
         "5": "Le paquet doit être remis au pilote de la logistique culturelle le même jour."
       }
     }
+  },
+  "presco": {
+    "tip": "Chaque jour, 01h00 ~ 20: 00 Mettre à jour le nombre unifié de commandes logistiques, si le manque de commandes logistiques, veuillez attendre la mise à jour du point entier.",
+    "isCollection-true": "* Bon paiement, veuillez consulter le certificat *",
+    "isCollection-false": "* Pas de vue *",
+    "recipient": "Ramasser",
+    "shipmentNumber": "Numéro de distribution",
+    "receiverStoreName": "Boutique",
+    "purchase-date": "Date d'achat de magasin",
+    "return-date": "Date de retour du magasin",
+    "cname": "Appellations commerciales",
+    "orderNo": "Numéro de commande du fabricant",
+    "phoneNumber": "Service client Hotline",
+    "domain": "Site Internet"
   }
 }

@@ -104,5 +104,19 @@
         "5": "The package must be handed over to the cultural logistics driver at the same day."
       }
     }
+  },
+  "presco": {
+    "tip": "Every day, 01: 00 ~ 20: 00 update unified number of logistics orders, if the lack of some logistics orders, please wait for the whole point update.",
+    "isCollection-true": "* Good payment, please review the certificate *",
+    "isCollection-false": "* No views *",
+    "recipient": "Pickup",
+    "shipmentNumber": "Distribution number",
+    "receiverStoreName": "Store",
+    "purchase-date": "Store purchase date",
+    "return-date": "Store return date",
+    "cname": "Trade Names",
+    "orderNo": "Manufacturer order number",
+    "phoneNumber": "Customer Service Hotline",
+    "domain": "Website"
   }
 }

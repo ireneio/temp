@@ -104,5 +104,19 @@
         "5": "Paket harus diserahkan kepada Driver Logistik Budaya pada hari yang sama."
       }
     }
+  },
+  "presco": {
+    "tip": "Setiap hari, 01: 00 ~ 20: 00 Perbarui jumlah pesanan logistik yang disatukan, jika kurangnya beberapa pesanan logistik, harap tunggu pembaruan seluruh titik.",
+    "isCollection-true": "* Pembayaran yang bagus, silakan tinjau sertifikat *",
+    "isCollection-false": "* Tidak ada tampilan *",
+    "recipient": "Menjemput",
+    "shipmentNumber": "Nomor Distribusi",
+    "receiverStoreName": "Toko",
+    "purchase-date": "Tanggal Pembelian Toko",
+    "return-date": "Toko pengembalian tanggal",
+    "cname": "Nama dagang",
+    "orderNo": "Nomor pesanan pabrikan.",
+    "phoneNumber": "Hotline Layanan Pelanggan",
+    "domain": "Situs web"
   }
 }

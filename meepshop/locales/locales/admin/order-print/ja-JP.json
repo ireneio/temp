@@ -104,5 +104,19 @@
         "5": "パッケージは同じ日に文化物流運転手に引き渡されなければなりません。"
       }
     }
+  },
+  "presco": {
+    "tip": "毎日、01：00~20：00統一された物流注文の統一された数を更新する、一部の物流注文の欠如がある場合は、ポイント全体の更新をお待ちください。",
+    "isCollection-true": "*良い支払い、証明書を確認してください*",
+    "isCollection-false": "*ビューなし*",
+    "recipient": "選び出す",
+    "shipmentNumber": "配給数",
+    "receiverStoreName": "店",
+    "purchase-date": "購入日の店舗購入日",
+    "return-date": "返品日を保存します",
+    "cname": "商品名",
+    "orderNo": "メーカー注文番号",
+    "phoneNumber": "カスタマーサービスホットライン",
+    "domain": "Webサイト"
   }
 }
