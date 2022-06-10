@@ -4,13 +4,13 @@
   "description": "refactor order history records",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.200",
+  "version": "0.80.201",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/hooks": "^0.80.187",
-    "@admin/order-history-records": "^0.80.200",
-    "@meepshop/utils": "^0.80.192"
+    "@admin/hooks": "^0.80.201",
+    "@admin/order-history-records": "^0.80.201",
+    "@meepshop/utils": "^0.80.201"
   },
   "keywords": ["order history records", "refactor"]
 }

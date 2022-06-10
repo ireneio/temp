@@ -4,12 +4,12 @@
   "description": "set orders tag",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.200",
+  "version": "0.80.201",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/message": "^0.80.187",
-    "@meepshop/locales": "^0.80.200"
+    "@admin/message": "^0.80.201",
+    "@meepshop/locales": "^0.80.201"
   },
   "keywords": ["orders", "tags"]
 }

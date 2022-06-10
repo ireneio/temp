@@ -4,11 +4,11 @@
   "description": "Use to manage react hooks",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.187",
+  "version": "0.80.201",
   "main": "./index.js",
   "types": "./src/types.ts",
   "dependencies": {
-    "@admin/message": "^0.80.187",
+    "@admin/message": "^0.80.201",
     "cross-context-events": "^1.0.0"
   },
   "keywords": ["admin", "react hooks"]

@@ -4,11 +4,11 @@
   "description": "Meepshop google map module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.192",
+  "version": "0.80.201",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/utils": "^0.80.192"
+    "@meepshop/utils": "^0.80.201"
   },
   "keywords": ["google map", "meepshop"]
 }
