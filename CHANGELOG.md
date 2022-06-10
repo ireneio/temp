@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.201 (2022-06-10)
+
+#### :rocket: New Feature
+
+- `meep-ui`, `mock-types`
+  - [#2284](https://github.com/meepshop/meep-lerna/pull/2284) 內部開單 - 移除 user 相關 client side schema ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :house: Internal
+
+- [#2210](https://github.com/meepshop/meep-lerna/pull/2210) 【重構】訂單/匯出 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 1
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.200 (2022-06-10)
 
 #### :rocket: New Feature
