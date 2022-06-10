@@ -4,11 +4,11 @@
   "description": "Control the all components in a page",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.195",
+  "version": "0.80.200",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/menu": "^0.80.195",
+    "@meepshop/menu": "^0.80.200",
     "@meepshop/utils": "^0.80.192"
   },
   "keywords": ["meepshop", "page"]

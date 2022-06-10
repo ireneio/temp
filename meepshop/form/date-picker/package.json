@@ -4,11 +4,11 @@
   "description": "Meepshop datepicker module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.195",
+  "version": "0.80.200",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
-    "@meepshop/locales": "^0.80.195",
+    "@meepshop/locales": "^0.80.200",
     "date-fns": "^2.15.0",
     "rc-picker": "^2.5.10"
   },
