@@ -2,8 +2,8 @@
   "title": "商品指定物流",
   "instruction": "教學說明",
   "empty": "無商品資料",
-  "selected": " / 已選取 ",
-  "count": " 筆",
+  "selected": "已選取",
+  "count": "項商品",
   "search": "搜尋商品",
   "change-applicable-shipments": "變更適用物流",
   "set-applicable-shipments": "設定商品適用物流",
@@ -14,7 +14,7 @@
   "cancel": "取消",
   "filter-shipment":"輸入物流名稱搜尋",
   "filter-tag":"輸入標籤名稱搜尋",
-  "reset":"清空搜尋",
+  "reset":"清除篩選條件",
   "DESIGNATED": {
     "title": "指定適用物流",
     "description": "手動選擇商品適用的運送方式"

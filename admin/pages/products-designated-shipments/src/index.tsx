@@ -90,6 +90,7 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
       title={t('title')}
       prevTitle={t('common:products')}
       backTo="/products"
+      maxWidth="unset"
       link={{
         text: t('instruction'),
         url: 'https://supportmeepshop.com/knowledgebase/商品指定物流',
@@ -111,15 +112,6 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
           ),
           onChange: (_, selectedRows) => setSelectedProducts(selectedRows),
         }}
-        optional={
-          selectedProducts.length === 0 ? null : (
-            <>
-              {t('selected')}
-              <span className={styles.selected}>{selectedProducts.length}</span>
-              {t('count')}
-            </>
-          )
-        }
         pagination={{
           total: products?.total || 0,
           current,
@@ -209,6 +201,7 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
                   setSearchTerm('');
                   setSelectedShipments([]);
                   setSelectedProductTags([]);
+                  setSelectedProducts([]);
 
                   refetch({ filter: null });
                 }}
@@ -218,9 +211,18 @@ const ProductsDesignatedShipments: NextPage<PropsType> = React.memo(() => {
             </div>
 
             {selectedProducts.length === 0 ? null : (
-              <Button type="primary" onClick={() => setOpenModal(true)}>
-                {t('change-applicable-shipments')}
-              </Button>
+              <div className={styles.selectedBlock}>
+                <div>
+                  {t('selected')}
+                  <span className={styles.selected}>
+                    {selectedProducts.length}
+                  </span>
+                  {t('count')}
+                </div>
+                <Button type="primary" onClick={() => setOpenModal(true)}>
+                  {t('change-applicable-shipments')}
+                </Button>
+              </div>
             )}
           </div>
 

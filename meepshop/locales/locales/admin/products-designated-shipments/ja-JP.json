@@ -2,7 +2,7 @@
   "title": "商品指定物流",
   "instruction": "注意事項",
   "empty": "無料の商品",
-  "selected": "/選択した",
+  "selected": "選択しました",
   "count": "ペン",
   "search": "商品を検索",
   "change-applicable-shipments": "適用可能なロジスティクスを変更します",

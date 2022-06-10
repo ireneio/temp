@@ -15,15 +15,24 @@
   }
 }
 
+.selectedBlock {
+  display: flex;
+  align-items: center;
+
+  div {
+    margin-right: 16px;
+
+    span {
+      padding: 4px;
+    }
+  }
+}
+
 .row {
   cursor: pointer;
 
   :global(.ant-table-cell) {
     padding: 12px;
-
-    &:nth-child(3) {
-      padding-left: 4px;
-    }
   }
 }
 
@@ -89,6 +98,38 @@
 
 .table {
   margin-bottom: -8px;
+
+  thead {
+    tr {
+      th {
+        padding: 12px;
+
+        &:nth-child(1) {
+          padding-left: 16px;
+          padding-right: 8px;
+        }
+        &:nth-child(2) {
+          padding: 10px 8px;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        padding: 12px;
+
+        &:nth-child(1) {
+          padding-left: 16px;
+          padding-right: 8px;
+        }
+        &:nth-child(2) {
+          padding: 10px 8px;
+        }
+      }
+    }
+  }
 }
 
 .tagsWrap {

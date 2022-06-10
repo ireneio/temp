@@ -45,6 +45,7 @@ export default (
           getLanguage(value),
       },
       {
+        width: 150,
         dataIndex: ['variants', 0, 'sku'],
         className: styles.sku,
         title: t('product.sku'),
