@@ -73,9 +73,6 @@ export default (
               return {
                 ...result,
                 mobile: viewerMobile,
-                additionalInfo: {
-                  mobile: viewerMobile,
-                },
               };
             }
 
@@ -147,13 +144,6 @@ export default (
                 checkoutFields.mobile === 'HIDDEN'
                   ? viewer.mobile
                   : input.mobile || null,
-              additionalInfo:
-                checkoutFields.mobile === 'HIDDEN'
-                  ? viewer.additionalInfo
-                  : {
-                      __typename: 'AdditionalInfoObjectType',
-                      mobile: input.additionalInfo?.mobile || null,
-                    },
               address:
                 checkoutFields.address === 'HIDDEN'
                   ? viewer.address

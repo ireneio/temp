@@ -53,8 +53,6 @@ export default (
               {
                 ...values,
                 id,
-                tel: values.additionalInfo.tel,
-                mobile: values.additionalInfo.mobile,
               },
             ],
           },

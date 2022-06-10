@@ -11,9 +11,6 @@ export const useSaveUserFragment = gql`
     id
     name
     mobile
-    additionalInfo {
-      mobile
-    }
     email
     ...useCreateOrderFragment
     ...useUpdateUserFragment

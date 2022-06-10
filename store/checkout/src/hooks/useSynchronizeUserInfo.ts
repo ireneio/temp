@@ -50,7 +50,7 @@ export default ({
           allHidden
             ? {
                 name: user?.name,
-                mobile: user?.additionalInfo?.mobile,
+                mobile: user?.mobile,
                 addressAndZipCode: {
                   address: [
                     user?.address?.country?.id,

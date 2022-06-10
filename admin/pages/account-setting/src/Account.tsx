@@ -34,19 +34,13 @@ export default React.memo(({ viewer }: PropsType) => {
 
         <Divider />
 
-        {[
-          ['name'],
-          ['additionalInfo', 'mobile'],
-          ['additionalInfo', 'tel'],
-        ].map((name: string[]) => {
-          const key = name.join('.');
-
+        {['name', 'mobile', 'tel'].map((name: string) => {
           return (
-            <React.Fragment key={key}>
-              <div className={styles.title}>{t(`account.${key}.label`)}</div>
+            <React.Fragment key={name}>
+              <div className={styles.title}>{t(`account.${name}.label`)}</div>
 
               <FormItem name={name}>
-                <Input placeholder={t(`account.${key}.placeholder`)} />
+                <Input placeholder={t(`account.${name}.placeholder`)} />
               </FormItem>
             </React.Fragment>
           );

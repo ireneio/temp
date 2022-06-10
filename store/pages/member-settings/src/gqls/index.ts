@@ -19,13 +19,8 @@ export const getUserInfo = gql`
       name
       email
       gender
-      tel @client
-      mobile @client
-      additionalInfo {
-        # for client
-        tel
-        mobile
-      }
+      tel
+      mobile
       address {
         country {
           id

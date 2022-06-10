@@ -15,14 +15,12 @@ export const useUpdateUserSettingsFragment = gql`
     id
     name
     gender
+    tel
+    mobile
     birthday {
       year
       month
       day
-    }
-    additionalInfo {
-      tel
-      mobile
     }
     address {
       country {

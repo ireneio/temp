@@ -12,10 +12,8 @@ export const userMockFragment = gql`
     name
     email
     gender
-    additionalInfo {
-      tel
-      mobile
-    }
+    tel
+    mobile
     birthday {
       year
       month

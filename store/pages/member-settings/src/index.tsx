@@ -125,7 +125,7 @@ export default React.memo(() => {
         <div className={styles.telAndMobile}>
           <FormItem
             {...validator(tel)}
-            name={['additionalInfo', 'tel']}
+            name={['tel']}
             initialValue={tel || undefined}
           >
             <Input size="large" placeholder={t('tel')} />
@@ -133,7 +133,7 @@ export default React.memo(() => {
 
           <FormItem
             {...validator(mobile)}
-            name={['additionalInfo', 'mobile']}
+            name={['mobile']}
             initialValue={mobile || undefined}
           >
             <Input size="large" placeholder={t('mobile')} />

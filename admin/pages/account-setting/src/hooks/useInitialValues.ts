@@ -12,10 +12,8 @@ import { useInitialValuesUserFragment as useInitialValuesUserFragmentType } from
 // typescript definition
 export interface ValuesType {
   name: string | null;
-  additionalInfo: {
-    mobile: string | null;
-    tel: string | null;
-  };
+  mobile: string | null;
+  tel: string | null;
 }
 
 // definition
@@ -28,10 +26,8 @@ export default (
 
     return {
       name: viewer.name,
-      additionalInfo: {
-        mobile: viewer.additionalInfo?.mobile || '',
-        tel: viewer.additionalInfo?.tel || '',
-      },
+      mobile: viewer.mobile,
+      tel: viewer.tel,
     };
   }, [viewer]);
 

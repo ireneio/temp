@@ -8,9 +8,7 @@ export const getContextData = gql`
       id
       name
       email
-      additionalInfo {
-        mobile
-      }
+      mobile
       address {
         country {
           id

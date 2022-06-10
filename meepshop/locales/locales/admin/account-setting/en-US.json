@@ -15,15 +15,13 @@
       "label": "Name",
       "placeholder": "Please enter the name of the contact person"
     },
-    "additionalInfo": {
-      "mobile": {
-        "label": "Contact Details",
-        "placeholder": "Please enter the mobile phone number used for contact"
-      },
-      "tel": {
-        "label": "Contact number",
-        "placeholder": "Please enter the phone number for contact"
-      }
+    "mobile": {
+      "label": "cell phone",
+      "placeholder": "Please enter the mobile phone number used for contact"
+    },
+    "tel": {
+      "label": "Contact phone number",
+      "placeholder": "Please enter the phone number for contact"
     },
     "current-password": "Current password",
     "password": {

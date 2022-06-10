@@ -8,9 +8,5 @@ export const useInitialValuesUserFragment = gql`
     name
     mobile
     tel
-    additionalInfo {
-      mobile
-      tel
-    }
   }
 `;

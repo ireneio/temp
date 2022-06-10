@@ -230,7 +230,7 @@ export default ({
               userInfo: {
                 name: viewerName || viewer?.name,
                 email: viewerEmail || viewer?.email,
-                mobile: viewerMobile || viewer?.additionalInfo?.mobile,
+                mobile: viewerMobile || viewer?.mobile,
               },
               ...(!invoice
                 ? {}

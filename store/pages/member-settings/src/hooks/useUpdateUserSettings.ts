@@ -25,10 +25,8 @@ import {
 interface ValuesType {
   name: string | null;
   gender: 0 | 1 | null;
-  additionalInfo: {
-    tel: string | null;
-    mobile: string | null;
-  };
+  tel: string | null;
+  mobile: string | null;
   birthday?: Date;
   addressAndZipCode?: {
     address: string[];
@@ -60,8 +58,6 @@ export default (id: string | null): ((values: ValuesType) => void) => {
     }) => {
       const input = {
         ...values,
-        tel: values.additionalInfo.tel,
-        mobile: values.additionalInfo.mobile,
         birthday: !birthday
           ? null
           : {
@@ -117,10 +113,6 @@ export default (id: string | null): ((values: ValuesType) => void) => {
                     ...input.birthday,
                     __typename: 'BirthdayObjectType',
                   },
-              additionalInfo: {
-                ...input.additionalInfo,
-                __typename: 'AdditionalInfoObjectType',
-              },
               address: {
                 ...input.address,
                 __typename: 'Address',

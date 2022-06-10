@@ -83,9 +83,6 @@ export default (setOptions: (option: OptionsType) => void): ReturnType => {
                 password,
                 registeredCode,
                 mobile,
-                additionalInfo: {
-                  mobile,
-                },
                 address: {
                   countryId: addressAndZipCode?.address[0],
                   cityId: addressAndZipCode?.address[1],

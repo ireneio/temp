@@ -15,15 +15,13 @@
       "label": "姓名",
       "placeholder": "請輸入聯絡人姓名"
     },
-    "additionalInfo": {
-      "mobile": {
-        "label": "手機",
-        "placeholder": "請輸入用於聯絡的手機號碼"
-      },
-      "tel": {
-        "label": "聯絡電話",
-        "placeholder": "請輸入用於聯絡的電話號碼"
-      }
+    "mobile": {
+      "label": "手機",
+      "placeholder": "請輸入用於聯絡的手機號碼"
+    },
+    "tel": {
+      "label": "聯絡電話",
+      "placeholder": "請輸入用於聯絡的電話號碼"
     },
     "current-password": "目前密碼",
     "password": {

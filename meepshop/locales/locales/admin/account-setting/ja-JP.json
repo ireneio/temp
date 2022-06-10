@@ -15,15 +15,13 @@
       "label": "名",
       "placeholder": "担当者名を入力してください"
     },
-    "additionalInfo": {
-      "mobile": {
-        "label": " ご連絡方法",
-        "placeholder": "お問い合わせ先の携帯電話番号を入力してください"
-      },
-      "tel": {
-        "label": "連絡先",
-        "placeholder": "連絡先の電話番号を入力してください"
-      }
+    "mobile": {
+      "label": "携帯電話",
+      "placeholder": "連絡先に使用される携帯電話番号を入力してください"
+    },
+    "tel": {
+      "label": "連絡先の電話番号",
+      "placeholder": "連絡先に電話番号を入力してください"
     },
     "current-password": "現在のパスワード",
     "password": {

@@ -15,9 +15,6 @@ export const useUpdateUserFragment = gql`
     id
     name
     mobile
-    additionalInfo {
-      mobile
-    }
     address {
       country {
         id

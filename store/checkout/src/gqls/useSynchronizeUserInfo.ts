@@ -6,9 +6,7 @@ export const useSynchronizeUserInfoFragment = gql`
   fragment useSynchronizeUserInfoFragment on User {
     id
     name
-    additionalInfo {
-      mobile
-    }
+    mobile
     address {
       country {
         id
