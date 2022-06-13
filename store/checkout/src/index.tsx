@@ -21,6 +21,7 @@ import Discount from './Discount';
 import Shipment from './Shipment';
 import User from './User';
 import Receiver from './Receiver';
+import RecipientComment from './RecipientComment';
 import Buttons from './Buttons';
 import Products from './Products';
 import Total from './Total';
@@ -47,6 +48,7 @@ import {
   receiverStoreFragment,
   receiverInCheckoutUserFragment,
 } from './gqls/receiver';
+import { recipientCommentFragment } from './gqls/recipientComment';
 import { productsFragment } from './gqls/products';
 import { totalOrderFragment } from './gqls/total';
 import { useSaveUserFragment } from './gqls/useSave';
@@ -163,6 +165,13 @@ export default React.memo(() => {
           isLogin={isLogin}
           store={filter(receiverStoreFragment, data?.viewer?.store || null)}
           user={filter(receiverInCheckoutUserFragment, data?.viewer || null)}
+        />
+
+        <RecipientComment
+          recipientComment={filter(
+            recipientCommentFragment,
+            data?.viewer?.store?.setting?.order?.recipientComment || null,
+          )}
         />
 
         <div>

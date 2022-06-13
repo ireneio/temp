@@ -5,6 +5,7 @@
   "invalid-email-or-password": "Mailbox or password error",
   "receiver-info": "Recipient Info",
   "notes": "Order Notes",
+  "notes-placeholder": "Do you have any information to note to the store?",
   "confirm": "Place Order",
   "pay-later": "Pay Later",
   "pay-now": "Pay Now",

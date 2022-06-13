@@ -151,6 +151,9 @@ export default React.memo(({ loading, computeOrderList }: PropsType) => {
               background: ${transformColor(colors[5]).alpha(0.15)};
               color: ${colors[3]};
             }
+            .${styles.root} .ant-select-selection-placeholder {
+              color: ${transformColor(colors[3]).alpha(0.4)};
+            }
           `,
         }}
       />

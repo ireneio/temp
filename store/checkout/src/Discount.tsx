@@ -85,6 +85,10 @@ export default React.memo(({ computeOrderList }: PropsType) => {
               background: ${transformColor(colors[3]).alpha(0.03)};
               color: ${colors[3]};
             }
+            .${styles.root} .ant-input::placeholder,
+            .${styles.root} .ant-input-number-input::placeholder{
+              color: ${transformColor(colors[3]).alpha(0.4)};
+            }
           `,
         }}
       />

@@ -1,7 +1,9 @@
 // import
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form, Input } from 'antd';
+import transformColor from 'color';
 
+import { Colors as ColorsContext } from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
 import { useValidateEmail } from '@meepshop/validator';
 import AddressCascader, {
@@ -26,6 +28,7 @@ const { Password } = Input;
 
 export default React.memo(({ isLogin, store }: PropsType) => {
   const { t } = useTranslation('checkout');
+  const colors = useContext(ColorsContext);
   const validateEmail = useValidateEmail(false, true, t('please-login'));
   const { validateMobile } = useValidateMobile();
 
@@ -185,6 +188,16 @@ export default React.memo(({ isLogin, store }: PropsType) => {
           </FormItem>
         </>
       )}
+
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .${styles.root} .ant-input::placeholder{
+              color: ${transformColor(colors[3]).alpha(0.4)};
+            }
+          `,
+        }}
+      />
     </div>
   );
 });

@@ -5,6 +5,7 @@
   "invalid-email-or-password": "Erreur de boîtes aux lettres ou de mot de passe",
   "receiver-info": "Informations sur le destinataire",
   "notes": "Notes d'ordre",
+  "notes-placeholder": "Avez-vous des informations à noter au magasin?",
   "confirm": "Passer la commande",
   "pay-later": "Payer plus tard",
   "pay-now": "Payez maintenant",

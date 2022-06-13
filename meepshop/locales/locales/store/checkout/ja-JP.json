@@ -5,6 +5,7 @@
   "invalid-email-or-password": "メールボックスまたはパスワードエラー",
   "receiver-info": "受取人情報",
   "notes": "注文備考",
+  "notes-placeholder": "店に注意する情報はありますか？",
   "confirm": "確認して送信",
   "pay-later": "後で支払う",
   "pay-now": "今すぐ支払う",

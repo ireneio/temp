@@ -5,6 +5,7 @@
   "invalid-email-or-password": "Error de buzón o contraseña",
   "receiver-info": "Información del destinatario",
   "notes": "pedidos",
+  "notes-placeholder": "¿Tiene alguna información que tener en cuenta en la tienda?",
   "confirm": "Realizar pedido",
   "pay-later": "Paga después",
   "pay-now": "Pague ahora",

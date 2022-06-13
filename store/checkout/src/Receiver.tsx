@@ -1,6 +1,7 @@
 // import
 import React, { useContext } from 'react';
 import { Form, Input, Checkbox, Cascader } from 'antd';
+import transformColor from 'color';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
@@ -41,7 +42,6 @@ type CheckoutFieldsKeyType = '__typename' | 'name' | 'mobile' | 'address';
 
 // definition
 const { Item: FormItem } = Form;
-const { TextArea } = Input;
 
 export default React.memo(({ isLogin, store, user }: PropsType) => {
   const { t } = useTranslation('checkout');
@@ -241,10 +241,6 @@ export default React.memo(({ isLogin, store, user }: PropsType) => {
         }
       </FormItem>
 
-      <FormItem name={['notes']}>
-        <TextArea placeholder={t('notes')} rows={4} />
-      </FormItem>
-
       <FormItem dependencies={['isSaveAsReceiverTemplate']} noStyle>
         {({ getFieldValue, setFieldsValue }) =>
           !canSaveAsTemplate({ getFieldValue, setFieldsValue }) ? null : (
@@ -264,14 +260,26 @@ export default React.memo(({ isLogin, store, user }: PropsType) => {
       <style
         dangerouslySetInnerHTML={{
           __html: `
-            .${styles.title} .ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox-input:focus + .ant-checkbox-inner, .ant-checkbox-checked:after,
-            .${styles.saveAsReceiverTemplate} .ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox-input:focus + .ant-checkbox-inner, .ant-checkbox-checked:after {
+            .${styles.title} .ant-checkbox-wrapper:hover .ant-checkbox-inner, 
+            .ant-checkbox-input:focus + .ant-checkbox-inner, 
+            .ant-checkbox-checked:after,
+            .${
+              styles.saveAsReceiverTemplate
+            } .ant-checkbox-wrapper:hover .ant-checkbox-inner, 
+            .ant-checkbox-input:focus + .ant-checkbox-inner, 
+            .ant-checkbox-checked:after {
               border-color: ${colors[3]};
             }
             .${styles.title} .ant-checkbox-checked .ant-checkbox-inner,
-            .${styles.saveAsReceiverTemplate} .ant-checkbox-checked .ant-checkbox-inner {
+            .${
+              styles.saveAsReceiverTemplate
+            } .ant-checkbox-checked .ant-checkbox-inner {
               background-color: ${colors[3]};
               border-color: ${colors[3]};
+            }
+            .${styles.root} .ant-input::placeholder, 
+            .${styles.root} .ant-select-selection-placeholder {
+              color: ${transformColor(colors[3]).alpha(0.4)};
             }
           `,
         }}

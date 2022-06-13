@@ -9,6 +9,7 @@ import {
   receiverStoreFragment,
   receiverInCheckoutUserFragment,
 } from './receiver';
+import { recipientCommentFragment } from './recipientComment';
 import { useSaveUserFragment } from './useSave';
 
 // definition
@@ -24,6 +25,13 @@ export const getViewerData = gql`
         ...loginFragment
         ...userFragment
         ...receiverStoreFragment
+        setting {
+          order {
+            recipientComment {
+              ...recipientCommentFragment
+            }
+          }
+        }
       }
       ...useInitialValuesInCheckoutFragment
       ...receiverInCheckoutUserFragment
@@ -37,4 +45,5 @@ export const getViewerData = gql`
   ${receiverStoreFragment}
   ${receiverInCheckoutUserFragment}
   ${useSaveUserFragment}
+  ${recipientCommentFragment}
 `;
