@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 0.80.202 (2022-06-13)
+
+#### :rocket: New Feature
+
+- `meep-ui`
+  - [#2324](https://github.com/meepshop/meep-lerna/pull/2324) 【優化】更換：meepShop MAX 極速開店 URL ([@danielyeh-meepshop](https://github.com/danielyeh-meepshop))
+- Other
+  - [#2288](https://github.com/meepshop/meep-lerna/pull/2288) 【優化】結帳頁 - 訂單備註 - 前台 - 前端 ([@Lexiwu](https://github.com/Lexiwu))
+  - [#2289](https://github.com/meepshop/meep-lerna/pull/2289) 【優化】結帳頁 - 訂單備註 - 後台 - 前端 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@danielyeh-meepshop](https://github.com/danielyeh-meepshop)
+
 ## 0.80.201 (2022-06-10)
 
 #### :rocket: New Feature
