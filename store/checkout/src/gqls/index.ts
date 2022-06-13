@@ -19,6 +19,7 @@ export const getViewerData = gql`
       id
       role
       store {
+        cname
         hiddingMeepshopMaxInFooterEnabled: checkUnleashToggle(
           name: "storeCnameIsolationlistForHiddingMeepshopMaxInFooter_Enabled"
         )

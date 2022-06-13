@@ -199,7 +199,11 @@ export default React.memo(() => {
         <Buttons loading={computeOrderListLoading || loading} />
 
         {data?.viewer?.store?.hiddingMeepshopMaxInFooterEnabled ? null : (
-          <Link href="https://meepshop.cc/8h1kG" target="_blank">
+          <Link
+            href={`https://www.meepshop.com/consultant-reservation-max?utm_source=極速開店&utm_campaign=極速開店_直達預約專人&utm_content=${data
+              ?.viewer?.store?.cname || ''}`}
+            target="_blank"
+          >
             <div className={styles.footer}>meepShop 極速開店</div>
           </Link>
         )}

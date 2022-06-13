@@ -84,7 +84,7 @@ export default class Layout extends React.PureComponent {
 
     return (
       <DecoratorsRoot {...props}>
-        {({ backgroundImage, hiddingMeepshopMaxInFooterEnabled }) => (
+        {({ backgroundImage, hiddingMeepshopMaxInFooterEnabled, cname }) => (
           <>
             <div
               style={{
@@ -106,7 +106,7 @@ export default class Layout extends React.PureComponent {
               {hiddingMeepshopMaxInFooterEnabled ? null : (
                 <footer className={styles.footer}>
                   <a
-                    href="https://meepshop.cc/8h1kG"
+                    href={`https://www.meepshop.com/consultant-reservation-max?utm_source=極速開店&utm_campaign=極速開店_直達預約專人&utm_content=${cname}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
