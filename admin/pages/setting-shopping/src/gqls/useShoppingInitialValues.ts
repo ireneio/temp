@@ -22,6 +22,10 @@ export const useShoppingInitialValuesFragment = gql`
       useNotPayNow
       afterPaymentFail
       autoAddStock
+      recipientComment {
+        isRequired
+        placeHolder
+      }
     }
     paidMessage
     lockedBirthday

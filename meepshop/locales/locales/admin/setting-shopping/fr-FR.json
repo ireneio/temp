@@ -108,6 +108,20 @@
     "title": "Paramètres de paiement",
     "desc": "Paramètres liés aux conditions de paiement et d'expédition des consommateurs"
   },
+  "recipientComment": {
+    "0": {
+      "title": "Remplir les restrictions",
+      "optional": "Sélectionner et remplir",
+      "required": "Doit avoir"
+    },
+    "1": {
+      "title": "Remplissez l'invite",
+      "placeholder": "Vous pouvez définir le contenu texte des informations sur la commande de la commande client"
+    },
+    "title": "Affichage personnalisé du champ de page de paiement",
+    "desc": "Vous pouvez commander les restrictions sur l'ordre de la page de commande pour la page de commande et aider le client à remplir les informations requises en l'incitant",
+    "subTitle": "Notes d'ordre"
+  },
   "checkoutUserSetting": {
     "column": "Nom de colonne",
     "name": "Nom",

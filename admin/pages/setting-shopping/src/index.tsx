@@ -18,6 +18,7 @@ import './styles/mixin.less';
 import Basic from './Basic';
 import Checkout from './Checkout';
 import CheckoutUserInfo from './CheckoutUserInfo';
+import RecipientComment from './RecipientComment';
 import Invoice from './Invoice';
 import Order from './Order';
 import Advanced from './Advanced';
@@ -105,6 +106,8 @@ const SettingShopping: NextPage<PropsType> = React.memo(
             <Checkout />
 
             <CheckoutUserInfo />
+
+            <RecipientComment />
 
             <Invoice />
 

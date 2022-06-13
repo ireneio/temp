@@ -108,6 +108,20 @@
     "title": "Cài đặt thanh toán",
     "desc": "Cài đặt liên quan đến thanh toán của người tiêu dùng và điều kiện giao hàng"
   },
+  "recipientComment": {
+    "0": {
+      "title": "Điền vào các hạn chế",
+      "optional": "Chọn và điền",
+      "required": "Phải có"
+    },
+    "1": {
+      "title": "Điền vào lời nhắc",
+      "placeholder": "Bạn có thể đặt nội dung văn bản của thông tin thông tin đặt hàng của khách hàng"
+    },
+    "title": "Hiển thị tùy chỉnh của trường trang thanh toán",
+    "desc": "Bạn có thể đặt hàng các hạn chế về thứ tự của trang đặt hàng cho trang đặt hàng và giúp khách hàng điền vào thông tin cần thiết bằng cách nhắc nó",
+    "subTitle": "Ghi chú đặt hàng"
+  },
   "checkoutUserSetting": {
     "column": "Tên cột dọc",
     "name": "Tên",

@@ -108,6 +108,20 @@
     "title": "Configuración de pago",
     "desc": "Configuración relacionada con las condiciones de envío y pago del consumidor"
   },
+  "recipientComment": {
+    "0": {
+      "title": "Completar restricciones",
+      "optional": "Seleccionar y llenar",
+      "required": "Debe tener"
+    },
+    "1": {
+      "title": "Complete el aviso",
+      "placeholder": "Puede establecer el contenido de texto de la información de configuración de la información del pedido del cliente"
+    },
+    "title": "Visualización personalizada del campo de la página de pago",
+    "desc": "Puede ordenar las restricciones en el pedido de la página de pedidos para la página de pedidos y ayudar al cliente a completar la información requerida solicitándola.",
+    "subTitle": "pedidos"
+  },
   "checkoutUserSetting": {
     "column": "Nombre de columna",
     "name": "Nombre",

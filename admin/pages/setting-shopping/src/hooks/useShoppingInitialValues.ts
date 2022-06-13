@@ -43,6 +43,10 @@ export interface InitialValuesType {
       useNotPayNow: boolean;
       afterPaymentFail: boolean;
       autoAddStock: boolean | null;
+      recipientComment: {
+        isRequired: boolean | null;
+        placeHolder: string | null;
+      } | null;
     } | null;
     checkoutFields: {
       name: CheckoutFieldSettingEnum;
@@ -107,6 +111,14 @@ export default (
               afterPaymentFail: Boolean(
                 otherSetting.order.afterPaymentFail === 3,
               ),
+              recipientComment: !otherSetting.order.recipientComment
+                ? null
+                : {
+                    ...otherSetting.order.recipientComment,
+                    isRequired: Boolean(
+                      otherSetting.order.recipientComment.isRequired,
+                    ),
+                  },
             },
         paidMessage: otherSetting.paidMessage || t('order.3.default'),
         rewardPointReminder: {

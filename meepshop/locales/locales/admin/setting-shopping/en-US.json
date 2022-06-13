@@ -108,6 +108,20 @@
     "title": "Checkout settings",
     "desc": "Consumer checkout and shipping conditions related settings"
   },
+  "recipientComment": {
+    "0": {
+      "title": "Fill in restrictions",
+      "optional": "Select and fill",
+      "required": "Must -have"
+    },
+    "1": {
+      "title": "Fill in the prompt",
+      "placeholder": "You can set the text content of the customer order information setting information"
+    },
+    "title": "Custom display of the checkout page field",
+    "desc": "You can order the restrictions on the order of the ordering page for the ordering page, and help the customer to fill in the required information by prompting it",
+    "subTitle": "order notes"
+  },
   "checkoutUserSetting": {
     "column": "Column name",
     "name": "Name",

@@ -108,6 +108,20 @@
     "title": "Pengaturan Checkout",
     "desc": "Pengaturan terkait pembayaran dan pengiriman konsumen"
   },
+  "recipientComment": {
+    "0": {
+      "title": "Isi pembatasan",
+      "optional": "Pilih dan Isi",
+      "required": "Harus -shave"
+    },
+    "1": {
+      "title": "Isi prompt",
+      "placeholder": "Anda dapat mengatur konten teks dari informasi pengaturan informasi pesanan pelanggan"
+    },
+    "title": "Tampilan Kustom dari Bidang Halaman Checkout",
+    "desc": "Anda dapat memesan pembatasan pada urutan halaman pemesanan untuk halaman pemesanan, dan membantu pelanggan untuk mengisi informasi yang diperlukan dengan meminta",
+    "subTitle": "catatan pesanan"
+  },
   "checkoutUserSetting": {
     "column": "Nama kolom",
     "name": "Nama",

@@ -108,6 +108,20 @@
     "title": "結帳設定",
     "desc": "消費者結帳及寄件條件的相關設定"
   },
+  "recipientComment":{
+    "title": "結帳頁欄位自訂顯示",
+    "desc": "您可以自訂結帳頁訂單備註欄位填寫限制，並透過提示幫助顧客填寫所需資料",
+    "subTitle": "訂單備註",
+    "0":{
+      "title": "填寫限制",
+      "optional": "選填",
+      "required": "必填"
+    },
+    "1":{
+      "title": "填寫提示",
+      "placeholder": "您可以依希望取得的顧客訂單資訊設定提示文字內容"
+    }
+  },
   "checkoutUserSetting": {
     "column": "欄位名稱",
     "name": "姓名",
