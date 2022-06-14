@@ -37,7 +37,10 @@ export default React.memo(() => {
       }
 
       if (!accessToken) {
-        notification.error({ message: t('login-fail') });
+        notification.error({
+          message: t('login-fail'),
+          description: t('login-fail-description'),
+        });
         router.replace(state || '/login');
       } else {
         setLoading(true);

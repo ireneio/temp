@@ -1,5 +1,6 @@
 {
   "cannot-use": "No se puede usar la función de inicio de sesión de Facebook, póngase en contacto con la asistencia del almacén",
   "cannot-get-email": "Facebook no puede obtener la información de la buzón de correo, inténtalo de nuevo",
-  "login-fail": "Facebook falló, por favor, inténtalo de nuevo"
+  "login-fail": "Facebook falló, por favor, inténtalo de nuevo",
+  "login-fail-description": "Por favor contáctenos para manejarlo por usted"
 }

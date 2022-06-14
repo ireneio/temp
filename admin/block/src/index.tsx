@@ -8,7 +8,7 @@ import styles from './styles/index.less';
 // typescript definition
 interface PropsType {
   className?: string;
-  title: string;
+  title: string | React.ReactNode;
   description: string | React.ReactNode;
   children: React.ReactNode;
 }

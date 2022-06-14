@@ -8,13 +8,15 @@
   "facebook": {
     "title": "Enlace de Facebook",
     "description": "Permita que los consumidores utilicen su cuenta de Facebook para registrarse con un solo clic e iniciar sesión en su tienda en línea para convertirse en miembro, sin tener que pasar por un complicado proceso de registro, lo que brinda una experiencia de compra conveniente",
+    "description-link": "¿Por qué los clientes no pueden iniciar sesión con Facebook?",
     "toggle": {
       "title": "Inicio de sesión de Facebook",
+      "tooltip": "Configuración de inicio de sesión de Facebook Enseñanza",
       "description": "Permita que los consumidores utilicen su cuenta de Facebook para registrarse con un solo clic e iniciar sesión en su tienda en línea para convertirse en miembro, sin tener que pasar por un complicado proceso de registro, lo que brinda una experiencia de compra conveniente"
     },
     "sub-title": {
       "title": "Aplicación de Facebook",
-      "tip": "Inicio de sesión con un clic de Facebook, los consumidores pueden usar su cuenta de FB para convertirse en su miembro sin registrarse"
+      "tip": "Registre la cuenta de desarrolladores de Facebook y cree una aplicación para obtener la información de la aplicación"
     },
     "appId": {
       "title": "ID de aplicación",

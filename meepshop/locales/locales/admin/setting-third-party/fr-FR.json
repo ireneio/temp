@@ -8,13 +8,15 @@
   "facebook": {
     "title": "Lien Facebook",
     "description": "Permettez aux consommateurs d'utiliser leur compte Facebook pour s'inscrire en un clic et connectez-vous à votre boutique en ligne pour devenir membre, sans avoir à passer par un processus d'enregistrement compliqué, offrant une expérience de magasinage pratique",
+    "description-link": "Pourquoi les clients ne peuvent-ils pas se connecter avec Facebook?",
     "toggle": {
       "title": "Identifiant Facebook",
+      "tooltip": "Paramètres de connexion Facebook Enseignement",
       "description": "Permettez aux consommateurs d'utiliser leur compte Facebook pour s'inscrire en un clic et connectez-vous à votre boutique en ligne pour devenir membre, sans avoir à passer par un processus d'enregistrement compliqué, offrant une expérience de magasinage pratique"
     },
     "sub-title": {
       "title": "Application Facebook",
-      "tip": "Facebook en un clic, les consommateurs peuvent utiliser leur compte FB pour devenir votre membre sans inscription"
+      "tip": "Enregistrez le compte de développeurs Facebook et créez une application pour obtenir les informations de demande"
     },
     "appId": {
       "title": "ID d'application",

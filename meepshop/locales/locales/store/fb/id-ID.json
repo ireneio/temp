@@ -1,5 +1,6 @@
 {
   "cannot-use": "Tidak dapat menggunakan fungsi login Facebook, silakan hubungi bantuan toko",
   "cannot-get-email": "Facebook tidak dapat memperoleh informasi kotak surat, silakan coba lagi",
-  "login-fail": "Facebook Gagal, Silakan coba lagi"
+  "login-fail": "Facebook Gagal, Silakan coba lagi",
+  "login-fail-description": "Silakan hubungi kami untuk menanganinya untuk Anda"
 }

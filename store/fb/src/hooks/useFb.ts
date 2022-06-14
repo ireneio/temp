@@ -54,7 +54,10 @@ export default (
                 windowFB.login(
                   async ({ status, authResponse }) => {
                     if (status !== 'connected')
-                      notification.error({ message: t('login-fail') });
+                      notification.error({
+                        message: t('login-fail'),
+                        description: t('login-fail-description'),
+                      });
                     else await fbLogin(authResponse.accessToken, redirectPath);
 
                     resolve();

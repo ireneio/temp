@@ -1,5 +1,6 @@
 {
   "cannot-use": "Can't use Facebook login function, please contact store assistance",
   "cannot-get-email": "Facebook is unable to get the mailbox information, please try again",
-  "login-fail": "Facebook failed, please try again"
+  "login-fail": "Facebook failed, please try again",
+  "login-fail-description": "Please contact us to handle it for you"
 }

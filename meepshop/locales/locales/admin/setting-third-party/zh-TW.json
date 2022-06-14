@@ -8,13 +8,15 @@
   "facebook": {
     "title": "Facebook 整合功能",
     "description": "需使用您的 Facebook 帳號註冊 Facebook Developers 帳號，填寫應用程式資料後才能使用整合功能",
+    "description-link": "為什麼顧客無法使用 Facebook 登入？",
     "toggle": {
       "title": "Facebook 登入",
+      "tooltip": "Facebook 登入設定教學",
       "description": "讓消費者可以使用 Facebook 帳戶一鍵註冊、登入您的網店成為會員，不需經過繁複的註冊程序，提供便利的購物體驗"
     },
     "sub-title": {
       "title": "Facebook 應用程式資料",
-      "tip": "使用 Facebook Developers 帳號建立應用程式後，可在設定的基本資料內取得"
+      "tip": "註冊 Facebook Developers 帳號並建立應用程式，即可取得應用程式資料"
     },
     "appId": {
       "title": "應用程式編號",

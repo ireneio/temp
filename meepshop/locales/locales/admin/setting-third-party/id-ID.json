@@ -8,13 +8,15 @@
   "facebook": {
     "title": "Tautan Facebook",
     "description": "Bolehkan konsumen menggunakan akun Facebook mereka untuk mendaftar dengan satu klik dan masuk ke toko online Anda untuk menjadi anggota, tanpa harus melalui proses pendaftaran yang rumit, memberikan pengalaman berbelanja yang nyaman",
+    "description-link": "Mengapa pelanggan tidak bisa masuk dengan Facebook?",
     "toggle": {
       "title": "Login Facebook",
+      "tooltip": "Pengajaran Login Facebook",
       "description": "Bolehkan konsumen menggunakan akun Facebook mereka untuk mendaftar dengan satu klik dan masuk ke toko online Anda untuk menjadi anggota, tanpa harus melalui proses pendaftaran yang rumit, memberikan pengalaman berbelanja yang nyaman"
     },
     "sub-title": {
       "title": "Aplikasi Facebook",
-      "tip": "Login sekali klik Facebook, konsumen dapat menggunakan akun FB mereka untuk menjadi anggota Anda tanpa registrasi"
+      "tip": "Daftarkan akun pengembang Facebook dan buat aplikasi untuk mendapatkan informasi aplikasi"
     },
     "appId": {
       "title": "ID Aplikasi",

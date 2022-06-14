@@ -1,5 +1,6 @@
 {
   "cannot-use": "Impossible d'utiliser la fonction de connexion Facebook, veuillez contacter l'aide du magasin",
   "cannot-get-email": "Facebook est incapable d'obtenir les informations sur la boîte aux lettres, veuillez réessayer",
-  "login-fail": "Facebook a échoué, veuillez réessayer"
+  "login-fail": "Facebook a échoué, veuillez réessayer",
+  "login-fail-description": "Veuillez nous contacter pour le gérer pour vous"
 }

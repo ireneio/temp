@@ -3,7 +3,6 @@ import React from 'react';
 import { Form, Input } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
-import Tooltip from '@admin/tooltip';
 
 import styles from './styles/facebook.less';
 
@@ -24,14 +23,7 @@ export default React.memo(
 
     return (
       <>
-        <div className={styles.header}>
-          {t('facebook.sub-title.title')}
-
-          <Tooltip
-            title={t('facebook.sub-title.tip')}
-            iconClassName={styles.tip}
-          />
-        </div>
+        <div className={styles.header}>{t('facebook.sub-title.title')}</div>
 
         <div className={styles.horizontal}>
           {['appId', 'appSecret'].map((key: 'appId' | 'appSecret') => (

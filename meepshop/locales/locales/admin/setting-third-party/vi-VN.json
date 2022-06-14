@@ -8,13 +8,15 @@
   "facebook": {
     "title": "Liên kết Facebook",
     "description": "Cho phép người tiêu dùng sử dụng tài khoản Facebook của họ để đăng ký chỉ bằng một cú nhấp chuột và đăng nhập vào cửa hàng trực tuyến của bạn để trở thành thành viên, mà không phải trải qua quá trình đăng ký phức tạp, mang lại trải nghiệm mua sắm thuận tiện.",
+    "description-link": "Tại sao khách hàng không thể đăng nhập bằng Facebook?",
     "toggle": {
       "title": "đăng nhập Facebook",
+      "tooltip": "Cài đặt đăng nhập Facebook",
       "description": "Cho phép người tiêu dùng sử dụng tài khoản Facebook của họ để đăng ký chỉ bằng một cú nhấp chuột và đăng nhập vào cửa hàng trực tuyến của bạn để trở thành thành viên, mà không phải trải qua quá trình đăng ký phức tạp, mang lại trải nghiệm mua sắm thuận tiện."
     },
     "sub-title": {
       "title": "Ứng dụng Facebook",
-      "tip": "Đăng nhập bằng một cú nhấp chuột của Facebook, người tiêu dùng có thể sử dụng tài khoản FB của họ để trở thành thành viên của bạn mà không cần đăng ký"
+      "tip": "Đăng ký tài khoản nhà phát triển Facebook và tạo một ứng dụng để có được thông tin ứng dụng"
     },
     "appId": {
       "title": "ID ứng dụng",

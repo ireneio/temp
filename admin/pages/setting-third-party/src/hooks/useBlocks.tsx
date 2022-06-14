@@ -9,12 +9,15 @@ import {
   webTrackGoogleAnalytics_w224 as webTrackGoogleAnalytics,
 } from '@meepshop/images';
 import filter from '@meepshop/utils/lib/filter';
+import Tooltip from '@admin/tooltip';
+import { useTranslation } from '@meepshop/locales';
 
 import FaceBook from '../Facebook';
 import Line from '../Line';
 import Ecfit from '../Ecfit';
 import GoogleAnalytics from '../GaViewId';
 import KooLive from '../KooLive';
+import styles from '../styles/useBlock.less';
 
 // graphql typescript
 import { useBlocksFragment as useBlocksFragmentType } from '@meepshop/types/gqls/admin';
@@ -30,13 +33,17 @@ interface BlockType {
   src: string;
   useToggle: boolean;
   initialValue?: boolean;
+  titleTooltip?: React.ReactNode;
   useToggleDescription?: boolean;
+  descriptionLink?: React.ReactNode;
   component: React.ReactNode;
 }
 
 // definition
-export default (store: useBlocksFragmentType | null): BlockType[] =>
-  useMemo(
+export default (store: useBlocksFragmentType | null): BlockType[] => {
+  const { t } = useTranslation('setting-third-party');
+
+  return useMemo(
     () =>
       [
         {
@@ -45,6 +52,33 @@ export default (store: useBlocksFragmentType | null): BlockType[] =>
           useToggle: true,
           initialValue: Boolean(store?.facebookSetting?.isLoginEnabled),
           useToggleDescription: true,
+          titleTooltip: (
+            <Tooltip
+              title={
+                <>
+                  <div>{t('facebook.sub-title.tip')}</div>
+                  <a
+                    href="https://supportmeepshop.com/knowledgebase/%e7%ac%ac%e4%b8%89%e6%96%b9%e8%a8%ad%e5%ae%9a/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t('facebook.toggle.tooltip')}
+                  </a>
+                </>
+              }
+              iconClassName={styles.tip}
+            />
+          ),
+          descriptionLink: (
+            <a
+              className={styles.descriptionLink}
+              href="https://supportmeepshop.com/knowledgebase/%e7%ac%ac%e4%b8%89%e6%96%b9%e8%a8%ad%e5%ae%9a/#3_Facebook_deng_ru_wei_he_wu_fa_shi_yong"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t('facebook.description-link')}
+            </a>
+          ),
           component: !store?.facebookSetting ? null : (
             <FaceBook
               facebookSetting={filter(facebookFragment, store.facebookSetting)}
@@ -98,5 +132,6 @@ export default (store: useBlocksFragmentType | null): BlockType[] =>
           component: <GoogleAnalytics gaViewId={store?.gaViewId || null} />,
         },
       ].filter(Boolean) as BlockType[],
-    [store],
+    [store, t],
   );
+};

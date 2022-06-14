@@ -8,13 +8,15 @@
   "facebook": {
     "title": "Facebook integration",
     "description": "Allow consumers to use their Facebook account to register with one click and log in to your online store to become a member, without having to go through a complicated registration process, providing a convenient shopping experience",
+    "description-link": "Why can't customers log in with Facebook?",
     "toggle": {
       "title": "Facebook login",
+      "tooltip": "Facebook login settings teaching",
       "description": "Allow consumers to use their Facebook account to register with one click and log in to your online store to become a member, without having to go through a complicated registration process, providing a convenient shopping experience"
     },
     "sub-title": {
       "title": "Facebook application",
-      "tip": "After you create an application with your Facebook Developers account, you can get it in the basic settings"
+      "tip": "Register the Facebook Developers account and create an application to obtain the application information"
     },
     "appId": {
       "title": "Application ID",

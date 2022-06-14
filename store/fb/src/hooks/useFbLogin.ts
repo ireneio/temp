@@ -60,7 +60,10 @@ export default (): ((
           return false;
 
         default:
-          notification.error({ message: t('login-fail') });
+          notification.error({
+            message: t('login-fail'),
+            description: t('login-fail-description'),
+          });
           return false;
       }
     },

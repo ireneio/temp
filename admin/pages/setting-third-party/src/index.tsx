@@ -74,13 +74,20 @@ const SettingThirdParty: NextPage<PropsType> = React.memo(() => {
               useToggle,
               initialValue,
               useToggleDescription,
+              titleTooltip,
+              descriptionLink,
               component,
             }) => (
               <Block
                 key={key}
                 className={styles.block}
                 title={t(`${key}.title`)}
-                description={t(`${key}.description`)}
+                description={
+                  <>
+                    {t(`${key}.description`)}
+                    <div>{descriptionLink}</div>
+                  </>
+                }
               >
                 <img src={src} alt={key} />
 
@@ -96,7 +103,9 @@ const SettingThirdParty: NextPage<PropsType> = React.memo(() => {
                     </FormItem>
 
                     <div>
-                      <h3>{t(`${key}.toggle.title`)}</h3>
+                      <h3>
+                        {t(`${key}.toggle.title`)} {titleTooltip}
+                      </h3>
 
                       {!useToggleDescription ? null : (
                         <p>{t(`${key}.toggle.description`)}</p>
