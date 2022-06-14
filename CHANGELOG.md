@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.80.203 (2022-06-14)
+
+#### :rocket: New Feature
+
+- [#2287](https://github.com/meepshop/meep-lerna/pull/2287) 【優化】fb 設定衝突處理 ([@Lexiwu](https://github.com/Lexiwu))
+
+#### :house: Internal
+
+- `meep-ui`
+  - [#2315](https://github.com/meepshop/meep-lerna/pull/2315) 內部開單 - 加入 @meepshop/form-date-picker ([@danielyeh-meepshop](https://github.com/danielyeh-meepshop))
+
+#### Committers: 2
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+- [@danielyeh-meepshop](https://github.com/danielyeh-meepshop)
+
 ## 0.80.202 (2022-06-13)
 
 #### :rocket: New Feature
