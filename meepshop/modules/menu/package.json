@@ -4,14 +4,14 @@
   "description": "Meepshop menu module",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.202",
+  "version": "0.80.203",
   "main": "./index.js",
   "types": "./src/index.ts",
   "dependencies": {
     "@meepshop/context": "^0.80.201",
     "@meepshop/images": "^0.80.201",
     "@meepshop/link": "^0.80.201",
-    "@meepshop/locales": "^0.80.202",
+    "@meepshop/locales": "^0.80.203",
     "@meepshop/switch": "^0.80.201",
     "@meepshop/utils": "^0.80.201",
     "color": "^3.0.0"

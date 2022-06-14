@@ -4,18 +4,18 @@
   "description": "meepshop login modal",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.202",
+  "version": "0.80.203",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/context": "^0.80.201",
-    "@meepshop/draft-text": "^0.80.202",
+    "@meepshop/draft-text": "^0.80.203",
     "@meepshop/icons": "^0.80.201",
-    "@meepshop/line": "^0.80.202",
+    "@meepshop/line": "^0.80.203",
     "@meepshop/link": "^0.80.201",
-    "@meepshop/locales": "^0.80.202",
+    "@meepshop/locales": "^0.80.203",
     "@meepshop/utils": "^0.80.201",
-    "@meepshop/validator": "^0.80.202",
+    "@meepshop/validator": "^0.80.203",
     "color": "^3.0.0"
   },
   "keywords": ["login", "meepshop", "modal"]
