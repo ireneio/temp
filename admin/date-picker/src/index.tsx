@@ -10,7 +10,7 @@ import { startOfDay, endOfDay } from 'date-fns';
 import { emptyFunction } from 'fbjs';
 
 import { useTranslation } from '@meepshop/locales';
-import DatePicker from '@meepshop/form-date-picker';
+import { AdminDatePicker as DatePicker } from '@meepshop/form-date-picker';
 
 import changeValue from './utils/changeValue';
 import styles from './styles/index.less';

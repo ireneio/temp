@@ -140,22 +140,22 @@ export default React.memo(() => {
           </FormItem>
         </div>
 
-        <FormItem
-          {...validator(birthday)}
-          name={['birthday']}
-          initialValue={
-            // SHOULD_NOT_BE_NULL
-            !birthday?.year || !birthday?.month || !birthday?.day
-              ? undefined
-              : new Date(birthday.year, birthday.month - 1, birthday.day)
-          }
-        >
-          <DatePicker
-            size="large"
-            placeholder={t('birthday')}
-            disabled={Boolean(birthday && lockedBirthday)}
-          />
-        </FormItem>
+        <DatePicker
+          enableValidator
+          formItemProps={{
+            name: ['birthday'],
+            initialValue:
+              // SHOULD_NOT_BE_NULL
+              !birthday?.year || !birthday?.month || !birthday?.day
+                ? undefined
+                : new Date(birthday.year, birthday.month - 1, birthday.day),
+          }}
+          datePickerProps={{
+            size: 'large',
+            placeholder: t('birthday'),
+            disabled: Boolean(birthday && lockedBirthday),
+          }}
+        />
 
         <FormItem
           {...(country || city || area

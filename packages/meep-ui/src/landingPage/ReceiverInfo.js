@@ -155,7 +155,6 @@ export default class ReceiverInfo extends React.PureComponent {
     return (
       <div style={blockStyle}>
         <h3 style={titleStyle(colors)}>{t('receiver-info')}</h3>
-
         <div style={styles.nameRoot}>
           <FormItem
             style={formItemStyle}
@@ -195,22 +194,19 @@ export default class ReceiverInfo extends React.PureComponent {
             </FormItem>
           )}
         </div>
-
         {!addition.includes('birthday') ? null : (
-          <FormItem
-            style={formItemStyle}
-            name={['birthday']}
-            rules={[
-              {
-                required: required.includes('birthday'),
-                message: t('is-required'),
-              },
-            ]}
-          >
-            <DatePicker style={styles.birthday} placeholder={t('birthday')} />
-          </FormItem>
+          <DatePicker
+            enableValidator={required.includes('birthday')}
+            formItemProps={{
+              name: ['birthday'],
+              style: formItemStyle,
+            }}
+            datePickerProps={{
+              style: styles.birthday,
+              placeholder: t('birthday'),
+            }}
+          />
         )}
-
         {isLogin !== NOTLOGIN ? null : (
           <>
             <FormItem
@@ -247,7 +243,6 @@ export default class ReceiverInfo extends React.PureComponent {
             </FormItem>
           </>
         )}
-
         <FormItem shouldUpdate noStyle>
           {form => (
             <ReceiverDefaultFormItem
@@ -262,7 +257,6 @@ export default class ReceiverInfo extends React.PureComponent {
             />
           )}
         </FormItem>
-
         {!addition.includes('notes') ? null : (
           <FormItem
             style={formItemStyle}

@@ -6,7 +6,7 @@
   "author": "meepshop <admin@meepshop.com>",
   "version": "0.80.202",
   "main": "./index.js",
-  "types": "./src/index.ts",
+  "types": "./src/index.tsx",
   "dependencies": {
     "@meepshop/locales": "^0.80.202",
     "date-fns": "^2.15.0",

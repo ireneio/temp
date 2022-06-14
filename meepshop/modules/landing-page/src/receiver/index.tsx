@@ -66,7 +66,6 @@ export default React.memo(
         <h3 id="choose-shipment-store" className={styles.title}>
           {t('receiver-info')}
         </h3>
-
         <div className={styles.nameRoot}>
           <Item
             className={styles.formItem}
@@ -137,25 +136,19 @@ export default React.memo(
             </Item>
           )}
         </div>
-
         {!birthday ? null : (
-          <Item
-            className={styles.formItem}
-            name={['birthday']}
-            rules={[
-              {
-                required: birthday.required,
-                message: t('is-required'),
-              },
-            ]}
-          >
-            <DatePicker
-              className={styles.birthday}
-              placeholder={t('birthday')}
-            />
-          </Item>
+          <DatePicker
+            enableValidator={birthday?.required}
+            formItemProps={{
+              name: ['birthday'],
+              className: styles.formItem,
+            }}
+            datePickerProps={{
+              className: styles.birthday,
+              placeholder: t('birthday'),
+            }}
+          />
         )}
-
         {isLogin ? null : (
           <Item
             className={styles.formItem}
@@ -174,7 +167,6 @@ export default React.memo(
             <Input placeholder={t('email')} />
           </Item>
         )}
-
         <Item
           className={styles.formItem}
           extra={validateMobile.extra(
@@ -206,7 +198,6 @@ export default React.memo(
             }
           />
         </Item>
-
         {['allpay', 'ezship', 'presco'].includes(shipment?.template || '') ? (
           <Item className={styles.formItem}>
             <Store form={form} shipment={shipment} />
@@ -243,7 +234,6 @@ export default React.memo(
             </Item>
           </>
         )}
-
         {!invoice ? null : (
           <>
             <Item
@@ -266,7 +256,6 @@ export default React.memo(
             <Invoice form={form} />
           </>
         )}
-
         {!note ? null : (
           <Item
             className={styles.formItem}
@@ -281,7 +270,6 @@ export default React.memo(
             <TextArea placeholder={t('notes')} rows={4} />
           </Item>
         )}
-
         <style
           dangerouslySetInnerHTML={{
             __html: `
