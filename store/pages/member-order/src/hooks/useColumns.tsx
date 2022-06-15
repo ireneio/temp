@@ -1,6 +1,5 @@
 // typescript import
 import { ColumnProps } from 'antd/lib/table';
-import { languageType } from '@meepshop/locales';
 
 // import
 import React, { useMemo, useContext } from 'react';
@@ -9,7 +8,7 @@ import {
   Colors as ColorsContext,
   Currency as CurrencyContext,
 } from '@meepshop/context';
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Thumbnail from '@meepshop/thumbnail';
 import filter from '@meepshop/utils/lib/filter';
 
@@ -24,10 +23,8 @@ import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
 
 // definition
 export default (): ColumnProps<useColumnsMemberOrderFragmentType>[] => {
-  const {
-    t,
-    i18n: { language },
-  } = useTranslation('member-order');
+  const { t } = useTranslation('member-order');
+  const getLanguage = useGetLanguage();
   const { c } = useContext(CurrencyContext);
   const colors = useContext(ColorsContext);
 
@@ -65,15 +62,11 @@ export default (): ColumnProps<useColumnsMemberOrderFragmentType>[] => {
               </div>
             )}
 
-            {!value ? null : value[language as languageType] || value.zh_TW}
+            {getLanguage(value)}
 
             <div>
               {(specs || [])
-                .map(
-                  spec =>
-                    spec?.title?.[language as languageType] ||
-                    spec?.title?.zh_TW,
-                )
+                .map(spec => getLanguage(spec?.title))
                 .filter(Boolean)
                 .join(' / ')}
             </div>
@@ -92,10 +85,7 @@ export default (): ColumnProps<useColumnsMemberOrderFragmentType>[] => {
         width: '50%',
         render: (value: useColumnsMemberOrderFragmentType['specs']) =>
           (value || [])
-            .map(
-              spec =>
-                spec?.title?.[language as languageType] || spec?.title?.zh_TW,
-            )
+            .map(spec => getLanguage(spec?.title))
             .filter(Boolean)
             .join(' / '),
       },
@@ -131,6 +121,6 @@ export default (): ColumnProps<useColumnsMemberOrderFragmentType>[] => {
             : c((value || 0) * (quantity || 1)),
       },
     ],
-    [t, colors, language, c],
+    [t, colors, getLanguage, c],
   );
 };

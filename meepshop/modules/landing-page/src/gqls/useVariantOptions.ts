@@ -15,8 +15,7 @@ export const useVariantOptionsFragment = gql`
         id
         specId
         title {
-          zh_TW
-          en_US
+          ...localeFragment
         }
       }
       currentMinPurchasableQty

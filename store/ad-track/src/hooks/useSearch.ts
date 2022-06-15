@@ -4,6 +4,8 @@ import { AdTrackType } from '@meepshop/context';
 // import
 import { useCallback } from 'react';
 
+import { useGetLanguage } from '@meepshop/locales';
+
 // graphql typescript
 import { useSearchFragment as useSearchFragmentType } from '@meepshop/types/gqls/store';
 
@@ -11,8 +13,10 @@ import { useSearchFragment as useSearchFragmentType } from '@meepshop/types/gqls
 export default (
   adTracks: useSearchFragmentType | null,
   fbq: NonNullable<typeof window.fbq>,
-): AdTrackType['search'] =>
-  useCallback(
+): AdTrackType['search'] => {
+  const getLanguage = useGetLanguage();
+
+  return useCallback(
     ({ searchString, products }) => {
       if (!adTracks) return;
 
@@ -25,11 +29,12 @@ export default (
         window.gtag('event', 'view_item_list', {
           items: products.map(({ id, title }) => ({
             id,
-            name: title.zh_TW,
+            name: getLanguage(title),
             // eslint-disable-next-line @typescript-eslint/camelcase
             list_name: searchString,
           })),
         });
     },
-    [adTracks, fbq],
+    [adTracks, fbq, getLanguage],
   );
+};

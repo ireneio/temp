@@ -5,7 +5,7 @@ import { ColumnProps } from 'antd/lib/table';
 import { useMemo, useContext } from 'react';
 import { format, subSeconds } from 'date-fns';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
 
 // graphql typescript
@@ -15,6 +15,7 @@ import { useColumnsUserPointsFragment } from '@meepshop/types/gqls/store';
 export default (): ColumnProps<useColumnsUserPointsFragment>[] => {
   const { c } = useContext(CurrencyContext);
   const { t } = useTranslation('member-reward-points');
+  const getLanguage = useGetLanguage();
 
   return useMemo(
     () => [
@@ -34,9 +35,9 @@ export default (): ColumnProps<useColumnsUserPointsFragment>[] => {
           value: useColumnsUserPointsFragment['title'],
           { activity, note }: useColumnsUserPointsFragment,
         ) => {
-          if (value) return value.zh_TW;
+          if (value) return getLanguage(value);
           if (note) return note;
-          if (activity) return activity.zh_TW;
+          if (activity) return getLanguage(activity);
           return t('other');
         },
       },
@@ -61,6 +62,6 @@ export default (): ColumnProps<useColumnsUserPointsFragment>[] => {
             : format(subSeconds(new Date(value), 1), 'yyyy/MM/dd HH:mm'),
       },
     ],
-    [t, c],
+    [t, getLanguage, c],
   );
 };

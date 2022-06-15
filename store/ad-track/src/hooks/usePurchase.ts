@@ -4,6 +4,8 @@ import { AdTrackType } from '@meepshop/context';
 // import
 import { useCallback } from 'react';
 
+import { useGetLanguage } from '@meepshop/locales';
+
 // graphql typescript
 import { usePurchaseFragment as usePurchaseFragmentType } from '@meepshop/types/gqls/store';
 
@@ -14,8 +16,10 @@ type productsType = Parameters<AdTrackType['purchase']>[0]['products'];
 export default (
   store: usePurchaseFragmentType | null,
   fbq: NonNullable<typeof window.fbq>,
-): AdTrackType['purchase'] =>
-  useCallback(
+): AdTrackType['purchase'] => {
+  const getLanguage = useGetLanguage();
+
+  return useCallback(
     ({ orderNo, products, total, currency, shipmentFee, paymentFee }) => {
       if (!store) return;
 
@@ -33,7 +37,7 @@ export default (
         content_ids: products.map(({ productId }) => productId),
         // eslint-disable-next-line @typescript-eslint/camelcase
         content_type: 'product',
-        value: total, // fb pixel record total of order different from GA EC
+        value: total,
         currency,
       });
 
@@ -59,15 +63,9 @@ export default (
                     ...result,
                     {
                       id: productId,
-                      name: title.zh_TW,
+                      name: getLanguage(title),
                       variant: specs
-                        ?.map(
-                          ({
-                            title: specTitle,
-                          }: {
-                            title: { zh_TW: string };
-                          }) => specTitle.zh_TW,
-                        )
+                        ?.map(spec => getLanguage(spec?.title))
                         .join('/'),
                       price: totalPrice / quantity,
                       quantity,
@@ -87,5 +85,6 @@ export default (
           send_to: googleAdwordsPurchase,
         });
     },
-    [store, fbq],
+    [store, fbq, getLanguage],
   );
+};

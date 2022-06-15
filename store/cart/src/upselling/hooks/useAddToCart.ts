@@ -97,10 +97,13 @@ export default ({
         addToCart({
           eventName: 'upselling',
           id: product.id || 'null-id',
-          title: {
-            // eslint-disable-next-line @typescript-eslint/camelcase
-            zh_TW: getLanguage(product.title),
-          },
+          title: !product.title
+            ? null
+            : {
+                ...product.title,
+                // eslint-disable-next-line @typescript-eslint/camelcase
+                zh_TW: getLanguage(product.title),
+              },
           quantity: variant?.currentMinPurchasableQty || 0,
           specs: product.specs,
           price: variant?.totalPrice || 0,

@@ -1,5 +1,3 @@
-// typescript import
-
 // import
 import React, { useEffect, useContext, useState } from 'react';
 import { Form } from 'antd';
@@ -104,10 +102,7 @@ export default React.memo((props: PropsType) => {
       // SHOULD_NOT_BE_NULL
       adTrack.viewProduct({
         id: product.id || 'null-id',
-        title: {
-          // eslint-disable-next-line @typescript-eslint/camelcase
-          zh_TW: product.title?.zh_TW || 'null-title',
-        },
+        title: product.title,
         price: product.variants?.[0]?.totalPrice?.toString() || 'null',
       });
     }, 5000);

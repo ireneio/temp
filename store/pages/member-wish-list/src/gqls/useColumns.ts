@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 
 // graphql import
 import { thumbnailFragment } from '@meepshop/thumbnail/gqls';
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
 
 import { useRemoveFragment } from './useRemove';
 
@@ -16,12 +17,13 @@ export const useColumnsWishlistProductFragment = gql`
     productId
     isAvailableForSale
     title {
-      zh_TW
+      ...localeFragment
     }
     createdAt
   }
 
   ${thumbnailFragment}
+  ${localeFragment}
 `;
 
 export const useColumnsUserFragment = gql`

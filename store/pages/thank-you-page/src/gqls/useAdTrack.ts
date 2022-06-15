@@ -1,6 +1,8 @@
 // import
 import { gql } from '@apollo/client';
 
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+
 // definition
 export const useAdTrackFragment = gql`
   fragment useAdTrackFragment on Order {
@@ -11,11 +13,11 @@ export const useAdTrackFragment = gql`
       productId
       type
       title {
-        zh_TW
+        ...localeFragment
       }
       specs {
         title {
-          zh_TW
+          ...localeFragment
         }
       }
       totalPrice
@@ -29,4 +31,6 @@ export const useAdTrackFragment = gql`
       currency
     }
   }
+
+  ${localeFragment}
 `;

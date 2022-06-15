@@ -1,13 +1,11 @@
 // typescript import
 import { ColumnProps } from 'antd/lib/table';
 
-import { languageType } from '@meepshop/locales';
-
 // import
 import React, { useMemo, useContext } from 'react';
 import { Form } from 'antd';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import { Currency as CurrencyContext } from '@meepshop/context';
 import Select, { Option } from '@meepshop/select';
 import Thumbnail from '@meepshop/thumbnail';
@@ -27,10 +25,8 @@ const { Item: FormItem } = Form;
 export default (
   checking: boolean,
 ): ColumnProps<useColumnsProductsObjectTypeMemberOrderApplyFragmentType>[] => {
-  const {
-    t,
-    i18n: { language },
-  } = useTranslation('member-order-apply');
+  const { t } = useTranslation('member-order-apply');
+  const getLanguage = useGetLanguage();
   const { c } = useContext(CurrencyContext);
 
   return useMemo(
@@ -59,15 +55,11 @@ export default (
           }: useColumnsProductsObjectTypeMemberOrderApplyFragmentType,
         ) => (
           <>
-            {value?.[language as languageType] || value?.zh_TW}
+            {getLanguage(value)}
 
             <div>
               {(specs || [])
-                .map(
-                  spect =>
-                    spect?.title?.[language as languageType] ||
-                    spect?.title?.zh_TW,
-                )
+                .map(spec => getLanguage(spec?.title))
                 .filter(Boolean)
                 .join(' / ')}
             </div>
@@ -84,10 +76,7 @@ export default (
           value: useColumnsProductsObjectTypeMemberOrderApplyFragmentType['specs'],
         ) =>
           (value || [])
-            .map(
-              spec =>
-                spec?.title?.[language as languageType] || spec?.title?.zh_TW,
-            )
+            .map(spec => getLanguage(spec?.title))
             .filter(Boolean)
             .join(' / '),
       },
@@ -186,6 +175,6 @@ export default (
         ),
       },
     ],
-    [c, checking, language, t],
+    [c, checking, getLanguage, t],
   );
 };

@@ -5,6 +5,7 @@ import { AdTrackType } from '@meepshop/context';
 import { useCallback, useContext } from 'react';
 
 import { Currency as CurrencyContext } from '@meepshop/context';
+import { useGetLanguage } from '@meepshop/locales';
 
 // graphql typescript
 import { useViewProductFragment as useViewProductFragmentType } from '@meepshop/types/gqls/store';
@@ -15,6 +16,7 @@ export default (
   fbq: NonNullable<typeof window.fbq>,
 ): AdTrackType['viewProduct'] => {
   const { currency } = useContext(CurrencyContext);
+  const getLanguage = useGetLanguage();
 
   return useCallback(
     ({ id, title, price }) => {
@@ -28,7 +30,7 @@ export default (
         // eslint-disable-next-line @typescript-eslint/camelcase
         content_type: 'product',
         // eslint-disable-next-line @typescript-eslint/camelcase
-        content_name: title.zh_TW,
+        content_name: getLanguage(title),
         value: price,
         currency,
       });
@@ -38,12 +40,12 @@ export default (
           items: [
             {
               id,
-              name: title.zh_TW,
+              name: getLanguage(title),
               price,
             },
           ],
         });
     },
-    [adTracks, fbq, currency],
+    [adTracks, fbq, currency, getLanguage],
   );
 };

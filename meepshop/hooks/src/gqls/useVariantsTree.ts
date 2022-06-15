@@ -1,6 +1,8 @@
 // import
 import { gql } from '@apollo/client';
 
+import { localeFragment } from '@meepshop/utils/lib/gqls/locale';
+
 // definition
 // NO_FILTER
 export const useVariantsTreeFragment = gql`
@@ -12,17 +14,17 @@ export const useVariantsTreeFragment = gql`
         id
         specId
         title {
-          zh_TW
-          en_US
+          ...localeFragment
         }
       }
     }
     specs {
       id
       title {
-        zh_TW
-        en_US
+        ...localeFragment
       }
     }
   }
+
+  ${localeFragment}
 `;

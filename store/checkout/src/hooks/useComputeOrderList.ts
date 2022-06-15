@@ -129,15 +129,21 @@ export default (
         products: computedProducts.map(product => ({
           id: product?.productId || '',
           type: product?.type || '',
-          title: {
-            // eslint-disable-next-line @typescript-eslint/camelcase
-            zh_TW: getLanguage(product?.title),
-          },
+          title: !product?.title
+            ? null
+            : {
+                ...product?.title,
+                // eslint-disable-next-line @typescript-eslint/camelcase
+                zh_TW: getLanguage(product?.title),
+              },
           specs: (product?.specs || []).map(spec => ({
-            title: {
-              // eslint-disable-next-line @typescript-eslint/camelcase
-              zh_TW: getLanguage(spec?.title),
-            },
+            title: !spec?.title
+              ? null
+              : {
+                  ...spec.title,
+                  // eslint-disable-next-line @typescript-eslint/camelcase
+                  zh_TW: getLanguage(spec?.title),
+                },
           })),
           totalPrice: product?.retailPrice || 0,
           quantity: product?.quantity || 0,

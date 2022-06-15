@@ -2,6 +2,9 @@
 import React from 'react';
 import { emptyFunction } from 'fbjs';
 
+// graphql import
+import { localeFragment as localeFragmentType } from '@meepshop/types/gqls/meepshop';
+
 // typescript definition
 type customType = (
   action: string,
@@ -12,15 +15,11 @@ type customType = (
 type addToCartType = (options: {
   eventName: 'ec-popup' | 'ec' | 'lp' | 'upselling';
   id: string;
-  title: {
-    zh_TW: string;
-  };
+  title: localeFragmentType | null;
   quantity: number;
   specs:
     | ({
-        title: {
-          zh_TW: string | null;
-        } | null;
+        title: localeFragmentType | null;
       } | null)[]
     | null;
   price: number;
@@ -28,9 +27,7 @@ type addToCartType = (options: {
 
 type viewProductType = (options: {
   id: string;
-  title: {
-    zh_TW: string;
-  };
+  title: localeFragmentType | null;
   price: string;
 }) => void;
 
@@ -38,9 +35,7 @@ type searchType = (options: {
   searchString: string;
   products: {
     id: string;
-    title: {
-      zh_TW: string;
-    };
+    title: localeFragmentType;
   }[];
 }) => void;
 
@@ -52,13 +47,9 @@ type beginCheckoutType = (options: {
   products: {
     id: string;
     type: string;
-    title: {
-      zh_TW: string;
-    };
+    title: localeFragmentType | null;
     specs: {
-      title: {
-        zh_TW: string;
-      };
+      title: localeFragmentType | null;
     }[];
     totalPrice: number;
     quantity: number;
@@ -72,13 +63,9 @@ type purchaseType = (options: {
     id: string;
     productId: string;
     type: string;
-    title: {
-      zh_TW: string;
-    };
+    title: localeFragmentType;
     specs: {
-      title: {
-        zh_TW: string;
-      };
+      title: localeFragmentType;
     }[];
     totalPrice: number;
     quantity: number;

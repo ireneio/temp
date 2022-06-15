@@ -12,6 +12,7 @@
     "@meepshop/context": "^0.80.201",
     "@meepshop/cookies": "^0.80.203",
     "@meepshop/link": "^0.80.201",
+    "@meepshop/locales": "^0.80.203",
     "@meepshop/utils": "^0.80.201"
   },
   "keywords": ["ad", "fbq", "gtag", "track"]

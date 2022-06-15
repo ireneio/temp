@@ -1,10 +1,7 @@
-// typescript import
-import { languageType } from '@meepshop/locales';
-
 // import
 import { useMemo } from 'react';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 
 // graphql typescript
 import {
@@ -20,10 +17,8 @@ export default ({
   title: string | null;
   discountPrice: number;
 }[] => {
-  const {
-    t,
-    i18n: { language },
-  } = useTranslation('member-order');
+  const { t } = useTranslation('member-order');
+  const getLanguage = useGetLanguage();
 
   return useMemo(() => {
     if (!activityInfo) return [];
@@ -69,8 +64,7 @@ export default ({
                 {
                   id,
                   discountPrice,
-                  title:
-                    title?.[language as languageType] || title?.zh_TW || null,
+                  title: getLanguage(title),
                 },
               ];
           }
@@ -82,5 +76,5 @@ export default ({
       },
       [],
     );
-  }, [activityInfo, language, t]);
+  }, [activityInfo, getLanguage, t]);
 };

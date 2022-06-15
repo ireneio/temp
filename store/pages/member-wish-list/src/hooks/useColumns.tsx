@@ -6,7 +6,7 @@ import React, { useMemo } from 'react';
 import { CloseOutlined } from '@ant-design/icons';
 import { format } from 'date-fns';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Thumbnail from '@meepshop/thumbnail';
 import filter from '@meepshop/utils/lib/filter';
 
@@ -30,6 +30,7 @@ export default (
   user: useColumnsUserFragment | null,
 ): ColumnProps<useColumnsWishlistProductFragment>[] => {
   const { t } = useTranslation('member-wish-list');
+  const getLanguage = useGetLanguage();
   const remove = useRemove(filter(useRemoveFragment, user));
 
   return useMemo(
@@ -61,10 +62,10 @@ export default (
           ),
       },
       {
-        dataIndex: ['title', 'zh_TW'],
+        dataIndex: ['title'],
         title: t('productTitle'),
         render: (
-          value: useColumnsFragmenTitle['zh_TW'],
+          value: useColumnsFragmenTitle,
           { productId, isAvailableForSale }: useColumnsWishlistProductFragment,
         ) =>
           !isAvailableForSale ? (
@@ -78,7 +79,7 @@ export default (
               target="_blank"
               rel="noopener noreferrer"
             >
-              {value}
+              {getLanguage(value)}
             </a>
           ),
       },
@@ -106,6 +107,6 @@ export default (
         ),
       },
     ],
-    [t, remove],
+    [t, getLanguage, remove],
   );
 };

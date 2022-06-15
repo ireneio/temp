@@ -5,6 +5,7 @@ import { AdTrackType } from '@meepshop/context';
 import { useCallback, useContext } from 'react';
 
 import { Currency as CurrencyContext } from '@meepshop/context';
+import { useGetLanguage } from '@meepshop/locales';
 
 // graphql typescript
 import { useBeginCheckoutFragment as useBeginCheckoutFragmentType } from '@meepshop/types/gqls/store';
@@ -18,6 +19,7 @@ export default (
   fbq: NonNullable<typeof window.fbq>,
 ): AdTrackType['beginCheckout'] => {
   const { currency } = useContext(CurrencyContext);
+  const getLanguage = useGetLanguage();
 
   return useCallback(
     ({ products, total }) => {
@@ -47,12 +49,9 @@ export default (
                 quantity,
               }: productsType[number]) => ({
                 id,
-                name: title.zh_TW,
+                name: getLanguage(title),
                 variant: (specs || [])
-                  .map(
-                    ({ title: specTitle }: { title: { zh_TW: string } }) =>
-                      specTitle.zh_TW,
-                  )
+                  .map(spec => getLanguage(spec?.title))
                   .join('/'),
                 price: totalPrice,
                 quantity,
@@ -67,6 +66,6 @@ export default (
           send_to: googleAdwordsBeginCheckout,
         });
     },
-    [adTracks, fbq, currency],
+    [adTracks, fbq, currency, getLanguage],
   );
 };

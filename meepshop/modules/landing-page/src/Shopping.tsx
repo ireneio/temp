@@ -107,10 +107,7 @@ export default React.memo(
               adTrack.addToCart({
                 eventName: 'lp',
                 id: product.id || 'null-id',
-                title: {
-                  // eslint-disable-next-line @typescript-eslint/camelcase
-                  zh_TW: product.title?.zh_TW || 'null-title',
-                },
+                title: product.title,
                 quantity: 1,
                 specs: newVariant.specs,
                 price: newVariant.totalPrice || 0,
@@ -140,10 +137,7 @@ export default React.memo(
                 adTrack.addToCart({
                   eventName: 'lp',
                   id: product.id || 'null-id',
-                  title: {
-                    // eslint-disable-next-line @typescript-eslint/camelcase
-                    zh_TW: product.title?.zh_TW || 'null-title',
-                  },
+                  title: product.title,
                   quantity: value,
                   specs: variant.specs,
                   price: variant.totalPrice || 0,

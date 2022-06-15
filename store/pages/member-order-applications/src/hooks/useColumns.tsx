@@ -1,12 +1,10 @@
 // typescript import
 import { ColumnProps } from 'antd/lib/table';
 
-import { languageType } from '@meepshop/locales';
-
 // import
 import React, { useMemo, useContext } from 'react';
 
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 import Thumbnail from '@meepshop/thumbnail';
 import { Colors as ColorsContext } from '@meepshop/context';
 import filter from '@meepshop/utils/lib/filter';
@@ -29,10 +27,8 @@ export default (
 ): ColumnProps<
   useColumnsMemberOrderApplicationsFragmentApplicationsExtraType
 >[] => {
-  const {
-    t,
-    i18n: { language },
-  } = useTranslation('member-order-applications');
+  const { t } = useTranslation('member-order-applications');
+  const getLanguage = useGetLanguage();
   const colors = useContext(ColorsContext);
   const type = t(`type.${applicationType}`);
 
@@ -67,17 +63,11 @@ export default (
         ) => {
           return (
             <>
-              <div>
-                {!value ? null : value[language as languageType] || value.zh_TW}
-              </div>
+              <div>{getLanguage(value)}</div>
 
               <div>
                 {(product?.specs || [])
-                  .map(
-                    spec =>
-                      spec?.title?.[language as languageType] ||
-                      spec?.title?.zh_TW,
-                  )
+                  .map(spec => getLanguage(spec?.title))
                   .filter(Boolean)
                   .join(' / ')}
               </div>
@@ -126,6 +116,6 @@ export default (
         ),
       },
     ],
-    [t, language, colors, type, applicationType],
+    [t, type, getLanguage, colors, applicationType],
   );
 };

@@ -5,6 +5,7 @@ import { AdTrackType } from '@meepshop/context';
 import { useCallback, useContext } from 'react';
 
 import { Currency as CurrencyContext } from '@meepshop/context';
+import { useGetLanguage } from '@meepshop/locales';
 
 // graphql typescript
 import { useAddToCartFragment as useAddToCartFragmentType } from '@meepshop/types/gqls/store';
@@ -15,6 +16,7 @@ export default (
   fbq: NonNullable<typeof window.fbq>,
 ): AdTrackType['addToCart'] => {
   const { currency } = useContext(CurrencyContext);
+  const getLanguage = useGetLanguage();
 
   return useCallback(
     ({ eventName, id, title, quantity, specs, price }) => {
@@ -56,11 +58,11 @@ export default (
           items: [
             {
               id,
-              name: title.zh_TW,
+              name: getLanguage(title),
               variant: !specs
                 ? ''
                 : specs
-                    .map(spec => spec?.title?.zh_TW)
+                    .map(spec => getLanguage(spec?.title))
                     .filter(Boolean)
                     .join('/'),
               quantity,
@@ -70,6 +72,6 @@ export default (
         });
       }
     },
-    [adTracks, fbq, currency],
+    [adTracks, fbq, currency, getLanguage],
   );
 };

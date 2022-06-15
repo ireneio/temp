@@ -8,7 +8,7 @@ import { DefaultLeaf } from '@meepshop/hooks/lib/useVariantsTree';
 import { useMemo } from 'react';
 
 import useVariantsTree from '@meepshop/hooks/lib/useVariantsTree';
-import { useTranslation } from '@meepshop/locales';
+import { useTranslation, useGetLanguage } from '@meepshop/locales';
 
 // graphql typescript
 import {
@@ -28,13 +28,13 @@ const generateVariantOptions = (
   language: keyof useVariantOptionsFragmentVariantsSpecsTitle,
 ): CascaderOptionType[] | undefined =>
   children?.map(({ children: child, data }) => {
+    const getLanguage = useGetLanguage();
     const { title, variant } = data;
     const currentMinPurchasableQty = variant?.currentMinPurchasableQty || 0;
 
     return {
-      value:
-        (child ? title?.[language] || title?.zh_TW : variant?.id) || undefined,
-      label: title?.[language] || title?.zh_TW,
+      value: (child ? getLanguage(title) : variant?.id) || undefined,
+      label: getLanguage(title),
       disabled: currentMinPurchasableQty === 0,
       ...(!child
         ? {}
