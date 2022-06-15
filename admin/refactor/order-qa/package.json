@@ -4,12 +4,12 @@
   "description": "Admin refactor qa panel",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.203",
+  "version": "0.80.204",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/hooks": "^0.80.201",
-    "@admin/order-qa": "^0.80.203"
+    "@admin/hooks": "^0.80.204",
+    "@admin/order-qa": "^0.80.204"
   },
   "keywords": ["admin", "order", "qa", "refactor"]
 }

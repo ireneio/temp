@@ -4,14 +4,14 @@
   "description": "download batch update products panel",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.203",
+  "version": "0.80.204",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@admin/hooks": "^0.80.201",
-    "@admin/utils": "^0.80.201",
-    "@meepshop/images": "^0.80.201",
-    "@meepshop/locales": "^0.80.203"
+    "@admin/hooks": "^0.80.204",
+    "@admin/utils": "^0.80.204",
+    "@meepshop/images": "^0.80.204",
+    "@meepshop/locales": "^0.80.204"
   },
   "keywords": ["admin", "batch update", "download"]
 }

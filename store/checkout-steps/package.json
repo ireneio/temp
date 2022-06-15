@@ -4,13 +4,13 @@
   "description": "checkout steps",
   "license": "ISC",
   "author": "meepshop <admin@meepshop.com>",
-  "version": "0.80.203",
+  "version": "0.80.204",
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@meepshop/context": "^0.80.201",
-    "@meepshop/locales": "^0.80.203",
-    "@store/utils": "^0.80.201",
+    "@meepshop/context": "^0.80.204",
+    "@meepshop/locales": "^0.80.204",
+    "@store/utils": "^0.80.204",
     "color": "^3.0.0"
   },
   "keywords": ["checkout", "steps", "store"]
