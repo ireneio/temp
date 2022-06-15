@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.80.204 (2022-06-15)
+
+#### :house: Internal
+
+- Other
+  - [#2142](https://github.com/meepshop/meep-lerna/pull/2142) 內部開單 - @store 用到 zh_TW 部分改用 localeFragment 以及 getLanguage ([@Lexiwu](https://github.com/Lexiwu))
+- `meep-ui`
+  - [#2144](https://github.com/meepshop/meep-lerna/pull/2144) 內部開單 - useValidateEmail 改為 @meepshop/form-email ([@Lexiwu](https://github.com/Lexiwu))
+
+#### Committers: 1
+
+- LexiWu ([@Lexiwu](https://github.com/Lexiwu))
+
 ## 0.80.203 (2022-06-14)
 
 #### :rocket: New Feature
