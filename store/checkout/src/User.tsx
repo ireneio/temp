@@ -5,10 +5,10 @@ import transformColor from 'color';
 
 import { Colors as ColorsContext } from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
-import { useValidateEmail } from '@meepshop/validator';
 import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/form-address-cascader';
+import Email from '@meepshop/form-email';
 
 import useValidateMobile from './hooks/useValidateMobile';
 import styles from './styles/user.less';
@@ -29,7 +29,6 @@ const { Password } = Input;
 export default React.memo(({ isLogin, store }: PropsType) => {
   const { t } = useTranslation('checkout');
   const colors = useContext(ColorsContext);
-  const validateEmail = useValidateEmail(false, true, t('please-login'));
   const { validateMobile } = useValidateMobile();
 
   const name = store?.setting?.checkoutFields.name || '';
@@ -53,23 +52,11 @@ export default React.memo(({ isLogin, store }: PropsType) => {
 
       {isLogin ? null : (
         <>
-          <FormItem
+          <Email
             name={['viewerEmail']}
-            rules={[
-              {
-                required: true,
-                message: t('is-required'),
-              },
-              {
-                validator: validateEmail.validator,
-              },
-            ]}
-            normalize={validateEmail.normalize}
-            validateTrigger="onBlur"
-            validateFirst
-          >
-            <Input size="large" placeholder={t('email')} />
-          </FormItem>
+            checkShopperEmail
+            errorMessage={t('please-login')}
+          />
 
           <FormItem
             name={['viewerPassword']}

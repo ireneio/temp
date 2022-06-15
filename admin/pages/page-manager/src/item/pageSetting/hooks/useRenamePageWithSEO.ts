@@ -74,7 +74,7 @@ export default (
           if (data.renamePageWithSEO?.status !== 'OK') {
             switch (data.renamePageWithSEO?.status) {
               case 'FAIL_PAGE_PATH_DUPLICATE':
-                message.error(t('validator:page-path.same-path'));
+                message.error(t('form.same-path'));
                 break;
 
               default:

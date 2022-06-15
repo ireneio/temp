@@ -3,9 +3,9 @@ import React from 'react';
 import { Form, Input, Checkbox, Button } from 'antd';
 import Script from 'next/script';
 
+import Email from '@meepshop/form-email';
 import { useTranslation } from '@meepshop/locales';
 import { loginLogo } from '@meepshop/images';
-import { useValidateEmail } from '@meepshop/validator';
 
 import useGrecaptcha from './hooks/useGrecaptcha';
 import useLogin from './hooks/useLogin';
@@ -25,7 +25,6 @@ export default React.memo(({ setAction }: PropsType) => {
   const { t } = useTranslation('login');
   const { grecaptcha, grecaptchaRef, onLoad } = useGrecaptcha();
   const { loading, login } = useLogin(grecaptcha);
-  const validateEmail = useValidateEmail(true);
 
   return (
     <>
@@ -42,22 +41,7 @@ export default React.memo(({ setAction }: PropsType) => {
 
           <h1>{t('title')}</h1>
 
-          <FormItem
-            name={['email']}
-            rules={[
-              {
-                required: true,
-                message: t('required'),
-              },
-              {
-                validator: validateEmail.validator,
-              },
-            ]}
-            normalize={validateEmail.normalize}
-            validateTrigger="onBlur"
-          >
-            <Input placeholder={t('email.placeholder')} size="large" />
-          </FormItem>
+          <Email name={['email']} isNotShopper />
 
           <FormItem
             name={['password']}

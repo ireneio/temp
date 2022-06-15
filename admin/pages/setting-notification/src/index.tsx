@@ -5,10 +5,10 @@ import { NextPage } from 'next';
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { LoadingOutlined } from '@ant-design/icons';
-import { Form, Button, Switch, Spin, Input, Divider } from 'antd';
+import { Form, Button, Switch, Spin, Divider } from 'antd';
 
+import Email from '@meepshop/form-email';
 import { useTranslation } from '@meepshop/locales';
-import { useValidateEmail } from '@meepshop/validator';
 
 import Header from '@admin/header';
 import Block from '@admin/block';
@@ -69,7 +69,6 @@ const SettingNotificationPage: NextPage<PropsType> = React.memo(() => {
   const { updateNotification, loading } = useUpdateNotificationSetting(
     data?.viewer?.store?.id || null,
   );
-  const validateEmail = useValidateEmail(true);
 
   useEffect(() => {
     if (data) form.resetFields();
@@ -111,23 +110,11 @@ const SettingNotificationPage: NextPage<PropsType> = React.memo(() => {
             <div>
               <h3 className={styles.title}>{t('email')}</h3>
 
-              <FormItem
+              <Email
                 name={['recipientEmail']}
                 initialValue={recipientEmail}
-                rules={[
-                  {
-                    required: true,
-                    message: t('required'),
-                  },
-                  {
-                    validator: validateEmail.validator,
-                  },
-                ]}
-                normalize={validateEmail.normalize}
-                validateTrigger="onBlur"
-              >
-                <Input />
-              </FormItem>
+                isNotShopper
+              />
             </div>
 
             <Divider />

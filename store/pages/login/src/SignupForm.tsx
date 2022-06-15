@@ -10,8 +10,8 @@ import {
   Colors as ColorsContext,
   Apps as AppsContext,
 } from '@meepshop/context';
-import { useValidateEmail } from '@meepshop/validator';
 import AddressCascader from '@meepshop/form-address-cascader';
+import Email from '@meepshop/form-email';
 
 import useSignup from './hooks/useSignup';
 import useValidateConfirmPassword from './hooks/useValidateConfirmPassword';
@@ -35,7 +35,6 @@ export default React.memo(
     const { t } = useTranslation('login');
     const colors = useContext(ColorsContext);
     const app = useContext(AppsContext);
-    const validateEmail = useValidateEmail(false, true);
     const { save, loading } = useSignup(setOptions);
     const validateConfirmPassword = useValidateConfirmPassword();
     const hasMemberGroupCode = (
@@ -44,22 +43,7 @@ export default React.memo(
 
     return (
       <Form className={styles.root} onFinish={save}>
-        <FormItem
-          name={['email']}
-          rules={[
-            {
-              required: true,
-              message: t('email-is-required'),
-            },
-            {
-              validator: validateEmail.validator,
-            },
-          ]}
-          normalize={validateEmail.normalize}
-          validateTrigger="onBlur"
-        >
-          <Input placeholder={t('email')} size="large" />
-        </FormItem>
+        <Email name={['email']} checkShopperEmail />
 
         <FormItem
           name={['password']}

@@ -1,10 +1,10 @@
 // import
 import React, { useContext } from 'react';
-import { Form, Button, Input } from 'antd';
+import { Form, Button } from 'antd';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
-import { useValidateEmail } from '@meepshop/validator';
+import Email from '@meepshop/form-email';
 
 import useSendResetPswMail from './hooks/useSendResetPswMail';
 import styles from './styles/sendResetPswMailForm.less';
@@ -13,33 +13,15 @@ import styles from './styles/sendResetPswMailForm.less';
 import { sendResetPswMailFormFragment as sendResetPswMailFormFragmentType } from '@meepshop/types/gqls/store';
 
 // definition
-const { Item: FormItem } = Form;
-
 export default React.memo(
   ({ store }: { store: sendResetPswMailFormFragmentType | null }) => {
     const { t } = useTranslation('login');
     const colors = useContext(ColorsContext);
-    const validateEmail = useValidateEmail(true);
     const sendResetPswMail = useSendResetPswMail(store?.cname || '');
 
     return (
       <Form onFinish={sendResetPswMail}>
-        <FormItem
-          name={['email']}
-          rules={[
-            {
-              required: true,
-              message: t('email-is-required'),
-            },
-            {
-              validator: validateEmail.validator,
-            },
-          ]}
-          normalize={validateEmail.normalize}
-          validateTrigger="onBlur"
-        >
-          <Input placeholder={t('email-placeholder')} size="large" />
-        </FormItem>
+        <Email name={['email']} />
 
         <div className={styles.buttonGroup}>
           <Button

@@ -1,0 +1,8 @@
+{
+  "email-is-required": "Vui lòng nhập hộp thư",
+  "email-placeholder": "hộp thư",
+  "email": {
+    "invalid-format": "Định dạng hộp thư Lỗi.",
+    "already-exists": "Hộp thư này đã được đăng ký"
+  }
+}

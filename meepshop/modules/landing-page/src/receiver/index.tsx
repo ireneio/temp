@@ -7,6 +7,7 @@ import React, { useContext } from 'react';
 import { Cascader, Form, Input } from 'antd';
 import { isAlpha } from 'validator';
 
+import Email from '@meepshop/form-email';
 import DatePicker from '@meepshop/form-date-picker';
 import validateMobile from '@meepshop/utils/lib/validate/mobile';
 import { useTranslation } from '@meepshop/locales';
@@ -15,7 +16,6 @@ import AddressCascader, {
   validateAddressCascader,
 } from '@meepshop/form-address-cascader';
 import { Colors as ColorsContext } from '@meepshop/context';
-import { useValidateEmail } from '@meepshop/validator';
 import filter from '@meepshop/utils/lib/filter';
 
 import Invoice from './Invoice';
@@ -56,8 +56,6 @@ export default React.memo(
     const invoiceOptions = useInvoiceOptions(
       filter(useInvoiceOptionsFragment, viewer?.store?.setting || null),
     );
-    const validateEmail = useValidateEmail(false, true);
-
     const isLogin = viewer?.role === 'SHOPPER';
     const { getFieldValue } = form;
 
@@ -150,22 +148,11 @@ export default React.memo(
           />
         )}
         {isLogin ? null : (
-          <Item
+          <Email
             className={styles.formItem}
             name={['userEmail']}
-            normalize={validateEmail.normalize}
-            rules={[
-              {
-                required: true,
-                message: t('is-required'),
-              },
-              {
-                validator: validateEmail.validator,
-              },
-            ]}
-          >
-            <Input placeholder={t('email')} />
-          </Item>
+            checkShopperEmail
+          />
         )}
         <Item
           className={styles.formItem}

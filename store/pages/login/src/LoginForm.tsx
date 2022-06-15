@@ -8,8 +8,8 @@ import { Form, Button, Input, Divider } from 'antd';
 import Line from '@meepshop/line';
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext, Fb as FbContext } from '@meepshop/context';
-import { useValidateEmail } from '@meepshop/validator';
 import { FbLoginIcon } from '@meepshop/icons';
+import Email from '@meepshop/form-email';
 import { useRouter } from '@meepshop/link';
 import filter from '@meepshop/utils/lib/filter';
 
@@ -38,29 +38,13 @@ export default React.memo(({ setOptions, lineLoginSetting }: PropsType) => {
   const colors = useContext(ColorsContext);
   const { fb, isLoginEnabled: fbLoginEnable } = useContext(FbContext);
   const { previousUrl } = useRouter();
-  const validateEmail = useValidateEmail();
   const login = useLogin();
   const [fbLoginLoading, setFbLoginLoading] = useState<boolean>(false);
   const lineLoginEnable = lineLoginSetting?.isLoginEnabled || null;
 
   return (
     <Form className={styles.root} onFinish={login}>
-      <FormItem
-        name={['email']}
-        rules={[
-          {
-            required: true,
-            message: t('email-is-required'),
-          },
-          {
-            validator: validateEmail.validator,
-          },
-        ]}
-        normalize={validateEmail.normalize}
-        validateTrigger="onBlur"
-      >
-        <Input placeholder={t('email-placeholder')} size="large" />
-      </FormItem>
+      <Email name={['email']} />
 
       <FormItem
         name={['password']}

@@ -6,10 +6,10 @@ import React from 'react';
 import { CheckCircleOutlined } from '@ant-design/icons';
 import { Form, Input, Button } from 'antd';
 
+import Email from '@meepshop/form-email';
 import Link from '@meepshop/link';
 import { useTranslation } from '@meepshop/locales';
 import { loginLogo, loginBackground } from '@meepshop/images';
-import { useValidateEmail } from '@meepshop/validator';
 
 import useApplyForStore from './hooks/useApplyForStore';
 import useValidateConfirmPassword from './hooks/useValidateConfirmPassword';
@@ -33,7 +33,6 @@ const SignUp: NextPage<PropsType> = React.memo(() => {
     isApplyForStoreCompleted,
     applyForStore,
   } = useApplyForStore();
-  const validateEmail = useValidateEmail(true);
   const validateConfirmPassword = useValidateConfirmPassword();
   const validateMerchantEmail = useValidateMerchantEmail();
 
@@ -50,26 +49,15 @@ const SignUp: NextPage<PropsType> = React.memo(() => {
 
             <div>{t('free-trial')}</div>
 
-            <FormItem
+            <Email
               name={['email']}
+              isNotShopper
               rules={[
-                {
-                  required: true,
-                  message: t('account.error'),
-                },
-                {
-                  validator: validateEmail.validator,
-                },
                 {
                   validator: validateMerchantEmail,
                 },
               ]}
-              normalize={validateEmail.normalize}
-              validateTrigger="onBlur"
-              validateFirst
-            >
-              <Input placeholder={t('account.placeholder')} size="large" />
-            </FormItem>
+            />
 
             <FormItem
               name={['password']}

@@ -2,12 +2,12 @@
 import React, { useContext, useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
 
+import Email from '@meepshop/form-email';
 import {
   Colors as ColorsContext,
   Role as RoleContext,
 } from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
-import { useValidateEmail } from '@meepshop/validator';
 
 import LoginFooter from './LoginFooter';
 import styles from './styles/login.less';
@@ -35,7 +35,6 @@ export default React.memo(
     const colors = useContext(ColorsContext);
     const role = useContext(RoleContext);
     const { t } = useTranslation('login-modal');
-    const validateEmail = useValidateEmail();
     const { login, loading } = useLogin();
 
     useEffect(() => {
@@ -45,28 +44,7 @@ export default React.memo(
     return (
       <div className={styles.root}>
         <Form onFinish={login}>
-          <FormItem
-            name={['email']}
-            rules={[
-              {
-                required: true,
-                message: t('email.required'),
-              },
-              {
-                validator: validateEmail.validator,
-              },
-            ]}
-            normalize={validateEmail.normalize}
-            initialValue={initialEmail}
-            validateTrigger="onBlur"
-            validateFirst
-          >
-            <Input
-              type="email"
-              size="large"
-              placeholder={t('email.placeholder')}
-            />
-          </FormItem>
+          <Email name={['email']} initialValue={initialEmail} />
 
           <FormItem
             name={['password']}

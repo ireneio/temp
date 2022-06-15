@@ -2,9 +2,9 @@
 import React from 'react';
 import { Form, Input, Checkbox, Button } from 'antd';
 
+import Email from '@meepshop/form-email';
 import { useTranslation } from '@meepshop/locales';
 import { meepshopLogo } from '@meepshop/images';
-import { useValidateEmail } from '@meepshop/validator';
 
 import useSendResetPasswordEmail from './hooks/useSendResetPasswordEmail';
 
@@ -25,7 +25,6 @@ export default React.memo(({ setAction }: PropsType) => {
     countdown,
     sendResetPasswordEmail,
   } = useSendResetPasswordEmail();
-  const validateEmail = useValidateEmail(true);
 
   return (
     <Form className={styles.root} onFinish={sendResetPasswordEmail}>
@@ -43,22 +42,7 @@ export default React.memo(({ setAction }: PropsType) => {
           <Checkbox>{t('helper.is-helper')}</Checkbox>
         </FormItem>
 
-        <FormItem
-          name={['email']}
-          rules={[
-            {
-              required: true,
-              message: t('required'),
-            },
-            {
-              validator: validateEmail.validator,
-            },
-          ]}
-          normalize={validateEmail.normalize}
-          validateTrigger="onBlur"
-        >
-          <Input placeholder={t('email.placeholder')} size="large" />
-        </FormItem>
+        <Email name={['email']} isNotShopper />
 
         <FormItem dependencies={['isHelper']} noStyle>
           {({ getFieldValue }) =>

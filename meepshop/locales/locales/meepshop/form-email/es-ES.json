@@ -1,0 +1,8 @@
+{
+  "email-is-required": "Por favor ingrese el buzón",
+  "email-placeholder": "buzón",
+  "email": {
+    "invalid-format": "Error de formato de buzón",
+    "already-exists": "Este buzón ha sido registrado."
+  }
+}

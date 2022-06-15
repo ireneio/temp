@@ -10,7 +10,7 @@ import { isUUID } from 'validator';
 
 import { OpenUrlIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/locales';
-import { useValidateEmail } from '@meepshop/validator';
+import Email from '@meepshop/form-email';
 import filter from '@meepshop/utils/lib/filter';
 import Link from '@meepshop/link';
 import Header from '@admin/header';
@@ -71,7 +71,6 @@ const AffiliatePartner: NextPage<PropsType> = React.memo(
     const updateAffiliatePartner = useUpdateAffiliatePartner(
       filter(useUpdateAffiliatePartnerFragment, affiliatePartner),
     );
-    const validateEmail = useValidateEmail(true);
     const validatePartnerName = useValidatePartnerName(
       isAdd ? null : affiliatePartner?.name || null,
     );
@@ -151,17 +150,12 @@ const AffiliatePartner: NextPage<PropsType> = React.memo(
 
             <div className={styles.title}>{t('email.title')}</div>
 
-            <FormItem
+            <Email
               name={['email']}
-              normalize={validateEmail.normalize}
-              rules={[
-                {
-                  validator: validateEmail.validator,
-                },
-              ]}
-            >
-              <Input placeholder={t('email.placeholder')} />
-            </FormItem>
+              placeholder={t('email.placeholder')}
+              isNotShopper
+              disableRequired
+            />
 
             <div className={styles.title}>{t('phone.title')}</div>
 

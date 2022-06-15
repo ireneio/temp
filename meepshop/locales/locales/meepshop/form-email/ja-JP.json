@@ -1,0 +1,8 @@
+{
+  "email-is-required": "メールボックスを入力してください",
+  "email-placeholder": "メールボックス",
+  "email": {
+    "invalid-format": "メールボックスフォーマットエラー",
+    "already-exists": "このメールボックスは登録されています"
+  }
+}

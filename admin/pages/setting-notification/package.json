@@ -13,8 +13,8 @@
     "@admin/message": "^0.80.201",
     "@admin/tooltip": "^0.80.201",
     "@admin/utils": "^0.80.201",
-    "@meepshop/locales": "^0.80.203",
-    "@meepshop/validator": "^0.80.203"
+    "@meepshop/form-email": "^0.1.0",
+    "@meepshop/locales": "^0.80.203"
   },
   "keywords": ["admin", "notification", "setting"]
 }

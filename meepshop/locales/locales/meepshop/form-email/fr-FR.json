@@ -1,0 +1,8 @@
+{
+  "email-is-required": "S'il vous plaît entrer la boîte aux lettres",
+  "email-placeholder": "boites aux lettres",
+  "email": {
+    "invalid-format": "Erreur de format de boîte aux lettres",
+    "already-exists": "Cette boîte aux lettres a été enregistrée"
+  }
+}

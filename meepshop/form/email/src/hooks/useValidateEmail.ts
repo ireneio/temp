@@ -15,7 +15,7 @@ import {
 } from '@meepshop/types/gqls/meepshop';
 
 // graphql import
-import { checkEmail } from './gqls/useValidateEmail';
+import { checkEmail } from '../gqls/useValidateEmail';
 
 // definition
 export default (
@@ -26,7 +26,7 @@ export default (
   normalize: (value: string) => string;
   validator: NonNullable<FormListProps['rules']>[number]['validator'];
 } => {
-  const { t } = useTranslation('validator');
+  const { t } = useTranslation('form-email');
   const client = useApolloClient();
 
   return {

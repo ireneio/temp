@@ -4,12 +4,11 @@ import radium from 'radium';
 import { Form, Input } from 'antd';
 import { isAlpha, isLength } from 'validator';
 
+import Email from '@meepshop/form-email';
 import DatePicker from '@meepshop/form-date-picker';
 import { withTranslation } from '@meepshop/locales';
 import LoginModal from '@meepshop/login-modal';
 import Select, { Option } from '@meepshop/select';
-import { useValidateEmail } from '@meepshop/validator';
-import withHook from '@store/utils/lib/withHook';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import ReceiverDefaultFormItem from 'receiverDefaultFormItem';
@@ -33,9 +32,6 @@ const { Item: FormItem } = Form;
 const { TextArea } = Input;
 
 @withTranslation('landing-page')
-@withHook(() => ({
-  validateEmail: useValidateEmail(false, true),
-}))
 @enhancer
 @radium
 export default class ReceiverInfo extends React.PureComponent {
@@ -149,7 +145,6 @@ export default class ReceiverInfo extends React.PureComponent {
       shippableCountries,
       addition,
       required,
-      validateEmail,
     } = this.props;
 
     return (
@@ -209,30 +204,17 @@ export default class ReceiverInfo extends React.PureComponent {
         )}
         {isLogin !== NOTLOGIN ? null : (
           <>
-            <FormItem
+            <Email
               style={formItemStyle}
               name={['userEmail']}
-              rules={[
-                {
-                  required: true,
-                  message: t('is-required'),
-                },
-                {
-                  validator: validateEmail.validator,
-                },
-              ]}
-              normalize={validateEmail.normalize}
-              validateTrigger="onBlur"
-              validateFirst
-            >
-              <Input placeholder={t('email')} />
-            </FormItem>
+              checkShopperEmail
+            />
 
             {/** FIXME: https://github.com/ant-design/ant-design/issues/26888 */}
             <FormItem noStyle shouldUpdate>
               {({ getFieldError, getFieldValue }) =>
                 !getFieldError(['userEmail']).includes(
-                  t('validator:email.already-exists'),
+                  t('form-email:email.already-exists'),
                 ) ? null : (
                   <LoginModal
                     onClose={this.onCloseLoginModal}

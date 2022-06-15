@@ -1,0 +1,8 @@
+{
+  "email-is-required": "請輸入信箱",
+  "email-placeholder": "信箱",
+  "email": {
+    "invalid-format": "信箱格式錯誤",
+    "already-exists": "此信箱已註冊"
+  }
+}

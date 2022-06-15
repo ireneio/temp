@@ -1,0 +1,8 @@
+{
+  "email-is-required": "Silakan masukkan kotak surat",
+  "email-placeholder": "kotak surat",
+  "email": {
+    "invalid-format": "Kesalahan format kotak surat",
+    "already-exists": "Kotak surat ini telah terdaftar"
+  }
+}

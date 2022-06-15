@@ -1,10 +1,10 @@
 // import
 import React, { useContext } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Button } from 'antd';
 
+import Email from '@meepshop/form-email';
 import { Colors as ColorsContext } from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
-import { useValidateEmail } from '@meepshop/validator';
 
 import styles from './styles/forgetPassword.less';
 import useForgetPassword from './hooks/useForgetPassword';
@@ -22,7 +22,6 @@ export default React.memo(
   ({ initialEmail, setIsForgetPassword }: PropsType) => {
     const colors = useContext(ColorsContext);
     const { t } = useTranslation('login-modal');
-    const validateEmail = useValidateEmail();
     const { forgetPassword, loading } = useForgetPassword(setIsForgetPassword);
 
     return (
@@ -31,30 +30,13 @@ export default React.memo(
           {t('forget-password.description')}
         </div>
 
-        <FormItem
+        <Email
           name={['email']}
-          rules={[
-            {
-              required: true,
-              message: t('forget-password.error'),
-            },
-            {
-              validator: validateEmail.validator,
-            },
-          ]}
-          normalize={validateEmail.normalize}
           initialValue={initialEmail}
-          validateTrigger="onBlur"
-          validateFirst
           label={t('forget-password.email')}
           labelCol={{ span: 24 }}
-        >
-          <Input
-            type="email"
-            size="large"
-            placeholder={t('forget-password.placeholder')}
-          />
-        </FormItem>
+          placeholder={t('forget-password.placeholder')}
+        />
 
         <FormItem>
           <Button

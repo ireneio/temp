@@ -1,0 +1,8 @@
+{
+  "email-is-required": "Please enter the mailbox",
+  "email-placeholder": "mailbox",
+  "email": {
+    "invalid-format": "Mailbox format error",
+    "already-exists": "This mailbox has been registered"
+  }
+}

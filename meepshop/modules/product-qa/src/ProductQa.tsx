@@ -4,11 +4,11 @@ import { format } from 'date-fns';
 import transformColor from 'color';
 import { Form, Input, Button } from 'antd';
 
+import Email from '@meepshop/form-email';
 import { useAutoLinker } from '@meepshop/hooks';
 import { ViewReplyIcon } from '@meepshop/icons';
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
-import { useValidateEmail } from '@meepshop/validator';
 import filter from '@meepshop/utils/lib/filter';
 
 import useCreateProductQA from './hooks/useCreateProductQA';
@@ -33,7 +33,6 @@ export default React.memo(({ width, product, viewer }: productQaFragment) => {
     filter(useCreateProductQAFragment, product),
     form,
   );
-  const validateEmail = useValidateEmail();
   const autoLinker = useAutoLinker();
 
   return (
@@ -128,24 +127,7 @@ export default React.memo(({ width, product, viewer }: productQaFragment) => {
         })}
       </div>
 
-      {viewer?.role === 'SHOPPER' ? null : (
-        <FormItem
-          name={['userEmail']}
-          rules={[
-            {
-              required: true,
-              message: t('is-required'),
-            },
-            {
-              validator: validateEmail.validator,
-            },
-          ]}
-          normalize={validateEmail.normalize}
-          validateTrigger="onBlur"
-        >
-          <Input style={{ borderColor: colors[5] }} placeholder={t('email')} />
-        </FormItem>
-      )}
+      {viewer?.role === 'SHOPPER' ? null : <Email name={['userEmail']} />}
 
       <FormItem
         name={['question']}
