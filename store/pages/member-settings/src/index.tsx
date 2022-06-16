@@ -7,10 +7,8 @@ import { format } from 'date-fns';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
+import AddressCascader from '@meepshop/form-address-cascader';
 import Select, { Option } from '@meepshop/select';
-import AddressCascader, {
-  validateAddressCascader,
-} from '@meepshop/form-address-cascader';
 import DatePicker from '@meepshop/form-date-picker';
 
 import RemoveCreditCardInfo from './RemoveCreditCardInfo';
@@ -157,16 +155,8 @@ export default React.memo(() => {
           }}
         />
 
-        <FormItem
-          {...(country || city || area
-            ? {
-                rules: [
-                  {
-                    validator: validateAddressCascader(t('form.required')),
-                  },
-                ],
-              }
-            : {})}
+        <AddressCascader
+          size="large"
           name={['addressAndZipCode']}
           initialValue={{
             address: ([country, city, area].filter(Boolean) as NonNullable<
@@ -174,14 +164,11 @@ export default React.memo(() => {
             >[]).map(({ id: itemId }) => itemId),
             zipCode,
           }}
-        >
-          <AddressCascader
-            className={styles.addressCascader}
-            size="large"
-            placeholder={[t('address'), t('zip-code')]}
-            shippableCountries={store?.shippableCountries || []}
-          />
-        </FormItem>
+          rootClassName={styles.addressCascader}
+          placeholder={[t('address'), t('zip-code')]}
+          shippableCountries={store?.shippableCountries || []}
+          enableValidator={Boolean(country || city || area)}
+        />
 
         <FormItem
           {...validator(street)}

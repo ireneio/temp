@@ -5,9 +5,7 @@ import transformColor from 'color';
 
 import { useTranslation } from '@meepshop/locales';
 import { Colors as ColorsContext } from '@meepshop/context';
-import AddressCascader, {
-  validateAddressCascader,
-} from '@meepshop/form-address-cascader';
+import AddressCascader from '@meepshop/form-address-cascader';
 import filter from '@meepshop/utils/lib/filter';
 import Select, { Option } from '@meepshop/select';
 
@@ -181,20 +179,13 @@ export default React.memo(({ isLogin, store, user }: PropsType) => {
             getFieldValue(['shipment'])?.template || '',
           ) ? null : (
             <>
-              <FormItem
+              <AddressCascader
+                size="large"
                 name={['addressAndZipCode']}
-                rules={[
-                  {
-                    validator: validateAddressCascader(t('is-required')),
-                  },
-                ]}
-              >
-                <AddressCascader
-                  size="large"
-                  placeholder={[t('area'), t('postal-code')]}
-                  shippableCountries={store?.shippableCountries || []}
-                />
-              </FormItem>
+                placeholder={[t('area'), t('postal-code')]}
+                shippableCountries={store?.shippableCountries || []}
+                enableValidator
+              />
 
               <FormItem
                 name={['street']}

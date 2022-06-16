@@ -5,9 +5,7 @@ import transformColor from 'color';
 
 import { Colors as ColorsContext } from '@meepshop/context';
 import { useTranslation } from '@meepshop/locales';
-import AddressCascader, {
-  validateAddressCascader,
-} from '@meepshop/form-address-cascader';
+import AddressCascader from '@meepshop/form-address-cascader';
 import Email from '@meepshop/form-email';
 
 import useValidateMobile from './hooks/useValidateMobile';
@@ -137,25 +135,14 @@ export default React.memo(({ isLogin, store }: PropsType) => {
 
       {address === 'HIDDEN' ? null : (
         <>
-          <FormItem
+          <AddressCascader
+            size="large"
             name={['viewerAddressAndZipCode']}
-            rules={
-              address === 'OPTIONAL'
-                ? []
-                : [
-                    {
-                      validator: validateAddressCascader(t('is-required')),
-                    },
-                  ]
-            }
+            placeholder={[t('area'), t('postal-code')]}
+            shippableCountries={store?.shippableCountries || []}
+            enableValidator={address === 'REQUIRED'}
             validateTrigger="onBlur"
-          >
-            <AddressCascader
-              size="large"
-              placeholder={[t('area'), t('postal-code')]}
-              shippableCountries={store?.shippableCountries || []}
-            />
-          </FormItem>
+          />
 
           <FormItem
             name={['viewerStreet']}

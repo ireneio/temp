@@ -1,10 +1,10 @@
 // typescript import
-import { PropsType } from './src';
+import { PropsType } from './src/AddressCascader';
 
 // import
 import React, { useState } from 'react';
 
-import AddressCascader from './src';
+import AddressCascader from './src/AddressCascader';
 
 // definition
 export default React.memo(() => {

@@ -75,13 +75,12 @@ export default React.memo(
           <Input size="large" placeholder={t('mobile')} />
         </FormItem>
 
-        <FormItem name={['addressAndZipCode']}>
-          <AddressCascader
-            size="large"
-            placeholder={[t('address'), t('zip-code')]}
-            shippableCountries={store?.shippableCountries || []}
-          />
-        </FormItem>
+        <AddressCascader
+          size="large"
+          name={['addressAndZipCode']}
+          placeholder={[t('address'), t('zip-code')]}
+          shippableCountries={store?.shippableCountries || []}
+        />
 
         <FormItem name={['street']}>
           <Input size="large" placeholder={t('street')} />

@@ -4,9 +4,7 @@ import radium from 'radium';
 import { Form, Input, Cascader } from 'antd';
 
 import { withTranslation } from '@meepshop/locales';
-import AddressCascader, {
-  validateAddressCascader,
-} from '@meepshop/form-address-cascader';
+import AddressCascader from '@meepshop/form-address-cascader';
 
 import { enhancer } from 'layout/DecoratorsRoot';
 import {
@@ -122,22 +120,14 @@ export default class ReceiverDefaultFormItem extends React.PureComponent {
           </FormItem>
         ) : (
           <>
-            <FormItem
+            <AddressCascader
               className={className}
               style={style}
               name={['addressAndZipCode']}
-              rules={[
-                {
-                  validator: validateAddressCascader(t('is-required')),
-                },
-              ]}
-            >
-              <AddressCascader
-                placeholder={[t('area'), t('postal-code')]}
-                shippableCountries={shippableCountries || []}
-                allowClear={false}
-              />
-            </FormItem>
+              placeholder={[t('area'), t('postal-code')]}
+              shippableCountries={shippableCountries || []}
+              enableValidator
+            />
 
             <FormItem
               className={className}

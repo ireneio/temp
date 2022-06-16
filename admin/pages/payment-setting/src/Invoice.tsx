@@ -142,12 +142,11 @@ export default React.memo(({ accountType, invoice }: PropsType) => {
             </FormItem>
 
             <div>{t('invoice.addressV2.label')}</div>
-            <FormItem name={['invoice', 'addressV2']}>
-              <AddressCascader
-                placeholder={[t('invoice.county-area'), t('invoice.zip-code')]}
-                shippableCountries={[country.Taiwan]}
-              />
-            </FormItem>
+            <AddressCascader
+              name={['invoice', 'addressV2']}
+              placeholder={[t('invoice.county-area'), t('invoice.zip-code')]}
+              shippableCountries={[country.Taiwan]}
+            />
 
             <FormItem name={['invoice', 'street']}>
               <Input

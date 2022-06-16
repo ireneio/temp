@@ -11,10 +11,8 @@ import Email from '@meepshop/form-email';
 import DatePicker from '@meepshop/form-date-picker';
 import validateMobile from '@meepshop/utils/lib/validate/mobile';
 import { useTranslation } from '@meepshop/locales';
+import AddressCascader from '@meepshop/form-address-cascader';
 import Select, { Option } from '@meepshop/select';
-import AddressCascader, {
-  validateAddressCascader,
-} from '@meepshop/form-address-cascader';
 import { Colors as ColorsContext } from '@meepshop/context';
 import filter from '@meepshop/utils/lib/filter';
 
@@ -47,7 +45,7 @@ const { Item } = Form;
 export default React.memo(
   ({
     form,
-    receiver: { gender, birthday, invoice, shippableCountries, note },
+    receiver: { gender, birthday, invoice, note, shippableCountries },
     viewer,
     shipment,
   }: PropsType) => {
@@ -191,20 +189,13 @@ export default React.memo(
           </Item>
         ) : (
           <>
-            <Item
+            <AddressCascader
               className={styles.formItem}
               name={['addressAndZipCode']}
-              rules={[
-                {
-                  validator: validateAddressCascader(t('is-required')),
-                },
-              ]}
-            >
-              <AddressCascader
-                placeholder={[t('area'), t('postal-code')]}
-                shippableCountries={shippableCountries}
-              />
-            </Item>
+              placeholder={[t('area'), t('postal-code')]}
+              shippableCountries={shippableCountries}
+              enableValidator
+            />
 
             <Item
               className={styles.formItem}

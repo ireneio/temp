@@ -3,9 +3,7 @@ import React, { useContext, useCallback, useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
 import { filter } from 'graphql-anywhere';
 
-import AddressCascader, {
-  validateAddressCascader,
-} from '@meepshop/form-address-cascader';
+import AddressCascader from '@meepshop/form-address-cascader';
 import { Colors as ColorsContext } from '@meepshop/context';
 import validateMobile from '@meepshop/utils/lib/validate/mobile';
 import { useTranslation } from '@meepshop/locales';
@@ -106,7 +104,8 @@ export default React.memo(({ viewer, recipientAddress, cancel }: PropsType) => {
         )}
       </FormItem>
 
-      <FormItem
+      <AddressCascader
+        size="large"
         name={['addressAndZipCode']}
         initialValue={{
           address: [
@@ -116,19 +115,11 @@ export default React.memo(({ viewer, recipientAddress, cancel }: PropsType) => {
           ].filter(Boolean),
           zipCode: recipientAddress?.zipCode,
         }}
-        rules={[
-          {
-            validator: validateAddressCascader(t('form.required')),
-          },
-        ]}
-      >
-        <AddressCascader
-          className={styles.addressCascader}
-          size="large"
-          placeholder={[t('address'), t('zip-code')]}
-          shippableCountries={viewer.store?.shippableCountries || []}
-        />
-      </FormItem>
+        rootClassName={styles.addressCascader}
+        placeholder={[t('address'), t('zip-code')]}
+        shippableCountries={viewer.store?.shippableCountries || []}
+        enableValidator
+      />
 
       <FormItem
         name={['street']}
