@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 0.80.205 (2022-06-16)
+
+#### :bug: Bug Fix
+
+- `store`
+  - [#2249](https://github.com/meepshop/meep-lerna/pull/2249) 內部開單 - res.redirect is not a function ([@piovischioh](https://github.com/piovischioh))
+
+#### :house: Internal
+
+- Other
+  - [#2149](https://github.com/meepshop/meep-lerna/pull/2149) 內部開單 - 移除 thank-you-page 的 window.location ([@piovischioh](https://github.com/piovischioh))
+- `store`
+  - [#2137](https://github.com/meepshop/meep-lerna/pull/2137) 內部開單 - 移除 getReqArgs ([@happycat6323](https://github.com/happycat6323))
+- `meep-ui`
+  - [#2152](https://github.com/meepshop/meep-lerna/pull/2152) 內部開單 - @meepshop/address-cascader 改為 @meepshop/form-address-cascader ([@piovischioh](https://github.com/piovischioh))
+
+#### Committers: 2
+
+- Cate Wang ([@happycat6323](https://github.com/happycat6323))
+- [@piovischioh](https://github.com/piovischioh)
+
 ## 0.80.204 (2022-06-15)
 
 #### :house: Internal
