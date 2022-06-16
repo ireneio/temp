@@ -10,12 +10,8 @@ import MemberHeader from 'components/MemberHeader';
 import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class Orders extends React.Component {
-  static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent } = context;
-
+  static getInitialProps = async () => {
     return {
-      userAgent,
-      XMeepshopDomain,
       namespacesRequired,
     };
   };

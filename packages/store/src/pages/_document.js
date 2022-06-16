@@ -14,7 +14,6 @@ export default class MyDocument extends Document {
       head,
       errorHtml,
       chunks,
-      XMeepshopDomain: req.headers.host,
       lang: req.language,
     };
   }

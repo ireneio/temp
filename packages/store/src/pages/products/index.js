@@ -1,64 +1,49 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 import { Container } from 'components';
 
-export default class Products extends React.Component {
-  static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent } = context;
+export default React.memo(props => {
+  const { loading, page } = props;
 
-    return { XMeepshopDomain, userAgent };
-  };
+  if (loading) return <Spin indicator={<LoadingOutlined spin />} />;
 
-  static propTypes = {
-    page: PropTypes.shape({
-      seo: PropTypes.object,
-    }).isRequired,
-  };
+  if (!page) return null;
 
-  render() {
-    const { loading, page } = this.props;
+  const { tabTitle = '' } = page;
+  const { keywords, description, image } = page.seo || {};
 
-    if (loading) return <Spin indicator={<LoadingOutlined spin />} />;
+  return (
+    <>
+      <Head>
+        {!tabTitle ? null : <title>{tabTitle}</title>}
 
-    if (!page) return null;
+        {!description ? null : (
+          <meta key="description" name="description" content={description} />
+        )}
 
-    const { tabTitle = '' } = page;
-    const { keywords, description, image } = page.seo || {};
+        <meta key="keywords" name="keywords" content={keywords} />
 
-    return (
-      <>
-        <Head>
-          {!tabTitle ? null : <title>{tabTitle}</title>}
+        {!tabTitle ? null : (
+          <meta key="og:title" property="og:title" content={tabTitle} />
+        )}
 
-          {!description ? null : (
-            <meta key="description" name="description" content={description} />
-          )}
+        {!image ? null : (
+          <meta key="og:image" property="og:image" content={image} />
+        )}
 
-          <meta key="keywords" name="keywords" content={keywords} />
+        {!description ? null : (
+          <meta
+            key="og:description"
+            property="og:description"
+            content={description}
+          />
+        )}
+      </Head>
 
-          {!tabTitle ? null : (
-            <meta key="og:title" property="og:title" content={tabTitle} />
-          )}
-
-          {!image ? null : (
-            <meta key="og:image" property="og:image" content={image} />
-          )}
-
-          {!description ? null : (
-            <meta
-              key="og:description"
-              property="og:description"
-              content={description}
-            />
-          )}
-        </Head>
-
-        <Container {...this.props} page={page} />
-      </>
-    );
-  }
-}
+      <Container {...props} page={page} />
+    </>
+  );
+});

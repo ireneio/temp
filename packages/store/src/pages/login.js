@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import LoginView from '@store/login';
 import withHook from '@store/utils/lib/withHook';
@@ -7,21 +7,11 @@ import { Container } from 'components';
 import * as Template from 'template';
 import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
-class Login extends Component {
-  static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent } = context;
-
-    return { userAgent, XMeepshopDomain };
-  };
-
-  render() {
-    return (
-      <Container {...this.props}>
-        <LoginView />
-      </Container>
-    );
-  }
-}
+const Login = React.memo(props => (
+  <Container {...props}>
+    <LoginView />
+  </Container>
+));
 
 export default withHook(() => ({
   page: useTemplatesMenus({

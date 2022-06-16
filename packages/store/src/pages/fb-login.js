@@ -24,12 +24,8 @@ const InAppBrowserPage = React.memo(props => {
   );
 });
 
-InAppBrowserPage.getInitialProps = async context => {
-  const { XMeepshopDomain, userAgent } = context;
-
+InAppBrowserPage.getInitialProps = async () => {
   return {
-    userAgent,
-    XMeepshopDomain,
     namespacesRequired: [],
   };
 };

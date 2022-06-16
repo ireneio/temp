@@ -14,8 +14,6 @@ import useTemplatesMenus from 'hooks/useTemplatesMenus';
 class OrderApplyList extends React.Component {
   static getInitialProps = async context => {
     const {
-      XMeepshopDomain,
-      userAgent,
       query: { orderId },
     } = context;
 
@@ -24,8 +22,6 @@ class OrderApplyList extends React.Component {
 
     return {
       orderId,
-      userAgent,
-      XMeepshopDomain,
       namespacesRequired,
     };
   };

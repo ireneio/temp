@@ -14,8 +14,6 @@ import useTemplatesMenus from 'hooks/useTemplatesMenus';
 class OrderExchange extends Component {
   static getInitialProps = async context => {
     const {
-      XMeepshopDomain,
-      userAgent,
       query: { orderId },
     } = context;
 
@@ -24,8 +22,6 @@ class OrderExchange extends Component {
 
     return {
       orderId,
-      userAgent,
-      XMeepshopDomain,
       namespacesRequired,
     };
   };

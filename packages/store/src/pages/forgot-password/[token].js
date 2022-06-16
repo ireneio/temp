@@ -11,14 +11,12 @@ class ForgotPassword extends Component {
   static getInitialProps = async context => {
     const {
       query: { token },
-      XMeepshopDomain,
-      userAgent,
     } = context;
 
     // FIXME: should use get getServerSideProps return notFound
     if (!token) throw new Error('[FIXME] token is undefined');
 
-    return { token, userAgent, XMeepshopDomain };
+    return { token };
   };
 
   render() {

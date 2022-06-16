@@ -22,7 +22,6 @@ import AdTrackProvider from '@store/ad-track';
 import { log } from '@meepshop/logger/lib/gqls/log';
 
 import { CloseView } from 'components';
-import * as Utils from 'utils';
 import getClientSideProps from 'utils/getClientSideProps';
 import getServerSideProps from 'utils/getServerSideProps';
 import { appWithCookies } from 'utils/withCookies';
@@ -35,8 +34,6 @@ notification.config({ placement: 'topRight', duration: 1.5 });
 
 class App extends NextApp {
   static async getInitialProps({ Component, ctx, router }) {
-    const { XMeepshopDomain, userAgent } = Utils.getReqArgs(ctx.req);
-
     const initialProps =
       typeof window === 'undefined'
         ? await getServerSideProps(ctx, router)
@@ -47,14 +44,16 @@ class App extends NextApp {
     const pageProps =
       (await Component.getInitialProps?.({
         ...ctx,
-        XMeepshopDomain,
-        userAgent,
       })) || {};
 
     return {
       ...initialProps,
       pageProps: {
         ...pageProps,
+        userAgent:
+          typeof window === 'undefined'
+            ? ctx.req.get?.('user-agent')
+            : window.navigator.userAgent,
         namespacesRequired: [
           ...(pageProps.namespacesRequired || []),
           '@meepshop/locales/namespacesRequired',

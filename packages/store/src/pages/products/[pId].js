@@ -9,13 +9,13 @@ import ProductDiscontinued from 'components/ProductDiscontinued';
 
 export default class Product extends React.Component {
   static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent, query } = context;
+    const { query } = context;
     const { pId } = query;
 
     // FIXME: should use get getServerSideProps return notFound
     if (!pId) throw new Error('[FIXME] pId is undefined');
 
-    return { pId, userAgent, XMeepshopDomain };
+    return { pId };
   };
 
   static propTypes = {

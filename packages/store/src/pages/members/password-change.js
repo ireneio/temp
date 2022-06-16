@@ -12,12 +12,8 @@ import MemberHeader from 'components/MemberHeader';
 import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class PasswordChange extends Component {
-  static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent } = context;
-
+  static getInitialProps = async () => {
     return {
-      userAgent,
-      XMeepshopDomain,
       namespacesRequired,
     };
   };

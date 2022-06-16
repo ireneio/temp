@@ -11,7 +11,7 @@ import * as CONST from 'constants';
 
 export default class Pages extends React.Component {
   static getInitialProps = async context => {
-    const { res, XMeepshopDomain, userAgent, query, client, router } = context;
+    const { res, query, client, router } = context;
     const { path, pId } = query;
 
     // FIXME: should use get getServerSideProps return notFound
@@ -38,7 +38,7 @@ export default class Pages extends React.Component {
       return {};
     }
 
-    return { path, userAgent, XMeepshopDomain };
+    return { path };
   };
 
   static propTypes = {

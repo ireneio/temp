@@ -30,7 +30,7 @@ const Page = React.memo(({ error, ...props }) => {
 });
 
 Page.getInitialProps = async ctx => {
-  const { query, XMeepshopDomain, userAgent, client } = ctx;
+  const { query, client } = ctx;
 
   if (typeof window !== 'undefined')
     return { error: { status: 'ERROR_PAGE_NOT_FOUND' } };
@@ -53,8 +53,6 @@ Page.getInitialProps = async ctx => {
   ctx.res.setHeader('X-Frame-Options', '');
 
   return {
-    userAgent,
-    XMeepshopDomain,
     pageId,
     pId,
   };

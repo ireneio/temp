@@ -1,56 +1,42 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 import { Container } from 'components';
-import * as CONST from 'constants';
 
-export default class Index extends React.Component {
-  static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent } = context;
+export default React.memo(props => {
+  const { loading, page } = props;
 
-    return { userAgent, XMeepshopDomain };
-  };
+  if (loading) return <Spin indicator={<LoadingOutlined spin />} />;
 
-  static propTypes = {
-    page: PropTypes.shape(CONST.PAGE_TYPE).isRequired,
-  };
+  if (!page) return null;
 
-  render() {
-    const { loading, page } = this.props;
+  const { keywords, description, image } = page.seo || {};
 
-    if (loading) return <Spin indicator={<LoadingOutlined spin />} />;
+  return (
+    <>
+      <Head>
+        {!description ? null : (
+          <meta key="description" name="description" content={description} />
+        )}
 
-    if (!page) return null;
+        <meta key="keywords" name="keywords" content={keywords} />
 
-    const { keywords, description, image } = page.seo || {};
+        {!image ? null : (
+          <meta key="og:image" property="og:image" content={image} />
+        )}
 
-    return (
-      <>
-        <Head>
-          {!description ? null : (
-            <meta key="description" name="description" content={description} />
-          )}
+        {!description ? null : (
+          <meta
+            key="og:description"
+            property="og:description"
+            content={description}
+          />
+        )}
+      </Head>
 
-          <meta key="keywords" name="keywords" content={keywords} />
-
-          {!image ? null : (
-            <meta key="og:image" property="og:image" content={image} />
-          )}
-
-          {!description ? null : (
-            <meta
-              key="og:description"
-              property="og:description"
-              content={description}
-            />
-          )}
-        </Head>
-
-        <Container {...this.props} page={page} />
-      </>
-    );
-  }
-}
+      <Container {...props} page={page} />
+    </>
+  );
+});

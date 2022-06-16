@@ -14,12 +14,8 @@ import Router from 'next/router';
 import useTemplatesMenus from 'hooks/useTemplatesMenus';
 
 class Wishlist extends Component {
-  static getInitialProps = async context => {
-    const { XMeepshopDomain, userAgent } = context;
-
+  static getInitialProps = async () => {
     return {
-      userAgent,
-      XMeepshopDomain,
       namespacesRequired,
     };
   };
