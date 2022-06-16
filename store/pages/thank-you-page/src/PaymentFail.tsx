@@ -1,5 +1,6 @@
 // import
 import React, { useContext, useCallback } from 'react';
+import { useQuery } from '@apollo/client';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import transformColor from 'color';
@@ -10,20 +11,28 @@ import { useRouter } from '@meepshop/link';
 
 import styles from './styles/paymentFail.less';
 
+// graphql typescript
+import { getCartWhenPaymentFail as getCartWhenPaymentFailType } from '@meepshop/types/gqls/store';
+
+// graphql import
+import { getCartWhenPaymentFail } from './gqls/paymentFail';
+
 // definition
 export default React.memo(() => {
   const colors = useContext(ColorsContext);
   const { t } = useTranslation('thank-you-page');
-  const { query } = useRouter();
+  const { query, push } = useRouter();
+  useQuery<getCartWhenPaymentFailType>(getCartWhenPaymentFail, {
+    fetchPolicy: 'cache-and-network',
+  });
 
-  // FIXME: should use client.resetStore
   const goToCart = useCallback(() => {
-    window.location.href = '/cart';
-  }, []);
+    push('/cart');
+  }, [push]);
 
   const goToHome = useCallback(() => {
-    window.location.href = '/';
-  }, []);
+    push('/');
+  }, [push]);
 
   const goToRedirectUrl = useCallback(() => {
     window.location.href = query.redirectUrl as string;
