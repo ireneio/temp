@@ -32,8 +32,12 @@ export default class Pages extends React.Component {
         },
       });
 
-      if (typeof window === 'undefined') res.redirect(302, `/product/${pId}`);
-      else router.push(`/product/${pId}`);
+      if (typeof window === 'undefined') {
+        res.writeHead(302, {
+          Location: `/product/${pId}`,
+        });
+        res.end();
+      } else router.push(`/product/${pId}`);
 
       return {};
     }
