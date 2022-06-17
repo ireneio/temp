@@ -3,11 +3,12 @@ import { FormItemProps } from 'antd';
 import { PickerProps } from 'antd/lib/date-picker/generatePicker';
 
 // import
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form } from 'antd';
 
 import DatePicker, { AdminDatePicker } from './DatePicker';
 import useValidator from './hooks/useValidator';
+import SensorContext from '@meepshop/context/lib/Sensor';
 
 // typescript definition
 interface PropsType {
@@ -23,6 +24,7 @@ export { AdminDatePicker };
 
 export default React.memo(
   ({ enableValidator = false, formItemProps, datePickerProps }: PropsType) => {
+    const { isMobile } = useContext(SensorContext);
     const validator = useValidator();
 
     return (
@@ -39,8 +41,18 @@ export default React.memo(
                 ]
           }
         >
-          <DatePicker inputReadOnly {...datePickerProps} />
+          <DatePicker inputReadOnly={isMobile} {...datePickerProps} />
         </FormItem>
+        {/* FIXME: remove when antd showToday props is added https://github.com/ant-design/ant-design/issues/28654 */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              .ant-picker-footer{
+                display: none
+              }
+            `,
+          }}
+        />
       </>
     );
   },

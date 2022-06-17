@@ -87,6 +87,8 @@ export const ColorsProvider = React.memo(({ children }) => {
             .ant-input-number-input,
             .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover,
             .ant-picker,
+            .ant-picker:hover, 
+            .ant-picker-focused,
             .ant-picker.ant-picker-disabled,
             .ant-cascader-picker,
             .ant-form-item-has-error .ant-input,
@@ -121,11 +123,17 @@ export const ColorsProvider = React.memo(({ children }) => {
             .ant-cascader-picker .ant-cascader-picker-label,
             .ant-cascader-picker .ant-cascader-picker-clear,
             .ant-cascader-picker .ant-cascader-picker-arrow,
-            .ant-cascader-menus .ant-cascader-menu-item {
+            .ant-cascader-menus .ant-cascader-menu-item,
+            .ant-picker-header-view button, 
+            .ant-picker-header-view button:hover,
+            .ant-picker-header > button:hover,
+            .ant-table,
+            .ant-table-thead > tr > th,
+            .ant-picker-today-btn:hover {
               color: ${colors[3]};
             }
 
-            .ant-cascader-picker-clear {
+            .ant-cascader-picker-clear, .ant-picker-panel-container {
               background-color: ${colors[0]};
             }
 
@@ -133,17 +141,25 @@ export const ColorsProvider = React.memo(({ children }) => {
               background-color: ${colors[0]};
               box-shadow: 0 2px 8px ${transformColor(colors[3]).alpha(0.15)};
             }
-
-            .ant-cascader-menus .ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled),
-            .ant-cascader-menus .ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled):hover,
-            .ant-cascader-menus .ant-cascader-menu-item:hover {
-              background-color: ${colors[4]};
-              color: ${colors[2]};
+            
+            .ant-picker-header > button {
+              color: ${transformColor(colors[3]).alpha(0.3)};
+            }
+            
+            .ant-picker-cell:hover:not(.ant-picker-cell-selected):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):not(.ant-picker-cell-range-hover-start):not(.ant-picker-cell-range-hover-end) .ant-picker-cell-inner {
+              background-color: ${transformColor(colors[3]).alpha(0.1)};
             }
 
-            .ant-table,
-            .ant-table-thead > tr > th {
-              color: ${colors[3]};
+            .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+              border-color: ${colors[4]};
+            }
+            
+            .ant-cascader-menus .ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled),
+            .ant-cascader-menus .ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled):hover,
+            .ant-cascader-menus .ant-cascader-menu-item:hover,
+            .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+              background-color: ${colors[4]};
+              color: ${colors[2]};
             }
 
             .ant-table-tbody > tr.ant-table-row:hover > td,

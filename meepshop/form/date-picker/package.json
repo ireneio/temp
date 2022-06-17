@@ -8,6 +8,7 @@
   "main": "./index.js",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@meepshop/context": "^0.80.201",
     "@meepshop/locales": "^0.80.205",
     "date-fns": "^2.15.0",
     "rc-picker": "^2.5.10"
