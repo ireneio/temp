@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.80.206 (2022-06-17)
+
+#### :house: Internal
+
+- [#2329](https://github.com/meepshop/meep-lerna/pull/2329) 內部開單 - @meepshop/form-date-picker 樣式更新為共用規範 ([@danielyeh-meepshop](https://github.com/danielyeh-meepshop))
+
+#### Committers: 1
+
+- [@danielyeh-meepshop](https://github.com/danielyeh-meepshop)
+
 ## 0.80.205 (2022-06-16)
 
 #### :bug: Bug Fix
