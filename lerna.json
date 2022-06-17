@@ -1,5 +1,5 @@
 {
-  "version": "0.80.205",
+  "version": "0.80.206",
   "command": {
     "publish": {
       "message": "chore(release): publish %s [skip ci]",
