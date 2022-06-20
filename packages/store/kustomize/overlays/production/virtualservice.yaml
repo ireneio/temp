@@ -31,3 +31,44 @@ spec:
         host: storefront-reverse-proxy
         port:
           number: 8080
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: default-route
+  namespace: default
+spec:
+  gateways:
+    - default-gateway
+  hosts:
+    - "*"
+  http:
+  - match:
+    - uri:
+        prefix: /checkout/thank-you-page
+    route:
+    - destination:
+        host: next-store
+        port:
+          number: 14401
+  - match:
+    - uri:
+        prefix: /_next
+    route:
+    - destination:
+        host: next-store
+        port:
+          number: 14401
+  - match:
+    - uri:
+        prefix: /api/graphql
+    route:
+    - destination:
+        host: next-store-proxy
+        port:
+          number: 14401
+  - route:
+    - destination:
+        host: storefront-reverse-proxy
+        port:
+          number: 8080
